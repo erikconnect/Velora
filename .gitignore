@@ -19,3 +19,6 @@ packages/css/dist/
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# Local AI context
+docs/velora-master-context.md
