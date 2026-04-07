@@ -1,0 +1,10 @@
+{
+  "name": "@velora/css",
+  "version": "1.0.0",
+  "description": "Core CSS design system for Velora",
+  "main": "src/velora.css",
+  "license": "ISC",
+  "scripts": {
+    "build": "node ./scripts/stamp-build.mjs"
+  }
+}

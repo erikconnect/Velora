@@ -1,0 +1,539 @@
+@layer velora.motion {
+    /*
+     * Motion system — animações só com CSS (scroll timelines, keyframes, easing dos tokens).
+     * Scroll-driven: prefira timeline anónima view() para vários elementos na mesma página.
+     */
+
+    /* -------------------------------------------------------------------------
+       Keyframes — entrada / ênfase
+       ------------------------------------------------------------------------- */
+    @keyframes vl-fade-up {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 1.25rem, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-slide-in {
+        from {
+            opacity: 0;
+            transform: translate3d(-1.5rem, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-slide-in-right {
+        from {
+            opacity: 0;
+            transform: translate3d(1.5rem, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-3d-entry {
+        from {
+            opacity: 0;
+            transform: perspective(1200px) rotateX(12deg) translate3d(0, 2rem, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: perspective(1200px) rotateX(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-blur-in {
+        from {
+            opacity: 0;
+            filter: blur(14px);
+            transform: translate3d(0, 0.75rem, 0);
+        }
+
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-scale-in {
+        from {
+            opacity: 0;
+            transform: scale(0.94) translate3d(0, 0.5rem, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-tilt-in {
+        from {
+            opacity: 0;
+            transform: perspective(900px) rotateY(-8deg) translate3d(0, 1rem, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: perspective(900px) rotateY(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-clip-rise {
+        from {
+            opacity: 0.2;
+            clip-path: inset(100% 0 0 0);
+        }
+
+        to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-shimmer {
+        to {
+            background-position: 200% center;
+        }
+    }
+
+    @keyframes vl-float {
+        0%,
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+
+        50% {
+            transform: translate3d(0, -0.35rem, 0);
+        }
+    }
+
+    @keyframes vl-glow-breathe {
+        0%,
+        100% {
+            opacity: 0.55;
+            filter: drop-shadow(0 0 0.35rem color-mix(in oklch, var(--vl-color-primary) 40%, transparent));
+        }
+
+        50% {
+            opacity: 1;
+            filter: drop-shadow(0 0 0.85rem color-mix(in oklch, var(--vl-color-primary) 55%, transparent));
+        }
+    }
+
+    /* Parallax leve — desloca com o progresso do view timeline */
+    @keyframes vl-parallax-shift {
+        from {
+            transform: translate3d(
+                0,
+                var(--vl-parallax-from, -12%),
+                0
+            );
+        }
+
+        to {
+            transform: translate3d(
+                0,
+                var(--vl-parallax-to, 12%),
+                0
+            );
+        }
+    }
+
+    @keyframes vl-scroll-scale {
+        from {
+            opacity: 0.35;
+            transform: scale(0.92);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* -------------------------------------------------------------------------
+       Entradas no tempo (página / hover de camada)
+       ------------------------------------------------------------------------- */
+    .vl-motion-fade-up {
+        animation: vl-fade-up var(--vl-duration-slow) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-motion-slide-in {
+        animation: vl-slide-in var(--vl-duration-slow) var(--vl-ease-out-soft) both;
+    }
+
+    .vl-motion-slide-in-right {
+        animation: vl-slide-in-right var(--vl-duration-slow) var(--vl-ease-out-soft) both;
+    }
+
+    .vl-motion-blur-in {
+        animation: vl-blur-in var(--vl-duration-slower) var(--vl-ease-out-soft) both;
+    }
+
+    .vl-motion-scale-in {
+        animation: vl-scale-in var(--vl-duration-slow) var(--vl-ease-spring) both;
+    }
+
+    .vl-motion-tilt-in {
+        animation: vl-tilt-in var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-motion-clip-rise {
+        animation: vl-clip-rise var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+    }
+
+    /**
+     * Stagger: aplique no pai; filhos herdam o mesmo tipo de entrada.
+     * Combine com .vl-motion-fade-up nos filhos ou use só o stagger (aplica fade-up).
+     */
+    .vl-motion-stagger > * {
+        animation: vl-fade-up var(--vl-duration-slow) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-motion-stagger > *:nth-child(1) {
+        animation-delay: calc(0 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(2) {
+        animation-delay: calc(1 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(3) {
+        animation-delay: calc(2 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(4) {
+        animation-delay: calc(3 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(5) {
+        animation-delay: calc(4 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(6) {
+        animation-delay: calc(5 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(7) {
+        animation-delay: calc(6 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(8) {
+        animation-delay: calc(7 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(9) {
+        animation-delay: calc(8 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(10) {
+        animation-delay: calc(9 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(11) {
+        animation-delay: calc(10 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger > *:nth-child(12) {
+        animation-delay: calc(11 * var(--vl-stagger-step));
+    }
+
+    .vl-motion-stagger--slide > * {
+        animation-name: vl-slide-in;
+    }
+
+    .vl-motion-stagger--slide-right > * {
+        animation-name: vl-slide-in-right;
+    }
+
+    .vl-motion-stagger--blur > * {
+        animation-name: vl-blur-in;
+        animation-duration: var(--vl-duration-slower);
+    }
+
+    /**
+     * Shimmer: elemento precisa de background em gradiente longo, ex.:
+     * background: linear-gradient(110deg, … 40%, … 50%, … 60%, …);
+     * background-size: 200% auto;
+     */
+    .vl-motion-shimmer {
+        animation: vl-shimmer 2.5s var(--vl-ease-in-out-smooth) infinite;
+        background-size: 200% auto;
+    }
+
+    .vl-motion-float {
+        animation: vl-float 5.5s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    .vl-motion-glow-breathe {
+        animation: vl-glow-breathe 3.5s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    /* -------------------------------------------------------------------------
+       Scroll-driven (view timeline anónima — sem colisão de nomes entre elementos)
+       ------------------------------------------------------------------------- */
+    .vl-scroll-reveal {
+        view-timeline-axis: block;
+        animation: vl-3d-entry both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 42%;
+    }
+
+    .vl-scroll-reveal--soft {
+        animation: vl-fade-up both linear;
+        animation-timeline: view(block);
+        animation-range: entry 10% cover 50%;
+    }
+
+    .vl-scroll-reveal--blur {
+        animation: vl-blur-in both linear;
+        animation-timeline: view(block);
+        animation-range: entry 0% cover 45%;
+    }
+
+    .vl-scroll-reveal--scale {
+        animation: vl-scroll-scale both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 55%;
+    }
+
+    .vl-scroll-reveal--tilt {
+        animation: vl-tilt-in both linear;
+        animation-timeline: view(block);
+        animation-range: entry 0% cover 48%;
+    }
+
+    .vl-scroll-reveal--long {
+        animation-range: entry 0% cover 70%;
+    }
+
+    .vl-scroll-reveal--snap {
+        animation-range: entry 15% cover 35%;
+    }
+
+    /**
+     * Secções com scroll horizontal (.vl-scroll-x): eixo inline.
+     */
+    .vl-scroll-reveal-inline {
+        view-timeline-axis: inline;
+        animation: vl-slide-in-right both linear;
+        animation-timeline: view(inline);
+        animation-range: entry 15% cover 60%;
+    }
+
+    /**
+     * Parallax: ajuste --vl-parallax-from / --vl-parallax-to no elemento (ex.: -20% / 20%).
+     */
+    .vl-scroll-parallax {
+        animation: vl-parallax-shift both linear;
+        animation-timeline: view(block);
+        animation-range: cover;
+    }
+
+    /* Fallback: browsers sem view() timeline — animação única + estado final estável */
+    @supports not (animation-timeline: view(block)) {
+        .vl-scroll-reveal,
+        .vl-scroll-reveal--soft,
+        .vl-scroll-reveal--blur,
+        .vl-scroll-reveal--scale,
+        .vl-scroll-reveal--tilt,
+        .vl-scroll-reveal-inline,
+        .vl-scroll-parallax {
+            animation: vl-3d-entry var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+            animation-timeline: auto;
+            animation-range: normal;
+        }
+
+        .vl-scroll-reveal--soft {
+            animation-name: vl-fade-up;
+        }
+
+        .vl-scroll-reveal--blur {
+            animation-name: vl-blur-in;
+        }
+
+        .vl-scroll-reveal--scale {
+            animation-name: vl-scroll-scale;
+        }
+
+        .vl-scroll-reveal--tilt {
+            animation-name: vl-tilt-in;
+        }
+
+        .vl-scroll-reveal-inline {
+            animation-name: vl-slide-in-right;
+        }
+
+        .vl-scroll-parallax {
+            animation-name: vl-parallax-shift;
+        }
+    }
+
+    @keyframes vl-tilt-wobble {
+        0%,
+        100% {
+            transform: rotate(-2.5deg);
+        }
+
+        50% {
+            transform: rotate(2.5deg);
+        }
+    }
+
+    @keyframes vl-orbit-spin {
+        from {
+            transform: rotate(0deg) translateX(var(--vl-orbit-radius, 2.5rem)) rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg) translateX(var(--vl-orbit-radius, 2.5rem)) rotate(-360deg);
+        }
+    }
+
+    @keyframes vl-rock {
+        0%,
+        100% {
+            transform: rotate(-4deg);
+        }
+
+        50% {
+            transform: rotate(4deg);
+        }
+    }
+
+    @keyframes vl-rotate-flat {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /**
+     * Oscilação contínua — ícones, selos, “live” indicators.
+     */
+    .vl-motion-wobble {
+        animation: vl-tilt-wobble 2.8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    /**
+     * Ponto em órbita circular — definir --vl-orbit-radius no elemento.
+     */
+    .vl-motion-orbit {
+        display: inline-block;
+        transform-origin: center center;
+        animation: vl-orbit-spin 14s linear infinite;
+    }
+
+    /**
+     * Rotação lenta genérica (decoração).
+     */
+    .vl-motion-rotate-slow {
+        display: inline-block;
+        transform-origin: center center;
+        animation: vl-rotate-flat 20s linear infinite;
+    }
+
+    /**
+     * Hover: inclinação leve + escala (cartões interativos).
+     */
+    .vl-tilt-hover {
+        transition: transform var(--vl-transition-normal);
+    }
+
+    .vl-tilt-hover:hover {
+        transform: rotate(-2deg) scale(1.02);
+    }
+
+    @media (hover: none) {
+        .vl-tilt-hover:hover {
+            transform: none;
+        }
+    }
+
+    /**
+     * “Rock” infinito — mais amplitude que wobble.
+     */
+    .vl-motion-rock {
+        animation: vl-rock 4s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    /* -------------------------------------------------------------------------
+       GPU / composição (uso pontual — custo de memória)
+       ------------------------------------------------------------------------- */
+    .vl-motion-gpu {
+        will-change: transform, opacity;
+    }
+
+    .vl-motion-gpu-filter {
+        will-change: transform, opacity, filter;
+    }
+
+    /* -------------------------------------------------------------------------
+       Acessibilidade
+       ------------------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+        .vl-motion-fade-up,
+        .vl-motion-slide-in,
+        .vl-motion-slide-in-right,
+        .vl-motion-blur-in,
+        .vl-motion-scale-in,
+        .vl-motion-tilt-in,
+        .vl-motion-clip-rise,
+        .vl-motion-stagger > *,
+        .vl-motion-stagger--slide > *,
+        .vl-motion-stagger--slide-right > *,
+        .vl-motion-stagger--blur > *,
+        .vl-motion-shimmer,
+        .vl-motion-float,
+        .vl-motion-glow-breathe,
+        .vl-motion-wobble,
+        .vl-motion-orbit,
+        .vl-motion-rotate-slow,
+        .vl-motion-rock {
+            animation: none;
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        .vl-tilt-hover:hover {
+            transform: none;
+        }
+
+        .vl-scroll-reveal,
+        .vl-scroll-reveal--soft,
+        .vl-scroll-reveal--blur,
+        .vl-scroll-reveal--scale,
+        .vl-scroll-reveal--tilt,
+        .vl-scroll-reveal--long,
+        .vl-scroll-reveal--snap,
+        .vl-scroll-reveal-inline,
+        .vl-scroll-parallax {
+            animation: none;
+            animation-timeline: auto !important;
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        .vl-motion-gpu,
+        .vl-motion-gpu-filter {
+            will-change: auto;
+        }
+    }
+}
+
