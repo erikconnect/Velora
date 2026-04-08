@@ -1,0 +1,240 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const categories = [
+  {
+    title: "Layout",
+    description:
+      "Responsive containers, grids, split panels, stacks, and scroll-snap utilities — all powered by container queries.",
+    classes: "vl-container · vl-grid · vl-split · vl-stack · vl-scroll-x",
+  },
+  {
+    title: "Motion",
+    description:
+      "Scroll-driven reveals, stagger sequences, parallax shifts, and keyframe animations — zero JavaScript.",
+    classes: "vl-scroll-reveal · vl-motion-stagger · vl-scroll-parallax · vl-motion-fade-up",
+  },
+  {
+    title: "Components",
+    description:
+      "Cards, CTAs, kickers, badges, marquees, accordions, carousels, galleries, banners, and flip cards.",
+    classes: "vl-card · vl-cta · vl-kicker · vl-badge · vl-accordion · vl-carousel",
+  },
+  {
+    title: "Forms",
+    description:
+      "Accessible inputs, textareas, selects, checkboxes, radios, toggles, and field wrappers with validation states.",
+    classes: "vl-input · vl-textarea · vl-select · vl-checkbox · vl-radio · vl-toggle",
+  },
+  {
+    title: "Transitions",
+    description:
+      "Six view transition presets for seamless MPA page navigation with shared-element morphing.",
+    classes: "data-vt-preset · vl-vt-shared-nav · vl-vt-shared-hero · vl-vt-shared-card",
+  },
+  {
+    title: "Utilities",
+    description:
+      "Text gradients, blur filters, frosted glass, GPU hints, masks, blend modes, and animation timing controls.",
+    classes: "vl-text-gradient · vl-frost · vl-blur-md · vl-gpu · vl-mask-fade-x",
+  },
+];
+---
+
+<Layout title="Components — Velora">
+  <main>
+    <section class="vl-section">
+      <div class="vl-container">
+        <div class="vl-section-header">
+          <span class="vl-kicker">Reference</span>
+          <h1 class="vl-section-header__title">Components</h1>
+          <p class="vl-section-header__desc">
+            Every building block in Velora — from layout primitives to
+            scroll-driven animations — organized by category.
+          </p>
+        </div>
+
+        <div class="vl-grid vl-grid--auto vl-motion-stagger">
+          {categories.map((cat) => (
+            <div class="vl-card vl-scroll-reveal">
+              <div class="vl-card__title">{cat.title}</div>
+              <p class="vl-card__body">{cat.description}</p>
+              <p class="component-classes">{cat.classes}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Sections -->
+    <section class="vl-section">
+      <div class="vl-container vl-stack vl-stack--xl" style="max-width: 48rem;">
+
+        <hr class="vl-section-rule" />
+
+        <!-- Layout -->
+        <div class="vl-stack">
+          <h2>Layout</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Responsive primitives built on container queries — components adapt to their own width, not the viewport.
+          </p>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-container</code> — Centered responsive wrapper with max-width constraint. Variants: <code class="vl-code">--narrow</code>, <code class="vl-code">--wide</code>, <code class="vl-code">--flush</code>.</p>
+            <p><code class="vl-code">.vl-grid</code> — Auto-responsive grid. Variants: <code class="vl-code">--auto</code> (bento), <code class="vl-code">--3</code> (three-column).</p>
+            <p><code class="vl-code">.vl-split</code> — Two-column asymmetric layout for hero sections.</p>
+            <p><code class="vl-code">.vl-stack</code> — Vertical flex with consistent gaps. Variants: <code class="vl-code">--sm</code>, <code class="vl-code">--lg</code>, <code class="vl-code">--xl</code>, <code class="vl-code">--row</code>.</p>
+            <p><code class="vl-code">.vl-scroll-x</code> — Horizontal scroll-snap container with optional center alignment.</p>
+            <p><code class="vl-code">.vl-cluster</code> — Flex-wrap group for inline elements like tags and buttons.</p>
+            <p><code class="vl-code">.vl-measure</code> — Readability constraint (65ch). Variant: <code class="vl-code">--wide</code>.</p>
+          </div>
+        </div>
+
+        <hr class="vl-section-rule" />
+
+        <!-- Motion -->
+        <div class="vl-stack">
+          <h2>Motion</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Animation primitives using scroll-driven timelines and CSS keyframes. All respect <code class="vl-code">prefers-reduced-motion</code>.
+          </p>
+          <h3>Entry Animations</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-motion-fade-up</code> — Opacity + upward translation.</p>
+            <p><code class="vl-code">.vl-motion-slide-in</code> / <code class="vl-code">.vl-motion-slide-in-right</code> — Horizontal slide with fade.</p>
+            <p><code class="vl-code">.vl-motion-blur-in</code> — Blur-in reveal effect.</p>
+            <p><code class="vl-code">.vl-motion-scale-in</code> — Scale + fade with spring easing.</p>
+            <p><code class="vl-code">.vl-motion-tilt-in</code> — 3D tilt entry.</p>
+            <p><code class="vl-code">.vl-motion-clip-rise</code> — Clip-path rise reveal.</p>
+          </div>
+          <h3>Scroll-Driven</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-scroll-reveal</code> — 3D entry on scroll. Variants: <code class="vl-code">--soft</code>, <code class="vl-code">--blur</code>, <code class="vl-code">--scale</code>, <code class="vl-code">--tilt</code>, <code class="vl-code">--long</code>, <code class="vl-code">--snap</code>.</p>
+            <p><code class="vl-code">.vl-scroll-parallax</code> — Parallax shift on scroll. Customize with <code class="vl-code">--vl-parallax-from</code> / <code class="vl-code">--vl-parallax-to</code>.</p>
+          </div>
+          <h3>Stagger</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-motion-stagger</code> — Children animate with cascading delays (up to 12). Variants: <code class="vl-code">--slide</code>, <code class="vl-code">--slide-right</code>, <code class="vl-code">--blur</code>.</p>
+          </div>
+          <h3>Continuous</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-motion-float</code> — Gentle up/down bob.</p>
+            <p><code class="vl-code">.vl-motion-shimmer</code> — Infinite shimmer sweep.</p>
+            <p><code class="vl-code">.vl-motion-glow-breathe</code> — Pulsing glow.</p>
+            <p><code class="vl-code">.vl-motion-orbit</code> — Circular orbit.</p>
+          </div>
+        </div>
+
+        <hr class="vl-section-rule" />
+
+        <!-- Components -->
+        <div class="vl-stack">
+          <h2>Components</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Marketing and UI components — all CSS-only, no JavaScript required.
+          </p>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-card</code> — Base card with hover lift. Variants: <code class="vl-code">--glass</code>, <code class="vl-code">--aurora</code>. Sub-elements: <code class="vl-code">__title</code>, <code class="vl-code">__body</code>.</p>
+            <p><code class="vl-code">.vl-cta</code> — Primary call-to-action button with shine effect. Variant: <code class="vl-code">--ghost</code>.</p>
+            <p><code class="vl-code">.vl-kicker</code> — Eyebrow label. Variant: <code class="vl-code">--pulse</code>.</p>
+            <p><code class="vl-code">.vl-badge</code> — Small tag label. Variant: <code class="vl-code">--accent</code>.</p>
+            <p><code class="vl-code">.vl-marquee</code> — Auto-scrolling content strip. Sub-elements: <code class="vl-code">__track</code>, <code class="vl-code">__item</code>.</p>
+            <p><code class="vl-code">.vl-accordion</code> — Expandable details panel. Variant: <code class="vl-code">--media</code> (with thumbnail).</p>
+            <p><code class="vl-code">.vl-carousel</code> — CSS-only carousel with radio-state navigation. Variant: <code class="vl-code">--banner</code>.</p>
+            <p><code class="vl-code">.vl-gallery</code> — Grid gallery. Variant: <code class="vl-code">--mosaic</code>. Sub-elements: <code class="vl-code">__item</code>, <code class="vl-code">__caption</code>.</p>
+            <p><code class="vl-code">.vl-banner</code> — Full-height hero. Variants: <code class="vl-code">--ken</code>, <code class="vl-code">--mesh</code>. Sub-elements: <code class="vl-code">__media</code>, <code class="vl-code">__scrim</code>, <code class="vl-code">__content</code>.</p>
+            <p><code class="vl-code">.vl-flip</code> — 3D flip card. Variant: <code class="vl-code">--hover</code>.</p>
+            <p><code class="vl-code">.vl-quote</code> — Blockquote with gradient border.</p>
+            <p><code class="vl-code">.vl-stat</code> — Metric display. Sub-elements: <code class="vl-code">__value</code>, <code class="vl-code">__label</code>.</p>
+          </div>
+        </div>
+
+        <hr class="vl-section-rule" />
+
+        <!-- Forms -->
+        <div class="vl-stack">
+          <h2>Forms</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Accessible form controls with validation states and focus styles.
+          </p>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-input</code> — Text input. Variants: <code class="vl-code">--sm</code>, <code class="vl-code">--lg</code>.</p>
+            <p><code class="vl-code">.vl-textarea</code> — Auto-resizing textarea.</p>
+            <p><code class="vl-code">.vl-select</code> — Styled native select with custom chevron.</p>
+            <p><code class="vl-code">.vl-checkbox</code> / <code class="vl-code">.vl-radio</code> — Accessible hidden inputs with styled labels.</p>
+            <p><code class="vl-code">.vl-toggle</code> — Switch control with sliding thumb.</p>
+            <p><code class="vl-code">.vl-field</code> — Field wrapper. Sub-elements: <code class="vl-code">__label</code>, <code class="vl-code">__hint</code>, <code class="vl-code">__error</code>.</p>
+            <p><code class="vl-code">.vl-form-group</code> — Fieldset wrapper. Variant: <code class="vl-code">--inline</code>.</p>
+            <p><code class="vl-code">.vl-input-group</code> — Input with addons. Sub-element: <code class="vl-code">__addon</code>.</p>
+          </div>
+        </div>
+
+        <hr class="vl-section-rule" />
+
+        <!-- Transitions -->
+        <div class="vl-stack">
+          <h2>View Transitions</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Seamless MPA page transitions using the View Transitions API with CSS-only presets.
+          </p>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">data-vt-preset="velora"</code> — Default blur + scale transition.</p>
+            <p><code class="vl-code">data-vt-preset="wipe"</code> — Clip-path reveal.</p>
+            <p><code class="vl-code">data-vt-preset="glide"</code> — Horizontal slide.</p>
+            <p><code class="vl-code">data-vt-preset="iris"</code> — Circular reveal.</p>
+            <p><code class="vl-code">data-vt-preset="cinema"</code> — Cinematic blur + scale + clip.</p>
+            <p><code class="vl-code">data-vt-preset="snap"</code> — Rotation + spring.</p>
+          </div>
+          <h3>Shared Elements</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-vt-shared-nav</code> — Navigation bar morphing.</p>
+            <p><code class="vl-code">.vl-vt-shared-brand</code> — Brand logo morphing.</p>
+            <p><code class="vl-code">.vl-vt-shared-hero</code> — Hero heading morphing.</p>
+            <p><code class="vl-code">.vl-vt-shared-media</code> — Media cross-fade.</p>
+            <p><code class="vl-code">.vl-vt-shared-card</code> — Card glide transition.</p>
+          </div>
+        </div>
+
+        <hr class="vl-section-rule" />
+
+        <!-- Utilities -->
+        <div class="vl-stack">
+          <h2>Utilities</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Low-level utility classes for fine-grained control.
+          </p>
+          <h3>Visual Effects</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-text-gradient</code> — Gradient text fill. Variant: <code class="vl-code">--accent</code>.</p>
+            <p><code class="vl-code">.vl-frost</code> — Frosted glass background with backdrop blur.</p>
+            <p><code class="vl-code">.vl-blur-xs</code> / <code class="vl-code">-sm</code> / <code class="vl-code">-md</code> — Blur filter amounts.</p>
+            <p><code class="vl-code">.vl-drop-glow</code> — Drop-shadow glow with brand color.</p>
+            <p><code class="vl-code">.vl-glow-brand</code> — Box-shadow glow.</p>
+            <p><code class="vl-code">.vl-ring-brand</code> — Brand-colored ring border.</p>
+          </div>
+          <h3>GPU &amp; Performance</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-gpu</code> — Force GPU compositing with translate3d.</p>
+            <p><code class="vl-code">.vl-motion-gpu</code> — will-change: transform, opacity.</p>
+            <p><code class="vl-code">.vl-content-auto</code> — content-visibility: auto for off-screen optimization.</p>
+          </div>
+          <h3>Masks &amp; Clipping</h3>
+          <div class="vl-stack" style="gap: var(--vl-space-xs);">
+            <p><code class="vl-code">.vl-mask-fade-x</code> / <code class="vl-code">-y</code> — Gradient edge masks.</p>
+            <p><code class="vl-code">.vl-clip-full</code> / <code class="vl-code">-hidden-bottom</code> / <code class="vl-code">-hidden-top</code> — Clip-path presets.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .component-classes {
+      font-family: var(--vl-font-family-mono);
+      font-size: var(--vl-font-size-xs);
+      color: var(--vl-text-muted);
+      margin-top: var(--vl-space-sm);
+      line-height: var(--vl-leading-relaxed);
+    }
+  </style>
+</Layout>

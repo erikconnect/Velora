@@ -20,6 +20,7 @@
   </head>
   <body>
     <a class="vl-sr-only" href="#conteudo">Saltar para o conteúdo</a>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
     <header class="ds-topbar" aria-label="Barra do design system">
       <div class="vl-container ds-topbar__inner">
@@ -35,6 +36,10 @@
           <a class="vl-link" href="#interativos">Interativos</a>
           <a class="vl-link" href="#midia">Mídia</a>
           <a class="vl-link" href="#visual-premium">Galerias</a>
+          <a class="vl-link" href="#formularios">Formulários</a>
+          <a class="vl-link" href="#dialogos">Diálogos</a>
+          <a class="vl-link" href="#premium">Premium</a>
+          <a class="vl-link" href="#motion-avancado">Motion+</a>
           <a class="vl-link" href="#acordeao">Acordeão</a>
           <a class="vl-link" href="/about.html">View Transitions →</a>
         </nav>
@@ -899,6 +904,461 @@
               </div>
             </details>
           </div>
+        </div>
+      </section>
+
+      <!-- Formulários -->
+      <section id="formularios" class="vl-container vl-section vl-section--loose" aria-labelledby="heading-formularios">
+        <header class="vl-section-header">
+          <h2 id="heading-formularios" class="vl-section-header__title">Formulários</h2>
+          <p class="vl-section-header__desc">Componentes de formulário acessíveis, apenas CSS — inputs, selects, toggles, checkboxes e mais.</p>
+        </header>
+
+        <!-- Inputs -->
+        <div class="vl-stack vl-stack--lg" style="max-width: 36rem">
+          <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Inputs de Texto</h3>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-name">Nome completo</label>
+            <input id="demo-name" type="text" class="vl-input" placeholder="Ex.: Maria Silva">
+          </div>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-email">E-mail</label>
+            <input id="demo-email" type="email" class="vl-input" placeholder="nome@exemplo.com">
+            <span class="vl-field__hint">Nunca compartilhamos seu e-mail.</span>
+          </div>
+
+          <div class="vl-field vl-field--error">
+            <label class="vl-field__label" for="demo-error">Campo com erro</label>
+            <input id="demo-error" type="text" class="vl-input" value="email-invalido" aria-invalid="true">
+            <span class="vl-field__error">Formato de e-mail inválido.</span>
+          </div>
+
+          <div class="vl-stack--row" style="gap: var(--vl-space-md);">
+            <div class="vl-field" style="flex: 1">
+              <label class="vl-field__label" for="demo-sm">Pequeno</label>
+              <input id="demo-sm" type="text" class="vl-input vl-input--sm" placeholder="--sm">
+            </div>
+            <div class="vl-field" style="flex: 1">
+              <label class="vl-field__label" for="demo-md">Padrão</label>
+              <input id="demo-md" type="text" class="vl-input" placeholder="padrão">
+            </div>
+            <div class="vl-field" style="flex: 1">
+              <label class="vl-field__label" for="demo-lg">Grande</label>
+              <input id="demo-lg" type="text" class="vl-input vl-input--lg" placeholder="--lg">
+            </div>
+          </div>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-disabled">Desativado</label>
+            <input id="demo-disabled" type="text" class="vl-input" value="Campo bloqueado" disabled>
+          </div>
+        </div>
+
+        <!-- Input Group -->
+        <div class="vl-stack vl-stack--lg" style="max-width: 36rem; margin-top: var(--vl-space-xl)">
+          <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Input Group</h3>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-group-url">URL do site</label>
+            <div class="vl-input-group">
+              <span class="vl-input-group__addon">https://</span>
+              <input id="demo-group-url" type="text" class="vl-input" placeholder="velora.dev">
+            </div>
+          </div>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-group-price">Preço</label>
+            <div class="vl-input-group">
+              <span class="vl-input-group__addon">R$</span>
+              <input id="demo-group-price" type="number" class="vl-input" placeholder="0,00">
+              <span class="vl-input-group__addon">/mês</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="vl-stack vl-stack--lg" style="max-width: 36rem; margin-top: var(--vl-space-xl)">
+          <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Textarea</h3>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-textarea">Mensagem</label>
+            <textarea id="demo-textarea" class="vl-textarea" placeholder="Descreva seu projeto..." rows="4"></textarea>
+            <span class="vl-field__hint">Máximo de 500 caracteres.</span>
+          </div>
+        </div>
+
+        <!-- Select -->
+        <div class="vl-stack vl-stack--lg" style="max-width: 36rem; margin-top: var(--vl-space-xl)">
+          <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Select</h3>
+
+          <div class="vl-field">
+            <label class="vl-field__label" for="demo-select">Preset de transição</label>
+            <select id="demo-select" class="vl-select">
+              <option value="">Selecione um preset…</option>
+              <option value="velora">Velora</option>
+              <option value="wipe">Wipe</option>
+              <option value="glide">Glide</option>
+              <option value="iris">Iris</option>
+              <option value="cinema">Cinema</option>
+              <option value="snap">Snap</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Checkboxes & Radios -->
+        <div class="vl-grid" style="margin-top: var(--vl-space-xl)">
+          <div class="vl-stack vl-stack--lg">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Checkboxes</h3>
+            <div class="vl-form-group">
+              <div class="vl-form-group--inline">
+                <span>
+                  <input type="checkbox" id="demo-check-1" class="vl-checkbox" checked>
+                  <label for="demo-check-1">Motion</label>
+                </span>
+                <span>
+                  <input type="checkbox" id="demo-check-2" class="vl-checkbox">
+                  <label for="demo-check-2">Transitions</label>
+                </span>
+                <span>
+                  <input type="checkbox" id="demo-check-3" class="vl-checkbox" checked>
+                  <label for="demo-check-3">Components</label>
+                </span>
+                <span>
+                  <input type="checkbox" id="demo-check-4" class="vl-checkbox" disabled>
+                  <label for="demo-check-4">Desativado</label>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vl-stack vl-stack--lg">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Radios</h3>
+            <div class="vl-form-group">
+              <div class="vl-form-group--inline">
+                <span>
+                  <input type="radio" name="demo-layout" id="demo-radio-1" class="vl-radio" checked>
+                  <label for="demo-radio-1">Default</label>
+                </span>
+                <span>
+                  <input type="radio" name="demo-layout" id="demo-radio-2" class="vl-radio">
+                  <label for="demo-radio-2">Compact</label>
+                </span>
+                <span>
+                  <input type="radio" name="demo-layout" id="demo-radio-3" class="vl-radio">
+                  <label for="demo-radio-3">Presentation</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toggles -->
+        <div class="vl-stack vl-stack--lg" style="margin-top: var(--vl-space-xl)">
+          <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Toggles</h3>
+          <div class="vl-form-group--inline" style="gap: var(--vl-space-lg)">
+            <span>
+              <input type="checkbox" id="demo-toggle-1" class="vl-toggle" checked>
+              <label for="demo-toggle-1">Animações ativas</label>
+            </span>
+            <span>
+              <input type="checkbox" id="demo-toggle-2" class="vl-toggle">
+              <label for="demo-toggle-2">Modo escuro</label>
+            </span>
+            <span>
+              <input type="checkbox" id="demo-toggle-3" class="vl-toggle" disabled>
+              <label for="demo-toggle-3">Desativado</label>
+            </span>
+          </div>
+        </div>
+
+        <!-- Contact Form Example -->
+        <div class="vl-stack vl-stack--lg" style="max-width: 36rem; margin-top: var(--vl-space-xl)">
+          <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Formulário Completo</h3>
+          <form class="vl-form-group" onsubmit="event.preventDefault()">
+            <legend class="vl-form-group__legend">Contacto</legend>
+            <div class="vl-field">
+              <label class="vl-field__label" for="contact-name">Nome</label>
+              <input id="contact-name" type="text" class="vl-input" placeholder="Seu nome">
+            </div>
+            <div class="vl-field">
+              <label class="vl-field__label" for="contact-email">E-mail</label>
+              <input id="contact-email" type="email" class="vl-input" placeholder="nome@exemplo.com">
+            </div>
+            <div class="vl-field">
+              <label class="vl-field__label" for="contact-subject">Assunto</label>
+              <select id="contact-subject" class="vl-select">
+                <option value="">Selecione…</option>
+                <option>Orçamento</option>
+                <option>Suporte</option>
+                <option>Parceria</option>
+              </select>
+            </div>
+            <div class="vl-field">
+              <label class="vl-field__label" for="contact-msg">Mensagem</label>
+              <textarea id="contact-msg" class="vl-textarea" rows="4" placeholder="Descreva como podemos ajudar…"></textarea>
+            </div>
+            <span>
+              <input type="checkbox" id="contact-terms" class="vl-checkbox">
+              <label for="contact-terms">Aceito os termos de uso</label>
+            </span>
+            <button type="submit" class="vl-cta" style="align-self: flex-start;">Enviar mensagem</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Diálogos & Popovers -->
+      <section id="dialogos" class="vl-container vl-section vl-section--loose" aria-labelledby="heading-dialogos">
+        <header class="vl-section-header">
+          <h2 id="heading-dialogos" class="vl-section-header__title">Diálogos & Popovers</h2>
+          <p class="vl-section-header__desc">Modais, drawers, tooltips e toasts com APIs nativas do browser — <span class="vl-code">&lt;dialog&gt;</span> e <span class="vl-code">[popover]</span>.</p>
+        </header>
+
+        <div class="vl-stack vl-stack--lg">
+          <!-- Modal -->
+          <div class="vl-stack">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Modal</h3>
+            <div class="vl-cluster" style="gap: var(--vl-space-sm)">
+              <button class="vl-cta" onclick="document.getElementById('demo-modal').showModal()">Abrir Modal</button>
+              <button class="vl-cta vl-cta--ghost" onclick="document.getElementById('demo-drawer').showModal()">Abrir Drawer</button>
+            </div>
+
+            <dialog id="demo-modal" class="vl-dialog">
+              <div class="vl-dialog__header">
+                <h3 class="vl-dialog__title">Modal Velora</h3>
+                <button class="vl-dialog__close" onclick="this.closest('dialog').close()" aria-label="Fechar">&times;</button>
+              </div>
+              <div class="vl-dialog__body">
+                <p>Este modal usa <code class="vl-code">&lt;dialog&gt;</code> nativo com <code class="vl-code">@starting-style</code> para animação de entrada e <code class="vl-code">transition-behavior: allow-discrete</code> para saída suave.</p>
+              </div>
+              <div class="vl-dialog__footer">
+                <button class="vl-cta vl-cta--ghost" onclick="this.closest('dialog').close()">Cancelar</button>
+                <button class="vl-cta" onclick="this.closest('dialog').close()">Confirmar</button>
+              </div>
+            </dialog>
+
+            <dialog id="demo-drawer" class="vl-dialog vl-dialog--drawer">
+              <div class="vl-dialog__header">
+                <h3 class="vl-dialog__title">Drawer Lateral</h3>
+                <button class="vl-dialog__close" onclick="this.closest('dialog').close()" aria-label="Fechar">&times;</button>
+              </div>
+              <div class="vl-dialog__body">
+                <p>Painel deslizante usando a mesma API <code class="vl-code">&lt;dialog&gt;</code>. Desliza pela direita com animação CSS.</p>
+                <div class="vl-stack" style="margin-top: var(--vl-space-md)">
+                  <div class="vl-field">
+                    <label class="vl-field__label" for="drawer-search">Pesquisar</label>
+                    <input id="drawer-search" type="search" class="vl-input" placeholder="Buscar componente...">
+                  </div>
+                </div>
+              </div>
+            </dialog>
+          </div>
+
+          <!-- Tooltips -->
+          <div class="vl-stack">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Tooltips</h3>
+            <div class="vl-cluster" style="gap: var(--vl-space-lg)">
+              <span class="vl-tooltip-trigger">
+                <span class="vl-badge vl-badge--accent">Topo ↑</span>
+                <span class="vl-tooltip" role="tooltip">Tooltip padrão (topo)</span>
+              </span>
+              <span class="vl-tooltip-trigger">
+                <span class="vl-badge">Baixo ↓</span>
+                <span class="vl-tooltip vl-tooltip--bottom" role="tooltip">Tooltip inferior</span>
+              </span>
+              <span class="vl-tooltip-trigger">
+                <span class="vl-badge">Esquerda ←</span>
+                <span class="vl-tooltip vl-tooltip--left" role="tooltip">Tooltip esquerda</span>
+              </span>
+              <span class="vl-tooltip-trigger">
+                <span class="vl-badge">Direita →</span>
+                <span class="vl-tooltip vl-tooltip--right" role="tooltip">Tooltip direita</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Toasts -->
+          <div class="vl-stack">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Toasts</h3>
+            <div class="vl-cluster" style="gap: var(--vl-space-sm)">
+              <button class="vl-cta vl-cta--ghost" onclick="document.getElementById('demo-toast-ok').showPopover()">Toast Sucesso</button>
+              <button class="vl-cta vl-cta--ghost" onclick="document.getElementById('demo-toast-warn').showPopover()">Toast Aviso</button>
+              <button class="vl-cta vl-cta--ghost" onclick="document.getElementById('demo-toast-err').showPopover()">Toast Erro</button>
+            </div>
+
+            <div id="demo-toast-ok" popover="manual" class="vl-toast vl-toast--success">
+              <span>✓ Ação concluída com sucesso!</span>
+              <button class="vl-dialog__close" onclick="this.parentElement.hidePopover()" aria-label="Fechar">&times;</button>
+            </div>
+            <div id="demo-toast-warn" popover="manual" class="vl-toast vl-toast--warning">
+              <span>⚠ Atenção: verifique os dados.</span>
+              <button class="vl-dialog__close" onclick="this.parentElement.hidePopover()" aria-label="Fechar">&times;</button>
+            </div>
+            <div id="demo-toast-err" popover="manual" class="vl-toast vl-toast--danger">
+              <span>✕ Ocorreu um erro inesperado.</span>
+              <button class="vl-dialog__close" onclick="this.parentElement.hidePopover()" aria-label="Fechar">&times;</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Efeitos Premium -->
+      <section id="premium" class="vl-section vl-section--loose" aria-labelledby="heading-premium">
+        <div class="vl-container">
+          <header class="vl-section-header">
+            <h2 id="heading-premium" class="vl-section-header__title">Efeitos Premium</h2>
+            <p class="vl-section-header__desc">Texturas, máscaras de texto, mesh gradients, loading states e efeitos de nível Awwwards.</p>
+          </header>
+
+          <div class="vl-stack vl-stack--xl">
+
+            <!-- Noise / Grain -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Noise & Grain</h3>
+              <div class="vl-grid vl-grid--auto">
+                <div class="vl-card vl-noise" style="min-height: 10rem;">
+                  <div class="vl-card__title">Textura Film Grain</div>
+                  <p class="vl-card__body">Sobreposição sutil de ruído SVG — o detalhe que sites premium usam.</p>
+                </div>
+                <div class="vl-card vl-noise vl-noise--heavy" style="min-height: 10rem;">
+                  <div class="vl-card__title">Grain Pesado</div>
+                  <p class="vl-card__body">Variante <span class="vl-code">--heavy</span> com mais intensidade.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gradient Mesh -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Gradient Mesh</h3>
+              <div class="vl-grid vl-grid--auto">
+                <div class="vl-gradient-mesh vl-noise" style="min-height: 12rem; border-radius: var(--vl-radius-lg); display: grid; place-items: center; padding: var(--vl-space-lg);">
+                  <p style="font-family: var(--vl-font-family-display); font-size: var(--vl-font-size-2xl); font-weight: var(--vl-font-weight-bold); color: var(--vl-text-primary);">Mesh padrão</p>
+                </div>
+                <div class="vl-gradient-mesh vl-gradient-mesh--warm vl-noise" style="min-height: 12rem; border-radius: var(--vl-radius-lg); display: grid; place-items: center; padding: var(--vl-space-lg);">
+                  <p style="font-family: var(--vl-font-family-display); font-size: var(--vl-font-size-2xl); font-weight: var(--vl-font-weight-bold); color: var(--vl-text-primary);">Mesh quente</p>
+                </div>
+                <div class="vl-gradient-mesh vl-gradient-mesh--cool vl-noise" style="min-height: 12rem; border-radius: var(--vl-radius-lg); display: grid; place-items: center; padding: var(--vl-space-lg);">
+                  <p style="font-family: var(--vl-font-family-display); font-size: var(--vl-font-size-2xl); font-weight: var(--vl-font-weight-bold); color: var(--vl-text-primary);">Mesh frio</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text Mask -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Text Mask</h3>
+              <div class="vl-text-mask--gradient" style="font-family: var(--vl-font-family-display); font-size: clamp(3rem, 8vw, 6rem); font-weight: var(--vl-font-weight-bold); line-height: 1; letter-spacing: var(--vl-tracking-tight);">
+                VELORA
+              </div>
+            </div>
+
+            <!-- Scroll Progress -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Scroll Progress</h3>
+              <p style="color: var(--vl-text-muted)">A barra de progresso no topo da página é controlada por <span class="vl-code">animation-timeline: scroll(root)</span>.</p>
+            </div>
+
+            <!-- Loading States -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Loading States</h3>
+              <div class="vl-grid vl-grid--auto" style="align-items: center;">
+                <div class="vl-card">
+                  <div class="vl-card__title">Skeleton</div>
+                  <div class="vl-stack" style="gap: var(--vl-space-xs); margin-top: var(--vl-space-sm);">
+                    <div class="vl-loading-skeleton vl-loading-skeleton--text" style="width: 80%;"></div>
+                    <div class="vl-loading-skeleton vl-loading-skeleton--text" style="width: 60%;"></div>
+                    <div class="vl-loading-skeleton vl-loading-skeleton--text" style="width: 70%;"></div>
+                  </div>
+                </div>
+                <div class="vl-card" style="text-align: center;">
+                  <div class="vl-card__title">Spinner</div>
+                  <div style="display: flex; justify-content: center; gap: var(--vl-space-lg); margin-top: var(--vl-space-sm);">
+                    <div class="vl-loading-spinner vl-loading-spinner--sm"></div>
+                    <div class="vl-loading-spinner"></div>
+                    <div class="vl-loading-spinner vl-loading-spinner--lg"></div>
+                  </div>
+                </div>
+                <div class="vl-card" style="text-align: center;">
+                  <div class="vl-card__title">Dots</div>
+                  <div style="display: flex; justify-content: center; margin-top: var(--vl-space-sm);">
+                    <div class="vl-loading-dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Morph Shape -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Morph Orgânico</h3>
+              <div class="vl-cluster" style="gap: var(--vl-space-lg); justify-content: center;">
+                <div class="vl-morph" style="width: 8rem; height: 8rem; background: var(--vl-gradient-brand);"></div>
+                <div class="vl-morph vl-morph--slow" style="width: 8rem; height: 8rem; background: var(--vl-gradient-sunset);"></div>
+                <div class="vl-morph" style="width: 8rem; height: 8rem; background: var(--vl-gradient-ocean);"></div>
+              </div>
+            </div>
+
+            <!-- Dividers -->
+            <div class="vl-stack">
+              <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Divisores Decorativos</h3>
+              <hr class="vl-divider">
+              <p style="color: var(--vl-text-muted); text-align: center;">Padrão</p>
+              <hr class="vl-divider vl-divider--gradient">
+              <p style="color: var(--vl-text-muted); text-align: center;">Gradiente</p>
+              <hr class="vl-divider vl-divider--glow">
+              <p style="color: var(--vl-text-muted); text-align: center;">Glow</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Motion Avançado -->
+      <section id="motion-avancado" class="vl-container vl-section vl-section--loose" aria-labelledby="heading-motion-avancado">
+        <header class="vl-section-header">
+          <h2 id="heading-motion-avancado" class="vl-section-header__title">Motion Avançado</h2>
+          <p class="vl-section-header__desc">Text reveals, typewriter, elastic bounce, cinema zoom e morph — tudo em CSS puro.</p>
+        </header>
+
+        <div class="vl-stack vl-stack--xl">
+
+          <!-- Text Reveal -->
+          <div class="vl-stack vl-stack--lg">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Text Reveal</h3>
+            <div class="vl-scroll-text-reveal" style="font-family: var(--vl-font-family-display); font-size: var(--vl-font-size-3xl); font-weight: var(--vl-font-weight-bold); line-height: var(--vl-leading-tight);">
+              Revelado ao rolar — clip-path com timeline de scroll.
+            </div>
+          </div>
+
+          <!-- Perspective Stagger -->
+          <div class="vl-stack vl-stack--lg">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Perspective Stagger</h3>
+            <div class="vl-grid vl-grid--auto vl-perspective-stagger">
+              <div class="vl-card"><div class="vl-card__title">Card 1</div><p class="vl-card__body">Entrada 3D com atraso progressivo.</p></div>
+              <div class="vl-card"><div class="vl-card__title">Card 2</div><p class="vl-card__body">Efeito de perspectiva em cascata.</p></div>
+              <div class="vl-card"><div class="vl-card__title">Card 3</div><p class="vl-card__body">Sem JavaScript, puro CSS.</p></div>
+            </div>
+          </div>
+
+          <!-- Elastic Bounce -->
+          <div class="vl-stack vl-stack--lg">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Elastic Bounce</h3>
+            <div class="vl-cluster" style="gap: var(--vl-space-md); justify-content: center;">
+              <div class="vl-elastic-in vl-badge vl-badge--accent" style="animation-delay: 0ms">Bounce 1</div>
+              <div class="vl-elastic-in vl-badge vl-badge--accent" style="animation-delay: 150ms">Bounce 2</div>
+              <div class="vl-elastic-in vl-badge vl-badge--accent" style="animation-delay: 300ms">Bounce 3</div>
+            </div>
+          </div>
+
+          <!-- Typewriter -->
+          <div class="vl-stack vl-stack--lg">
+            <h3 style="font-size: var(--vl-font-size-lg); font-weight: var(--vl-font-weight-semibold);">Typewriter</h3>
+            <div class="vl-typewriter" style="--vl-type-chars: 28ch; --vl-type-steps: 28; --vl-type-duration: 2.5s; font-size: var(--vl-font-size-xl);">
+              CSS puro. Zero JavaScript.
+            </div>
+          </div>
+
         </div>
       </section>
 

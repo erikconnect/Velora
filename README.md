@@ -1,74 +1,114 @@
 # Velora
 
-Velora is a motion-native frontend platform focused on premium, cinematic interfaces using modern HTML and CSS.
+**Motion-native CSS. Zero JavaScript. Cinematic interfaces.**
 
-This repository is a PNPM + Turborepo monorepo with:
-- `packages/css`: the core `@velora/css` design system
-- `apps/docs`: Astro documentation site
-- `apps/playground`: Vite playground for fast local experimentation
+![License: ISC](https://img.shields.io/badge/license-ISC-blue.svg)
 
-## Tech Stack
+Velora is a CSS-first design system for building premium, cinematic web interfaces using nothing but modern browser APIs. No JavaScript frameworks. No runtime animation libraries. Just HTML and CSS that move.
 
-- PNPM workspaces
-- Turborepo
-- Astro
-- Vite
-- Modern CSS (layers, tokens, motion primitives)
+Built for developers and agencies who want production-ready motion without the weight.
 
-## Getting Started
+## Features
 
-### Prerequisites
+🎬 **Cinematic View Transitions** — Six built-in presets (velora, wipe, glide, iris, cinema, snap) powered by the View Transitions API
 
-- Node.js 20+
-- PNPM 10+
+🎨 **Modern Color System** — `oklch()` colors with automatic dark/light theming and system preference detection
 
-### Install
+📐 **8-Layer Cascade Architecture** — Structured specificity via CSS `@layer`: reset → tokens → layout → motion → components → forms → transitions → utilities → overrides
 
-```bash
-pnpm install
-```
+🔄 **Scroll-Driven Animations** — Parallax reveals and scroll-triggered motion using native CSS scroll timelines
 
-### Development
+📦 **Rich Component Library** — Cards, CTAs, kickers, badges, marquees, accordions, carousels, galleries, banners, flip cards, range sliders, and full form elements
+
+⚡ **Container Queries & Density Modes** — Responsive components with default, compact, and presentation layout modes
+
+## Quick Start
+
+**1. Install**
 
 ```bash
-pnpm dev
+pnpm add @velora/css
 ```
 
-Runs the playground app.
+**2. Import**
 
-To run docs:
-
-```bash
-pnpm dev:docs
+```css
+@import "@velora/css";
 ```
 
-To run both in parallel:
+**3. Use**
 
-```bash
-pnpm dev:all
+```html
+<div class="card" data-motion="fade-up">
+  <h2>Zero-JS motion</h2>
+  <p>Pure CSS. Pure performance.</p>
+</div>
 ```
 
-### Build
+That's it. No build config. No framework bindings. Works with any stack.
 
-```bash
-pnpm build
-```
+## What's Included
+
+Velora organizes styles through an 8-layer CSS cascade, each layer scoped with `@layer` for clean specificity management:
+
+| Layer | Purpose |
+|-------|---------|
+| **Reset** | Normalize browser defaults |
+| **Tokens** | Design tokens — colors, spacing, typography, motion curves |
+| **Layout** | Grid systems, containers, density modes |
+| **Motion** | Keyframes, scroll-driven animations, parallax |
+| **Components** | Cards, badges, marquees, accordions, carousels, and more |
+| **Forms** | Inputs, selects, toggles, checkboxes, range sliders |
+| **Transitions** | View Transition API presets and page-level transitions |
+| **Utilities** | Single-purpose helper classes |
+
+## View Transitions
+
+Velora ships six cinematic view transition presets, ready to drop into any page:
+
+- **velora** — signature crossfade with subtle scale
+- **wipe** — directional reveal
+- **glide** — smooth slide with fade
+- **iris** — circular aperture open/close
+- **cinema** — dramatic letterbox transition
+- **snap** — instant cut with micro-motion
+
+Apply a preset with a single attribute — no JavaScript required.
 
 ## Workspace Layout
 
+This is a pnpm + Turborepo monorepo:
+
 ```text
 velora/
-  apps/
-    docs/
-    playground/
-  packages/
-    css/
+├── packages/
+│   └── css/            # @velora/css — the core design system
+├── apps/
+│   ├── playground/     # Vite dev playground
+│   └── docs/           # Astro documentation site
+├── turbo.json
+└── pnpm-workspace.yaml
 ```
+
+```bash
+pnpm install     # install all dependencies
+pnpm dev         # run the playground
+pnpm dev:docs    # run the docs site
+pnpm build       # build all packages
+```
+
+## Browser Support
+
+Velora targets modern browsers with native support for CSS layers, container queries, view transitions, and scroll-driven animations:
+
+- Chrome 124+
+- Safari 18+
+- Firefox 128+
 
 ## Contributing
 
-Please read `CONTRIBUTING.md` before opening a pull request.
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 
-ISC. See `LICENSE`.
+[ISC](LICENSE)

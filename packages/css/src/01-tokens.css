@@ -170,6 +170,52 @@
         --vl-focus-ring-offset: 2px;
         --vl-focus-ring-color: color-mix(in oklch, var(--vl-color-primary) 65%, transparent);
 
+        /* --- Tipografia premium (serif para editorial / Awwwards feel) --- */
+        --vl-font-family-serif:
+            "Cormorant Garamond", "Playfair Display", "DM Serif Display", Georgia, "Times New Roman", serif;
+
+        /* --- Gradientes premium --- */
+        --vl-gradient-aurora: linear-gradient(
+            135deg,
+            oklch(55% 0.2 275),
+            oklch(58% 0.22 320),
+            oklch(62% 0.14 155),
+            oklch(55% 0.2 275)
+        );
+        --vl-gradient-sunset: linear-gradient(
+            135deg,
+            oklch(62% 0.22 350),
+            oklch(72% 0.18 50),
+            oklch(78% 0.15 85)
+        );
+        --vl-gradient-ocean: linear-gradient(
+            135deg,
+            oklch(45% 0.18 240),
+            oklch(55% 0.2 275),
+            oklch(58% 0.16 200)
+        );
+        --vl-gradient-neutral: linear-gradient(
+            135deg,
+            oklch(28% 0.02 var(--vl-hue-neutral)),
+            oklch(22% 0.02 var(--vl-hue-neutral))
+        );
+
+        /* --- Sombras premium --- */
+        --vl-shadow-dramatic:
+            0 25px 50px -12px oklch(0% 0 0 / 0.25),
+            0 12px 24px -8px oklch(0% 0 0 / 0.15);
+        --vl-shadow-inner: inset 0 2px 4px 0 oklch(0% 0 0 / 0.06);
+        --vl-shadow-float:
+            0 20px 60px -15px color-mix(in oklch, var(--vl-color-primary) 20%, oklch(0% 0 0 / 0.15)),
+            0 8px 20px -5px oklch(0% 0 0 / 0.1);
+
+        /* --- Noise / grain --- */
+        --vl-noise-opacity: 0.035;
+
+        /* --- Easing premium --- */
+        --vl-ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --vl-ease-smooth-out: cubic-bezier(0, 0.55, 0.45, 1);
+
         color-scheme: dark;
     }
 
@@ -200,6 +246,9 @@
             --vl-shadow-glow:
                 0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 18%, transparent),
                 0 12px 36px -14px color-mix(in oklch, var(--vl-color-primary) 28%, transparent);
+            --vl-shadow-dramatic:
+                0 25px 50px -12px oklch(22% 0.02 var(--vl-hue-neutral) / 0.15),
+                0 12px 24px -8px oklch(22% 0.02 var(--vl-hue-neutral) / 0.1);
 
             --vl-scrollbar-track: oklch(92% 0.02 var(--vl-hue-neutral));
             --vl-scrollbar-thumb: oklch(62% 0.03 var(--vl-hue-neutral));
@@ -237,6 +286,9 @@
         --vl-shadow-glow:
             0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 18%, transparent),
             0 12px 36px -14px color-mix(in oklch, var(--vl-color-primary) 28%, transparent);
+        --vl-shadow-dramatic:
+            0 25px 50px -12px oklch(22% 0.02 var(--vl-hue-neutral) / 0.15),
+            0 12px 24px -8px oklch(22% 0.02 var(--vl-hue-neutral) / 0.1);
 
         --vl-scrollbar-track: oklch(92% 0.02 var(--vl-hue-neutral));
         --vl-scrollbar-thumb: oklch(62% 0.03 var(--vl-hue-neutral));

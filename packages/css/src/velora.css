@@ -2,13 +2,17 @@
  * Velora — entry CSS
  * Layer order defines unambiguous specificity across the framework.
  */
-@layer velora.reset, velora.tokens, velora.layout, velora.motion, velora.components, velora.transitions, velora.utilities, velora.overrides;
+@layer velora.reset, velora.tokens, velora.layout, velora.motion, velora.components, velora.forms, velora.dialogs, velora.structures, velora.premium, velora.transitions, velora.utilities, velora.overrides;
 
 @import "./00-reset.css";
 @import "./01-tokens.css";
 @import "./02-layout.css";
 @import "./03-motion.css";
 @import "./04-components.css";
+@import "./04a-forms.css";
+@import "./04b-dialogs.css";
+@import "./04c-structures.css";
+@import "./04d-premium.css";
 @import "./05-transitions.css";
 @import "./06-utilities.css";
 @import "./07-overrides.css";

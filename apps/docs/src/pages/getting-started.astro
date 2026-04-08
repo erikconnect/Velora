@@ -1,0 +1,169 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Getting Started — Velora">
+  <main>
+    <section class="vl-section">
+      <div class="vl-container">
+        <div class="vl-section-header">
+          <span class="vl-kicker">Quick Start</span>
+          <h1 class="vl-section-header__title">Getting Started</h1>
+          <p class="vl-section-header__desc">
+            Set up Velora in your project in under two minutes.
+          </p>
+        </div>
+
+        <div class="vl-stack vl-stack--xl" style="max-width: 48rem;">
+
+          <!-- Prerequisites -->
+          <section class="vl-stack">
+            <h2>Prerequisites</h2>
+            <ul class="vl-stack" style="padding-left: var(--vl-space-md);">
+              <li><strong>Node.js</strong> 20 or later</li>
+              <li><strong>pnpm</strong> 10 or later (or npm / yarn)</li>
+              <li>A modern browser with CSS <code class="vl-code">@layer</code> and <code class="vl-code">oklch()</code> support</li>
+            </ul>
+          </section>
+
+          <hr class="vl-section-rule" />
+
+          <!-- Installation -->
+          <section class="vl-stack">
+            <h2>Installation</h2>
+            <p style="color: var(--vl-text-secondary);">
+              Install the <code class="vl-code">@velora/css</code> package from your monorepo or registry:
+            </p>
+            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">pnpm add @velora/css</pre>
+            <p style="color: var(--vl-text-muted); font-size: var(--vl-font-size-sm);">
+              Or with npm: <code class="vl-code">npm install @velora/css</code>
+            </p>
+          </section>
+
+          <hr class="vl-section-rule" />
+
+          <!-- Import -->
+          <section class="vl-stack">
+            <h2>Import in Your Project</h2>
+            <p style="color: var(--vl-text-secondary);">
+              Add a single CSS import at the root of your application. In an Astro
+              layout, for example:
+            </p>
+            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">---
+// src/layouts/Layout.astro
+import "@velora/css";
+---
+
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;My App&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;slot /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+            <p style="color: var(--vl-text-secondary);">
+              That single import loads the entire cascade: reset, tokens, layout,
+              motion, components, forms, transitions, and utilities &mdash; all
+              organized with <code class="vl-code">@layer</code>.
+            </p>
+          </section>
+
+          <hr class="vl-section-rule" />
+
+          <!-- First Component -->
+          <section class="vl-stack vl-stack--lg">
+            <h2>Your First Component</h2>
+            <p style="color: var(--vl-text-secondary);">
+              Create a card with a scroll-reveal animation — no JavaScript needed:
+            </p>
+            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">&lt;div class="vl-container vl-section"&gt;
+  &lt;div class="vl-grid vl-grid--auto vl-motion-stagger"&gt;
+    &lt;div class="vl-card vl-scroll-reveal"&gt;
+      &lt;div class="vl-card__title"&gt;Motion Card&lt;/div&gt;
+      &lt;p class="vl-card__body"&gt;
+        This card reveals on scroll with a 3D entry animation.
+      &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="vl-card vl-scroll-reveal"&gt;
+      &lt;div class="vl-card__title"&gt;Glass Variant&lt;/div&gt;
+      &lt;p class="vl-card__body"&gt;
+        Add &lt;code&gt;vl-card--glass&lt;/code&gt; for frosted glass.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            <p style="color: var(--vl-text-secondary);">Live preview:</p>
+            <div class="vl-grid vl-grid--auto vl-motion-stagger">
+              <div class="vl-card vl-scroll-reveal">
+                <div class="vl-card__title">Motion Card</div>
+                <p class="vl-card__body">This card reveals on scroll with a 3D entry animation.</p>
+              </div>
+              <div class="vl-card vl-card--glass vl-scroll-reveal">
+                <div class="vl-card__title">Glass Variant</div>
+                <p class="vl-card__body">Add <code class="vl-code">vl-card--glass</code> for frosted glass.</p>
+              </div>
+            </div>
+          </section>
+
+          <hr class="vl-section-rule" />
+
+          <!-- Theme Configuration -->
+          <section class="vl-stack">
+            <h2>Theme Configuration</h2>
+            <p style="color: var(--vl-text-secondary);">
+              Velora respects <code class="vl-code">prefers-color-scheme</code> by
+              default. You can override the theme and layout density with data
+              attributes on the <code class="vl-code">&lt;html&gt;</code> element:
+            </p>
+            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">&lt;!-- Force dark theme --&gt;
+&lt;html data-theme="dark"&gt;
+
+&lt;!-- Force light theme --&gt;
+&lt;html data-theme="light"&gt;
+
+&lt;!-- Compact layout (smaller type, tighter spacing) --&gt;
+&lt;html data-layout="compact"&gt;
+
+&lt;!-- Presentation layout (larger type, looser spacing) --&gt;
+&lt;html data-layout="presentation"&gt;</pre>
+
+            <h3 style="margin-top: var(--vl-space-md);">View Transition Presets</h3>
+            <p style="color: var(--vl-text-secondary);">
+              Enable page-to-page transitions by setting a preset on the
+              <code class="vl-code">&lt;html&gt;</code> element:
+            </p>
+            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">&lt;html data-vt-preset="velora"&gt;  &lt;!-- blur + scale --&gt;
+&lt;html data-vt-preset="wipe"&gt;    &lt;!-- clip-path reveal --&gt;
+&lt;html data-vt-preset="glide"&gt;   &lt;!-- horizontal slide --&gt;
+&lt;html data-vt-preset="iris"&gt;    &lt;!-- circular reveal --&gt;
+&lt;html data-vt-preset="cinema"&gt;  &lt;!-- cinematic blur + clip --&gt;
+&lt;html data-vt-preset="snap"&gt;    &lt;!-- rotation + spring --&gt;</pre>
+          </section>
+
+          <hr class="vl-section-rule" />
+
+          <!-- Next Steps -->
+          <section class="vl-stack">
+            <h2>Next Steps</h2>
+            <div class="vl-grid vl-grid--auto">
+              <a href="/components" class="vl-card" style="text-decoration: none;">
+                <div class="vl-card__title">Components →</div>
+                <p class="vl-card__body">Browse the full component reference.</p>
+              </a>
+              <a href="/" class="vl-card" style="text-decoration: none;">
+                <div class="vl-card__title">Home →</div>
+                <p class="vl-card__body">Back to the docs landing page.</p>
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

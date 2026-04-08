@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Velora Animated Hero Wordmark</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=-ISL56GNDTvWtIpnzWrhhFbc-Fz2Jq60b7vw-FG1kPYJGbqExLGnS0to0pfzQKaPI-ZDV5kDNPJRNN6Vy5GoNFH-WGX8ZtOK-Dbw2rXBEcloB3c1eLcygUW5wMDdDwmpkQAoguKoXeoy-8VXZrjTmF0i3YjUZ-hwCSnjLc6VNxI6v--dR6H5jHU2LWDTsN7ExNoAg2b7trqbjYv-OG05g_ZSF4ztu8FdY_o0Tg5lXaroY90xASqeNSmQ9TUVBChXhFQ94AWC5tmvlLN1RerxQw" charset="UTF-8"></script><style>
+@layer demo.base, demo.motion;
+
+@layer demo.base {
+  :root{
+    --vl-bg: oklch(12% 0.02 255);
+    --vl-surface: oklch(16% 0.02 255);
+    --vl-text: oklch(96% 0.01 255);
+    --vl-line: oklch(32% 0.03 255 / 0.35);
+    --vl-cyan: oklch(79% 0.14 215);
+    --vl-blue: oklch(63% 0.23 258);
+    --vl-indigo: oklch(55% 0.21 278);
+    --vl-violet: oklch(68% 0.21 305);
+    --vl-ease-cinematic: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    display:grid;
+    place-items:center;
+    background:
+      radial-gradient(circle at 25% 45%, color-mix(in oklch, var(--vl-cyan) 30%, transparent), transparent 28%),
+      radial-gradient(circle at 75% 48%, color-mix(in oklch, var(--vl-violet) 28%, transparent), transparent 24%),
+      linear-gradient(180deg, color-mix(in oklch, var(--vl-surface) 88%, black), var(--vl-bg));
+    color:var(--vl-text);
+    font: 400 16px/1.4 Inter, ui-sans-serif, system-ui, sans-serif;
+    overflow:hidden;
+  }
+  .hero{
+    width:min(1200px, 92vw);
+    padding:clamp(2rem, 4vw, 4rem);
+    border:1px solid var(--vl-line);
+    border-radius:32px;
+    background:color-mix(in oklch, var(--vl-surface) 72%, transparent);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 80px rgba(0,0,0,.28);
+    position:relative;
+    isolation:isolate;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:inherit;
+    padding:1px;
+    background:linear-gradient(120deg,
+      color-mix(in oklch, var(--vl-cyan) 48%, transparent),
+      transparent 32%,
+      color-mix(in oklch, var(--vl-violet) 40%, transparent));
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    pointer-events:none;
+    opacity:.8;
+  }
+  .eyebrow{
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size:.76rem;
+    opacity:.7;
+    margin:0 0 1.25rem;
+  }
+  h1{
+    margin:0;
+    font-size:clamp(1rem, 2vw, 1.25rem);
+    font-weight:500;
+    opacity:.8;
+  }
+  .wordmark{
+    width:100%;
+    height:auto;
+    display:block;
+    margin-block:1rem 1.25rem;
+  }
+  .subtitle{
+    max-width:58ch;
+    font-size:clamp(1rem, 1.1vw + .85rem, 1.15rem);
+    opacity:.82;
+    margin:0;
+  }
+
+  .base{ fill: color-mix(in oklch, white 96%, var(--vl-blue) 4%); }
+  .accent{ fill:url(#heroGradient); }
+  .stroke-path{
+    fill:none;
+    stroke:url(#heroGradient);
+    stroke-width:10;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    filter: drop-shadow(0 0 18px color-mix(in oklch, var(--vl-blue) 55%, transparent));
+  }
+}
+
+@layer demo.motion {
+  .hero{
+    animation: panel-in 1000ms var(--vl-ease-cinematic) both;
+  }
+  .base-letter{
+    opacity:0;
+    transform: translateY(18px);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: letter-in 820ms var(--vl-ease-cinematic) forwards;
+  }
+  .base-letter:nth-of-type(1){animation-delay:140ms}
+  .base-letter:nth-of-type(2){animation-delay:210ms}
+  .base-letter:nth-of-type(3){animation-delay:280ms}
+  .base-letter:nth-of-type(4){animation-delay:350ms}
+  .base-letter:nth-of-type(5){animation-delay:420ms}
+  .base-letter:nth-of-type(6){animation-delay:490ms}
+
+  .stroke-path{
+    stroke-dasharray: var(--path-length);
+    stroke-dashoffset: var(--path-length);
+    animation:
+      path-draw 1200ms var(--vl-ease-cinematic) forwards,
+      path-glow 2200ms ease-in-out infinite;
+    animation-delay: 120ms, 1300ms;
+  }
+  .stroke-path.path-2{ animation-delay: 400ms, 1600ms; }
+  .stroke-path.path-3{ animation-delay: 660ms, 1860ms; }
+
+  .accent-fill{
+    opacity:0;
+    animation: accent-in 720ms var(--vl-ease-cinematic) forwards;
+  }
+  .accent-fill.fill-1{ animation-delay:760ms; }
+  .accent-fill.fill-2{ animation-delay:980ms; }
+  .accent-fill.fill-3{ animation-delay:1180ms; }
+
+  .sweep{
+    opacity:.0;
+    mix-blend-mode:screen;
+    animation: sweep-in 1600ms var(--vl-ease-cinematic) 880ms both;
+  }
+
+  @keyframes panel-in{
+    from{opacity:0; transform:translateY(28px) scale(.985)}
+    to{opacity:1; transform:none}
+  }
+  @keyframes letter-in{
+    from{opacity:0; transform: translateY(18px); filter: blur(8px);}
+    to{opacity:1; transform:none; filter:none;}
+  }
+  @keyframes path-draw{ to{ stroke-dashoffset:0; } }
+  @keyframes accent-in{
+    from{opacity:0; filter: blur(8px)}
+    to{opacity:1; filter:none}
+  }
+  @keyframes sweep-in{
+    0%{opacity:0; transform:translateX(-80px)}
+    35%{opacity:.95}
+    100%{opacity:0; transform:translateX(130px)}
+  }
+  @keyframes path-glow{
+    0%,100%{filter: drop-shadow(0 0 12px color-mix(in oklch, var(--vl-blue) 50%, transparent));}
+    50%{filter: drop-shadow(0 0 24px color-mix(in oklch, var(--vl-violet) 60%, transparent));}
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero, .base-letter, .stroke-path, .accent-fill, .sweep { animation:none !important; opacity:1 !important; transform:none !important; filter:none !important; stroke-dashoffset:0 !important; }
+  }
+}
+</style>
+</head>
+<body>
+  <section class="hero">
+    <p class="eyebrow">Velora</p>
+    <svg class="wordmark" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Velora animated wordmark">
+      <defs>
+        <linearGradient id="heroGradient" x1="180" y1="110" x2="1140" y2="320" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#42D7F5"/>
+          <stop offset="35%" stop-color="#2E6AF6"/>
+          <stop offset="70%" stop-color="#5742E8"/>
+          <stop offset="100%" stop-color="#B56CFF"/>
+        </linearGradient>
+        <linearGradient id="sweepGradient" x1="300" y1="110" x2="1100" y2="310" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+          <stop offset="50%" stop-color="rgba(255,255,255,0.95)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+
+      <path class="base base-letter" d="M182 90H234L329 278C336 291 346 299 360 299C374 299 384 291 391 278L486 90H538L420 323C407 351 387 366 360 366C333 366 313 351 300 323L182 90Z"/>
+      <path class="base base-letter" d="M626 330C556 330 505 282 505 214C505 146 555 98 624 98C692 98 741 145 741 214V230H560C565 273 596 299 641 299C672 299 698 288 719 266L734 294C707 318 671 330 626 330ZM560 194H689C684 155 657 129 623 129C588 129 566 154 560 194Z"/>
+      <path class="base base-letter" d="M783 90H835V324H783V90Z"/>
+      <path class="base base-letter" d="M970 330C903 330 851 280 851 214C851 148 903 98 970 98C1037 98 1088 148 1088 214C1088 280 1037 330 970 330ZM970 298C1007 298 1034 267 1034 214C1034 161 1007 130 970 130C932 130 905 161 905 214C905 267 932 298 970 298Z"/>
+      <path class="base base-letter" d="M1126 104H1178V147C1195 115 1225 98 1265 98V144H1253C1210 144 1178 171 1178 226V324H1126V104Z"/>
+      <path class="base base-letter" d="M1290 330C1240 330 1200 303 1200 258C1200 213 1238 189 1304 183L1372 177V170C1372 143 1351 127 1317 127C1283 127 1260 139 1249 163L1205 151C1222 114 1261 98 1320 98C1385 98 1424 126 1424 192V324H1372V292C1355 317 1328 330 1290 330ZM1304 294C1345 294 1372 266 1372 223V213L1318 218C1280 222 1253 231 1253 256C1253 280 1272 294 1304 294Z"/>
+
+      <path class="stroke-path path-1" style="--path-length:370" d="M424 254C472 261 515 245 548 214C575 188 595 165 611 146C625 129 639 120 652 120"/>
+      <path class="stroke-path path-2" style="--path-length:290" d="M1048 283C1079 289 1106 281 1128 258C1144 241 1160 220 1178 196C1194 174 1213 160 1236 156"/>
+      <path class="stroke-path path-3" style="--path-length:320" d="M1182 220C1206 223 1226 218 1243 206C1258 196 1270 180 1280 164C1298 152 1327 136 1378 116"/>
+
+      <path class="accent accent-fill fill-1" d="M424 254C472 261 515 245 548 214C575 188 595 165 611 146C625 129 639 120 652 120C656 120 659 120 662 121C647 127 633 141 619 160C602 183 580 210 549 237C511 271 466 286 414 282L424 254Z"/>
+      <path class="accent accent-fill fill-2" d="M1048 283C1079 289 1106 281 1128 258C1144 241 1160 220 1178 196C1194 174 1213 160 1236 156C1206 171 1188 199 1172 224C1156 250 1139 270 1119 285C1099 300 1075 307 1046 304L1048 283Z"/>
+      <path class="accent accent-fill fill-3" d="M1240 160C1271 159 1298 152 1319 139C1343 124 1363 116 1378 116C1355 127 1335 145 1319 170C1302 196 1282 216 1258 228C1234 240 1208 244 1180 239L1182 220C1206 223 1226 218 1243 206C1258 196 1270 180 1280 164C1269 161 1256 160 1240 160Z"/>
+
+      <rect class="sweep" x="360" y="75" width="120" height="300" rx="60" transform="rotate(12 360 75)" fill="url(#sweepGradient)"/>
+    </svg>
+    <h1>Motion-native frontend platform</h1>
+    <p class="subtitle">Wordmark concept prepared for stroke reveal, mask reveal, gradient sweep, and premium hero choreography using only SVG and CSS.</p>
+  </section>
+</body>
+</html>
