@@ -244,6 +244,125 @@
     }
 
     /* =========================================================================
+       3.1 BUSSOLA / CINEMA RAIL — shared framework side navigation
+       ========================================================================= */
+    .showcase-cinema-rail,
+    .vl-bussola {
+        position: fixed;
+        right: clamp(1rem, 2vw, 2rem);
+        top: 50%;
+        translate: 0 -50%;
+        z-index: 30;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        width: 9rem;
+        min-height: 16rem;
+        padding: 1.25rem 0;
+        gap: 0;
+    }
+
+    .vl-bussola__cap {
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.5rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: color-mix(in oklch, var(--vl-text-muted) 60%, var(--vl-color-primary));
+        opacity: 0.45;
+        margin-bottom: 0.625rem;
+        text-align: right;
+        user-select: none;
+    }
+
+    .vl-bussola__stop {
+        --dot-sz: 0.4375rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.9375rem 0;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .vl-bussola__stop:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: calc(var(--dot-sz) / 2 - 0.5px);
+        top: calc(50% + var(--dot-sz) / 2 + 1px);
+        width: 1px;
+        height: calc(100% - var(--dot-sz) - 2px);
+        background: linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--vl-border-subtle) 72%, transparent),
+            color-mix(in oklch, var(--vl-border-subtle) 22%, transparent)
+        );
+    }
+
+    .vl-bussola__dot {
+        width: var(--dot-sz);
+        height: var(--dot-sz);
+        border-radius: 50%;
+        background: color-mix(in oklch, var(--vl-border-subtle) 88%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 55%, transparent);
+        flex-shrink: 0;
+    }
+
+    .vl-bussola__label {
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.5625rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--vl-text-muted);
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateX(5px);
+        transition: opacity 0.22s ease, transform 0.22s ease, color 0.2s;
+    }
+
+    .vl-bussola__stop:hover .vl-bussola__label,
+    .vl-bussola__stop:focus-visible .vl-bussola__label {
+        opacity: 1;
+        transform: translateX(0);
+        color: var(--vl-color-primary);
+    }
+
+    /* Compatibility with old rail markup still present in some pages */
+    .showcase-cinema-rail__line,
+    .showcase-cinema-rail__progress {
+        display: none;
+    }
+
+    .showcase-cinema-rail__stops {
+        display: grid;
+        gap: 0.8rem;
+    }
+
+    .showcase-cinema-rail__stops > span {
+        width: 0.44rem;
+        height: 0.44rem;
+        border-radius: 50%;
+        background: color-mix(in oklch, var(--vl-border-subtle) 88%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 55%, transparent);
+    }
+
+    .showcase-cinema-rail__stops > span.is-active {
+        background: var(--vl-color-primary);
+        border-color: transparent;
+    }
+
+    .showcase-cinema-rail__label {
+        margin-top: 0.8rem;
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.5rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--vl-text-muted);
+        opacity: 0.68;
+    }
+
+    /* =========================================================================
        4. FOOTER — .vl-footer
        ========================================================================= */
 

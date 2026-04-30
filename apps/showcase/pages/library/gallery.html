@@ -7,6 +7,7 @@
 <link href="/img/favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="/css/velora.css" rel="stylesheet"/>
 <link href="/css/showcase.css" rel="stylesheet"/>
+<link href="/css/showcase-reference-pages.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/showcase-tw-demos.css" />
     <link rel="stylesheet" href="/css/showcase-demo-extras.css" />
 
@@ -18,8 +19,14 @@
         .glass-panel { backdrop-filter: blur(12px); background: rgba(23, 27, 22, 0.8); }
     </style>
 </head>
-<body class="flex min-h-screen">
+<body class="showcase-page-shell">
 <a class="vl-sr-only" href="#content">Skip to content</a>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+      <a class="vl-bussola__stop" href="#lib-gallery-hero"><span class="vl-bussola__label">Intro</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#lib-gallery-categories"><span class="vl-bussola__label">Categories</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#lib-gallery-featured"><span class="vl-bussola__label">Featured</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+    </nav>
     <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
@@ -71,7 +78,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -82,11 +89,11 @@
 <!-- Content Canvas -->
 <div class="p-12 pt-28 max-w-7xl mx-auto w-full">
 <p class="text-sm text-on-surface-variant max-w-3xl mb-10 border border-outline-variant/25 rounded-lg p-4 bg-surface-container-low/50" role="note">
-  Galeria interativa do framework Velora: primitivos <code class="text-xs">vl-*</code>, tokens em <code class="text-xs">packages/css</code> e demos com Tailwind local.
-  Artigos longos migrados de <code class="text-xs">packages/pages</code> estão na <a class="underline decoration-primary/50 hover:text-primary" href="/pages/library/index.html">Library</a>.
+  Interactive gallery of the Velora framework: <code class="text-xs">vl-*</code> primitives, tokens from <code class="text-xs">packages/css</code>, and demos with local Tailwind.
+  Long-form articles ported from <code class="text-xs">packages/pages</code> are in the <a class="underline decoration-primary/50 hover:text-primary" href="/pages/library/index.html">Library</a>.
 </p>
 <!-- Hero Search Section -->
-<section class="mb-20">
+<section id="lib-gallery-hero" class="mb-20">
 <div class="mb-4">
 <span class="font-label text-xs tracking-widest text-primary uppercase font-bold">Search the Library</span>
 </div>
@@ -103,7 +110,7 @@
 <p class="text-xs text-on-surface-variant mt-3" id="filter-summary">Showing all categories.</p>
 </section>
 <!-- Category Grid -->
-<section>
+<section id="lib-gallery-categories">
 <div class="flex justify-between items-end mb-10">
 <h2 class="font-headline text-4xl tracking-tighter text-on-surface">System Categories</h2>
 <p class="font-body text-on-surface-variant text-sm max-w-xs text-right">Modular primitives designed for high-performance interfaces and technical editorial layouts.</p>
@@ -196,7 +203,7 @@
 </div>
 </section>
 <!-- Featured Component Teaser -->
-<section class="mt-24">
+<section id="lib-gallery-featured" class="mt-24">
 <div class="relative overflow-hidden rounded-lg bg-surface-container-high p-1 px-1">
 <div class="bg-surface-container-low p-12 flex flex-col md:flex-row items-center justify-between gap-12 rounded-[0.125rem]">
 <div class="max-w-md">
@@ -288,7 +295,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -354,5 +361,9 @@
     updateFilter();
   })();
 </script>
-<script src="/js/showcase-controls.js"></script>
+    <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
 </body></html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-editorial-theme="noir" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Design System Catalog — live reference for every token, primitive, component and page in the Velora framework." />
+    <title>Design System Catalog | Velora</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-api-motion-catalog.css" />
+    <link rel="stylesheet" href="/css/showcase-api-design-catalog.css" />
+  </head>
+  <body class="showcase-page-shell">
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <!-- Scroll-progress cinema rail -->
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+      <a class="vl-bussola__stop" href="#design-hero"><span class="vl-bussola__label">Hero</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#color-tokens"><span class="vl-bussola__label">Tokens</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#typography"><span class="vl-bussola__label">Typography</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#spacing"><span class="vl-bussola__label">Spacing</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#primitives"><span class="vl-bussola__label">Primitives</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#components"><span class="vl-bussola__label">Components</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#forms"><span class="vl-bussola__label">Forms</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#pages"><span class="vl-bussola__label">Pages</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#motion-ref"><span class="vl-bussola__label">Motion Ref</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+    </nav>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+
+    <!-- Header -->
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group"><g class="vl-logo-mark__full"><g>
+              <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+              <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+              <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+              <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+              <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+              <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+              <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+              <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+              <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+              <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+            </g></g></g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link vl-nav__link--active" href="/pages/components/api-design-catalog.html">Design System</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/api-motion-catalog.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+        </nav>
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
+            </svg>
+          </a>
+          <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="vl-main">
+      <div class="api-shell hub-page hub-page--design">
+
+        <!-- ================================================================
+             HERO
+             ================================================================ -->
+        <section id="design-hero" class="api-hero" vl-effect="fade-up" vl-timeline="view">
+          <div class="api-hero-wash" aria-hidden="true"></div>
+          <div class="api-hero-inner">
+            <div class="api-hero-copy">
+              <p class="api-kicker">
+                <span class="api-hero-kicker-line" aria-hidden="true"></span>
+                Design System
+              </p>
+              <h1 class="api-hero-title">
+                <em>Design</em><br />System<br />Catalog
+              </h1>
+              <p class="api-hero-lead">
+                Living reference for every token, primitive, form element, component and showcase page
+                in the Velora framework. Each card renders the real CSS class — no screenshots.
+              </p>
+              <div class="api-hero-actions">
+                <a class="api-hero-btn" href="#color-tokens">Color Tokens</a>
+                <a class="api-hero-btn" href="#typography">Typography</a>
+                <a class="api-hero-btn" href="#primitives">Primitives</a>
+                <a class="api-hero-btn" href="#components">Components</a>
+                <a class="api-hero-btn" href="#forms">Forms</a>
+                <a class="api-hero-btn" href="#pages">All Pages</a>
+                <a class="api-hero-btn" href="/pages/motion/api-motion-catalog.html">→ Motion Catalog</a>
+                <a class="api-hero-btn api-hero-btn--primary" href="/pages/components/design-playground.html" vl-effect="icon-shift">Design Playground →</a>
+              </div>
+            </div>
+            <div class="api-hero-panels" aria-hidden="true">
+              <article class="api-hero-panel api-hero-panel--primary" vl-effect="border-beam">
+                <p class="api-kicker">Token System</p>
+                <strong>--vl-* custom properties</strong>
+                <span>Colors, surfaces, type, spacing, radius, shadow and motion — all in oklch().</span>
+              </article>
+              <article class="api-hero-panel api-hero-panel--secondary" vl-effect="border-beam">
+                <p class="api-kicker">Component Library</p>
+                <strong>packages/velora-components</strong>
+                <span>Accordion, Banner, Blog, Features, Footer, Hero, Navbar — each individually verified.</span>
+              </article>
+              <div class="api-hero-status" vl-children="wave" vl-effect="glow-breathe">
+                <span>design tokens</span>
+                <span>css primitives</span>
+                <span>form controls</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="api-contract-legend" aria-label="Design API scope legend">
+          <div class="api-contract-legend__inner">
+            <span class="api-scope-pill api-scope-pill--core">Core</span>
+            <span class="api-scope-pill api-scope-pill--extended">Extended</span>
+            <span class="api-scope-pill api-scope-pill--experimental">Reference</span>
+            <p>Design API is organized by implementation confidence and intended usage depth.</p>
+          </div>
+        </section>
+        <div class="api-kind-filter" role="toolbar" aria-label="Filter cards by semantic kind">
+          <button class="api-kind-filter__btn is-active" type="button" data-filter-kind="all">all</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="token">token</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="typography">typography</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="spacing">spacing</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="primitive">primitive</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="form">form</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="component">component</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="page">page</button>
+          <button class="api-kind-filter__btn" type="button" data-filter-kind="reference">reference</button>
+        </div>
+
+        <!-- ================================================================
+             COLOR TOKENS
+             ================================================================ -->
+        <section id="color-tokens" class="api-group api-scope-core">
+          <div class="api-group-head">
+            <h2>Color Tokens</h2>
+            <p>Brand palette, semantic roles and surface tiers — all <code>--vl-color-*</code> and <code>--vl-bg-*</code> tokens.</p>
+          </div>
+          <div class="api-grid">
+            <!-- Brand palette -->
+            <article class="api-card api-card--lead">
+              <strong>Brand Palette</strong>
+              <pre class="api-code">--vl-brand-stone:  #c8c9b0
+--vl-brand-olive:  #a9b08b
+--vl-brand-moss:   #7f8668  ← primary
+--vl-brand-deep:   #5c604c  ← accent</pre>
+              <p class="api-note">All brand values expressed as hex anchors. Tokens derived via <code>color-mix(in oklch, …)</code>.</p>
+            </article>
+
+            <!-- Semantic roles -->
+            <article class="api-card">
+              <strong>--vl-color-primary</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--primary"></div>
+                <span class="api-swatch-meta">var(--vl-brand-moss) · #7f8668</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-color-secondary</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--secondary"></div>
+                <span class="api-swatch-meta">var(--vl-brand-olive) · #a9b08b</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-color-accent</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--accent"></div>
+                <span class="api-swatch-meta">var(--vl-brand-deep) · #5c604c</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-color-success</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--success"></div>
+                <span class="api-swatch-meta">#6f8661</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-color-warning</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--warning"></div>
+                <span class="api-swatch-meta">#c1ab72</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-color-danger</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--danger"></div>
+                <span class="api-swatch-meta">#8a5f50</span>
+              </div>
+            </article>
+
+            <!-- Surfaces -->
+            <article class="api-card">
+              <strong>--vl-bg-main</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--bg-main"></div>
+                <span class="api-swatch-meta">Page background · #e3e3cd (light)</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-bg-surface</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--bg-surface"></div>
+                <span class="api-swatch-meta">Cards &amp; panels · #f3f2e6 (light)</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-bg-surface-elevated</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--bg-elevated"></div>
+                <span class="api-swatch-meta">Popovers / dialogs · #ecebd9 (light)</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-bg-inset</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--bg-inset"></div>
+                <span class="api-swatch-meta">Wells &amp; inset zones · #d7d8c0 (light)</span>
+              </div>
+            </article>
+
+            <!-- Text -->
+            <article class="api-card">
+              <strong>--vl-text-primary</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--text-primary"></div>
+                <span class="api-swatch-meta">#0a0a0a (light)</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-text-secondary</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--text-secondary"></div>
+                <span class="api-swatch-meta">#232321 (light)</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-text-muted</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--text-muted"></div>
+                <span class="api-swatch-meta">#6f705f (light)</span>
+              </div>
+            </article>
+
+            <!-- Borders -->
+            <article class="api-card">
+              <strong>--vl-border-subtle</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--border-subtle"></div>
+                <span class="api-swatch-meta">#bfc1aa (light)</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>--vl-border-strong</strong>
+              <div class="api-swatch">
+                <div class="api-swatch-chip api-swatch-chip--border-strong"></div>
+                <span class="api-swatch-meta">#a9b08b (light)</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             TYPOGRAPHY
+             ================================================================ -->
+        <section id="typography" class="api-group api-scope-core">
+          <div class="api-group-head">
+            <h2>Typography</h2>
+            <p>Font families, size scale, weight scale, leading and tracking tokens — all <code>--vl-font-*</code> and <code>--vl-leading-*</code>.</p>
+          </div>
+          <div class="api-grid">
+
+            <!-- Font families -->
+            <article class="api-card">
+              <strong>Body — Manrope</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-font-body" style="font-size:1.1rem;">The quick brown fox jumps over the lazy dog.</span>
+                <span class="api-type-meta">--vl-font-family · Manrope, Plus Jakarta Sans, system-ui</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>Display — Space Grotesk</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-font-display" style="font-size:1.4rem;letter-spacing:-0.03em;">Velora Design System</span>
+                <span class="api-type-meta">--vl-font-family-display · Space Grotesk, Outfit</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>Mono — JetBrains Mono</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-font-mono" style="font-size:0.9rem;">--vl-color-primary: #7f8668;</span>
+                <span class="api-type-meta">--vl-font-family-mono · JetBrains Mono, SF Mono</span>
+              </div>
+            </article>
+
+            <!-- Size scale -->
+            <article class="api-card">
+              <strong>xs — 0.75rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample" style="font-size:var(--vl-font-size-xs);">Caption and meta labels</span>
+                <span class="api-type-meta">--vl-font-size-xs</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>sm — 0.875rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample" style="font-size:var(--vl-font-size-sm);">Supporting body copy and notes</span>
+                <span class="api-type-meta">--vl-font-size-sm</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>md — 1rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample" style="font-size:var(--vl-font-size-md);">Default body text size</span>
+                <span class="api-type-meta">--vl-font-size-md</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>lg — 1.125rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample" style="font-size:var(--vl-font-size-lg);">Large body and lead text</span>
+                <span class="api-type-meta">--vl-font-size-lg</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>xl — 1.25rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample" style="font-size:var(--vl-font-size-xl);">Section intros and callouts</span>
+                <span class="api-type-meta">--vl-font-size-xl</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>2xl — 1.5rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-font-display" style="font-size:var(--vl-font-size-2xl);letter-spacing:-0.02em;">Sub-heading level</span>
+                <span class="api-type-meta">--vl-font-size-2xl</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>3xl — 2rem</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-font-display" style="font-size:var(--vl-font-size-3xl);letter-spacing:-0.03em;line-height:1.1;">Page heading</span>
+                <span class="api-type-meta">--vl-font-size-3xl</span>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>4xl — clamp(2.25–3.5rem)</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-font-display" style="font-size:var(--vl-font-size-4xl);letter-spacing:-0.04em;line-height:1.0;">Hero</span>
+                <span class="api-type-meta">--vl-font-size-4xl</span>
+              </div>
+            </article>
+
+            <!-- Weight scale -->
+            <article class="api-card">
+              <strong>Weight scale</strong>
+              <div class="api-type-specimen">
+                <span class="api-type-sample api-weight-normal" style="font-size:0.95rem;">Normal (400) — body reading</span>
+                <span class="api-type-sample api-weight-medium" style="font-size:0.95rem;">Medium (500) — UI labels</span>
+                <span class="api-type-sample api-weight-semibold" style="font-size:0.95rem;">Semibold (600) — card titles</span>
+                <span class="api-type-sample api-weight-bold" style="font-size:0.95rem;">Bold (700) — headings</span>
+                <span class="api-type-meta">--vl-font-weight-{normal|medium|semibold|bold}</span>
+              </div>
+            </article>
+
+            <!-- Leading scale -->
+            <article class="api-card">
+              <strong>Leading scale</strong>
+              <div class="api-chip-row">
+                <span class="api-chip">display 1.05</span>
+                <span class="api-chip">heading 1.1</span>
+                <span class="api-chip">tight 1.2</span>
+                <span class="api-chip">snug 1.35</span>
+                <span class="api-chip">normal 1.5</span>
+                <span class="api-chip">relaxed 1.65</span>
+                <span class="api-chip">loose 1.75</span>
+              </div>
+              <span class="api-type-meta" style="margin-top:0.5rem;display:block;">--vl-leading-{display|heading|tight|snug|normal|relaxed|loose}</span>
+            </article>
+
+            <!-- Tracking scale -->
+            <article class="api-card">
+              <strong>Tracking scale</strong>
+              <div class="api-chip-row">
+                <span class="api-chip">tightest -0.03em</span>
+                <span class="api-chip">tighter -0.025em</span>
+                <span class="api-chip">tight -0.02em</span>
+                <span class="api-chip">normal 0</span>
+                <span class="api-chip">wide 0.04em</span>
+                <span class="api-chip">display 0.06em</span>
+              </div>
+              <span class="api-type-meta" style="margin-top:0.5rem;display:block;">--vl-tracking-{tightest|tighter|tight|normal|wide|display}</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             SPACING & RADIUS
+             ================================================================ -->
+        <section id="spacing" class="api-group api-scope-core">
+          <div class="api-group-head">
+            <h2>Spacing &amp; Radius</h2>
+            <p>Spatial scale and border-radius tokens — <code>--vl-space-*</code> and <code>--vl-radius-*</code>.</p>
+          </div>
+          <div class="api-grid">
+            <article class="api-card api-card--lead">
+              <strong>Spacing scale</strong>
+              <div class="api-space-ruler">
+                <div class="api-space-bar" style="width: calc(0.125rem * 16);"></div>
+                <span class="api-swatch-meta">2xs — 0.125rem</span>
+                <div class="api-space-bar" style="width: calc(0.25rem * 16);"></div>
+                <span class="api-swatch-meta">xs — 0.25rem</span>
+                <div class="api-space-bar" style="width: calc(0.5rem * 10);"></div>
+                <span class="api-swatch-meta">sm — 0.5rem</span>
+                <div class="api-space-bar" style="width: calc(1rem * 8);"></div>
+                <span class="api-swatch-meta">md — 1rem</span>
+                <div class="api-space-bar" style="width: calc(2rem * 8); max-width: 80%;"></div>
+                <span class="api-swatch-meta">lg — 2rem</span>
+                <div class="api-space-bar" style="width: 100%;"></div>
+                <span class="api-swatch-meta">xl — 4rem</span>
+              </div>
+            </article>
+
+            <article class="api-card">
+              <strong>Radius scale</strong>
+              <div class="api-radius-demo">
+                <div class="api-radius-block" style="border-radius:var(--vl-radius-sm,0.25rem);" title="sm"></div>
+                <div class="api-radius-block" style="border-radius:var(--vl-radius-md,0.5rem);" title="md"></div>
+                <div class="api-radius-block" style="border-radius:var(--vl-radius-lg,0.75rem);" title="lg"></div>
+                <div class="api-radius-block" style="border-radius:var(--vl-radius-xl,1rem);" title="xl"></div>
+                <div class="api-radius-block" style="border-radius:var(--vl-radius-2xl,1.5rem);" title="2xl"></div>
+                <div class="api-radius-block" style="border-radius:var(--vl-radius-full,9999px);" title="full"></div>
+              </div>
+              <span class="api-swatch-meta" style="margin-top:0.5rem;display:block;">--vl-radius-{sm|md|lg|xl|2xl|full}</span>
+            </article>
+
+            <article class="api-card">
+              <strong>Shadow scale</strong>
+              <div class="api-form-stage">
+                <div class="api-shadow-card" style="box-shadow:var(--vl-shadow-sm);">shadow-sm</div>
+                <div class="api-shadow-card" style="box-shadow:var(--vl-shadow-md);">shadow-md</div>
+                <div class="api-shadow-card" style="box-shadow:var(--vl-shadow-lg);">shadow-lg</div>
+                <div class="api-shadow-card" style="box-shadow:var(--vl-shadow-glow);">shadow-glow</div>
+              </div>
+              <span class="api-swatch-meta" style="margin-top:0.5rem;display:block;">--vl-shadow-{sm|md|lg|glow}</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             CSS PRIMITIVES
+             ================================================================ -->
+        <section id="primitives" class="api-group api-scope-core">
+          <div class="api-group-head">
+            <h2>CSS Primitives</h2>
+            <p>Production-ready components from <code>04-components.css</code> — kickers, CTAs, badges, cards, quotes and stats.</p>
+          </div>
+          <div class="api-grid">
+
+            <!-- Kicker -->
+            <article class="api-card">
+              <strong>.vl-kicker</strong>
+              <div class="api-primitive-stage">
+                <span class="vl-kicker">System Design</span>
+              </div>
+              <span class="api-swatch-meta">Eyebrow / opening label with leading rule</span>
+            </article>
+            <article class="api-card">
+              <strong>.vl-kicker--pulse</strong>
+              <div class="api-primitive-stage">
+                <span class="vl-kicker vl-kicker--pulse">Live System</span>
+              </div>
+              <span class="api-swatch-meta">Animated glow ring variant</span>
+            </article>
+
+            <!-- CTA -->
+            <article class="api-card">
+              <strong>.vl-cta</strong>
+              <div class="api-primitive-stage">
+                <a class="vl-cta" href="#">Get Started</a>
+              </div>
+              <span class="api-swatch-meta">Primary action button with shine on hover</span>
+            </article>
+            <article class="api-card">
+              <strong>.vl-cta — small</strong>
+              <div class="api-primitive-stage">
+                <a class="vl-cta" href="#" style="font-size:0.75rem;min-height:2.2rem;padding:0.4rem 0.9rem;">Action</a>
+              </div>
+              <span class="api-swatch-meta">Scaled down via inline override</span>
+            </article>
+
+            <!-- Badge -->
+            <article class="api-card">
+              <strong>.vl-badge</strong>
+              <div class="api-primitive-stage">
+                <span class="vl-badge">Stable</span>
+                <span class="vl-badge">v2.0</span>
+                <span class="vl-badge">CSS</span>
+              </div>
+              <span class="api-swatch-meta">Neutral pill badge</span>
+            </article>
+            <article class="api-card">
+              <strong>.vl-badge--accent</strong>
+              <div class="api-primitive-stage">
+                <span class="vl-badge vl-badge--accent">Primary</span>
+                <span class="vl-badge vl-badge--accent">Motion</span>
+                <span class="vl-badge vl-badge--accent">Tokens</span>
+              </div>
+              <span class="api-swatch-meta">Brand-colored accent badge</span>
+            </article>
+
+            <!-- Cards -->
+            <article class="api-card api-card--lead">
+              <strong>.vl-card (default)</strong>
+              <div class="vl-card" style="margin-top:0.5rem;">
+                <h3 class="vl-card__title">Card Title</h3>
+                <p class="vl-card__body">Surface card with hover lift, border glow and radial primary gradient reveal. Hover to see the transition.</p>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>.vl-card--glass</strong>
+              <div class="vl-card vl-card--glass" style="margin-top:0.5rem;">
+                <h3 class="vl-card__title">Glass Card</h3>
+                <p class="vl-card__body">Backdrop blur with soft border and noise texture. Best over gradient or image backgrounds.</p>
+              </div>
+            </article>
+            <article class="api-card">
+              <strong>.vl-card--aurora</strong>
+              <div class="vl-card vl-card--aurora" style="margin-top:0.5rem;">
+                <h3 class="vl-card__title">Aurora Card</h3>
+                <p class="vl-card__body">Animated gradient border cycling through primary → secondary → accent. CSS-only, no JS.</p>
+              </div>
+            </article>
+
+            <!-- Quote -->
+            <article class="api-card api-card--lead">
+              <strong>.vl-quote</strong>
+              <blockquote class="vl-quote" style="margin-top:0.5rem;">
+                Every design decision in Velora is expressed as a token — nothing is hardcoded.
+                <cite>Velora Design Principles</cite>
+              </blockquote>
+            </article>
+
+            <!-- Stat -->
+            <article class="api-card">
+              <strong>.vl-stat</strong>
+              <div class="api-primitive-stage">
+                <div class="vl-stat">
+                  <span class="vl-stat__value">120fps</span>
+                  <span class="vl-stat__label">CSS-native pipeline</span>
+                </div>
+                <div class="vl-stat">
+                  <span class="vl-stat__value">0 JS</span>
+                  <span class="vl-stat__label">Motion dependencies</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Text gradient -->
+            <article class="api-card">
+              <strong>.vl-text-gradient</strong>
+              <div class="api-primitive-stage">
+                <span class="vl-text-gradient api-font-display" style="font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;">Velora</span>
+              </div>
+              <span class="api-swatch-meta">Gradient text via background-clip: text</span>
+            </article>
+            <article class="api-card">
+              <strong>.vl-text-gradient--accent</strong>
+              <div class="api-primitive-stage">
+                <span class="vl-text-gradient--accent api-font-display" style="font-size:1.6rem;font-weight:700;letter-spacing:-0.03em;background:var(--vl-gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;">Brand</span>
+              </div>
+              <span class="api-swatch-meta">Full brand gradient variant</span>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             FORMS
+             ================================================================ -->
+        <section id="forms" class="api-group api-scope-extended">
+          <div class="api-group-head">
+            <h2>Form Controls</h2>
+            <p>Pure-CSS form primitives from <code>04a-forms.css</code> — all token-driven, no JavaScript dependencies.</p>
+          </div>
+          <div class="api-grid">
+
+            <!-- Text input -->
+            <article class="api-card">
+              <strong>.vl-input</strong>
+              <div class="api-form-stage">
+                <input class="vl-input" type="text" placeholder="Default text input" />
+              </div>
+              <span class="api-swatch-meta">Full-width, focus-ring, transition</span>
+            </article>
+            <article class="api-card">
+              <strong>.vl-input--sm</strong>
+              <div class="api-form-stage">
+                <input class="vl-input vl-input--sm" type="text" placeholder="Small input" />
+              </div>
+              <span class="api-swatch-meta">Compact size variant</span>
+            </article>
+            <article class="api-card">
+              <strong>.vl-input--lg</strong>
+              <div class="api-form-stage">
+                <input class="vl-input vl-input--lg" type="text" placeholder="Large input" />
+              </div>
+              <span class="api-swatch-meta">Expanded size variant</span>
+            </article>
+
+            <!-- Textarea -->
+            <article class="api-card">
+              <strong>.vl-textarea</strong>
+              <div class="api-form-stage">
+                <textarea class="vl-textarea" placeholder="Multiline textarea — field-sizing: content auto-grows"></textarea>
+              </div>
+            </article>
+
+            <!-- Input states -->
+            <article class="api-card">
+              <strong>Input states</strong>
+              <div class="api-form-stage">
+                <input class="vl-input" type="text" value="Default" readonly />
+                <input class="vl-input" type="text" value="Disabled" disabled />
+                <input class="vl-input" type="email" placeholder="email@velora.design" />
+                <input class="vl-input" type="password" value="hunter2" />
+              </div>
+            </article>
+
+            <!-- Select -->
+            <article class="api-card">
+              <strong>vl-input on &lt;select&gt;</strong>
+              <div class="api-form-stage">
+                <select class="vl-input">
+                  <option>Noir theme</option>
+                  <option>Earth tech</option>
+                  <option>Light mode</option>
+                </select>
+              </div>
+              <span class="api-swatch-meta">Same class works on select elements</span>
+            </article>
+
+            <!-- Number / range -->
+            <article class="api-card">
+              <strong>.vl-range</strong>
+              <div class="api-form-stage">
+                <input class="vl-range" type="range" min="0" max="100" value="42" aria-label="Range demo" />
+              </div>
+              <span class="api-swatch-meta">Token-styled range slider</span>
+            </article>
+
+            <!-- Labels -->
+            <article class="api-card">
+              <strong>Label + input pair</strong>
+              <div class="api-form-stage">
+                <label style="display:flex;flex-direction:column;gap:0.3rem;font-size:0.8rem;color:var(--vl-text-secondary);">
+                  Project name
+                  <input class="vl-input" type="text" placeholder="Velora v2" />
+                </label>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             LIBRARY COMPONENTS — packages/velora-components
+             ================================================================ -->
+        <section id="components" class="api-group api-scope-extended">
+          <div class="api-group-head">
+            <h2>Library Components</h2>
+            <p>All components from <code>packages/velora-components/</code> — individually verified and production-ready.</p>
+          </div>
+          <div class="api-grid api-grid--components">
+
+            <!-- Accordion -->
+            <article class="api-card api-component-card">
+              <strong>Accordion</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">1 variant</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">accordion/faq</div>
+              <div>
+                <a class="api-component-link" href="/velora-components/accordion/faq.html" target="_blank" rel="noopener">accordion/faq.html</a>
+              </div>
+              <span class="api-swatch-meta">Expandable FAQ with native &lt;details&gt;/&lt;summary&gt; and smooth transitions</span>
+            </article>
+
+            <!-- Banner -->
+            <article class="api-card api-component-card">
+              <strong>Banner</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">6 variants</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">banner/11–16</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.25rem;">
+                <a class="api-component-link" href="/velora-components/banner/banner11.html" target="_blank" rel="noopener">banner11</a>
+                <a class="api-component-link" href="/velora-components/banner/banner12.html" target="_blank" rel="noopener">banner12</a>
+                <a class="api-component-link" href="/velora-components/banner/banner13.html" target="_blank" rel="noopener">banner13</a>
+                <a class="api-component-link" href="/velora-components/banner/banner14.html" target="_blank" rel="noopener">banner14</a>
+                <a class="api-component-link" href="/velora-components/banner/banner15.html" target="_blank" rel="noopener">banner15</a>
+                <a class="api-component-link" href="/velora-components/banner/banner16.html" target="_blank" rel="noopener">banner16</a>
+              </div>
+              <span class="api-swatch-meta">Text bars, dismissible, CTA, icon-rich, gradient and aurora shimmer</span>
+            </article>
+
+            <!-- Blog -->
+            <article class="api-card api-component-card">
+              <strong>Blog</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">4 variants</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">blog/1–4</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.25rem;">
+                <a class="api-component-link" href="/velora-components/blog/blog1.html" target="_blank" rel="noopener">blog1</a>
+                <a class="api-component-link" href="/velora-components/blog/blog2.html" target="_blank" rel="noopener">blog2</a>
+                <a class="api-component-link" href="/velora-components/blog/blog3.html" target="_blank" rel="noopener">blog3</a>
+                <a class="api-component-link" href="/velora-components/blog/blog4.html" target="_blank" rel="noopener">blog4</a>
+              </div>
+              <span class="api-swatch-meta">Card grid, featured + sidebar, magazine layout, minimal list</span>
+            </article>
+
+            <!-- Features -->
+            <article class="api-card api-component-card">
+              <strong>Features</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">2 variants</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">features/bordered · grid</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.25rem;">
+                <a class="api-component-link" href="/velora-components/features/layout-bordered.html" target="_blank" rel="noopener">layout-bordered</a>
+                <a class="api-component-link" href="/velora-components/features/layout-grid.html" target="_blank" rel="noopener">layout-grid</a>
+              </div>
+              <span class="api-swatch-meta">Marketing features grid — bordered cards and icon + text pattern</span>
+            </article>
+
+            <!-- Footer -->
+            <article class="api-card api-component-card">
+              <strong>Footer</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">1 variant</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">footer/5</div>
+              <div>
+                <a class="api-component-link" href="/velora-components/footer/footer5.html" target="_blank" rel="noopener">footer5.html</a>
+              </div>
+              <span class="api-swatch-meta">Full-width footer with brand, nav columns and legal bar</span>
+            </article>
+
+            <!-- Hero -->
+            <article class="api-card api-component-card">
+              <strong>Hero</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">1 variant</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">hero/header1</div>
+              <div>
+                <a class="api-component-link" href="/velora-components/hero/header1.html" target="_blank" rel="noopener">header1.html</a>
+              </div>
+              <span class="api-swatch-meta">Full-width marketing hero with heading, lead and CTA row</span>
+            </article>
+
+            <!-- Navbar -->
+            <article class="api-card api-component-card">
+              <strong>Navbar</strong>
+              <div class="api-chip-row">
+                <span class="vl-badge vl-badge--accent">1 variant</span>
+                <span class="vl-badge">Stable</span>
+              </div>
+              <div class="api-component-thumb">navbar/16</div>
+              <div>
+                <a class="api-component-link" href="/velora-components/navbar/navbar16.html" target="_blank" rel="noopener">navbar16.html</a>
+              </div>
+              <span class="api-swatch-meta">Glass sticky top navigation with brand, links and action row</span>
+            </article>
+
+            <!-- Component index -->
+            <article class="api-card api-card--lead">
+              <strong>Component Index</strong>
+              <pre class="api-code">packages/velora-components/
+├── accordion/   faq.html (1)
+├── banner/      banner11–16 (6)
+├── blog/        blog1–4 (4)
+├── features/    bordered, grid (2)
+├── footer/      footer5 (1)
+├── hero/        header1 (1)
+└── navbar/      navbar16 (1)
+─────────────────────────────
+Total: 16 components</pre>
+              <p class="api-note">Only Relume Uncommon-verified components are included. See <code>CATALOG.md</code> for the full status log.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             SHOWCASE PAGES DIRECTORY
+             ================================================================ -->
+        <section id="pages" class="api-group api-scope-extended">
+          <div class="api-group-head">
+            <h2>All Showcase Pages</h2>
+            <p>Every page in <code>apps/showcase/pages/</code> organized by category — the full development surface.</p>
+          </div>
+          <div class="api-grid api-grid--pages">
+
+            <!-- Motion -->
+            <article class="api-card api-page-link-card">
+              <strong>Motion</strong>
+              <span class="vl-badge vl-badge--accent">10 pages</span>
+              <a class="api-page-link" href="/pages/motion/api-motion-catalog.html">API Motion Catalog <span>→</span></a>
+              <a class="api-page-link" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a>
+              <a class="api-page-link" href="/pages/motion/motion-principles.html">Motion Principles</a>
+              <a class="api-page-link" href="/pages/motion/kinetic-motion.html">Kinetic Motion</a>
+              <a class="api-page-link" href="/pages/motion/kinetic-cards.html">Kinetic Cards</a>
+              <a class="api-page-link" href="/pages/motion/scale-shift.html">Scale Shift</a>
+              <a class="api-page-link" href="/pages/motion/interactions.html">Interactions</a>
+              <a class="api-page-link" href="/pages/motion/motion-extended.html">Motion Extended</a>
+              <a class="api-page-link" href="/pages/motion/3d-explorer.html">3D Explorer</a>
+              <a class="api-page-link" href="/pages/motion/3d-rotation.html">3D Rotation</a>
+            </article>
+
+            <!-- Color -->
+            <article class="api-card api-page-link-card">
+              <strong>Color &amp; Tokens</strong>
+              <span class="vl-badge vl-badge--accent">7 pages</span>
+              <a class="api-page-link" href="/pages/color/design-tokens.html">Design Tokens <span>→</span></a>
+              <a class="api-page-link" href="/pages/color/color-system.html">Color System</a>
+              <a class="api-page-link" href="/pages/color/color-palette.html">Color Palette</a>
+              <a class="api-page-link" href="/pages/color/token-spotlight.html">Token Spotlight</a>
+              <a class="api-page-link" href="/pages/color/tonal-stacking.html">Tonal Stacking</a>
+              <a class="api-page-link" href="/pages/color/tonal-tiers.html">Tonal Tiers</a>
+              <a class="api-page-link" href="/pages/color/ambient-shadows.html">Ambient Shadows</a>
+            </article>
+
+            <!-- Typography -->
+            <article class="api-card api-page-link-card">
+              <strong>Typography</strong>
+              <span class="vl-badge vl-badge--accent">3 pages</span>
+              <a class="api-page-link" href="/pages/typography/typography-spec.html">Type Specification <span>→</span></a>
+              <a class="api-page-link" href="/pages/typography/typography.html">Typography Samples</a>
+              <a class="api-page-link" href="/pages/typography/typography-composition.html">Composition Patterns</a>
+            </article>
+
+            <!-- Components -->
+            <article class="api-card api-page-link-card">
+              <strong>Components</strong>
+              <span class="vl-badge vl-badge--accent">5 pages</span>
+              <a class="api-page-link" href="/pages/components/api-design-catalog.html">Design System Catalog <span>→</span></a>
+              <a class="api-page-link" href="/pages/components/buttons.html">Buttons</a>
+              <a class="api-page-link" href="/pages/components/forms.html">Forms</a>
+              <a class="api-page-link" href="/pages/components/icons.html">Icons</a>
+              <a class="api-page-link" href="/pages/components/component-lab.html">Component Lab</a>
+            </article>
+
+            <!-- Scenes -->
+            <article class="api-card api-page-link-card">
+              <strong>Scenes</strong>
+              <span class="vl-badge vl-badge--accent">5 pages</span>
+              <a class="api-page-link" href="/pages/scenes/scene-hero.html">Scene Hero <span>→</span></a>
+              <a class="api-page-link" href="/pages/scenes/scene-features.html">Scene Features</a>
+              <a class="api-page-link" href="/pages/scenes/scene-story.html">Scene Story</a>
+              <a class="api-page-link" href="/pages/scenes/scene-creator.html">Scene Creator</a>
+              <a class="api-page-link" href="/pages/scenes/scroll-reveal.html">Scroll Reveal</a>
+            </article>
+
+            <!-- Tools -->
+            <article class="api-card api-page-link-card">
+              <strong>Tools &amp; Reference</strong>
+              <span class="vl-badge vl-badge--accent">6 pages</span>
+              <a class="api-page-link" href="/pages/tools/system-modules.html">System Modules <span>→</span></a>
+              <a class="api-page-link" href="/pages/tools/contrast-tool.html">Contrast Tool</a>
+              <a class="api-page-link" href="/pages/tools/accessibility.html">WCAG Accessibility</a>
+              <a class="api-page-link" href="/pages/tools/architecture.html">Architecture</a>
+              <a class="api-page-link" href="/pages/tools/brand-voice.html">Brand Voice</a>
+              <a class="api-page-link" href="/pages/tools/converter.html">Converter</a>
+            </article>
+
+            <!-- Core -->
+            <article class="api-card api-page-link-card">
+              <strong>Core / Framework</strong>
+              <span class="vl-badge vl-badge--accent">2 pages</span>
+              <a class="api-page-link" href="/pages/core/landing.html">Framework Landing <span>→</span></a>
+              <a class="api-page-link" href="/pages/core/about.html">About</a>
+            </article>
+
+            <!-- Library archive -->
+            <article class="api-card api-page-link-card">
+              <strong>Library Archive</strong>
+              <span class="vl-badge">legacy / reference</span>
+              <a class="api-page-link" href="/pages/library/index.html">Library Index <span>→</span></a>
+              <a class="api-page-link" href="/pages/library/gallery.html">Component Gallery</a>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             MOTION TOKENS QUICK REFERENCE
+             ================================================================ -->
+        <section id="motion-ref" class="api-group api-scope-experimental">
+          <div class="api-group-head">
+            <h2>Motion Token Reference</h2>
+            <p>Duration, easing and transition tokens — <code>--vl-duration-*</code>, <code>--vl-ease-*</code>, <code>--vl-transition-*</code>.</p>
+          </div>
+          <div class="api-grid">
+            <article class="api-card">
+              <strong>Duration tokens</strong>
+              <div class="api-chip-row">
+                <span class="api-chip">instant 80ms</span>
+                <span class="api-chip">fast 180ms</span>
+                <span class="api-chip">normal 320ms</span>
+                <span class="api-chip">slow 600ms</span>
+                <span class="api-chip">slower 900ms</span>
+                <span class="api-chip">cinematic 1200ms</span>
+              </div>
+              <span class="api-swatch-meta">--vl-duration-{instant|fast|normal|slow|slower|cinematic}</span>
+            </article>
+            <article class="api-card">
+              <strong>Easing tokens</strong>
+              <div class="api-chip-row">
+                <span class="api-chip">ease-out-soft</span>
+                <span class="api-chip">ease-in-out-smooth</span>
+                <span class="api-chip">ease-cinematic</span>
+                <span class="api-chip">ease-spring</span>
+                <span class="api-chip">ease-bounce</span>
+              </div>
+              <span class="api-swatch-meta">--vl-ease-{out-soft|in-out-smooth|cinematic|spring|bounce}</span>
+            </article>
+            <article class="api-card">
+              <strong>Transition shorthand</strong>
+              <div class="api-chip-row">
+                <span class="api-chip">--vl-transition-fast</span>
+                <span class="api-chip">--vl-transition-normal</span>
+                <span class="api-chip">--vl-transition-slow</span>
+              </div>
+              <span class="api-swatch-meta">Used in component transition properties throughout the framework</span>
+            </article>
+            <article class="api-card api-card--lead">
+              <strong>Motion API →</strong>
+              <p class="api-note" style="margin:0;">For all <code>vl-effect</code>, <code>vl-timeline</code>, <code>vl-loop</code>, <code>vl-scroll</code> and scroll-driven demos, see the dedicated <a class="api-component-link" href="/pages/motion/api-motion-catalog.html">Motion API Catalog</a>.</p>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="vl-footer" aria-label="Site footer">
+      <div class="vl-footer__inner vl-container">
+        <div class="vl-footer__brand">
+          <a class="vl-logo-lockup" href="/index.html" aria-label="Velora home">
+            <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false" width="96" height="24">
+              <g class="vl-logo-mark__group"><g class="vl-logo-mark__full"><g>
+                <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+                <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+              </g></g></g>
+            </svg>
+          </a>
+          <p class="vl-footer__tagline">Motion-native design system. Every token in oklch. Zero JS required.</p>
+        </div>
+        <nav class="vl-footer__nav" aria-label="Footer navigation">
+          <div class="vl-footer__nav-col">
+            <strong>Design System</strong>
+            <a href="/pages/components/api-design-catalog.html">Design Catalog</a>
+            <a href="/pages/color/design-tokens.html">Tokens</a>
+            <a href="/pages/typography/typography-spec.html">Typography</a>
+            <a href="/pages/components/forms.html">Forms</a>
+          </div>
+          <div class="vl-footer__nav-col">
+            <strong>Motion</strong>
+            <a href="/pages/motion/api-motion-catalog.html">Motion Catalog</a>
+            <a href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a>
+            <a href="/pages/motion/kinetic-motion.html">Kinetic Motion</a>
+          </div>
+          <div class="vl-footer__nav-col">
+            <strong>Resources</strong>
+            <a href="/pages/library/index.html">Library</a>
+            <a href="/pages/tools/system-modules.html">System Modules</a>
+            <a href="/pages/core/landing.html">Framework</a>
+          </div>
+        </nav>
+        <div class="vl-footer__meta">
+          <span>© 2026 Velora. All rights reserved.</span>
+          <span class="vl-badge">Design System Catalog v1</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const sectionKindMap = {
+          "color-tokens": "token",
+          typography: "typography",
+          spacing: "spacing",
+          primitives: "primitive",
+          forms: "form",
+          components: "component",
+          pages: "page",
+          "motion-ref": "reference",
+        };
+
+        const groups = Array.from(document.querySelectorAll(".api-group"));
+        const cards = Array.from(document.querySelectorAll(".api-card"));
+        const filterButtons = Array.from(document.querySelectorAll(".api-kind-filter__btn"));
+
+        for (const card of cards) {
+          const group = card.closest(".api-group");
+          const kind = group ? sectionKindMap[group.id] : null;
+          if (kind) {
+            card.dataset.apiKind = kind;
+          }
+        }
+
+        const updateFilter = (kind) => {
+          const activeKind = kind || "all";
+
+          for (const button of filterButtons) {
+            const isActive = button.dataset.filterKind === activeKind;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+          }
+
+          for (const card of cards) {
+            const show = activeKind === "all" || card.dataset.apiKind === activeKind;
+            card.classList.toggle("is-filter-hidden", !show);
+          }
+
+          for (const group of groups) {
+            const groupCards = Array.from(group.querySelectorAll(".api-card"));
+            const hasVisible = groupCards.some((card) => !card.classList.contains("is-filter-hidden"));
+            group.classList.toggle("is-filter-empty", !hasVisible);
+          }
+        };
+
+        for (const button of filterButtons) {
+          button.addEventListener("click", () => updateFilter(button.dataset.filterKind));
+        }
+
+        updateFilter("all");
+      })();
+    </script>
+    <script src="/js/showcase-controls.js"></script>
+  </body>
+</html>

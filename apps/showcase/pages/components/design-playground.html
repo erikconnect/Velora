@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-editorial-theme="noir" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Design System Playground — interactive token explorer, theme comparator, and component sandbox for the Velora design system." />
+    <title>Design Playground | Velora</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-design-playground.css" />
+    <link rel="stylesheet" href="/css/showcase-tools-hub.css" />
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group"><g class="vl-logo-mark__full"><g>
+              <path d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+              <path d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+              <rect x="90.08" y=".37" width="8.5" height="52.97"/>
+            </g></g></g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link vl-nav__link--active" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/api-motion-catalog.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+          <a class="vl-nav__link vl-nav__link--active vl-nav__link--tools" href="/pages/tools/index.html">Tools</a>
+        </nav>
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="vl-main">
+      <div class="dpg-shell">
+
+        <!-- Page header -->
+        <header class="dpg-header" vl-children="stagger" vl-stagger="110ms" vl-timeline="view">
+          <div class="dpg-header-kicker">
+            <span class="dpg-kicker-line"></span>
+            <span class="dpg-kicker-text">Interactive Tool</span>
+          </div>
+          <h1 class="dpg-title">Design <em>Playground</em></h1>
+          <p class="dpg-lead">Explore every token live, compare themes side by side, and compose components in the sandbox. Click any token to copy its CSS variable name.</p>
+          <div class="dpg-header-links">
+            <a href="/pages/components/api-design-catalog.html">← Design Catalog</a>
+            <a href="/pages/color/design-tokens.html">Token Reference</a>
+            <a href="/pages/motion/motion-playground.html">Motion Playground →</a>
+          </div>
+        </header>
+
+        <!-- Section navigation -->
+        <nav class="dpg-nav" role="tablist" aria-label="Playground sections">
+          <button class="dpg-nav-tab is-active" data-section="tokens"    type="button" role="tab" aria-selected="true">Tokens</button>
+          <button class="dpg-nav-tab"             data-section="compare"  type="button" role="tab" aria-selected="false">Theme Compare</button>
+          <button class="dpg-nav-tab"             data-section="sandbox"  type="button" role="tab" aria-selected="false">Component Sandbox</button>
+        </nav>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             SECTION 1 — Token Explorer
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="dpg-section is-active" id="sec-tokens" role="tabpanel" aria-labelledby="">
+          <div class="dpg-panel">
+            <div class="dpg-panel-head">
+              <span>Token Explorer</span>
+              <span style="color:var(--vl-text-muted);font-size:0.56rem;">Click any token to copy its variable name</span>
+            </div>
+            <div class="dpg-token-toolbar">
+              <button class="dpg-token-filter-btn is-active" data-filter="all" type="button">All</button>
+              <button class="dpg-token-filter-btn" data-filter="color" type="button">Color</button>
+              <button class="dpg-token-filter-btn" data-filter="typography" type="button">Typography</button>
+              <button class="dpg-token-filter-btn" data-filter="spacing" type="button">Spacing</button>
+              <button class="dpg-token-filter-btn" data-filter="motion" type="button">Motion</button>
+              <button class="dpg-token-filter-btn" data-filter="shadow" type="button">Shadow</button>
+            </div>
+            <div class="dpg-token-grid" id="dpg-token-grid">
+              <!-- Color tokens -->
+              <div class="dpg-token-card" data-group="color" data-token="--vl-color-primary" style="--dpg-swatch:var(--vl-color-primary)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-color-primary</div>
+                  <div class="dpg-token-value">#7f8668 · brand-moss</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-color-secondary" style="--dpg-swatch:var(--vl-color-secondary)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-color-secondary</div>
+                  <div class="dpg-token-value">#a9b08b · brand-olive</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-color-accent" style="--dpg-swatch:var(--vl-color-accent)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-color-accent</div>
+                  <div class="dpg-token-value">#5c604c · brand-deep</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-color-success" style="--dpg-swatch:var(--vl-color-success)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-color-success</div>
+                  <div class="dpg-token-value">#6f8661</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-color-warning" style="--dpg-swatch:var(--vl-color-warning)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-color-warning</div>
+                  <div class="dpg-token-value">#c1ab72</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-color-danger" style="--dpg-swatch:var(--vl-color-danger)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-color-danger</div>
+                  <div class="dpg-token-value">#8a5f50</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-bg-main" style="--dpg-swatch:var(--vl-bg-main)">
+                <div class="dpg-token-swatch" style="border:1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent)"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-bg-main</div>
+                  <div class="dpg-token-value">Page background</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-bg-surface" style="--dpg-swatch:var(--vl-bg-surface)">
+                <div class="dpg-token-swatch" style="border:1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent)"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-bg-surface</div>
+                  <div class="dpg-token-value">Cards &amp; panels</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-bg-surface-elevated" style="--dpg-swatch:var(--vl-bg-surface-elevated)">
+                <div class="dpg-token-swatch" style="border:1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent)"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-bg-surface-elevated</div>
+                  <div class="dpg-token-value">Popovers / dialogs</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-bg-inset" style="--dpg-swatch:var(--vl-bg-inset)">
+                <div class="dpg-token-swatch" style="border:1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent)"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-bg-inset</div>
+                  <div class="dpg-token-value">Wells &amp; inset zones</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-text-primary" style="--dpg-swatch:var(--vl-text-primary)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-text-primary</div>
+                  <div class="dpg-token-value">Primary text</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-text-secondary" style="--dpg-swatch:var(--vl-text-secondary)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-text-secondary</div>
+                  <div class="dpg-token-value">Secondary text</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-text-muted" style="--dpg-swatch:var(--vl-text-muted)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-text-muted</div>
+                  <div class="dpg-token-value">Muted / caption</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-border-subtle" style="--dpg-swatch:var(--vl-border-subtle)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-border-subtle</div>
+                  <div class="dpg-token-value">Dividers &amp; hairlines</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="color" data-token="--vl-border-strong" style="--dpg-swatch:var(--vl-border-strong)">
+                <div class="dpg-token-swatch"></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-border-strong</div>
+                  <div class="dpg-token-value">Interactive borders</div>
+                </div>
+              </div>
+
+              <!-- Typography tokens -->
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-family-display" style="--dpg-demo-family:var(--vl-font-family-display);--dpg-demo-size:1.05rem;--dpg-demo-weight:600">
+                <div class="dpg-token-swatch">Display Aa</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-family-display</div>
+                  <div class="dpg-token-value">Space Grotesk</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-family" style="--dpg-demo-family:var(--vl-font-family);--dpg-demo-size:0.9rem">
+                <div class="dpg-token-swatch">Body Text</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-family</div>
+                  <div class="dpg-token-value">Manrope</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-family-mono" style="--dpg-demo-family:var(--vl-font-family-mono);--dpg-demo-size:0.78rem">
+                <div class="dpg-token-swatch">Code 01</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-family-mono</div>
+                  <div class="dpg-token-value">JetBrains Mono</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-size-xs" style="--dpg-demo-size:var(--vl-font-size-xs)">
+                <div class="dpg-token-swatch">Aa xs</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-size-xs</div>
+                  <div class="dpg-token-value">0.75rem / 12px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-size-sm" style="--dpg-demo-size:var(--vl-font-size-sm)">
+                <div class="dpg-token-swatch">Aa sm</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-size-sm</div>
+                  <div class="dpg-token-value">0.875rem / 14px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-size-lg" style="--dpg-demo-size:var(--vl-font-size-lg)">
+                <div class="dpg-token-swatch">Aa lg</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-size-lg</div>
+                  <div class="dpg-token-value">1.125rem / 18px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-size-2xl" style="--dpg-demo-size:var(--vl-font-size-2xl)">
+                <div class="dpg-token-swatch">Aa 2xl</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-size-2xl</div>
+                  <div class="dpg-token-value">1.5rem / 24px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="typography" data-token="--vl-font-size-3xl" style="--dpg-demo-size:var(--vl-font-size-3xl)">
+                <div class="dpg-token-swatch">Aa 3xl</div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-font-size-3xl</div>
+                  <div class="dpg-token-value">2rem / 32px</div>
+                </div>
+              </div>
+
+              <!-- Spacing tokens -->
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-space-xs">
+                <div class="dpg-token-swatch"><div class="dpg-spacing-bar" style="--dpg-space-size:var(--vl-space-xs)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-space-xs</div>
+                  <div class="dpg-token-value">0.25rem / 4px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-space-sm">
+                <div class="dpg-token-swatch"><div class="dpg-spacing-bar" style="--dpg-space-size:var(--vl-space-sm)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-space-sm</div>
+                  <div class="dpg-token-value">0.5rem / 8px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-space-md">
+                <div class="dpg-token-swatch"><div class="dpg-spacing-bar" style="--dpg-space-size:var(--vl-space-md)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-space-md</div>
+                  <div class="dpg-token-value">1rem / 16px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-space-lg">
+                <div class="dpg-token-swatch"><div class="dpg-spacing-bar" style="--dpg-space-size:var(--vl-space-lg)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-space-lg</div>
+                  <div class="dpg-token-value">2rem / 32px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-space-xl">
+                <div class="dpg-token-swatch"><div class="dpg-spacing-bar" style="--dpg-space-size:var(--vl-space-xl)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-space-xl</div>
+                  <div class="dpg-token-value">4rem / 64px</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-radius-sm">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);">
+                  <div style="width:40px;height:30px;border-radius:var(--vl-radius-sm);background:color-mix(in oklch, var(--vl-color-primary) 44%, transparent);border:1px solid color-mix(in oklch, var(--vl-color-primary) 50%, transparent)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-radius-sm</div>
+                  <div class="dpg-token-value">0.375rem</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-radius-lg">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);">
+                  <div style="width:40px;height:30px;border-radius:var(--vl-radius-lg);background:color-mix(in oklch, var(--vl-color-primary) 44%, transparent);border:1px solid color-mix(in oklch, var(--vl-color-primary) 50%, transparent)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-radius-lg</div>
+                  <div class="dpg-token-value">0.75rem</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="spacing" data-token="--vl-radius-2xl">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);">
+                  <div style="width:40px;height:30px;border-radius:var(--vl-radius-2xl);background:color-mix(in oklch, var(--vl-color-primary) 44%, transparent);border:1px solid color-mix(in oklch, var(--vl-color-primary) 50%, transparent)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-radius-2xl</div>
+                  <div class="dpg-token-value">1.5rem</div>
+                </div>
+              </div>
+
+              <!-- Motion tokens -->
+              <div class="dpg-token-card" data-group="motion" data-token="--vl-duration-fast">
+                <div class="dpg-token-swatch"><div class="dpg-motion-dot" style="--dpg-duration:150ms;--dpg-ease:var(--vl-ease-cinematic)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-duration-fast</div>
+                  <div class="dpg-token-value">150ms</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="motion" data-token="--vl-duration-normal">
+                <div class="dpg-token-swatch"><div class="dpg-motion-dot" style="--dpg-duration:300ms;--dpg-ease:var(--vl-ease-cinematic)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-duration-normal</div>
+                  <div class="dpg-token-value">300ms</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="motion" data-token="--vl-duration-slow">
+                <div class="dpg-token-swatch"><div class="dpg-motion-dot" style="--dpg-duration:500ms;--dpg-ease:var(--vl-ease-cinematic)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-duration-slow</div>
+                  <div class="dpg-token-value">500ms</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="motion" data-token="--vl-ease-cinematic">
+                <div class="dpg-token-swatch"><div class="dpg-motion-dot" style="--dpg-duration:600ms;--dpg-ease:var(--vl-ease-cinematic)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-ease-cinematic</div>
+                  <div class="dpg-token-value">cubic-bezier(0.2,0.8,0.2,1)</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="motion" data-token="--vl-ease-spring">
+                <div class="dpg-token-swatch"><div class="dpg-motion-dot" style="--dpg-duration:500ms;--dpg-ease:var(--vl-ease-spring)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-ease-spring</div>
+                  <div class="dpg-token-value">cubic-bezier(0.34,1.56,0.64,1)</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="motion" data-token="--vl-ease-out-soft">
+                <div class="dpg-token-swatch"><div class="dpg-motion-dot" style="--dpg-duration:450ms;--dpg-ease:var(--vl-ease-out-soft)"></div></div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-ease-out-soft</div>
+                  <div class="dpg-token-value">cubic-bezier(0.16,1,0.3,1)</div>
+                </div>
+              </div>
+
+              <!-- Shadow tokens -->
+              <div class="dpg-token-card" data-group="shadow" data-token="--vl-shadow-sm">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);">
+                  <div style="width:48px;height:36px;border-radius:8px;background:var(--vl-bg-surface);box-shadow:var(--vl-shadow-sm)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-shadow-sm</div>
+                  <div class="dpg-token-value">Subtle elevation</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="shadow" data-token="--vl-shadow-md">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);">
+                  <div style="width:48px;height:36px;border-radius:8px;background:var(--vl-bg-surface);box-shadow:var(--vl-shadow-md)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-shadow-md</div>
+                  <div class="dpg-token-value">Card elevation</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="shadow" data-token="--vl-shadow-lg">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);">
+                  <div style="width:48px;height:36px;border-radius:8px;background:var(--vl-bg-surface);box-shadow:var(--vl-shadow-lg)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-shadow-lg</div>
+                  <div class="dpg-token-value">Modal elevation</div>
+                </div>
+              </div>
+              <div class="dpg-token-card" data-group="shadow" data-token="--vl-shadow-glow">
+                <div class="dpg-token-swatch" style="display:flex;align-items:center;justify-content:center;background:color-mix(in oklch, var(--vl-bg-main) 80%, transparent);">
+                  <div style="width:48px;height:36px;border-radius:8px;background:color-mix(in oklch, var(--vl-color-primary) 30%, var(--vl-bg-surface));box-shadow:var(--vl-shadow-glow)"></div>
+                </div>
+                <div class="dpg-token-info">
+                  <div class="dpg-token-name">--vl-shadow-glow</div>
+                  <div class="dpg-token-value">Brand glow</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             SECTION 2 — Theme Comparator
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="dpg-section" id="sec-compare" role="tabpanel">
+          <div class="dpg-compare-grid">
+
+            <!-- Noir / Dark -->
+            <div class="dpg-theme-frame" data-theme="dark" data-editorial="noir">
+              <div class="dpg-theme-frame-head">
+                <span>Noir — Dark</span>
+                <span class="dpg-theme-chip">data-theme="dark" data-editorial-theme="noir"</span>
+              </div>
+              <div class="dpg-theme-body">
+                <div class="dpg-component-preview">
+                  <div class="dpg-cp-card">
+                    <span class="dpg-cp-kicker">Featured</span>
+                    <h3 class="dpg-cp-title">Velora Noir</h3>
+                    <p class="dpg-cp-body">Dark editorial mode with deep surfaces and olive-moss accent palette.</p>
+                    <div class="dpg-cp-actions">
+                      <button class="dpg-cp-btn dpg-cp-btn--primary" type="button">Primary CTA</button>
+                      <button class="dpg-cp-btn" type="button">Secondary</button>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <span class="dpg-cp-badge">Active</span>
+                    <span class="dpg-cp-badge">v2.4</span>
+                    <span style="font-family:var(--vl-font-family-mono);font-size:0.6rem;color:var(--vl-text-muted);padding:0.2rem 0.5rem;border:1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);border-radius:999px">--vl-bg-main</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.3rem;height:32px;">
+                    <div style="border-radius:4px;background:var(--vl-color-primary)"></div>
+                    <div style="border-radius:4px;background:var(--vl-color-secondary)"></div>
+                    <div style="border-radius:4px;background:var(--vl-color-accent)"></div>
+                    <div style="border-radius:4px;background:var(--vl-bg-surface)"></div>
+                    <div style="border-radius:4px;background:var(--vl-bg-inset)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earth Tech / Light -->
+            <div class="dpg-theme-frame" data-theme="light" data-editorial="earth" style="background:var(--vl-bg-surface);--vl-bg-main:#e3e3cd;--vl-bg-surface:#f3f2e6;--vl-bg-surface-elevated:#ecebd9;--vl-text-primary:#0a0a0a;--vl-text-secondary:#232321;--vl-text-muted:#6f705f;--vl-border-subtle:#bfc1aa;">
+              <div class="dpg-theme-frame-head" style="background:var(--vl-bg-surface-elevated);color:var(--vl-text-muted);">
+                <span>Earth Tech — Light</span>
+                <span class="dpg-theme-chip" style="color:var(--vl-text-secondary)">data-theme="light" data-editorial-theme="earth"</span>
+              </div>
+              <div class="dpg-theme-body" style="background:var(--vl-bg-surface)">
+                <div class="dpg-component-preview">
+                  <div class="dpg-cp-card" style="background:var(--vl-bg-surface-elevated);border-color:var(--vl-border-subtle)">
+                    <span class="dpg-cp-kicker" style="color:var(--vl-color-primary)">Featured</span>
+                    <h3 class="dpg-cp-title" style="color:var(--vl-text-primary)">Velora Earth</h3>
+                    <p class="dpg-cp-body" style="color:var(--vl-text-secondary)">Light editorial mode with warm parchment surfaces and the same brand palette.</p>
+                    <div class="dpg-cp-actions">
+                      <button class="dpg-cp-btn dpg-cp-btn--primary" type="button">Primary CTA</button>
+                      <button class="dpg-cp-btn" type="button" style="color:var(--vl-text-primary);border-color:var(--vl-border-strong)">Secondary</button>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <span class="dpg-cp-badge">Active</span>
+                    <span class="dpg-cp-badge">v2.4</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.3rem;height:32px;">
+                    <div style="border-radius:4px;background:var(--vl-color-primary)"></div>
+                    <div style="border-radius:4px;background:var(--vl-color-secondary)"></div>
+                    <div style="border-radius:4px;background:var(--vl-color-accent)"></div>
+                    <div style="border-radius:4px;background:#e3e3cd"></div>
+                    <div style="border-radius:4px;background:#d7d8c0"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dpg-panel" style="margin-top:1rem;">
+            <div class="dpg-panel-head">Theme switching formula</div>
+            <pre style="margin:0;padding:1rem;font-family:var(--vl-font-family-mono);font-size:0.65rem;line-height:1.65;overflow-x:auto;background:color-mix(in oklch, var(--vl-bg-main) 88%, transparent)"><code><span style="color:color-mix(in oklch, var(--vl-text-muted) 80%, transparent)">/* Programmatic theme switching */</span>
+document.documentElement.setAttribute('data-theme', 'dark');          <span style="color:color-mix(in oklch, var(--vl-text-muted) 80%, transparent)">// → Noir surfaces</span>
+document.documentElement.setAttribute('data-theme', 'light');         <span style="color:color-mix(in oklch, var(--vl-text-muted) 80%, transparent)">// → Earth surfaces</span>
+document.documentElement.setAttribute('data-editorial-theme', 'noir');  <span style="color:color-mix(in oklch, var(--vl-text-muted) 80%, transparent)">// → Noir editorial</span>
+document.documentElement.setAttribute('data-editorial-theme', 'earth'); <span style="color:color-mix(in oklch, var(--vl-text-muted) 80%, transparent)">// → Earth editorial</span>
+
+<span style="color:color-mix(in oklch, var(--vl-text-muted) 80%, transparent)">/* Or via CSS */</span>
+html[data-theme="dark"]  { /* dark token overrides */ }
+html[data-theme="light"] { /* light token overrides */ }</code></pre>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════════
+             SECTION 3 — Component Sandbox
+             ══════════════════════════════════════════════════════════════════ -->
+        <div class="dpg-section" id="sec-sandbox" role="tabpanel">
+          <div class="dpg-sandbox-layout">
+
+            <!-- Controls -->
+            <div class="dpg-sandbox-controls">
+              <div class="dpg-sandbox-head">Sandbox Controls</div>
+
+              <div class="dpg-sandbox-group">
+                <div class="dpg-sandbox-group-label">Component</div>
+                <div class="dpg-sb-field">
+                  <label class="dpg-sb-label" for="sb-component">Type</label>
+                  <select class="dpg-sb-select" id="sb-component">
+                    <option value="card">Card</option>
+                    <option value="cta">CTA Block</option>
+                    <option value="stat">Stat</option>
+                    <option value="badge">Badge</option>
+                    <option value="form">Form</option>
+                    <option value="quote">Quote</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="dpg-sandbox-group">
+                <div class="dpg-sandbox-group-label">Surface</div>
+                <div class="dpg-sb-field">
+                  <label class="dpg-sb-label" for="sb-surface">Background</label>
+                  <select class="dpg-sb-select" id="sb-surface">
+                    <option value="bg-main">bg-main</option>
+                    <option value="bg-surface">bg-surface</option>
+                    <option value="bg-surface-elevated">bg-elevated</option>
+                    <option value="bg-inset">bg-inset</option>
+                  </select>
+                </div>
+                <div class="dpg-sb-field">
+                  <label class="dpg-sb-label" for="sb-radius">Radius</label>
+                  <select class="dpg-sb-select" id="sb-radius">
+                    <option value="radius-sm">sm (0.375rem)</option>
+                    <option value="radius-md">md (0.5rem)</option>
+                    <option value="radius-lg" selected>lg (0.75rem)</option>
+                    <option value="radius-xl">xl (1rem)</option>
+                    <option value="radius-2xl">2xl (1.5rem)</option>
+                  </select>
+                </div>
+                <div class="dpg-sb-field">
+                  <label class="dpg-sb-label" for="sb-shadow">Shadow</label>
+                  <select class="dpg-sb-select" id="sb-shadow">
+                    <option value="none">none</option>
+                    <option value="shadow-sm">shadow-sm</option>
+                    <option value="shadow-md" selected>shadow-md</option>
+                    <option value="shadow-lg">shadow-lg</option>
+                    <option value="shadow-glow">shadow-glow</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="dpg-sandbox-group">
+                <div class="dpg-sandbox-group-label">Motion</div>
+                <div class="dpg-sb-field">
+                  <label class="dpg-sb-label" for="sb-enter">Enter effect</label>
+                  <select class="dpg-sb-select" id="sb-enter">
+                    <option value="">none</option>
+                    <option value="fade-up" selected>fade-up</option>
+                    <option value="scale-in">scale-in</option>
+                    <option value="clip-rise">clip-rise</option>
+                    <option value="spring-up">spring-up</option>
+                    <option value="flip-in">flip-in</option>
+                    <option value="blur-in">blur-in</option>
+                  </select>
+                </div>
+                <div class="dpg-sb-field">
+                  <label class="dpg-sb-label" for="sb-hover">Hover effect</label>
+                  <select class="dpg-sb-select" id="sb-hover">
+                    <option value="">none</option>
+                    <option value="hover-lift" selected>hover-lift</option>
+                    <option value="hover-glow">hover-glow</option>
+                    <option value="hover-tilt-3d">hover-tilt-3d</option>
+                    <option value="hover-shell-lift">hover-shell-lift</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="dpg-sandbox-group">
+                <div class="dpg-sandbox-group-label">Actions</div>
+                <button id="sb-replay" type="button" style="width:100%;padding:0.4rem 0.8rem;border-radius:8px;border:1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);background:color-mix(in oklch, var(--vl-bg-main) 84%, transparent);color:var(--vl-text-primary);font-family:var(--vl-font-family-mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:0.08em;cursor:pointer;">↺ Replay Enter</button>
+              </div>
+            </div>
+
+            <!-- Canvas -->
+            <div class="dpg-sandbox-canvas" id="sb-canvas">
+              <div id="sb-component-output" vl-enter="fade-up" vl-timeline="view">
+                <!-- rendered by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /dpg-shell -->
+    </main>
+
+    <!-- Toast notification -->
+    <div class="dpg-toast" id="dpg-toast" role="status" aria-live="polite"></div>
+
+    <footer class="vl-footer" aria-label="Site footer">
+      <div class="vl-footer__inner vl-container">
+        <div class="vl-footer__brand">
+          <span style="font-family:var(--vl-font-family-mono);font-size:0.62rem;color:var(--vl-text-muted);text-transform:uppercase;letter-spacing:0.1em;">Design Playground — Velora Design System</span>
+        </div>
+        <nav class="vl-footer__links" aria-label="Footer navigation">
+          <a href="/pages/components/api-design-catalog.html">Design Catalog</a>
+          <a href="/pages/motion/motion-playground.html">Motion Playground</a>
+          <a href="/index.html">Showcase Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Tools Suite Dock -->
+    <div class="vl-tools-dock" aria-label="Creation Suite quick-switch">
+      <div class="vl-tools-dock__panel" role="menu">
+        <div class="vl-tools-dock__heading">Creation Suite</div>
+        <a class="vl-tools-dock__item" href="/pages/motion/motion-playground.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Motion Playground
+        </a>
+        <a class="vl-tools-dock__item is-active" href="/pages/components/design-playground.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Design Playground
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/scenes/scene-creator.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Scene Creator
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/motion/3d-rotation.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>3D Rotation Tuner
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/motion/3d-explorer.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>3D Explorer
+        </a>
+        <a class="vl-tools-dock__hub" href="/pages/tools/index.html" role="menuitem">⬡ Suite Hub</a>
+      </div>
+      <button class="vl-tools-dock__trigger" type="button" aria-haspopup="true" aria-label="Open Creation Suite navigation">
+        <span class="vl-tools-dock__icon" aria-hidden="true">⬡</span>
+        Tools
+      </button>
+    </div>
+
+    <script src="/js/showcase-controls.js"></script>
+    <script>
+    (() => {
+      'use strict';
+
+      const $ = id => document.getElementById(id);
+      let toastTimer = null;
+
+      // ── Toast helper ─────────────────────────────────────────────────────────
+      function showToast(msg) {
+        const toast = $('dpg-toast');
+        toast.textContent = msg;
+        toast.classList.add('is-visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+      }
+
+      // ── Section tabs ─────────────────────────────────────────────────────────
+      document.querySelectorAll('.dpg-nav-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.dpg-nav-tab').forEach(t => {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          document.querySelectorAll('.dpg-section').forEach(s => s.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          const sec = $(`sec-${tab.dataset.section}`);
+          if (sec) sec.classList.add('is-active');
+        });
+      });
+
+      // ── Token filter ─────────────────────────────────────────────────────────
+      document.querySelectorAll('.dpg-token-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.dpg-token-filter-btn').forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('.dpg-token-card').forEach(card => {
+            card.style.display = (filter === 'all' || card.dataset.group === filter) ? '' : 'none';
+          });
+        });
+      });
+
+      // ── Token copy ───────────────────────────────────────────────────────────
+      document.querySelectorAll('.dpg-token-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const token = card.dataset.token;
+          if (!token) return;
+          navigator.clipboard.writeText(`var(${token})`).then(() => {
+            showToast(`Copied: var(${token})`);
+            card.classList.add('is-copied');
+            setTimeout(() => card.classList.remove('is-copied'), 1400);
+          }).catch(() => {
+            showToast(`Token: var(${token})`);
+          });
+        });
+      });
+
+      // ── Sandbox ──────────────────────────────────────────────────────────────
+      const COMPONENTS = {
+        card: () => `
+          <div class="dpg-cp-card" style="width:clamp(240px,36vw,360px)">
+            <span class="dpg-cp-kicker">Velora Card</span>
+            <h3 class="dpg-cp-title">Component Preview</h3>
+            <p class="dpg-cp-body">This is a live sandbox preview. Use the controls to change surface, radius, shadow, and motion attributes in real time.</p>
+            <div class="dpg-cp-actions">
+              <button class="dpg-cp-btn dpg-cp-btn--primary" type="button">Get Started</button>
+              <button class="dpg-cp-btn" type="button">Learn More</button>
+            </div>
+          </div>`,
+        cta: () => `
+          <div class="vl-stack" style="width:clamp(260px,42vw,440px);padding:2rem;border-radius:var(--sb-radius);background:var(--sb-bg);box-shadow:var(--sb-shadow);border:1px solid var(--vl-border-subtle);text-align:center">
+            <p class="dpg-cp-kicker">Call to Action</p>
+            <h2 class="dpg-cp-title" style="font-size:1.5rem">Start building with Velora</h2>
+            <p class="dpg-cp-body">Zero-JS motion system, token-driven design, declarative API.</p>
+            <div class="dpg-cp-actions" style="justify-content:center">
+              <button class="dpg-cp-btn dpg-cp-btn--primary" type="button">Get Started →</button>
+            </div>
+          </div>`,
+        stat: () => `
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;width:clamp(280px,42vw,380px)">
+            ${['142', '4.9', '99%', '0 JS'].map((v, i) => `
+            <div class="vl-stack vl-stack--sm" style="padding:1.1rem;border-radius:var(--sb-radius);background:var(--sb-bg);box-shadow:var(--sb-shadow);border:1px solid var(--vl-border-subtle)">
+              <div style="font-family:var(--vl-font-family-display);font-size:1.8rem;font-weight:700;color:var(--vl-color-primary);line-height:1">${v}</div>
+              <div style="font-family:var(--vl-font-family-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--vl-text-muted)">${['Effects','Rating','Uptime','Runtime'][i]}</div>
+            </div>`).join('')}
+          </div>`,
+        badge: () => `
+          <div class="vl-cluster" style="max-width:340px;justify-content:center">
+            ${['Primary','Success','Warning','Danger','Default','New','Beta','v2'].map(label => `
+              <span class="dpg-cp-badge" style="padding:0.25rem 0.6rem;font-size:0.68rem">${label}</span>`).join('')}
+          </div>`,
+        form: () => `
+          <form class="vl-stack" style="width:clamp(260px,38vw,380px);padding:1.5rem;border-radius:var(--sb-radius);background:var(--sb-bg);box-shadow:var(--sb-shadow);border:1px solid var(--vl-border-subtle)" onsubmit="return false">
+            <div style="display:grid;gap:0.3rem">
+              <label class="vl-label" for="sb-input-name">Name</label>
+              <input class="vl-input" type="text" id="sb-input-name" placeholder="Your name" />
+            </div>
+            <div style="display:grid;gap:0.3rem">
+              <label class="vl-label" for="sb-input-email">Email</label>
+              <input class="vl-input" type="email" id="sb-input-email" placeholder="you@example.com" />
+            </div>
+            <div style="display:grid;gap:0.3rem">
+              <label class="vl-label" for="sb-select">Plan</label>
+              <select class="vl-select" id="sb-select">
+                <option>Free</option><option>Pro</option><option>Team</option>
+              </select>
+            </div>
+            <button class="dpg-cp-btn dpg-cp-btn--primary" type="submit">Subscribe</button>
+          </form>`,
+        quote: () => `
+          <blockquote style="width:clamp(260px,40vw,420px);padding:1.6rem;border-radius:var(--sb-radius);background:var(--sb-bg);box-shadow:var(--sb-shadow);border:1px solid var(--vl-border-subtle);border-left:3px solid var(--vl-color-primary);margin:0">
+            <p style="margin:0 0 1rem;font-size:1rem;line-height:1.65;color:var(--vl-text-secondary);font-style:italic">"The only design system that makes zero-JS motion feel like a superpower. Every token is intentional."</p>
+            <footer class="vl-cluster" style="align-items:center;gap:0.6rem">
+              <div style="width:32px;height:32px;border-radius:50%;background:color-mix(in oklch, var(--vl-color-primary) 44%, transparent)"></div>
+              <div>
+                <div style="font-size:0.8rem;font-weight:600;color:var(--vl-text-primary)">Alex Chen</div>
+                <div style="font-size:0.7rem;color:var(--vl-text-muted);font-family:var(--vl-font-family-mono)">Lead Designer, Studio X</div>
+              </div>
+            </footer>
+          </blockquote>`,
+      };
+
+      function renderSandbox() {
+        const type    = $('sb-component')?.value || 'card';
+        const surface = $('sb-surface')?.value   || 'bg-surface-elevated';
+        const radius  = $('sb-radius')?.value    || 'radius-lg';
+        const shadow  = $('sb-shadow')?.value    || 'shadow-md';
+        const enter   = $('sb-enter')?.value     || '';
+        const hover   = $('sb-hover')?.value     || '';
+
+        const canvas = $('sb-canvas');
+        canvas.style.setProperty('--sb-bg', `var(--vl-${surface})`);
+        canvas.style.setProperty('--sb-radius', `var(--vl-${radius})`);
+        canvas.style.setProperty('--sb-shadow', shadow !== 'none' ? `var(--vl-${shadow})` : 'none');
+
+        const wrapper = $('sb-component-output');
+        wrapper.innerHTML = COMPONENTS[type] ? COMPONENTS[type]() : '';
+
+        // Clear and re-apply vl-* attributes for animation
+        ['vl-enter','vl-effect','vl-type','vl-hover'].forEach(a => wrapper.removeAttribute(a));
+        if (enter) wrapper.setAttribute('vl-enter', enter);
+        if (hover) wrapper.setAttribute('vl-effect', hover);
+        if (enter) wrapper.setAttribute('vl-type', 'single');
+      }
+
+      function replaySandbox() {
+        const wrapper = $('sb-component-output');
+        const parent = wrapper.parentNode;
+        const next = wrapper.nextSibling;
+        const clone = wrapper.cloneNode(true);
+        wrapper.remove();
+        void parent.offsetWidth;
+        parent.insertBefore(clone, next);
+        clone.id = 'sb-component-output';
+      }
+
+      ['sb-component','sb-surface','sb-radius','sb-shadow','sb-enter','sb-hover'].forEach(id => {
+        $(id)?.addEventListener('change', renderSandbox);
+      });
+
+      $('sb-replay')?.addEventListener('click', () => {
+        replaySandbox();
+      });
+
+      renderSandbox();
+    })();
+    </script>
+  </body>
+</html>

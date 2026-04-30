@@ -67,7 +67,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -77,10 +77,10 @@
 
     <main id="content" class="vl-main lib-packages-main lib-page lib-page--spec lib-page--animation-range-explainer-modal">
       <section class="vl-container lib-page-hero" aria-label="Page introduction">
-        <p class="vl-kicker lib-page-hero__eyebrow" vl-effect="fade-in" vl-timeline="view">Library Entry</p>
-        <h1 class="lib-page-hero__title" vl-effect="clip-rise" vl-timeline="view">Animation Range Explainer Modal</h1>
-        <p class="lib-page-hero__lead" vl-effect="fade-up" vl-timeline="view">Generated from packages/pages and styled within the Velora documentation system.</p>
-        <ul class="lib-page-hero__chips" aria-label="Page highlights"><li class="lib-page-chip">Library</li></ul>
+        <p class="vl-kicker lib-page-hero__eyebrow" vl-effect="fade-in" vl-timeline="view">Animation Range</p>
+        <h1 class="lib-page-hero__title" vl-effect="clip-rise" vl-timeline="view">Animation Range Explainer</h1>
+        <p class="lib-page-hero__lead" vl-effect="fade-up" vl-timeline="view">A visual explainer for scroll-driven animation ranges — entry, cover, exit, and contain — and how they control reveal timing.</p>
+        <ul class="lib-page-hero__chips" aria-label="Page highlights"><li class="lib-page-chip">Spec</li><li class="lib-page-chip">Ranges</li><li class="lib-page-chip">Scroll</li></ul>
       </section>
       <section class="vl-container lib-page-rail" aria-label="Page orientation">
         <a class="lib-page-rail__back" href="/pages/library/index.html">Back to Library</a>
@@ -89,37 +89,138 @@
       </section>
       <section class="vl-container lib-doc">
         <article class="lib-doc-article">
-<!-- SideNavBar Mockup -->
-<aside>
-<div>
-<div>Documentation</div>
-<div>v2.4.0-kinetic</div>
-</div>
-<div>
-<div>Introduction</div>
-<div>Layout</div>
-<div>Animations</div>
-<div>Transitions</div>
-</div>
-</aside>
-<!-- Documentation Content Mockup -->
-<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
-<div>
-<h1>Scroll-driven Orchestration</h1>
-<div>
-<div></div>
-<div></div>
-</div>
-<p>
-                        Leveraging the native browser engine to drive animations based on scroll progress without a single line of JavaScript. Velora uses CSS View Timeline for performance-first kinetic energy.
-                    </p>
-</div>
-</section>
+
+          <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h1>Animation Range</h1>
+            <p>
+              The <code>animation-range</code> property defines exactly when a scroll-driven animation
+              starts and ends relative to the element's position inside the scrollport. Combined with
+              <code>vl-range</code> in the Velora attribute API, it becomes the primary tool for
+              orchestrating entrance, cover, and exit timing without any JavaScript.
+            </p>
+          </section>
+
+          <section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Canonical Range Format</h2>
+            <p>
+              Velora uses a shorthand two-value syntax that maps directly to the W3C Scroll-Driven
+              Animations spec. The start value controls when the animation begins; the end value
+              controls when it reaches its final state.
+            </p>
+            <pre><code>vl-range="entry 0% cover 65%"
+vl-range="entry 10% entry 90%"
+vl-range="cover 0% exit 20%"
+vl-range="contain 0% contain 100%"</code></pre>
+          </section>
+
+          <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Entry</h2>
+            <p>
+              The <strong>entry</strong> phase spans the moment the element's leading edge enters the
+              scrollport to the moment its trailing edge fully enters. Use <code>entry 0%</code> to
+              start the animation the instant the element appears at the bottom of the viewport, and
+              <code>entry 100%</code> to complete it once the element is fully visible.
+            </p>
+            <p>
+              Entry ranges are ideal for <em>reveal animations</em> — fade-up, clip-rise, scale-in —
+              because the element is entering awareness and the animation mirrors that physical reality.
+            </p>
+            <pre><code>&lt;article vl-effect="fade-up"
+         vl-timeline="view"
+         vl-range="entry 0% entry 100%"&gt;
+  Content reveals as it enters
+&lt;/article&gt;</code></pre>
+          </section>
+
+          <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Cover</h2>
+            <p>
+              The <strong>cover</strong> phase begins when the element's leading edge reaches the
+              scrollport's trailing edge and ends when its trailing edge passes the scrollport's
+              leading edge. In other words: the full duration the element is visible — from first
+              touch to last glimpse.
+            </p>
+            <p>
+              Cover ranges are the canonical choice for <em>parallax scrolling</em> and ambient
+              depth effects, because the element moves continuously in sync with scroll progress.
+            </p>
+            <pre><code>&lt;div vl-scroll="parallax"
+     vl-timeline="view"
+     vl-range="cover 0% cover 100%"&gt;
+  Scrolls at a different rate
+&lt;/div&gt;</code></pre>
+          </section>
+
+          <section vl-effect="spring-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Exit</h2>
+            <p>
+              The <strong>exit</strong> phase mirrors entry: from the moment the element's leading
+              edge reaches the scrollport's leading edge until its trailing edge fully exits. Exit
+              ranges are used for <em>fade-out-up</em>, <em>clip-fall</em>, and other disappearance
+              effects that complement the entrance.
+            </p>
+            <pre><code>&lt;section vl-exit="fade-out-up"
+          vl-timeline="view"
+          vl-range="exit 0% exit 100%"&gt;
+  Fades out as it leaves
+&lt;/section&gt;</code></pre>
+          </section>
+
+          <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Contain</h2>
+            <p>
+              The <strong>contain</strong> phase is active only when the element is fully contained
+              within the scrollport — neither entering nor exiting. It is the shortest range and
+              most useful for <em>pin-style</em> effects that animate while the element is
+              stationary on screen.
+            </p>
+            <pre><code>&lt;aside vl-loop="-1"
+       vl-loop-effect="glow-breathe"
+       vl-timeline="view"
+       vl-range="contain 0% contain 100%"&gt;
+  Breathes only while fully visible
+&lt;/aside&gt;</code></pre>
+          </section>
+
+          <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Mixed Ranges</h2>
+            <p>
+              Velora supports cross-phase ranges. The most common is <code>entry 5% cover 65%</code>
+              — the default applied to every <code>&lt;section&gt;</code> by the port pipeline. It
+              starts the reveal slightly after the element enters and completes it as the element
+              approaches mid-viewport, creating a smooth, non-jarring editorial scroll experience.
+            </p>
+            <pre><code>&lt;!-- Default applied by port:library --&gt;
+vl-range="entry 5% cover 65%"
+
+&lt;!-- Hero sections: complete reveal while still on-screen --&gt;
+vl-range="entry 0% cover 40%"
+
+&lt;!-- Slow ambient parallax across full scroll --&gt;
+vl-range="entry 0% exit 100%"</code></pre>
+          </section>
+
+          <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+            <h2>Compatibility</h2>
+            <p>
+              Scroll-driven animations are supported in Chromium 115+ and Safari 18+. Firefox support
+              landed in version 132. For environments without support, Velora animations degrade
+              gracefully — the final animation state is shown immediately, preserving content
+              accessibility with zero layout shifts.
+            </p>
+            <ul>
+              <li>Chrome / Edge 115+ — full support</li>
+              <li>Safari 18+ — full support</li>
+              <li>Firefox 132+ — full support</li>
+              <li>Older browsers — graceful fallback to end state</li>
+            </ul>
+          </section>
+
         </article>
       </section>
       <section class="vl-container lib-page-related" aria-label="Related reading">
         <h2 class="lib-page-related__title">Related reading</h2>
-        <div class="lib-page-related__grid"><a class="lib-page-related__link vl-card" href="/pages/library/index.html">Index</a><a class="lib-page-related__link vl-card" href="/pages/library/gallery.html">Gallery</a></div>
+        <div class="lib-page-related__grid"><a class="lib-page-related__link vl-card" href="/pages/library/scroll-driven-reveal-showcase.html">Scroll Driven Reveal Showcase</a><a class="lib-page-related__link vl-card" href="/pages/library/zero-js-motion-examples.html">Zero Js Motion Examples</a></div>
       </section>
     </main>
 
@@ -191,7 +292,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>

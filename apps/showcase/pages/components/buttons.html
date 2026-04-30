@@ -9,7 +9,8 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Button states, motion feedback and accessibility targets — the Velora button system in five cinema scenes." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
@@ -20,9 +21,16 @@
       .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+        <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+      <a class="vl-bussola__stop" href="#btn-hero"><span class="vl-bussola__label">Intro</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#btn-states"><span class="vl-bussola__label">States</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#btn-motion"><span class="vl-bussola__label">Motion</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#btn-a11y"><span class="vl-bussola__label">A11y</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#btn-payoff"><span class="vl-bussola__label">Apply</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +81,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,65 +89,205 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--components">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Components</p>
-          <h1 class="vl-display-xl hub-hero__title">Buttons</h1>
-          <p class="vl-body-lg hub-hero__lead">Buttons combine structure, state layers, and micro-feedback. Velora encodes hover/active/focus in CSS with tokens for border and glow.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/interaction-feedback-micro-interactions.html">Interaction & micro-interactions</a>
-          <a class="hub-chip-link" href="/pages/components/forms.html" vl-effect="fade-up" vl-timeline="view">Forms</a>
-          <a class="hub-chip-link" href="/pages/library/form-components-library.html" vl-effect="fade-up" vl-timeline="view">Form components library</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>States</strong> — default, hover, active, disabled, focus-visible.</li>
-            <li><strong>Motion</strong> — subtle scale or shadow via motion attributes where appropriate.</li>
-            <li><strong>Accessibility</strong> — minimum target size and visible focus.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--buttons showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">States</h2>
-          <p class="hub-step-card__body">default, hover, active, disabled, focus-visible.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Motion</h2>
-          <p class="hub-step-card__body">subtle scale or shadow via motion attributes where appropriate.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Accessibility</h2>
-          <p class="hub-step-card__body">minimum target size and visible focus.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="btn-hero" class="showcase-cinema-scene showcase-cinema-scene--btn-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Component demo // Buttons</p>
+              </div>
+              <h1 class="showcase-ref-title">Structure, state layers and <em>micro-feedback</em> in pure CSS.</h1>
+              <p class="showcase-ref-lead">
+                Velora buttons encode hover, active, disabled and focus-visible states with tokens
+                for border radius, shadow glow and scale&mdash;no JavaScript event listeners needed.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/interaction-feedback-micro-interactions.html">Interaction &amp; Micro-feedback</a>
+                <a class="showcase-ref-tokens-button" href="/pages/components/forms.html">Forms</a>
+                <a class="showcase-ref-tokens-button" href="/pages/library/form-components-library.html">Form Components</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/interaction-feedback-micro-interactions.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Interaction & micro-interactions</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for buttons and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>components</code>. Source page: <code>pages/components/buttons.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--btn-hero" aria-label="Button states preview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>States</span>
+                  <strong>Default &rarr; Hover &rarr; Active &rarr; Focus</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Motion</span>
+                  <strong>Scale + shadow micro-feedback</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Accessibility</span>
+                  <strong>44px targets &amp; visible focus ring</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>Token-driven</span>
+                <span>Zero JS</span>
+                <span>WCAG AA</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · States ═════════════════════════════════════════ -->
+        <section id="btn-states" class="showcase-cinema-scene showcase-cinema-scene--btn-states" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // State layers</p>
+                <h2 class="showcase-cinema-heading">Default, hover, active, disabled and focus-visible&mdash;all from tokens.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Each state maps to a surface token, a border token and an optional shadow token.
+                Swap the theme and every button state recolors automatically.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Default</span>
+                <strong>--vl-btn-bg</strong>
+                <small>Primary surface + high-contrast text</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Hover</span>
+                <strong>--vl-btn-bg-hover</strong>
+                <small>Lighter tonal tier + shadow glow</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Active</span>
+                <strong>--vl-btn-bg-active</strong>
+                <small>Darker tier + scale(0.97)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+                <span>Disabled</span>
+                <strong>--vl-btn-bg-disabled</strong>
+                <small>Muted surface + reduced opacity</small>
+              </article>
+            </div>
+            <pre class="vl-code-block">.vl-btn--primary {
+  background: var(--vl-btn-bg);
+  color: var(--vl-btn-text);
+}
+.vl-btn--primary:hover   { background: var(--vl-btn-bg-hover); }
+.vl-btn--primary:active  { background: var(--vl-btn-bg-active); transform: scale(0.97); }
+.vl-btn--primary:disabled { background: var(--vl-btn-bg-disabled); opacity: 0.5; }</pre>
+            <p class="vl-code-note">Each state maps to a dedicated token. Swap the theme and every button state recolors in one pass &mdash; no overrides needed.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Motion ═════════════════════════════════════════ -->
+        <section id="btn-motion" class="showcase-cinema-scene showcase-cinema-scene--btn-motion" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Micro-feedback</p>
+              <h2 class="showcase-cinema-heading">Subtle scale and shadow transitions give tactile feedback on every interaction.</h2>
+              <p class="showcase-ref-lead">
+                Hover grows the shadow and lifts the button. Press shrinks it. The entire animation runs
+                on transform and box-shadow&mdash;GPU composited, 120fps.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--btn-motion" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>button motion tokens</span>
+                <code>.vl-btn { transition:</code>
+                <code>  transform 180ms var(--vl-ease-out),</code>
+                <code>  box-shadow 180ms var(--vl-ease-out); }</code>
+                <code>.vl-btn:hover  { scale: 1.02; }</code>
+                <code>.vl-btn:active { scale: 0.97; }</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Rule</span>
+                <h3>Transform + shadow only.</h3>
+                <p>Never animate width, height, padding or margin on interactive elements.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Accessibility ══════════════════════════════════ -->
+        <section id="btn-a11y" class="showcase-cinema-scene showcase-cinema-scene--btn-a11y" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Accessible targets</p>
+              <h2 class="showcase-cinema-heading">44px minimum touch target and a visible focus ring on every button.</h2>
+              <p class="showcase-ref-lead">
+                Focus-visible outlines use <code>--vl-focus-ring</code> for consistent styling.
+                Disabled buttons get <code>aria-disabled</code> instead of the <code>disabled</code>
+                attribute when they need to stay in tab order.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>min-height: 44px</span>
+                <span>focus-visible ring</span>
+                <span>AA contrast</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--btn-a11y" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-easing-list" vl-children="stagger" vl-stagger="100ms">
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>Touch target</span>
+                  <strong>44 &times; 44px minimum clickable area</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.9"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>Focus ring</span>
+                  <strong>2px offset outline on :focus-visible</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.8"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>Contrast</span>
+                  <strong>4.5:1 text on button surface</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.95"></div></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="btn-payoff" class="showcase-cinema-scene showcase-cinema-scene--btn-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied buttons</p>
+            <h2 class="showcase-cinema-heading">States, motion and accessibility: three layers for every button.</h2>
+            <p class="showcase-ref-lead">
+              Map each state to a token, animate only transform and shadow,
+              then enforce 44px targets with visible focus rings.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>States</span>
+                <strong>Default, hover, active, disabled and focus from token pairs.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Motion</span>
+                <strong>Scale + shadow micro-feedback at 120fps.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Accessibility</span>
+                <strong>44px targets, focus-visible ring, AA contrast.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Theming</span>
+                <strong>Swap the palette and every state recolors automatically.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/interaction-feedback-micro-interactions.html">Interaction Reference</a>
+              <a class="showcase-ref-tokens-button" href="/pages/components/forms.html">Forms</a>
+              <a class="showcase-ref-tokens-button" href="/pages/library/form-components-library.html">Form Components</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -210,7 +358,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -236,7 +384,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

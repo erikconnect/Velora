@@ -67,7 +67,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -89,199 +89,131 @@
       </section>
       <section class="vl-container lib-doc">
         <article class="lib-doc-article">
-<!-- Hero Header -->
+<!-- Intro -->
 <section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
-<div>
-<span>Technical Performance</span>
-</div>
-<h1>
-                Zero JS Motion Examples
-            </h1>
-<p>
-                Achieve buttery smooth browser-native performance at <span>120fps</span> using the latest CSS specifications without a single line of client-side JavaScript.
-            </p>
+  <h1>Zero-JS Motion Examples</h1>
+  <p>Four live CSS techniques that produce fluid, app-like motion without client-side JavaScript. These are not polyfilled — they run natively in the browser compositor at the device's refresh rate. On mobile this means no main-thread jank, no frame drops on mid-range hardware.</p>
+  <p>Each example targets a distinct CSS specification currently shipping in Chromium. All examples degrade gracefully in browsers that have not yet landed support.</p>
 </section>
-<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%" id="spec-support-panel">
-<div>
-<h2>Specification Coverage</h2>
-<span>Live Check</span>
-</div>
-<div>
-<div>
-<span>@view-timeline</span>
-<span>Checking</span>
-</div>
-<div>
-<span>@starting-style</span>
-<span>Checking</span>
-</div>
-<div>
-<span>dialog top-layer</span>
-<span>Checking</span>
-</div>
-<div>
-<span>@view-transition</span>
-<span>Checking</span>
-</div>
-</div>
+
+<!-- Spec Support -->
+<section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%" id="spec-support-panel">
+  <h2>Specification Coverage</h2>
+  <table>
+    <thead>
+      <tr><th>Specification</th><th>Status</th><th>Chrome</th><th>Safari</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>@view-timeline</code></td><td>Shipping</td><td>115+</td><td>✗</td></tr>
+      <tr><td><code>@starting-style</code></td><td>Shipping</td><td>117+</td><td>17.5+</td></tr>
+      <tr><td><code>dialog</code> top-layer</td><td>Shipping</td><td>37+</td><td>15.4+</td></tr>
+      <tr><td><code>@view-transition</code></td><td>Shipping</td><td>126+</td><td>✗</td></tr>
+      <tr><td><code>interpolate-size</code></td><td>Shipping</td><td>129+</td><td>✗</td></tr>
+    </tbody>
+  </table>
 </section>
-<!-- Example 1: Scroll-Driven Reveal -->
-<article>
-<div>
-<h2>01. Scroll-Driven Reveal</h2>
-<p>Utilizing <code>@view-timeline</code> for viewport-relative interpolation.</p>
-</div>
-<div>
-<!-- Visual Representation of Scroll Card -->
-<div>
-<div></div>
-<div>
-<div></div>
-<div>
-<div></div>
-<div></div>
-</div>
-</div>
-<div>
-<span>unfold_more</span>
-</div>
-</div>
-<!-- Technical Overlay -->
-<div>Animation-Range: Entry</div>
-</div>
-<p>
-                Cards enter the viewport with a sophisticated 3D rotation and opacity shift synced directly to the scroll progress bar.
-            </p>
-</article>
-<!-- Example 2: Native Modal Transition -->
-<article>
-<div>
-<h2>02. Native Modal Transition</h2>
-<p>Leveraging the <code>&lt;dialog&gt;</code> element and <code>@starting-style</code>.</p>
-</div>
-<div>
-<!-- Background Context -->
-<div>
-<div></div>
-<div></div>
-<div></div>
-</div>
-<!-- Modal Representation -->
-<div>
-<div></div>
-<div>
-<div>
-<span>settings</span>
-</div>
-<div>
-<div></div>
-<div></div>
-</div>
-</div>
-<div>
-                        Apply Changes
-                    </div>
-</div>
-<!-- Label -->
-<div>
-<span>Display: Block</span>
-</div>
-</div>
-<button id="open-modal-demo" type="button">
-        Run Modal Demo
-      </button>
-<p>
-                Native modal system that slides from the bottom with top-layer placement, managing focus and backdrop without JS listeners.
-            </p>
-</article>
-<!-- Example 3: Fluid Accordion -->
-<article>
-<div>
-<h2>03. Fluid Accordion</h2>
-<p>Smooth height transitions with <code>interpolate-size: allow-keywords</code>.</p>
-</div>
-<div>
-<!-- Item 1 Expanded -->
-<div>
-<div>
-<span>Architecture Engine</span>
-<span>keyboard_arrow_up</span>
-</div>
-<div>
-<p>The core processing unit handles geometric computations and layout stabilization with sub-pixel precision.</p>
-<div>
-<div>
-<div>Status</div>
-<div>Active</div>
-</div>
-<div>
-<div>Latency</div>
-<div>0.4ms</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Item 2 Collapsed -->
-<button type="button">
-<span>Data Pipelines</span>
-<span>keyboard_arrow_down</span>
-</button>
-<div>
-<p>Pipelines orchestrate view updates with timeline-derived checkpoints and keep rendering cost predictable for low-end GPUs.</p>
-</div>
-<!-- Item 3 Collapsed -->
-<button type="button">
-<span>Security Protocols</span>
-<span>keyboard_arrow_down</span>
-</button>
-<div>
-<p>Motion policies inherit reduced-motion preferences automatically and preserve accessibility defaults in each transition preset.</p>
-</div>
-</div>
-<p>
-                Expands from <code>height: 0</code> to <code>height: auto</code> smoothly using browser-native interpolation for intrinsic sizing.
-            </p>
-</article>
-<!-- Example 4: MPA View Transition -->
-<article>
-<div>
-<h2>04. MPA View Transition</h2>
-<p>Seamless navigation via <code>@view-transition</code> directive.</p>
-</div>
-<div>
-<!-- Transition Visual -->
-<div>
-<!-- Screen A -->
-<div>
-<div></div>
-<div>
-<div></div>
-<div></div>
-</div>
-</div>
-<!-- The Morphing Element -->
-<div>
-<div>
-<span>swap_horiz</span>
-</div>
-<!-- Connection Lines -->
-<div></div>
-</div>
-<!-- Screen B -->
-<div>
-<div></div>
-<div>
-<div></div>
-<div></div>
-</div>
-</div>
-</div>
-<div>Morphing Identifiers</div>
-</div>
-<p>
-                Elements morph across full-page reloads by tagging shared entities. No SPA framework required for app-like continuity.
-            </p>
-</article>
+
+<!-- Example 01: Scroll-Driven Reveal -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>01 — Scroll-Driven Reveal</h2>
+  <p>Cards enter the viewport with a 3D rotation and opacity shift synced directly to scroll position using <code>animation-timeline: view()</code>. On mobile, scroll events are notoriously expensive — this technique offloads animation entirely to the compositor thread.</p>
+  <pre><code>@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: rotateX(10deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+.reveal-card {
+  animation: card-enter linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 60%;
+}</code></pre>
+  <p>The <code>animation-range: entry 0% entry 60%</code> means the full animation completes within the first 60% of the card entering the viewport — suitable for the shorter scroll distances on mobile screens.</p>
+</section>
+
+<!-- Example 02: Native Modal Transition -->
+<section vl-effect="spring-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>02 — Native Modal Transition (Bottom Sheet)</h2>
+  <p>On mobile, modals conventionally slide in from the bottom as a bottom sheet. The <code>&lt;dialog&gt;</code> element with <code>@starting-style</code> achieves this natively — full top-layer placement, focus trap, and backdrop dimming included in the browser UA stylesheet.</p>
+  <pre><code>dialog {
+  /* Position as bottom sheet on mobile */
+  position: fixed;
+  inset: auto 0 0 0;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  margin: 0;
+
+  /* Enter/exit transition */
+  transition: 
+    opacity 300ms ease,
+    transform 300ms cubic-bezier(0.2, 0, 0.2, 1),
+    display 300ms ease allow-discrete,
+    overlay 300ms ease allow-discrete;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+dialog[open] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@starting-style {
+  dialog[open] {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}</code></pre>
+  <p>The <code>allow-discrete</code> keyword permits <code>display</code> and <code>overlay</code> to participate in transitions — enabling the element to animate out before being removed from the accessibility tree.</p>
+</section>
+
+<!-- Example 03: Fluid Accordion -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>03 — Fluid Accordion</h2>
+  <p>Accordions traditionally require JavaScript to measure <code>scrollHeight</code> before transitioning. <code>interpolate-size: allow-keywords</code> removes this entirely — the browser resolves <code>auto</code>-sized panels to concrete pixel values mid-transition.</p>
+  <pre><code>:root {
+  interpolate-size: allow-keywords;
+}
+
+.accordion-panel {
+  height: 0;
+  overflow: hidden;
+  transition: height 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Toggle via :has() — no JS required */
+.accordion-item:has(input:checked) .accordion-panel {
+  height: auto;
+}</code></pre>
+  <p>Paired with <code>:has()</code>, the entire expand/collapse cycle is driven by a hidden checkbox — zero JavaScript. The panel expands from <code>height: 0</code> to <code>height: auto</code> smoothly using browser-native interpolation.</p>
+</section>
+
+<!-- Example 04: MPA View Transition -->
+<section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>04 — MPA View Transition</h2>
+  <p>Multi-page apps can morph shared elements across full page navigations using <code>view-transition-name</code>. On mobile this is particularly impactful — the native feel of element morphing reduces cognitive friction during navigation without requiring a SPA framework.</p>
+  <pre><code>/* Both pages opt in */
+@view-transition {
+  navigation: auto;
+}
+
+/* List item card on Page A */
+.product-card[data-id="42"] {
+  view-transition-name: product-card-42;
+}
+
+/* Detail hero on Page B gets the same name */
+.product-hero {
+  view-transition-name: product-card-42;
+}</code></pre>
+  <p>The browser captures the element in its old position, navigates to the new page, then animates the element from old position to new position. Elements morph across full-page reloads by pairing matching <code>view-transition-name</code> values.</p>
+  <p>Velora builds on this with its <code>vl-page-transition</code> attribute, which registers cinema-curve timing for the default cross-fade and provides named slots for brand elements like the logo and navigation bar.</p>
+</section>
         </article>
       </section>
       <section class="vl-container lib-page-related" aria-label="Related reading">
@@ -358,7 +290,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>

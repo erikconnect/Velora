@@ -67,7 +67,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -77,10 +77,10 @@
 
     <main id="content" class="vl-main lib-packages-main lib-page lib-page--spec lib-page--scale-shift-actuator-showcase">
       <section class="vl-container lib-page-hero" aria-label="Page introduction">
-        <p class="vl-kicker lib-page-hero__eyebrow" vl-effect="fade-in" vl-timeline="view">Library Entry</p>
-        <h1 class="lib-page-hero__title" vl-effect="clip-rise" vl-timeline="view">Scale Shift Actuator - VELORA</h1>
-        <p class="lib-page-hero__lead" vl-effect="fade-up" vl-timeline="view">Generated from packages/pages and styled within the Velora documentation system.</p>
-        <ul class="lib-page-hero__chips" aria-label="Page highlights"><li class="lib-page-chip">Library</li></ul>
+        <p class="vl-kicker lib-page-hero__eyebrow" vl-effect="fade-in" vl-timeline="view">Scale Shift</p>
+        <h1 class="lib-page-hero__title" vl-effect="clip-rise" vl-timeline="view">Scale Shift Actuator</h1>
+        <p class="lib-page-hero__lead" vl-effect="fade-up" vl-timeline="view">The micro-compression pattern that gives buttons and interactive surfaces an instant tactile response — 2% scale, 200ms cinema timing.</p>
+        <ul class="lib-page-hero__chips" aria-label="Page highlights"><li class="lib-page-chip">Actuator</li><li class="lib-page-chip">Interaction</li><li class="lib-page-chip">Touch</li></ul>
       </section>
       <section class="vl-container lib-page-rail" aria-label="Page orientation">
         <a class="lib-page-rail__back" href="/pages/library/index.html">Back to Library</a>
@@ -89,94 +89,83 @@
       </section>
       <section class="vl-container lib-doc">
         <article class="lib-doc-article">
-<div></div>
-<div>
-<div>
-<div>
-<div>
-<div>
-<span></span>
-                            Modal: System Actuator
-                        </div>
-<h1>Scale Shift Actuator</h1>
-</div>
-<div>
-<p>
-                            The <span>Scale Shift</span> principle utilizes a tactical 2% reduction (scale(0.98)) on activation. This micro-interaction simulates physical compression, providing instant tactile reassurance without the need for skeletal layouts or heavy shadows.
-                        </p>
-<div>
-<div>
-<div>Timing Curve</div>
-<div>200ms Cinematic</div>
-</div>
-<div>
-<div>Compression</div>
-<div>-0.02 Scale Vector</div>
-</div>
-</div>
-</div>
-<div>
-<span>volume_up</span>
-<div>
-<strong>SUPPORTING SENSORY LAYER:</strong> Subtly coupled with a high-frequency 40ms audio feedback pulse to reinforce the perceived resistance.
-                        </div>
-</div>
-</div>
-<div>
-<div>
-<div></div>
-<button>
-<div>
-<span>touch_app</span>
-</div>
-<span>EXECUTE ACTION</span>
-<div>
-<span></span>
-<span></span>
-<span></span>
-</div>
-</button>
-<div>
-                            Tap to Test Kinematics
-                        </div>
-</div>
-<div>
-<div>
-<div>
-<div></div>
-<div></div>
-<div></div>
-</div>
-<div>actuator_spec.css</div>
-</div>
-<pre><span>.actuator-active</span> {
-  <span>transition:</span> <span>transform 200ms;</span>
-  <span>transition-timing-function:</span> 
-    <span>cubic-bezier(0.2, 0, 0, 1)</span>;
+<!-- Intro -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h1>Scale Shift Actuator</h1>
+  <p>The Scale Shift actuator applies a tactical 2% compression — <code>scale(0.98)</code> — on interactive element activation. It simulates physical resistance: the element <em>yields</em> under pressure, giving the user immediate tactile confirmation that their intent was received.</p>
+  <p>Unlike skeleton loaders or spinner states, this micro-interaction is instantaneous. There is no perceived delay — only the cinematic sensation of mass.</p>
+</section>
+
+<!-- The Principle -->
+<section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>The Compression Principle</h2>
+  <p>A 2% scale reduction is the sweet spot: perceptible enough to register as physical feedback, subtle enough not to feel exaggerated. Larger reductions (e.g. <code>scale(0.94)</code>) read as unstable; smaller ones (e.g. <code>scale(0.995)</code>) read as invisible.</p>
+  <p>The effect completes in 200ms — fast enough to feel instantaneous, long enough to be read as intentional motion, not a screen artifact. This timing aligns with the cinema easing curve used throughout Velora's kinetic system.</p>
+</section>
+
+<!-- CSS Implementation -->
+<section vl-effect="spring-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>CSS Implementation</h2>
+  <pre><code>.actuator-active {
+  transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-<span>.actuator-active:active</span> {
-  <span>transform:</span> <span>scale(0.98)</span>;
-}</pre>
-</div>
-</div>
-</div>
-</div>
-<div>
-<div>
-<div>System Integrity</div>
-<div>OPTIMAL</div>
-</div>
-<div>
-<div>Latency Target</div>
-<div>16ms</div>
-</div>
-</div>
+.actuator-active:active {
+  transform: scale(0.98);
+}</code></pre>
+  <p>The timing function <code>cubic-bezier(0.2, 0, 0, 1)</code> is Velora's cinema curve. It decelerates sharply at the end — the element settles into the compressed state rather than bouncing. On release, the transition plays in reverse via the default <code>:not(:active)</code> reset.</p>
+  <p>No JavaScript. No event listeners. The browser handles compression, hold, and release entirely in the CSS transition pipeline.</p>
+</section>
+
+<!-- Velora Integration -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Velora Integration</h2>
+  <p>Any interactive element can opt into Scale Shift by applying the <code>vl-actuator="scale-shift"</code> attribute. Velora maps this attribute to the CSS class automatically:</p>
+  <pre><code>&lt;!-- HTML: declarative opt-in --&gt;
+&lt;button vl-actuator="scale-shift"&gt;Execute Action&lt;/button&gt;
+
+&lt;!-- CSS: applied by Velora --&gt;
+[vl-actuator="scale-shift"] {
+  transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
+  cursor: pointer;
+}
+
+[vl-actuator="scale-shift"]:active {
+  transform: scale(0.98);
+}</code></pre>
+  <p>Cards, dialogs, navigation items, and list rows are all candidates for Scale Shift. The actuator is intentionally passive — it adds no visual affordance on hover, only on press.</p>
+</section>
+
+<!-- Sensory Layer -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Supporting Sensory Layer</h2>
+  <p>In contexts where haptic or audio feedback is available, Scale Shift pairs with a high-frequency 40ms audio pulse. The sound reinforces perceived resistance at the moment of compression — a design strategy borrowed from physical hardware interfaces.</p>
+  <p>The audio layer is always supplementary, never load-bearing. Visual feedback alone is sufficient. The pulse enhances fidelity for users with audio enabled; it has zero effect on users who have audio disabled or muted.</p>
+</section>
+
+<!-- Spec Reference -->
+<section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Specification Reference</h2>
+  <table>
+    <thead>
+      <tr><th>Property</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Transform</td><td><code>scale(0.98)</code></td></tr>
+      <tr><td>Compression vector</td><td>−0.02 scale units</td></tr>
+      <tr><td>Duration</td><td>200ms</td></tr>
+      <tr><td>Easing</td><td><code>cubic-bezier(0.2, 0, 0, 1)</code> (cinema curve)</td></tr>
+      <tr><td>Trigger</td><td><code>:active</code> pseudo-class</td></tr>
+      <tr><td>Release</td><td>Automatic via transition reverse on <code>:not(:active)</code></td></tr>
+      <tr><td>JS dependency</td><td>None</td></tr>
+    </tbody>
+  </table>
+</section>
         </article>
       </section>
       <section class="vl-container lib-page-related" aria-label="Related reading">
         <h2 class="lib-page-related__title">Related reading</h2>
-        <div class="lib-page-related__grid"><a class="lib-page-related__link vl-card" href="/pages/library/index.html">Index</a><a class="lib-page-related__link vl-card" href="/pages/library/gallery.html">Gallery</a></div>
+        <div class="lib-page-related__grid"><a class="lib-page-related__link vl-card" href="/pages/library/kinetic-actuators-playground.html">Kinetic Actuators Playground</a><a class="lib-page-related__link vl-card" href="/pages/library/interaction-feedback-micro-interactions.html">Interaction Feedback Micro Interactions</a></div>
       </section>
     </main>
 
@@ -248,7 +237,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>

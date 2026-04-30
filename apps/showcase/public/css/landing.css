@@ -17,6 +17,7 @@
 
 /* ─── Page background ───────────────────────────────────────────── */
 body {
+  min-height: 100vh;
   min-height: 100dvh;
   background:
     radial-gradient(ellipse at 20% 0%, color-mix(in oklch, var(--vl-color-primary) 12%, transparent), transparent 50%),
@@ -56,9 +57,9 @@ body {
   max-width: 18ch;
   font-family: var(--vl-font-family-display);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-weight: var(--vl-font-weight-bold);
+  line-height: var(--vl-leading-display);
+  letter-spacing: var(--vl-tracking-tightest);
   color: var(--vl-text-primary);
   text-wrap: balance;
 }
@@ -131,7 +132,7 @@ body {
 .lp-code {
   font-family: var(--vl-font-family-mono);
   font-size: var(--vl-font-size-sm);
-  line-height: 1.75;
+  line-height: var(--vl-leading-loose);
   color: var(--vl-text-secondary);
   white-space: pre;
   overflow-x: auto;
@@ -150,7 +151,7 @@ body {
 .lp-code-dot {
   width: 0.75rem;
   height: 0.75rem;
-  border-radius: 50%;
+  border-radius: var(--vl-radius-full);
 }
 
 .lp-code-dot--red   { background: oklch(58% 0.18 25); }
@@ -190,9 +191,9 @@ body {
   margin: var(--vl-space-sm) 0 0;
   font-family: var(--vl-font-family-display);
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  font-weight: var(--vl-font-weight-bold);
+  letter-spacing: var(--vl-tracking-tight);
+  line-height: var(--vl-leading-subheading);
   color: var(--vl-text-primary);
   text-wrap: balance;
 }
@@ -213,9 +214,9 @@ body {
   margin: var(--vl-space-sm) 0 0;
   font-family: var(--vl-font-family-display);
   font-size: clamp(2rem, 4vw, 3.25rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  font-weight: var(--vl-font-weight-bold);
+  letter-spacing: var(--vl-tracking-tighter);
+  line-height: var(--vl-leading-heading);
   color: var(--vl-text-primary);
   text-wrap: balance;
 }

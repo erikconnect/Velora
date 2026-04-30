@@ -4,11 +4,15 @@ package-lock.json
 
 # Build outputs
 dist/
+apps/**/dist/
 packages/css/dist/
 
 # Tooling caches
 .turbo/
 **/.turbo/
+**/.playwright-cli/
+**/output/playwright/
+pnpm-debug.log*
 
 # Astro
 .astro/
@@ -20,3 +24,6 @@ Thumbs.db
 # Local AI context
 docs/
 .worktrees/
+
+# Local backup archives
+packages/pages/backup/*.zip

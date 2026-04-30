@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" vl-page-transition="cinema">
+<html lang="en" vl-page-transition="cinema">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Velora ambient shadow system: direction-free elevation, OKLCH occlusion blur, and CSS-only performance across four depth tiers." />
     <title>Ambient Shadows | Velora</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
-    <style>
-      @view-transition { navigation: auto; }
-      body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
-    </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+      <a class="vl-bussola__stop" href="#shadows-hero"><span class="vl-bussola__label">Intro</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#tiers"><span class="vl-bussola__label">Tiers</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#shadows-recipes"><span class="vl-bussola__label">Recipes</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#spec"><span class="vl-bussola__label">Spec</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#shadows-apply"><span class="vl-bussola__label">Apply</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +73,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +81,453 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--color">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Color</p>
-          <h1 class="vl-display-xl hub-hero__title">Ambient Shadows</h1>
-          <p class="vl-body-lg hub-hero__lead">Ambient shadows separate elevation from arbitrary box-shadow: recipes align with tonal tiers and theme.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/ambient-shadows-theory.html">Ambient shadows theory</a>
-          <a class="hub-chip-link" href="/pages/library/tonal-tiers-elevation-documentation.html" vl-effect="fade-up" vl-timeline="view">Tonal tiers</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Recipes</strong> — diffuse vs. key light metaphors for product UIs.</li>
-            <li><strong>Performance</strong> — prefer CSS variables and will-change sparingly.</li>
-            <li><strong>Consistency</strong> — same shadow language across scenes and components.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--shadows showcase-elevation-theme showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Recipes</h2>
-          <p class="hub-step-card__body">diffuse vs. key light metaphors for product UIs.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Performance</h2>
-          <p class="hub-step-card__body">prefer CSS variables and will-change sparingly.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Consistency</h2>
-          <p class="hub-step-card__body">same shadow language across scenes and components.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="shadows-hero" class="showcase-cinema-scene showcase-cinema-scene--shadows-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+          <div class="shd-hero">
+            <div class="shd-hero__bg" aria-hidden="true"></div>
+            <div class="shd-hero__orbit" aria-hidden="true">
+              <div class="shd-hero__orbit-ring shd-hero__orbit-ring--runtime" vl-effect="orbit">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/ambient-shadows-theory.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Ambient shadows theory</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for ambient shadows and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>color</code>. Source page: <code>pages/color/ambient-shadows.html</code>.</p>
+            <div class="shd-hero__eyebrow" vl-effect="fade-up" vl-timeline="view" vl-once>
+              <span class="shd-hero__eyebrow-tick"></span>
+              <span class="shd-hero__eyebrow-text" vl-effect="typewriter-soft">Atmospheric depth system &nbsp;·&nbsp; 01 / 05</span>
+              <span class="shd-hero__eyebrow-tick"></span>
+            </div>
+
+            <h1 class="shd-hero__title" vl-effect="fade-up" vl-timeline="view" vl-once>
+              No origin. No direction.<br><em vl-effect="shimmer-text">Only depth.</em>
+            </h1>
+            <p class="shd-hero__sub" vl-effect="fade-up" vl-timeline="view" vl-once>
+              The blur radiates from the element itself — centered at zero offset — 
+              because depth in Velora is atmospheric occlusion, not a shadow cast by a single light source.
+            </p>
+
+            <div class="shd-hero__actions" vl-children="stagger" vl-stagger="0.08">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="#tiers" vl-effect="icon-shift">Read the depth ladder <span aria-hidden="true">→</span></a>
+              <a class="showcase-ref-tokens-button" href="#spec" vl-effect="hover-tilt-3d">Inspect the token DNA</a>
+            </div>
+
+            <!-- 4 floating cards — each a distinct elevation with its own CSS animation rhythm -->
+            <div class="shd-card-field" vl-children="stagger" vl-stagger="0.09" vl-effect="rise-3d" vl-once>
+              <article class="shd-card shd-card--low" vl-effect="hover-prism">
+                <span class="shd-card__tier">Low &nbsp;·&nbsp; 20px / 4%</span>
+                <span class="shd-card__name">Container Low</span>
+                <code class="shd-card__code">box-shadow:<br>0 0 20px<br>oklch(13% .015 145 / .04)</code>
+              </article>
+              <article class="shd-card shd-card--med" vl-effect="hover-depth-stack">
+                <span class="shd-card__tier">Medium &nbsp;·&nbsp; 30px / 6%</span>
+                <span class="shd-card__name">Container</span>
+                <code class="shd-card__code">box-shadow:<br>0 0 30px<br>oklch(13% .015 145 / .06)</code>
+              </article>
+              <article class="shd-card shd-card--high" vl-effect="hover-tilt-3d">
+                <span class="shd-card__tier">High &nbsp;·&nbsp; 40px / 8%</span>
+                <span class="shd-card__name">Container High</span>
+                <code class="shd-card__code">box-shadow:<br>0 0 40px<br>oklch(13% .015 145 / .08)</code>
+              </article>
+              <article class="shd-card shd-card--float" vl-effect="border-beam">
+                <span class="shd-card__tier">Float &nbsp;·&nbsp; 48px / 10%</span>
+                <span class="shd-card__name">Surface Bright</span>
+                <code class="shd-card__code">box-shadow:<br>0 0 48px<br>oklch(13% .015 145 / .10)</code>
+              </article>
+            </div>
+
+            <!-- Intensity heat bar — blur/alpha stepping as a gradient strip -->
+            <div class="shd-heat-bar shd-heat-bar--offset" aria-hidden="true">
+              <span class="shd-heat-bar__seg"></span>
+              <span class="shd-heat-bar__seg"></span>
+              <span class="shd-heat-bar__seg"></span>
+              <span class="shd-heat-bar__seg"></span>
+            </div>
+
+            <!-- Scroll cue -->
+            <div class="shd-scroll-cue" aria-hidden="true">
+              <span class="shd-scroll-cue__line"></span>
+              <span class="shd-scroll-cue__label">Scroll</span>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Elevation Tiers — 3D Perspective Stack ════════ -->
+        <section id="tiers" class="showcase-cinema-scene showcase-cinema-scene--shadows-tiers" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="110ms">
+              <p class="showcase-ref-kicker">02 / 05 &nbsp;·&nbsp; Elevation hierarchy</p>
+              <h2 class="showcase-cinema-heading">Four planes of depth. Each one lighter, blurrier, more present.</h2>
+              <p class="showcase-ref-lead">
+                As an element rises, its tonal background shifts toward Surface Bright and its shadow blur
+                expands — depth without perspective tricks, without z-index games.
+              </p>
+
+              <div class="shd-tier-rule">
+                <span class="shd-tier-rule__line"></span>
+                <span class="shd-tier-rule__label">01 → 04 elevation scale</span>
+                <span class="shd-tier-rule__line"></span>
+              </div>
+
+              <div class="shd-perf-row">
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">Blur range</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--100"></span></div>
+                  <span class="shd-perf-item__value">20 → 48px</span>
+                </div>
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">Alpha range</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--72"></span></div>
+                  <span class="shd-perf-item__value">4 → 10%</span>
+                </div>
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">Directional offset</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--0"></span></div>
+                  <span class="shd-perf-item__value">none</span>
+                </div>
+              </div>
+
+              <div class="showcase-cinema-inline-metrics shd-inline-metrics">
+                <span>OKLCH-tinted</span>
+                <span>4 tiers</span>
+                <span>CSS-only</span>
+              </div>
+
+              <div class="shd-signal-grid" vl-children="stagger" vl-stagger="0.08">
+                <article class="shd-signal-card" vl-effect="border-beam"><strong>lightness climbs</strong><span>surface values step up as the plane rises.</span></article>
+                <article class="shd-signal-card" vl-effect="halo-breathe"><strong>alpha deepens</strong><span>ambient opacity scales with visual priority.</span></article>
+                <article class="shd-signal-card" vl-effect="hover-prism"><strong>offset stays zero</strong><span>no fake sunlight, just distributed occlusion.</span></article>
+              </div>
+            </div>
+
+            <!-- 3D perspective plane stack — hover each plane to lift it -->
+            <div class="showcase-cinema-stage" vl-effect="spring-3d" vl-once>
+              <div class="shd-3d-viewport">
+                <div class="shd-3d-stack">
+                  <div class="shd-plane shd-plane-01" vl-effect="hover-depth-press">
+                    <div class="shd-plane__left">
+                      <span class="shd-plane__index">01</span>
+                      <span class="shd-plane__name">Container Low</span>
+                    </div>
+                    <span class="shd-plane__right">20px blur<br>alpha 4%</span>
+                  </div>
+                  <div class="shd-plane shd-plane-02" vl-effect="hover-depth-press">
+                    <div class="shd-plane__left">
+                      <span class="shd-plane__index">02</span>
+                      <span class="shd-plane__name">Container</span>
+                    </div>
+                    <span class="shd-plane__right">30px blur<br>alpha 6%</span>
+                  </div>
+                  <div class="shd-plane shd-plane-03" vl-effect="hover-depth-press">
+                    <div class="shd-plane__left">
+                      <span class="shd-plane__index">03</span>
+                      <span class="shd-plane__name">Container High</span>
+                    </div>
+                    <span class="shd-plane__right">40px blur<br>alpha 8%</span>
+                  </div>
+                  <div class="shd-plane shd-plane-04" vl-effect="hover-depth-press">
+                    <div class="shd-plane__left">
+                      <span class="shd-plane__index">04</span>
+                      <span class="shd-plane__name">Surface Bright</span>
+                    </div>
+                    <span class="shd-plane__right">48px blur<br>alpha 10%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="showcase-cinema-sidecard shd-sidecard-offset" vl-effect="hover-prism">
+                <span>Rule</span>
+                <h3>Zero offset. All axes.</h3>
+                <p>x:0, y:0, spread:0. The shadow expands uniformly because occlusion has no preferred angle.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- ═══ Scene 03 · Blur Scale — Intensity Strip ══════════════════ -->
+        <section id="shadows-recipes" class="showcase-cinema-scene showcase-cinema-scene--shadows-recipes" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+
+            <div class="showcase-cinema-scene__header shd-scene-header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">03 / 05 &nbsp;·&nbsp; Shadow recipes</p>
+                <h2 class="showcase-cinema-heading">Five recipes. One axis of control — blur and alpha only.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                No angles. No spread. The demo box at the bottom of each column is rendered with the actual token value.
+                Hover a column to isolate it.
+              </p>
+            </div>
+
+            <div class="shd-blur-strip" vl-children="stagger" vl-stagger="0.06" vl-effect="fade-up" vl-timeline="view" vl-once>
+              <div class="shd-blur-cell" vl-effect="hover-shell-lift">
+                <span class="shd-blur-cell__num" aria-hidden="true">01</span>
+                <span class="shd-blur-cell__name">Diffuse</span>
+                <div class="shd-blur-cell__val">vl-shadow-low<br>blur 20px · alpha 4%<br>Cards, secondary btns</div>
+                <div class="shd-blur-cell__demo" aria-hidden="true"></div>
+                <span class="shd-blur-cell__bar" aria-hidden="true"></span>
+              </div>
+              <div class="shd-blur-cell" vl-effect="hover-prism">
+                <span class="shd-blur-cell__num" aria-hidden="true">02</span>
+                <span class="shd-blur-cell__name">Ambient</span>
+                <div class="shd-blur-cell__val">vl-shadow-medium<br>blur 30px · alpha 6%<br>Tooltips, nav clusters</div>
+                <div class="shd-blur-cell__demo" aria-hidden="true"></div>
+                <span class="shd-blur-cell__bar" aria-hidden="true"></span>
+              </div>
+              <div class="shd-blur-cell" vl-effect="hover-tilt-3d">
+                <span class="shd-blur-cell__num" aria-hidden="true">03</span>
+                <span class="shd-blur-cell__name">Key</span>
+                <div class="shd-blur-cell__val">vl-shadow-high<br>blur 40px · alpha 8%<br>Modals, dialogs</div>
+                <div class="shd-blur-cell__demo" aria-hidden="true"></div>
+                <span class="shd-blur-cell__bar" aria-hidden="true"></span>
+              </div>
+              <div class="shd-blur-cell" vl-effect="border-beam">
+                <span class="shd-blur-cell__num" aria-hidden="true">04</span>
+                <span class="shd-blur-cell__name">Float</span>
+                <div class="shd-blur-cell__val">vl-shadow-float<br>blur 48px · alpha 10%<br>Hero elements</div>
+                <div class="shd-blur-cell__demo" aria-hidden="true"></div>
+                <span class="shd-blur-cell__bar" aria-hidden="true"></span>
+              </div>
+              <div class="shd-blur-cell" vl-effect="hover-spotlight">
+                <span class="shd-blur-cell__num" aria-hidden="true">05</span>
+                <span class="shd-blur-cell__name">Glow</span>
+                <div class="shd-blur-cell__val">vl-shadow-glow<br>blur 56px · alpha 12%<br>Focus rings, active</div>
+                <div class="shd-blur-cell__demo" aria-hidden="true"></div>
+                <span class="shd-blur-cell__bar" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <div class="shd-recipe-console" vl-children="stagger" vl-stagger="0.08">
+              <article class="shd-recipe-console__item" vl-effect="hover-prism">
+                <span>recipe logic</span>
+                <strong>Blur is narrative distance</strong>
+                <small>The further the plane from the base substrate, the wider the atmospheric spread.</small>
+              </article>
+              <article class="shd-recipe-console__item" vl-effect="border-beam">
+                <span>api fit</span>
+                <strong>Hover explains usage</strong>
+                <small>Each column isolates one token state the same way component hover isolates a surface state.</small>
+              </article>
+              <article class="shd-recipe-console__item" vl-effect="glow-breathe">
+                <span>theme fit</span>
+                <strong>Noir and light stay coherent</strong>
+                <small>The recipe uses brand tokens, so the shadows remain legible across both palettes.</small>
+              </article>
+            </div>
+
+            <div class="showcase-cinema-chip-row shd-chip-row">
+              <a class="showcase-ref-chip" href="/pages/color/tonal-tiers.html">Tonal Tiers</a>
+              <a class="showcase-ref-chip" href="/pages/color/tonal-stacking.html">Tonal Stacking</a>
+              <a class="showcase-ref-chip" href="/pages/color/color-system.html">Color System</a>
+            </div>
+            <pre class="vl-code-block">/* Apply any ambient shadow tier with one token */
+.card    { box-shadow: var(--vl-shadow-low);    } /* blur 20px · alpha 4%  */
+.tooltip { box-shadow: var(--vl-shadow-medium);  } /* blur 30px · alpha 6%  */
+.modal   { box-shadow: var(--vl-shadow-high);   } /* blur 40px · alpha 8%  */
+.hero    { box-shadow: var(--vl-shadow-float);  } /* blur 48px · alpha 10% */
+.focus   { box-shadow: var(--vl-shadow-glow);   } /* blur 56px · alpha 12% */</pre>
+            <p class="vl-code-note">Override <code>--vl-kinetic-blur</code> and <code>--vl-ambient-alpha</code> at <code>:root</code> to retheme the entire shadow family in one declaration.</p>
+
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Token DNA — Dual Terminal Windows ═════════════ -->
+        <section id="spec" class="showcase-cinema-scene showcase-cinema-scene--shadows-spec" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="110ms">
+              <p class="showcase-ref-kicker">04 / 05 &nbsp;·&nbsp; Token specification</p>
+              <h2 class="showcase-cinema-heading">Two variables govern the whole atmospheric stack.</h2>
+              <p class="showcase-ref-lead">
+                Override <code>--vl-kinetic-blur</code> and <code>--vl-ambient-alpha</code> at root level;
+                every derived tier recalculates. No GPU filters. No runtime cost.
+              </p>
+
+              <div class="shd-perf-row">
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">GPU layer creation</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--0"></span></div>
+                  <span class="shd-perf-item__value">0 layers</span>
+                </div>
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">CSS filter usage</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--0"></span></div>
+                  <span class="shd-perf-item__value">none</span>
+                </div>
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">Paint performance</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--100"></span></div>
+                  <span class="shd-perf-item__value">120fps</span>
+                </div>
+                <div class="shd-perf-item">
+                  <span class="shd-perf-item__label">Runtime JS overhead</span>
+                  <div class="shd-perf-item__track"><span class="shd-perf-item__fill shd-perf-item__fill--0"></span></div>
+                  <span class="shd-perf-item__value">0ms</span>
+                </div>
+              </div>
+
+              <div class="shd-spec-badges" vl-children="wave" vl-effect="glow-breathe">
+                <div class="shd-spec-badge"><strong>root</strong><span>2 operator tokens define the whole family.</span></div>
+                <div class="shd-spec-badge"><strong>derived</strong><span>blur and alpha scale into tier recipes.</span></div>
+                <div class="shd-spec-badge"><strong>theme aware</strong><span>same markup, different palette context.</span></div>
+                <div class="shd-spec-badge"><strong>no filters</strong><span>paint stays cheap and predictable.</span></div>
+              </div>
+            </div>
+
+            <!-- Dual terminal windows -->
+            <div class="showcase-cinema-stage shd-spec-stage" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="shd-terminal" vl-effect="scanline">
+                <div class="shd-terminal__bar">
+                  <span class="shd-terminal__dot"></span>
+                  <span class="shd-terminal__dot"></span>
+                  <span class="shd-terminal__dot"></span>
+                  <span class="shd-terminal__file">tokens/ambient-shadows.css</span>
+                </div>
+                <div class="shd-terminal__body">
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">1</span><span class="t-comment">/* root variables — override to retheme */</span></div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">2</span><span class="t-prop">:root</span> <span class="t-brace">{</span></div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">3</span>&nbsp;&nbsp;<span class="t-prop">--vl-kinetic-blur</span>: <span class="t-val">24px</span>;</div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">4</span>&nbsp;&nbsp;<span class="t-prop">--vl-ambient-alpha</span>: <span class="t-val">0.05</span>;</div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">5</span><span class="t-brace">}</span></div>
+                </div>
+              </div>
+              <div class="shd-terminal" vl-effect="border-beam">
+                <div class="shd-terminal__bar">
+                  <span class="shd-terminal__dot"></span>
+                  <span class="shd-terminal__dot"></span>
+                  <span class="shd-terminal__dot"></span>
+                  <span class="shd-terminal__file">tokens/shadows-derived.css</span>
+                </div>
+                <div class="shd-terminal__body">
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">1</span><span class="t-comment">/* derived tier stack */</span></div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">2</span><span class="t-prop">--vl-shadow-low</span>:&nbsp;&nbsp; <span class="t-fn">0 0</span> <span class="t-dim">20px</span> <span class="t-fn">oklch</span>(<span class="t-num">13%</span> .015 145 / <span class="t-num">.04</span>);</div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">3</span><span class="t-prop">--vl-shadow-med</span>:&nbsp;&nbsp; <span class="t-fn">0 0</span> <span class="t-dim">30px</span> <span class="t-fn">oklch</span>(<span class="t-num">13%</span> .015 145 / <span class="t-num">.06</span>);</div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">4</span><span class="t-prop">--vl-shadow-high</span>:&nbsp; <span class="t-fn">0 0</span> <span class="t-dim">40px</span> <span class="t-fn">oklch</span>(<span class="t-num">13%</span> .015 145 / <span class="t-num">.08</span>);</div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">5</span><span class="t-prop">--vl-shadow-float</span>: <span class="t-fn">0 0</span> <span class="t-dim">48px</span> <span class="t-fn">oklch</span>(<span class="t-num">13%</span> .015 145 / <span class="t-num">.10</span>);</div>
+                  <div class="shd-terminal__line"><span class="shd-terminal__line-num">6</span><span class="t-prop">--vl-shadow-glow</span>:&nbsp; <span class="t-fn">0 0</span> <span class="t-dim">56px</span> <span class="t-fn">oklch</span>(<span class="t-num">13%</span> .015 145 / <span class="t-num">.12</span>);</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Applied UI — Triptych ════════════════════════ -->
+        <section id="shadows-apply" class="showcase-cinema-scene showcase-cinema-scene--shadows-apply" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+
+            <div class="showcase-cinema-scene__header shd-scene-header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">05 / 05 &nbsp;·&nbsp; Applied contexts</p>
+                <h2 class="showcase-cinema-heading">One token per elevation role. Nothing arbitrary.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Modal at <code>vl-shadow-high</code>. Popover at <code>vl-shadow-medium</code>.
+                List card at <code>vl-shadow-low</code>. The recipe matches the element's distance from the base canvas.
+              </p>
+            </div>
+
+            <div class="shd-triptych" vl-children="stagger" vl-stagger="0.09">
+
+              <!-- Modal — high shadow, critical depth -->
+              <div class="shd-triptych-col">
+                <div class="shd-mock-frame" data-badge="modal" vl-effect="hover-depth-press">
+                  <div class="shd-modal-shell">
+                    <div class="shd-modal-head">
+                      <span class="shd-modal-title">Dialog.tsx</span>
+                      <span class="shd-modal-close">&#x2715;</span>
+                    </div>
+                    <div class="shd-modal-line-1"></div>
+                    <div class="shd-modal-line-2"></div>
+                    <div class="shd-modal-line-3"></div>
+                    <div class="shd-modal-actions">
+                      <div class="shd-modal-btn"></div>
+                      <div class="shd-modal-btn--primary"></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span class="shd-mock-label shd-mock-label--high">High Shadow &nbsp;·&nbsp; 40px / 8%</span>
+                  <p class="shd-mock-title shd-mock-title--compact">Modal / Dialog</p>
+                  <p class="shd-mock-desc">Maximum depth. Critical focal surface demanding full attention from the user.</p>
+                </div>
+              </div>
+
+              <!-- Popover — medium shadow, contextual depth -->
+              <div class="shd-triptych-col">
+                <div class="shd-mock-frame" data-badge="popover" vl-effect="hover-spotlight">
+                  <div class="shd-popover-shell">
+                    <div class="shd-popover-row">
+                      <div class="shd-popover-row-line-a"></div>
+                      <div class="shd-popover-row-line-b"></div>
+                    </div>
+                    <div class="shd-popover-fly">
+                      <span class="shd-popover-fly-label">On hover</span>
+                      <div class="shd-popover-fly-line-a"></div>
+                      <div class="shd-popover-fly-line-b"></div>
+                    </div>
+                    <div class="shd-popover-row shd-popover-row--bottom">
+                      <div class="shd-popover-row-line-a"></div>
+                      <div class="shd-popover-row-line-b"></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span class="shd-mock-label shd-mock-label--medium">Medium Shadow &nbsp;·&nbsp; 30px / 6%</span>
+                  <p class="shd-mock-title shd-mock-title--compact">Popover / Tooltip</p>
+                  <p class="shd-mock-desc">Contextual depth. Floats above a sibling element without claiming the full scene.</p>
+                </div>
+              </div>
+
+              <!-- List cards — low shadow, resting separation -->
+              <div class="shd-triptych-col">
+                <div class="shd-mock-frame" data-badge="cards" vl-effect="hover-depth-stack">
+                  <div class="shd-list-shell">
+                    <div class="shd-list-item shd-list-item--a">
+                      <div class="shd-list-avatar"></div>
+                      <div class="shd-list-content">
+                        <div class="shd-list-line-a"></div>
+                        <div class="shd-list-line-b"></div>
+                      </div>
+                    </div>
+                    <div class="shd-list-item shd-list-item--b">
+                      <div class="shd-list-avatar"></div>
+                      <div class="shd-list-content">
+                        <div class="shd-list-line-a"></div>
+                        <div class="shd-list-line-b"></div>
+                      </div>
+                    </div>
+                    <div class="shd-list-item shd-list-item--c">
+                      <div class="shd-list-avatar"></div>
+                      <div class="shd-list-content">
+                        <div class="shd-list-line-a"></div>
+                        <div class="shd-list-line-b"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span class="shd-mock-label shd-mock-label--low">Low Shadow &nbsp;·&nbsp; 20px / 4%</span>
+                  <p class="shd-mock-title shd-mock-title--compact">List Card / Item</p>
+                  <p class="shd-mock-desc">Resting separation. Just enough depth to distinguish from the base canvas.</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="showcase-cinema-payoff-links shd-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/ambient-shadows-theory.html">Read Full Theory</a>
+              <a class="showcase-ref-tokens-button" href="/pages/color/tonal-tiers.html">Explore Tonal Tiers</a>
+              <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Inspect Tokens</a>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +598,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +624,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

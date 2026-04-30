@@ -1,0 +1,322 @@
+/* =============================================================================
+   showcase-api-design-catalog.css
+   Design System & Component Catalog — live visual reference for all tokens,
+   primitives, components and library pages in the Velora framework.
+   Reuses api-shell / api-group / api-card / api-grid from
+   showcase-api-motion-catalog.css — only design-catalog-specific overrides live
+   here.
+   ============================================================================= */
+
+/* ---- Color swatch cards ---- */
+.api-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.api-swatch-chip {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 3.2rem;
+  border-radius: var(--vl-radius-lg, 0.6rem);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+  transition: transform 0.2s;
+}
+
+.api-swatch-chip--primary    { background: var(--vl-color-primary); }
+.api-swatch-chip--secondary  { background: var(--vl-color-secondary); }
+.api-swatch-chip--accent     { background: var(--vl-color-accent); }
+.api-swatch-chip--success    { background: var(--vl-color-success); }
+.api-swatch-chip--warning    { background: var(--vl-color-warning); }
+.api-swatch-chip--danger     { background: var(--vl-color-danger); }
+.api-swatch-chip--bg-main    { background: var(--vl-bg-main); }
+.api-swatch-chip--bg-surface { background: var(--vl-bg-surface); }
+.api-swatch-chip--bg-elevated{ background: var(--vl-bg-surface-elevated); }
+.api-swatch-chip--bg-inset   { background: var(--vl-bg-inset); }
+.api-swatch-chip--bg-overlay { background: var(--vl-bg-overlay, oklch(96% 0.01 110 / 0.8)); }
+.api-swatch-chip--text-primary   { background: var(--vl-text-primary); }
+.api-swatch-chip--text-secondary { background: var(--vl-text-secondary); }
+.api-swatch-chip--text-muted     { background: var(--vl-text-muted); }
+.api-swatch-chip--border-subtle  { background: var(--vl-border-subtle); }
+.api-swatch-chip--border-strong  { background: var(--vl-border-strong); }
+
+.api-swatch-meta {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.68rem;
+  color: var(--vl-text-muted);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+/* ---- Typography scale cards ---- */
+.api-type-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.api-type-sample {
+  color: var(--vl-text-primary);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.api-type-meta {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.68rem;
+  color: var(--vl-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* Font family demos */
+.api-font-body    { font-family: var(--vl-font-family); }
+.api-font-display { font-family: var(--vl-font-family-display); }
+.api-font-mono    { font-family: var(--vl-font-family-mono); }
+
+/* Weight demos */
+.api-weight-normal   { font-weight: 400; }
+.api-weight-medium   { font-weight: 500; }
+.api-weight-semibold { font-weight: 600; }
+.api-weight-bold     { font-weight: 700; }
+
+/* ---- Spacing ruler cards ---- */
+.api-space-ruler {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.api-space-bar {
+  height: 0.55rem;
+  border-radius: 99px;
+  background: color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+  max-width: 100%;
+}
+
+/* ---- Radius demo ---- */
+.api-radius-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2.8rem, 1fr));
+  gap: 0.5rem;
+  padding-block: 0.25rem;
+}
+
+.api-radius-block {
+  aspect-ratio: 1;
+  background: color-mix(in oklch, var(--vl-color-primary) 28%, transparent);
+  border: 1px solid color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+}
+
+/* ---- Elevation/shadow demo ---- */
+.api-shadow-card {
+  width: 100%;
+  min-height: 2.6rem;
+  border-radius: var(--vl-radius-md, 0.5rem);
+  background: var(--vl-bg-surface);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.72rem;
+  color: var(--vl-text-muted);
+}
+
+/* ---- Primitive demo staging ---- */
+.api-primitive-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding-block: 0.25rem;
+}
+
+/* ---- Component link cards ---- */
+.api-component-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.api-component-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.72rem;
+  color: var(--vl-color-primary);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.api-component-link:hover { opacity: 0.75; }
+
+.api-component-link::before {
+  content: "↗";
+  font-style: normal;
+}
+
+/* ---- Page directory grid ---- */
+.api-grid--pages {
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+}
+
+.api-page-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.api-page-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--vl-text-primary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+
+.api-page-link:hover { color: var(--vl-color-primary); }
+
+.api-page-link-meta {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.65rem;
+  color: var(--vl-text-muted);
+}
+
+/* ---- Form staging inside api-card ---- */
+.api-form-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+/* ---- Gradient text utility for hero ---- */
+.api-hero-title .vl-text-gradient {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- Design hero right column (missing in shared motion css) ---- */
+.api-hero-panels {
+  position: relative;
+  min-height: clamp(20rem, 44vw, 30rem);
+  border-radius: clamp(0.9rem, 2vw, 1.2rem);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
+  background:
+    radial-gradient(circle at 50% 45%, color-mix(in oklch, var(--vl-color-primary) 12%, transparent), transparent 36%),
+    linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 76%, transparent), color-mix(in oklch, var(--vl-bg-main) 96%, transparent));
+  overflow: hidden;
+}
+
+.api-hero-panels .api-hero-panel {
+  width: min(100%, 18rem);
+}
+
+/* ---- Status badge row ---- */
+.api-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+/* ---- Component thumbnail placeholders ---- */
+.api-component-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--vl-radius-md, 0.5rem);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+  background:
+    linear-gradient(135deg,
+      color-mix(in oklch, var(--vl-bg-surface-elevated) 90%, transparent),
+      color-mix(in oklch, var(--vl-bg-inset) 80%, transparent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.7rem;
+  color: var(--vl-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ---- Wider grid for component previews ---- */
+.api-grid--components {
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+/* ---- lead card full width override for sections ---- */
+.api-card--full { grid-column: 1 / -1; }
+
+/* ---- Scrollable catalog hero status chips ---- */
+.api-hero-status > span {
+  white-space: nowrap;
+}
+
+/* ---- Footer additions for this page ---- */
+.vl-footer__tagline {
+  margin: 0.6rem 0 0;
+  color: var(--vl-text-muted);
+  max-width: 48ch;
+  font-size: 0.84rem;
+}
+
+.vl-footer__nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.vl-footer__nav-col {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.vl-footer__nav-col strong {
+  font-family: var(--vl-font-family-mono);
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--vl-text-secondary);
+}
+
+.vl-footer__nav-col a {
+  text-decoration: none;
+  color: var(--vl-text-muted);
+  font-size: 0.82rem;
+}
+
+.vl-footer__nav-col a:hover {
+  color: var(--vl-color-primary);
+}
+
+.vl-footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--vl-text-muted);
+  font-size: 0.74rem;
+}
+
+@media (max-width: 980px) {
+  .api-hero-panels {
+    min-height: 16rem;
+  }
+
+  .vl-footer__nav {
+    grid-template-columns: 1fr;
+  }
+
+  .vl-footer__meta {
+    justify-content: flex-start;
+  }
+}

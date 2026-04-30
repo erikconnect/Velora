@@ -6,6 +6,7 @@
      *   vl-effect    Named motion preset (primitive, interaction, state, scene)
      *   vl-timeline  Progress model: view | scroll | auto | state | hover
      *   vl-range     Animation range for scroll-driven motion
+     *   vl-duration  Direct duration override (e.g. "1200ms")
      *   vl-pin       Boolean  sticky scene behavior
      *   vl-scrub     Boolean  continuous scroll-linked motion
      *   vl-once      Boolean  one-shot reveal
@@ -13,6 +14,9 @@
      *   vl-stagger   Stagger interval override (e.g. "120ms")
      *   vl-depth     Parallax depth multiplier: 1 | 2 | 3 | 4
      *   vl-speed     Duration category: slow | normal | fast
+     *   vl-loop      Loop count: -1 (infinite), 0+ (iteration count)
+     *   vl-loop-effect Loop keyframe preset (e.g. "float", "wobble", "spin")
+     *   vl-direction Playback direction: normal | reverse | alternate | alternate-reverse
      *   vl-scene     Scene container marker
      *   vl-targets   Descendant selector hint (limited CSS-only support)
      *
@@ -32,6 +36,33 @@
     @keyframes vl-fade-in {
         from { opacity: 0; }
         to   { opacity: 1; }
+    }
+
+    @keyframes vl-fade-out {
+        from { opacity: 1; }
+        to   { opacity: 0; }
+    }
+
+    @keyframes vl-fade-out-up {
+        from {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            opacity: 0;
+            transform: translate3d(0, calc(-1 * var(--vl-motion-distance, 1.25rem)), 0);
+        }
+    }
+
+    @keyframes vl-fade-out-down {
+        from {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            opacity: 0;
+            transform: translate3d(0, var(--vl-motion-distance, 1.25rem), 0);
+        }
     }
 
     @keyframes vl-fade-up {
@@ -89,16 +120,41 @@
         }
     }
 
+    @keyframes vl-pop-in {
+        0% {
+            opacity: 0;
+            transform: scale(0.82);
+        }
+        55% {
+            opacity: 1;
+            transform: scale(1.04);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes vl-shrink-out {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(0.82);
+        }
+    }
+
     @keyframes vl-blur-in {
         from {
             opacity: 0;
-            filter: blur(14px);
-            transform: translate3d(0, 0.75rem, 0);
+            clip-path: inset(5% 5% 5% 5%);
+            transform: translate3d(0, 0.75rem, 0) scale(0.98);
         }
         to {
             opacity: 1;
-            filter: blur(0);
-            transform: translate3d(0, 0, 0);
+            clip-path: inset(0 0 0 0);
+            transform: translate3d(0, 0, 0) scale(1);
         }
     }
 
@@ -163,11 +219,11 @@
     @keyframes vl-glow-breathe {
         0%, 100% {
             opacity: 0.55;
-            filter: drop-shadow(0 0 0.35rem color-mix(in oklch, var(--vl-color-primary) 40%, transparent));
+            box-shadow: 0 0 0.35rem color-mix(in oklch, var(--vl-color-primary) 40%, transparent);
         }
         50% {
             opacity: 1;
-            filter: drop-shadow(0 0 0.85rem color-mix(in oklch, var(--vl-color-primary) 55%, transparent));
+            box-shadow: 0 0 0.85rem 0.2rem color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
         }
     }
 
@@ -260,12 +316,12 @@
 
     @keyframes vl-typewriter {
         from { width: 0; }
-        to   { width: var(--vl-type-chars, 100%); }
+        to   { width: min(var(--vl-type-chars, 21ch), 100%); }
     }
 
     @keyframes vl-blink-caret {
-        0%, 100% { border-color: transparent; }
-        50%      { border-color: var(--vl-color-primary); }
+        0%, 100% { border-right-color: var(--vl-type-caret-color, var(--vl-color-primary)); }
+        50%      { border-right-color: transparent; }
     }
 
     @keyframes vl-word-rise {
@@ -313,6 +369,283 @@
         --vl-motion-duration: var(--vl-duration-slow);
         --vl-motion-ease: var(--vl-ease-cinematic);
         animation-fill-mode: both;
+    }
+
+    /* --- v2 channels: base -> enter -> scroll -> loop -> hover -> state -> exit --- */
+    [vl-base],
+    [vl-enter],
+    [vl-scroll],
+    [vl-loop],
+    [vl-hover],
+    [vl-state],
+    [vl-exit] {
+        --vl-motion-duration: var(--vl-duration-slow);
+        --vl-motion-ease: var(--vl-ease-cinematic);
+    }
+
+    [vl-enter] {
+        animation-name: var(--vl-enter-name, none);
+        animation-duration: var(--vl-enter-duration, var(--vl-motion-duration));
+        animation-timing-function: var(--vl-enter-ease, var(--vl-motion-ease));
+        animation-direction: var(--vl-enter-direction, var(--vl-motion-direction, normal));
+        animation-fill-mode: both;
+    }
+
+    [vl-base~="subtle"] {
+        --vl-motion-duration: var(--vl-duration-fast);
+        --vl-motion-distance: 0.6rem;
+        --vl-motion-ease: var(--vl-ease-out-soft);
+    }
+
+    [vl-base~="balanced"] {
+        --vl-motion-duration: var(--vl-duration-normal);
+        --vl-motion-distance: 1rem;
+        --vl-motion-ease: var(--vl-ease-cinematic);
+    }
+
+    [vl-base~="dramatic"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        --vl-motion-distance: 2.2rem;
+        --vl-motion-ease: var(--vl-ease-spring);
+    }
+
+    :is([vl-enter~="fade-in"], [vl-effect~="fade-in"]) { --vl-enter-name: vl-fade-in; }
+    :is([vl-enter~="fade-up"], [vl-effect~="fade-up"]) { --vl-enter-name: vl-fade-up; }
+    :is([vl-enter~="fade-down"], [vl-effect~="fade-down"]) { --vl-enter-name: vl-fade-down; }
+    :is([vl-enter~="slide-left"], [vl-effect~="slide-left"]) {
+        --vl-enter-name: vl-slide-left;
+        --vl-enter-ease: var(--vl-ease-out-soft);
+    }
+    :is([vl-enter~="slide-right"], [vl-effect~="slide-right"]) {
+        --vl-enter-name: vl-slide-right;
+        --vl-enter-ease: var(--vl-ease-out-soft);
+    }
+    :is([vl-enter~="scale-in"], [vl-effect~="scale-in"]) {
+        --vl-enter-name: vl-scale-in;
+        --vl-enter-ease: var(--vl-ease-spring);
+    }
+    :is([vl-enter~="pop-in"], [vl-effect~="pop-in"]) {
+        --vl-enter-name: vl-pop-in;
+        --vl-enter-ease: var(--vl-ease-spring);
+    }
+    :is([vl-enter~="blur-in"], [vl-effect~="blur-in"]) {
+        --vl-enter-name: vl-blur-in;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-out-soft);
+    }
+    :is([vl-enter~="reveal-3d"], [vl-effect~="reveal-3d"]) { --vl-enter-name: vl-3d-entry; }
+    :is([vl-enter~="flow-in"], [vl-effect~="flow-in"]) {
+        --vl-enter-name: vl-flow-in;
+        --vl-enter-duration: var(--vl-duration-slower);
+    }
+    :is([vl-enter~="clip-rise"], [vl-effect~="clip-rise"]) {
+        --vl-enter-name: vl-clip-rise;
+        --vl-enter-duration: var(--vl-duration-slower);
+    }
+    :is([vl-enter~="tilt-in"], [vl-effect~="tilt-in"]) {
+        --vl-enter-name: vl-tilt-in;
+        --vl-enter-duration: var(--vl-duration-slower);
+    }
+
+    [vl-scroll] {
+        animation-name: var(--vl-scroll-name, none);
+        animation-duration: 1ms;
+        animation-timing-function: linear;
+        animation-direction: var(--vl-scroll-direction, var(--vl-motion-direction, normal));
+        animation-fill-mode: both;
+        animation-timeline: var(--vl-scroll-timeline, view(block));
+        animation-range: var(--vl-scroll-range, entry 5% cover 42%);
+    }
+
+    :is([vl-scroll~="parallax"], [vl-effect~="parallax"]) {
+        --vl-scroll-name: vl-parallax-shift;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: cover;
+    }
+
+    :is([vl-scroll~="cinema-zoom"], [vl-effect~="cinema-zoom"]) {
+        --vl-scroll-name: vl-cinema-zoom;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: entry 0% exit 100%;
+    }
+
+    :is([vl-scroll~="depth-drift"], [vl-effect~="depth-drift"]) {
+        --vl-scroll-name: vl-depth-drift;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: var(--vl-range, entry 0% cover 85%);
+    }
+
+    :is([vl-scroll~="scroll-marquee"], [vl-effect~="scroll-marquee"]) {
+        --vl-scroll-name: vl-scroll-horizontal;
+        --vl-scroll-timeline: scroll(root);
+        --vl-scroll-range: var(--vl-marquee-range, cover 0% cover 100%);
+        --vl-scroll-x-distance: var(--vl-marquee-distance, -36%);
+    }
+
+    :is([vl-scroll~="rotate-scroll"], [vl-effect~="rotate-scroll"]) {
+        --vl-scroll-name: vl-rotate-flat;
+        --vl-scroll-timeline: scroll(root);
+        --vl-scroll-range: cover 0% cover 100%;
+    }
+
+    [vl-loop],
+    [vl-loop-effect] {
+        animation-name: var(--vl-loop-name, none);
+        animation-duration: var(--vl-loop-duration, var(--vl-motion-duration, 4s));
+        animation-timing-function: var(--vl-loop-ease, var(--vl-ease-in-out-smooth));
+        animation-direction: var(--vl-loop-direction, var(--vl-motion-direction, normal));
+        animation-iteration-count: var(--vl-loop-count, infinite);
+    }
+
+    :is([vl-loop~="shimmer"], [vl-loop-effect~="shimmer"], [vl-effect~="shimmer"]) {
+        --vl-loop-name: vl-shimmer;
+        --vl-loop-duration: 2.5s;
+    }
+
+    :is([vl-loop~="float"], [vl-loop-effect~="float"], [vl-effect~="float"]) {
+        --vl-loop-name: vl-float;
+        --vl-loop-duration: 5.5s;
+    }
+
+    :is([vl-loop~="glow-breathe"], [vl-loop-effect~="glow-breathe"], [vl-effect~="glow-breathe"]) {
+        --vl-loop-name: vl-glow-breathe;
+        --vl-loop-duration: 3.5s;
+    }
+
+    :is([vl-loop~="wobble"], [vl-loop-effect~="wobble"], [vl-effect~="wobble"]) {
+        --vl-loop-name: vl-tilt-wobble;
+        --vl-loop-duration: 2.8s;
+    }
+
+    :is([vl-loop~="rock"], [vl-loop-effect~="rock"], [vl-effect~="rock"]) {
+        --vl-loop-name: vl-rock;
+        --vl-loop-duration: 4s;
+    }
+
+    :is([vl-loop~="morph"], [vl-loop-effect~="morph"], [vl-effect~="morph"]) {
+        --vl-loop-name: vl-morph;
+        --vl-loop-duration: 8s;
+    }
+
+    :is([vl-loop~="spin"], [vl-loop-effect~="spin"], [vl-effect~="spin"]) {
+        --vl-loop-name: vl-rotate-flat;
+        --vl-loop-duration: 8s;
+        --vl-loop-ease: linear;
+    }
+
+    :is([vl-loop~="orbit"], [vl-loop-effect~="orbit"], [vl-effect~="orbit"]) {
+        --vl-loop-name: vl-orbit-spin;
+        --vl-loop-duration: 14s;
+        --vl-loop-ease: linear;
+        display: inline-block;
+        transform-origin: center center;
+    }
+
+    /* Generic loop count: vl-loop="-1" = infinite, vl-loop="N" = N iterations.
+       Uses attr() with type() for modern browsers, common values as fallback. */
+    [vl-loop="-1"] { --vl-loop-count: infinite; }
+    [vl-loop]:not([vl-loop="-1"]) {
+        --vl-loop-count: attr(vl-loop type(<number>), 1);
+    }
+    /* Fallback for browsers without attr() type support */
+    @supports not (--x: attr(x type(<number>))) {
+        [vl-loop="0"]  { --vl-loop-count: 0; }
+        [vl-loop="1"]  { --vl-loop-count: 1; }
+        [vl-loop="2"]  { --vl-loop-count: 2; }
+        [vl-loop="3"]  { --vl-loop-count: 3; }
+        [vl-loop="4"]  { --vl-loop-count: 4; }
+        [vl-loop="5"]  { --vl-loop-count: 5; }
+        [vl-loop="6"]  { --vl-loop-count: 6; }
+        [vl-loop="8"]  { --vl-loop-count: 8; }
+        [vl-loop="10"] { --vl-loop-count: 10; }
+        [vl-loop="12"] { --vl-loop-count: 12; }
+        [vl-loop="20"] { --vl-loop-count: 20; }
+    }
+
+    :is([vl-hover~="hover-lift"], [vl-effect~="hover-lift"]) {
+        transition: transform var(--vl-transition-normal), box-shadow var(--vl-transition-normal);
+    }
+
+    :is([vl-hover~="hover-lift"], [vl-effect~="hover-lift"]):hover {
+        transform: translateY(-4px);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    :is([vl-hover~="hover-glow"], [vl-effect~="hover-glow"]) {
+        transition: box-shadow var(--vl-transition-normal);
+    }
+
+    :is([vl-hover~="hover-glow"], [vl-effect~="hover-glow"]):hover {
+        box-shadow: var(--vl-shadow-glow);
+    }
+
+    :is([vl-hover~="underline-expand"], [vl-effect~="underline-expand"]) {
+        position: relative;
+    }
+
+    :is([vl-hover~="underline-expand"], [vl-effect~="underline-expand"])::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: currentColor;
+        transition: width var(--vl-transition-normal), left var(--vl-transition-normal);
+    }
+
+    :is([vl-hover~="underline-expand"], [vl-effect~="underline-expand"]):hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+    :is([vl-hover~="icon-shift"], [vl-effect~="icon-shift"]) {
+        transition: transform var(--vl-transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    :is([vl-hover~="icon-shift"], [vl-effect~="icon-shift"]):hover > :last-child {
+        transform: translateX(4px);
+    }
+
+    :is([vl-hover~="icon-shift"], [vl-effect~="icon-shift"]) > :last-child {
+        transition: transform var(--vl-transition-fast);
+    }
+
+    :is([vl-state~="smooth"], [vl-state="smooth"]) {
+        transition:
+            transform var(--vl-duration-normal) var(--vl-ease-cinematic),
+            opacity var(--vl-duration-normal) var(--vl-ease-cinematic),
+            background-color var(--vl-duration-normal) var(--vl-ease-cinematic),
+            color var(--vl-duration-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-duration-normal) var(--vl-ease-cinematic),
+            border-color var(--vl-duration-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-exit] {
+        animation-name: var(--vl-exit-name, none);
+        animation-duration: var(--vl-exit-duration, var(--vl-duration-fast));
+        animation-timing-function: var(--vl-exit-ease, var(--vl-ease-out-soft));
+        animation-direction: var(--vl-exit-direction, var(--vl-motion-direction, normal));
+        animation-fill-mode: forwards;
+    }
+
+    :is([vl-exit~="fade-out"], [vl-effect~="fade-out"]) {
+        --vl-exit-name: vl-fade-out;
+    }
+
+    :is([vl-exit~="fade-out-up"], [vl-effect~="fade-out-up"]) {
+        --vl-exit-name: vl-fade-out-up;
+    }
+
+    :is([vl-exit~="fade-out-down"], [vl-effect~="fade-out-down"]) {
+        --vl-exit-name: vl-fade-out-down;
+    }
+
+    :is([vl-exit~="shrink-out"], [vl-effect~="shrink-out"]) {
+        --vl-exit-name: vl-shrink-out;
     }
 
     /* --- Entrance primitives --- */
@@ -505,6 +838,100 @@
         transform: translate3d(0, -6px, 0);
     }
 
+    [vl-effect="hover-card-fan"] {
+        --vl-hover-fan-angle: 30deg;
+        --vl-hover-fan-perspective: 880px;
+        --vl-hover-fan-card-width: 9.25rem;
+        --vl-hover-fan-card-height: 12rem;
+        --vl-hover-fan-gap: 0.5rem;
+        --vl-hover-fan-accent: var(--vl-color-primary);
+        --vl-hover-fan-surface: color-mix(in oklch, var(--vl-bg-surface-elevated) 88%, transparent);
+        --vl-hover-fan-surface-hover: color-mix(in oklch, var(--vl-hover-fan-accent) 16%, var(--vl-bg-surface-elevated));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--vl-hover-fan-gap);
+        transform-style: preserve-3d;
+    }
+
+    [vl-effect="hover-card-fan"] > * {
+        width: min(100%, var(--vl-hover-fan-card-width));
+        min-height: var(--vl-hover-fan-card-height);
+        border-radius: 0.7rem;
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent);
+        background: var(--vl-hover-fan-surface);
+        color: var(--vl-text-primary);
+        box-shadow: 0 5px 15px color-mix(in oklch, black 14%, transparent);
+        display: grid;
+        place-content: center;
+        gap: 0.38rem;
+        padding: 0.75rem;
+        text-align: center;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        transition:
+            background-color var(--vl-transition-normal) var(--vl-ease-cinematic),
+            color var(--vl-transition-normal) var(--vl-ease-cinematic),
+            transform var(--vl-transition-normal) var(--vl-ease-cinematic),
+            border-color var(--vl-transition-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-card-fan"]:is(:hover, :focus-within, :active) > * {
+        transform: perspective(var(--vl-hover-fan-perspective)) rotateY(var(--vl-hover-fan-angle));
+    }
+
+    [vl-effect="hover-card-fan"] > *:is(:hover, :focus-visible, :focus-within, :active) {
+        transform: perspective(var(--vl-hover-fan-perspective)) rotateY(0deg);
+        background: var(--vl-hover-fan-surface-hover);
+        border-color: color-mix(in oklch, var(--vl-hover-fan-accent) 46%, transparent);
+        box-shadow: var(--vl-shadow-float);
+        z-index: 1;
+    }
+
+    [vl-effect="hover-card-fan"] > *:is(:hover, :focus-visible, :focus-within, :active) ~ * {
+        transform: perspective(var(--vl-hover-fan-perspective)) rotateY(calc(var(--vl-hover-fan-angle) * -1));
+    }
+
+    [vl-effect="hover-card-fan"] > *:focus-visible {
+        outline: var(--vl-focus-ring-width) solid var(--vl-focus-ring-color);
+        outline-offset: 2px;
+    }
+
+    [vl-effect="hover-card-fan"] > * .vl-hover-fan-index {
+        width: 4.6rem;
+        min-width: 4.6rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+        margin: 0 auto;
+        font-family: var(--vl-font-family-display);
+        font-size: 2rem;
+        line-height: 1;
+        color: var(--vl-text-inverse, oklch(98% 0.01 95));
+        background: color-mix(in oklch, var(--vl-hover-fan-accent) 72%, transparent);
+        transition:
+            box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic),
+            background-color var(--vl-transition-normal) var(--vl-ease-cinematic),
+            color var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-card-fan"] > * .vl-hover-fan-label {
+        margin: 0;
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--vl-text-secondary);
+    }
+
+    [vl-effect="hover-card-fan"] > *:is(:hover, :focus-visible, :focus-within, :active) .vl-hover-fan-index {
+        background: var(--vl-hover-fan-surface);
+        color: color-mix(in oklch, var(--vl-hover-fan-accent) 82%, var(--vl-text-primary));
+        box-shadow: 0 0 0 120px color-mix(in oklch, var(--vl-hover-fan-accent) 66%, transparent);
+    }
+
     [vl-effect="hover-shell-lift"] {
         position: relative;
         overflow: clip;
@@ -534,11 +961,238 @@
         opacity: 1;
     }
 
+    [vl-effect="hover-cross-swap"] {
+        --vl-hover-cross-peek: clamp(0.72rem, 10%, 1.1rem);
+        --vl-hover-cross-surface: color-mix(in oklch, var(--vl-bg-main) 90%, transparent);
+        position: relative;
+        display: block;
+        overflow: hidden;
+        isolation: isolate;
+        padding: 0;
+        background:
+            radial-gradient(circle at 50% 18%, color-mix(in oklch, var(--vl-color-primary) 10%, transparent), transparent 58%),
+            color-mix(in oklch, var(--vl-bg-main) 94%, transparent);
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel] {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-content: center;
+        gap: 0.32rem;
+        width: 100%;
+        height: 100%;
+        padding: 0.85rem;
+        margin: 0;
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 64%, transparent);
+        background: var(--vl-hover-cross-surface);
+        color: var(--vl-text-primary);
+        text-align: center;
+        text-decoration: none;
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        transition:
+            transform 320ms var(--vl-ease-out-soft),
+            border-color 320ms var(--vl-ease-out-soft),
+            box-shadow 320ms var(--vl-ease-out-soft),
+            filter 320ms var(--vl-ease-out-soft);
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel]::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel="center"] {
+        z-index: 1;
+        cursor: default;
+        background:
+            radial-gradient(circle at 50% 0%, color-mix(in oklch, var(--vl-color-primary) 16%, transparent), transparent 62%),
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 88%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in oklch, white 10%, transparent);
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel="top"] {
+        z-index: 2;
+        transform: translate3d(0, calc(-100% + var(--vl-hover-cross-peek)), 0);
+        background:
+            linear-gradient(180deg, color-mix(in oklch, var(--vl-color-primary) 20%, transparent), transparent 58%),
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent);
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel="right"] {
+        z-index: 2;
+        transform: translate3d(calc(100% - var(--vl-hover-cross-peek)), 0, 0);
+        background:
+            linear-gradient(270deg, color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 20%, transparent), transparent 58%),
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent);
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel="bottom"] {
+        z-index: 2;
+        transform: translate3d(0, calc(100% - var(--vl-hover-cross-peek)), 0);
+        background:
+            linear-gradient(0deg, color-mix(in oklch, var(--vl-color-primary) 16%, transparent), transparent 58%),
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent);
+    }
+
+    [vl-effect="hover-cross-swap"] > [data-vl-panel="left"] {
+        z-index: 2;
+        transform: translate3d(calc(-100% + var(--vl-hover-cross-peek)), 0, 0);
+        background:
+            linear-gradient(90deg, color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 14%, transparent), transparent 58%),
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="top"]:is(:hover, :focus-visible)) > [data-vl-panel="top"] {
+        z-index: 4;
+        transform: translate3d(0, 0, 0);
+        border-color: color-mix(in oklch, var(--vl-color-primary) 42%, transparent);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="top"]:is(:hover, :focus-visible)) > [data-vl-panel="center"] {
+        transform: translate3d(0, calc(100% - var(--vl-hover-cross-peek)), 0);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="right"]:is(:hover, :focus-visible)) > [data-vl-panel="right"] {
+        z-index: 4;
+        transform: translate3d(0, 0, 0);
+        border-color: color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 42%, transparent);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="right"]:is(:hover, :focus-visible)) > [data-vl-panel="center"] {
+        transform: translate3d(calc(-100% + var(--vl-hover-cross-peek)), 0, 0);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="bottom"]:is(:hover, :focus-visible)) > [data-vl-panel="bottom"] {
+        z-index: 4;
+        transform: translate3d(0, 0, 0);
+        border-color: color-mix(in oklch, var(--vl-color-primary) 38%, transparent);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="bottom"]:is(:hover, :focus-visible)) > [data-vl-panel="center"] {
+        transform: translate3d(0, calc(-100% + var(--vl-hover-cross-peek)), 0);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="left"]:is(:hover, :focus-visible)) > [data-vl-panel="left"] {
+        z-index: 4;
+        transform: translate3d(0, 0, 0);
+        border-color: color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 36%, transparent);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-cross-swap"]:has(> [data-vl-panel="left"]:is(:hover, :focus-visible)) > [data-vl-panel="center"] {
+        transform: translate3d(calc(100% - var(--vl-hover-cross-peek)), 0, 0);
+    }
+
+    [vl-effect="hover-orb-grid"] {
+        --mouse-x: 50%;
+        --mouse-y: 50%;
+        --vl-orb-grid-bg: color-mix(in oklch, var(--vl-color-primary) 14%, var(--vl-bg-main));
+        --vl-orb-grid-ink: color-mix(in oklch, var(--vl-color-primary) 74%, var(--vl-text-primary));
+        --vl-orb-grid-blend-a: color-mix(in oklch, var(--vl-color-primary) 18%, white);
+        --vl-orb-grid-blend-b: color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 56%, transparent);
+        --vl-orb-grid-size-a: clamp(1.8rem, 11vw, 3.8rem);
+        --vl-orb-grid-size-b: clamp(1.4rem, 8vw, 3rem);
+        background: var(--vl-orb-grid-bg);
+        border-color: color-mix(in oklch, var(--vl-color-primary) 42%, transparent);
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    [vl-effect="hover-orb-grid"] > ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        min-height: 100%;
+    }
+
+    [vl-effect="hover-orb-grid"] > ul > li {
+        position: relative;
+        overflow: hidden;
+    }
+
+    [vl-effect="hover-orb-grid"] > ul > li > :is(a, button, span) {
+        color: var(--vl-orb-grid-ink);
+        display: flex;
+        width: 100%;
+        min-height: 100%;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-family: var(--vl-font-family-mono);
+        font-size: clamp(0.76rem, 1.3vw, 1rem);
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+    }
+
+    [vl-effect="hover-orb-grid"]::after,
+    [vl-effect="hover-orb-grid"]::before {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        opacity: 0.8;
+        transition: opacity var(--vl-transition-normal);
+    }
+
+    [vl-effect="hover-orb-grid"]::after {
+        width: var(--vl-orb-grid-size-a);
+        height: var(--vl-orb-grid-size-a);
+        background: var(--vl-orb-grid-blend-a);
+        mix-blend-mode: exclusion;
+        top: var(--mouse-y);
+        left: var(--mouse-x);
+        transform: translate(-50%, -50%);
+    }
+
+    [vl-effect="hover-orb-grid"]::before {
+        width: var(--vl-orb-grid-size-b);
+        height: var(--vl-orb-grid-size-b);
+        background: var(--vl-orb-grid-blend-b);
+        mix-blend-mode: color-dodge;
+        top: calc(var(--mouse-y) - 4%);
+        left: calc(var(--mouse-x) + 8%);
+        transform: translate(-50%, -50%);
+    }
+
+    [vl-effect="hover-orb-grid"]:not(:hover)::after,
+    [vl-effect="hover-orb-grid"]:not(:hover)::before {
+        opacity: 0;
+    }
+
+    @media (max-width: 40rem) {
+        [vl-effect="hover-orb-grid"] > ul {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(4, minmax(0, 1fr));
+        }
+    }
+
     @media (hover: none) {
         [vl-effect="hover-lift"]:hover,
         [vl-effect="hover-glow"]:hover {
             transform: none;
             box-shadow: none;
+        }
+
+        [vl-effect="hover-orb-grid"]::after,
+        [vl-effect="hover-orb-grid"]::before {
+            opacity: 0;
+            clip-path: circle(0);
+            -webkit-clip-path: circle(0);
         }
     }
 
@@ -626,24 +1280,27 @@
     [vl-effect="typewriter"] {
         overflow: hidden;
         white-space: nowrap;
-        border-right: 2px solid var(--vl-color-primary);
+        display: inline-block;
+        max-width: 100%;
+        border-right: 2px solid var(--vl-type-caret-color, var(--vl-color-primary));
         width: 0;
         animation:
-            vl-typewriter var(--vl-type-duration, 2s) steps(var(--vl-type-steps, 20)) forwards,
-            vl-blink-caret 0.75s step-end infinite;
+            vl-typewriter var(--vl-type-duration, 2s) steps(var(--vl-type-steps, 21), end) forwards,
+            vl-blink-caret var(--vl-type-caret-blink, 0.5s) step-end infinite alternate;
         font-family: var(--vl-font-family-mono);
     }
 
     [vl-effect="typewriter-soft"] {
         overflow: hidden;
         white-space: nowrap;
-        border-right: 1px solid color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+        --vl-type-caret-color: color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+        border-right: 1px solid var(--vl-type-caret-color);
         width: 0;
         display: inline-block;
         max-width: 100%;
         animation:
-            vl-typewriter var(--vl-type-duration, 2.4s) steps(var(--vl-type-steps, 26)) forwards,
-            vl-blink-caret 0.95s step-end 4;
+            vl-typewriter var(--vl-type-duration, 2.4s) steps(var(--vl-type-steps, 26), end) forwards,
+            vl-blink-caret 0.95s step-end 4 alternate;
         font-family: var(--vl-font-family-mono);
         letter-spacing: 0.04em;
     }
@@ -656,13 +1313,14 @@
     [vl-effect="typewriter-loop"] {
         overflow: hidden;
         white-space: nowrap;
-        border-right: 1px solid color-mix(in oklch, var(--vl-color-primary) 60%, transparent);
+        --vl-type-caret-color: color-mix(in oklch, var(--vl-color-primary) 60%, transparent);
+        border-right: 1px solid var(--vl-type-caret-color);
         width: 0;
         display: inline-block;
         max-width: 100%;
         animation:
-            vl-typewriter var(--vl-type-duration, 2.6s) steps(var(--vl-type-steps, 36)) infinite alternate,
-            vl-blink-caret 0.9s step-end infinite;
+            vl-typewriter var(--vl-type-duration, 2.6s) steps(var(--vl-type-steps, 36), end) infinite alternate,
+            vl-blink-caret 0.9s step-end infinite alternate;
         font-family: var(--vl-font-family-mono);
         letter-spacing: 0.04em;
     }
@@ -875,6 +1533,45 @@
     [vl-speed="slow"]   { --vl-motion-duration: var(--vl-duration-slow); }
     [vl-speed="cinema"] { --vl-motion-duration: var(--vl-duration-slower); }
 
+    /* Generic duration: any value of vl-duration is propagated.
+       Uses attr() with type() for modern browsers, common values as fallback. */
+    [vl-duration] {
+        --vl-motion-duration: attr(vl-duration type(<time>), var(--vl-duration-slow));
+        --vl-enter-duration: attr(vl-duration type(<time>), var(--vl-duration-slow));
+        --vl-exit-duration: attr(vl-duration type(<time>), var(--vl-duration-fast));
+        --vl-loop-duration: attr(vl-duration type(<time>), 4s);
+    }
+    /* Fallback for browsers without attr() type support */
+    @supports not (--x: attr(x type(<time>))) {
+        [vl-duration="120ms"] { --vl-motion-duration: 120ms; --vl-enter-duration: 120ms; --vl-exit-duration: 120ms; --vl-loop-duration: 120ms; }
+        [vl-duration="200ms"] { --vl-motion-duration: 200ms; --vl-enter-duration: 200ms; --vl-exit-duration: 200ms; --vl-loop-duration: 200ms; }
+        [vl-duration="300ms"] { --vl-motion-duration: 300ms; --vl-enter-duration: 300ms; --vl-exit-duration: 300ms; --vl-loop-duration: 300ms; }
+        [vl-duration="500ms"] { --vl-motion-duration: 500ms; --vl-enter-duration: 500ms; --vl-exit-duration: 500ms; --vl-loop-duration: 500ms; }
+        [vl-duration="800ms"] { --vl-motion-duration: 800ms; --vl-enter-duration: 800ms; --vl-exit-duration: 800ms; --vl-loop-duration: 800ms; }
+        [vl-duration="1000ms"] { --vl-motion-duration: 1000ms; --vl-enter-duration: 1000ms; --vl-exit-duration: 1000ms; --vl-loop-duration: 1000ms; }
+        [vl-duration="1200ms"] { --vl-motion-duration: 1200ms; --vl-enter-duration: 1200ms; --vl-exit-duration: 1200ms; --vl-loop-duration: 1200ms; }
+        [vl-duration="1500ms"] { --vl-motion-duration: 1500ms; --vl-enter-duration: 1500ms; --vl-exit-duration: 1500ms; --vl-loop-duration: 1500ms; }
+        [vl-duration="2000ms"] { --vl-motion-duration: 2000ms; --vl-enter-duration: 2000ms; --vl-exit-duration: 2000ms; --vl-loop-duration: 2000ms; }
+        [vl-duration="3000ms"] { --vl-motion-duration: 3000ms; --vl-enter-duration: 3000ms; --vl-exit-duration: 3000ms; --vl-loop-duration: 3000ms; }
+        [vl-duration="4000ms"] { --vl-motion-duration: 4000ms; --vl-enter-duration: 4000ms; --vl-exit-duration: 4000ms; --vl-loop-duration: 4000ms; }
+        [vl-duration="0.3s"] { --vl-motion-duration: 0.3s; --vl-enter-duration: 0.3s; --vl-exit-duration: 0.3s; --vl-loop-duration: 0.3s; }
+        [vl-duration="0.5s"] { --vl-motion-duration: 0.5s; --vl-enter-duration: 0.5s; --vl-exit-duration: 0.5s; --vl-loop-duration: 0.5s; }
+        [vl-duration="0.8s"] { --vl-motion-duration: 0.8s; --vl-enter-duration: 0.8s; --vl-exit-duration: 0.8s; --vl-loop-duration: 0.8s; }
+        [vl-duration="1s"] { --vl-motion-duration: 1s; --vl-enter-duration: 1s; --vl-exit-duration: 1s; --vl-loop-duration: 1s; }
+        [vl-duration="1.5s"] { --vl-motion-duration: 1.5s; --vl-enter-duration: 1.5s; --vl-exit-duration: 1.5s; --vl-loop-duration: 1.5s; }
+        [vl-duration="2s"] { --vl-motion-duration: 2s; --vl-enter-duration: 2s; --vl-exit-duration: 2s; --vl-loop-duration: 2s; }
+        [vl-duration="3s"] { --vl-motion-duration: 3s; --vl-enter-duration: 3s; --vl-exit-duration: 3s; --vl-loop-duration: 3s; }
+        [vl-duration="4s"] { --vl-motion-duration: 4s; --vl-enter-duration: 4s; --vl-exit-duration: 4s; --vl-loop-duration: 4s; }
+    }
+
+     /* =========================================================================
+         DIRECTION  [vl-direction="normal|reverse|alternate|alternate-reverse"]
+         ========================================================================= */
+     [vl-direction="normal"] { --vl-motion-direction: normal; }
+     [vl-direction="reverse"] { --vl-motion-direction: reverse; }
+     [vl-direction="alternate"] { --vl-motion-direction: alternate; }
+     [vl-direction="alternate-reverse"] { --vl-motion-direction: alternate-reverse; }
+
     [vl-state="smooth"] {
         transition:
             transform var(--vl-duration-normal) var(--vl-ease-cinematic),
@@ -890,6 +1587,8 @@
        ========================================================================= */
     [vl-scene] {
         position: relative;
+        container-type: inline-size;
+        container-name: vl-scene;
         contain: layout style;
     }
 
@@ -975,10 +1674,56 @@
     [vl-effect="scene-layer-stack"] > *:nth-child(4) { --vl-motion-distance: 4rem; }
 
     /* =========================================================================
-       GPU / composition hints
+       SCENE TRIGGERS (CSS-only gate)
+       - Baseline: host :hover / :focus-within
+       - Advanced: :has() trigger zone with baseline fallback
        ========================================================================= */
-    [vl-effect]:not([vl-effect="hover-lift"]):not([vl-effect="hover-glow"]):not([vl-effect="underline-expand"]):not([vl-effect="icon-shift"]):not([vl-effect="accordion"]):not([vl-effect="drawer"]):not([vl-effect="panel-swap"]) {
+    [vl-scene][vl-scene-trigger]:not(:is(:hover, :focus-within))
+    :is([vl-scroll], [vl-timeline="view"], [vl-timeline="scroll"]) {
+        animation-play-state: paused;
+    }
+
+    [vl-scene][vl-scene-trigger]:is(:hover, :focus-within)
+    :is([vl-scroll], [vl-timeline="view"], [vl-timeline="scroll"]) {
+        animation-play-state: running;
+    }
+
+    @supports selector(:has(*)) {
+        [vl-scene][vl-scene-trigger="zone"]:not(:has(> [vl-scene-trigger-zone]:is(:hover, :focus-visible, :focus-within)))
+        :is([vl-scroll], [vl-timeline="view"], [vl-timeline="scroll"]) {
+            animation-play-state: paused;
+        }
+
+        [vl-scene][vl-scene-trigger="zone"]:has(> [vl-scene-trigger-zone]:is(:hover, :focus-visible, :focus-within))
+        :is([vl-scroll], [vl-timeline="view"], [vl-timeline="scroll"]) {
+            animation-play-state: running;
+        }
+    }
+
+    /* =========================================================================
+       GPU / composition hints — targeted for expensive animations only
+       ========================================================================= */
+    [vl-timeline="view"],
+    [vl-timeline="scroll"],
+    [vl-loop]:not([vl-loop="0"]):not([vl-loop="1"]),
+    [vl-effect="cinema-zoom"],
+    [vl-effect="parallax"],
+    [vl-effect="scroll-marquee"],
+    [vl-effect="depth-drift"],
+    [vl-effect="scene-hero-reveal"],
+    [vl-effect="scene-feature-flow"],
+    [vl-effect="scene-story-pin"],
+    [vl-effect="scene-layer-stack"],
+    .vl-scroll-horizontal-track {
         will-change: transform, opacity;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [vl-effect],
+        [vl-timeline],
+        [vl-loop] {
+            will-change: auto;
+        }
     }
 
     /* =========================================================================
@@ -1050,6 +1795,10 @@
             animation-range: normal;
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
+
+        [vl-effect][vl-direction] {
+            animation-direction: var(--vl-motion-direction, normal);
+        }
         }
     }
 
@@ -1127,6 +1876,19 @@
 
         [vl-effect="hover-shell-lift"]::before {
             display: none;
+        }
+
+        [vl-effect="hover-cross-swap"] > [data-vl-panel] {
+            transition: none;
+        }
+
+        [vl-effect="hover-orb-grid"] > ul > li:last-child::after,
+        [vl-effect="hover-orb-grid"] > ul > li:last-child::before {
+            transition: none;
+            opacity: 0;
+            clip-path: circle(0);
+            -webkit-clip-path: circle(0);
+            transform: translate3d(-50%, -50%, 0);
         }
     }
 }

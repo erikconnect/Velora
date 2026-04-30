@@ -9,20 +9,45 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <meta name="description" content="Token Spotlight — isolate a single semantic token like Surface Noir and stress-test it across hero, card and footer layouts in Noir and Earth themes." />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #spotlight-hero    { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #spotlight-method  { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #spotlight-themes  { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #spotlight-handoff { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #spotlight-payoff  { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;token</span>
+      <a class="vl-bussola__stop" href="#spotlight-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spotlight-method">
+        <span class="vl-bussola__label">Method</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spotlight-themes">
+        <span class="vl-bussola__label">Themes</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spotlight-handoff">
+        <span class="vl-bussola__label">Handoff</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spotlight-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,205 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--color">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Color</p>
-          <h1 class="vl-display-xl hub-hero__title">Token Spotlight</h1>
-          <p class="vl-body-lg hub-hero__lead">Token spotlight surfaces (e.g. Surface Noir) show how a single semantic token propagates through real layouts.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/token-spotlight-surface-noir.html">Surface Noir spotlight</a>
-          <a class="hub-chip-link" href="/pages/color/design-tokens.html" vl-effect="fade-up" vl-timeline="view">Design tokens</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Spotlight method</strong> — isolate one token and stress-test it on hero, card, and footer.</li>
-            <li><strong>Themes</strong> — compare Noir vs. Earth tech interpretations.</li>
-            <li><strong>Handoff</strong> — export naming for design tools and code.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--token-spotlight showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Spotlight method</h2>
-          <p class="hub-step-card__body">isolate one token and stress-test it on hero, card, and footer.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Themes</h2>
-          <p class="hub-step-card__body">compare Noir vs. Earth tech interpretations.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Handoff</h2>
-          <p class="hub-step-card__body">export naming for design tools and code.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="spotlight-hero" class="showcase-cinema-scene showcase-cinema-scene--spotlight-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Foundation demo // Token spotlight</p>
+              </div>
+              <h1 class="showcase-ref-title">Isolate <em>one token</em>, stress-test it everywhere, then trust it at scale.</h1>
+              <p class="showcase-ref-lead">
+                The spotlight method picks a single semantic token&mdash;Surface Noir&mdash;and places it across hero,
+                card and footer layouts to confirm it holds up before the token ships to production.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/token-spotlight-surface-noir.html">Surface Noir Spotlight</a>
+                <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Design Tokens</a>
+                <a class="showcase-ref-tokens-button" href="/pages/color/color-system.html">Color System</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/token-spotlight-surface-noir.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Surface Noir spotlight</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for token spotlight and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>color</code>. Source page: <code>pages/color/token-spotlight.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--spotlight-hero" aria-label="Token spotlight preview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-prism">
+                  <span>Surface Noir</span>
+                  <strong>oklch(14% 0.015 145) &mdash; --vl-bg-surface</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-depth-press">
+                  <span>On hero</span>
+                  <strong>Full-bleed background anchoring headline</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>On card</span>
+                  <strong>Elevated container with ambient shadow</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>Single token focus</span>
+                <span>Three layout zones</span>
+                <span>Two themes</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Method ═════════════════════════════════════════ -->
+        <section id="spotlight-method" class="showcase-cinema-scene showcase-cinema-scene--spotlight-method" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Spotlight method</p>
+                <h2 class="showcase-cinema-heading">Place the token in hero, card and footer&mdash;if it survives all three, it ships.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Each zone stresses the token differently: the hero tests full-bleed contrast,
+                cards test elevation stacking, and footers test reduced emphasis and fine print legibility.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-prism">
+                <span>Zone 1</span>
+                <strong>Hero &middot; Full-bleed</strong>
+                <small>Large type on --vl-bg-surface &middot; contrast 11.4:1</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-depth-press">
+                <span>Zone 2</span>
+                <strong>Card &middot; Elevated</strong>
+                <small>Medium type + shadow layering &middot; contrast 9.8:1</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-card-stack">
+                <span>Zone 3</span>
+                <strong>Footer &middot; Dense</strong>
+                <small>Small type, muted secondaries &middot; contrast 7.2:1</small>
+              </article>
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/color/ambient-shadows.html">Ambient Shadows</a>
+              <a class="showcase-ref-chip" href="/pages/color/tonal-stacking.html">Tonal Stacking</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Theme comparison ═══════════════════════════════ -->
+        <section id="spotlight-themes" class="showcase-cinema-scene showcase-cinema-scene--spotlight-themes" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Noir vs Earth</p>
+              <h2 class="showcase-cinema-heading">The same semantic token resolves to different values across editorial themes.</h2>
+              <p class="showcase-ref-lead">
+                In Noir, Surface resolves to a deep blue-green. In Earth tech, it shifts warmer.
+                The spotlight comparison proves each resolution maintains readability without manual overrides.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>Noir: L 14% C 0.015</span>
+                <span>Earth: L 16% C 0.022</span>
+                <span>&Delta;L +2%</span>
+                <span>&Delta;C +0.007</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--spotlight-themes" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-code">
+                <span>Noir theme</span>
+                <code>--vl-bg-surface: oklch(14% .015 145);</code>
+                <code>--vl-text-primary: oklch(92% .005 145);</code>
+                <code>/* contrast ratio: 11.4:1 */</code>
+              </div>
+              <div class="showcase-cinema-code">
+                <span>Earth tech theme</span>
+                <code>--vl-bg-surface: oklch(16% .022 55);</code>
+                <code>--vl-text-primary: oklch(90% .008 55);</code>
+                <code>/* contrast ratio: 10.1:1 */</code>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Handoff ════════════════════════════════════════ -->
+        <section id="spotlight-handoff" class="showcase-cinema-scene showcase-cinema-scene--spotlight-handoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Export &amp; naming</p>
+              <h2 class="showcase-cinema-heading">Naming conventions bridge Figma variables and CSS custom properties.</h2>
+              <p class="showcase-ref-lead">
+                The spotlight document exports each token with its semantic name, resolved OKLCH value,
+                Figma variable path and usage note&mdash;ready for design-tool and code handoff in one artefact.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/color/design-tokens.html">All Tokens</a>
+                <a class="showcase-ref-chip" href="/pages/color/color-palette.html">Color Palette</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--spotlight-handoff" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-easing-list">
+                <article class="showcase-cinema-easing-item">
+                  <span>Semantic name</span>
+                  <strong>--vl-bg-surface</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:100%;" aria-label="Fully resolved"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item">
+                  <span>Figma path</span>
+                  <strong>color/surface/default</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:100%;" aria-label="Fully resolved"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item">
+                  <span>Resolved (Noir)</span>
+                  <strong>oklch(14% 0.015 145)</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:14%;" aria-label="Lightness 14%"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item">
+                  <span>Resolved (Earth)</span>
+                  <strong>oklch(16% 0.022 55)</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:16%;" aria-label="Lightness 16%"></div></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="spotlight-payoff" class="showcase-cinema-scene showcase-cinema-scene--spotlight-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied spotlight</p>
+            <h2 class="showcase-cinema-heading">Spotlight, compare, document, ship&mdash;the four-step token release gate.</h2>
+            <p class="showcase-ref-lead">
+              No token enters the system without surviving a spotlight audit: placed in three zones,
+              compared across themes, documented with naming paths and shipped with verified contrast.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Spotlight</span>
+                <strong>Isolate the token and place it in hero, card, footer.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Compare</span>
+                <strong>Run across Noir and Earth editorial themes.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Document</span>
+                <strong>Export semantic name, Figma path and resolved value.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Ship</span>
+                <strong>Merge only when contrast passes AA on all zones.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/token-spotlight-surface-noir.html">Read Full Specification</a>
+              <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Inspect All Tokens</a>
+              <a class="showcase-ref-tokens-button" href="/pages/tools/contrast-tool.html">Open Contrast Tool</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +375,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +401,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

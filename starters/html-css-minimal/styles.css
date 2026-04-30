@@ -1,0 +1,61 @@
+@import "@velora/css";
+
+/* Starter-local layout only (framework behavior stays in @velora/css). */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--vl-bg-main);
+  color: var(--vl-text-primary);
+  font-family: var(--vl-font-family);
+}
+
+.starter-main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 5rem 1rem 4rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.starter-hero {
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-xl);
+  background: var(--vl-bg-surface);
+  padding: 2rem;
+}
+
+.starter-kicker {
+  margin: 0 0 0.6rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vl-text-muted);
+}
+
+.starter-hero h1 {
+  margin: 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.starter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.9rem;
+}
+
+.starter-card {
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-lg);
+  background: var(--vl-bg-surface);
+  padding: 1rem;
+}

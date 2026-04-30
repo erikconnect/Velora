@@ -9,7 +9,8 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Icon sizing, accessibility rules and gallery discovery — the Velora icon system in five cinema scenes." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
@@ -20,9 +21,16 @@
       .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+        <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+      <a class="vl-bussola__stop" href="#icon-hero"><span class="vl-bussola__label">Intro</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#icon-sizing"><span class="vl-bussola__label">Sizing</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#icon-a11y"><span class="vl-bussola__label">A11y</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#icon-discovery"><span class="vl-bussola__label">Discovery</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#icon-payoff"><span class="vl-bussola__label">Apply</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +81,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +89,202 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--components">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Components</p>
-          <h1 class="vl-display-xl hub-hero__title">Icons</h1>
-          <p class="vl-body-lg hub-hero__lead">Icons inherit color from current text, align to the type rhythm, and use inline SVG or icon fonts per project policy.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/gallery.html">Component gallery</a>
-          <a class="hub-chip-link" href="/pages/library/component-lab-technical-library.html" vl-effect="fade-up" vl-timeline="view">Component lab</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Sizing</strong> — snap to the type scale and touch targets.</li>
-            <li><strong>Accessibility</strong> — <code>aria-hidden</code> on decorative icons; labels on actionable ones.</li>
-            <li><strong>Discovery</strong> — browse the interactive gallery for paired components.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--icons showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Sizing</h2>
-          <p class="hub-step-card__body">snap to the type scale and touch targets.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Accessibility</h2>
-          <p class="hub-step-card__body"><code>aria-hidden</code> on decorative icons; labels on actionable ones.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Discovery</h2>
-          <p class="hub-step-card__body">browse the interactive gallery for paired components.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="icon-hero" class="showcase-cinema-scene showcase-cinema-scene--icon-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Component demo // Icons</p>
+              </div>
+              <h1 class="showcase-ref-title">Icons inherit color, align to type, and stay <em>accessible</em>.</h1>
+              <p class="showcase-ref-lead">
+                Whether inline SVG or icon font, every icon snaps to the type scale,
+                respects touch targets, and carries the right ARIA semantics.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/gallery.html">Component Gallery</a>
+                <a class="showcase-ref-tokens-button" href="/pages/library/component-lab-technical-library.html">Component Lab</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/gallery.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Component gallery</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for icons and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>components</code>. Source page: <code>pages/components/icons.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--icon-hero" aria-label="Icons overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Sizing</span>
+                  <strong>Type scale &amp; touch targets</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Accessibility</span>
+                  <strong>Decorative vs actionable</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Discovery</span>
+                  <strong>Interactive gallery browse</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>currentColor</span>
+                <span>Accessible</span>
+                <span>Scalable</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Sizing ═════════════════════════════════════════ -->
+        <section id="icon-sizing" class="showcase-cinema-scene showcase-cinema-scene--icon-sizing" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Sizing</p>
+                <h2 class="showcase-cinema-heading">Snap to the type scale and touch targets for consistent optical weight.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Icons size to <code>1em</code> by default so they inherit the parent&rsquo;s
+                font size. For touch targets, the minimum hit area is 44 &times; 44 px.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Scale</span>
+                <strong>16 px</strong>
+                <small>Body text companion</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Scale</span>
+                <strong>20 px</strong>
+                <small>Button inline icon</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Scale</span>
+                <strong>24 px</strong>
+                <small>Navigation &amp; toolbar</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+                <span>Scale</span>
+                <strong>32 px</strong>
+                <small>Hero &amp; feature accent</small>
+              </article>
+            </div>
+            <pre class="vl-code-block">&lt;!-- Icon inherits parent font-size --&gt;
+&lt;span class="vl-icon" aria-hidden="true"&gt;star&lt;/span&gt;
+
+&lt;!-- Explicit size override --&gt;
+&lt;span class="vl-icon" style="font-size: 24px;" aria-hidden="true"&gt;star&lt;/span&gt;
+
+&lt;!-- Accessible icon button --&gt;
+&lt;button class="vl-icon-btn" aria-label="Add to favourites"&gt;
+  &lt;span class="vl-icon" aria-hidden="true"&gt;star&lt;/span&gt;
+&lt;/button&gt;</pre>
+            <p class="vl-code-note">Use <code>aria-hidden="true"</code> on decorative icons. For interactive icon buttons, the accessible label belongs on the <code>&lt;button&gt;</code>, not the icon glyph.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Accessibility ══════════════════════════════════ -->
+        <section id="icon-a11y" class="showcase-cinema-scene showcase-cinema-scene--icon-a11y" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Accessibility</p>
+              <h2 class="showcase-cinema-heading"><code>aria-hidden</code> on decorative icons; labels on actionable ones.</h2>
+              <p class="showcase-ref-lead">
+                Decorative icons carry <code>aria-hidden="true"</code> and
+                <code>focusable="false"</code>. Actionable icons get a visible
+                or <code>aria-label</code> text so assistive tech can announce them.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--icon-a11y" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>decorative icon</span>
+                <code>&lt;svg aria-hidden="true" focusable="false"&gt;&hellip;&lt;/svg&gt;</code>
+              </div>
+              <div class="showcase-cinema-code">
+                <span>actionable icon</span>
+                <code>&lt;button aria-label="Close dialog"&gt;</code>
+                <code>  &lt;svg&gt;&hellip;&lt;/svg&gt;</code>
+                <code>&lt;/button&gt;</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Rule</span>
+                <h3>No icon without a role decision.</h3>
+                <p>Every icon is either decorative (hidden) or actionable (labelled). There is no third option.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Discovery ══════════════════════════════════════ -->
+        <section id="icon-discovery" class="showcase-cinema-scene showcase-cinema-scene--icon-discovery" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Discovery</p>
+              <h2 class="showcase-cinema-heading">Browse the interactive gallery for paired components.</h2>
+              <p class="showcase-ref-lead">
+                The gallery lets you search icons by name, preview them at every scale step,
+                and see which components they pair with out of the box.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/library/gallery.html">Gallery</a>
+                <a class="showcase-ref-chip" href="/pages/library/component-lab-technical-library.html">Lab</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--icon-discovery" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" vl-children="stagger" vl-stagger="120ms">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base" vl-effect="hover-depth-press">
+                  <span>SVG source</span>
+                </div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid" vl-effect="hover-depth-press">
+                  <span>Sizing tokens</span>
+                </div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top" vl-effect="hover-prism">
+                  <span>Component pairing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="icon-payoff" class="showcase-cinema-scene showcase-cinema-scene--icon-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied icons</p>
+            <h2 class="showcase-cinema-heading">Size, semantics and discovery: icons that work everywhere.</h2>
+            <p class="showcase-ref-lead">
+              Snap to the type scale, decide decorative or actionable,
+              then browse the gallery to pair with any component.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Sizing</span>
+                <strong>Type-scale steps from 16 px to 32 px.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Accessibility</span>
+                <strong>Decorative = hidden. Actionable = labelled.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Discovery</span>
+                <strong>Interactive gallery with search and pairing.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Color</span>
+                <strong>currentColor inheritance for automatic theming.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/gallery.html">Component Gallery</a>
+              <a class="showcase-ref-tokens-button" href="/pages/library/component-lab-technical-library.html">Component Lab</a>
+              <a class="showcase-ref-tokens-button" href="/pages/components/buttons.html">Buttons</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +355,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +381,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

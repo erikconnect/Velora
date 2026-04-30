@@ -1,0 +1,899 @@
+/* =========================================================================
+   Velora — Motion Playground
+   Interactive declarative attribute composer with live preview,
+   scroll-timeline range visualizer, and generated markup output.
+   ========================================================================= */
+
+body {
+  background:
+    radial-gradient(1200px 500px at 15% -10%, color-mix(in oklch, var(--vl-color-primary) 20%, transparent), transparent),
+    radial-gradient(900px 380px at 100% -8%, color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 18%, transparent), transparent),
+    var(--vl-bg-main);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: clamp(6rem, 12vh, 9rem);
+}
+
+/* ---- Shell ---------------------------------------------------------------- */
+.mpg-shell {
+  max-width: min(1580px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 6.5rem 0 3rem;
+}
+
+/* ---- Page Header ---------------------------------------------------------- */
+.mpg-header {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 2.2rem;
+}
+
+.mpg-header-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.mpg-kicker-line {
+  width: 2.2rem;
+  height: 1px;
+  background: linear-gradient(90deg, color-mix(in oklch, var(--vl-color-primary) 72%, transparent), transparent);
+}
+
+.mpg-kicker-text {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--vl-text-muted);
+}
+
+.mpg-title {
+  margin: 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(1.9rem, 4.8vw, 3.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.mpg-title em {
+  font-style: normal;
+  color: color-mix(in oklch, var(--vl-color-primary) 72%, var(--vl-text-primary));
+}
+
+.mpg-lead {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--vl-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
+.mpg-header-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.3rem;
+}
+
+.mpg-header-links a {
+  text-decoration: none;
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 66%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+  padding: 0.28rem 0.62rem;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.mpg-header-links a:hover {
+  color: var(--vl-text-primary);
+  border-color: color-mix(in oklch, var(--vl-color-primary) 46%, transparent);
+}
+
+/* ---- Three-column workspace ----------------------------------------------- */
+.mpg-workspace {
+  display: grid;
+  grid-template-columns: 258px 1fr 316px;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+/* ---- Shared panel base ---------------------------------------------------- */
+.mpg-panel {
+  border-radius: 18px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 72%, transparent);
+  overflow: hidden;
+}
+
+.mpg-panel--controls {
+  position: sticky;
+  top: 6.5rem;
+  max-height: calc(100vh - 7.5rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--vl-border-subtle) 56%, transparent) transparent;
+}
+
+.mpg-panel--stage {
+  min-height: 640px;
+}
+
+.mpg-panel--output {
+  position: sticky;
+  top: 6.5rem;
+  max-height: calc(100vh - 7.5rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--vl-border-subtle) 56%, transparent) transparent;
+}
+
+/* ---- Panel head ----------------------------------------------------------- */
+.mpg-panel-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 46%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent);
+  backdrop-filter: blur(8px);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--vl-text-muted);
+}
+
+.mpg-panel--stage .mpg-panel-head {
+  position: static;
+}
+
+/* ---- Reset all button ----------------------------------------------------- */
+.mpg-reset-all {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 66%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-main) 80%, transparent);
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.56rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.mpg-reset-all:hover {
+  border-color: color-mix(in oklch, var(--vl-color-danger) 46%, transparent);
+  color: var(--vl-text-primary);
+}
+
+/* ---- Control groups ------------------------------------------------------- */
+.mpg-group {
+  padding: 0.78rem 1rem 0.6rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 36%, transparent);
+}
+
+.mpg-group-label {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.54rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--vl-text-muted);
+  margin-bottom: 0.55rem;
+}
+
+/* ---- Control fields ------------------------------------------------------- */
+.mpg-field {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.36rem;
+}
+
+.mpg-field:last-child {
+  margin-bottom: 0;
+}
+
+.mpg-label {
+  min-width: 5.8rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  color: var(--vl-text-secondary);
+  white-space: nowrap;
+}
+
+/* ---- Selects -------------------------------------------------------------- */
+.mpg-select {
+  flex: 1;
+  min-width: 0;
+  height: 1.9rem;
+  padding: 0 1.6rem 0 0.55rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236f705f'/%3E%3C/svg%3E") no-repeat right 0.5rem center,
+    color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+  color: var(--vl-text-primary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.6rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+
+.mpg-select:focus {
+  outline: none;
+  border-color: color-mix(in oklch, var(--vl-color-primary) 56%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
+}
+
+/* ---- Range fields --------------------------------------------------------- */
+.mpg-field--range {
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.mpg-field--range .mpg-label {
+  width: 100%;
+  min-width: auto;
+}
+
+.mpg-range-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.mpg-range-row .vl-range {
+  flex: 1;
+}
+
+.mpg-range-output {
+  min-width: 3.2rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  color: var(--vl-text-primary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* =========================================================================
+   CENTER STAGE
+   ========================================================================= */
+
+.mpg-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 46%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 88%, transparent);
+}
+
+/* ---- Mode tabs ------------------------------------------------------------ */
+.mpg-tabs {
+  display: flex;
+  gap: 0.22rem;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 52%, transparent);
+  border-radius: 10px;
+  padding: 0.18rem;
+  background: color-mix(in oklch, var(--vl-bg-main) 82%, transparent);
+}
+
+.mpg-tab {
+  padding: 0.28rem 0.6rem;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--vl-text-muted);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.mpg-tab.is-active {
+  background: color-mix(in oklch, var(--vl-color-primary) 18%, transparent);
+  border-color: color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+  color: var(--vl-text-primary);
+}
+
+/* ---- Stage actions -------------------------------------------------------- */
+.mpg-stage-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.mpg-action-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+  color: var(--vl-text-primary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.mpg-action-btn svg {
+  width: 0.88rem;
+  height: 0.88rem;
+}
+
+.mpg-action-btn:hover {
+  border-color: color-mix(in oklch, var(--vl-color-primary) 56%, transparent);
+  background: color-mix(in oklch, var(--vl-color-primary) 10%, transparent);
+}
+
+.mpg-subject-style {
+  height: 2rem;
+  font-size: 0.58rem;
+}
+
+/* ---- Simple stage --------------------------------------------------------- */
+.mpg-simple-stage {
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  padding: 3rem 2rem;
+  position: relative;
+}
+
+.mpg-subject-wrap {
+  position: relative;
+}
+
+/* ---- Subject styles ------------------------------------------------------- */
+.mpg-subject {
+  position: relative;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.mpg-subject--box {
+  width: clamp(120px, 20vw, 180px);
+  height: clamp(80px, 12vw, 120px);
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--vl-color-primary) 80%, var(--vl-bg-surface)),
+    color-mix(in oklch, var(--vl-color-accent) 90%, var(--vl-bg-main))
+  );
+  box-shadow:
+    0 8px 28px color-mix(in oklch, var(--vl-color-primary) 22%, transparent),
+    inset 0 1px 0 color-mix(in oklch, white 12%, transparent);
+}
+
+.mpg-subject--card {
+  width: clamp(180px, 28vw, 280px);
+  padding: 1.2rem;
+  border-radius: 16px;
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 90%, transparent);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 70%, transparent);
+  box-shadow: var(--vl-shadow-lg);
+  text-align: left;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.mpg-subject--text {
+  font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+  font-family: var(--vl-font-family-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mpg-subject--image {
+  width: clamp(140px, 22vw, 220px);
+  height: clamp(90px, 14vw, 140px);
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--vl-color-secondary) 40%, var(--vl-bg-surface)),
+    color-mix(in oklch, var(--vl-color-primary) 30%, var(--vl-bg-inset))
+  );
+  overflow: hidden;
+}
+
+.mpg-subject-label {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklch, white 52%, transparent);
+  pointer-events: none;
+}
+
+.mpg-subject--card .mpg-subject-label {
+  color: var(--vl-text-muted);
+}
+
+.mpg-subject--text .mpg-subject-label {
+  font-size: inherit;
+  font-family: inherit;
+  color: var(--vl-text-primary);
+  text-transform: none;
+  letter-spacing: inherit;
+  font-weight: inherit;
+}
+
+/* Hover hint */
+.mpg-hover-hint {
+  position: absolute;
+  bottom: 1rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.6rem;
+  color: var(--vl-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* =========================================================================
+   SCROLL STAGE — range visualizer
+   ========================================================================= */
+
+.mpg-scroll-stage {
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mpg-scroll-outer {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+/* Zone legend (left side) */
+.mpg-zones-guide {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 48%, transparent);
+}
+
+.mpg-zone-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.mpg-zone-band.is-active {
+  filter: brightness(1.3);
+  font-weight: 600;
+}
+
+.mpg-zone-band--entry {
+  background: color-mix(in oklch, var(--vl-color-success) 18%, transparent);
+  color: color-mix(in oklch, var(--vl-color-success) 80%, var(--vl-text-primary));
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-color-success) 28%, transparent);
+}
+
+.mpg-zone-band--contain {
+  background: color-mix(in oklch, var(--vl-color-primary) 18%, transparent);
+  color: color-mix(in oklch, var(--vl-color-primary) 80%, var(--vl-text-primary));
+}
+
+.mpg-zone-band--exit {
+  background: color-mix(in oklch, var(--vl-color-warning) 18%, transparent);
+  color: color-mix(in oklch, var(--vl-color-warning) 80%, var(--vl-text-primary));
+  border-top: 1px solid color-mix(in oklch, var(--vl-color-warning) 28%, transparent);
+}
+
+/* Scrollable frame */
+.mpg-scroll-frame {
+  position: relative;
+  height: 420px;
+  border-radius: 12px;
+  border: 2px solid color-mix(in oklch, var(--vl-color-primary) 42%, transparent);
+  overflow: hidden;
+  background: color-mix(in oklch, var(--vl-bg-inset) 72%, transparent);
+}
+
+/* Viewport boundary labels */
+.mpg-viewport-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.6rem;
+  background: color-mix(in oklch, var(--vl-color-primary) 12%, var(--vl-bg-surface-elevated));
+  border-bottom: 1px dashed color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklch, var(--vl-color-primary) 66%, transparent);
+  pointer-events: none;
+}
+
+.mpg-viewport-edge--top {
+  top: 0;
+  border-bottom: 1px dashed color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+}
+
+.mpg-viewport-edge--bottom {
+  bottom: 0;
+  border-top: 1px dashed color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+  border-bottom: none;
+  align-items: center;
+}
+
+/* The scroller */
+.mpg-scroll-area {
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--vl-color-primary) 36%, transparent) transparent;
+}
+
+.mpg-scroll-content {
+  display: grid;
+}
+
+.mpg-scroll-spacer {
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  color: color-mix(in oklch, var(--vl-text-muted) 48%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mpg-scroll-subject-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Scroll subject — smaller to fit the frame */
+.mpg-scroll-frame .mpg-subject--box {
+  width: 120px;
+  height: 80px;
+}
+
+.mpg-scroll-frame .mpg-subject--card {
+  width: 200px;
+  padding: 0.85rem;
+}
+
+/* Progress */
+.mpg-scroll-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mpg-scroll-range-label {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.56rem;
+  color: var(--vl-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.mpg-scroll-progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+  overflow: hidden;
+}
+
+.mpg-scroll-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--vl-color-primary), var(--vl-color-secondary));
+  border-radius: 999px;
+  transition: width 0.08s linear;
+}
+
+.mpg-scroll-progress-value {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.6rem;
+  color: var(--vl-text-muted);
+  min-width: 2.6rem;
+  text-align: right;
+}
+
+/* ---- State bar ------------------------------------------------------------ */
+.mpg-state-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  background: color-mix(in oklch, var(--vl-bg-inset) 50%, transparent);
+}
+
+.mpg-state-chip {
+  padding: 0.16rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-main) 80%, transparent);
+  color: var(--vl-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.mpg-state-chip.is-active {
+  border-color: color-mix(in oklch, var(--vl-color-success) 44%, transparent);
+  background: color-mix(in oklch, var(--vl-color-success) 12%, transparent);
+  color: color-mix(in oklch, var(--vl-color-success) 80%, var(--vl-text-primary));
+}
+
+.mpg-attrs-preview {
+  color: var(--vl-text-muted);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================================
+   CODE OUTPUT PANEL
+   ========================================================================= */
+
+.mpg-code-wrap {
+  margin: 0;
+  min-height: 140px;
+  background: color-mix(in oklch, var(--vl-bg-main) 88%, transparent);
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+}
+
+.mpg-code {
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.64rem;
+  line-height: 1.65;
+  overflow-x: auto;
+  tab-size: 2;
+  white-space: pre;
+}
+
+.mpg-code .c-tag  { color: color-mix(in oklch, var(--vl-color-primary) 80%, var(--vl-text-primary)); }
+.mpg-code .c-attr { color: color-mix(in oklch, var(--vl-color-success) 80%, var(--vl-text-primary)); }
+.mpg-code .c-val  { color: color-mix(in oklch, var(--vl-color-warning) 80%, var(--vl-text-primary)); }
+.mpg-code .c-comment { color: var(--vl-text-muted); font-style: italic; }
+
+/* Copy button */
+.mpg-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 64%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-main) 80%, transparent);
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.56rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.mpg-copy-btn svg {
+  width: 0.74rem;
+  height: 0.74rem;
+}
+
+.mpg-copy-btn:hover {
+  border-color: color-mix(in oklch, var(--vl-color-primary) 46%, transparent);
+  color: var(--vl-text-primary);
+}
+
+.mpg-copy-btn.is-copied {
+  border-color: color-mix(in oklch, var(--vl-color-success) 44%, transparent);
+  background: color-mix(in oklch, var(--vl-color-success) 10%, transparent);
+  color: color-mix(in oklch, var(--vl-color-success) 80%, var(--vl-text-primary));
+}
+
+/* ---- Presets -------------------------------------------------------------- */
+.mpg-presets {
+  padding: 0.75rem 1rem 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.36rem;
+}
+
+.mpg-preset-chip {
+  padding: 0.24rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.56rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.mpg-preset-chip:hover {
+  border-color: color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+  color: var(--vl-text-primary);
+  background: color-mix(in oklch, var(--vl-color-primary) 12%, transparent);
+}
+
+/* ---- Active attrs list ---------------------------------------------------- */
+.mpg-attrs-list {
+  padding: 0.65rem 1rem;
+  display: grid;
+  gap: 0.28rem;
+}
+
+.mpg-attr-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 8px;
+  background: color-mix(in oklch, var(--vl-bg-main) 82%, transparent);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 52%, transparent);
+}
+
+.mpg-attr-name {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  color: color-mix(in oklch, var(--vl-color-success) 80%, var(--vl-text-primary));
+  min-width: 5.5rem;
+}
+
+.mpg-attr-eq {
+  color: var(--vl-text-muted);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+}
+
+.mpg-attr-value {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  color: color-mix(in oklch, var(--vl-color-warning) 80%, var(--vl-text-primary));
+  flex: 1;
+}
+
+.mpg-attr-remove {
+  margin-left: auto;
+  width: 1.3rem;
+  height: 1.3rem;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--vl-text-muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  line-height: 1;
+  transition: background 0.12s, color 0.12s;
+}
+
+.mpg-attr-remove:hover {
+  background: color-mix(in oklch, var(--vl-color-danger) 14%, transparent);
+  color: color-mix(in oklch, var(--vl-color-danger) 70%, var(--vl-text-primary));
+}
+
+.mpg-empty-note {
+  margin: 0.25rem 0 0;
+  color: var(--vl-text-muted);
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+/* ---- Channel hint bar ----------------------------------------------------- */
+.mpg-channel-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  background: color-mix(in oklch, var(--vl-color-primary) 8%, transparent);
+  border-top: 1px solid color-mix(in oklch, var(--vl-color-primary) 22%, transparent);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  color: var(--vl-text-muted);
+}
+
+.mpg-channel-hint strong {
+  color: color-mix(in oklch, var(--vl-color-primary) 80%, var(--vl-text-primary));
+}
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+
+@media (max-width: 72rem) {
+  .mpg-workspace {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .mpg-panel--controls {
+    position: static;
+    max-height: 60vh;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .mpg-panel--stage {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .mpg-panel--output {
+    position: static;
+    max-height: none;
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 48rem) {
+  .mpg-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .mpg-panel--controls,
+  .mpg-panel--output {
+    grid-column: 1;
+    max-height: none;
+    position: static;
+  }
+
+  .mpg-panel--stage {
+    grid-column: 1;
+  }
+
+  .mpg-scroll-frame {
+    height: 340px;
+  }
+
+  .mpg-scroll-spacer {
+    height: 340px;
+  }
+}

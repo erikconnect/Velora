@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Landing cinematográfica do framework Velora com cenas full-canvas, motion declarativo CSS-only e progressão narrativa por scroll." />
+    <meta name="description" content="Velora framework overview — motion-native CSS, tonal depth, narrative scroll, and zero-JS interaction primitives for composing interfaces that feel authored." />
     <title>Landing | Velora</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,23 +11,44 @@
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
     <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <link rel="stylesheet" href="/css/landing.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
-    <style>@view-transition { navigation: auto; }</style>
+    <style>
+      @view-transition { navigation: auto; }
+      body { background: var(--vl-bg-main); overflow-x: hidden; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #lnd-hero     { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #lnd-layering { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #lnd-system   { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #lnd-editorial { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #lnd-payoff   { view-timeline-name: --tl-5; view-timeline-axis: block; }
+    </style>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="showcase-cinema-rail" aria-hidden="true">
-      <div class="showcase-cinema-rail__line"></div>
-      <div class="showcase-cinema-rail__progress"></div>
-      <div class="showcase-cinema-rail__stops">
-        <span class="is-active" data-stop="Intro"></span>
-        <span data-stop="Hero"></span>
-        <span data-stop="Value"></span>
-        <span data-stop="Stack"></span>
-        <span data-stop="CTA"></span>
-      </div>
-      <span class="showcase-cinema-rail__label">Scroll Interpolation</span>
-    </div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+      <a class="vl-bussola__stop" href="#lnd-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#lnd-layering">
+        <span class="vl-bussola__label">Layering</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#lnd-system">
+        <span class="vl-bussola__label">System</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#lnd-editorial">
+        <span class="vl-bussola__label">Editorial</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#lnd-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -78,16 +99,16 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
-          <a class="vl-header-get-started" href="/pages/core/landing.html" vl-effect="hover-depth-press">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/tools/architecture.html" vl-effect="hover-depth-press">Get Started</a>
         </div>
       </div>
     </header>
     <main id="content" class="vl-main">
       <div class="showcase-ref-page showcase-ref-page--landing showcase-ref-page--cinema">
-        <section class="showcase-cinema-scene showcase-cinema-scene--landing-hero" vl-effect="fade-up" vl-once>
+        <section id="lnd-hero" class="showcase-cinema-scene showcase-cinema-scene--landing-hero" vl-effect="fade-up" vl-timeline="view">
           <div class="showcase-landing-hero__wash" aria-hidden="true"></div>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="200ms" vl-speed="cinema">
@@ -112,7 +133,7 @@
                 <span>OKLCH Tonal System</span>
               </div>
             </div>
-            <div class="showcase-cinema-stage showcase-cinema-stage--landing-hero" aria-label="Layered interface demonstration" vl-effect="parallax" vl-timeline="view" vl-range="scene-soft" vl-speed="slower" vl-once vl-children="stagger" vl-stagger="200ms">
+            <div class="showcase-cinema-stage showcase-cinema-stage--landing-hero" aria-label="Layered interface demonstration" vl-effect="parallax" vl-timeline="scroll" vl-range="scene-soft" vl-speed="cinema" vl-children="stagger" vl-stagger="200ms">
               <div class="showcase-cinema-orbit" vl-effect="orbit">
                 <span class="showcase-cinema-orbit__ring showcase-cinema-orbit__ring--outer"></span>
                 <span class="showcase-cinema-orbit__ring showcase-cinema-orbit__ring--mid"></span>
@@ -137,10 +158,10 @@
           </div>
         </section>
 
-        <section class="showcase-cinema-scene showcase-cinema-scene--landing-layering" vl-effect="unfold" vl-timeline="view" vl-range="entry-long" vl-speed="slower" vl-once>
+        <section id="lnd-layering" class="showcase-cinema-scene showcase-cinema-scene--landing-layering" vl-effect="unfold" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-landing-layer__ambient" aria-hidden="true"></div>
-            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="200ms" vl-speed="slower">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="200ms" vl-speed="cinema">
               <p class="showcase-ref-kicker showcase-ref-kicker--typewriter-act" vl-effect="typewriter-soft" vl-speed="cinema">Act I // Layering</p>
               <h2 class="showcase-cinema-heading">Hierarchy without chrome.</h2>
               <p class="showcase-ref-lead">
@@ -152,8 +173,17 @@
                 <a class="showcase-ref-chip" href="/pages/color/ambient-shadows.html" vl-effect="hover-spotlight">Ambient Shadows</a>
                 <a class="showcase-ref-chip" href="/pages/color/tonal-stacking.html" vl-effect="hover-spotlight">Tonal Stacking</a>
               </div>
+              <pre class="vl-code-block">&lt;!-- Four-layer depth stack --&gt;
+&lt;div class="vl-bg-main"&gt;
+  &lt;div class="vl-bg-surface"&gt;
+    &lt;div class="vl-bg-elevated"&gt;
+      &lt;span class="vl-bg-accent"&gt;Primary&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+              <p class="vl-code-note">Each tier is one OKLCH lightness step apart. Velora derives the entire depth stack from your base hue &mdash; no manual shadow tuning required.</p>
             </div>
-            <div class="showcase-cinema-stage showcase-cinema-stage--layering" vl-effect="depth-drift" vl-timeline="view" vl-range="scene-soft" vl-speed="slower" vl-once>
+              <div class="showcase-cinema-stage showcase-cinema-stage--layering" vl-effect="depth-drift" vl-timeline="scroll" vl-range="scene-soft" vl-speed="cinema">
               <div class="showcase-cinema-layer-stack" aria-hidden="true" vl-effect="float">
                 <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--base"><span>Canvas</span></div>
                 <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--surface"><span>Surface</span></div>
@@ -177,7 +207,7 @@
           </div>
         </section>
 
-        <section class="showcase-cinema-scene showcase-cinema-scene--landing-system" vl-effect="wipe-reveal" vl-timeline="view" vl-range="entry-long" vl-speed="slower" vl-once>
+        <section id="lnd-system" class="showcase-cinema-scene showcase-cinema-scene--landing-system" vl-effect="wipe-reveal" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-scene__header">
               <div>
@@ -186,7 +216,7 @@
                   The framework demonstrates itself while you scroll.
                 </h2>
               </div>
-              <p class="showcase-ref-lead" vl-effect="text-reveal-up" vl-timeline="view" vl-range="entry-long" vl-speed="slower">
+              <p class="showcase-ref-lead" vl-effect="text-reveal-up" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
                 Timelines, stagger and scene modules are part of the composition language. The page becomes proof of the
                 primitives rather than a brochure about them.
               </p>
@@ -214,9 +244,9 @@
           </div>
         </section>
 
-        <section class="showcase-cinema-scene showcase-cinema-scene--landing-editorial" vl-effect="glide-in" vl-timeline="view" vl-range="entry-long" vl-speed="slower" vl-once>
+        <section id="lnd-editorial" class="showcase-cinema-scene showcase-cinema-scene--landing-editorial" vl-effect="glide-in" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--editorial" vl-effect="aurora">
-            <div class="showcase-cinema-editorial-mark" vl-effect="reveal-3d" vl-timeline="view" vl-range="entry-short" vl-speed="cinema">V</div>
+              <div class="showcase-cinema-editorial-mark" vl-effect="reveal-3d" vl-timeline="view" vl-range="entry-short" vl-speed="cinema">V</div>
             <blockquote class="showcase-cinema-editorial-quote">
               <p vl-effect="text-word-rise" vl-timeline="view" vl-range="scene-soft" vl-speed="cinema">
                 "Velora rejects generic app-shell neutrality. It treats layout, type and pacing as editorial material,
@@ -227,7 +257,7 @@
                 <span>Voice system / issue 04</span>
               </footer>
             </blockquote>
-            <div class="showcase-cinema-editorial-aside" vl-children="orchestrate" vl-stagger="180ms" vl-speed="slower">
+            <div class="showcase-cinema-editorial-aside" vl-children="orchestrate" vl-stagger="180ms" vl-speed="cinema">
               <p class="showcase-ref-kicker" vl-effect="shimmer-text">Act III // Editorial frame</p>
               <p class="showcase-ref-lead">
                 Motion is paced like a publication opening. Typography lands first, supporting evidence follows, and the
@@ -242,7 +272,7 @@
           </div>
         </section>
 
-        <section class="showcase-cinema-scene showcase-cinema-scene--landing-payoff" vl-effect="zoom-blur" vl-timeline="view" vl-range="entry-long" vl-speed="cinema" vl-once>
+        <section id="lnd-payoff" class="showcase-cinema-scene showcase-cinema-scene--landing-payoff" vl-effect="zoom-blur" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="200ms" vl-speed="cinema" vl-effect="glow-breathe">
             <p class="showcase-ref-kicker"><span vl-effect="shimmer-text">Act IV // Payoff</span></p>
             <h2 class="showcase-cinema-heading">
@@ -330,7 +360,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -356,7 +386,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+    <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

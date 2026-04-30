@@ -195,6 +195,7 @@
     animation-timeline: scroll(root);
     z-index: var(--vl-z-toast);
     pointer-events: none;
+    will-change: transform;
   }
 
   .vl-scroll-progress--glow {
@@ -434,6 +435,15 @@
 
   .vl-counter::after {
     content: counter(vl-count);
+  }
+
+  /* Fallback: browsers without @property can't animate custom properties.
+     Jump straight to the target value so users still see the final number. */
+  @supports not (background: paint(a)) {
+    .vl-counter {
+      counter-reset: vl-count var(--vl-counter-to, 100);
+      transition: none;
+    }
   }
 
   .vl-counter--scroll {

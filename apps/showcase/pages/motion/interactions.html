@@ -9,20 +9,45 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <meta name="description" content="Micro-interactions — pointer, focus and press feedback that makes static CSS feel responsive under 100ms perceived." />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #ix-hero        { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #ix-feedback    { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #ix-consistency { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #ix-specs       { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #ix-payoff      { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;ix</span>
+      <a class="vl-bussola__stop" href="#ix-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ix-feedback">
+        <span class="vl-bussola__label">Feedback</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ix-consistency">
+        <span class="vl-bussola__label">Consistency</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ix-specs">
+        <span class="vl-bussola__label">Specs</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ix-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,211 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--motion">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Motion</p>
-          <h1 class="vl-display-xl hub-hero__title">Interactions</h1>
-          <p class="vl-body-lg hub-hero__lead">Micro-interactions cover pointer, focus, and press feedback — the layer that makes static CSS feel responsive.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/interaction-feedback-micro-interactions.html">Micro-interactions spec</a>
-          <a class="hub-chip-link" href="/pages/components/buttons.html" vl-effect="fade-up" vl-timeline="view">Buttons</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Feedback</strong> — immediate visual response under 100ms perceived.</li>
-            <li><strong>Consistency</strong> — same interaction language for buttons, links, and cards.</li>
-            <li><strong>Specs</strong> — document curves and shadows alongside components.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--interactions showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Feedback</h2>
-          <p class="hub-step-card__body">immediate visual response under 100ms perceived.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Consistency</h2>
-          <p class="hub-step-card__body">same interaction language for buttons, links, and cards.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Specs</h2>
-          <p class="hub-step-card__body">document curves and shadows alongside components.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="ix-hero" class="showcase-cinema-scene showcase-cinema-scene--ix-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Motion demo // Micro-interactions</p>
+              </div>
+              <h1 class="showcase-ref-title">Pointer, focus and press feedback that makes static CSS <em>feel alive</em>.</h1>
+              <p class="showcase-ref-lead">
+                Micro-interactions are the layer between layout and motion. Immediate visual response under 100ms
+                perceived latency builds trust and makes the interface feel responsive before any data loads.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/interaction-feedback-micro-interactions.html">Micro-interactions Spec</a>
+                <a class="showcase-ref-tokens-button" href="/pages/components/buttons.html">Buttons</a>
+                <a class="showcase-ref-tokens-button" href="/pages/motion/motion-principles.html">Motion Principles</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/interaction-feedback-micro-interactions.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Micro-interactions spec</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for interactions and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>motion</code>. Source page: <code>pages/motion/interactions.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--ix-hero" aria-label="Interaction states" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Hover</span>
+                  <strong>Scale + shadow lift in &lt;100ms</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Press</span>
+                  <strong>Scale down + shadow collapse</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Focus</span>
+                  <strong>Ring + subtle glow outline</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>&lt;100ms perceived</span>
+                <span>Consistent language</span>
+                <span>Documented curves</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Feedback ═══════════════════════════════════════ -->
+        <section id="ix-feedback" class="showcase-cinema-scene showcase-cinema-scene--ix-feedback" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Immediate response</p>
+                <h2 class="showcase-cinema-heading">Visual response under 100ms makes static HTML feel as responsive as a native app.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                The framework uses hover-depth-press, hover-prism and hover-card-stack effects
+                that fire on pointer-enter with GPU-only transitions&mdash;no layout reflow, no jank.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Effect</span>
+                <strong>hover-depth-press</strong>
+                <small>Scale 0.97 + shadow compress &middot; 80ms snap ease</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Effect</span>
+                <strong>hover-prism</strong>
+                <small>3D tilt following pointer &middot; perspective 800px</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Effect</span>
+                <strong>hover-card-stack</strong>
+                <small>Lift + sibling compress &middot; stagger-aware</small>
+              </article>
+            </div>
+            <pre class="vl-code-block">&lt;!-- Apply pointer feedback with a single HTML attribute --&gt;
+&lt;button vl-effect="hover-depth-press"&gt;Primary CTA&lt;/button&gt;
+
+&lt;!-- 3D tilt card following cursor position --&gt;
+&lt;article vl-effect="hover-prism"&gt;...&lt;/article&gt;
+
+&lt;!-- Lift with sibling stack compression --&gt;
+&lt;article vl-effect="hover-card-stack"&gt;...&lt;/article&gt;</pre>
+            <p class="vl-code-note">All three effects use GPU-only transforms &mdash; zero layout reflow, zero JavaScript.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Consistency ════════════════════════════════════ -->
+        <section id="ix-consistency" class="showcase-cinema-scene showcase-cinema-scene--ix-consistency" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Interaction language</p>
+              <h2 class="showcase-cinema-heading">Buttons, links and cards share the same interaction vocabulary.</h2>
+              <p class="showcase-ref-lead">
+                Consistent feedback means users learn one mental model: hover lifts, press compresses,
+                focus outlines. Whether the element is a CTA button or a card, the language is identical.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>Hover: scale 1.02</span>
+                <span>Press: scale 0.97</span>
+                <span>Focus: 2px ring</span>
+                <span>Transition: 80ms snap</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--ix-consistency" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-code">
+                <span>button interaction</span>
+                <code>[vl-effect~="hover-depth-press"]:hover {</code>
+                <code>  scale: 1.02;</code>
+                <code>  box-shadow: var(--vl-shadow-lg);</code>
+                <code>}</code>
+              </div>
+              <div class="showcase-cinema-code">
+                <span>card interaction</span>
+                <code>[vl-effect~="hover-depth-press"]:active {</code>
+                <code>  scale: 0.97;</code>
+                <code>  box-shadow: var(--vl-shadow-sm);</code>
+                <code>}</code>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Specs ══════════════════════════════════════════ -->
+        <section id="ix-specs" class="showcase-cinema-scene showcase-cinema-scene--ix-specs" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Documented curves</p>
+              <h2 class="showcase-cinema-heading">Every interaction curve and shadow value is documented alongside the component.</h2>
+              <p class="showcase-ref-lead">
+                The micro-interactions spec records easing function, duration, shadow delta and scale factor
+                for each interactive state. Designers and developers reference the same source of truth.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/components/buttons.html">Buttons</a>
+                <a class="showcase-ref-chip" href="/pages/components/forms.html">Forms</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--ix-specs" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-easing-list">
+                <article class="showcase-cinema-easing-item">
+                  <span>--vl-ix-ease</span>
+                  <strong>cubic-bezier(.2, 0, 0, 1)</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:25%;" aria-label="80ms snap"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item">
+                  <span>--vl-ix-duration</span>
+                  <strong>80ms</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:10%;" aria-label="80ms"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item">
+                  <span>--vl-ix-shadow-hover</span>
+                  <strong>var(--vl-shadow-lg)</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:75%;" aria-label="Large shadow"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item">
+                  <span>--vl-ix-scale-press</span>
+                  <strong>0.97</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--pct:97%;" aria-label="Scale 0.97"></div></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="ix-payoff" class="showcase-cinema-scene showcase-cinema-scene--ix-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied interactions</p>
+            <h2 class="showcase-cinema-heading">Feedback, consistency and documentation make micro-interactions predictable and maintainable.</h2>
+            <p class="showcase-ref-lead">
+              Respond instantly, use the same language across all interactive elements,
+              then record every value in the spec alongside the component.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Feedback</span>
+                <strong>Immediate visual response under 100ms perceived.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Consistency</span>
+                <strong>Same interaction language for buttons, links and cards.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Specs</span>
+                <strong>Every curve and shadow documented alongside components.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Accessibility</span>
+                <strong>Focus rings visible, reduced-motion safe, keyboard navigable.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/interaction-feedback-micro-interactions.html">Read Full Specification</a>
+              <a class="showcase-ref-tokens-button" href="/pages/components/buttons.html">Explore Buttons</a>
+              <a class="showcase-ref-tokens-button" href="/pages/motion/motion-principles.html">Motion Principles</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +381,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +407,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

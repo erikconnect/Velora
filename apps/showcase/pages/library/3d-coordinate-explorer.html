@@ -67,7 +67,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -75,141 +75,140 @@
       </div>
     </header>
 
-    <main id="content" class="vl-main lib-packages-main lib-page lib-page--spec lib-page--3d-coordinate-explorer">
+    <main id="content" class="vl-main lib-packages-main lib-page lib-page--showcase lib-page--3d-coordinate-explorer">
       <section class="vl-container lib-page-hero" aria-label="Page introduction">
-        <p class="vl-kicker lib-page-hero__eyebrow" vl-effect="fade-in" vl-timeline="view">Library Entry</p>
-        <h1 class="lib-page-hero__title" vl-effect="clip-rise" vl-timeline="view">MotionEngine | Coordinate Explorer</h1>
-        <p class="lib-page-hero__lead" vl-effect="fade-up" vl-timeline="view">Generated from packages/pages and styled within the Velora documentation system.</p>
-        <ul class="lib-page-hero__chips" aria-label="Page highlights"><li class="lib-page-chip">Library</li></ul>
+        <p class="vl-kicker lib-page-hero__eyebrow" vl-effect="fade-in" vl-timeline="view">3D Engine</p>
+        <h1 class="lib-page-hero__title" vl-effect="clip-rise" vl-timeline="view">Coordinate Explorer</h1>
+        <p class="lib-page-hero__lead" vl-effect="fade-up" vl-timeline="view">A three-dimensional viewport control panel for exploring Cartesian and spherical coordinate systems with live vector readouts.</p>
+        <ul class="lib-page-hero__chips" aria-label="Page highlights"><li class="lib-page-chip">3D</li><li class="lib-page-chip">Explorer</li><li class="lib-page-chip">Motion</li></ul>
       </section>
       <section class="vl-container lib-page-rail" aria-label="Page orientation">
         <a class="lib-page-rail__back" href="/pages/library/index.html">Back to Library</a>
-        <p class="lib-page-rail__type">spec</p>
+        <p class="lib-page-rail__type">showcase</p>
         <p class="lib-page-rail__source"><code>packages/pages/3d_coordinate_explorer.html</code></p>
       </section>
       <section class="vl-container lib-doc">
         <article class="lib-doc-article">
-<!-- Viewport Control Overlay (Floating Bento) -->
-<div>
-<div>
-<div>
-<h2>ENGINE CONTROL</h2>
-<span>Live v2.4</span>
-</div>
-<div>
+<!-- Intro -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h1>3D Coordinate Explorer</h1>
+  <p>The 3D Coordinate Explorer is a live CSS 3D engine for visualizing Cartesian and Spherical vector spaces. It demonstrates how CSS <code>perspective</code>, <code>transform-style: preserve-3d</code>, and axis rotation stack to produce genuine three-dimensional space in the browser — without WebGL.</p>
+  <p>Velora's 3D motion system is built on this same CSS stack. Understanding how CSS handles the Z-axis and rotational velocity is the foundation for choreographing card flips, depth-based entrance animations, and perspective-aware hover states.</p>
+</section>
+
+<!-- CSS 3D Stack -->
+<section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>The CSS 3D Stack</h2>
+  <p>Three declarations establish a 3D rendering context:</p>
+  <pre><code>/* 1. Parent defines perspective depth */
+.perspective-container {
+  perspective: 1200px;
+}
+
+/* 2. Children inherit 3D space */
+.scene {
+  transform-style: preserve-3d;
+}
+
+/* 3. Isometric grid tilt */
+.grid-3d {
+  transform: rotateX(60deg) rotateZ(-45deg);
+}</code></pre>
+  <p><code>perspective: 1200px</code> sets the vanishing point distance. Smaller values (e.g. 400px) create aggressive foreshortening suitable for dramatic card effects; larger values (e.g. 2000px) produce a softer, near-orthographic 3D look. The explorer uses 1200px — the Velora standard for spatial interfaces.</p>
+</section>
+
+<!-- Coordinate Systems -->
+<section vl-effect="spring-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Coordinate Systems</h2>
+  <p>The explorer supports two projection systems switchable at runtime:</p>
+  <table>
+    <thead>
+      <tr><th>System</th><th>Description</th><th>Best For</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Cartesian</strong></td>
+        <td>X, Y, Z rectilinear axes — the CSS default</td>
+        <td>Grid layouts, card stacks, UI depth layers</td>
+      </tr>
+      <tr>
+        <td><strong>Spherical</strong></td>
+        <td>Radial (ρ), polar (θ), azimuthal (φ) — expressed as CSS rotation chains</td>
+        <td>Orbital motion, globe effects, radial menu reveal</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>In CSS, Spherical coordinates are expressed as a chain of <code>rotateY(θ) rotateX(φ) translateZ(ρ)</code>. The order matters — matrices are not commutative.</p>
+</section>
+
+<!-- Axis Decomposition -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Axis Decomposition</h2>
+  <p>Every point in the 3D scene is expressed as three independent plane components:</p>
+  <pre><code>/* X-Plane — horizontal offset */
+transform: translateX(1.042rem);
+
+/* Y-Plane — vertical offset */
+transform: translateY(0.000rem);
+
+/* Z-Plane — depth offset */
+transform: translateZ(-4.29rem);
+
+/* Combined */
+transform: translate3d(1.042rem, 0.000rem, -4.29rem);</code></pre>
+  <p>Negative Z values push elements away from the viewer (toward the horizon). Positive Z values push elements forward, appearing larger and in front of their siblings. The live vector readout in the explorer shows real-time per-axis values for the active node.</p>
+</section>
+
 <!-- Grid Density -->
-<div>
-<div>
-<label>Grid Density</label>
-<span id="grid-density-value">40</span>
-</div>
-<input id="grid-density" max="96" min="16" step="8" type="range" value="40"/>
-</div>
-<!-- System Toggle -->
-<div>
-<label>Projection System</label>
-<div>
-<button>Cartesian</button>
-<button>Spherical</button>
-</div>
-</div>
-<!-- Axis Presets -->
-<div>
-<label>Axis Palette</label>
-<div>
-<button></button>
-<button></button>
-<button></button>
-<button></button>
-</div>
-</div>
-</div>
-</div>
-<div>
-<h3>Active Vector Data</h3>
-<div>
-<div>
-<p>X-Plane</p>
-<p id="x-plane-value">1.042</p>
-</div>
-<div>
-<p>Y-Plane</p>
-<p id="y-plane-value">0.000</p>
-</div>
-<div>
-<p>Z-Plane</p>
-<p id="z-plane-value">-4.29</p>
-</div>
-</div>
-<div>
-<div>
-<span>ROTATIONAL VELOCITY</span>
-<span id="rotational-velocity">12.4 RAD/S</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Viewport Context Menu (Right) -->
-<div>
-<button>
-<span>videocam</span>
-</button>
-<button>
-<span>open_in_full</span>
-</button>
-<button>
-<span>layers</span>
-</button>
-</div>
-<!-- 3D Visualization Area -->
-<div>
-<div>
-<!-- X-Axis Line -->
-<div id="axis-x"></div>
-<!-- Y-Axis Line -->
-<div id="axis-y"></div>
-<!-- Vertical Z-Axis (Simulated height) -->
-<div id="axis-z"></div>
-<!-- The Grid Base -->
-<div id="grid-base">
-<!-- Floating Data Nodes -->
-<div id="vector-node">
-<div>
-<p>Vector_A</p>
-<p>0.44, 1.2, -0.9</p>
-</div>
-</div>
-<!-- Labels -->
-<div>X</div>
-<div>Y</div>
-</div>
-</div>
-<!-- Subtle Center Shadow/Glow -->
-<div></div>
-</div>
-<!-- Bottom Data Bar -->
-<footer>
-<div>
-<div>
-<span></span>
-<span>Engine Status: Optimal</span>
-</div>
-<div></div>
-<div>
-<span id="fps-value">FPS: 60.0</span>
-<span id="latency-value">LATENCY: 2ms</span>
-</div>
-</div>
-<div>
-<button id="reset-view">Reset View</button>
-<button id="snapshot-view">Snapshot</button>
-</div>
-</footer>
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Grid Density Control</h2>
+  <p>The grid base uses a pure CSS repeating background to render the coordinate plane:</p>
+  <pre><code>.grid-base {
+  background-image:
+    linear-gradient(to right,  var(--vl-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--vl-grid-line) 1px, transparent 1px);
+  background-size: var(--vl-grid-size, 40px) var(--vl-grid-size, 40px);
+}</code></pre>
+  <p>The Grid Density slider adjusts <code>--vl-grid-size</code> from 16px (fine) to 96px (coarse). This is a runtime CSS custom property update — no repaints, no layout recalculations.</p>
+</section>
+
+<!-- Rotational Velocity -->
+<section vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Rotational Velocity</h2>
+  <p>Rotational velocity is expressed in radians per second (RAD/S). In CSS motion, this corresponds to the speed of a <code>rotate3d()</code> animation:</p>
+  <pre><code>@keyframes orbit {
+  from { transform: rotate3d(0, 1, 0, 0deg); }
+  to   { transform: rotate3d(0, 1, 0, 360deg); }
+}
+
+.orbiting-element {
+  animation: orbit calc(2 * 3.14159 / var(--rad-per-second) * 1s) linear infinite;
+}</code></pre>
+  <p>A velocity of 12.4 RAD/S means the element completes approximately 1.97 full rotations per second. The explorer derives this value from the simulated node movement speed as it traverses the coordinate field.</p>
+</section>
+
+<!-- Velora 3D Attributes -->
+<section vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 65%">
+  <h2>Velora 3D Effect Attributes</h2>
+  <p>Velora surfaces key 3D effects through its declarative attribute system. These effects are rooted in the same CSS 3D stack the explorer renders live:</p>
+  <table>
+    <thead>
+      <tr><th>Attribute Value</th><th>CSS Technique</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>vl-effect="flip-x"</code></td><td><code>rotateX()</code> card flip on scroll entry</td></tr>
+      <tr><td><code>vl-effect="flip-y"</code></td><td><code>rotateY()</code> lateral card turn</td></tr>
+      <tr><td><code>vl-effect="spring-up"</code></td><td><code>translateZ + scale</code> depth-pop entrance</td></tr>
+      <tr><td><code>vl-effect="depth-pull"</code></td><td><code>translateZ(-)</code> receding on scroll exit</td></tr>
+      <tr><td><code>vl-hover="lift"</code></td><td><code>translateZ(8px) rotateX(-2deg)</code> on hover</td></tr>
+    </tbody>
+  </table>
+</section>
         </article>
       </section>
       <section class="vl-container lib-page-related" aria-label="Related reading">
         <h2 class="lib-page-related__title">Related reading</h2>
-        <div class="lib-page-related__grid"><a class="lib-page-related__link vl-card" href="/pages/library/index.html">Index</a><a class="lib-page-related__link vl-card" href="/pages/library/gallery.html">Gallery</a></div>
+        <div class="lib-page-related__grid"><a class="lib-page-related__link vl-card" href="/pages/library/3d-rotation-vector-tuner.html">3d Rotation Vector Tuner</a><a class="lib-page-related__link vl-card" href="/pages/library/kinetic-actuators-playground.html">Kinetic Actuators Playground</a></div>
       </section>
     </main>
 
@@ -281,7 +280,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velora Live Example — @layer + container isolation for DocumentTimeline and view()</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/css/velora.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="vl-container">
+
+    <!-- ── Hero ─────────────────────────────────────────────────── -->
+    <header class="vl-card vl-card--glass" vl-scene data-vl-scene-mode="full-bleed">
+      <div class="vl-scene__layout--split" vl-children="stagger">
+        <div class="vl-stack">
+          <span class="vl-kicker vl-kicker--pulse">Velora live example</span>
+          <h1 vl-enter="flow-in" vl-base="dramatic">@layer and container isolation for mixed timelines.</h1>
+          <p vl-enter="fade-up">
+            Three scenes — three CSS layers — three container names.
+            <strong>Scene A</strong> uses the document timeline,
+            <strong>Scene B</strong> uses <code>view()</code>, and
+            <strong>Scene C</strong> combines both.
+            Each scene is walled off so its rules and container queries can never bleed into the others.
+          </p>
+          <div class="vl-cluster" vl-children="stagger">
+            <span class="vl-badge vl-badge--accent" vl-enter="fade-up">@layer scene-a · auto</span>
+            <span class="vl-badge vl-badge--accent" vl-enter="fade-up">@layer scene-b · view()</span>
+            <span class="vl-badge vl-badge--accent" vl-enter="fade-up">@layer scene-c · auto + view()</span>
+          </div>
+        </div>
+        <div class="vl-card vl-card--glass vl-stack" vl-enter="slide-left" vl-base="balanced" vl-hover="hover-lift">
+          <h3>Isolation model</h3>
+          <p><code>@layer scene-a / b / c</code> — cascade is scoped; a rule in scene-b can't override scene-a by accident.</p>
+          <p><code>container-name: scene-a / b / c</code> — <code>@container</code> queries only fire inside the exact named container they target.</p>
+          <p><code>@layer motion</code> — all <code>@keyframes</code> live in one place; no name collision across scenes.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Scene A — DocumentTimeline (auto) only ──────────────── -->
+    <section class="vl-card vl-card--glass" vl-scene>
+      <div class="vl-stack" vl-scroll="depth-drift" vl-base="balanced">
+        <span class="vl-kicker vl-kicker--pulse">Scene A · DocumentTimeline only</span>
+        <h2>Ambient motion that runs on normal time.</h2>
+        <p>Nothing here is scroll-driven. The levitating card and shimmering badges use the regular document timeline.</p>
+      </div>
+
+      <div class="vl-scene__layout--split">
+        <div class="vl-card vl-card--glass vl-stack" vl-hover="hover-lift">
+          <h3>vl-loop · document timeline</h3>
+          <p><code>vl-loop="float"</code> — the card floats on the document clock, never paused by scroll position.</p>
+          <p><code>vl-loop="shimmer"</code> — continuous shimmer on each badge, also document timeline.</p>
+          <p>Container queries written for <code>vl-scene</code> stay isolated because each section is its own named container.</p>
+        </div>
+
+        <article class="vl-card vl-card--glass vl-stack" vl-loop="float" vl-hover="hover-lift">
+          <div class="vl-cluster">
+            <span class="vl-badge">auto</span>
+            <span class="vl-badge">loop</span>
+            <span class="vl-badge">ambient</span>
+          </div>
+          <div class="vl-stack--sm">
+            <span class="vl-badge" vl-loop="shimmer">Rendering · 82%</span>
+            <span class="vl-badge" vl-loop="shimmer">Compositing · 57%</span>
+            <span class="vl-badge" vl-loop="shimmer">Layout · 74%</span>
+          </div>
+          <div class="vl-cluster">
+            <span class="vl-badge vl-badge--accent">runs without scroll</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── Scene B — view() scroll-driven only ─────────────────── -->
+    <section class="vl-card vl-card--glass" vl-scene>
+      <div class="vl-stack" vl-scroll="depth-drift" vl-base="balanced">
+        <span class="vl-kicker vl-kicker--pulse">Scene B · view() only</span>
+        <h2>Cards revealed by scroll entry.</h2>
+        <p>These cards do not animate on normal time. In supporting browsers they only animate through the view timeline when they enter the viewport.</p>
+      </div>
+
+      <div class="vl-scene__layout--cluster" vl-children="stagger">
+        <article class="vl-card vl-card--glass vl-stack" vl-scroll="depth-drift" vl-hover="hover-lift">
+          <span class="vl-badge vl-badge--accent">view(block)</span>
+          <h2 class="vl-text-gradient--accent">01</h2>
+          <h3>Entry reveal</h3>
+          <p>Short entry range so it feels trigger-like.</p>
+        </article>
+
+        <article class="vl-card vl-card--glass vl-stack" vl-scroll="depth-drift" vl-hover="hover-lift">
+          <span class="vl-badge vl-badge--accent">scroll-driven</span>
+          <h2 class="vl-text-gradient--accent">02</h2>
+          <h3>Viewport phase</h3>
+          <p>Animation progress comes from visibility, not elapsed time.</p>
+        </article>
+
+        <article class="vl-card vl-card--glass vl-stack" vl-scroll="depth-drift" vl-hover="hover-lift">
+          <span class="vl-badge vl-badge--accent">container-aware</span>
+          <h2 class="vl-text-gradient--accent">03</h2>
+          <h3>Local layout</h3>
+          <p>The grid rearranges with <code>@container</code>, not global breakpoints.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── Scene C — hybrid: view() entry + auto loop ───────────── -->
+    <section class="vl-card vl-card--glass" vl-scene>
+      <div class="vl-stack" vl-scroll="depth-drift" vl-base="balanced">
+        <span class="vl-kicker vl-kicker--pulse">Scene C · hybrid component</span>
+        <h2>Two timelines on nested elements.</h2>
+        <p>The outer wrapper uses the view timeline for entry. The inner card uses the document timeline for a continuous float. Both run independently without conflict.</p>
+      </div>
+
+      <div class="vl-scene__layout--split">
+        <!-- Outer: scroll-driven entry. Inner: continuous float loop. -->
+        <div vl-scroll="depth-drift" vl-base="balanced">
+          <article class="vl-card vl-card--glass vl-stack" vl-loop="float" vl-hover="hover-lift">
+            <span class="vl-badge vl-badge--accent">auto + view()</span>
+            <h3>Hybrid motion card</h3>
+            <p>The wrapper reveals on scroll entry. Once in view the card floats indefinitely on the document clock.</p>
+            <div class="vl-grid" vl-children="stagger">
+              <div class="vl-card vl-stack--sm" vl-enter="fade-up">
+                <strong>Timeline 1</strong>
+                <span>vl-loop="float" → <code>auto</code></span>
+              </div>
+              <div class="vl-card vl-stack--sm" vl-enter="fade-up">
+                <strong>Timeline 2</strong>
+                <span>vl-scroll="depth-drift" → <code>view(block)</code></span>
+              </div>
+              <div class="vl-card vl-stack--sm" vl-enter="fade-up">
+                <strong>Isolation</strong>
+                <span>outer owns scroll, inner owns loop</span>
+              </div>
+              <div class="vl-card vl-stack--sm" vl-enter="fade-up">
+                <strong>Layout</strong>
+                <span>responsive by <code>vl-scene</code> container width</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <aside class="vl-card vl-card--glass vl-stack" vl-hover="hover-lift" vl-scroll="depth-drift" vl-base="balanced">
+          <h3>vl-scene · container-name: vl-scene</h3>
+          <p>Two timelines, two nesting levels, fully isolated from A and B. Each <code>vl-scene</code> section is its own container so breakpoints are always local.</p>
+          <p>This is the Velora model: ambient motion, scroll motion, and container-aware layout coexist because each scene is its own CSS layer and container scope.</p>
+        </aside>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

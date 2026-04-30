@@ -9,7 +9,8 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Feature scenes: grids of cards, staggered reveals, and consistent iconography tied to Velora design tokens." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
@@ -18,11 +19,153 @@
       .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
       .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
       .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+
+      .scene-lab-board {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+        gap: 1rem;
+        align-items: start;
+      }
+      .scene-lab-demo {
+        --vl-scene-max: 100%;
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent);
+        border-radius: var(--vl-radius-2xl);
+        background:
+          radial-gradient(circle at top right, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent 46%),
+          linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 74%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+        overflow: clip;
+        box-shadow: 0 24px 72px rgba(0, 0, 0, .16);
+      }
+      .scene-lab-copy {
+        display: grid;
+        gap: .85rem;
+        align-content: start;
+      }
+      .scene-lab-copy h3,
+      .scene-lab-copy p,
+      .scene-lab-card h3,
+      .scene-lab-card p,
+      .scene-lab-stat strong,
+      .scene-lab-stat span {
+        margin: 0;
+      }
+      .scene-lab-copy h3,
+      .scene-lab-card h3 {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        line-height: .98;
+        letter-spacing: -.03em;
+      }
+      .scene-lab-copy p,
+      .scene-lab-card p,
+      .scene-lab-note {
+        color: var(--vl-text-muted);
+      }
+      .scene-lab-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .75rem;
+      }
+      .scene-lab-stat,
+      .scene-lab-card {
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent);
+        border-radius: var(--vl-radius-lg);
+        background: color-mix(in oklch, var(--vl-bg-main) 28%, var(--vl-bg-surface) 72%);
+      }
+      .scene-lab-stat {
+        display: grid;
+        gap: .35rem;
+        padding: .9rem;
+      }
+      .scene-lab-stat strong {
+        font-family: var(--vl-font-family-display);
+        font-size: 1.15rem;
+        line-height: 1;
+      }
+      .scene-lab-stat span {
+        font-size: .78rem;
+        color: var(--vl-text-muted);
+      }
+      .scene-lab-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .75rem;
+      }
+      .scene-lab-card {
+        display: grid;
+        gap: .5rem;
+        min-height: 10.5rem;
+        padding: 1rem;
+      }
+      .scene-lab-card--accent {
+        background: color-mix(in oklch, var(--vl-color-primary) 12%, var(--vl-bg-surface) 88%);
+      }
+      .scene-lab-card small {
+        color: var(--vl-color-primary);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .scene-lab-note {
+        margin-top: .9rem;
+        font-size: .8rem;
+      }
+
+      @container vl-scene (max-width: 42rem) {
+        .scene-lab-stats,
+        .scene-lab-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @container vl-scene (min-width: 42.001rem) and (max-width: 68rem) {
+        .scene-lab-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 64rem) {
+        .scene-lab-board {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #feat-hero      { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #feat-grid      { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #feat-container { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #feat-stagger   { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #feat-content   { view-timeline-name: --tl-5; view-timeline-axis: block; }
+      #feat-payoff    { view-timeline-name: --tl-6; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;scenes</span>
+      <a class="vl-bussola__stop" href="#feat-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#feat-grid">
+        <span class="vl-bussola__label">Grid</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#feat-container">
+        <span class="vl-bussola__label">Container</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#feat-stagger">
+        <span class="vl-bussola__label">Stagger</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#feat-content">
+        <span class="vl-bussola__label">Content</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#feat-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +216,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,65 +224,289 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--scenes">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Scenes</p>
-          <h1 class="vl-display-xl hub-hero__title">Scene Features</h1>
-          <p class="vl-body-lg hub-hero__lead">Feature scenes communicate capabilities: grids of cards, staggered reveals, and consistent iconography tied to tokens.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/zero-js-motion-examples.html">Zero-JS motion examples</a>
-          <a class="hub-chip-link" href="/pages/library/motion-principles-overview.html" vl-effect="fade-up" vl-timeline="view">Motion principles</a>
-          <a class="hub-chip-link" href="/pages/scenes/scene-hero.html" vl-effect="fade-up" vl-timeline="view">Hero scene</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Grid</strong> — responsive columns with shared gap tokens.</li>
-            <li><strong>Stagger</strong> — <code>vl-children</code> patterns for orchestrated entry.</li>
-            <li><strong>Content</strong> — each tile links to deeper Library docs.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--scene-features showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Grid</h2>
-          <p class="hub-step-card__body">responsive columns with shared gap tokens.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Stagger</h2>
-          <p class="hub-step-card__body"><code>vl-children</code> patterns for orchestrated entry.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Content</h2>
-          <p class="hub-step-card__body">each tile links to deeper Library docs.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="feat-hero" class="showcase-cinema-scene showcase-cinema-scene--feat-hero" vl-scene="feature-hero" data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Scene demo // Features</p>
+              </div>
+              <h1 class="showcase-ref-title">Card grids with <em>staggered reveals</em> and token-driven iconography.</h1>
+              <p class="showcase-ref-lead">
+                Feature scenes communicate capabilities: responsive grids, orchestrated entry
+                motion, and tiles that link out to deeper Library documentation.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/zero-js-motion-examples.html">Zero-JS Motion Examples</a>
+                <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-hero.html">Hero Scene</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/zero-js-motion-examples.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Zero-JS motion examples</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for scene features and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>scenes</code>. Source page: <code>pages/scenes/scene-features.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--feat-hero" aria-label="Features overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Grid</span>
+                  <strong>Responsive columns + gap tokens</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Stagger</span>
+                  <strong>vl-children orchestrated entry</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Content</span>
+                  <strong>Tiles linking to Library docs</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>Token-driven</span>
+                <span>Responsive</span>
+                <span>Staggered</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Grid ═══════════════════════════════════════════ -->
+        <section id="feat-grid" class="showcase-cinema-scene showcase-cinema-scene--feat-grid" vl-scene="feature-grid" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Grid</p>
+                <h2 class="showcase-cinema-heading">Responsive columns with shared gap tokens keep feature tiles aligned.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Feature grids use <code>auto-fit</code> with a minimum column width token
+                so layouts reflow gracefully from mobile to wide desktop.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Layout</span>
+                <strong>auto-fit</strong>
+                <small>Columns fill available space</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Token</span>
+                <strong>--vl-gap-grid</strong>
+                <small>Shared gutter between tiles</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Token</span>
+                <strong>--vl-radius-xl</strong>
+                <small>Consistent card rounding</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+                <span>Token</span>
+                <strong>--vl-bg-surface</strong>
+                <small>Card background surface</small>
+              </article>
+            </div>
+            <pre class="vl-code-block">.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--vl-col-min, 16rem), 1fr));
+  gap: var(--vl-gap-grid);
+}
+.feature-tile {
+  background: var(--vl-bg-surface);
+  border-radius: var(--vl-radius-xl);
+}</pre>
+            <p class="vl-code-note"><code>var(--vl-gap-grid)</code> and <code>var(--vl-radius-xl)</code> are shared layout tokens &mdash; update one value and every feature grid in the system reflows consistently.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Stagger ════════════════════════════════════════ -->
+        <section id="feat-container" class="showcase-cinema-scene showcase-cinema-scene--feat-container" vl-scene="feature-container-lab" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act II // Container scenes</p>
+                <h2 class="showcase-cinema-heading">Two independent scenes, one page, each responding to its own width.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Both demos below use the same internal grammar. The wide scene expands to a multi-column
+                layout, while the narrow scene collapses to a compact stack because <code>vl-scene</code>
+                is now the container-query boundary.
+              </p>
+            </div>
+
+            <div class="scene-lab-board">
+              <article class="scene-lab-demo" vl-scene="feature-wide" data-vl-scene-density="editorial">
+                <div data-vl-scene-inner>
+                  <div data-vl-scene-layout="split">
+                    <div class="scene-lab-copy" vl-children="stagger" vl-stagger="80ms">
+                      <p class="showcase-ref-kicker">Wide scene</p>
+                      <h3>Editorial-width scene keeps a split composition and three-card grid.</h3>
+                      <p>
+                        This scene sits inside the same document as the compact scene, but its internal
+                        layout resolves from its own container size rather than the viewport.
+                      </p>
+                      <div class="scene-lab-stats">
+                        <div class="scene-lab-stat" vl-effect="hover-depth-press">
+                          <strong>3 columns</strong>
+                          <span>Because the scene container is wide enough.</span>
+                        </div>
+                        <div class="scene-lab-stat" vl-effect="hover-depth-press">
+                          <strong>Split layout</strong>
+                          <span>Copy and cards share the same local container.</span>
+                        </div>
+                        <div class="scene-lab-stat" vl-effect="hover-depth-press">
+                          <strong>Scoped rhythm</strong>
+                          <span>Spacing derives from scene-level variables.</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="scene-lab-grid" vl-children="stagger" vl-stagger="100ms">
+                      <article class="scene-lab-card scene-lab-card--accent" vl-effect="hover-prism">
+                        <small>Layout</small>
+                        <h3>Local reflow</h3>
+                        <p>Grid columns come from the scene width, not the page shell.</p>
+                      </article>
+                      <article class="scene-lab-card" vl-effect="hover-depth-press">
+                        <small>Motion</small>
+                        <h3>Same choreography</h3>
+                        <p>Existing scene motion stays intact because timelines are unchanged.</p>
+                      </article>
+                      <article class="scene-lab-card" vl-effect="hover-depth-press">
+                        <small>Safety</small>
+                        <h3>No leakage</h3>
+                        <p>Selectors stay rooted to the scene boundary, so sibling scenes keep their own rules.</p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <aside class="scene-lab-demo" vl-scene="feature-compact" data-vl-scene-density="compact">
+                <div data-vl-scene-inner>
+                  <div class="scene-lab-copy" vl-children="stagger" vl-stagger="70ms">
+                    <p class="showcase-ref-kicker">Compact scene</p>
+                    <h3>Narrow embedded scenes automatically collapse.</h3>
+                    <p>
+                      This one uses the same cards and stats pattern, but because the container is narrow,
+                      it resolves into a stacked compact scene.
+                    </p>
+                  </div>
+                  <div class="scene-lab-grid" vl-children="stagger" vl-stagger="90ms">
+                    <article class="scene-lab-card" vl-effect="hover-depth-press">
+                      <small>1 column</small>
+                      <h3>Compact mode</h3>
+                      <p>Cards stack cleanly inside a sidebar-sized scene.</p>
+                    </article>
+                    <article class="scene-lab-card scene-lab-card--accent" vl-effect="hover-prism">
+                      <small>Scoped</small>
+                      <h3>Independent</h3>
+                      <p>Its breakpoints do not depend on the wider scene next to it.</p>
+                    </article>
+                  </div>
+                  <p class="scene-lab-note">
+                    Same page, same component grammar, different local layout outcome.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section id="feat-stagger" class="showcase-cinema-scene showcase-cinema-scene--feat-stagger" vl-scene="feature-stagger" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Stagger</p>
+              <h2 class="showcase-cinema-heading"><code>vl-children</code> patterns for orchestrated entry animation.</h2>
+              <p class="showcase-ref-lead">
+                Wrap the grid in <code>vl-children="stagger"</code> and each tile enters
+                with a cascading delay. No JavaScript, no keyframe authoring.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--feat-stagger" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>stagger markup</span>
+                <code>&lt;section vl-children="stagger" vl-stagger="0.08"&gt;</code>
+                <code>  &lt;article vl-effect="fade-up"&gt;&hellip;&lt;/article&gt;</code>
+                <code>  &lt;article vl-effect="fade-up"&gt;&hellip;&lt;/article&gt;</code>
+                <code>&lt;/section&gt;</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Principle</span>
+                <h3>Orchestrate, don&rsquo;t animate.</h3>
+                <p>Declare the pattern; the Motion API handles timing, intersection, and reduced-motion.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Content ════════════════════════════════════════ -->
+        <section id="feat-content" class="showcase-cinema-scene showcase-cinema-scene--feat-content" vl-scene="feature-content" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Content</p>
+              <h2 class="showcase-cinema-heading">Each tile links to deeper Library documentation.</h2>
+              <p class="showcase-ref-lead">
+                Feature cards carry an icon, a headline, a short description, and a link
+                to the canonical Library page so readers can dive into specifics.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/library/zero-js-motion-examples.html">Zero-JS Motion</a>
+                <a class="showcase-ref-chip" href="/pages/library/motion-principles-overview.html">Motion Principles</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--feat-content" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" vl-children="stagger" vl-stagger="120ms">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base" vl-effect="hover-depth-press">
+                  <span>Icon</span>
+                </div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid" vl-effect="hover-depth-press">
+                  <span>Headline + description</span>
+                </div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top" vl-effect="hover-prism">
+                  <span>Library link</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="feat-payoff" class="showcase-cinema-scene showcase-cinema-scene--feat-payoff" vl-scene="feature-payoff" data-vl-scene-density="editorial" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied features</p>
+            <h2 class="showcase-cinema-heading">Grid, stagger and content tiles: a reusable feature scene.</h2>
+            <p class="showcase-ref-lead">
+              Set up the responsive grid, add staggered entry, and fill each tile
+              with content that links back to the Library.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Grid</span>
+                <strong>Responsive columns with shared gap tokens.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Stagger</span>
+                <strong>Orchestrated entry via vl-children.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Content</span>
+                <strong>Tiles linking to deeper Library docs.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Tokens</span>
+                <strong>Consistent surfaces, radii and spacing.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/zero-js-motion-examples.html">Zero-JS Motion</a>
+              <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-hero.html">Hero Scene</a>
+              <a class="showcase-ref-tokens-button" href="/pages/library/motion-principles-overview.html">Motion Principles</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -210,7 +577,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -236,7 +603,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

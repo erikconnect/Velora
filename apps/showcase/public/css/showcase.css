@@ -1942,3 +1942,25 @@ body {
         animation: none;
     }
 }
+
+/* ── Shared inline code block ─────────────────────────────────────────────── */
+/* Used by any showcase page that embeds vl-* attribute or CSS token snippets  */
+.vl-code-block {
+    margin: 0;
+    padding: 0.72rem 0.9rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+    border-radius: 10px;
+    background: color-mix(in oklch, var(--vl-bg-main) 88%, transparent);
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.72rem;
+    line-height: 1.6;
+    overflow: auto;
+    white-space: pre;
+}
+
+.vl-code-note {
+    margin: 0.5rem 0 0;
+    color: var(--vl-text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}

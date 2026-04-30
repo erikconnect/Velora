@@ -49,6 +49,7 @@ export default defineConfig({
         /* ── Components & UI ─────────────────────────────── */
         buttons:           path.resolve(__dirname, "pages/components/buttons.html"),
         forms:             path.resolve(__dirname, "pages/components/forms.html"),
+        testing:           path.resolve(__dirname, "pages/components/testing.html"),
         "component-lab":   path.resolve(__dirname, "pages/components/component-lab.html"),
         "component-wizard":path.resolve(__dirname, "pages/components/component-wizard.html"),
         icons:             path.resolve(__dirname, "pages/components/icons.html"),
@@ -60,6 +61,7 @@ export default defineConfig({
         "kinetic-cards":   path.resolve(__dirname, "pages/motion/kinetic-cards.html"),
         "scale-shift":     path.resolve(__dirname, "pages/motion/scale-shift.html"),
         interactions:      path.resolve(__dirname, "pages/motion/interactions.html"),
+        "api-motion-catalog": path.resolve(__dirname, "pages/motion/api-motion-catalog.html"),
         "3d-explorer":     path.resolve(__dirname, "pages/motion/3d-explorer.html"),
         "3d-rotation":     path.resolve(__dirname, "pages/motion/3d-rotation.html"),
         /* ── Color & Tokens ──────────────────────────────── */

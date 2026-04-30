@@ -9,20 +9,45 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <meta name="description" content="Scale shift actuators — change scale and position in sync for cards, galleries and emphasis without custom keyframes." />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #ss-hero        { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #ss-ranges      { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #ss-performance { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #ss-pairing     { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #ss-payoff      { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;scale</span>
+      <a class="vl-bussola__stop" href="#ss-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ss-ranges">
+        <span class="vl-bussola__label">Ranges</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ss-performance">
+        <span class="vl-bussola__label">Performance</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ss-pairing">
+        <span class="vl-bussola__label">Pairing</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#ss-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,210 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--motion">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Motion</p>
-          <h1 class="vl-display-xl hub-hero__title">Scale Shift</h1>
-          <p class="vl-body-lg hub-hero__lead">Scale shift actuators change scale and position in sync — useful for cards, galleries, and emphasis without custom keyframe files per page.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/scale-shift-actuator-showcase.html">Scale-shift actuator showcase</a>
-          <a class="hub-chip-link" href="/pages/motion/motion-principles.html" vl-effect="fade-up" vl-timeline="view">Motion principles</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Ranges</strong> — map scroll or view timelines to transform intensity.</li>
-            <li><strong>Performance</strong> — prefer transform and opacity.</li>
-            <li><strong>Pairing</strong> — combine with tonal elevation for depth.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--scale-shift showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Ranges</h2>
-          <p class="hub-step-card__body">map scroll or view timelines to transform intensity.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Performance</h2>
-          <p class="hub-step-card__body">prefer transform and opacity.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Pairing</h2>
-          <p class="hub-step-card__body">combine with tonal elevation for depth.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="ss-hero" class="showcase-cinema-scene showcase-cinema-scene--ss-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Motion demo // Scale shift</p>
+              </div>
+              <h1 class="showcase-ref-title">Scale and position change <em>in sync</em> without custom keyframe files.</h1>
+              <p class="showcase-ref-lead">
+                Scale-shift actuators map scroll or view timelines to transform intensity, creating card zoom,
+                gallery emphasis and parallax effects with a single attribute rather than bespoke CSS per page.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/scale-shift-actuator-showcase.html">Scale-Shift Showcase</a>
+                <a class="showcase-ref-tokens-button" href="/pages/motion/motion-principles.html">Motion Principles</a>
+                <a class="showcase-ref-tokens-button" href="/pages/motion/kinetic-motion.html">Kinetic Motion</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/scale-shift-actuator-showcase.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Scale-shift actuator showcase</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for scale shift and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>motion</code>. Source page: <code>pages/motion/scale-shift.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--ss-hero" aria-label="Scale shift preview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Ranges</span>
+                  <strong>Map scroll to transform intensity</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Performance</span>
+                  <strong>Transform + opacity only</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Pairing</span>
+                  <strong>Combine with tonal elevation</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>Scroll-driven</span>
+                <span>GPU composited</span>
+                <span>Zero JS</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Ranges ═════════════════════════════════════════ -->
+        <section id="ss-ranges" class="showcase-cinema-scene showcase-cinema-scene--ss-ranges" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Timeline-to-transform mapping</p>
+                <h2 class="showcase-cinema-heading">Map scroll or view timelines to transform intensity with animation-range tokens.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                The CSS scroll-driven animation API lets us bind scale, translateY and rotate to the scroll position.
+                Range tokens define entry/exit thresholds so the effect starts and ends precisely.
+              </p>
+              <pre class="vl-code-block">&lt;!-- scale up as element enters viewport --&gt;
+&lt;article
+  vl-effect="scale-shift-up"
+  vl-timeline="view"
+  vl-range="entry"&gt;
+  Content
+&lt;/article&gt;
+
+&lt;!-- parallax drift on scroll --&gt;
+&lt;img
+  src="hero.jpg"
+  vl-effect="parallax"
+  vl-timeline="scroll"
+  vl-speed="slow"
+  alt="Hero image" /&gt;</pre>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Range</span>
+                <strong>entry 0% &rarr; entry 100%</strong>
+                <small>Scale 0.9 &rarr; 1.0 as element enters viewport</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Range</span>
+                <strong>cover 0% &rarr; cover 50%</strong>
+                <small>TranslateY 40px &rarr; 0 during first half of visibility</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Range</span>
+                <strong>exit 0% &rarr; exit 100%</strong>
+                <small>Scale 1.0 &rarr; 0.85 as element leaves viewport</small>
+              </article>
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/library/scale-shift-actuator-showcase.html">Actuator Showcase</a>
+              <a class="showcase-ref-chip" href="/pages/motion/kinetic-motion.html">Kinetic Motion</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Performance ════════════════════════════════════ -->
+        <section id="ss-performance" class="showcase-cinema-scene showcase-cinema-scene--ss-performance" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // GPU-only properties</p>
+              <h2 class="showcase-cinema-heading">Only transform and opacity are allowed&mdash;no layout thrash, no repaints.</h2>
+              <p class="showcase-ref-lead">
+                Scale-shift effects use exclusively compositor-safe properties. The browser promotes elements to
+                their own GPU layer, keeping scroll-linked animations at 120fps even on mid-range devices.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>transform &#10004;</span>
+                <span>opacity &#10004;</span>
+                <span>filter &#10004;</span>
+                <span>width/height &#10008;</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--ss-performance" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>scale-shift actuator</span>
+                <code>[vl-effect~="scale-shift"] {</code>
+                <code>  animation: vl-scale-shift linear;</code>
+                <code>  animation-timeline: view();</code>
+                <code>  animation-range: entry 0% entry 100%;</code>
+                <code>  will-change: transform;</code>
+                <code>}</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Rule</span>
+                <h3>No layout properties.</h3>
+                <p>Margin, padding, width and height are never animated in the scale-shift system.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Pairing with tonal elevation ═══════════════════ -->
+        <section id="ss-pairing" class="showcase-cinema-scene showcase-cinema-scene--ss-pairing" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Depth pairing</p>
+              <h2 class="showcase-cinema-heading">Combine scale with tonal elevation so depth looks physical.</h2>
+              <p class="showcase-ref-lead">
+                As an element scales up, its surface token shifts to a lighter tonal tier and its shadow grows.
+                The visual impression is that the element is physically rising from the page.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/color/tonal-tiers.html">Tonal Tiers</a>
+                <a class="showcase-ref-chip" href="/pages/color/ambient-shadows.html">Ambient Shadows</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--ss-pairing" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" aria-hidden="true">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base"><span>base surface</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid"><span>scale 1.02 + tier-02</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top"><span>scale 1.05 + tier-03</span></div>
+              </div>
+
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Pairing recipe</span>
+                <h3>Scale &uarr; &rarr; Tier &uarr; &rarr; Shadow &uarr;</h3>
+                <p>Three properties move together to create convincing physical depth.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="ss-payoff" class="showcase-cinema-scene showcase-cinema-scene--ss-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied scale shift</p>
+            <h2 class="showcase-cinema-heading">Ranges, performance limits and tonal pairing: three rules for every scale-shift effect.</h2>
+            <p class="showcase-ref-lead">
+              Define scroll ranges, keep animations on GPU-safe properties,
+              then pair with tonal elevation for physical depth.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Ranges</span>
+                <strong>Map scroll position to transform intensity with animation-range.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Performance</span>
+                <strong>Only transform, opacity and filter. No layout thrash.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Pairing</span>
+                <strong>Combine with tonal tiers and shadow growth for physical depth.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Degradation</span>
+                <strong>Falls back to static when scroll-driven API is unavailable.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/scale-shift-actuator-showcase.html">Read Full Specification</a>
+              <a class="showcase-ref-tokens-button" href="/pages/motion/kinetic-motion.html">Kinetic Motion</a>
+              <a class="showcase-ref-tokens-button" href="/pages/motion/motion-principles.html">Motion Principles</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +380,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +406,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

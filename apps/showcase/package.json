@@ -10,13 +10,18 @@
   },
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run build:tw-demos",
+    "prebuild": "npm run check:framework-css-sync && npm run check:vl-contract && npm run build:tw-demos",
     "build": "vite build",
     "preview": "vite preview",
     "build:tw-demos": "tailwindcss -c tailwind.config.cjs -i ./src/showcase-tw-demos.css -o ./public/css/showcase-tw-demos.css --minify",
     "test:library": "node --test scripts/lib/port-library-pages.test.mjs",
     "port:library": "node scripts/port-packages-pages.mjs",
     "sync:shell": "node scripts/sync-shell-from-index.mjs",
-    "fill:hubs": "node scripts/refresh-showcase-hubs.mjs"
+    "fill:hubs": "node scripts/refresh-showcase-hubs.mjs",
+    "sync:framework-css": "node scripts/sync-framework-css.mjs",
+    "check:framework-css-sync": "node scripts/check-framework-css-sync.mjs",
+    "check:vl-contract": "node scripts/validate-showcase-contract.mjs",
+    "report:vl-contract": "node scripts/validate-showcase-contract.mjs --write-report",
+    "verify:contract": "npm run check:framework-css-sync && npm run check:vl-contract && npm run build"
   }
 }

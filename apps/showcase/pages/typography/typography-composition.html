@@ -9,20 +9,45 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Rhythm, kicker-title-lead hierarchy and scene reuse — the Velora editorial composition system in five cinema scenes." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #comp-hero      { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #comp-rhythm    { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #comp-hierarchy { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #comp-scenes    { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #comp-payoff    { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;comp</span>
+      <a class="vl-bussola__stop" href="#comp-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#comp-rhythm">
+        <span class="vl-bussola__label">Rhythm</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#comp-hierarchy">
+        <span class="vl-bussola__label">Hierarchy</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#comp-scenes">
+        <span class="vl-bussola__label">Scenes</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#comp-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,198 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--typography">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Typography</p>
-          <h1 class="vl-display-xl hub-hero__title">Typography Composition</h1>
-          <p class="vl-body-lg hub-hero__lead">Editorial composition covers how type blocks combine with rhythm, kickers, and section leads for marketing and docs.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/typography-composition-patterns.html">Composition patterns (Library)</a>
-          <a class="hub-chip-link" href="/pages/scenes/scene-story.html" vl-effect="fade-up" vl-timeline="view">Story scene</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Rhythm</strong> — vertical spacing from tokenized gaps.</li>
-            <li><strong>Hierarchy</strong> — kicker → title → lead → body patterns.</li>
-            <li><strong>Scenes</strong> — reuse composition rules in hero and story sections.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--type-composition showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Rhythm</h2>
-          <p class="hub-step-card__body">vertical spacing from tokenized gaps.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Hierarchy</h2>
-          <p class="hub-step-card__body">kicker → title → lead → body patterns.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Scenes</h2>
-          <p class="hub-step-card__body">reuse composition rules in hero and story sections.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="comp-hero" class="showcase-cinema-scene showcase-cinema-scene--comp-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Foundation demo // Composition patterns</p>
+              </div>
+              <h1 class="showcase-ref-title">How type blocks combine with <em>rhythm, kickers and section leads</em>.</h1>
+              <p class="showcase-ref-lead">
+                Editorial composition defines the repeatable patterns that turn raw type scale into
+                marketing pages, documentation and product UI&mdash;all from the same token set.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/typography-composition-patterns.html">Composition Patterns</a>
+                <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-story.html">Story Scene</a>
+                <a class="showcase-ref-tokens-button" href="/pages/typography/typography.html">Typography Overview</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/typography-composition-patterns.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Composition patterns (Library)</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for typography composition and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>typography</code>. Source page: <code>pages/typography/typography-composition.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--comp-hero" aria-label="Composition preview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Rhythm</span>
+                  <strong>Vertical spacing from tokenized gaps</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Hierarchy</span>
+                  <strong>Kicker &rarr; Title &rarr; Lead &rarr; Body</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Scenes</span>
+                  <strong>Reuse rules in hero and story sections</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>Editorial</span>
+                <span>Reusable</span>
+                <span>Token-driven</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Rhythm ═════════════════════════════════════════ -->
+        <section id="comp-rhythm" class="showcase-cinema-scene showcase-cinema-scene--comp-rhythm" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Vertical rhythm</p>
+                <h2 class="showcase-cinema-heading">Tokenized spacing gaps create consistent vertical rhythm across every section.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Gap tokens control the whitespace between kicker, title, lead and body blocks.
+                One change to <code>--vl-gap-section</code> rescales every section simultaneously.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Gap</span>
+                <strong>--vl-gap-section: 4rem</strong>
+                <small>Between major sections</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Gap</span>
+                <strong>--vl-gap-block: 1.5rem</strong>
+                <small>Between heading and body</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Gap</span>
+                <strong>--vl-gap-inline: 0.75rem</strong>
+                <small>Between kicker and title</small>
+              </article>
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Type Spec</a>
+              <a class="showcase-ref-chip" href="/pages/color/design-tokens.html">Design Tokens</a>
+            </div>
+            <pre class="vl-code-block">&lt;!-- Rhythm composition: gap tokens control all whitespace --&gt;
+&lt;section style="gap: var(--vl-gap-section);"&gt;
+  &lt;header style="gap: var(--vl-gap-block);"&gt;
+    &lt;p class="vl-kicker"&gt;Act I // Topic&lt;/p&gt;
+    &lt;h2 class="vl-title-lg"&gt;Section heading&lt;/h2&gt;
+    &lt;p class="vl-body-lg"&gt;Lead paragraph...&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;p&gt;Body text with detail.&lt;/p&gt;
+&lt;/section&gt;</pre>
+            <p class="vl-code-note">Change <code>--vl-gap-section</code> once to rescale the whitespace rhythm across every section on the page.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Hierarchy ══════════════════════════════════════ -->
+        <section id="comp-hierarchy" class="showcase-cinema-scene showcase-cinema-scene--comp-hierarchy" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Reading hierarchy</p>
+              <h2 class="showcase-cinema-heading">Kicker &rarr; title &rarr; lead &rarr; body: one pattern, every section.</h2>
+              <p class="showcase-ref-lead">
+                The four-block pattern establishes a predictable reading order. Kickers orient the reader,
+                titles anchor the section, leads summarise and body copy delivers detail.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--comp-hierarchy" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>composition block</span>
+                <code>&lt;p class="vl-kicker"&gt;Foundation demo&lt;/p&gt;</code>
+                <code>&lt;h2 class="vl-title-lg"&gt;Section heading&lt;/h2&gt;</code>
+                <code>&lt;p class="vl-body-lg"&gt;Lead paragraph...&lt;/p&gt;</code>
+                <code>&lt;p&gt;Body text with detail...&lt;/p&gt;</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Principle</span>
+                <h3>Always top-down.</h3>
+                <p>Kicker first, then heading, then lead, then body. Never skip a level.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Scenes ═════════════════════════════════════════ -->
+        <section id="comp-scenes" class="showcase-cinema-scene showcase-cinema-scene--comp-scenes" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Scene reuse</p>
+              <h2 class="showcase-cinema-heading">Hero, feature and story scenes share composition rules.</h2>
+              <p class="showcase-ref-lead">
+                The same kicker/title/lead/body pattern is used in hero reveals, feature sections
+                and story pins. Only the visual treatment changes&mdash;the typographic structure stays identical.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/scenes/scene-hero.html">Hero Scene</a>
+                <a class="showcase-ref-chip" href="/pages/scenes/scene-features.html">Feature Scene</a>
+                <a class="showcase-ref-chip" href="/pages/scenes/scene-story.html">Story Scene</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--comp-scenes" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" aria-hidden="true">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base"><span>hero section</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid"><span>feature section</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top"><span>story section</span></div>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Pattern</span>
+                <h3>Same structure, different skin.</h3>
+                <p>Every scene type uses kicker/title/lead/body. Motion and colour vary per context.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="comp-payoff" class="showcase-cinema-scene showcase-cinema-scene--comp-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied composition</p>
+            <h2 class="showcase-cinema-heading">Rhythm, hierarchy and scene reuse: three rules for editorial consistency.</h2>
+            <p class="showcase-ref-lead">
+              Token-based spacing defines rhythm, the four-block pattern enforces hierarchy,
+              and scenes inherit composition rules so every section looks coherent.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Rhythm</span>
+                <strong>Gap tokens control vertical whitespace across all sections.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Hierarchy</span>
+                <strong>Kicker &rarr; title &rarr; lead &rarr; body in every block.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Scenes</span>
+                <strong>Hero, feature and story sections share the same composition rules.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Tokens</span>
+                <strong>One change rescales rhythm across the entire page.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/typography-composition-patterns.html">Composition Patterns</a>
+              <a class="showcase-ref-tokens-button" href="/pages/typography/typography.html">Typography Overview</a>
+              <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-story.html">Story Scene</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +368,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +394,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

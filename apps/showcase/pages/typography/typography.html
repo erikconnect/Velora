@@ -9,20 +9,40 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Token-driven type scales, font pairing and motion-aware reveals — the Velora typography system explained in five cinema scenes." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #type-display   { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #type-headlines { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #type-body      { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #type-utility   { view-timeline-name: --tl-4; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;type</span>
+      <a class="vl-bussola__stop" href="#type-display">
+        <span class="vl-bussola__label">Display</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#type-headlines">
+        <span class="vl-bussola__label">Headlines</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#type-body">
+        <span class="vl-bussola__label">Body</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#type-utility">
+        <span class="vl-bussola__label">Utility</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +93,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,65 +101,207 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--typography">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Typography</p>
-          <h1 class="vl-display-xl hub-hero__title">Typography</h1>
-          <p class="vl-body-lg hub-hero__lead">Typography in Velora uses token-driven scales and font stacks wired in CSS. Start from specimens, then lock metrics in your theme.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/typography-samples.html">Typography samples (Library)</a>
-          <a class="hub-chip-link" href="/pages/typography/typography-spec.html" vl-effect="fade-up" vl-timeline="view">Type spec</a>
-          <a class="hub-chip-link" href="/pages/typography/typography-composition.html" vl-effect="fade-up" vl-timeline="view">Composition patterns</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Scale</strong> — map display, title, and body roles to tokens.</li>
-            <li><strong>Pairing</strong> — Space Grotesk / Manrope / JetBrains Mono as loaded in showcase pages.</li>
-            <li><strong>Motion</strong> — type can participate in <code>vl-effect</code> reveals without extra JS.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--typography showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Scale</h2>
-          <p class="hub-step-card__body">map display, title, and body roles to tokens.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Pairing</h2>
-          <p class="hub-step-card__body">Space Grotesk / Manrope / JetBrains Mono as loaded in showcase pages.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Motion</h2>
-          <p class="hub-step-card__body">type can participate in <code>vl-effect</code> reveals without extra JS.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Display Scaling ══════════════════════════════════ -->
+        <section id="type-display" class="showcase-cinema-scene showcase-cinema-scene--type-display" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Specimen I // Display Scaling</p>
+                <h2 class="showcase-cinema-heading">Geometric authority at every scale&mdash;same token, infinite range.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Space Grotesk at maximum negative tracking. Weight 700 at any size. No optical size tricks&mdash;pure
+                token geometry applied with machine-like consistency from mobile to ultra-wide.
+              </p>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/typography-samples.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Typography samples (Library)</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for typography and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>typography</code>. Source page: <code>pages/typography/typography.html</code>.</p>
+            <div class="type-specimen-wall type-specimen-wall--display" vl-children="stagger" vl-stagger="0.12">
+
+              <div class="type-specimen-card type-specimen-card--display type-specimen-card--display-xl" vl-effect="hover-prism">
+                <div class="type-specimen-meta">
+                  <span class="type-specimen-badge">Display XL</span>
+                  <div class="type-specimen-specs">
+                    <span>Size: clamp(4.5rem, 11vw, 8rem)</span>
+                    <span>Weight: 700</span>
+                    <span>Tracking: &minus;0.04em</span>
+                  </div>
+                </div>
+                <p class="type-specimen-text--xl" vl-effect="rise-3d" vl-once>Kinetic</p>
+              </div>
+
+              <div class="type-specimen-card type-specimen-card--display" vl-effect="hover-depth-press">
+                <div class="type-specimen-meta">
+                  <span class="type-specimen-badge">Display LG</span>
+                  <div class="type-specimen-specs">
+                    <span>Size: clamp(3rem, 7vw, 5.5rem)</span>
+                    <span>Weight: 700</span>
+                    <span>Tracking: &minus;0.03em</span>
+                  </div>
+                </div>
+                <p class="type-specimen-text--lg" vl-effect="fade-up" vl-timeline="view" vl-once>Digital Precision</p>
+              </div>
+
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Full Type Spec</a>
+              <a class="showcase-ref-chip" href="/pages/typography/typography-composition.html">Composition Patterns</a>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 07 · Editorial Headlines ══════════════════════════════ -->
+        <section id="type-headlines" class="showcase-cinema-scene showcase-cinema-scene--type-headlines" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Specimen II // Editorial Headlines</p>
+                <h2 class="showcase-cinema-heading">From hero to section&mdash;one weight stop, infinite editorial range.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                600 weight at &minus;0.02em tracking delivers authority without aggression.
+                Step down to 32px and the same voice holds across section headers and feature callouts.
+              </p>
+            </div>
+
+            <div class="type-specimen-wall type-specimen-wall--headlines" vl-children="stagger" vl-stagger="0.1">
+
+              <div class="type-specimen-card type-specimen-card--headline" vl-effect="hover-prism">
+                <div class="type-specimen-specs type-specimen-specs--row">
+                  <span>48px</span>
+                  <span>Weight 600</span>
+                  <span>Tracking &minus;0.02em</span>
+                </div>
+                <p class="type-specimen-text--h1" vl-effect="fade-up" vl-timeline="view" vl-once>The architect of modern interfaces.</p>
+              </div>
+
+              <div class="type-specimen-card type-specimen-card--headline" vl-effect="hover-depth-press">
+                <div class="type-specimen-specs type-specimen-specs--row">
+                  <span>32px</span>
+                  <span>Weight 600</span>
+                  <span>Tracking &minus;0.01em</span>
+                </div>
+                <p class="type-specimen-text--h2" vl-effect="fade-up" vl-timeline="view" vl-once>Curating the technical aesthete through purposeful design patterns.</p>
+              </div>
+
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Type Spec</a>
+              <a class="showcase-ref-chip" href="/pages/library/typography-samples.html">All Samples</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 08 · Body Variants ═════════════════════════════════════ -->
+        <section id="type-body" class="showcase-cinema-scene showcase-cinema-scene--type-body" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Specimen III // Body Variants</p>
+                <h2 class="showcase-cinema-heading">Manrope&mdash;three densities for every reading context.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Standard for articles. Medium for lead paragraphs. Small for captions and supporting copy.
+                One typeface, three optical densities, legible on dark and light surfaces.
+              </p>
+            </div>
+
+            <div class="type-specimen-wall type-specimen-wall--body" vl-children="stagger" vl-stagger="0.1">
+
+              <div class="type-specimen-card" vl-effect="hover-card-stack">
+                <div class="type-specimen-body-header">
+                  <span class="type-specimen-body-label">Standard</span>
+                  <span class="type-specimen-body-metrics">16px &middot; 1.6 &middot; 0.01em</span>
+                </div>
+                <p class="type-specimen-text--body-std">
+                  Our standard body text is optimised for long-form reading on dark surfaces. The Manrope typeface provides a warmth that
+                  balances the mechanical sharpness of display styles. It ensures high legibility across all screen densities.
+                </p>
+              </div>
+
+              <div class="type-specimen-card" vl-effect="hover-depth-press">
+                <div class="type-specimen-body-header">
+                  <span class="type-specimen-body-label">Medium</span>
+                  <span class="type-specimen-body-metrics">18px &middot; 1.5 &middot; 0em</span>
+                </div>
+                <p class="type-specimen-text--body-md">
+                  Medium variants are used for lead paragraphs and introductory content. The increased weight provides a subtle
+                  hierarchy shift without requiring a typeface or colour change.
+                </p>
+              </div>
+
+              <div class="type-specimen-card" vl-effect="hover-depth-press">
+                <div class="type-specimen-body-header">
+                  <span class="type-specimen-body-label">Small</span>
+                  <span class="type-specimen-body-metrics">14px &middot; 1.4 &middot; 0.02em</span>
+                </div>
+                <p class="type-specimen-text--body-sm">
+                  The small variant handles secondary information, descriptions and supporting copy. Tighter leading optimises space
+                  while slightly increased tracking aids clarity at reduced scales.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 09 · Technical Utility ════════════════════════════════ -->
+        <section id="type-utility" class="showcase-cinema-scene showcase-cinema-scene--type-utility" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Specimen IV // Technical Utility</p>
+                <h2 class="showcase-cinema-heading">Labels, captions, tags and tabular numerals&mdash;the utility layer.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Mono for precision metadata. Bold-caps for system labels. Italic Manrope for captions.
+                Tabular figures for numerical alignment. Every non-prose string has a defined role.
+              </p>
+            </div>
+
+            <div class="type-specimen-wall type-specimen-wall--utility" vl-children="stagger" vl-stagger="0.08">
+
+              <div class="type-specimen-utility-card" vl-effect="hover-prism">
+                <span class="type-specimen-utility-title">Metadata Label</span>
+                <p class="type-specimen-text--mono-label">System.init()</p>
+                <span class="type-specimen-utility-hint">12px &middot; Bold &middot; 0.1em</span>
+              </div>
+
+              <div class="type-specimen-utility-card" vl-effect="hover-depth-press">
+                <span class="type-specimen-utility-title">Caption Style</span>
+                <p class="type-specimen-text--caption">Figure 1.0: Typography hierarchy in oklch space.</p>
+                <span class="type-specimen-utility-hint">12px &middot; Italic &middot; Manrope</span>
+              </div>
+
+              <div class="type-specimen-utility-card" vl-effect="hover-depth-press">
+                <span class="type-specimen-utility-title">Action Tag</span>
+                <div class="type-specimen-tag-row">
+                  <span class="type-specimen-tag type-specimen-tag--accent">Execute</span>
+                  <span class="type-specimen-tag type-specimen-tag--muted">Cancel</span>
+                </div>
+                <span class="type-specimen-utility-hint">10px &middot; Headline Caps</span>
+              </div>
+
+              <div class="type-specimen-utility-card" vl-effect="hover-prism">
+                <span class="type-specimen-utility-title">Numerical Data</span>
+                <p class="type-specimen-text--tabular">1,240.50</p>
+                <span class="type-specimen-utility-hint">30px &middot; Light &middot; Tabular</span>
+              </div>
+
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Type Spec</a>
+              <a class="showcase-ref-chip" href="/pages/typography/typography-composition.html">Composition Patterns</a>
+              <a class="showcase-ref-chip" href="/pages/library/typography-samples.html">All Samples</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -210,7 +372,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -236,7 +398,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

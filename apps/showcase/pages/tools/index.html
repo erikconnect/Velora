@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-editorial-theme="noir" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Velora Creation Suite — a unified collection of interactive tools for building, testing, and refining components, motion, and scenes." />
+    <title>Creation Suite | Velora Tools</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-tools-hub.css" />
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group"><g class="vl-logo-mark__full"><g>
+              <path d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+              <path d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+              <rect x="90.08" y=".37" width="8.5" height="52.97"/>
+            </g></g></g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/api-motion-catalog.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+          <a class="vl-nav__link vl-nav__link--active vl-nav__link--tools" href="/pages/tools/index.html">Tools</a>
+        </nav>
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="vl-main">
+      <div class="tsh-shell">
+
+        <!-- Hero -->
+        <header class="tsh-hero" vl-children="stagger" vl-stagger="120ms">
+          <div class="tsh-kicker">
+            <span class="tsh-kicker-line"></span>
+            <span class="tsh-kicker-text">Velora Framework</span>
+          </div>
+          <h1 class="tsh-title">Creation <em>Suite</em></h1>
+          <p class="tsh-lead">A unified collection of interactive tools for building, testing, and refining every layer of the Velora design system — from token composition to 3D spatial configuration.</p>
+          <div class="tsh-hero-meta">
+            <div class="tsh-count"><strong>5</strong> tools in this suite</div>
+            <div class="tsh-count"><strong>0</strong> dependencies — pure CSS runtime</div>
+          </div>
+        </header>
+
+        <!-- Tools grid -->
+        <div class="tsh-section-label" aria-hidden="true">
+          <span>Interactive Tools</span>
+        </div>
+
+        <div class="tsh-tools-grid" role="list">
+
+          <!-- 01 — Motion Playground (featured) -->
+          <a class="tsh-tool-card tsh-tool-card--featured"
+             href="/pages/motion/motion-playground.html"
+             role="listitem"
+             style="--tsh-accent:var(--vl-color-primary); --tsh-grad-x:75%; --tsh-grad-y:-10%;"
+             vl-enter="fade-up">
+            <div class="tsh-card-head">
+              <span class="tsh-card-num">01</span>
+              <div class="tsh-card-badges">
+                <span class="tsh-badge">Motion</span>
+                <span class="tsh-badge">Animation</span>
+              </div>
+            </div>
+            <h2 class="tsh-card-title">Motion Playground</h2>
+            <p class="tsh-card-desc">Compose and test every <code style="font-family:var(--vl-font-family-mono);font-size:0.82em;color:color-mix(in oklch, var(--vl-color-primary) 80%, var(--vl-text-primary))">vl-*</code> animation attribute in real time. Preview enter, exit, loop, scroll and hover effects, then copy the generated markup directly into your project.</p>
+            <ul class="tsh-card-features">
+              <li>Live attribute composer — all channels in one panel</li>
+              <li>Scroll zone visualizer with entry/contain/exit bands</li>
+              <li>10 built-in presets with one-click apply</li>
+              <li>Syntax-highlighted code output with clipboard copy</li>
+              <li>Keyboard shortcut R to replay animation</li>
+            </ul>
+            <div class="tsh-card-cta">Open Motion Playground <span aria-hidden="true">→</span></div>
+          </a>
+
+          <!-- 02 — Design Playground -->
+          <a class="tsh-tool-card"
+             href="/pages/components/design-playground.html"
+             role="listitem"
+             style="--tsh-accent:var(--vl-color-secondary); --tsh-grad-x:30%; --tsh-grad-y:-10%;"
+             vl-enter="fade-up">
+            <div class="tsh-card-head">
+              <span class="tsh-card-num">02</span>
+              <div class="tsh-card-badges">
+                <span class="tsh-badge">Design</span>
+                <span class="tsh-badge">Tokens</span>
+              </div>
+            </div>
+            <h2 class="tsh-card-title">Design Playground</h2>
+            <p class="tsh-card-desc">Explore every design token, compare Noir and Earth themes side by side, and compose components in the live sandbox with real token values.</p>
+            <ul class="tsh-card-features">
+              <li>Token explorer — click any card to copy <code style="font-family:var(--vl-font-family-mono);font-size:0.9em">var(--vl-*)</code></li>
+              <li>Theme comparator — Noir vs Earth rendered live</li>
+              <li>Component sandbox with surface, radius, shadow controls</li>
+            </ul>
+            <div class="tsh-card-cta">Open Design Playground <span aria-hidden="true">→</span></div>
+          </a>
+
+          <!-- 03 — Scene Creator -->
+          <a class="tsh-tool-card"
+             href="/pages/scenes/scene-creator.html"
+             role="listitem"
+             style="--tsh-accent:color-mix(in oklch, var(--vl-color-accent) 120%, var(--vl-color-primary)); --tsh-grad-x:50%; --tsh-grad-y:-5%;"
+             vl-enter="fade-up">
+            <div class="tsh-card-head">
+              <span class="tsh-card-num">03</span>
+              <div class="tsh-card-badges">
+                <span class="tsh-badge">Layout</span>
+                <span class="tsh-badge">Scene</span>
+              </div>
+            </div>
+            <h2 class="tsh-card-title">Scene Creator</h2>
+            <p class="tsh-card-desc">Build and configure full-page scenes with a visual studio interface. Layer components, set scroll behavior, and export complete scene configurations.</p>
+            <ul class="tsh-card-features">
+              <li>Multi-layer visual composition studio</li>
+              <li>Scene library with saved configurations</li>
+              <li>Live canvas preview with scroll simulation</li>
+            </ul>
+            <div class="tsh-card-cta">Open Scene Creator <span aria-hidden="true">→</span></div>
+          </a>
+
+          <!-- 04 — 3D Rotation Tuner -->
+          <a class="tsh-tool-card"
+             href="/pages/motion/3d-rotation.html"
+             role="listitem"
+             style="--tsh-accent:color-mix(in oklch, var(--vl-color-primary) 80%, hsl(160 40% 55%)); --tsh-grad-x:60%; --tsh-grad-y:-8%;"
+             vl-enter="fade-up">
+            <div class="tsh-card-head">
+              <span class="tsh-card-num">04</span>
+              <div class="tsh-card-badges">
+                <span class="tsh-badge">3D</span>
+                <span class="tsh-badge">Motion</span>
+              </div>
+            </div>
+            <h2 class="tsh-card-title">3D Rotation Tuner</h2>
+            <p class="tsh-card-desc">Fine-tune 3D rotation vectors with a live viewport preview. Adjust X, Y, and Z axes while the transformation matrix updates in real time.</p>
+            <ul class="tsh-card-features">
+              <li>Live 3D card viewport with preserve-3d rendering</li>
+              <li>Axis sliders with real-time matrix output</li>
+              <li>Export transformation values as CSS</li>
+            </ul>
+            <div class="tsh-card-cta">Open 3D Rotation Tuner <span aria-hidden="true">→</span></div>
+          </a>
+
+          <!-- 05 — 3D Coordinate Explorer -->
+          <a class="tsh-tool-card"
+             href="/pages/motion/3d-explorer.html"
+             role="listitem"
+             style="--tsh-accent:color-mix(in oklch, var(--vl-color-secondary) 90%, hsl(200 50% 60%)); --tsh-grad-x:40%; --tsh-grad-y:-8%;"
+             vl-enter="fade-up">
+            <div class="tsh-card-head">
+              <span class="tsh-card-num">05</span>
+              <div class="tsh-card-badges">
+                <span class="tsh-badge">3D</span>
+                <span class="tsh-badge">Spatial</span>
+              </div>
+            </div>
+            <h2 class="tsh-card-title">3D Coordinate Explorer</h2>
+            <p class="tsh-card-desc">Explore 3D coordinate systems in an interactive canvas. Switch between Cartesian and Spherical projections and visualize axis relationships with live data.</p>
+            <ul class="tsh-card-features">
+              <li>Cartesian and spherical projection modes</li>
+              <li>Configurable grid density and axis palette</li>
+              <li>Active vector data panel with live read-out</li>
+            </ul>
+            <div class="tsh-card-cta">Open 3D Explorer <span aria-hidden="true">→</span></div>
+          </a>
+
+        </div><!-- /tsh-tools-grid -->
+
+        <!-- About section -->
+        <div class="tsh-section-label" aria-hidden="true">
+          <span>About the Suite</span>
+        </div>
+
+        <div class="tsh-about-grid" vl-children="stagger" vl-stagger="90ms">
+          <div class="tsh-about-card">
+            <div class="tsh-about-icon">⬡</div>
+            <h3 class="tsh-about-title">Zero-dependency runtime</h3>
+            <p class="tsh-about-text">Every tool runs on the same Velora CSS-only foundation. No animation libraries, no runtime JS bundles — just native CSS scroll-driven animations and the <code style="font-family:var(--vl-font-family-mono);font-size:0.9em">vl-*</code> declarative grammar.</p>
+          </div>
+          <div class="tsh-about-card">
+            <div class="tsh-about-icon">◈</div>
+            <h3 class="tsh-about-title">Token-first design</h3>
+            <p class="tsh-about-text">All tools surface the same <code style="font-family:var(--vl-font-family-mono);font-size:0.9em">--vl-*</code> token layer. Changes to the token set propagate instantly across every playground, comparator, and preview.</p>
+          </div>
+          <div class="tsh-about-card">
+            <div class="tsh-about-icon">↺</div>
+            <h3 class="tsh-about-title">Copy-ready output</h3>
+            <p class="tsh-about-text">Motion Playground generates valid HTML markup with all active <code style="font-family:var(--vl-font-family-mono);font-size:0.9em">vl-*</code> attributes. Design Playground copies token variable names directly to your clipboard.</p>
+          </div>
+          <div class="tsh-about-card">
+            <div class="tsh-about-icon">⬡</div>
+            <h3 class="tsh-about-title">Framework integration</h3>
+            <p class="tsh-about-text">Each tool is cross-linked to the relevant API catalog, documentation, and sibling tools — so you can move fluidly between designing, testing, and referencing without losing context.</p>
+          </div>
+        </div>
+
+      </div><!-- /tsh-shell -->
+    </main>
+
+    <footer class="vl-footer" aria-label="Site footer">
+      <div class="vl-footer__inner vl-container">
+        <div class="vl-footer__brand">
+          <span style="font-family:var(--vl-font-family-mono);font-size:0.62rem;color:var(--vl-text-muted);text-transform:uppercase;letter-spacing:0.1em;">Creation Suite — Velora Design System</span>
+        </div>
+        <nav class="vl-footer__links" aria-label="Footer navigation">
+          <a href="/pages/motion/api-motion-catalog.html">Motion API</a>
+          <a href="/pages/components/api-design-catalog.html">Design API</a>
+          <a href="/pages/color/design-tokens.html">Tokens</a>
+          <a href="/index.html">Showcase Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="/js/showcase-controls.js"></script>
+  </body>
+</html>

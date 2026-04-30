@@ -3,26 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Velora color system: perceptual OKLCH ramps, semantic scale aliases, surface mapping, and contrast verification with CSS-only motion." />
     <title>Color System | Velora</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #cs-hero    { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #cs-ramps   { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #cs-surface { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #cs-verify  { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #cs-payoff  { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;color</span>
+      <a class="vl-bussola__stop" href="#cs-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#cs-ramps">
+        <span class="vl-bussola__label">Ramps</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#cs-surface">
+        <span class="vl-bussola__label">Surface</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#cs-verify">
+        <span class="vl-bussola__label">Verify</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#cs-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,211 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--color">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Color</p>
-          <h1 class="vl-display-xl hub-hero__title">Color System</h1>
-          <p class="vl-body-lg hub-hero__lead">The color system uses oklch-based ramps for perceptual uniformity and accessible contrast when combined with typography tokens.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/color-system-specification.html">Color system specification</a>
-          <a class="hub-chip-link" href="/pages/tools/contrast-tool.html" vl-effect="fade-up" vl-timeline="view">Contrast tool</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Ramps</strong> — primary, neutral, and semantic (error, success) scales.</li>
-            <li><strong>Surfaces</strong> — elevation expressed as tonal shifts, not arbitrary hex.</li>
-            <li><strong>Verification</strong> — pair with the contrast tool before release.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--color-system showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Ramps</h2>
-          <p class="hub-step-card__body">primary, neutral, and semantic (error, success) scales.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Surfaces</h2>
-          <p class="hub-step-card__body">elevation expressed as tonal shifts, not arbitrary hex.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Verification</h2>
-          <p class="hub-step-card__body">pair with the contrast tool before release.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="cs-hero" class="showcase-cinema-scene showcase-cinema-scene--colorsys-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Foundation demo // Perceptual color</p>
+              </div>
+              <h1 class="showcase-ref-title">OKLCH ramps give the framework <em>perceptual uniformity</em> across every surface.</h1>
+              <p class="showcase-ref-lead">
+                The color system is built on calibrated OKLCH scales: primary, neutral and semantic ramps that maintain
+                readable contrast when combined with typography tokens and ambient shadow layers.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/color/design-tokens.html">Design Tokens</a>
+                <a class="showcase-ref-tokens-button" href="/pages/tools/contrast-tool.html">Contrast Tool</a>
+                <a class="showcase-ref-tokens-button" href="/pages/color/color-palette.html">Color Palette</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/color-system-specification.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Color system specification</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for color system and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>color</code>. Source page: <code>pages/color/color-system.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--colorsys-hero" aria-label="Color ramps" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Primary</span>
+                  <strong>oklch(72% 0.19 145) &mdash; Kinetic Green</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Neutral</span>
+                  <strong>oklch(14% 0.015 145) &mdash; Surface Noir</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Ink</span>
+                  <strong>oklch(92% 0.005 145) &mdash; Primary Text</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>oklch() native</span>
+                <span>Perceptually uniform</span>
+                <span>Theme portable</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Ramps ══════════════════════════════════════════ -->
+        <section id="cs-ramps" class="showcase-cinema-scene showcase-cinema-scene--colorsys-ramps" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Color ramps</p>
+                <h2 class="showcase-cinema-heading">Primary, neutral and semantic each serve a different job in the interface.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                The primary ramp drives action and focus. Neutrals build surfaces and reading layers.
+                Semantic scales (error, success, warning) provide system feedback without conflicting with brand color.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Primary</span>
+                <strong>Kinetic Green Ramp</strong>
+                <small>Action, focus, CTA &middot; 10 steps from dark to bright</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Neutral</span>
+                <strong>Surface Noir Ramp</strong>
+                <small>Backgrounds, borders, muted text &middot; 12 steps</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--signal" vl-effect="hover-prism">
+                <span>Error</span>
+                <strong>Destructive Signal</strong>
+                <small>var(--vl-color-error) &middot; oklch(58% 0.21 25)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Success</span>
+                <strong>Positive Signal</strong>
+                <small>var(--vl-color-success) &middot; oklch(68% 0.18 155)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+                <span>Warning</span>
+                <strong>Caution Signal</strong>
+                <small>var(--vl-color-warning) &middot; oklch(74% 0.16 85)</small>
+              </article>
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/color/color-palette.html">Palette Perception</a>
+              <a class="showcase-ref-chip" href="/pages/color/token-spotlight.html">Token Spotlight</a>
+            </div>
+            <pre class="vl-code-block">/* OKLCH ramp token quick-reference */
+--vl-color-primary:  oklch(72% 0.19 145);  /* Kinetic Green  — action, focus, CTA    */
+--vl-color-error:    oklch(58% 0.21  25);  /* Destructive    — alerts, form errors    */
+--vl-color-success:  oklch(68% 0.18 155);  /* Positive       — confirmations, badges  */
+--vl-color-warning:  oklch(74% 0.16  85);  /* Caution        — notices, warnings      */
+--vl-text-primary:   oklch(92% 0.005 145); /* Primary ink    — headings, body text    */</pre>
+            <p class="vl-code-note">All ramp stops share the same hue (145°) so semantic colors stay perceptually coherent across light and dark themes.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Surface mapping ════════════════════════════════ -->
+        <section id="cs-surface" class="showcase-cinema-scene showcase-cinema-scene--colorsys-surface" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Surface as tonal shift</p>
+              <h2 class="showcase-cinema-heading">Elevation is a luminosity delta, not an arbitrary hex.</h2>
+              <p class="showcase-ref-lead">
+                Surface tokens derive from the neutral ramp by stepping OKLCH lightness in fixed increments.
+                This means tonal tiers, stacking rules and shadow alphas all trace back to one calibrated scale.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>L 10% &rarr; base</span>
+                <span>L 14% &rarr; surface</span>
+                <span>L 18% &rarr; elevated</span>
+                <span>L 22% &rarr; float</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--colorsys-surface" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>color-system.ramps</span>
+                <code>--vl-primary-50:  oklch(97% 0.04 145);</code>
+                <code>--vl-primary-500: oklch(72% 0.19 145);</code>
+                <code>--vl-primary-900: oklch(25% 0.08 145);</code>
+              </div>
+              <div class="showcase-cinema-code">
+                <span>surface derivation</span>
+                <code>--vl-bg-main:     oklch(10% .012 145);</code>
+                <code>--vl-bg-surface:  oklch(calc(10% + 4%) .015 145);</code>
+                <code>--vl-bg-elevated: oklch(calc(10% + 8%) .018 145);</code>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Verification ═══════════════════════════════════ -->
+        <section id="cs-verify" class="showcase-cinema-scene showcase-cinema-scene--colorsys-verify" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Contrast verification</p>
+              <h2 class="showcase-cinema-heading">Pair every combination with the contrast tool before release.</h2>
+              <p class="showcase-ref-lead">
+                OKLCH perceptual uniformity makes contrast prediction easier but never eliminates the need to verify.
+                The framework ships a contrast calculator that checks WCAG AA and AAA against every surface token.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/tools/contrast-tool.html">Open Contrast Tool</a>
+                <a class="showcase-ref-chip" href="/pages/tools/accessibility.html">Accessibility Guide</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--colorsys-verify" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" aria-hidden="true">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base"><span>surface tier &check;</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid"><span>text contrast &check;</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top"><span>focus ring &check;</span></div>
+              </div>
+
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Verification method</span>
+                <h3>WCAG AA minimum, AAA target.</h3>
+                <p>All surface&ndash;text pairs exceed 4.5:1. Most exceed 7:1 on Noir surfaces.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="cs-payoff" class="showcase-cinema-scene showcase-cinema-scene--colorsys-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied system</p>
+            <h2 class="showcase-cinema-heading">The color system feeds tokens, tiers, shadows and verification as a single pipeline.</h2>
+            <p class="showcase-ref-lead">
+              Update a ramp stop and every derived surface, border and shadow recalculates.
+              The contrast tool confirms the change is safe before anything ships.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>OKLCH Ramps</span>
+                <strong>Perceptually uniform scales anchor the entire system.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Surface Tokens</span>
+                <strong>Derived from neutral ramp lightness steps.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Semantic Scales</span>
+                <strong>Error, success, warning without brand collision.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Verification</span>
+                <strong>Contrast tool checks every pair before release.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/color-system-specification.html">Read Full Specification</a>
+              <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Inspect All Tokens</a>
+              <a class="showcase-ref-tokens-button" href="/pages/tools/contrast-tool.html">Open Contrast Tool</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +381,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +407,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

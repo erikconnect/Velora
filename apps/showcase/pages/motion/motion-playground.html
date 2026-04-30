@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-editorial-theme="noir" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive Motion API Playground — compose vl-* attributes, preview animations live, and copy generated markup. Part of the Velora design system." />
+    <title>Motion Playground | Velora</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-motion-playground.css" />
+    <link rel="stylesheet" href="/css/showcase-tools-hub.css" />
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group"><g class="vl-logo-mark__full"><g>
+              <path d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+              <path d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+              <path d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+              <path d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+              <rect x="90.08" y=".37" width="8.5" height="52.97"/>
+              <path d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+            </g></g></g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link vl-nav__link--active" href="/pages/motion/api-motion-catalog.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+          <a class="vl-nav__link vl-nav__link--active vl-nav__link--tools" href="/pages/tools/index.html">Tools</a>
+        </nav>
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="vl-main">
+      <div class="mpg-shell">
+
+        <!-- Page header -->
+        <header class="mpg-header" vl-children="stagger" vl-stagger="120ms">
+          <div class="mpg-header-kicker">
+            <span class="mpg-kicker-line"></span>
+            <span class="mpg-kicker-text">Interactive Tool</span>
+          </div>
+          <h1 class="mpg-title">Motion <em>Playground</em></h1>
+          <p class="mpg-lead">Compose <code>vl-*</code> attributes in real-time, watch animations live, and copy the generated markup. Inspired by the scroll-driven animation tools — built for the Velora system.</p>
+          <div class="mpg-header-links">
+            <a href="/pages/motion/api-motion-catalog.html">← API Reference</a>
+            <a href="/pages/motion/motion-extended.html">Extended Effects</a>
+            <a href="/pages/motion/kinetic-motion.html">Ambient Loops</a>
+            <a href="/pages/motion/interactions.html">Interactions</a>
+            <a href="/pages/components/design-playground.html">Design Playground →</a>
+          </div>
+        </header>
+
+        <!-- Three-column workspace -->
+        <div class="mpg-workspace">
+
+          <!-- ══════════════════════════════════════════════════════════
+               LEFT PANEL — Controls
+               ══════════════════════════════════════════════════════════ -->
+          <aside class="mpg-panel mpg-panel--controls" aria-label="Animation parameters">
+            <div class="mpg-panel-head">
+              <span>Parameters</span>
+              <button class="mpg-reset-all" id="mpg-reset-all" type="button">Reset all</button>
+            </div>
+
+            <!-- Channel / timeline -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Channel</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-timeline">vl-timeline</label>
+                <select class="mpg-select" id="ctrl-timeline" data-attr="vl-timeline">
+                  <option value="">— none</option>
+                  <option value="view">view</option>
+                  <option value="scroll">scroll</option>
+                  <option value="hover">hover</option>
+                  <option value="auto">auto</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Entrance -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Entrance</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-enter">vl-enter</label>
+                <select class="mpg-select" id="ctrl-enter" data-attr="vl-enter">
+                  <option value="">— none</option>
+                  <option value="fade-in">fade-in</option>
+                  <option value="fade-up">fade-up</option>
+                  <option value="fade-down">fade-down</option>
+                  <option value="slide-left">slide-left</option>
+                  <option value="slide-right">slide-right</option>
+                  <option value="scale-in">scale-in</option>
+                  <option value="blur-in">blur-in</option>
+                  <option value="clip-rise">clip-rise</option>
+                  <option value="tilt-in">tilt-in</option>
+                  <option value="pop-in">pop-in</option>
+                  <option value="flow-in">flow-in</option>
+                  <option value="reveal-3d">reveal-3d</option>
+                </select>
+              </div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-effect-enter">vl-effect ↓</label>
+                <select class="mpg-select" id="ctrl-effect-enter" data-attr-special="enter-effect">
+                  <option value="">— none</option>
+                  <optgroup label="Extended entrances">
+                    <option value="spring-up">spring-up</option>
+                    <option value="glide-in">glide-in</option>
+                    <option value="zoom-blur">zoom-blur</option>
+                    <option value="slice-in">slice-in</option>
+                    <option value="unfold">unfold</option>
+                    <option value="flip-in">flip-in</option>
+                    <option value="spring-3d">spring-3d</option>
+                    <option value="hinge-down">hinge-down</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-base">vl-base</label>
+                <select class="mpg-select" id="ctrl-base" data-attr="vl-base">
+                  <option value="">— balanced</option>
+                  <option value="subtle">subtle</option>
+                  <option value="dramatic">dramatic</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Exit -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Exit</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-exit">vl-exit</label>
+                <select class="mpg-select" id="ctrl-exit" data-attr="vl-exit">
+                  <option value="">— none</option>
+                  <option value="fade-out">fade-out</option>
+                  <option value="fade-out-up">fade-out-up</option>
+                  <option value="fade-out-down">fade-out-down</option>
+                  <option value="shrink-out">shrink-out</option>
+                  <option value="slide-out-left">slide-out-left</option>
+                  <option value="slide-out-right">slide-out-right</option>
+                  <option value="blur-out">blur-out</option>
+                  <option value="clip-drop">clip-drop</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Loop -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Loop</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-loop">vl-loop</label>
+                <select class="mpg-select" id="ctrl-loop" data-attr="vl-loop">
+                  <option value="">— off</option>
+                  <option value="-1">∞ infinite</option>
+                  <option value="1">1×</option>
+                  <option value="2">2×</option>
+                  <option value="3">3×</option>
+                </select>
+              </div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-loop-effect">vl-loop-effect</label>
+                <select class="mpg-select" id="ctrl-loop-effect" data-attr="vl-loop-effect">
+                  <option value="">— none</option>
+                  <option value="float">float</option>
+                  <option value="shimmer">shimmer</option>
+                  <option value="glow-breathe">glow-breathe</option>
+                  <option value="wobble">wobble</option>
+                  <option value="rock">rock</option>
+                  <option value="morph">morph</option>
+                  <option value="spin">spin</option>
+                  <option value="orbit">orbit</option>
+                </select>
+              </div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-direction">vl-direction</label>
+                <select class="mpg-select" id="ctrl-direction" data-attr="vl-direction">
+                  <option value="">— normal</option>
+                  <option value="reverse">reverse</option>
+                  <option value="alternate">alternate</option>
+                  <option value="alternate-reverse">alternate-reverse</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Scroll -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Scroll</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-scroll">vl-scroll</label>
+                <select class="mpg-select" id="ctrl-scroll" data-attr="vl-scroll">
+                  <option value="">— none</option>
+                  <option value="parallax">parallax</option>
+                  <option value="cinema-zoom">cinema-zoom</option>
+                  <option value="depth-drift">depth-drift</option>
+                  <option value="scroll-marquee">scroll-marquee</option>
+                  <option value="rotate-scroll">rotate-scroll</option>
+                </select>
+              </div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-range">vl-range</label>
+                <select class="mpg-select" id="ctrl-range" data-attr="vl-range">
+                  <option value="">— default</option>
+                  <option value="entry">entry</option>
+                  <option value="entry-short">entry-short</option>
+                  <option value="entry-long">entry-long</option>
+                  <option value="cover">cover</option>
+                  <option value="contain">contain</option>
+                  <option value="scene-soft">scene-soft</option>
+                  <option value="scene-focus">scene-focus</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Timing -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Timing</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-speed">vl-speed</label>
+                <select class="mpg-select" id="ctrl-speed" data-attr="vl-speed">
+                  <option value="">— default</option>
+                  <option value="fast">fast</option>
+                  <option value="normal">normal</option>
+                  <option value="slow">slow</option>
+                  <option value="cinema">cinema</option>
+                </select>
+              </div>
+              <div class="mpg-field mpg-field--range">
+                <label class="mpg-label" for="ctrl-duration">vl-duration</label>
+                <div class="mpg-range-row">
+                  <input class="vl-range" type="range" id="ctrl-duration" min="0" max="4000" step="50" value="0" />
+                  <output class="mpg-range-output" id="ctrl-duration-out" for="ctrl-duration">auto</output>
+                </div>
+              </div>
+            </div>
+
+            <!-- Children / stagger -->
+            <div class="mpg-group">
+              <div class="mpg-group-label">Children</div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-children">vl-children</label>
+                <select class="mpg-select" id="ctrl-children" data-attr="vl-children">
+                  <option value="">— none</option>
+                  <option value="stagger">stagger</option>
+                  <option value="cascade">cascade</option>
+                  <option value="sequence">sequence</option>
+                  <option value="orchestrate">orchestrate</option>
+                  <option value="wave">wave</option>
+                  <option value="blur-cascade">blur-cascade</option>
+                  <option value="zoom-stagger">zoom-stagger</option>
+                </select>
+              </div>
+              <div class="mpg-field">
+                <label class="mpg-label" for="ctrl-stagger">vl-stagger</label>
+                <select class="mpg-select" id="ctrl-stagger" data-attr="vl-stagger">
+                  <option value="">— none</option>
+                  <option value="40ms">40ms</option>
+                  <option value="60ms">60ms</option>
+                  <option value="80ms">80ms</option>
+                  <option value="120ms">120ms</option>
+                  <option value="180ms">180ms</option>
+                  <option value="250ms">250ms</option>
+                  <option value="300ms">300ms</option>
+                </select>
+              </div>
+            </div>
+
+          </aside>
+
+          <!-- ══════════════════════════════════════════════════════════
+               CENTER PANEL — Preview Stage
+               ══════════════════════════════════════════════════════════ -->
+          <div class="mpg-panel mpg-panel--stage">
+
+            <!-- Stage toolbar -->
+            <div class="mpg-stage-head">
+              <div class="mpg-tabs" role="tablist" aria-label="Preview mode">
+                <button class="mpg-tab is-active" data-mode="enter" type="button" role="tab" aria-selected="true">Enter / Exit</button>
+                <button class="mpg-tab" data-mode="loop"   type="button" role="tab" aria-selected="false">Loop</button>
+                <button class="mpg-tab" data-mode="scroll" type="button" role="tab" aria-selected="false">Scroll</button>
+                <button class="mpg-tab" data-mode="hover"  type="button" role="tab" aria-selected="false">Hover</button>
+              </div>
+              <div class="mpg-stage-actions">
+                <button class="mpg-action-btn" id="mpg-replay" type="button" aria-label="Replay animation" title="Replay (R)">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5a7 7 0 1 1-6.93 8H3l3.2 3.2.08.08L9.5 13H7.1A4.9 4.9 0 1 0 12 7c-1.14 0-2.2.39-3.03 1.04L7.5 6.6A7 7 0 0 1 12 5z"/></svg>
+                </button>
+                <select class="mpg-select mpg-subject-style" id="mpg-subject-style" title="Subject style" aria-label="Subject style">
+                  <option value="box">Box</option>
+                  <option value="card">Card</option>
+                  <option value="text">Text</option>
+                  <option value="image">Image-like</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ── Simple stage (Enter / Loop / Hover) ── -->
+            <div class="mpg-simple-stage" id="mpg-simple-stage">
+              <div class="mpg-subject-wrap">
+                <div class="mpg-subject mpg-subject--box" id="mpg-subject" aria-label="Preview subject">
+                  <span class="mpg-subject-label">Subject</span>
+                </div>
+              </div>
+              <span class="mpg-hover-hint" id="mpg-hover-hint" hidden>Hover the subject to trigger</span>
+            </div>
+
+            <!-- ── Scroll stage ── -->
+            <div class="mpg-scroll-stage" id="mpg-scroll-stage" hidden>
+
+              <p style="margin:0;font-family:var(--vl-font-family-mono);font-size:0.58rem;color:var(--vl-text-muted);text-transform:uppercase;letter-spacing:0.1em;">
+                Scroll inside the frame to drive the animation. The subject has your selected <code>vl-scroll</code> / <code>vl-enter</code> attributes applied.
+              </p>
+
+              <div class="mpg-scroll-outer">
+                <!-- Zone legend -->
+                <div class="mpg-zones-guide" id="mpg-zones-guide" aria-label="Scroll zone legend" aria-hidden="true">
+                  <div class="mpg-zone-band mpg-zone-band--entry"   id="zg-entry">Entry</div>
+                  <div class="mpg-zone-band mpg-zone-band--contain" id="zg-contain">Contain</div>
+                  <div class="mpg-zone-band mpg-zone-band--exit"    id="zg-exit">Exit</div>
+                </div>
+
+                <!-- Scrollable frame -->
+                <div class="mpg-scroll-frame">
+                  <!-- Viewport boundary markers (purely visual, stay fixed) -->
+                  <div class="mpg-viewport-edge mpg-viewport-edge--top" aria-hidden="true">
+                    <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><path d="M4 1L7 6H1z" fill="currentColor"/></svg>
+                    Viewport top
+                  </div>
+                  <div class="mpg-viewport-edge mpg-viewport-edge--bottom" aria-hidden="true">
+                    <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true"><path d="M4 7L7 2H1z" fill="currentColor"/></svg>
+                    Viewport bottom
+                  </div>
+
+                  <!-- Scrollable content -->
+                  <div class="mpg-scroll-area" id="mpg-scroll-area">
+                    <div class="mpg-scroll-content">
+                      <div class="mpg-scroll-spacer" aria-hidden="true">↓ Scroll down</div>
+                      <div class="mpg-scroll-subject-wrap">
+                        <div class="mpg-subject mpg-subject--box" id="mpg-scroll-subject" vl-timeline="view" aria-label="Scroll preview subject">
+                          <span class="mpg-subject-label">Subject</span>
+                        </div>
+                      </div>
+                      <div class="mpg-scroll-spacer" aria-hidden="true">↑ Scroll up to reset</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Progress readout -->
+              <div class="mpg-scroll-progress-row" aria-live="polite" aria-atomic="true">
+                <span class="mpg-scroll-range-label" id="mpg-range-label">Scroll progress</span>
+                <div class="mpg-scroll-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="mpg-range-label">
+                  <div class="mpg-scroll-progress-fill" id="mpg-scroll-progress"></div>
+                </div>
+                <span class="mpg-scroll-progress-value" id="mpg-scroll-progress-value">0%</span>
+              </div>
+            </div>
+
+            <!-- State bar -->
+            <div class="mpg-state-bar" id="mpg-state-bar">
+              <span class="mpg-state-chip" id="mpg-state-chip">idle</span>
+              <span class="mpg-attrs-preview" id="mpg-attrs-preview" aria-live="polite"></span>
+            </div>
+
+          </div>
+
+          <!-- ══════════════════════════════════════════════════════════
+               RIGHT PANEL — Code Output
+               ══════════════════════════════════════════════════════════ -->
+          <div class="mpg-panel mpg-panel--output">
+
+            <!-- Generated markup -->
+            <div class="mpg-panel-head">
+              <span>Generated Markup</span>
+              <button class="mpg-copy-btn" id="mpg-copy" type="button" aria-label="Copy markup to clipboard">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                Copy
+              </button>
+            </div>
+            <div class="mpg-code-wrap">
+              <pre class="mpg-code" aria-label="Generated HTML markup"><code id="mpg-code-content"><span class="c-comment">&lt;!-- Select attributes to generate markup --&gt;</span>
+<span class="c-tag">&lt;div&gt;</span>
+  Content
+<span class="c-tag">&lt;/div&gt;</span></code></pre>
+            </div>
+
+            <!-- Quick presets -->
+            <div class="mpg-panel-head" style="position:static;margin-top:0;border-top:1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);">
+              <span>Quick Presets</span>
+            </div>
+            <div class="mpg-presets">
+              <button class="mpg-preset-chip" data-preset="scroll-reveal" type="button">Scroll Reveal</button>
+              <button class="mpg-preset-chip" data-preset="ambient-float" type="button">Float Loop</button>
+              <button class="mpg-preset-chip" data-preset="parallax" type="button">Parallax</button>
+              <button class="mpg-preset-chip" data-preset="hover-lift" type="button">Hover Lift</button>
+              <button class="mpg-preset-chip" data-preset="spring-3d" type="button">Spring 3D</button>
+              <button class="mpg-preset-chip" data-preset="glow-loop" type="button">Glow Loop</button>
+              <button class="mpg-preset-chip" data-preset="cinema-zoom" type="button">Cinema Zoom</button>
+              <button class="mpg-preset-chip" data-preset="stagger-reveal" type="button">Stagger</button>
+              <button class="mpg-preset-chip" data-preset="dramatic-flip" type="button">Flip 3D</button>
+              <button class="mpg-preset-chip" data-preset="depth-drift" type="button">Depth Drift</button>
+              <button class="mpg-preset-chip" data-preset="hybrid-timeline" type="button">Hybrid ↑↺</button>
+            </div>
+
+            <!-- Active attributes list -->
+            <div class="mpg-panel-head" style="position:static;border-top:1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);">
+              <span>Active Attributes</span>
+            </div>
+            <div class="mpg-attrs-list" id="mpg-attrs-list">
+              <p class="mpg-empty-note">No attributes selected yet.</p>
+            </div>
+
+            <!-- Channel hint -->
+            <div class="mpg-channel-hint">
+              <span>Channel order:</span>
+              <strong>base → enter → scroll → loop → hover → state → exit</strong>
+              <small style="display:block;margin-top:0.35rem;font-size:0.65rem;color:var(--vl-text-muted);line-height:1.4;">⛑ <code>vl-scroll</code> + <code>vl-loop</code> cannot share an element — both set <code>animation-name</code>. Nest them: outer element → <code>vl-scroll</code>, inner element → <code>vl-loop</code>.</small>
+            </div>
+
+          </div>
+        </div><!-- /mpg-workspace -->
+
+      </div><!-- /mpg-shell -->
+    </main>
+
+    <footer class="vl-footer" aria-label="Site footer">
+      <div class="vl-footer__inner vl-container">
+        <div class="vl-footer__brand">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false" style="height:1.4rem;opacity:0.44">
+            <g><g><g>
+              <path d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+              <rect x="90.08" y=".37" width="8.5" height="52.97"/>
+            </g></g></g>
+          </svg>
+          <span style="font-family:var(--vl-font-family-mono);font-size:0.62rem;color:var(--vl-text-muted);text-transform:uppercase;letter-spacing:0.1em;">Motion Playground — Velora Design System</span>
+        </div>
+        <nav class="vl-footer__links" aria-label="Footer navigation">
+          <a href="/pages/motion/api-motion-catalog.html">API Reference</a>
+          <a href="/pages/motion/motion-extended.html">Extended Effects</a>
+          <a href="/pages/components/design-playground.html">Design Playground</a>
+          <a href="/index.html">Showcase Home</a>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- Tools Suite Dock -->
+    <div class="vl-tools-dock" aria-label="Creation Suite quick-switch">
+      <div class="vl-tools-dock__panel" role="menu">
+        <div class="vl-tools-dock__heading">Creation Suite</div>
+        <a class="vl-tools-dock__item is-active" href="/pages/motion/motion-playground.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Motion Playground
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/components/design-playground.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Design Playground
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/scenes/scene-creator.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Scene Creator
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/motion/3d-rotation.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>3D Rotation Tuner
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/motion/3d-explorer.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>3D Explorer
+        </a>
+        <a class="vl-tools-dock__hub" href="/pages/tools/index.html" role="menuitem">⬡ Suite Hub</a>
+      </div>
+      <button class="vl-tools-dock__trigger" type="button" aria-haspopup="true" aria-label="Open Creation Suite navigation">
+        <span class="vl-tools-dock__icon" aria-hidden="true">⬡</span>
+        Tools
+      </button>
+    </div>
+
+    <script src="/js/showcase-controls.js"></script>
+    <script>
+    (() => {
+      'use strict';
+
+      // ── Keyboard shortcut: R = replay ───────────────────────────────────────
+      document.addEventListener('keydown', e => {
+        if (e.key === 'r' || e.key === 'R') {
+          if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
+            document.getElementById('mpg-replay')?.click();
+          }
+        }
+      });
+
+      // ── Preset configs ───────────────────────────────────────────────────────
+      const PRESETS = {
+        'scroll-reveal':   { enter: 'fade-up',     timeline: 'view',              mode: 'enter' },
+        'ambient-float':   { loop: '-1',            'loop-effect': 'float',        mode: 'loop'  },
+        'parallax':        { scroll: 'parallax',                                   mode: 'scroll' },
+        'hover-lift':      { timeline: 'hover',     'loop-effect': 'shimmer', loop: '-1', mode: 'hover' },
+        'spring-3d':       { effectEnter: 'spring-3d', speed: 'slow', mode: 'enter' },
+        'glow-loop':       { loop: '-1', 'loop-effect': 'glow-breathe', speed: 'cinema', mode: 'loop' },
+        'cinema-zoom':     { scroll: 'cinema-zoom',                                mode: 'scroll' },
+        'stagger-reveal':  { enter: 'fade-up', timeline: 'view', children: 'stagger', stagger: '80ms', mode: 'enter' },
+        'dramatic-flip':   { effectEnter: 'flip-in', speed: 'slow', base: 'dramatic', mode: 'enter' },
+        'depth-drift':     { scroll: 'depth-drift', range: 'entry-long',           mode: 'scroll' },
+        'hybrid-timeline': { scroll: 'depth-drift', loop: '-1', 'loop-effect': 'float', base: 'balanced', mode: 'scroll' },
+      };
+
+      // ── State ────────────────────────────────────────────────────────────────
+      let currentMode = 'enter';
+      let currentSubjectStyle = 'box';
+      let activeSimpleSubject = document.getElementById('mpg-subject');
+
+      // ── Helpers ──────────────────────────────────────────────────────────────
+      const $ = id => document.getElementById(id);
+      const EMPTY = '';
+
+      function readControls() {
+        const cfg = {};
+        document.querySelectorAll('[data-attr]').forEach(el => {
+          if (el.value !== EMPTY) cfg[el.dataset.attr] = el.value;
+        });
+
+        // vl-effect (extended enter) — overrides vl-enter when set
+        const efEnter = $('ctrl-effect-enter');
+        if (efEnter && efEnter.value !== EMPTY) {
+          delete cfg['vl-enter'];
+          cfg['vl-effect'] = efEnter.value;
+        }
+
+        // vl-duration from range
+        const dur = $('ctrl-duration');
+        if (dur && parseInt(dur.value) > 0) cfg['vl-duration'] = `${dur.value}ms`;
+
+        return cfg;
+      }
+
+      function applyConfig(el, cfg) {
+        if (!el) return;
+        // Clear all vl-* except vl-timeline on the scroll subject
+        const keep = el.id === 'mpg-scroll-subject' ? ['vl-timeline'] : [];
+        [...el.attributes]
+          .filter(a => a.name.startsWith('vl-') && !keep.includes(a.name))
+          .forEach(a => el.removeAttribute(a.name));
+        Object.entries(cfg).forEach(([k, v]) => { if (v) el.setAttribute(k, v); });
+      }
+
+      function replaySubject() {
+        const cfg = readControls();
+        const wrap = activeSimpleSubject.parentNode;
+        const next = activeSimpleSubject.nextSibling;
+        const clone = activeSimpleSubject.cloneNode(true);
+
+        // Regenerate the card content if needed
+        if (currentSubjectStyle === 'card') {
+          clone.innerHTML = cardContent();
+        }
+
+        activeSimpleSubject.remove();
+        void wrap.offsetWidth; // force reflow
+        wrap.insertBefore(clone, next);
+        activeSimpleSubject = clone;
+        applyConfig(activeSimpleSubject, cfg);
+      }
+
+      function cardContent() {
+        return `<strong style="font-family:var(--vl-font-family-display);font-size:0.9rem;line-height:1.1;">Velora Card</strong><p style="margin:0.4rem 0 0;font-size:0.74rem;color:var(--vl-text-secondary);line-height:1.4;">Component subject</p>`;
+      }
+
+      // ── Code generation ──────────────────────────────────────────────────────
+      // Loop keys that must live on a NESTED element when vl-scroll is also present
+      const LOOP_KEYS = new Set(['vl-loop', 'vl-loop-effect', 'vl-direction']);
+
+      function generateMarkup(cfg) {
+        const attrs = Object.entries(cfg);
+        if (attrs.length === 0) {
+          return `<span class="c-tag">&lt;div&gt;</span>\n  Content\n<span class="c-tag">&lt;/div&gt;</span>`;
+        }
+        // Hybrid: vl-scroll + vl-loop cannot share an element — output nested structure
+        const hasScroll = 'vl-scroll' in cfg;
+        const hasLoop   = 'vl-loop' in cfg || 'vl-loop-effect' in cfg;
+        if (hasScroll && hasLoop) {
+          const outerLines = attrs.filter(([n]) => !LOOP_KEYS.has(n))
+            .map(([n, v]) => `  <span class="c-attr">${n}</span>="<span class="c-val">${v}</span>"`).join('\n');
+          const innerLines = attrs.filter(([n]) => LOOP_KEYS.has(n))
+            .map(([n, v]) => `    <span class="c-attr">${n}</span>="<span class="c-val">${v}</span>"`).join('\n');
+          return `<span class="c-comment">&lt;!-- outer: scroll timeline --&gt;</span>\n<span class="c-tag">&lt;div</span>\n${outerLines}\n<span class="c-tag">&gt;</span>\n  <span class="c-comment">&lt;!-- inner: loop timeline --&gt;</span>\n  <span class="c-tag">&lt;div</span>\n${innerLines}\n  <span class="c-tag">&gt;</span>\n    Content\n  <span class="c-tag">&lt;/div&gt;</span>\n<span class="c-tag">&lt;/div&gt;</span>`;
+        }
+        const lines = attrs.map(([n, v]) =>
+          `  <span class="c-attr">${n}</span>="<span class="c-val">${v}</span>"`
+        ).join('\n');
+        return `<span class="c-tag">&lt;div</span>\n${lines}\n<span class="c-tag">&gt;</span>\n  Content\n<span class="c-tag">&lt;/div&gt;</span>`;
+      }
+
+      function generatePlainMarkup(cfg) {
+        const attrs = Object.entries(cfg);
+        if (attrs.length === 0) return '<div>\n  Content\n</div>';
+        // Hybrid: vl-scroll + vl-loop cannot share an element — output nested structure
+        const hasScroll = 'vl-scroll' in cfg;
+        const hasLoop   = 'vl-loop' in cfg || 'vl-loop-effect' in cfg;
+        if (hasScroll && hasLoop) {
+          const outerLines = attrs.filter(([n]) => !LOOP_KEYS.has(n)).map(([n, v]) => `  ${n}="${v}"`).join('\n');
+          const innerLines = attrs.filter(([n]) => LOOP_KEYS.has(n)).map(([n, v]) => `    ${n}="${v}"`).join('\n');
+          return `<!-- outer: scroll timeline -->\n<div\n${outerLines}\n>\n  <!-- inner: loop timeline -->\n  <div\n${innerLines}\n  >\n    Content\n  </div>\n</div>`;
+        }
+        const lines = attrs.map(([n, v]) => `  ${n}="${v}"`).join('\n');
+        return `<div\n${lines}\n>\n  Content\n</div>`;
+      }
+
+      // ── Update UI ────────────────────────────────────────────────────────────
+      function updateAttrsList(cfg) {
+        const attrs = Object.entries(cfg);
+        const list = $('mpg-attrs-list');
+        const chip = $('mpg-state-chip');
+        const preview = $('mpg-attrs-preview');
+
+        if (attrs.length === 0) {
+          list.innerHTML = '<p class="mpg-empty-note">No attributes selected yet.</p>';
+          chip.className = 'mpg-state-chip';
+          chip.textContent = 'idle';
+          preview.textContent = '';
+          return;
+        }
+
+        list.innerHTML = attrs.map(([name, value]) => `
+          <div class="mpg-attr-row">
+            <span class="mpg-attr-name">${name}</span>
+            <span class="mpg-attr-eq">=</span>
+            <span class="mpg-attr-value">"${value}"</span>
+            <button class="mpg-attr-remove" data-remove="${name}" type="button" aria-label="Remove ${name}">✕</button>
+          </div>
+        `).join('');
+
+        // Remove-attr click handlers
+        list.querySelectorAll('[data-remove]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const name = btn.dataset.remove;
+            const ctrl = document.querySelector(`[data-attr="${name}"]`);
+            if (ctrl) ctrl.value = EMPTY;
+            if (name === 'vl-effect') { const c = $('ctrl-effect-enter'); if (c) c.value = EMPTY; }
+            if (name === 'vl-duration') { const c = $('ctrl-duration'); if (c) { c.value = 0; syncDurationOutput(); } }
+            update();
+          });
+        });
+
+        chip.className = 'mpg-state-chip is-active';
+        chip.textContent = 'active';
+        preview.textContent = attrs.map(([n, v]) => `${n}="${v}"`).join(' · ');
+      }
+
+      function update() {
+        const cfg = readControls();
+        applyConfig(activeSimpleSubject, cfg);
+        applyConfig($('mpg-scroll-subject'), cfg);
+        $('mpg-code-content').innerHTML = generateMarkup(cfg);
+        updateAttrsList(cfg);
+
+        // Hover hint
+        const hint = $('mpg-hover-hint');
+        if (hint) hint.hidden = cfg['vl-timeline'] !== 'hover';
+      }
+
+      function syncDurationOutput() {
+        const c = $('ctrl-duration');
+        const o = $('ctrl-duration-out');
+        if (!c || !o) return;
+        const v = parseInt(c.value);
+        o.textContent = v === 0 ? 'auto' : `${v}ms`;
+      }
+
+      // ── Event listeners ──────────────────────────────────────────────────────
+
+      // All select controls
+      document.querySelectorAll('.mpg-select').forEach(el => {
+        el.addEventListener('change', update);
+      });
+
+      // Duration range
+      $('ctrl-duration')?.addEventListener('input', () => { syncDurationOutput(); update(); });
+
+      // Replay
+      $('mpg-replay')?.addEventListener('click', () => {
+        if (currentMode === 'scroll') {
+          $('mpg-scroll-area')?.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          replaySubject();
+        }
+      });
+
+      // Reset all
+      $('mpg-reset-all')?.addEventListener('click', () => {
+        document.querySelectorAll('.mpg-select').forEach(el => { el.value = EMPTY; });
+        const dur = $('ctrl-duration');
+        if (dur) { dur.value = 0; syncDurationOutput(); }
+        update();
+      });
+
+      // Mode tabs
+      document.querySelectorAll('.mpg-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.mpg-tab').forEach(t => {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          currentMode = tab.dataset.mode;
+
+          const isScroll = currentMode === 'scroll';
+          $('mpg-simple-stage').hidden = isScroll;
+          $('mpg-scroll-stage').hidden = !isScroll;
+          update();
+        });
+      });
+
+      // Subject style
+      $('mpg-subject-style')?.addEventListener('change', e => {
+        currentSubjectStyle = e.target.value;
+        document.querySelectorAll('.mpg-subject').forEach(el => {
+          el.classList.remove('mpg-subject--box', 'mpg-subject--card', 'mpg-subject--text', 'mpg-subject--image');
+          el.classList.add(`mpg-subject--${currentSubjectStyle}`);
+          if (currentSubjectStyle === 'card') {
+            el.innerHTML = cardContent();
+          } else if (currentSubjectStyle === 'text') {
+            el.innerHTML = '<span class="mpg-subject-label">Animated Text</span>';
+          } else {
+            el.innerHTML = '<span class="mpg-subject-label">Subject</span>';
+          }
+        });
+        update();
+      });
+
+      // Presets
+      document.querySelectorAll('.mpg-preset-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const preset = PRESETS[chip.dataset.preset];
+          if (!preset) return;
+
+          // Reset controls
+          document.querySelectorAll('.mpg-select').forEach(el => { el.value = EMPTY; });
+          const dur = $('ctrl-duration');
+          if (dur) { dur.value = 0; syncDurationOutput(); }
+
+          // Apply preset values
+          Object.entries(preset).forEach(([key, val]) => {
+            if (key === 'mode') return;
+            if (key === 'effectEnter') {
+              const c = $('ctrl-effect-enter');
+              if (c) c.value = val;
+            } else if (key === 'loop-effect') {
+              const c = $('ctrl-loop-effect');
+              if (c) c.value = val;
+            } else {
+              const c = document.querySelector(`[data-attr="vl-${key}"]`);
+              if (c) c.value = val;
+            }
+          });
+
+          update();
+
+          // Switch mode tab if needed
+          const targetMode = preset.mode || 'enter';
+          const targetTab = document.querySelector(`.mpg-tab[data-mode="${targetMode}"]`);
+          if (targetTab) targetTab.click();
+        });
+      });
+
+      // Copy to clipboard
+      $('mpg-copy')?.addEventListener('click', () => {
+        const markup = generatePlainMarkup(readControls());
+        navigator.clipboard.writeText(markup).then(() => {
+          const btn = $('mpg-copy');
+          btn.classList.add('is-copied');
+          btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Copied!';
+          setTimeout(() => {
+            btn.classList.remove('is-copied');
+            btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> Copy';
+          }, 2200);
+        }).catch(() => {
+          // Fallback for non-HTTPS
+          const markup = generatePlainMarkup(readControls());
+          const ta = document.createElement('textarea');
+          ta.value = markup;
+          ta.style.cssText = 'position:fixed;opacity:0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        });
+      });
+
+      // Scroll progress
+      $('mpg-scroll-area')?.addEventListener('scroll', () => {
+        const area = $('mpg-scroll-area');
+        const fill = $('mpg-scroll-progress');
+        const val  = $('mpg-scroll-progress-value');
+        const max  = area.scrollHeight - area.clientHeight;
+        if (max <= 0) return;
+        const pct = Math.round((area.scrollTop / max) * 100);
+        if (fill) {
+          fill.style.width = `${pct}%`;
+          fill.closest('[role=progressbar]')?.setAttribute('aria-valuenow', pct);
+        }
+        if (val) val.textContent = `${pct}%`;
+
+        // Highlight active zone
+        const subjectEl = $('mpg-scroll-subject');
+        if (!subjectEl) return;
+        const frameRect   = area.getBoundingClientRect();
+        const subjectRect = subjectEl.getBoundingClientRect();
+        const relTop    = subjectRect.top - frameRect.top;
+        const relBottom = subjectRect.bottom - frameRect.top;
+        const fh = frameRect.height;
+
+        // Entry: subject bottom entered viewport bottom
+        const inEntry   = relBottom > 0 && relTop < fh;
+        // Contain: subject fully visible
+        const inContain = relTop >= 0 && relBottom <= fh;
+        // Exit: subject top past viewport top
+        const inExit    = relTop < 0;
+
+        $('zg-entry')  ?.classList.toggle('is-active', inEntry   && !inContain);
+        $('zg-contain')?.classList.toggle('is-active', inContain);
+        $('zg-exit')   ?.classList.toggle('is-active', inExit    && !inContain);
+      });
+
+      // ── Initial render ───────────────────────────────────────────────────────
+      update();
+    })();
+    </script>
+  </body>
+</html>

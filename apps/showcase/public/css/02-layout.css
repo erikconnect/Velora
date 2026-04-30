@@ -41,6 +41,99 @@
         width: 100%;
     }
 
+    /* --- Scene containers --------------------------------------------------
+       Scenes are local layout environments. They encapsulate responsive
+       behavior so multiple scenes can coexist on the same page without
+       depending on viewport-wide breakpoints.
+    ----------------------------------------------------------------------- */
+    [vl-scene] {
+        --vl-scene-gap: clamp(var(--vl-space-md), 2.4vw, var(--vl-space-xl));
+        --vl-scene-pad-inline: clamp(var(--vl-space-md), 4vw, var(--vl-space-2xl));
+        --vl-scene-pad-block: clamp(var(--vl-space-xl), 9vw, var(--vl-space-3xl));
+        --vl-scene-max: 100%;
+        --vl-scene-pane-a: 1fr;
+        --vl-scene-pane-b: 1fr;
+        --vl-scene-cluster-min: 16rem;
+        width: 100%;
+        position: relative;
+        isolation: isolate;
+        container-type: inline-size;
+        container-name: vl-scene;
+    }
+
+    [vl-scene][data-vl-scene-density="compact"] {
+        --vl-scene-gap: clamp(var(--vl-space-sm), 1.8vw, var(--vl-space-lg));
+        --vl-scene-pad-inline: clamp(var(--vl-space-sm), 2.5vw, var(--vl-space-lg));
+        --vl-scene-pad-block: clamp(var(--vl-space-lg), 5vw, var(--vl-space-xl));
+        --vl-scene-cluster-min: 12rem;
+    }
+
+    [vl-scene][data-vl-scene-density="editorial"] {
+        --vl-scene-gap: clamp(var(--vl-space-lg), 3vw, var(--vl-space-2xl));
+        --vl-scene-pad-inline: clamp(var(--vl-space-md), 4.5vw, var(--vl-space-2xl));
+    }
+
+    [vl-scene][data-vl-scene-density="immersive"] {
+        --vl-scene-gap: clamp(var(--vl-space-lg), 3.2vw, var(--vl-space-2xl));
+        --vl-scene-pad-inline: clamp(var(--vl-space-lg), 5vw, var(--vl-space-3xl));
+        --vl-scene-pad-block: clamp(var(--vl-space-2xl), 10vw, calc(var(--vl-space-3xl) * 1.2));
+    }
+
+    [vl-scene][data-vl-scene-mode="full-bleed"] {
+        min-height: 100dvh;
+        align-content: center;
+    }
+
+    [vl-scene] > :where(.vl-scene__inner, [data-vl-scene-inner]) {
+        display: grid;
+        gap: var(--vl-scene-gap);
+        width: min(100%, var(--vl-scene-max));
+        margin-inline: auto;
+        padding-inline: var(--vl-scene-pad-inline);
+        min-width: 0;
+    }
+
+    [vl-scene] :where(.vl-scene__layout--split, [data-vl-scene-layout~="split"]) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--vl-scene-gap);
+        align-items: start;
+    }
+
+    [vl-scene] :where(.vl-scene__layout--cluster, [data-vl-scene-layout~="cluster"]) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--vl-scene-cluster-min)), 1fr));
+        gap: var(--vl-scene-gap);
+    }
+
+    [vl-scene] :where(.vl-scene__rail, [data-vl-scene-role="rail"]) {
+        display: grid;
+        gap: var(--vl-space-sm);
+        align-content: start;
+    }
+
+    [vl-scene] :where(.vl-scene__stack, [data-vl-scene-role="stack"]) {
+        display: grid;
+        gap: var(--vl-scene-gap);
+        min-width: 0;
+    }
+
+    @container vl-scene (min-width: 48rem) {
+        [vl-scene] :where(.vl-scene__layout--split, [data-vl-scene-layout~="split"]) {
+            grid-template-columns:
+                minmax(0, var(--vl-scene-pane-a))
+                minmax(0, var(--vl-scene-pane-b));
+            align-items: center;
+        }
+    }
+
+    @container vl-scene (max-width: 36rem) {
+        [vl-scene][data-vl-scene-density="immersive"] {
+            --vl-scene-pad-inline: clamp(var(--vl-space-md), 4vw, var(--vl-space-lg));
+            --vl-scene-pad-block: clamp(var(--vl-space-xl), 6vw, var(--vl-space-2xl));
+        }
+    }
+
     /* --- Blocos verticais --- */
     .vl-stack {
         display: flex;

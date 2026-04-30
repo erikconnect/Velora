@@ -9,7 +9,8 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Velora treats the browser as the runtime: design tokens, editorial themes, and motion expressed in CSS for fast, accessible pages." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
@@ -18,11 +19,103 @@
       .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
       .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
       .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #about-hero     { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #about-system   { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #about-showcase { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #about-docs     { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #about-payoff   { view-timeline-name: --tl-5; view-timeline-axis: block; }
+      .about-api-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin-top: 1.5rem; }
+      .about-api-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-lg); padding: 1rem; background: color-mix(in oklab, var(--vl-bg-surface) 82%, transparent); }
+      .about-api-card code { display: inline-block; margin-top: .5rem; color: var(--vl-text-muted); font-size: .8125rem; }
+      .about-beat-list { display: grid; gap: .8rem; margin-top: 1.25rem; }
+      .about-beat { border-left: 2px solid var(--vl-border-subtle); padding-left: .8rem; color: var(--vl-text-muted); }
+      .about-runtime-deck { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .85rem; margin-top: 1.5rem; }
+      .about-runtime-note { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-md); padding: .85rem; background: var(--vl-bg-surface); }
+      .about-runtime-note strong { display: block; margin-top: .25rem; }
+      .about-cta-chips { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+      .about-scope-legend { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .95rem; }
+      .about-scope-pill { border: 1px solid var(--vl-border-subtle); border-radius: 999px; padding: .2rem .55rem; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
+      .about-scope-pill--core { background: color-mix(in oklch, var(--vl-color-primary) 14%, transparent); }
+      .about-scope-pill--extended { background: color-mix(in oklch, var(--vl-color-info, var(--vl-color-primary)) 14%, transparent); }
+      .about-scope-pill--experimental { background: color-mix(in oklch, var(--vl-color-warning, var(--vl-color-primary)) 18%, transparent); }
+      .about-orbit-stage {
+        position: relative;
+        min-height: 23rem;
+        border-radius: var(--vl-radius-xl);
+        border: 1px solid var(--vl-border-subtle);
+        background:
+          radial-gradient(circle at 70% 20%, color-mix(in oklch, var(--vl-color-primary) 20%, transparent), transparent 40%),
+          linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 70%, transparent), var(--vl-bg-main));
+        overflow: hidden;
+      }
+      .about-orbit-rings {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: min(100%, 24rem);
+        aspect-ratio: 1;
+      }
+      .about-orbit-rings span {
+        position: absolute;
+        inset: 50%;
+        translate: -50% -50%;
+        border-radius: 50%;
+        border: 1px solid color-mix(in oklch, var(--vl-color-primary) 28%, transparent);
+      }
+      .about-orbit-rings span:nth-child(1) { width: 100%; height: 100%; }
+      .about-orbit-rings span:nth-child(2) { width: 68%; height: 68%; }
+      .about-orbit-rings span:nth-child(3) { width: 40%; height: 40%; background: color-mix(in oklch, var(--vl-color-primary) 14%, transparent); }
+      .about-float-panel {
+        position: absolute;
+        width: min(18rem, calc(100% - 2rem));
+        padding: .95rem;
+        border-radius: var(--vl-radius-lg);
+        border: 1px solid var(--vl-border-subtle);
+        background: color-mix(in oklch, var(--vl-bg-surface-elevated) 76%, transparent);
+        backdrop-filter: blur(8px);
+      }
+      .about-float-panel--a { top: 1.2rem; left: 1.1rem; }
+      .about-float-panel--b { right: 1.1rem; bottom: 1.1rem; }
+      .about-micro-demo-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); margin-top: 1.25rem; }
+      .about-micro-demo { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-md); padding: .8rem; background: var(--vl-bg-surface); }
+      .about-micro-demo strong { display: block; margin-bottom: .45rem; font-size: .8rem; }
+      .about-micro-demo .api-target {
+        min-height: 3rem;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        border: 1px dashed color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+        border-radius: .55rem;
+        padding: .4rem;
+      }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;about</span>
+      <a class="vl-bussola__stop" href="#about-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#about-system">
+        <span class="vl-bussola__label">System</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#about-showcase">
+        <span class="vl-bussola__label">Showcase</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#about-docs">
+        <span class="vl-bussola__label">Docs</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#about-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +166,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,65 +174,263 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--core">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Core</p>
-          <h1 class="vl-display-xl hub-hero__title">About</h1>
-          <p class="vl-body-lg hub-hero__lead">Velora treats the browser as the runtime: design tokens, editorial themes (Noir / Earth tech), and motion are expressed in CSS so pages stay fast, accessible, and easy to host anywhere.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/velora-landing-page-refined.html">Editorial landing reference</a>
-          <a class="hub-chip-link" href="/pages/library/architectural-blueprint.html" vl-effect="fade-up" vl-timeline="view">Architectural blueprint</a>
-          <a class="hub-chip-link" href="/pages/core/landing.html" vl-effect="fade-up" vl-timeline="view">Framework workflow</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Design system in CSS</strong> — single source of truth in <code>packages/css</code>, consumed by static pages.</li>
-            <li><strong>Showcase</strong> — this site demonstrates patterns without a SPA; view transitions are progressive enhancement.</li>
-            <li><strong>Documentation</strong> — long-form specs live under Library, migrated from <code>packages/pages</code>.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--about showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Design system in CSS</h2>
-          <p class="hub-step-card__body">single source of truth in <code>packages/css</code>, consumed by static pages.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Showcase</h2>
-          <p class="hub-step-card__body">this site demonstrates patterns without a SPA; view transitions are progressive enhancement.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Documentation</h2>
-          <p class="hub-step-card__body">long-form specs live under Library, migrated from <code>packages/pages</code>.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="about-hero" class="showcase-cinema-scene showcase-cinema-scene--about-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Act 01 // Manifesto</p>
+              </div>
+              <h1 class="showcase-ref-title">We choreograph interfaces like <em>a sci-fi control room</em> &mdash; with CSS only.</h1>
+              <p class="showcase-ref-lead">
+                Velora is fun on purpose: dramatic staging, tactile motion language and technical precision.
+                Every scene is declarative, fast, and runtime-native to the browser.
+              </p>
+              <div class="about-beat-list">
+                <p class="about-beat"><strong>No JavaScript for motion:</strong> interactions and timing are attribute-driven.</p>
+                <p class="about-beat"><strong>API-first storytelling:</strong> each visual moment points back to a real `vl-*` contract.</p>
+                <p class="about-beat"><strong>Cinematic but readable:</strong> wow first, confusion never.</p>
+              </div>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/api-motion-catalog.html">Open Motion Catalog</a>
+                <a class="showcase-ref-tokens-button" href="/pages/library/velora-landing-page-refined.html">Editorial Landing</a>
+                <a class="showcase-ref-tokens-button" href="/pages/core/landing.html">Framework Tour</a>
+              </div>
+              <div class="about-scope-legend">
+                <span class="about-scope-pill about-scope-pill--core">core</span>
+                <span class="about-scope-pill about-scope-pill--extended">extended</span>
+                <span class="about-scope-pill about-scope-pill--experimental">experimental</span>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/velora-landing-page-refined.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Editorial landing reference</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for about and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>core</code>. Source page: <code>pages/core/about.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--about-hero" aria-label="About Velora overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Scene engine</span>
+                  <strong>vl-effect + vl-timeline</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Cadence</span>
+                  <strong>vl-children + vl-stagger</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-card-stack">
+                  <span>Safety</span>
+                  <strong>reduced-motion aware</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>channel: cinematic</span>
+                <span>timeline: view</span>
+                <span>runtime: css-only</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · System ═════════════════════════════════════════ -->
+        <section id="about-system" class="showcase-cinema-scene showcase-cinema-scene--about-system" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act 02 // Engine Room</p>
+                <h2 class="showcase-cinema-heading">The core system is compact, layered, and dramatic.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                The same primitives from `api-motion-catalog` power this page. What you see is not theater smoke: it is framework behavior you can copy.
+              </p>
+            </div>
+
+            <div class="about-api-grid" vl-children="stagger" vl-stagger="0.08">
+              <article class="about-api-card" vl-effect="hover-depth-press">
+                <span>Channel</span>
+                <h3>Entrance choreography</h3>
+                <code>vl-effect="fade-up" + vl-once</code>
+              </article>
+              <article class="about-api-card" vl-effect="hover-prism">
+                <span>Timeline</span>
+                <h3>Viewport-cued acts</h3>
+                <code>vl-timeline="view"</code>
+              </article>
+              <article class="about-api-card" vl-effect="hover-card-stack">
+                <span>Interaction</span>
+                <h3>Tactile cards</h3>
+                <code>hover-prism / hover-depth-press</code>
+              </article>
+              <article class="about-api-card" vl-effect="hover-tilt-3d">
+                <span>Scene rhythm</span>
+                <h3>Orchestrated micro-delays</h3>
+                <code>vl-children="orchestrate" vl-stagger</code>
+              </article>
+            </div>
+            <div class="about-micro-demo-grid" vl-children="stagger" vl-stagger="0.05">
+              <article class="about-micro-demo">
+                <strong>fade-up / view</strong>
+                <div class="api-target" vl-effect="fade-up" vl-timeline="view">Entrance scene</div>
+              </article>
+              <article class="about-micro-demo">
+                <strong>parallax / scroll</strong>
+                <div class="api-target" vl-effect="parallax" vl-timeline="scroll">Scroll-driven depth</div>
+              </article>
+              <article class="about-micro-demo">
+                <strong>hover-prism</strong>
+                <div class="api-target" vl-effect="hover-prism">Hover for prism</div>
+              </article>
+              <article class="about-micro-demo">
+                <strong>loop glow-breathe</strong>
+                <div class="api-target" vl-loop="-1" vl-loop-effect="glow-breathe">Ambient loop</div>
+              </article>
+            </div>
+            <pre class="vl-code-block">/* framework layers used by this page */
+@import "@velora/css/tokens";
+@import "@velora/css/structures";
+@import "@velora/css/motion";
+@import "@velora/css/transitions";</pre>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Showcase ═══════════════════════════════════════ -->
+        <section id="about-showcase" class="showcase-cinema-scene showcase-cinema-scene--about-showcase" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act 03 // Scene Director</p>
+              <h2 class="showcase-cinema-heading">Each page is a chapter, each chapter is a runnable API demo.</h2>
+              <p class="showcase-ref-lead">
+                Instead of one giant sandbox, Velora tells the story page-by-page. Motion, color, typography and structure are always shown in context, never in isolation.
+              </p>
+              <div class="about-runtime-deck">
+                <article class="about-runtime-note" vl-effect="hover-depth-press">
+                  <span>Chapter type</span>
+                  <strong>Reference page</strong>
+                  <p>Focused narrative around one system capability.</p>
+                </article>
+                <article class="about-runtime-note" vl-effect="hover-prism">
+                  <span>Chapter type</span>
+                  <strong>Catalog page</strong>
+                  <p>Dense API matrix with grouped patterns and tags.</p>
+                </article>
+                <article class="about-runtime-note" vl-effect="hover-card-stack">
+                  <span>Chapter type</span>
+                  <strong>Tool page</strong>
+                  <p>Operational playground for practical validation.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--about-showcase" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="about-orbit-stage" vl-effect="parallax" vl-timeline="view" vl-range="scene-soft">
+                <div class="about-orbit-rings" vl-effect="orbit">
+                  <span></span><span></span><span></span>
+                </div>
+                <article class="about-float-panel about-float-panel--a" vl-effect="hover-prism">
+                  <span>chapter.alpha</span>
+                  <strong>Catalog-driven scene scripting</strong>
+                </article>
+                <article class="about-float-panel about-float-panel--b" vl-effect="border-beam">
+                  <span>chapter.beta</span>
+                  <strong>Narrative + API evidence in one frame</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-code">
+                <span>narrative runtime</span>
+                <code>scene = HTML + vl-* + tokens</code>
+                <code>chapter = page with real anchors</code>
+                <code>story = bussola across chapters</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Creative rule</span>
+                <h3>Make APIs feel cinematic.</h3>
+                <p>Every visual moment should reveal one concrete contract detail.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Docs ═══════════════════════════════════════════ -->
+        <section id="about-docs" class="showcase-cinema-scene showcase-cinema-scene--about-docs" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act 04 // Canon</p>
+              <h2 class="showcase-cinema-heading">The story has receipts: docs and catalogs stay in sync.</h2>
+              <p class="showcase-ref-lead">
+                About is not marketing copy. It is a guided bridge to real specs, catalogs, and implementation references.
+              </p>
+              <div class="showcase-cinema-chip-row about-cta-chips">
+                <a class="showcase-ref-chip" href="/pages/library/architectural-blueprint.html">Blueprint</a>
+                <a class="showcase-ref-chip" href="/pages/motion/api-motion-catalog.html">Motion API</a>
+                <a class="showcase-ref-chip" href="/pages/components/api-design-catalog.html">Design API</a>
+                <a class="showcase-ref-chip" href="/pages/library/index.html">Library Hub</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--about-docs" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" vl-children="stagger" vl-stagger="120ms">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base" vl-effect="hover-depth-press">
+                  <span>packages/css</span>
+                </div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid" vl-effect="hover-depth-press">
+                  <span>Showcase pages</span>
+                </div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top" vl-effect="hover-prism">
+                  <span>Library specs</span>
+                </div>
+              </div>
+              <div class="about-micro-demo-grid">
+                <article class="about-micro-demo" vl-effect="hover-depth-press">
+                  <strong>timeline hover</strong>
+                  <div class="api-target" vl-loop="-1" vl-loop-effect="shimmer" vl-timeline="hover">hover to play</div>
+                </article>
+                <article class="about-micro-demo" vl-effect="hover-card-stack">
+                  <strong>children orchestrate</strong>
+                  <div class="api-target" vl-children="orchestrate" vl-stagger="90ms"><span>A</span> <span>B</span> <span>C</span></div>
+                </article>
+                <article class="about-micro-demo" vl-effect="hover-tilt-3d">
+                  <strong>spring-3d entry</strong>
+                  <div class="api-target" vl-effect="spring-3d" vl-timeline="view">3D entrance</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="about-payoff" class="showcase-cinema-scene showcase-cinema-scene--about-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act 05 // Launch Sequence</p>
+            <h2 class="showcase-cinema-heading">Now build your own chapter with the same language.</h2>
+            <p class="showcase-ref-lead">
+              Pick a page, choose one API concept, and stage it as a mini scene.
+              Repeat this loop and your whole framework turns into a coherent cinematic system.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Step 01</span>
+                <strong>Choose the chapter goal and anchor IDs.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Step 02</span>
+                <strong>Compose 3-5 acts using `vl-effect` and `vl-timeline`.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Step 03</span>
+                <strong>Expose API details in cards, chips and stage blocks.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Step 04</span>
+                <strong>Link to canonical catalog/doc as proof and continuity.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/api-motion-catalog.html">Study Motion API</a>
+              <a class="showcase-ref-tokens-button" href="/pages/components/api-design-catalog.html">Study Design API</a>
+              <a class="showcase-ref-tokens-button" href="/pages/library/gallery.html">Refine Next Page</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -210,7 +501,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -236,7 +527,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

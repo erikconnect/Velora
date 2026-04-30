@@ -94,4 +94,302 @@ export const LIBRARY_PAGE_METADATA = {
       "/pages/library/form-components-library.html",
     ],
   },
+
+  /* ── Motion ─────────────────────────────────────────────────────────── */
+  "3d_coordinate_explorer.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "3D Engine",
+    displayTitle: "Coordinate Explorer",
+    lead: "A three-dimensional viewport control panel for exploring Cartesian and spherical coordinate systems with live vector readouts.",
+    features: ["3D", "Explorer", "Motion"],
+    related: [
+      "/pages/library/3d-rotation-vector-tuner.html",
+      "/pages/library/kinetic-actuators-playground.html",
+    ],
+  },
+  "3d_rotation_vector_tuner.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "3D Rotation",
+    displayTitle: "Rotation Vector Tuner",
+    lead: "Fine-tune rotation vectors across all three axes with real-time visual feedback and CSS transform output for motion engineering.",
+    features: ["3D", "Tuner", "Vectors"],
+    related: [
+      "/pages/library/3d-coordinate-explorer.html",
+      "/pages/library/kinetic-motion-principles.html",
+    ],
+  },
+  "kinetic_motion_principles.html": {
+    template: "spec",
+    category: "Motion",
+    eyebrow: "Kinetic Motion",
+    displayTitle: "Kinetic Motion Principles",
+    lead: "The physics-informed timing curves, stagger logic, and orchestration sequences that define Velora's kinetic motion language.",
+    features: ["Motion", "Principles", "Sequencing"],
+    related: [
+      "/pages/library/motion-principles-overview.html",
+      "/pages/library/kinetic-actuators-playground.html",
+    ],
+  },
+  "kinetic_actuators_playground.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "Kinetic Actuators",
+    displayTitle: "Actuators Playground",
+    lead: "An interactive depth-testing environment for scale-shift, hover-lift, and tilt actuators across elevation tiers.",
+    features: ["Showcase", "Actuators", "Depth"],
+    related: [
+      "/pages/library/scale-shift-actuator-showcase.html",
+      "/pages/library/kinetic-card-configuration-modal.html",
+    ],
+  },
+  "kinetic_card_configuration_modal.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "Kinetic Cards",
+    displayTitle: "Card Configuration",
+    lead: "A modal-based configuration panel for tuning the kinetic card system — tilt depth, scale compression, and glow intensity.",
+    features: ["Cards", "Modal", "Configuration"],
+    related: [
+      "/pages/library/kinetic-actuators-playground.html",
+      "/pages/library/interaction-feedback-micro-interactions.html",
+    ],
+  },
+  "scale_shift_actuator_showcase.html": {
+    template: "spec",
+    category: "Motion",
+    eyebrow: "Scale Shift",
+    displayTitle: "Scale Shift Actuator",
+    lead: "The micro-compression pattern that gives buttons and interactive surfaces an instant tactile response — 2% scale, 200ms cinema timing.",
+    features: ["Actuator", "Interaction", "Touch"],
+    related: [
+      "/pages/library/kinetic-actuators-playground.html",
+      "/pages/library/interaction-feedback-micro-interactions.html",
+    ],
+  },
+  "scroll_driven_reveal_showcase.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "Scroll Reveal",
+    displayTitle: "Scroll-Driven Reveal",
+    lead: "Declarative scroll-driven animations using CSS View Timeline — cards, sections, and layers that respond to scroll position.",
+    features: ["Scroll", "Reveal", "CSS Timeline"],
+    related: [
+      "/pages/library/zero-js-motion-examples.html",
+      "/pages/library/animation-range-explainer-modal.html",
+    ],
+  },
+  "animation_range_explainer_modal.html": {
+    template: "spec",
+    category: "Motion",
+    eyebrow: "Animation Range",
+    displayTitle: "Animation Range Explainer",
+    lead: "A visual explainer for scroll-driven animation ranges — entry, cover, exit, and contain — and how they control reveal timing.",
+    features: ["Spec", "Ranges", "Scroll"],
+    related: [
+      "/pages/library/scroll-driven-reveal-showcase.html",
+      "/pages/library/zero-js-motion-examples.html",
+    ],
+  },
+  "zero_js_motion_examples_desktop.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "Motion Extended",
+    displayTitle: "Zero-JS Motion Extended",
+    lead: "Desktop-optimised motion examples that push the boundaries of CSS-only animation — multi-layer parallax, ambient halos, and view-transition morphs.",
+    features: ["Showcase", "Desktop", "Extended"],
+    related: [
+      "/pages/library/zero-js-motion-examples.html",
+      "/pages/library/scroll-driven-reveal-showcase.html",
+    ],
+  },
+  "interaction_feedback_micro_interactions.html": {
+    template: "spec",
+    category: "Motion",
+    eyebrow: "Micro-Interactions",
+    displayTitle: "Interaction Feedback",
+    lead: "The micro-interaction vocabulary for hover states, press feedback, focus rings, and loading indicators across Velora surfaces.",
+    features: ["Interactions", "Feedback", "UX"],
+    related: [
+      "/pages/library/scale-shift-actuator-showcase.html",
+      "/pages/library/kinetic-actuators-playground.html",
+    ],
+  },
+
+  /* ── Color & Elevation ──────────────────────────────────────────────── */
+  "ambient_shadows_theory.html": {
+    template: "spec",
+    category: "Color",
+    eyebrow: "Ambient Depth",
+    displayTitle: "Ambient Shadows Theory",
+    lead: "How Velora uses multi-layer ambient shadows to encode elevation, separation, and luminosity without flat borders.",
+    features: ["Shadows", "Depth", "Elevation"],
+    related: [
+      "/pages/library/tonal-stacking-elevation-theory.html",
+      "/pages/library/tonal-tiers-elevation-documentation.html",
+    ],
+  },
+  "color_palette_perception.html": {
+    template: "spec",
+    category: "Color",
+    eyebrow: "Color Perception",
+    displayTitle: "Color Palette & Perception",
+    lead: "Perceptual color science behind the Velora palette — OKLCH lightness curves, hue uniformity, and chroma control.",
+    features: ["Color", "Perception", "OKLCH"],
+    related: [
+      "/pages/library/color-system-specification.html",
+      "/pages/library/token-spotlight-surface-noir.html",
+    ],
+  },
+  "token_spotlight_surface_noir.html": {
+    template: "editorial",
+    category: "Tokens",
+    eyebrow: "Token Spotlight",
+    displayTitle: "Surface Noir",
+    lead: "An editorial spotlight on the Noir surface token system — how dark backgrounds, muted primaries, and tonal ramps define the signature Velora dark mode.",
+    features: ["Editorial", "Noir", "Surface"],
+    related: [
+      "/pages/library/color-system-specification.html",
+      "/pages/library/tonal-stacking-elevation-theory.html",
+    ],
+  },
+  "tonal_stacking_elevation_theory.html": {
+    template: "spec",
+    category: "Color",
+    eyebrow: "Tonal Stacking",
+    displayTitle: "Tonal Stacking Theory",
+    lead: "The theory of layered tonal surfaces — how additive lightness steps replace shadows to create depth in the Velora elevation system.",
+    features: ["Tonal", "Elevation", "Theory"],
+    related: [
+      "/pages/library/tonal-tiers-elevation-documentation.html",
+      "/pages/library/ambient-shadows-theory.html",
+    ],
+  },
+  "tonal_tiers_elevation_documentation.html": {
+    template: "spec",
+    category: "Color",
+    eyebrow: "Tonal Tiers",
+    displayTitle: "Tonal Tiers & Elevation",
+    lead: "Complete documentation of the six elevation tiers in Velora — surface-dim, surface, surface-container through highest — and their token mappings.",
+    features: ["Elevation", "Tiers", "Reference"],
+    related: [
+      "/pages/library/tonal-stacking-elevation-theory.html",
+      "/pages/library/tokens-foundation-refined.html",
+    ],
+  },
+
+  /* ── Typography ─────────────────────────────────────────────────────── */
+  "typography_samples.html": {
+    template: "showcase",
+    category: "Typography",
+    eyebrow: "Type Samples",
+    displayTitle: "Typography Samples",
+    lead: "A full sample sheet of every type scale, weight, and headline variant in the Velora type system — from display ultra to label mono.",
+    features: ["Typography", "Samples", "Scale"],
+    related: [
+      "/pages/library/typography-specification.html",
+      "/pages/library/typography-composition-patterns.html",
+    ],
+  },
+  "typography_specification.html": {
+    template: "spec",
+    category: "Typography",
+    eyebrow: "Type Spec",
+    displayTitle: "Typography Specification",
+    lead: "Detailed specification for every type role — size, weight, letter-spacing, line-height, and font-feature-settings across the full system.",
+    features: ["Spec", "Typography", "Reference"],
+    related: [
+      "/pages/library/typography-samples.html",
+      "/pages/library/typography-composition-patterns.html",
+    ],
+  },
+  "typography_composition_patterns.html": {
+    template: "spec",
+    category: "Typography",
+    eyebrow: "Type Composition",
+    displayTitle: "Typography Composition",
+    lead: "Kinetic composition patterns for headlines, body text, and editorial layouts — how weight, spacing, and motion combine for maximum impact.",
+    features: ["Composition", "Typography", "Motion"],
+    related: [
+      "/pages/library/typography-specification.html",
+      "/pages/library/brand-voice-editorial-strategy.html",
+    ],
+  },
+  "display_ultra_specification.html": {
+    template: "spec",
+    category: "Typography",
+    eyebrow: "Display Ultra",
+    displayTitle: "Display Ultra",
+    lead: "The Display Ultra type role — 8–10rem, negative tracking, and cinematic weight for hero-scale typographic statements.",
+    features: ["Display", "Hero", "Scale"],
+    related: [
+      "/pages/library/typography-specification.html",
+      "/pages/library/velora-landing-page-refined.html",
+    ],
+  },
+
+  /* ── Components & Tools ─────────────────────────────────────────────── */
+  "component_wizard_metadata.html": {
+    template: "tool",
+    category: "Components",
+    eyebrow: "Component Wizard",
+    displayTitle: "Component Wizard",
+    lead: "A metadata-driven wizard for configuring and generating component variants — tokens, states, and motion options in one interface.",
+    features: ["Tool", "Wizard", "Generator"],
+    related: [
+      "/pages/library/component-lab-technical-library.html",
+      "/pages/library/form-components-library.html",
+    ],
+  },
+  "form_components_library.html": {
+    template: "showcase",
+    category: "Components",
+    eyebrow: "Form Components",
+    displayTitle: "Form Library",
+    lead: "A complete library of form components — inputs, selects, checkboxes, toggles, and text areas — all token-driven and motion-ready.",
+    features: ["Forms", "Components", "Library"],
+    related: [
+      "/pages/library/component-lab-technical-library.html",
+      "/pages/library/component-wizard-metadata.html",
+    ],
+  },
+
+  /* ── Documentation & Strategy ───────────────────────────────────────── */
+  "accessibility_wcag_guidelines.html": {
+    template: "spec",
+    category: "Accessibility",
+    eyebrow: "WCAG Guidelines",
+    displayTitle: "Accessibility Guidelines",
+    lead: "WCAG 2.1 compliance documentation for the Velora design system — color contrast, motion, keyboard navigation, and focus management.",
+    features: ["Accessibility", "WCAG", "Reference"],
+    related: [
+      "/pages/library/contrast-accessibility-tool.html",
+      "/pages/library/color-system-specification.html",
+    ],
+  },
+  "brand_voice_editorial_strategy.html": {
+    template: "editorial",
+    category: "Editorial",
+    eyebrow: "Brand Voice",
+    displayTitle: "Brand Voice & Editorial",
+    lead: "The editorial strategy and voice principles behind Velora's copy — precision-first, atmosphere-driven, and technically grounded.",
+    features: ["Editorial", "Brand", "Strategy"],
+    related: [
+      "/pages/library/velora-landing-page-refined.html",
+      "/pages/library/typography-composition-patterns.html",
+    ],
+  },
+  "system_modules_overview.html": {
+    template: "spec",
+    category: "Foundation",
+    eyebrow: "System Modules",
+    displayTitle: "System Modules",
+    lead: "A high-level overview of all Velora system modules — CSS architecture, motion engine, token pipeline, and build toolchain.",
+    features: ["Architecture", "Modules", "Overview"],
+    related: [
+      "/pages/library/architectural-blueprint.html",
+      "/pages/library/tokens-foundation-refined.html",
+    ],
+  },
 };

@@ -9,20 +9,45 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta name="description" content="Line-height, tracking, optical size and minimum-size accessibility rules — the Velora type specification in five cinema scenes." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #spec-hero    { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #spec-metrics { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #spec-a11y    { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #spec-impl    { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #spec-payoff  { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;spec</span>
+      <a class="vl-bussola__stop" href="#spec-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spec-metrics">
+        <span class="vl-bussola__label">Metrics</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spec-a11y">
+        <span class="vl-bussola__label">A11y</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spec-impl">
+        <span class="vl-bussola__label">Implement</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#spec-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,199 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--typography">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Typography</p>
-          <h1 class="vl-display-xl hub-hero__title">Typography Spec</h1>
-          <p class="vl-body-lg hub-hero__lead">The technical specification defines measurements, weights, and hierarchy so product and engineering share one typographic contract.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/typography-specification.html">Full typography specification</a>
-          <a class="hub-chip-link" href="/pages/library/typography-samples.html" vl-effect="fade-up" vl-timeline="view">Samples</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Metrics</strong> — line height, tracking, and optical size tied to tokens.</li>
-            <li><strong>Accessibility</strong> — minimum sizes and contrast pairs with the color system.</li>
-            <li><strong>Implementation</strong> — apply via utility classes and CSS variables, not ad-hoc pixels.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--type-spec showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Metrics</h2>
-          <p class="hub-step-card__body">line height, tracking, and optical size tied to tokens.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Accessibility</h2>
-          <p class="hub-step-card__body">minimum sizes and contrast pairs with the color system.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Implementation</h2>
-          <p class="hub-step-card__body">apply via utility classes and CSS variables, not ad-hoc pixels.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="spec-hero" class="showcase-cinema-scene showcase-cinema-scene--spec-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Foundation demo // Type specification</p>
+              </div>
+              <h1 class="showcase-ref-title">Measurements, weights and hierarchy <em>in one contract</em>.</h1>
+              <p class="showcase-ref-lead">
+                The type specification defines every metric so product and engineering share a single
+                typographic contract&mdash;no ad-hoc pixels, no tribal knowledge.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/typography-specification.html">Full Specification</a>
+                <a class="showcase-ref-tokens-button" href="/pages/library/typography-samples.html">Samples</a>
+                <a class="showcase-ref-tokens-button" href="/pages/typography/typography.html">Typography Overview</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/typography-specification.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Full typography specification</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for typography spec and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>typography</code>. Source page: <code>pages/typography/typography-spec.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--spec-hero" aria-label="Type spec preview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                  <span>Metrics</span>
+                  <strong>Line-height, tracking &amp; optical size</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                  <span>Accessibility</span>
+                  <strong>Minimum sizes &amp; contrast pairs</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Implementation</span>
+                  <strong>Utility classes &amp; CSS variables</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>Token-locked</span>
+                <span>WCAG AA</span>
+                <span>Fluid</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Metrics ════════════════════════════════════════ -->
+        <section id="spec-metrics" class="showcase-cinema-scene showcase-cinema-scene--spec-metrics" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Metrics</p>
+                <h2 class="showcase-cinema-heading">Line-height, tracking and optical size locked to tokens.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Every typographic measurement lives in a CSS custom property. Changing one token
+                reflows the entire hierarchy without scattering pixel overrides across components.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Line-height</span>
+                <strong>--vl-lh-tight: 1.2</strong>
+                <small>Display / hero headlines</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Line-height</span>
+                <strong>--vl-lh-normal: 1.5</strong>
+                <small>Body copy and paragraphs</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+                <span>Tracking</span>
+                <strong>--vl-tracking-wide: 0.04em</strong>
+                <small>Kickers and labels</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+                <span>Optical size</span>
+                <strong>font-optical-sizing: auto</strong>
+                <small>Browser adjusts weight for size</small>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Accessibility ══════════════════════════════════ -->
+        <section id="spec-a11y" class="showcase-cinema-scene showcase-cinema-scene--spec-a11y" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Accessibility</p>
+              <h2 class="showcase-cinema-heading">Minimum sizes and contrast pairs baked into the color system.</h2>
+              <p class="showcase-ref-lead">
+                Body text never drops below 16px. Kickers and small print floor at 12px.
+                Every text token is paired with a surface token that guarantees WCAG AA contrast.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>Body &ge; 16px</span>
+                <span>Small &ge; 12px</span>
+                <span>AA 4.5:1</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--spec-a11y" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>contrast pairing</span>
+                <code>--vl-text-primary on --vl-bg-main   → 12.4:1</code>
+                <code>--vl-text-muted  on --vl-bg-surface →  7.2:1</code>
+                <code>--vl-text-accent on --vl-bg-main    →  5.8:1</code>
+              </div>
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Rule</span>
+                <h3>Never rely on color alone.</h3>
+                <p>Underlines, icons or weight changes reinforce meaning for all users.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Implementation ═════════════════════════════════ -->
+        <section id="spec-impl" class="showcase-cinema-scene showcase-cinema-scene--spec-impl" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Implementation</p>
+              <h2 class="showcase-cinema-heading">Apply via utility classes and CSS variables&mdash;not ad-hoc pixels.</h2>
+              <p class="showcase-ref-lead">
+                Use <code>vl-display-xl</code>, <code>vl-title-lg</code> or <code>vl-body-lg</code>
+                classes to assign roles. Override at the token level for theming, never at the component level.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--spec-impl" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-easing-list" vl-children="stagger" vl-stagger="100ms">
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>.vl-display-xl</span>
+                  <strong>Hero headings &middot; clamp(2.5rem, 5vw, 4rem)</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.9"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>.vl-title-lg</span>
+                  <strong>Section heads &middot; clamp(1.5rem, 3vw, 2.25rem)</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.7"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>.vl-body-lg</span>
+                  <strong>Lead paragraphs &middot; 1.125rem / 1.6</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.5"></div></div>
+                </article>
+                <article class="showcase-cinema-easing-item" vl-effect="hover-depth-press">
+                  <span>.vl-kicker</span>
+                  <strong>Eyebrow labels &middot; 0.75rem / wide tracking</strong>
+                  <div class="showcase-cinema-meter"><div class="showcase-cinema-meter__track" style="--fill:.35"></div></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="spec-payoff" class="showcase-cinema-scene showcase-cinema-scene--spec-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied specification</p>
+            <h2 class="showcase-cinema-heading">Metrics, accessibility and utility classes: one typographic contract.</h2>
+            <p class="showcase-ref-lead">
+              Lock every measurement to a token, pair text and surface colors for contrast,
+              then apply roles via utility classes instead of ad-hoc pixel values.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Metrics</span>
+                <strong>Line-height, tracking and optical size in CSS custom properties.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Accessibility</span>
+                <strong>Minimum sizes floored at 16/12px with WCAG AA contrast.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Implementation</span>
+                <strong>Utility classes map roles; tokens override for theming.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Fluid</span>
+                <strong>clamp() values adapt to viewport without breakpoint overrides.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/typography-specification.html">Full Specification</a>
+              <a class="showcase-ref-tokens-button" href="/pages/typography/typography.html">Typography Overview</a>
+              <a class="showcase-ref-tokens-button" href="/pages/typography/typography-composition.html">Composition Patterns</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +369,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +395,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 

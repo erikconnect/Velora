@@ -24,19 +24,28 @@ Built for developers and agencies who want production-ready motion without the w
 
 ## Quick Start
 
-**1. Install**
+### 1. Install
 
 ```bash
 pnpm add @velora/css
 ```
 
-**2. Import**
+### 2. Import
 
 ```css
 @import "@velora/css";
 ```
 
-**3. Use**
+Or consume only the bundles you need:
+
+```css
+@import "@velora/css/base";
+@import "@velora/css/motion-core";
+@import "@velora/css/components-core";
+@import "@velora/css/transitions";
+```
+
+### 3. Use
 
 ```html
 <div vl-effect="fade-up" vl-timeline="view">
@@ -47,12 +56,68 @@ pnpm add @velora/css
 
 That's it. No build config. No framework bindings. Works with any stack.
 
+### Official Starter (HTML + CSS)
+
+For a minimal project scaffold, use the official starter in:
+
+- `starters/html-css-minimal/`
+
+It includes:
+
+- base HTML shell
+- `@import "@velora/css";`
+- canonical `vl-*` usage examples
+- zero JavaScript animation runtime
+
+## Modular Entry Points
+
+Velora now ships stable modular entry points in addition to the full bundle:
+
+- `@velora/css` or `@velora/css/full` — full framework bundle (default)
+- `@velora/css/base` — reset, tokens, layout, utilities
+- `@velora/css/motion-core` — core declarative motion grammar
+- `@velora/css/motion-extended` — extended motion effects
+- `@velora/css/components-core` — components, forms, dialogs, structures
+- `@velora/css/transitions` — view transition presets
+- `@velora/css/premium` — premium components
+- `@velora/css/overrides` — last-mile override layer
+
+All bundles keep the same `@layer` contract to avoid cascade drift between pages.
+
+## Motion Channels (v2)
+
+Velora supports channel-based motion composition with a deterministic order:
+
+1. `base`
+2. `enter`
+3. `scroll`
+4. `loop`
+5. `hover`
+6. `state`
+7. `exit`
+
+Use dedicated attributes per channel:
+
+```html
+<article
+  vl-enter="fade-up"
+  vl-scroll="parallax"
+  vl-loop="glow-breathe"
+  vl-hover="underline-expand"
+  vl-state="smooth"
+  vl-exit="fade-out">
+  ...
+</article>
+```
+
+Backward compatibility is preserved: legacy `vl-effect="..."` remains valid.
+
 ## What's Included
 
 Velora organizes styles through a **named `@layer` stack** (see `packages/css/src/velora.css` for the canonical order):
 
 | Layer | Purpose |
-|-------|---------|
+| ----- | ------- |
 | **Reset** | Normalize browser defaults |
 | **Tokens** | Design tokens — colors, spacing, typography, motion curves |
 | **Layout** | Grid systems, containers, density modes |
@@ -88,19 +153,29 @@ This is a pnpm + Turborepo monorepo:
 ```text
 velora/
 ├── packages/
-│   └── css/            # @velora/css — the core design system
+│   ├── css/                # @velora/css — canonical framework source
+│   ├── pages/              # legacy/reference HTML pages used by showcase tooling
+│   └── velora-components/  # component HTML catalog and source material
 ├── apps/
-│   ├── playground/     # Vite dev playground
-│   └── docs/           # Astro documentation site
+│   ├── showcase/           # Vite showcase (primary interactive app)
+│   └── docs/               # Astro documentation site
 ├── turbo.json
 └── pnpm-workspace.yaml
 ```
 
 ```bash
 pnpm install     # install all dependencies
-pnpm dev         # run the playground
-pnpm dev:docs    # run the docs site
-pnpm build       # build all packages
+pnpm dev         # run showcase locally
+pnpm dev:docs    # run docs locally
+pnpm dev:all     # run all dev tasks
+pnpm build       # build css + showcase + docs
+```
+
+If `pnpm` is unavailable on your machine, activate the pinned version with Corepack:
+
+```bash
+corepack enable
+corepack prepare pnpm@10.33.0 --activate
 ```
 
 ## Browser Support

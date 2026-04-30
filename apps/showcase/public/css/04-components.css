@@ -596,6 +596,15 @@
         border-bottom-color: transparent;
     }
 
+    /* Fallback: keep plain anchors on brand color when utility class isn't applied. */
+    a:not([class]) {
+        color: var(--vl-color-primary);
+    }
+
+    a:not([class]):visited {
+        color: color-mix(in oklch, var(--vl-color-primary) 82%, var(--vl-text-primary));
+    }
+
     /* -------------------------------------------------------------------------
        Flip 3D — checkbox + label (sem JS) ou variante só hover
        ------------------------------------------------------------------------- */
@@ -704,6 +713,11 @@
         accent-color: var(--vl-color-primary);
         cursor: pointer;
         background: transparent;
+    }
+
+    /* Fallback: avoid browser-default (often purple) range accent for unclassed inputs. */
+    input[type="range"]:not([class]) {
+        accent-color: var(--vl-color-primary);
     }
 
     .vl-range:focus-visible {

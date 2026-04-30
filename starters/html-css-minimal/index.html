@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora Starter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <header class="vl-header vl-header--glass" aria-label="Starter header">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand" href="#" aria-label="Home">
+          Velora Starter
+        </a>
+      </div>
+    </header>
+
+    <main id="content" class="starter-main">
+      <section class="starter-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <p class="starter-kicker">Zero-JS Motion</p>
+        <h1>Start with HTML + CSS only.</h1>
+        <p>
+          This section uses canonical Velora attributes and works without any
+          JavaScript animation runtime.
+        </p>
+        <div class="starter-actions" vl-children="orchestrate" vl-stagger="120ms">
+          <a class="vl-btn vl-btn--primary" href="#">Primary action</a>
+          <a class="vl-btn vl-btn--ghost" href="#">Secondary action</a>
+        </div>
+      </section>
+
+      <section class="starter-grid" vl-effect="fade-up" vl-timeline="view">
+        <article class="starter-card" vl-effect="hover-prism">
+          <h2>Tokens</h2>
+          <p>Use the existing color, type, spacing and radius variables.</p>
+        </article>
+        <article class="starter-card" vl-effect="hover-depth-press">
+          <h2>Motion</h2>
+          <p>Compose effects with canonical attributes from the contract.</p>
+        </article>
+        <article class="starter-card" vl-effect="hover-card-stack">
+          <h2>Accessibility</h2>
+          <p>Reduced-motion behavior remains handled by framework CSS.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

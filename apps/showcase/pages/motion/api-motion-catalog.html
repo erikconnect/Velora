@@ -1,283 +1,1178 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-editorial-theme="noir" vl-page-transition="cinema">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Catalogo vivo com todos os efeitos e modos da API de Motion da Velora em uma unica pagina." />
-    <title>Motion API Catalog | Velora</title>
-    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
-    <link rel="stylesheet" href="/css/velora.css" />
-    <link rel="stylesheet" href="/css/showcase.css" />
-    <style>
-      @view-transition { navigation: auto; }
-      .api-shell { max-width: min(1280px, calc(100vw - 3rem)); margin: 0 auto; padding: 7rem 0 4rem; }
-      .api-title { margin: 0 0 0.6rem; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 0.95; letter-spacing: -0.04em; }
-      .api-sub { margin: 0; color: var(--vl-text-secondary); max-width: 74ch; }
-      .api-controls { margin-top: 1rem; padding: 0.8rem; border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent); border-radius: 12px; background: color-mix(in oklch, var(--vl-bg-surface-elevated) 70%, transparent); display: grid; gap: 0.75rem; }
-      .api-controls-head { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; font-size: 0.78rem; color: var(--vl-text-secondary); }
-      .api-controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; }
-      .api-control { display: grid; gap: 0.35rem; }
-      .api-control label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--vl-text-muted); }
-      .api-control input[type="range"] { width: 100%; }
-      .api-selected { font-family: var(--vl-font-family-mono); font-size: 0.72rem; color: var(--vl-text-primary); }
-      .api-section { margin-top: 2.2rem; }
-      .api-section h2 { margin: 0 0 0.9rem; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vl-text-muted); }
-      .api-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
-      .api-card { min-height: 156px; border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent); background: color-mix(in oklch, var(--vl-bg-surface-elevated) 78%, transparent); border-radius: 14px; padding: 0.9rem; display: grid; gap: 0.7rem; align-content: start; overflow: clip; }
-      .api-card.is-selected { border-color: color-mix(in oklch, var(--vl-color-primary) 55%, var(--vl-border-subtle)); box-shadow: 0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 35%, transparent); }
-      .api-card strong { font-family: var(--vl-font-family-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--vl-text-muted); text-transform: uppercase; }
-      .api-target { min-height: 84px; border-radius: 10px; background: color-mix(in oklch, var(--vl-bg-main) 80%, transparent); border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent); display: grid; place-items: center; text-align: center; padding: 0.65rem; font-size: 0.84rem; }
-      .api-target-inline { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; }
-      .api-chip-row { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-      .api-chip { border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent); background: color-mix(in oklch, var(--vl-bg-main) 86%, transparent); border-radius: 999px; padding: 0.25rem 0.55rem; font-size: 0.68rem; font-family: var(--vl-font-family-mono); }
-      .api-scroll-track { display: flex; gap: 0.65rem; width: max-content; }
-      .api-scroll-track .api-chip { min-width: 120px; text-align: center; }
-      .api-children > * { min-height: 36px; border-radius: 8px; display: grid; place-items: center; background: color-mix(in oklch, var(--vl-color-primary) 10%, transparent); border: 1px solid color-mix(in oklch, var(--vl-color-primary) 36%, transparent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
-      .api-typewriter { --vl-type-chars: 30ch; --vl-type-steps: 30; }
-      .api-hover .api-target { cursor: pointer; }
-      .api-footer { margin-top: 2rem; color: var(--vl-text-muted); font-size: 0.8rem; }
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catalogo vivo da Motion API com grupos por categoria, demos ampliadas e playground declarativo da Velora." />
+  <title>Motion API Catalog | Velora</title>
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+  <link rel="stylesheet" href="/css/velora.css" />
+  <link rel="stylesheet" href="/css/showcase.css" />
+  <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+  <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+  <link rel="stylesheet" href="/css/showcase-api-motion-catalog.css" />
+ </head>
+ <body>
+  <a class="vl-sr-only" href="#content">Skip to content</a>
+  <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+   <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+   <a class="vl-bussola__stop" href="#channels"><span class="vl-bussola__label">Channels</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#timeline-modes"><span class="vl-bussola__label">Timeline</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#stage-3d"><span class="vl-bussola__label">Stage 3D</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#hover"><span class="vl-bussola__label">Interaction</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#scroll"><span class="vl-bussola__label">Scroll</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#transitions"><span class="vl-bussola__label">Transitions</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#params"><span class="vl-bussola__label">Runtime</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+  </nav>
+  <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
-      /* Para facilitar inspeção: demos com timeline de view/scroll rodam como auto dentro do catalogo. */
-      .api-card .api-target[vl-timeline="view"],
-      .api-card .api-target[vl-timeline="scroll"] {
-        animation-timeline: auto !important;
-        animation-range: normal !important;
-      }
-
-      .api-card .api-target[vl-effect="rotate-scroll"],
-      .api-card .api-target[vl-effect="wipe-reveal"],
-      .api-card .api-target[vl-effect="depth-push"],
-      .api-card .api-scroll-track[vl-effect="scroll-marquee"] {
-        animation-duration: 1400ms !important;
-      }
-
-      .api-card .api-target[vl-effect="shimmer-text"] {
-        background: none;
-      }
-    </style>
-  </head>
-  <body>
-    <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
-    <main id="content" class="api-shell">
-      <h1 class="api-title" vl-effect="clip-rise" vl-timeline="view">Velora Motion API Catalog</h1>
-      <p class="api-sub" vl-effect="fade-up" vl-timeline="view">
-        Pagina unica para validar visualmente todos os efeitos e modos declarativos da API de Motion. Cada card mostra o atributo exato
-        (`vl-effect`, `vl-children`, `vl-range`, `vl-speed`, `vl-once`) ja em funcionamento.
+  <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+   <div class="vl-header__inner">
+    <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+     <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+      <g class="vl-logo-mark__group">
+       <g class="vl-logo-mark__full">
+        <g>
+         <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+         <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+         <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+         <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+         <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+         <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+         <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+         <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+         <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+         <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+        </g>
+       </g>
+      </g>
+     </svg>
+    </a>
+    <nav class="vl-header__nav" aria-label="Primary navigation">
+     <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+     <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
+     <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+     <a class="vl-nav__link vl-nav__link--active" href="/pages/motion/api-motion-catalog.html">Motion</a>
+     <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+     <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+    </nav>
+    <div class="vl-header__actions">
+     <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+      <option value="cinema">Cinema</option>
+      <option value="wipe">Wipe</option>
+      <option value="glide">Glide</option>
+      <option value="iris">Iris</option>
+      <option value="snap">Snap</option>
+     </select>
+     <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+      <option value="noir">Noir</option>
+      <option value="earth">Earth tech</option>
+     </select>
+     <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+      <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+      <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+      <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+     </div>
+     <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+       <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
+      </svg>
+     </a>
+     <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
+    </div>
+   </div>
+  </header>
+  <main id="content" class="vl-main">
+   <div class="api-shell hub-page hub-page--motion">
+   <section class="api-hero" vl-effect="fade-up" vl-timeline="view">
+    <div class="api-hero-wash" aria-hidden="true"></div>
+    <div class="api-hero-inner">
+     <div class="api-hero-copy" vl-children="orchestrate" vl-stagger="180ms" vl-speed="cinema">
+      <p class="api-hero-kicker">
+       <span class="api-hero-kicker-line"></span>
+       <span class="api-kicker" vl-effect="typewriter-soft" vl-speed="cinema">Manifesto // Motion Runtime</span>
       </p>
-      <section class="api-controls" aria-label="Animation controls">
-        <div class="api-controls-head">
-          <span>Clique em um card para selecionar. Hover/focus no card para replay.</span>
-          <span class="api-selected" id="api-selected-card">Selecionado: nenhum</span>
-        </div>
-        <div class="api-controls-grid">
-          <div class="api-control">
-            <label for="api-delay-range">Replay delay</label>
-            <input id="api-delay-range" type="range" min="0" max="2000" step="50" value="0" />
-            <span class="api-selected" id="api-delay-value">0ms</span>
+      <h1 class="api-hero-title">Motion API as <em vl-effect="shimmer-text">composed architecture.</em></h1>
+      <p class="api-hero-lead">
+       An operational catalog for validating channels, ranges, timelines and states — editorial clarity and immediate feedback on every card.
+      </p>
+      <div class="api-hero-actions">
+       <a class="api-hero-btn api-hero-btn--primary" href="/pages/motion/motion-playground.html" vl-effect="icon-shift">Open Playground <span aria-hidden="true">→</span></a>
+       <a class="api-hero-btn" href="#channels" vl-effect="icon-shift">Open Channels</a>
+       <a class="api-hero-btn" href="#transitions" vl-effect="hover-tilt-3d">Transition Cards</a>
+      </div>
+      <nav class="api-hero-chip-row" aria-label="Sections">
+       <a href="#channels">Channels</a>
+       <a href="#timeline-modes">Timeline modes</a>
+      <a href="#entrances">Entrances</a>
+      <a href="#stage-3d">Stage 3D</a>
+       <a href="#hover">Hover</a>
+       <a href="#hover-cards">Hover Cards</a>
+       <a href="#editor-illustration">Editor</a>
+       <a href="#text">Text</a>
+       <a href="#ambient">Ambient</a>
+       <a href="#cube-triad">Cube Triad</a>
+       <a href="#scroll">Scroll</a>
+       <a href="#pin">Pin</a>
+       <a href="#timeline">Timeline</a>
+       <a href="#transitions">Transitions</a>
+       <a href="#children">Children</a>
+       <a href="#params">Params</a>
+      </nav>
+     </div>
+     <div class="api-hero-stage" aria-label="Layered motion preview" vl-effect="parallax" vl-timeline="view" vl-range="scene-soft" vl-speed="cinema">
+      <div class="api-hero-orbit" vl-effect="orbit">
+       <span></span>
+       <span></span>
+       <span></span>
+      </div>
+      <article class="api-hero-panel api-hero-panel--primary" vl-effect="hover-prism">
+       <p class="api-kicker">Scene Engine</p>
+       <strong>Channel / Layer / Reveal</strong>
+       <span>Predictable channel composition for enter, loop, scroll and state.</span>
+      </article>
+      <article class="api-hero-panel api-hero-panel--secondary" vl-effect="border-beam">
+       <p class="api-kicker">Runtime State</p>
+       <strong>entry 0% -> cover 65%</strong>
+       <span>Range, speed and replay per card with instant readout.</span>
+      </article>
+      <div class="api-hero-status" vl-children="wave">
+       <span>120fps pipeline</span>
+       <span>timeline armed</span>
+       <span>view + scroll ready</span>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section class="api-controls" aria-label="Animation controls">
+    <div class="api-controls-row">
+     <span class="api-selected" id="api-selected-card">Selected: none</span>
+     <div class="api-runtime-actions" aria-label="Runtime actions">
+      <button class="api-runtime-btn" id="api-play-btn" type="button" aria-label="Play" title="Play">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 6.5v11l9-5.5z"/></svg>
+      </button>
+      <button class="api-runtime-btn" id="api-pause-btn" type="button" aria-label="Pause" title="Pause">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 6h4v12H7zm6 0h4v12h-4z"/></svg>
+      </button>
+      <button class="api-runtime-btn" id="api-replay-btn" type="button" aria-label="Replay" title="Replay">
+       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 5a7 7 0 1 1-6.93 8H3l3.2 3.2.08.08L9.5 13H7.1A4.9 4.9 0 1 0 12 7c-1.14 0-2.2.39-3.03 1.04L7.5 6.6A7 7 0 0 1 12 5z"/></svg>
+      </button>
+     </div>
+     <div class="api-control">
+      <label for="api-delay-range" aria-label="Replay delay" title="Replay delay">D</label>
+      <input class="vl-range" id="api-delay-range" type="range" min="0" max="2000" step="50" value="0" />
+      <span class="api-control-value" id="api-delay-value">0ms</span>
+     </div>
+     <div class="api-control">
+      <label for="api-duration-range" aria-label="Duration" title="Duration">T</label>
+      <input class="vl-range" id="api-duration-range" type="range" min="300" max="4000" step="50" value="1400" />
+      <span class="api-control-value" id="api-duration-value">1400ms</span>
+     </div>
+     <div class="api-control">
+      <label for="api-speed-range" aria-label="Playback speed" title="Playback speed">S</label>
+      <input class="vl-range" id="api-speed-range" type="range" min="0.25" max="3" step="0.05" value="1" />
+      <span class="api-control-value" id="api-speed-value">1.00x</span>
+     </div>
+     <div class="api-runtime-commands" id="api-command-list" aria-label="Available commands"></div>
+    </div>
+   </section>
+
+  <section class="api-contract-legend" aria-label="Motion API scope legend">
+   <div class="api-contract-legend__inner">
+    <span class="api-scope-pill api-scope-pill--core">Core</span>
+    <span class="api-scope-pill api-scope-pill--extended">Extended</span>
+    <span class="api-scope-pill api-scope-pill--experimental">Experimental</span>
+    <p>Catalog sections are grouped by API stability level to improve review and maintenance without removing any functional demos.</p>
+   </div>
+   <div class="api-kind-filter" role="toolbar" aria-label="Filter cards by semantic kind">
+    <button class="api-kind-filter__btn is-active" type="button" data-filter-kind="all">all</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="channel">channel</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="timeline">timeline</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="interaction">interaction</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="scene">scene</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="3d">3d</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="transition">transition</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="text">text</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="ambient">ambient</button>
+    <button class="api-kind-filter__btn" type="button" data-filter-kind="reference">reference</button>
+   </div>
+  </section>
+
+   <section id="channels" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Channel Architecture</h2>
+     <p>Demonstrates the main v2 API channels and the recommended composition order.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card api-card--lead">
+      <strong>Canonical Order</strong>
+      <pre class="api-code">base -> enter -> scroll -> loop -> hover -> state -> exit</pre>
+      <p class="api-note">Channel composition reduces conflicts and maintains predictability across pages.</p>
+     </article>
+     <article class="api-card api-card--lead">
+      <strong>Channel-First Markup</strong>
+      <pre class="api-code">&lt;article
+ vl-enter="fade-up"
+ vl-scroll="parallax"
+ vl-loop="-1"
+ vl-loop-effect="glow-breathe"
+ vl-duration="1200ms"
+ vl-direction="reverse"
+ vl-hover="hover-lift"
+ vl-state="smooth"
+ vl-range="scene-focus"
+ vl-speed="normal"&gt;
+&lt;/article&gt;</pre>
+     </article>
+     <article class="api-card"><strong>vl-enter</strong><div class="api-target" vl-enter="fade-up" vl-timeline="view">Enter Channel</div></article>
+     <article class="api-card"><strong>vl-scroll</strong><div class="api-target" vl-scroll="depth-drift">Scroll Channel</div></article>
+     <article class="api-card"><strong>vl-loop</strong><div class="api-target" vl-loop="-1" vl-loop-effect="wobble">Loop -1</div></article>
+     <article class="api-card"><strong>vl-direction reverse</strong><div class="api-target" vl-loop="-1" vl-loop-effect="orbit" vl-direction="reverse" style="--vl-loop-direction: reverse; --vl-orbit-radius: 1.1rem;">Reverse Loop</div></article>
+     <article class="api-card"><strong>vl-direction alternate</strong><div class="api-target" vl-loop="-1" vl-loop-effect="float" vl-direction="alternate">Alternate Loop</div></article>
+     <article class="api-card"><strong>vl-loop 3x</strong><div class="api-target" vl-loop="3" vl-loop-effect="wobble">3 Repetitions</div></article>
+     <article class="api-card"><strong>vl-duration 1200ms</strong><div class="api-target" vl-loop="-1" vl-loop-effect="glow-breathe" vl-duration="1200ms">Direct Duration</div></article>
+     <article class="api-card"><strong>vl-hover</strong><div class="api-target" vl-hover="hover-glow">Hover Channel</div></article>
+     <article class="api-card"><strong>vl-state</strong><div class="api-target api-state-demo" vl-state="smooth">State Channel</div></article>
+     <article class="api-card"><strong>vl-exit</strong><div class="api-target" vl-exit="fade-out-up" style="--vl-exit-duration: 2200ms;">Exit Channel</div></article>
+     <article class="api-card"><strong>vl-exit slide-out-left</strong><div class="api-target" vl-exit="slide-out-left" vl-timeline="view">Slide Out Left</div></article>
+     <article class="api-card"><strong>vl-exit slide-out-right</strong><div class="api-target" vl-exit="slide-out-right" vl-timeline="view">Slide Out Right</div></article>
+     <article class="api-card"><strong>vl-exit blur-out</strong><div class="api-target" vl-exit="blur-out" vl-timeline="view">Blur Out</div></article>
+     <article class="api-card"><strong>vl-exit clip-drop</strong><div class="api-target" vl-exit="clip-drop" vl-timeline="view">Clip Drop</div></article>
+     <article class="api-card"><strong>combined</strong><div class="api-target api-v2-stack" vl-enter="fade-up" vl-scroll="parallax" vl-loop="-1" vl-loop-effect="glow-breathe" vl-hover="hover-lift" vl-state="smooth"><span>enter: fade-up</span><span>scroll: parallax</span><span>loop: glow-breathe</span></div></article>
+    </div>
+   </section>
+
+   <section id="timeline-modes" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Timeline Modes</h2>
+     <p>Use canonical timeline contracts to define what drives each motion channel: view, scroll, hover, or auto.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card api-card--lead">
+      <strong>Canonical timeline patterns</strong>
+      <pre class="api-code">&lt;!-- recommended pattern --&gt;
+&lt;div vl-enter="fade-up" vl-timeline="view"&gt;...&lt;/div&gt;
+
+&lt;!-- scrubbed parallax --&gt;
+&lt;img vl-effect="parallax" vl-timeline="scroll"&gt;
+
+&lt;!-- ambient loop --&gt;
+&lt;div vl-loop="-1" vl-loop-effect="float"&gt;...&lt;/div&gt;
+
+&lt;!-- no timeline (time-based) --&gt;
+&lt;div vl-enter="fade-up"&gt;...&lt;/div&gt;</pre>
+      <p class="api-note"><code>vl-timeline</code> controls <em>what drives</em> the animation — viewport, page scroll, hover gate, or default time-based playback.</p>
+     </article>
+     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-enter="fade-up" vl-timeline="view">Single entrance<br><small>scroll-triggered, holds state</small></div></article>
+     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-enter="clip-rise" vl-timeline="view">Reveal<br><small>alias for single</small></div></article>
+     <article class="api-card"><strong>vl-timeline="scroll"</strong><div class="api-target" vl-effect="parallax" vl-timeline="scroll">Timeline<br><small>scroll-scrubbed</small></div></article>
+     <article class="api-card"><strong>loop-only channel</strong><div class="api-target" vl-loop="-1" vl-loop-effect="glow-breathe">Loop<br><small>infinite ambient</small></div></article>
+     <article class="api-card"><strong>vl-timeline="hover"</strong><div class="api-target" vl-loop="-1" vl-loop-effect="shimmer" vl-timeline="hover">Hover to play<br><small>paused until hovered</small></div></article>
+     <article class="api-card"><strong>time-based (no timeline)</strong><div class="api-target" vl-enter="fade-up">Time-based<br><small>no explicit timeline binding</small></div></article>
+     <article class="api-card"><strong>stagger delay (canonical)</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>preset easing (canonical)</strong><div class="api-target" vl-enter="scale-in" vl-base="dramatic">Scale with spring-like base profile</div></article>
+    </div>
+   </section>
+
+   <section id="entrances" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Entrances and 3D</h2>
+     <p>View-timeline entry effects — from basic fade-in to extended 3D behaviours.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>fade-in</strong><div class="api-target" vl-effect="fade-in" vl-timeline="view">Fade In</div></article>
+     <article class="api-card"><strong>fade-up</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view">Fade Up</div></article>
+     <article class="api-card"><strong>slide-left</strong><div class="api-target" vl-effect="slide-left" vl-timeline="view">Slide Left</div></article>
+     <article class="api-card"><strong>scale-in</strong><div class="api-target" vl-effect="scale-in" vl-timeline="view">Scale In</div></article>
+     <article class="api-card"><strong>blur-in</strong><div class="api-target" vl-effect="blur-in" vl-timeline="view">Blur In</div></article>
+     <article class="api-card"><strong>clip-rise</strong><div class="api-target" vl-effect="clip-rise" vl-timeline="view">Clip Rise</div></article>
+     <article class="api-card"><strong>spring-up</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view">Spring Up</div></article>
+     <article class="api-card"><strong>glide-in</strong><div class="api-target" vl-effect="glide-in" vl-timeline="view">Glide In</div></article>
+     <article class="api-card"><strong>zoom-blur</strong><div class="api-target" vl-effect="zoom-blur" vl-timeline="view">Zoom Blur</div></article>
+     <article class="api-card"><strong>flip-in</strong><div class="api-target" vl-effect="flip-in" vl-timeline="view">Flip In</div></article>
+     <article class="api-card"><strong>spring-3d</strong><div class="api-target" vl-effect="spring-3d" vl-timeline="view">Spring 3D</div></article>
+     <article class="api-card"><strong>hinge-down</strong><div class="api-target" vl-effect="hinge-down" vl-timeline="view">Hinge Down</div></article>
+    </div>
+   </section>
+
+  <section id="stage-3d" class="api-group api-scope-experimental">
+   <div class="api-group-head">
+    <h2>Stage 3D</h2>
+    <p>Bloco dedicado para efeitos e cenas 3D da API. Esta seção centraliza os casos que já estão estáveis e mantém espaço para a evolução do Stage 3D em paralelo.</p>
+   </div>
+   <div class="api-grid">
+    <article class="api-card api-card--lead">
+     <strong>Roadmap Stage 3D</strong>
+     <pre class="api-code">&lt;!-- canonical 3D stage baseline --&gt;
+&lt;section vl-scene vl-scene-trigger="zone"&gt;
+  &lt;div vl-scene-trigger-zone tabindex="0"&gt;&lt;/div&gt;
+  &lt;article vl-effect="spring-3d" vl-timeline="view"&gt;...&lt;/article&gt;
+&lt;/section&gt;</pre>
+     <p class="api-note">Contrato base já canônico e funcional. Expansões de Stage 3D podem evoluir neste bloco sem quebrar os demos atuais.</p>
+    </article>
+    <article class="api-card"><strong>spring-3d</strong><div class="api-target" vl-effect="spring-3d" vl-timeline="view">Entrada 3D com timeline view</div></article>
+    <article class="api-card"><strong>hover-tilt-3d</strong><div class="api-target" vl-effect="hover-tilt-3d">Interação 3D por hover/focus</div></article>
+    <article class="api-card"><strong>cube-triad-stage</strong><div class="api-target api-cube-triad-demo" vl-effect="cube-triad-stage" aria-label="Cascading 3D cube choreography scene">
+      <div class="scene">
+       <div class="floor">
+        <div class="stage"><div></div><div></div><div></div><div></div></div>
+       </div>
+       <div class="bottomCube">
+        <i>
+         <div class="midCube">
+          <i></i><i></i><i></i><i></i><i><div class="topCube"><i></i><i></i><i></i><i></i><i></i></div></i>
+         </div>
+        </i><i></i><i></i><i></i><i></i>
+       </div>
+      </div>
+    </div></article>
+   </div>
+  </section>
+
+   <section id="hover" class="api-group api-scope-extended">
+    <div class="api-group-head">
+     <h2>Hover and Interaction</h2>
+     <p>Pointer, link and surface feedback, with a dedicated orb-grid mouse-tracking stage. Card-based hover components live in a dedicated section below.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>hover-lift</strong><div class="api-target" vl-effect="hover-lift">Hover me</div></article>
+     <article class="api-card"><strong>hover-glow</strong><div class="api-target" vl-effect="hover-glow">Hover me</div></article>
+     <article class="api-card"><strong>underline-expand</strong><a class="api-target api-target-inline" href="#" vl-effect="underline-expand">Underline Expand</a></article>
+     <article class="api-card"><strong>icon-shift</strong><a class="api-target api-target-inline" href="#" vl-effect="icon-shift">Icon Shift <span>-></span></a></article>
+     <article class="api-card"><strong>hover-tilt-3d</strong><div class="api-target" vl-effect="hover-tilt-3d">Tilt 3D</div></article>
+     <article class="api-card"><strong>hover-depth-stack</strong><div class="api-target" vl-effect="hover-depth-stack">Depth Stack</div></article>
+     <article class="api-card"><strong>hover-spotlight</strong><div class="api-target" vl-effect="hover-spotlight">Spotlight</div></article>
+     <article class="api-card"><strong>hover-shell-lift</strong><div class="api-target" vl-effect="hover-shell-lift">Shell Lift</div></article>
+     <article class="api-card"><strong>spotlight</strong><div class="api-target" vl-effect="spotlight">Extended Spotlight</div></article>
+     <article class="api-card"><strong>press</strong><button class="api-target api-target-inline" type="button" vl-effect="press">Press</button></article>
+     <article class="api-card"><strong>hover-prism</strong><div class="api-target" vl-effect="hover-prism">Hover Prism</div></article>
+     <article class="api-card"><strong>hover-depth-press</strong><button class="api-target api-target-inline" type="button" vl-effect="hover-depth-press">Hover Depth Press</button></article>
+     <article class="api-card"><strong>border-beam</strong><div class="api-target" vl-effect="border-beam">Border Beam</div></article>
+    </div>
+
+    <div class="api-orb-stage" style="margin-top: 1rem;">
+     <nav class="api-target" vl-effect="hover-orb-grid" aria-label="Orb grid demo" style="--mouse-x: 50%; --mouse-y: 50%;">
+      <ul style="height: 100%; margin: 0; padding: 0; list-style: none;">
+       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Motion Tokens</span><small class="api-orb-meta">timing + easing</small></button></li>
+       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Spatial Depth</span><small class="api-orb-meta">layers + parallax</small></button></li>
+       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Adaptive Range</span><small class="api-orb-meta">entry to cover</small></button></li>
+       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Runtime Control</span><small class="api-orb-meta">speed + replay</small></button></li>
+      </ul>
+     </nav>
+    </div>
+   </section>
+
+   <section id="hover-cards" class="api-group api-scope-extended">
+    <div class="api-group-head">
+     <h2>Hover Card Components</h2>
+     <p>Card-first interaction components grouped in their own section for API and component testing.</p>
+    </div>
+    <div class="api-grid api-grid--hover-cards">
+     <article class="api-card api-card--hover-fan"><strong>hover-card-fan</strong><div class="api-target api-hover-fan-demo" vl-effect="hover-card-fan"><button type="button"><span class="vl-hover-fan-index">1</span><p class="vl-hover-fan-label">signal</p></button><button type="button"><span class="vl-hover-fan-index">2</span><p class="vl-hover-fan-label">motion</p></button><button type="button"><span class="vl-hover-fan-index">3</span><p class="vl-hover-fan-label">control</p></button></div><p class="api-note">Group hover fan behavior for card components.</p></article>
+     <article class="api-card api-card--hover-stack"><strong>hover-card-stack</strong><div class="api-target" vl-effect="hover-card-stack"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card api-card--hover-cross"><strong>hover-cross-swap</strong><div class="api-target api-cross-demo" vl-effect="hover-cross-swap"><button type="button" data-vl-panel="top"><strong>Signal</strong><small>top panel</small></button><button type="button" data-vl-panel="right"><strong>Motion</strong><small>right panel</small></button><button type="button" data-vl-panel="bottom"><strong>Control</strong><small>bottom panel</small></button><button type="button" data-vl-panel="left"><strong>Layer</strong><small>left panel</small></button><div data-vl-panel="center"><strong>Core</strong><small>hover any edge</small></div></div></article>
+     <article class="api-card api-card--hover-duotone"><strong>duotone</strong><div class="api-target api-duotone-demo" vl-effect="duotone"><img src="/img/logo.svg" alt="Velora logo duotone test" /></div><p class="api-note">Token-driven duotone blend for image-based components.</p></article>
+    </div>
+   </section>
+
+   <section id="editor-illustration" class="api-group api-scope-extended">
+    <div class="api-group-head">
+     <h2>Illustration Editor Component</h2>
+     <p>Visual editor component with HTML, CSS and JS panels over a technical block — animated purely with CSS.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card api-card--illustration-editor">
+      <strong>illustration-editor</strong>
+      <div class="api-target api-target--illustration-editor" aria-label="Editor illustration component preview">
+       <div class="api-illustration-editor">
+        <div class="api-editor-panels" aria-hidden="true">
+         <article class="api-editor-code api-editor-code--html">
+          <header>
+           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14.9999 6.675L13.1999 6.075C12.9999 5.975 12.8999 5.775 12.9999 5.675L13.8999 3.975C14.4999 2.775 13.1999 1.475 11.9999 2.075L10.2999 2.975C10.1999 3.075 9.9999 2.975 9.8999 2.775L9.2999 0.975C8.8999 -0.325 7.0999 -0.325 6.6999 0.975L6.0999 2.775C5.9999 2.975 5.7999 3.075 5.6999 2.975L3.9999 2.075C2.7999 1.475 1.4999 2.775 2.0999 3.975L2.9999 5.675C3.0999 5.775 2.9999 5.975 2.7999 6.075L0.999902 6.675C-0.300098 7.075 -0.300098 8.975 0.999902 9.375L2.7999 9.975C2.9999 9.975 3.0999 10.175 2.9999 10.275L2.0999 11.975C1.4999 13.175 2.7999 14.475 3.9999 13.875L5.6999 12.975C5.8999 12.875 6.0999 12.975 6.0999 13.175L6.6999 14.975C7.0999 16.275 8.9999 16.275 9.3999 14.975L9.9999 13.175C10.0999 12.975 10.2999 12.875 10.3999 12.975L12.0999 13.875C13.2999 14.475 14.5999 13.175 13.9999 11.975L12.9999 10.275C12.8999 10.075 12.9999 9.875 13.1999 9.875L14.9999 9.275C16.2999 8.875 16.2999 7.075 14.9999 6.675ZM7.9999 10.375C6.6999 10.375 5.5999 9.275 5.5999 7.975C5.5999 6.675 6.6999 5.575 7.9999 5.575C9.2999 5.575 10.3999 6.675 10.3999 7.975C10.3999 9.275 9.2999 10.375 7.9999 10.375Z" fill="currentColor" /></svg>
+           <h3>HTML</h3>
+           <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true" focusable="false"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="currentColor" /></svg>
+          </header>
+          <div class="api-editor-code__content">
+           <code><span class="c-r">&lt;div</span> <span class="c-y">class</span><span class="c-w">=</span><span class="c-g">"rect"</span><span class="c-r">&gt;&lt;/div&gt;</span></code>
           </div>
-          <div class="api-control">
-            <label for="api-speed-range">Playback speed</label>
-            <input id="api-speed-range" type="range" min="0.25" max="3" step="0.05" value="1" />
-            <span class="api-selected" id="api-speed-value">1.00x</span>
+         </article>
+
+         <article class="api-editor-code api-editor-code--css">
+          <header>
+           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14.9999 6.675L13.1999 6.075C12.9999 5.975 12.8999 5.775 12.9999 5.675L13.8999 3.975C14.4999 2.775 13.1999 1.475 11.9999 2.075L10.2999 2.975C10.1999 3.075 9.9999 2.975 9.8999 2.775L9.2999 0.975C8.8999 -0.325 7.0999 -0.325 6.6999 0.975L6.0999 2.775C5.9999 2.975 5.7999 3.075 5.6999 2.975L3.9999 2.075C2.7999 1.475 1.4999 2.775 2.0999 3.975L2.9999 5.675C3.0999 5.775 2.9999 5.975 2.7999 6.075L0.999902 6.675C-0.300098 7.075 -0.300098 8.975 0.999902 9.375L2.7999 9.975C2.9999 9.975 3.0999 10.175 2.9999 10.275L2.0999 11.975C1.4999 13.175 2.7999 14.475 3.9999 13.875L5.6999 12.975C5.8999 12.875 6.0999 12.975 6.0999 13.175L6.6999 14.975C7.0999 16.275 8.9999 16.275 9.3999 14.975L9.9999 13.175C10.0999 12.975 10.2999 12.875 10.3999 12.975L12.0999 13.875C13.2999 14.475 14.5999 13.175 13.9999 11.975L12.9999 10.275C12.8999 10.075 12.9999 9.875 13.1999 9.875L14.9999 9.275C16.2999 8.875 16.2999 7.075 14.9999 6.675ZM7.9999 10.375C6.6999 10.375 5.5999 9.275 5.5999 7.975C5.5999 6.675 6.6999 5.575 7.9999 5.575C9.2999 5.575 10.3999 6.675 10.3999 7.975C10.3999 9.275 9.2999 10.375 7.9999 10.375Z" fill="currentColor" /></svg>
+           <h3>CSS</h3>
+           <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true" focusable="false"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="currentColor" /></svg>
+          </header>
+          <div class="api-editor-code__content">
+           <code>
+            <span class="api-editor-line api-editor-line--1"><span class="c-y">.rect</span> <span class="c-w">{</span></span>
+            <span class="api-editor-line api-editor-line--2"><span class="c-p">background</span><span class="c-w">:</span> <span class="c-y">linear-gradient</span>(</span>
+            <span class="api-editor-line api-editor-line--3"><span class="c-o">-119deg</span>,</span>
+            <span class="api-editor-line api-editor-line--4"><span class="c-y">$gray</span> <span class="c-o">0%</span>,</span>
+            <span class="api-editor-line api-editor-line--5"><span class="c-y">$dark-gray</span> <span class="c-o">100%</span>); <span class="c-w">}</span></span>
+           </code>
           </div>
+         </article>
+
+         <article class="api-editor-code api-editor-code--js">
+          <header>
+           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14.9999 6.675L13.1999 6.075C12.9999 5.975 12.8999 5.775 12.9999 5.675L13.8999 3.975C14.4999 2.775 13.1999 1.475 11.9999 2.075L10.2999 2.975C10.1999 3.075 9.9999 2.975 9.8999 2.775L9.2999 0.975C8.8999 -0.325 7.0999 -0.325 6.6999 0.975L6.0999 2.775C5.9999 2.975 5.7999 3.075 5.6999 2.975L3.9999 2.075C2.7999 1.475 1.4999 2.775 2.0999 3.975L2.9999 5.675C3.0999 5.775 2.9999 5.975 2.7999 6.075L0.999902 6.675C-0.300098 7.075 -0.300098 8.975 0.999902 9.375L2.7999 9.975C2.9999 9.975 3.0999 10.175 2.9999 10.275L2.0999 11.975C1.4999 13.175 2.7999 14.475 3.9999 13.875L5.6999 12.975C5.8999 12.875 6.0999 12.975 6.0999 13.175L6.6999 14.975C7.0999 16.275 8.9999 16.275 9.3999 14.975L9.9999 13.175C10.0999 12.975 10.2999 12.875 10.3999 12.975L12.0999 13.875C13.2999 14.475 14.5999 13.175 13.9999 11.975L12.9999 10.275C12.8999 10.075 12.9999 9.875 13.1999 9.875L14.9999 9.275C16.2999 8.875 16.2999 7.075 14.9999 6.675ZM7.9999 10.375C6.6999 10.375 5.5999 9.275 5.5999 7.975C5.5999 6.675 6.6999 5.575 7.9999 5.575C9.2999 5.575 10.3999 6.675 10.3999 7.975C10.3999 9.275 9.2999 10.375 7.9999 10.375Z" fill="currentColor" /></svg>
+           <h3>JS</h3>
+           <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true" focusable="false"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="currentColor" /></svg>
+          </header>
+          <div class="api-editor-code__content">
+           <code>
+            <span class="api-editor-empty-face"><span class="c-b">&lt;/&gt;</span> <span class="c-g">^-^</span></span>
+           </code>
+          </div>
+         </article>
         </div>
-      </section>
+        <div class="api-editor-block" aria-hidden="true"></div>
+       </div>
+      </div>
+      <p class="api-note">Editor-inspired composition converted to a declarative, tokenized, no-JS component.</p>
+     </article>
+    </div>
+   </section>
 
-      <section class="api-section">
-        <h2>Core Entrances</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>fade-in</strong><div class="api-target" vl-effect="fade-in" vl-timeline="view">Fade In</div></article>
-          <article class="api-card"><strong>fade-up</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view">Fade Up</div></article>
-          <article class="api-card"><strong>fade-down</strong><div class="api-target" vl-effect="fade-down" vl-timeline="view">Fade Down</div></article>
-          <article class="api-card"><strong>slide-left</strong><div class="api-target" vl-effect="slide-left" vl-timeline="view">Slide Left</div></article>
-          <article class="api-card"><strong>slide-right</strong><div class="api-target" vl-effect="slide-right" vl-timeline="view">Slide Right</div></article>
-          <article class="api-card"><strong>scale-in</strong><div class="api-target" vl-effect="scale-in" vl-timeline="view">Scale In</div></article>
-          <article class="api-card"><strong>blur-in</strong><div class="api-target" vl-effect="blur-in" vl-timeline="view">Blur In</div></article>
-          <article class="api-card"><strong>reveal-3d</strong><div class="api-target" vl-effect="reveal-3d" vl-timeline="view">Reveal 3D</div></article>
-          <article class="api-card"><strong>flow-in</strong><div class="api-target" vl-effect="flow-in" vl-timeline="view">Flow In</div></article>
-          <article class="api-card"><strong>clip-rise</strong><div class="api-target" vl-effect="clip-rise" vl-timeline="view">Clip Rise</div></article>
-          <article class="api-card"><strong>tilt-in</strong><div class="api-target" vl-effect="tilt-in" vl-timeline="view">Tilt In</div></article>
-          <article class="api-card"><strong>elastic-in</strong><div class="api-target" vl-effect="elastic-in" vl-timeline="view">Elastic In</div></article>
+   <section id="text" class="api-group api-scope-extended">
+    <div class="api-group-head">
+     <h2>Text Effects</h2>
+     <p>Animated reveals and typographic effects for headings and editorial excerpts.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>text-reveal</strong><div class="api-target" vl-effect="text-reveal" vl-timeline="view">Text Reveal</div></article>
+     <article class="api-card"><strong>text-reveal-up</strong><div class="api-target" vl-effect="text-reveal-up" vl-timeline="view">Text Reveal Up</div></article>
+     <article class="api-card"><strong>text-reveal-down</strong><div class="api-target" vl-effect="text-reveal-down" vl-timeline="view">Text Reveal Down</div></article>
+     <article class="api-card"><strong>text-line-reveal</strong><div class="api-target" vl-effect="text-line-reveal" vl-timeline="view">Line Reveal</div></article>
+     <article class="api-card"><strong>text-word-rise</strong><div class="api-target" vl-effect="text-word-rise" vl-timeline="view">Word Rise</div></article>
+     <article class="api-card"><strong>typewriter</strong><div class="api-target api-typewriter" vl-effect="typewriter">Typewriter full</div></article>
+     <article class="api-card"><strong>typewriter-soft</strong><div class="api-target api-typewriter" vl-effect="typewriter-soft">Typewriter soft</div></article>
+     <article class="api-card"><strong>gradient-text-color</strong><div class="api-target api-gradient-text-demo"><span vl-effect="gradient-text-color">Gradient Text Colour</span></div></article>
+     <article class="api-card"><strong>shimmer-text</strong><div class="api-target"><span vl-effect="shimmer-text">Shimmer Text</span></div></article>
+     <article class="api-card api-card--text-ring">
+      <strong>text-ring-orbit</strong>
+      <div class="api-target api-text-ring-demo" vl-effect="text-ring-orbit" aria-label="CSS is awesome text ring orbit animation">
+       <div class="vl-text-ring-stage" aria-hidden="true">
+        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
+        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
+        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
+        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
+       </div>
+      </div>
+     </article>
+     <article class="api-card api-card--code-greeting">
+      <strong>code-greeting-stack</strong>
+      <div class="api-target api-code-greeting-demo" vl-effect="code-greeting-stack" tabindex="0" aria-label="Code greeting animation with alternate words on hover or focus">
+       <p class="vl-code-line">
+        <span class="vl-code-token-plain">System</span><span class="vl-code-token-plain">.</span><span class="vl-code-token-warm">out</span><span class="vl-code-token-plain">.</span><span class="vl-code-token-accent">println</span><span class="vl-code-token-plain">(</span><span class="vl-code-token-secondary">&quot;</span>
+       </p>
+       <div class="vl-code-greetings" aria-live="polite">
+        <div class="vl-code-greetings-track vl-code-greetings-track--base">
+         <span>Hello Velora!</span>
+         <span>Hola Velora!</span>
+         <span>Hallo Velora!</span>
+         <span>Ciao Velora!</span>
         </div>
-      </section>
-
-      <section class="api-section api-hover">
-        <h2>Hover / Interaction</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>hover-lift</strong><div class="api-target" vl-effect="hover-lift">Passe o mouse</div></article>
-          <article class="api-card"><strong>hover-glow</strong><div class="api-target" vl-effect="hover-glow">Passe o mouse</div></article>
-          <article class="api-card"><strong>underline-expand</strong><a class="api-target api-target-inline" href="#" vl-effect="underline-expand">Underline Expand</a></article>
-          <article class="api-card"><strong>icon-shift</strong><a class="api-target api-target-inline" href="#" vl-effect="icon-shift">Icon Shift <span>→</span></a></article>
-          <article class="api-card"><strong>hover-tilt-3d</strong><div class="api-target" vl-effect="hover-tilt-3d">Tilt 3D</div></article>
-          <article class="api-card"><strong>hover-depth-stack</strong><div class="api-target" vl-effect="hover-depth-stack">Depth Stack</div></article>
-          <article class="api-card"><strong>hover-spotlight</strong><div class="api-target" vl-effect="hover-spotlight">Spotlight</div></article>
-          <article class="api-card"><strong>hover-card-stack</strong><div class="api-target" vl-effect="hover-card-stack"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>hover-shell-lift</strong><div class="api-target" vl-effect="hover-shell-lift">Shell Lift</div></article>
-          <article class="api-card"><strong>spotlight</strong><div class="api-target" vl-effect="spotlight">Extended Spotlight</div></article>
-          <article class="api-card"><strong>press</strong><button class="api-target api-target-inline" type="button" vl-effect="press">Press</button></article>
-          <article class="api-card"><strong>hover-prism</strong><div class="api-target" vl-effect="hover-prism">Hover Prism</div></article>
-          <article class="api-card"><strong>hover-depth-press</strong><button class="api-target api-target-inline" type="button" vl-effect="hover-depth-press">Hover Depth Press</button></article>
-          <article class="api-card"><strong>border-beam</strong><div class="api-target" vl-effect="border-beam">Border Beam</div></article>
+        <div class="vl-code-greetings-track vl-code-greetings-track--hover" aria-hidden="true">
+         <span>Design Tokens</span>
+         <span>Motion Grammar</span>
+         <span>Component Library</span>
+         <span>System Narrative</span>
         </div>
-      </section>
+       </div>
+       <p class="vl-code-line vl-code-line--closure"><span class="vl-code-token-secondary">&quot;</span><span class="vl-code-token-plain">);</span></p>
+      </div>
+      <p class="api-note">Hover or focus this card to swap the greeting set.</p>
+     </article>
+     <article class="api-card api-card--circle-scroll">
+      <strong>circle-text-scroll</strong>
+      <div class="api-target api-circle-text-scroll-demo" vl-effect="circle-text-scroll" aria-label="Velora circular text animation linked to page scroll">
+       <ul aria-hidden="true">
+        <li><span>V</span><span>e</span><span>l</span><span>o</span><span>r</span><span>a</span></li>
+        <li><span>M</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span></li>
+        <li><span>T</span><span>o</span><span>k</span><span>e</span><span>n</span><span>s</span></li>
+        <li><span>S</span><span>y</span><span>s</span><span>t</span><span>e</span><span>m</span></li>
+        <li><span>R</span><span>h</span><span>y</span><span>t</span><span>h</span><span>m</span></li>
+        <li><span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>a</span><span>s</span><span>t</span></li>
+        <li><span>S</span><span>u</span><span>r</span><span>f</span><span>a</span><span>c</span><span>e</span></li>
+        <li><span>K</span><span>i</span><span>n</span><span>e</span><span>t</span><span>i</span><span>c</span></li>
+        <li><span>L</span><span>a</span><span>t</span><span>t</span><span>i</span><span>c</span><span>e</span></li>
+        <li><span>C</span><span>a</span><span>d</span><span>e</span><span>n</span><span>c</span><span>e</span></li>
+        <li><span>P</span><span>r</span><span>i</span><span>m</span><span>a</span><span>r</span><span>y</span></li>
+        <li><span>A</span><span>c</span><span>c</span><span>e</span><span>n</span><span>t</span></li>
+        <li><span>B</span><span>a</span><span>l</span><span>a</span><span>n</span><span>c</span><span>e</span></li>
+        <li><span>S</span><span>p</span><span>a</span><span>c</span><span>i</span><span>n</span><span>g</span></li>
+        <li><span>H</span><span>a</span><span>r</span><span>m</span><span>o</span><span>n</span><span>y</span></li>
+        <li><span>V</span><span>i</span><span>e</span><span>w</span><span>p</span><span>o</span><span>r</span><span>t</span></li>
+        <li><span>T</span><span>i</span><span>m</span><span>e</span><span>l</span><span>i</span><span>n</span><span>e</span></li>
+        <li><span>O</span><span>r</span><span>b</span><span>i</span><span>t</span><span>a</span><span>l</span><span>s</span></li>
+        <li><span>L</span><span>a</span><span>y</span><span>e</span><span>r</span><span>s</span></li>
+        <li><span>N</span><span>a</span><span>r</span><span>r</span><span>a</span><span>t</span><span>i</span><span>v</span><span>e</span></li>
+       </ul>
+       <em>Your browser does not support the latest scroll features.</em>
+      </div>
+     </article>
+    </div>
+   </section>
 
-      <section class="api-section">
-        <h2>Text Effects</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>text-reveal</strong><div class="api-target" vl-effect="text-reveal" vl-timeline="view">Text Reveal</div></article>
-          <article class="api-card"><strong>text-reveal-up</strong><div class="api-target" vl-effect="text-reveal-up" vl-timeline="view">Text Reveal Up</div></article>
-          <article class="api-card"><strong>text-reveal-down</strong><div class="api-target" vl-effect="text-reveal-down" vl-timeline="view">Text Reveal Down</div></article>
-          <article class="api-card"><strong>text-line-reveal</strong><div class="api-target" vl-effect="text-line-reveal" vl-timeline="view">Line Reveal</div></article>
-          <article class="api-card"><strong>text-word-rise</strong><div class="api-target" vl-effect="text-word-rise" vl-timeline="view">Word Rise</div></article>
-          <article class="api-card"><strong>typewriter</strong><div class="api-target api-typewriter" vl-effect="typewriter">Typewriter completo funcionando</div></article>
-          <article class="api-card"><strong>typewriter-soft</strong><div class="api-target api-typewriter" vl-effect="typewriter-soft">Typewriter soft completo</div></article>
-          <article class="api-card"><strong>shimmer-text</strong><div class="api-target"><span vl-effect="shimmer-text">Shimmer Text</span></div></article>
+   <section id="ambient" class="api-group api-scope-extended">
+    <div class="api-group-head">
+     <h2>Ambient and Continuous</h2>
+     <p>Loop animations for live surfaces, status indicators and cinematic backgrounds.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>shimmer</strong><div class="api-target" vl-effect="shimmer">Shimmer</div></article>
+     <article class="api-card"><strong>float</strong><div class="api-target" vl-effect="float">Float</div></article>
+     <article class="api-card"><strong>glow-breathe</strong><div class="api-target" vl-effect="glow-breathe">Glow Breathe</div></article>
+     <article class="api-card"><strong>wobble</strong><div class="api-target" vl-effect="wobble">Wobble</div></article>
+     <article class="api-card"><strong>orbit</strong><div class="api-target" vl-effect="orbit">Orbit</div></article>
+     <article class="api-card"><strong>rock</strong><div class="api-target" vl-effect="rock">Rock</div></article>
+     <article class="api-card"><strong>morph</strong><div class="api-target" vl-effect="morph">Morph</div></article>
+     <article class="api-card"><strong>pulse-ring</strong><div class="api-target" vl-effect="pulse-ring">Pulse Ring</div></article>
+     <article class="api-card"><strong>spin-slow</strong><div class="api-target" vl-effect="spin-slow">Spin Slow</div></article>
+     <article class="api-card"><strong>pendulum</strong><div class="api-target" vl-effect="pendulum">Pendulum</div></article>
+     <article class="api-card"><strong>breathe</strong><div class="api-target" vl-effect="breathe">Breathe</div></article>
+     <article class="api-card"><strong>drift</strong><div class="api-target" vl-effect="drift">Drift</div></article>
+     <article class="api-card"><strong>bounce</strong><div class="api-target" vl-effect="bounce">Bounce</div></article>
+     <article class="api-card"><strong>aurora</strong><div class="api-target" vl-effect="aurora">Aurora</div></article>
+     <article class="api-card"><strong>gradient-slide</strong><div class="api-target" vl-effect="gradient-slide">Gradient Slide</div></article>
+     <article class="api-card"><strong>mesh-pan</strong><div class="api-target" vl-effect="mesh-pan">Mesh Pan</div></article>
+     <article class="api-card"><strong>glitch-lite</strong><div class="api-target" vl-effect="glitch-lite">Glitch Lite</div></article>
+     <article class="api-card"><strong>scanline</strong><div class="api-target" vl-effect="scanline">Scanline</div></article>
+     <article class="api-card"><strong>ripple</strong><div class="api-target" vl-effect="ripple">Ripple</div></article>
+     <article class="api-card"><strong>levitate-x</strong><div class="api-target" vl-effect="levitate-x">Levitate X</div></article>
+     <article class="api-card"><strong>halo-breathe</strong><div class="api-target" vl-effect="halo-breathe">Halo Breathe</div></article>
+     <article class="api-card"><strong>sweep-border</strong><div class="api-target" vl-effect="sweep-border">Sweep Border</div></article>
+    </div>
+   </section>
+
+   <section id="cube-triad" class="api-group api-scope-experimental">
+    <div class="api-group-head">
+     <h2>Cube Triad</h2>
+     <p>Dedicated section for the cascading 3D cube choreography effect.</p>
+    </div>
+    <div class="api-grid api-grid--cube-triad">
+     <article class="api-card api-card--cube-triad">
+      <strong>cube-triad-stage</strong>
+      <div class="api-target api-cube-triad-demo" vl-effect="cube-triad-stage" aria-label="Cascading 3D cube choreography scene">
+       <div class="scene">
+        <div class="floor">
+         <div class="stage">
+          <div></div><div></div><div></div><div></div>
+         </div>
         </div>
-      </section>
-
-      <section class="api-section">
-        <h2>Ambient / Continuous</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>shimmer</strong><div class="api-target" vl-effect="shimmer">Shimmer</div></article>
-          <article class="api-card"><strong>float</strong><div class="api-target" vl-effect="float">Float</div></article>
-          <article class="api-card"><strong>glow-breathe</strong><div class="api-target" vl-effect="glow-breathe">Glow Breathe</div></article>
-          <article class="api-card"><strong>wobble</strong><div class="api-target" vl-effect="wobble">Wobble</div></article>
-          <article class="api-card"><strong>orbit</strong><div class="api-target" vl-effect="orbit">Orbit</div></article>
-          <article class="api-card"><strong>rock</strong><div class="api-target" vl-effect="rock">Rock</div></article>
-          <article class="api-card"><strong>morph</strong><div class="api-target" vl-effect="morph">Morph</div></article>
-          <article class="api-card"><strong>pulse-ring</strong><div class="api-target" vl-effect="pulse-ring">Pulse Ring</div></article>
-          <article class="api-card"><strong>spin-slow</strong><div class="api-target" vl-effect="spin-slow">Spin Slow</div></article>
-          <article class="api-card"><strong>pendulum</strong><div class="api-target" vl-effect="pendulum">Pendulum</div></article>
-          <article class="api-card"><strong>breathe</strong><div class="api-target" vl-effect="breathe">Breathe</div></article>
-          <article class="api-card"><strong>drift</strong><div class="api-target" vl-effect="drift">Drift</div></article>
-          <article class="api-card"><strong>bounce</strong><div class="api-target" vl-effect="bounce">Bounce</div></article>
-          <article class="api-card"><strong>aurora</strong><div class="api-target" vl-effect="aurora">Aurora</div></article>
-          <article class="api-card"><strong>gradient-slide</strong><div class="api-target" vl-effect="gradient-slide">Gradient Slide</div></article>
-          <article class="api-card"><strong>mesh-pan</strong><div class="api-target" vl-effect="mesh-pan">Mesh Pan</div></article>
+        <div class="bottomCube">
+         <i>
+          <div class="midCube">
+           <i></i><i></i><i></i><i></i><i>
+            <div class="topCube">
+             <i></i><i></i><i></i><i></i><i></i>
+            </div>
+           </i>
+          </div>
+         </i><i></i><i></i><i></i><i></i>
         </div>
-      </section>
+       </div>
+      </div>
+      <p class="api-note">Tokenized 3D cube scene with layered fold choreography, no JavaScript.</p>
+     </article>
+    </div>
+   </section>
 
-      <section class="api-section">
-        <h2>Extended Entrances / 3D</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>spring-up</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view">Spring Up</div></article>
-          <article class="api-card"><strong>glide-in</strong><div class="api-target" vl-effect="glide-in" vl-timeline="view">Glide In</div></article>
-          <article class="api-card"><strong>zoom-blur</strong><div class="api-target" vl-effect="zoom-blur" vl-timeline="view">Zoom Blur</div></article>
-          <article class="api-card"><strong>slice-in</strong><div class="api-target" vl-effect="slice-in" vl-timeline="view">Slice In</div></article>
-          <article class="api-card"><strong>unfold</strong><div class="api-target" vl-effect="unfold" vl-timeline="view">Unfold</div></article>
-          <article class="api-card"><strong>slide-diagonal</strong><div class="api-target" vl-effect="slide-diagonal" vl-timeline="view">Slide Diagonal</div></article>
-          <article class="api-card"><strong>flip-in</strong><div class="api-target" vl-effect="flip-in" vl-timeline="view">Flip In</div></article>
-          <article class="api-card"><strong>spring-3d</strong><div class="api-target" vl-effect="spring-3d" vl-timeline="view">Spring 3D</div></article>
-          <article class="api-card"><strong>rise-3d</strong><div class="api-target" vl-effect="rise-3d" vl-timeline="view">Rise 3D</div></article>
-          <article class="api-card"><strong>drop-in</strong><div class="api-target" vl-effect="drop-in" vl-timeline="view">Drop In</div></article>
-          <article class="api-card"><strong>skew-slide</strong><div class="api-target" vl-effect="skew-slide" vl-timeline="view">Skew Slide</div></article>
-          <article class="api-card"><strong>hinge-down</strong><div class="api-target" vl-effect="hinge-down" vl-timeline="view">Hinge Down</div></article>
-        </div>
-      </section>
+   <section id="scroll" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Scroll and Timeline</h2>
+     <p>Effects driven by view and scroll timelines — parallax, marquee, wipe and depth.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>cinema-zoom</strong><div class="api-target" vl-effect="cinema-zoom" vl-timeline="view">Cinema Zoom</div></article>
+     <article class="api-card"><strong>parallax</strong><div class="api-target" vl-effect="parallax" vl-timeline="view">Parallax</div></article>
+     <article class="api-card"><strong>scroll-marquee</strong><div class="api-target"><div class="api-scroll-track" vl-effect="scroll-marquee" vl-timeline="scroll"><span class="api-chip">API</span><span class="api-chip">MOTION</span><span class="api-chip">SCROLL</span><span class="api-chip">MARQUEE</span></div></div></article>
+     <article class="api-card"><strong>depth-drift</strong><div class="api-target" vl-effect="depth-drift" vl-timeline="view">Depth Drift</div></article>
+     <article class="api-card"><strong>rotate-scroll</strong><div class="api-target" vl-effect="rotate-scroll" vl-timeline="scroll">Rotate Scroll</div></article>
+     <article class="api-card"><strong>wipe-reveal</strong><div class="api-target" vl-effect="wipe-reveal" vl-timeline="view">Wipe Reveal</div></article>
+     <article class="api-card"><strong>depth-push</strong><div class="api-target" vl-effect="depth-push" vl-timeline="view">Depth Push</div></article>
+     <article class="api-card"><strong>pass-fade</strong><div class="api-target" vl-effect="pass-fade">Pass Fade<br><small>enter &amp; exit in one scroll arc</small></div></article>
+     <article class="api-card"><strong>pass-rise</strong><div class="api-target" vl-effect="pass-rise">Pass Rise<br><small>rises in, holds, fades out</small></div></article>
+    </div>
+   </section>
 
-      <section class="api-section">
-        <h2>Scroll / Timeline Effects</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>cinema-zoom</strong><div class="api-target" vl-effect="cinema-zoom" vl-timeline="view">Cinema Zoom</div></article>
-          <article class="api-card"><strong>parallax</strong><div class="api-target" vl-effect="parallax" vl-timeline="view">Parallax</div></article>
-          <article class="api-card"><strong>scroll-marquee</strong><div class="api-target"><div class="api-scroll-track" vl-effect="scroll-marquee" vl-timeline="scroll"><span class="api-chip">API</span><span class="api-chip">MOTION</span><span class="api-chip">SCROLL</span><span class="api-chip">MARQUEE</span></div></div></article>
-          <article class="api-card"><strong>depth-drift</strong><div class="api-target" vl-effect="depth-drift" vl-timeline="view">Depth Drift</div></article>
-          <article class="api-card"><strong>rotate-scroll</strong><div class="api-target" vl-effect="rotate-scroll" vl-timeline="scroll">Rotate Scroll</div></article>
-          <article class="api-card"><strong>wipe-reveal</strong><div class="api-target" vl-effect="wipe-reveal" vl-timeline="view">Wipe Reveal</div></article>
-          <article class="api-card"><strong>depth-push</strong><div class="api-target" vl-effect="depth-push" vl-timeline="view">Depth Push</div></article>
-        </div>
-      </section>
+   <section id="pin" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Pin Stories</h2>
+     <p>Extended pin showcase with a large stage and safe header offset — long-form narrative scrolling with fixed anchor points.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card api-card--lead">
+      <strong>Pin recipe</strong>
+      <pre class="api-code">&lt;section
+ vl-timeline="scroll"
+ vl-pin="top"
+ vl-range="entry 0% cover 78%"&gt;
+ &lt;aside vl-pin="top"&gt;pinned anchor&lt;/aside&gt;
+ &lt;article&gt;narrative scroll steps&lt;/article&gt;
+&lt;/section&gt;</pre>
+      <p class="api-note">Use <code>vl-pin</code> to keep a fixed anchor in view while the surrounding content advances through narrative steps.</p>
+     </article>
 
-      <section class="api-section">
-        <h2>Children Modes</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>stagger</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>cascade</strong><div class="api-target api-children" vl-children="cascade" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>sequence</strong><div class="api-target api-children" vl-children="sequence"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>orchestrate</strong><div class="api-target api-children" vl-children="orchestrate" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>wave</strong><div class="api-target api-children" vl-children="wave"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>blur-cascade</strong><div class="api-target api-children" vl-children="blur-cascade"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>zoom-stagger</strong><div class="api-target api-children" vl-children="zoom-stagger"><span>A</span><span>B</span><span>C</span></div></article>
-          <article class="api-card"><strong>cinema-stagger</strong><div class="api-target api-children" vl-children="cinema-stagger"><span>A</span><span>B</span><span>C</span></div></article>
-        </div>
-      </section>
+     <article class="api-card api-pin-showcase">
+      <strong>Pin Story - Large Stage</strong>
+      <div class="api-pin-story" vl-timeline="scroll" vl-range="entry 0% cover 85%">
+       <aside class="api-pin-anchor" vl-pin="top" vl-effect="glow-breathe">
+        <strong>Pinned Focus</strong>
+        <span>vl-pin="top" + safe offset</span>
+        <span>vl-timeline="scroll"</span>
+       </aside>
+       <div class="api-pin-flow">
+        <article class="api-pin-step" vl-effect="fade-up" vl-timeline="view">
+         <strong>Step 01 - Context Frame</strong>
+         <p>The first block opens the narrative while the pinned anchor maintains the visual chapter reference.</p>
+        </article>
+        <article class="api-pin-step" vl-effect="fade-up" vl-timeline="view" vl-range="entry-short">
+         <strong>Step 02 - Range Tuning</strong>
+         <p>Tune <code>vl-range</code> to control when each part enters. <code>entry-short</code> keeps the transition tight and precise.</p>
+        </article>
+        <article class="api-pin-step" vl-effect="depth-drift" vl-timeline="scroll" vl-scrub>
+         <strong>Step 03 - Scroll Scrub</strong>
+         <p>With <code>vl-scrub</code>, the animation tracks scroll in real time — easy to calibrate rhythm and pacing.</p>
+        </article>
+        <article class="api-pin-step" vl-effect="cinema-zoom" vl-timeline="scroll" vl-range="cover">
+         <strong>Step 04 - Cover Phase</strong>
+         <p>Final phase — prepares the scene exit and hands off cleanly to the next block on the page.</p>
+        </article>
+        <article class="api-pin-step" vl-effect="fade-up" vl-timeline="view" vl-once>
+         <strong>Step 05 - Exit Hand-off</strong>
+         <p>Closes with <code>vl-once</code> to prevent replay and preserve reading state when scrolling back up.</p>
+        </article>
+       </div>
+      </div>
+     </article>
 
-      <section class="api-section">
-        <h2>Ranges, Speed, Once</h2>
-        <div class="api-grid">
-          <article class="api-card"><strong>vl-range presets</strong><div class="api-chip-row"><span class="api-chip">entry</span><span class="api-chip">entry-short</span><span class="api-chip">entry-long</span><span class="api-chip">cover</span><span class="api-chip">contain</span><span class="api-chip">custom</span><span class="api-chip">scene-soft</span><span class="api-chip">scene-focus</span><span class="api-chip">exit</span><span class="api-chip">exit-short</span><span class="api-chip">center</span><span class="api-chip">full</span></div></article>
-          <article class="api-card"><strong>vl-speed presets</strong><div class="api-chip-row"><span class="api-chip">fastest</span><span class="api-chip">fast</span><span class="api-chip">normal</span><span class="api-chip">slow</span><span class="api-chip">slower</span><span class="api-chip">cinema</span></div></article>
-          <article class="api-card"><strong>vl-once + view</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view" vl-once>One-shot Entry</div></article>
-          <article class="api-card"><strong>vl-enter focus</strong><div class="api-target" vl-effect="glide-in" vl-timeline="view" vl-enter="focus">Focused Entry Window</div></article>
-        </div>
-      </section>
+     <article class="api-card"><strong>pin + scrub</strong><div class="api-target" vl-effect="parallax" vl-timeline="scroll" vl-pin="top" vl-scrub>Pinned Scrub</div></article>
+     <article class="api-card"><strong>pin + range</strong><div class="api-target" vl-effect="cinema-zoom" vl-timeline="scroll" vl-pin="center" vl-range="entry-short">Pin Center</div></article>
 
-      <p class="api-footer">Arquivo: <code>/pages/motion/api-motion-catalog.html</code></p>
-    </main>
-    <script>
-      (() => {
-        const cards = Array.from(document.querySelectorAll(".api-card"));
-        if (!cards.length) return;
-        const delayRange = document.getElementById("api-delay-range");
-        const speedRange = document.getElementById("api-speed-range");
-        const delayValue = document.getElementById("api-delay-value");
-        const speedValue = document.getElementById("api-speed-value");
-        const selectedLabel = document.getElementById("api-selected-card");
-        let selectedCard = null;
+     <article class="api-card api-pin-overlap">
+      <strong>Session Overlap Scroll Demo</strong>
+      <div class="api-overlap-stage" vl-timeline="scroll" vl-range="entry 0% cover 90%">
+       <div class="api-overlap-stack">
+        <article class="api-overlap-panel" vl-effect="fade-up" vl-timeline="view">
+         <strong>Section A - Base Layer</strong>
+         <p>Section A holds as a sticky base layer while the scroll continues beneath it.</p>
+        </article>
+        <article class="api-overlap-panel" vl-effect="depth-drift" vl-timeline="scroll" vl-scrub>
+         <strong>Section B - Overlap</strong>
+         <p>On scroll, Section B rises over A — layered reading maintained throughout.</p>
+        </article>
+        <article class="api-overlap-panel" vl-effect="cinema-zoom" vl-timeline="scroll" vl-range="cover">
+         <strong>Section C - Top Layer</strong>
+         <p>Finally, Section C enters over B and completes the overlap sequence.</p>
+        </article>
+       </div>
+       <div class="api-overlap-runway" aria-hidden="true"></div>
+      </div>
+     </article>
+    </div>
+   </section>
 
-        const replayCardAnimations = (card) => {
-          if (!card) return;
-          const delayMs = Number(delayRange?.value || 0);
-          const speedRate = Number(speedRange?.value || 1);
-          const targets = card.querySelectorAll("[vl-effect], [vl-children] > *");
-          window.setTimeout(() => {
-            targets.forEach((node) => {
-              node.style.animation = "none";
-              // Force reflow so the same keyframe can restart.
-              void node.offsetWidth;
-              node.style.animation = "";
-            });
-            card.getAnimations({ subtree: true }).forEach((anim) => {
-              anim.playbackRate = speedRate;
-            });
-          }, delayMs);
-        };
+   <section id="timeline" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Timeline Breakdown</h2>
+     <p>Direct comparison of <code>view</code> vs <code>scroll</code> timelines, focusing on <code>vl-range</code>, <code>vl-once</code> and <code>vl-scrub</code>.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card api-card--lead">
+      <strong>Timeline mental model</strong>
+      <div class="api-timeline-board">
+       <div class="api-timeline-lane">
+        <strong>view timeline</strong>
+        <div class="api-timeline-axis"><span class="is-active"></span><span class="is-active"></span><span></span><span></span></div>
+        <p class="api-timeline-note">Fires when the element enters the viewport. Supports <code>vl-once</code> for single-play.</p>
+       </div>
+       <div class="api-timeline-lane">
+        <strong>scroll timeline</strong>
+        <div class="api-timeline-axis"><span class="is-active"></span><span class="is-active"></span><span class="is-active"></span><span class="is-active"></span></div>
+        <p class="api-timeline-note">Progresses with the scroll position. Pairs best with <code>vl-scrub</code> for timeline scrubbing.</p>
+       </div>
+      </div>
+     </article>
+     <article class="api-card"><strong>view + once</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view" vl-once>One-shot entrance</div></article>
+     <article class="api-card"><strong>view + entry-short</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view" vl-range="entry-short">Short Window</div></article>
+     <article class="api-card"><strong>scroll + scrub</strong><div class="api-target" vl-effect="depth-drift" vl-timeline="scroll" vl-scrub>Scroll Scrub</div></article>
+     <article class="api-card"><strong>scroll + cover</strong><div class="api-target" vl-effect="wipe-reveal" vl-timeline="scroll" vl-range="cover">Cover Phase</div></article>
+     <article class="api-card"><strong>timeline + speed</strong><div class="api-target" vl-effect="parallax" vl-timeline="view" vl-speed="slow">Slow View Timeline</div></article>
+     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view">Single (cinematic entry, not scrubbed)</div></article>
+     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-enter="slide-left" vl-timeline="view">Canonical entrance binding</div></article>
+    </div>
+   </section>
 
-        const selectCard = (card) => {
-          cards.forEach((item) => item.classList.remove("is-selected"));
-          selectedCard = card;
-          card.classList.add("is-selected");
-          const label = card.querySelector("strong")?.textContent || "card";
-          if (selectedLabel) selectedLabel.textContent = `Selecionado: ${label}`;
-        };
+   <section id="transitions" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Page Transitions</h2>
+     <p>Card previews of every page-transition style used in the framework — hover, focus or click to replay.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card api-transition-card" data-api-transition="cinema" tabindex="0">
+      <strong>cinema</strong>
+      <div class="api-transition-stage" aria-hidden="true">
+       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Cinema Reveal</span></div>
+      </div>
+      <p class="api-transition-hint">Hover, focus or click to replay.</p>
+     </article>
+     <article class="api-card api-transition-card" data-api-transition="wipe" tabindex="0">
+      <strong>wipe</strong>
+      <div class="api-transition-stage" aria-hidden="true">
+       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Wipe Reveal</span></div>
+      </div>
+      <p class="api-transition-hint">Directional cover transition.</p>
+     </article>
+     <article class="api-card api-transition-card" data-api-transition="glide" tabindex="0">
+      <strong>glide</strong>
+      <div class="api-transition-stage" aria-hidden="true">
+       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Glide In</span></div>
+      </div>
+      <p class="api-transition-hint">Lateral movement with easing.</p>
+     </article>
+     <article class="api-card api-transition-card" data-api-transition="iris" tabindex="0">
+      <strong>iris</strong>
+      <div class="api-transition-stage" aria-hidden="true">
+       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Iris Open</span></div>
+      </div>
+      <p class="api-transition-hint">Radial expansion reveal.</p>
+     </article>
+     <article class="api-card api-transition-card" data-api-transition="snap" tabindex="0">
+      <strong>snap</strong>
+      <div class="api-transition-stage" aria-hidden="true">
+       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Snap Switch</span></div>
+      </div>
+      <p class="api-transition-hint">Instant cut with micro accent.</p>
+     </article>
+    </div>
+   </section>
 
-        cards.forEach((card) => {
-          card.addEventListener("click", () => selectCard(card));
-          card.addEventListener("focusin", () => {
-            if (!selectedCard) selectCard(card);
-          });
-          card.addEventListener("mouseenter", () => replayCardAnimations(card));
-          card.addEventListener("focusin", () => replayCardAnimations(card));
-        });
+   <section id="children" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Children Modes</h2>
+     <p>Choreography modes for collections of child elements — stagger, cascade, wave and more.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>stagger</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>cascade</strong><div class="api-target api-children" vl-children="cascade" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>sequence</strong><div class="api-target api-children" vl-children="sequence"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>orchestrate</strong><div class="api-target api-children" vl-children="orchestrate" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>wave</strong><div class="api-target api-children" vl-children="wave"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>blur-cascade</strong><div class="api-target api-children" vl-children="blur-cascade"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>zoom-stagger</strong><div class="api-target api-children" vl-children="zoom-stagger"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>cinema-stagger</strong><div class="api-target api-children" vl-children="cinema-stagger"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>grid-wave</strong><div class="api-target api-children" vl-children="grid-wave"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>spiral-stagger</strong><div class="api-target api-children" vl-children="spiral-stagger"><span>A</span><span>B</span><span>C</span></div></article>
+    </div>
+   </section>
 
-        if (cards[0]) selectCard(cards[0]);
+   <section id="params" class="api-group api-scope-core">
+    <div class="api-group-head">
+     <h2>Ranges, Speed and Runtime Params</h2>
+     <p>Visual reference for all range presets, speed profiles and utility attributes for fine-tuning motion behaviour.</p>
+    </div>
+    <div class="api-grid">
+     <article class="api-card"><strong>vl-range presets</strong><div class="api-chip-row"><span class="api-chip">entry</span><span class="api-chip">entry-short</span><span class="api-chip">entry-long</span><span class="api-chip">cover</span><span class="api-chip">contain</span><span class="api-chip">scene-focus</span><span class="api-chip">exit</span><span class="api-chip">center</span><span class="api-chip">full</span></div></article>
+     <article class="api-card"><strong>vl-speed presets</strong><div class="api-chip-row"><span class="api-chip">fast</span><span class="api-chip">normal</span><span class="api-chip">slow</span><span class="api-chip">cinema</span></div></article>
+     <article class="api-card"><strong>canonical ease families</strong><div class="api-chip-row"><span class="api-chip">--vl-ease-cinematic</span><span class="api-chip">--vl-ease-out-soft</span><span class="api-chip">--vl-ease-spring</span><span class="api-chip">--vl-ease-in-out-smooth</span></div></article>
+     <article class="api-card"><strong>stagger step presets</strong><div class="api-chip-row"><span class="api-chip">60ms</span><span class="api-chip">100ms</span><span class="api-chip">120ms</span><span class="api-chip">180ms</span><span class="api-chip">240ms</span><span class="api-chip">320ms</span></div></article>
+     <article class="api-card"><strong>base subtle</strong><div class="api-target" vl-enter="fade-up" vl-base="subtle" vl-timeline="view">Faster and softer motion profile</div></article>
+     <article class="api-card"><strong>base balanced</strong><div class="api-target" vl-enter="fade-up" vl-base="balanced" vl-timeline="view">Default cinematic profile</div></article>
+     <article class="api-card"><strong>base dramatic</strong><div class="api-target" vl-enter="scale-in" vl-base="dramatic" vl-timeline="view">Longer spring-style profile</div></article>
+     <article class="api-card"><strong>children stagger 60ms</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="60ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>children stagger 180ms</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="180ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>children stagger 320ms</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="320ms"><span>A</span><span>B</span><span>C</span></div></article>
+     <article class="api-card"><strong>vl-loop values</strong><div class="api-chip-row"><span class="api-chip">-1 = infinite</span><span class="api-chip">0</span><span class="api-chip">1</span><span class="api-chip">2</span><span class="api-chip">3...</span></div></article>
+     <article class="api-card"><strong>vl-duration examples</strong><div class="api-chip-row"><span class="api-chip">120ms</span><span class="api-chip">300ms</span><span class="api-chip">800ms</span><span class="api-chip">1200ms</span><span class="api-chip">2s</span><span class="api-chip">3.6s</span></div></article>
+     <article class="api-card"><strong>vl-direction values</strong><div class="api-chip-row"><span class="api-chip">normal</span><span class="api-chip">reverse</span><span class="api-chip">alternate</span><span class="api-chip">alternate-reverse</span></div></article>
+     <article class="api-card"><strong>vl-once + view</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view" vl-once>One-shot Entry</div></article>
+     <article class="api-card"><strong>vl-speed fast</strong><div class="api-target" vl-effect="fade-up" vl-speed="fast" vl-timeline="view">Fast Profile</div></article>
+     <article class="api-card"><strong>vl-speed cinema</strong><div class="api-target" vl-effect="fade-up" vl-speed="cinema" vl-timeline="view">Cinema Profile</div></article>
+     <article class="api-card"><strong>vl-speed normal</strong><div class="api-target" vl-effect="fade-up" vl-speed="normal" vl-timeline="view">Normal Profile</div></article>
+     <article class="api-card"><strong>vl-range entry-short</strong><div class="api-target" vl-effect="fade-up" vl-range="entry-short" vl-timeline="view">Micro Window</div></article>
+    </div>
+   </section>
 
-        if (delayRange && delayValue) {
-          delayRange.addEventListener("input", () => {
-            delayValue.textContent = `${Number(delayRange.value)}ms`;
-            replayCardAnimations(selectedCard);
-          });
+   </div>
+  </main>
+
+  <footer class="vl-footer" aria-label="Site footer">
+   <div class="vl-footer__inner vl-container">
+    <div class="vl-footer__grid vl-footer__grid--5">
+     <div class="vl-footer__col vl-footer__brand">
+      <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-effect="fade-up" vl-timeline="view">
+       <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+        <g class="vl-logo-mark__group">
+         <g class="vl-logo-mark__full">
+          <g>
+           <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+           <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+           <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+           <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+           <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+           <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+           <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+           <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+           <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+           <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+          </g>
+         </g>
+        </g>
+       </svg>
+      </a>
+      <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+     </div>
+     <div class="vl-footer__col">
+      <h3 class="vl-footer__heading">Framework</h3>
+      <ul class="vl-footer__links">
+       <li><a class="vl-footer__link" href="/pages/core/landing.html">Overview</a></li>
+       <li><a class="vl-footer__link" href="/pages/color/design-tokens.html">Tokens</a></li>
+       <li><a class="vl-footer__link" href="/pages/tools/system-modules.html">System Modules</a></li>
+       <li><a class="vl-footer__link" href="/pages/tools/architecture.html">Architecture</a></li>
+       <li><a class="vl-footer__link" href="/pages/tools/brand-voice.html">Brand Voice</a></li>
+       <li><a class="vl-footer__link" href="/pages/tools/accessibility.html">Accessibility</a></li>
+      </ul>
+     </div>
+     <div class="vl-footer__col">
+      <h3 class="vl-footer__heading">Scenes &amp; Motion</h3>
+      <ul class="vl-footer__links">
+       <li><a class="vl-footer__link" href="/pages/scenes/scene-hero.html">Hero Reveal</a></li>
+       <li><a class="vl-footer__link" href="/pages/scenes/scene-features.html">Feature Flow</a></li>
+       <li><a class="vl-footer__link" href="/pages/scenes/scene-story.html">Story Pin</a></li>
+       <li><a class="vl-footer__link" href="/pages/scenes/scroll-reveal.html">Scroll Reveal</a></li>
+       <li><a class="vl-footer__link" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a></li>
+       <li><a class="vl-footer__link" href="/pages/motion/motion-extended.html">Motion v2 Extended</a></li>
+       <li><a class="vl-footer__link" href="/pages/motion/motion-principles.html">Motion Principles</a></li>
+      </ul>
+     </div>
+     <div class="vl-footer__col">
+      <h3 class="vl-footer__heading">Color &amp; Type</h3>
+      <ul class="vl-footer__links">
+       <li><a class="vl-footer__link" href="/pages/color/color-system.html">Color System</a></li>
+       <li><a class="vl-footer__link" href="/pages/color/color-palette.html">Color Palette</a></li>
+       <li><a class="vl-footer__link" href="/pages/color/tonal-tiers.html">Tonal Tiers</a></li>
+       <li><a class="vl-footer__link" href="/pages/color/ambient-shadows.html">Ambient Shadows</a></li>
+       <li><a class="vl-footer__link" href="/pages/typography/typography.html">Typography</a></li>
+       <li><a class="vl-footer__link" href="/pages/typography/typography-spec.html">Type Spec</a></li>
+      </ul>
+     </div>
+     <div class="vl-footer__col">
+      <h3 class="vl-footer__heading">Tools</h3>
+      <ul class="vl-footer__links">
+       <li><a class="vl-footer__link" href="/pages/library/gallery.html">Components</a></li>
+       <li><a class="vl-footer__link" href="/pages/components/forms.html">Forms</a></li>
+       <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
+       <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
+       <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
+       <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
+      </ul>
+     </div>
+    </div>
+    <div class="vl-footer__bottom">
+     <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+     <div class="vl-footer__social" aria-label="Velora social links">
+      <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
+       </svg>
+      </a>
+      <a href="#" aria-label="Velora on X">
+       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M18.244 2H21l-6.02 6.88L22 22h-5.634l-4.41-5.987L6.72 22H4l6.44-7.36L2 2h5.776l3.986 5.418L18.244 2Zm-.959 18h1.526L6.944 3.896H5.31L17.285 20Z"/>
+       </svg>
+      </a>
+      <a href="#" aria-label="Velora on Dribbble">
+       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2Zm6.756 4.294a8 8 0 0 1 1.855 5.06 18.45 18.45 0 0 0-5.427-.08 26.39 26.39 0 0 0-1.238-2.67 16.594 16.594 0 0 0 4.81-2.31ZM12 3.389c1.86 0 3.57.638 4.927 1.706a15.39 15.39 0 0 1-4.559 2.153c-1.043-1.89-2.2-3.468-2.383-3.715A8.614 8.614 0 0 1 12 3.389ZM8.446 4.106c.173.23 1.328 1.806 2.347 3.66a33.26 33.26 0 0 1-6.98.903 8.642 8.642 0 0 1 4.633-4.563ZM3.39 12c0-.665.078-1.311.223-1.93a34.67 34.67 0 0 0 7.874-1.03c.403.764.775 1.557 1.101 2.37-.164.048-.324.097-.484.148-4.997 1.612-7.645 6.05-7.88 6.457A8.56 8.56 0 0 1 3.389 12Zm1.823 7.083c.199-.337 2.47-4.041 7.328-5.69.125-.043.252-.083.382-.121.852 2.307 1.442 4.752 1.664 7.259A8.555 8.555 0 0 1 5.212 19.083Zm10.756.775c-.245-2.375-.791-4.69-1.55-6.887.064-.01.13-.019.195-.028a16.99 16.99 0 0 1 5.92.131 8.643 8.643 0 0 1-4.565 6.784Z"/>
+       </svg>
+      </a>
+     </div>
+    </div>
+   </div>
+  </footer>
+
+  <script>
+   (() => {
+    const cards = Array.from(document.querySelectorAll(".api-card"));
+    if (!cards.length) return;
+    const sectionKindMap = {
+     channels: "channel",
+     "timeline-modes": "timeline",
+     entrances: "timeline",
+     "stage-3d": "3d",
+     hover: "interaction",
+     "hover-cards": "interaction",
+     "editor-illustration": "interaction",
+     text: "text",
+     ambient: "ambient",
+     "cube-triad": "scene",
+     scroll: "timeline",
+     pin: "scene",
+     timeline: "timeline",
+     transitions: "transition",
+     children: "channel",
+     params: "reference"
+    };
+    cards.forEach((card) => {
+     const section = card.closest("section[id]");
+     const sectionId = section?.id || "";
+     const fallbackKind = card.classList.contains("api-card--lead") ? "reference" : "channel";
+     card.dataset.apiKind = sectionKindMap[sectionId] || fallbackKind;
+    });
+    const filterButtons = Array.from(document.querySelectorAll(".api-kind-filter__btn"));
+    const groups = Array.from(document.querySelectorAll(".api-group"));
+    let activeFilterKind = "all";
+    const delayRange = document.getElementById("api-delay-range");
+    const durationRange = document.getElementById("api-duration-range");
+    const speedRange = document.getElementById("api-speed-range");
+    const delayValue = document.getElementById("api-delay-value");
+    const durationValue = document.getElementById("api-duration-value");
+    const speedValue = document.getElementById("api-speed-value");
+    const selectedLabel = document.getElementById("api-selected-card");
+    const commandList = document.getElementById("api-command-list");
+    const playBtn = document.getElementById("api-play-btn");
+    const pauseBtn = document.getElementById("api-pause-btn");
+    const replayBtn = document.getElementById("api-replay-btn");
+    let selectedCard = null;
+    let isPaused = false;
+    let replayTimer = null;
+
+    const getRuntimeValues = () => ({
+     delayMs: Number(delayRange?.value || 0),
+     durationMs: Number(durationRange?.value || 1400),
+     speedRate: Number(speedRange?.value || 1)
+    });
+
+    const getTargets = (card) => card.querySelectorAll("[vl-effect], [vl-base], [vl-enter], [vl-scroll], [vl-loop], [vl-hover], [vl-state], [vl-exit], [vl-children] > *");
+    const getVisibleCards = () => cards.filter((card) => !card.classList.contains("is-filter-hidden"));
+
+    const renderAvailableCommands = (card) => {
+     if (!commandList || !card) return;
+     const apiCommands = [
+      "vl-effect",
+      "vl-timeline",
+      "vl-range",
+      "vl-duration",
+      "vl-pin",
+      "vl-scrub",
+      "vl-once",
+      "vl-children",
+      "vl-stagger",
+      "vl-depth",
+      "vl-speed",
+      "vl-loop",
+      "vl-loop-effect",
+      "vl-direction",
+      "vl-scene",
+      "vl-targets"
+     ];
+
+     commandList.innerHTML = apiCommands
+      .map((attr) => {
+       const hasCommand = !!card.querySelector(`[${attr}]`);
+       const stateClass = hasCommand ? "is-available" : "is-unavailable";
+       return `<span class="api-runtime-command-chip ${stateClass}">${attr}</span>`;
+      })
+      .join("");
+    };
+
+    const updateActionState = () => {
+     if (playBtn) playBtn.classList.toggle("is-active", !isPaused);
+     if (pauseBtn) pauseBtn.classList.toggle("is-active", isPaused);
+    };
+
+    const applyRuntimeToCard = (card) => {
+     if (!card) return;
+     const { delayMs, durationMs, speedRate } = getRuntimeValues();
+     const targets = getTargets(card);
+
+     targets.forEach((node) => {
+      node.style.animationDelay = `${delayMs}ms`;
+      node.style.animationDuration = `${durationMs}ms`;
+      node.style.animationPlayState = isPaused ? "paused" : "running";
+     });
+
+     card.getAnimations({ subtree: true }).forEach((anim) => {
+      anim.playbackRate = speedRate;
+      if (anim.effect && typeof anim.effect.updateTiming === "function") {
+       try {
+        anim.effect.updateTiming({ duration: durationMs, delay: delayMs });
+       } catch {
+        // Some browser-generated effects may reject timing updates.
+       }
+      }
+      if (isPaused) {
+       anim.pause();
+      } else {
+       anim.play();
+      }
+     });
+    };
+
+    const replayCardAnimations = (card) => {
+     if (!card) return;
+     const { delayMs } = getRuntimeValues();
+     const targets = getTargets(card);
+     window.clearTimeout(replayTimer);
+     replayTimer = window.setTimeout(() => {
+      targets.forEach((node) => {
+       node.style.animation = "none";
+       void node.offsetWidth;
+       node.style.animation = "";
+      });
+      applyRuntimeToCard(card);
+     }, delayMs);
+    };
+
+    const selectCard = (card) => {
+     cards.forEach((item) => item.classList.remove("is-selected"));
+     selectedCard = card;
+     card.classList.add("is-selected");
+     const label = card.querySelector("strong")?.textContent || "card";
+     if (selectedLabel) selectedLabel.textContent = `Selecionado: ${label}`;
+     renderAvailableCommands(card);
+     applyRuntimeToCard(card);
+    };
+
+    const applyCardFilter = (kind) => {
+      activeFilterKind = kind;
+      cards.forEach((card) => {
+        const show = kind === "all" || card.dataset.apiKind === kind;
+        card.classList.toggle("is-filter-hidden", !show);
+      });
+
+      groups.forEach((group) => {
+        const groupCards = Array.from(group.querySelectorAll(".api-card"));
+        const hasVisible = groupCards.some((card) => !card.classList.contains("is-filter-hidden"));
+        group.classList.toggle("is-filter-empty", !hasVisible);
+      });
+
+      filterButtons.forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.filterKind === kind);
+      });
+
+      if (!selectedCard || selectedCard.classList.contains("is-filter-hidden")) {
+        const firstVisible = getVisibleCards()[0];
+        if (firstVisible) {
+          selectCard(firstVisible);
+        } else if (selectedLabel) {
+          selectedLabel.textContent = "Selected: none";
         }
+      }
+    };
 
-        if (speedRange && speedValue) {
-          speedRange.addEventListener("input", () => {
-            speedValue.textContent = `${Number(speedRange.value).toFixed(2)}x`;
-            replayCardAnimations(selectedCard);
-          });
-        }
-      })();
-    </script>
-    <script src="/js/showcase-controls.js"></script>
-  </body>
+    cards.forEach((card) => {
+     card.addEventListener("click", () => selectCard(card));
+     card.addEventListener("focusin", () => {
+      if (!selectedCard) selectCard(card);
+     });
+     card.addEventListener("mouseenter", () => replayCardAnimations(card));
+     card.addEventListener("focusin", () => replayCardAnimations(card));
+    });
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextKind = button.dataset.filterKind || "all";
+        if (nextKind === activeFilterKind) return;
+        applyCardFilter(nextKind);
+      });
+    });
+
+    if (cards[0]) selectCard(cards[0]);
+    applyCardFilter(activeFilterKind);
+    updateActionState();
+
+    if (delayRange && delayValue) {
+     delayRange.addEventListener("input", () => {
+      delayValue.textContent = `${Number(delayRange.value)}ms`;
+      replayCardAnimations(selectedCard);
+     });
+    }
+
+    if (durationRange && durationValue) {
+     durationRange.addEventListener("input", () => {
+      durationValue.textContent = `${Number(durationRange.value)}ms`;
+      replayCardAnimations(selectedCard);
+     });
+    }
+
+    if (speedRange && speedValue) {
+     speedRange.addEventListener("input", () => {
+      speedValue.textContent = `${Number(speedRange.value).toFixed(2)}x`;
+      applyRuntimeToCard(selectedCard);
+     });
+    }
+
+    if (playBtn) {
+     playBtn.addEventListener("click", () => {
+      isPaused = false;
+      updateActionState();
+      applyRuntimeToCard(selectedCard);
+     });
+    }
+
+    if (pauseBtn) {
+     pauseBtn.addEventListener("click", () => {
+      isPaused = true;
+      updateActionState();
+      applyRuntimeToCard(selectedCard);
+     });
+    }
+
+    if (replayBtn) {
+     replayBtn.addEventListener("click", () => {
+      isPaused = false;
+      updateActionState();
+      replayCardAnimations(selectedCard);
+     });
+    }
+   })();
+  </script>
+  <script>
+   document.querySelectorAll('[vl-effect="hover-orb-grid"]').forEach((container) => {
+    container.addEventListener("mousemove", (event) => {
+     const rect = container.getBoundingClientRect();
+     const x = ((event.clientX - rect.left) / rect.width) * 100;
+     const y = ((event.clientY - rect.top) / rect.height) * 100;
+     container.style.setProperty("--mouse-x", `${x}%`);
+     container.style.setProperty("--mouse-y", `${y}%`);
+    });
+
+    container.addEventListener("mouseleave", () => {
+     container.style.setProperty("--mouse-x", "50%");
+     container.style.setProperty("--mouse-y", "50%");
+    });
+   });
+
+   const transitionCards = document.querySelectorAll(".api-transition-card");
+   transitionCards.forEach((card) => {
+    let replayTimer;
+    const replay = () => {
+     card.classList.remove("is-playing");
+     void card.offsetWidth;
+     card.classList.add("is-playing");
+     window.clearTimeout(replayTimer);
+     replayTimer = window.setTimeout(() => card.classList.remove("is-playing"), 980);
+    };
+
+    card.addEventListener("mouseenter", replay);
+    card.addEventListener("focusin", replay);
+    card.addEventListener("click", replay);
+   });
+  </script>
+    <!-- showcase-controls.js — SHOWCASE UI ONLY.
+     Handles the dark/light toggle, editorial theme switcher and page-transition
+     selector in the demo header. This is NOT part of the Velora framework.
+     Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+  <script src="/js/showcase-controls.js"></script>
+ </body>
 </html>

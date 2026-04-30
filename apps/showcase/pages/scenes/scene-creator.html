@@ -9,6 +9,7 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-tools-hub.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
@@ -275,6 +276,7 @@
         <a href="/pages/scenes/scene-features.html">Features</a>
         <a href="/pages/scenes/scene-story.html">Story</a>
         <a href="/pages/scenes/scene-creator.html" aria-current="page">Creator</a>
+        <a href="/pages/tools/index.html">Tools</a>
       </nav>
     </header>
 
@@ -689,6 +691,37 @@
         <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer">GitHub</a>
       </span>
     </footer>
+
+        <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <!-- Tools Suite Dock -->
+    <div class="vl-tools-dock" aria-label="Creation Suite quick-switch">
+      <div class="vl-tools-dock__panel" role="menu">
+        <div class="vl-tools-dock__heading">Creation Suite</div>
+        <a class="vl-tools-dock__item" href="/pages/motion/motion-playground.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Motion Playground
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/components/design-playground.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Design Playground
+        </a>
+        <a class="vl-tools-dock__item is-active" href="/pages/scenes/scene-creator.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>Scene Creator
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/motion/3d-rotation.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>3D Rotation Tuner
+        </a>
+        <a class="vl-tools-dock__item" href="/pages/motion/3d-explorer.html" role="menuitem">
+          <span class="vl-tools-dock__item-dot"></span>3D Explorer
+        </a>
+        <a class="vl-tools-dock__hub" href="/pages/tools/index.html" role="menuitem">⬡ Suite Hub</a>
+      </div>
+      <button class="vl-tools-dock__trigger" type="button" aria-haspopup="true" aria-label="Open Creation Suite navigation">
+        <span class="vl-tools-dock__icon" aria-hidden="true">⬡</span>
+        Tools
+      </button>
+    </div>
 
     <script src="/js/showcase-controls.js"></script>
     <script src="/js/scene-creator.js"></script>

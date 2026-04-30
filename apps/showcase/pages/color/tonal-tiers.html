@@ -3,26 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Velora tonal tiers: discrete elevation through background, border and shadow tokens with CSS-only motion." />
     <title>Tonal Tiers | Velora</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
       body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+      /* ── Page section view-timelines (consumed by the shared bussola) ── */
+      #tt-hero   { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #tt-ladder { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #tt-tokens { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #tt-motion { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #tt-payoff { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
   </head>
-  <body>
+  <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;tiers</span>
+      <a class="vl-bussola__stop" href="#tt-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#tt-ladder">
+        <span class="vl-bussola__label">Ladder</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#tt-tokens">
+        <span class="vl-bussola__label">Tokens</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#tt-motion">
+        <span class="vl-bussola__label">Motion</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#tt-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -73,7 +98,7 @@
           </div>
           <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+              <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
@@ -81,64 +106,227 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-                  <div class="page-wrap hub-page hub-page--color">
-      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
-        <div class="hub-hero__copy">
-          <p class="vl-kicker">Color</p>
-          <h1 class="vl-display-xl hub-hero__title">Tonal Tiers</h1>
-          <p class="vl-body-lg hub-hero__lead">Tonal tiers document discrete elevation steps: each tier maps to tokens for background, border, and shadow.</p>
-          <div class="hub-hero__actions">
-            <a class="vl-header-get-started" href="/pages/library/tonal-tiers-elevation-documentation.html">Tonal tiers documentation</a>
-          <a class="hub-chip-link" href="/pages/color/ambient-shadows.html" vl-effect="fade-up" vl-timeline="view">Ambient shadows</a>
-          </div>
-        </div>
-        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
-          <p class="hub-hero__meta-label">How this area fits the framework</p>
-          <ol class="hub-hero__meta-list">
-            <li><strong>Tier ladder</strong> — from base canvas to highest floating surface.</li>
-            <li><strong>Shadows</strong> — tie ambient shadow recipes to tier jumps.</li>
-            <li><strong>Motion</strong> — elevation changes can animate with kinetic presets.</li>
-          </ol>
-        </aside>
-      </section>
+      <div class="showcase-ref-page showcase-ref-page--tiers showcase-ref-page--cinema">
 
-      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
-          <p class="hub-step-card__eyebrow">Framework move 1</p>
-          <h2 class="hub-step-card__title">Tier ladder</h2>
-          <p class="hub-step-card__body">from base canvas to highest floating surface.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
-          <p class="hub-step-card__eyebrow">Framework move 2</p>
-          <h2 class="hub-step-card__title">Shadows</h2>
-          <p class="hub-step-card__body">tie ambient shadow recipes to tier jumps.</p>
-        </article>
-        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
-          <p class="hub-step-card__eyebrow">Framework move 3</p>
-          <h2 class="hub-step-card__title">Motion</h2>
-          <p class="hub-step-card__body">elevation changes can animate with kinetic presets.</p>
-        </article>
-      </section>
+        <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
+        <section id="tt-hero" class="showcase-cinema-scene showcase-cinema-scene--tiers-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker">Color system // Elevation steps</p>
+              </div>
+              <h1 class="showcase-ref-title">Discrete elevation tiers map tokens to <em>background, border and shadow.</em></h1>
+              <p class="showcase-ref-lead">
+                The tonal tier ladder defines five surface levels from the darkest base canvas to the highest floating
+                element. Each tier carries matched tokens so surface color, border line and ambient shadow stay in sync.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/color/ambient-shadows.html">Ambient Shadows</a>
+                <a class="showcase-ref-tokens-button" href="/pages/color/tonal-stacking.html">Tonal Stacking</a>
+                <a class="showcase-ref-tokens-button" href="/pages/color/color-system.html">Color System</a>
+              </div>
+            </div>
 
-      <section class="hub-reference-section">
-        <div>
-          <p class="hub-section__eyebrow">Canonical source</p>
-          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
-        </div>
-        <div class="hub-reference-grid">
-          <a class="hub-reference-card" href="/pages/library/tonal-tiers-elevation-documentation.html" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-step-card__eyebrow">Primary Library reference</p>
-            <h3 class="hub-reference-card__title">Tonal tiers documentation</h3>
-            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for tonal tiers and return to this hub for related examples inside the showcase.</p>
-          </a>
-          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
-            <p class="hub-section__eyebrow">Applied system note</p>
-            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
-            <p>Area: <code>color</code>. Source page: <code>pages/color/tonal-tiers.html</code>.</p>
+            <div class="showcase-cinema-stage showcase-cinema-stage--tiers-hero" aria-label="Tier ladder overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card" vl-effect="hover-depth-press">
+                  <span>Tier 05 &middot; Float</span>
+                  <strong>Dialogs, command palettes</strong>
+                </article>
+                <article class="showcase-cinema-material-card" vl-effect="hover-depth-press">
+                  <span>Tier 04 &middot; Elevated</span>
+                  <strong>Modals, popovers</strong>
+                </article>
+                <article class="showcase-cinema-material-card" vl-effect="hover-depth-press">
+                  <span>Tier 03 &middot; Surface</span>
+                  <strong>Cards, panels</strong>
+                </article>
+                <article class="showcase-cinema-material-card" vl-effect="hover-depth-press">
+                  <span>Tier 02 &middot; Substrate</span>
+                  <strong>Section backgrounds</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>5 tiers</span>
+                <span>OKLCH calibrated</span>
+                <span>Theme portable</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        <!-- ═══ Scene 02 · Tier ladder ════════════════════════════════════ -->
+        <section id="tt-ladder" class="showcase-cinema-scene showcase-cinema-scene--tiers-ladder" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // Tier ladder</p>
+                <h2 class="showcase-cinema-heading">From base canvas to the highest floating surface.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Each step increases OKLCH lightness by a fixed delta while chroma stays anchored at the brand hue.
+                The result is a depth spectrum that never drifts out of the design language.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Tier 01</span>
+                <strong>Base Canvas</strong>
+                <small>--vl-bg-main &middot; oklch(10% 0.012 145)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+                <span>Tier 02</span>
+                <strong>Substrate</strong>
+                <small>--vl-bg-substrate &middot; oklch(12% 0.014 145)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-depth-press">
+                <span>Tier 03</span>
+                <strong>Surface</strong>
+                <small>--vl-bg-surface &middot; oklch(14% 0.015 145)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-card-stack">
+                <span>Tier 04</span>
+                <strong>Elevated</strong>
+                <small>--vl-bg-surface-elevated &middot; oklch(18% 0.018 145)</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+                <span>Tier 05</span>
+                <strong>Float</strong>
+                <small>--vl-bg-float &middot; oklch(22% 0.021 145)</small>
+              </article>
+            </div>
+
+            <div class="showcase-cinema-chip-row">
+              <a class="showcase-ref-chip" href="/pages/color/token-spotlight.html">Token Spotlight</a>
+              <a class="showcase-ref-chip" href="/pages/color/design-tokens.html">All Tokens</a>
+            </div>
+            <pre class="vl-code-block">/* Tier-03 — card / panel */
+.card  { background: var(--vl-bg-surface); }
+
+/* Tier-04 — modal / popover */
+.modal { background: var(--vl-bg-elevated); }
+
+/* Tier-05 — dialog / command palette */
+.dialog { background: var(--vl-bg-float); }</pre>
+            <p class="vl-code-note">Switching tiers automatically updates the matched border and shadow tokens &mdash; no manual overrides required.</p>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 03 · Token map ══════════════════════════════════════ -->
+        <section id="tt-tokens" class="showcase-cinema-scene showcase-cinema-scene--tiers-tokens" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Token mapping</p>
+              <h2 class="showcase-cinema-heading">Each tier carries three matched tokens: bg, border, shadow.</h2>
+              <p class="showcase-ref-lead">
+                Using co-dependent tokens means that changing a component from Tier 03 to Tier 04 automatically
+                updates its border color and shadow intensity. No manual overrides.
+              </p>
+              <div class="showcase-cinema-inline-metrics">
+                <span>bg token</span>
+                <span>border token</span>
+                <span>shadow token</span>
+                <span>auto-derived</span>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--tiers-tokens" vl-effect="depth-push" vl-timeline="view" vl-once>
+              <div class="showcase-cinema-code">
+                <span>tier-03.tokens</span>
+                <code>--vl-bg-surface:      oklch(14% .015 145);</code>
+                <code>--vl-border-surface:  oklch(20% .012 145);</code>
+                <code>--vl-shadow-surface:  0 0 20px oklch(13% .015 145 / .04);</code>
+              </div>
+              <div class="showcase-cinema-code">
+                <span>tier-04.tokens</span>
+                <code>--vl-bg-elevated:     oklch(18% .018 145);</code>
+                <code>--vl-border-elevated: oklch(24% .015 145);</code>
+                <code>--vl-shadow-elevated: 0 0 30px oklch(13% .015 145 / .06);</code>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 04 · Kinetic elevation ══════════════════════════════ -->
+        <section id="tt-motion" class="showcase-cinema-scene showcase-cinema-scene--tiers-motion" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act III // Kinetic elevation</p>
+              <h2 class="showcase-cinema-heading">Elevation changes animate with kinetic presets.</h2>
+              <p class="showcase-ref-lead">
+                When a card moves from Tier 03 to Tier 04 (hover, expand, modal open) the background, border and shadow
+                all transition together using the framework motion tokens. No manual keyframes.
+              </p>
+              <div class="showcase-cinema-easing-list">
+                <div class="showcase-cinema-easing-item">
+                  <div class="showcase-cinema-easing-item__meta"><span>Tier shift</span><strong>220ms</strong></div>
+                  <div class="showcase-cinema-meter__track"><span class="showcase-cinema-meter__fill showcase-cinema-meter__fill--46"></span></div>
+                </div>
+                <div class="showcase-cinema-easing-item">
+                  <div class="showcase-cinema-easing-item__meta"><span>Shadow expand</span><strong>300ms</strong></div>
+                  <div class="showcase-cinema-meter__track"><span class="showcase-cinema-meter__fill showcase-cinema-meter__fill--56"></span></div>
+                </div>
+                <div class="showcase-cinema-easing-item">
+                  <div class="showcase-cinema-easing-item__meta"><span>Border fade</span><strong>180ms</strong></div>
+                  <div class="showcase-cinema-meter__track"><span class="showcase-cinema-meter__fill showcase-cinema-meter__fill--38"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--tiers-motion" vl-effect="spring-3d" vl-once>
+              <div class="showcase-cinema-architecture-stack-visual" aria-hidden="true">
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base"><span>tier 03 &rarr; rest</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid"><span>tier 04 &rarr; hover</span></div>
+                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top"><span>tier 05 &rarr; active</span></div>
+              </div>
+
+              <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+                <span>Motion instruction</span>
+                <h3>Compositor-safe transitions.</h3>
+                <p>Background-color and box-shadow animate via CSS transitions without triggering layout or paint.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
+        <section id="tt-payoff" class="showcase-cinema-scene showcase-cinema-scene--tiers-payoff" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied system</p>
+            <h2 class="showcase-cinema-heading">Tonal tiers wire the surface model to every component in the framework.</h2>
+            <p class="showcase-ref-lead">
+              Buttons, cards, modals, drawers and the application shell all reference tier tokens. Change a tier value
+              once and every consuming component recalculates its surface, border and shadow.
+            </p>
+            <div class="showcase-cinema-layout-blueprint">
+              <article class="showcase-cinema-layout-blueprint__canvas">
+                <span>Tier Substrate</span>
+                <strong>Five discrete luminosity levels anchor the depth model.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Stacking</span>
+                <strong>Nesting rules enforce tier sequence.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
+                <span>Shadows</span>
+                <strong>Ambient alpha scales per tier jump.</strong>
+              </article>
+              <article class="showcase-cinema-layout-blueprint__cell">
+                <span>Motion</span>
+                <strong>Tier shifts use kinetic transition presets.</strong>
+              </article>
+            </div>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/tonal-tiers-elevation-documentation.html">Read Full Documentation</a>
+              <a class="showcase-ref-tokens-button" href="/pages/color/tonal-stacking.html">Explore Stacking</a>
+              <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Inspect Tokens</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -209,7 +397,7 @@
               <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
               <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
               <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">About</a></li>
             </ul>
           </div>
         </div>
@@ -235,7 +423,11 @@
         </div>
       </div>
     </footer>
-      <script src="/js/showcase-controls.js"></script>
+          <!-- showcase-controls.js — SHOWCASE UI ONLY.
+         Handles the dark/light toggle, editorial theme switcher and page-transition
+         selector in the demo header. This is NOT part of the Velora framework.
+         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
+    <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
 
