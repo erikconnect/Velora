@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scene Creator | Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+      @view-transition { navigation: auto; }
+
+      /* ── App shell ─────────────────────────────────────── */
+      body { background: var(--vl-bg-main); overflow: hidden; height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+      .sc-main { padding: 0 !important; margin: 0; min-height: 0; display: flex; flex-direction: column; }
+      .sc-creator { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+      .sc-page-head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .45rem .85rem; border-bottom: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 90%, #000 10%); }
+      .sc-page-head__brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--vl-text-main); font-weight: 600; }
+      .sc-page-head__brand .vl-logo-mark { width: 92px; height: auto; display: block; }
+      .sc-page-head__meta { font: 600 .66rem/1 "JetBrains Mono", monospace; letter-spacing: .07em; text-transform: uppercase; color: var(--vl-text-muted); }
+      .sc-page-head__nav { display: flex; align-items: center; gap: .35rem; flex-wrap: wrap; }
+      .sc-page-head__nav a { text-decoration: none; font-size: .73rem; color: var(--vl-text-muted); border: 1px solid var(--vl-border-subtle); border-radius: 999px; padding: .22rem .55rem; }
+      .sc-page-head__nav a[aria-current="page"] { color: var(--vl-text-main); border-color: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 55%, #fff 45%); }
+
+      /* ── Topbar ─────────────────────────────────────────── */
+      .sc-topbar { flex: 0 0 auto; display: flex; align-items: center; gap: .32rem; padding: .4rem .56rem; background: color-mix(in srgb, var(--vl-bg-surface) 94%, #000 6%); border-bottom: 1px solid var(--vl-border-subtle); flex-wrap: wrap; }
+      .sc-topbar-brand { font: 600 .65rem/1 "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--vl-text-muted); white-space: nowrap; margin-right: .2rem; }
+      .sc-topbar .sc-input { flex: 1; min-width: 9rem; max-width: 17rem; }
+      .sc-topbar .sc-select { width: auto; flex: 0 0 auto; }
+      .sc-topbar .sc-button { width: auto; flex: 0 0 auto; }
+      .sc-status { flex: 1; min-width: 0; font-size: .68rem; color: var(--vl-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+
+      .sc-wizard {
+        position: fixed;
+        inset: 0;
+        background: color-mix(in srgb, #000 62%, transparent 38%);
+        display: grid;
+        place-items: center;
+        z-index: 50;
+        padding: 1rem;
+      }
+      .sc-wizard[hidden] { display: none; }
+      .sc-wizard__card {
+        width: min(34rem, 100%);
+        border: 1px solid var(--vl-border-subtle);
+        border-radius: .95rem;
+        background: color-mix(in srgb, var(--vl-bg-surface) 94%, #000 6%);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, .4);
+        padding: .85rem;
+        display: grid;
+        gap: .55rem;
+      }
+      .sc-wizard__title { margin: 0; font-size: .85rem; }
+      .sc-wizard__desc { margin: 0; color: var(--vl-text-muted); font-size: .7rem; }
+
+      /* ── Studio 3-column ──────────────────────────────── */
+      .sc-studio { flex: 1; min-height: 0; display: grid; grid-template-columns: clamp(11rem, 17vw, 13rem) minmax(0, 1fr) clamp(18rem, 27vw, 20rem); overflow: hidden; }
+
+      /* ── Scenes panel (left) ──────────────────────────── */
+      .sc-scenes-panel { display: flex; flex-direction: column; overflow: hidden; border-right: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 93%, #000 7%); }
+      .sc-panel-head { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: .4rem; padding: .42rem .58rem; font: 600 .62rem/1 "JetBrains Mono", monospace; letter-spacing: .07em; text-transform: uppercase; color: var(--vl-text-muted); border-bottom: 1px solid var(--vl-border-subtle); }
+      .sc-panel-count { font-size: .68rem; background: color-mix(in srgb, var(--vl-bg-surface) 80%, #000 20%); border: 1px solid var(--vl-border-subtle); border-radius: 999px; padding: .08rem .38rem; color: var(--vl-text-muted); font-family: "JetBrains Mono", monospace; }
+      .sc-scene-list { flex: 1; overflow-y: auto; padding: .45rem .4rem; display: flex; flex-direction: column; gap: .28rem; }
+      .sc-panel-footer { flex: 0 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: .28rem; padding: .38rem .34rem; border-top: 1px solid var(--vl-border-subtle); }
+      .sc-scene-pill { width: 100%; display: grid; gap: .12rem; text-align: left; border-radius: .68rem; border: 1px solid var(--vl-border-subtle); background: transparent; color: var(--vl-text-main); padding: .5rem .62rem; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+      .sc-scene-pill:hover { border-color: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 38%, var(--vl-border-subtle) 62%); background: color-mix(in srgb, var(--vl-bg-surface) 80%, #000 20%); }
+      .sc-scene-pill[aria-pressed="true"] { border-color: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 55%, #fff 45%); background: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 13%, var(--vl-bg-surface) 87%); }
+      .sc-scene-pill strong { font-size: .76rem; display: block; }
+      .sc-scene-pill span { font-size: .64rem; color: var(--vl-text-muted); display: block; }
+
+      /* ── Canvas (center) ──────────────────────────────── */
+      .sc-canvas { display: flex; flex-direction: column; overflow: hidden; background: radial-gradient(circle at 18% 10%, color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 16%, transparent 84%), transparent 44%), var(--vl-bg-main); }
+      .sc-canvas-head { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: .75rem; padding: .42rem .75rem; border-bottom: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-main) 88%, #02050d 12%); }
+      .sc-canvas-meta { font-size: .67rem; color: var(--vl-text-muted); }
+      .sc-canvas-body { flex: 1; overflow-y: auto; padding: .8rem 1rem 1.25rem; position: relative; }
+      .sc-message { font-size: .67rem; color: var(--vl-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 22rem; }
+
+      .sc-component-dock {
+        position: sticky;
+        top: .45rem;
+        z-index: 3;
+        margin-left: auto;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: .28rem;
+        padding: .26rem;
+        border-radius: .7rem;
+        border: 1px solid var(--vl-border-subtle);
+        background: color-mix(in srgb, var(--vl-bg-surface) 90%, #000 10%);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+      }
+      .sc-dock-label {
+        font: 600 .58rem/1 "JetBrains Mono", monospace;
+        color: var(--vl-text-muted);
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        padding: 0 .3rem;
+        white-space: nowrap;
+      }
+      .sc-dock-chip {
+        border: 1px solid var(--vl-border-subtle);
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--vl-bg-surface) 84%, #000 16%);
+        color: var(--vl-text-main);
+        font-size: .62rem;
+        padding: .18rem .42rem;
+        cursor: grab;
+        user-select: none;
+      }
+      .sc-dock-chip:active { cursor: grabbing; }
+
+      /* ── Inspector (right) ────────────────────────────── */
+      .sc-inspector { display: flex; flex-direction: column; overflow: hidden; border-left: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 93%, #000 7%); }
+      .sc-inspector-tabs { flex: 0 0 auto; display: flex; border-bottom: 1px solid var(--vl-border-subtle); }
+      .sc-tab { flex: 1; padding: .46rem .3rem; font: 600 .66rem/1 inherit; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--vl-text-muted); cursor: pointer; transition: color .15s, border-color .15s; }
+      .sc-tab[aria-selected="true"] { color: var(--vl-text-main); border-bottom-color: var(--vl-brand-primary, #7ea0ff); }
+      .sc-inspector-body { flex: 1; overflow-y: auto; min-height: 0; }
+      .sc-inspector-panel { padding: .62rem .58rem; display: grid; gap: .5rem; }
+      .sc-inspector-panel[hidden] { display: none; }
+
+      /* ── Timeline strip (bottom) ──────────────────────── */
+      .sc-timeline-shell { flex: 0 0 auto; min-height: 9rem; height: 12rem; max-height: 46vh; resize: vertical; overflow: auto; border-top: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 92%, #000 8%); padding: .55rem .65rem; }
+      .sc-timeline-head { display: flex; justify-content: space-between; gap: .75rem; align-items: center; margin-bottom: .6rem; }
+      .sc-timeline-time { font: 600 .7rem/1 "JetBrains Mono", monospace; color: var(--vl-text-muted); }
+      .sc-ruler { position: relative; height: 1.5rem; border: 1px solid var(--vl-border-subtle); border-radius: .58rem; margin-bottom: .48rem; background: linear-gradient(90deg, color-mix(in srgb, var(--vl-bg-surface) 62%, #000 38%), color-mix(in srgb, var(--vl-bg-surface) 82%, #000 18%)); }
+      .sc-ruler-markers { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 100%; }
+      .sc-ruler-markers span { border-right: 1px solid color-mix(in srgb, var(--vl-border-subtle) 60%, transparent 40%); padding: .2rem .25rem; font-size: .58rem; color: var(--vl-text-muted); }
+      .sc-ruler-markers span:last-child { border-right: 0; text-align: right; }
+      .sc-playhead { position: absolute; inset: 0 auto 0 0; width: 2px; background: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 78%, #fff 22%); box-shadow: 0 0 0 1px color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 32%, transparent 68%); pointer-events: none; }
+      .sc-timeline-group + .sc-timeline-group { margin-top: .78rem; }
+      .sc-timeline-subhead { margin: 0 0 .28rem; font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: var(--vl-text-muted); }
+      .sc-lanes { display: grid; gap: .4rem; }
+      .sc-lane { border: 1px solid var(--vl-border-subtle); border-radius: .58rem; overflow: hidden; }
+      .sc-lane-label { display: block; padding: .3rem .4rem; font-size: .62rem; color: var(--vl-text-muted); background: color-mix(in srgb, var(--vl-bg-surface) 84%, #000 16%); }
+      .sc-lane-track { position: relative; height: 1.58rem; background: linear-gradient(90deg, color-mix(in srgb, var(--vl-bg-surface) 74%, #000 26%) 1px, transparent 1px) 0 0 / 10% 100%, color-mix(in srgb, var(--vl-bg-surface) 86%, #000 14%); }
+      .sc-clip { position: absolute; top: .12rem; bottom: .12rem; border-radius: .38rem; border: 1px solid color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 58%, #fff 42%); background: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 26%, #111 74%); color: #fff; font-size: .6rem; display: grid; place-items: center; cursor: grab; user-select: none; touch-action: none; }
+      .sc-clip[data-active="true"] { background: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 48%, #111 52%); }
+      .sc-clip[data-muted="true"] { opacity: .55; border-style: dashed; }
+      .sc-clip:active { cursor: grabbing; }
+      .sc-clip-label { pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 1rem); }
+      .sc-clip-handle { position: absolute; top: 0; bottom: 0; width: .34rem; background: color-mix(in srgb, #fff 28%, transparent 72%); cursor: ew-resize; }
+      .sc-clip-handle--start { left: 0; border-right: 1px solid color-mix(in srgb, #fff 35%, transparent 65%); }
+      .sc-clip-handle--end { right: 0; border-left: 1px solid color-mix(in srgb, #fff 35%, transparent 65%); }
+
+      /* ── Preview / document output ───────────────────── */
+      .sc-document { display: grid; gap: 2rem; }
+      .sc-scene { position: relative; display: grid; gap: .95rem; align-content: center; min-height: 30rem; padding: 1.3rem; border-radius: 1.15rem; border: 1px solid color-mix(in srgb, var(--vl-border-subtle) 78%, transparent 22%); background: color-mix(in srgb, var(--vl-bg-surface) 88%, #02050d 12%); transition: opacity .2s ease, transform .2s ease, border-color .2s ease; }
+      .sc-scene-window {
+        pointer-events: none;
+        position: absolute;
+        inset: .7rem;
+        border-radius: .85rem;
+        overflow: hidden;
+        z-index: 0;
+      }
+      .sc-scene-window__entry,
+      .sc-scene-window__exit {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 64%, #fff 36%);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 28%, transparent 72%);
+      }
+      .sc-scene-window__entry { left: calc(var(--sc-entry, 0.1) * 100%); }
+      .sc-scene-window__exit { left: calc(var(--sc-exit, 0.9) * 100%); }
+      .sc-scene-window__mask-left,
+      .sc-scene-window__mask-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: color-mix(in srgb, #02050d 44%, transparent 56%);
+      }
+      .sc-scene-window__mask-left { left: 0; width: calc(var(--sc-entry, 0.1) * 100%); }
+      .sc-scene-window__mask-right { right: 0; width: calc((1 - var(--sc-exit, 0.9)) * 100%); }
+      .sc-scene > *:not(.sc-scene-window) { position: relative; z-index: 1; }
+      .sc-scene[data-selected="true"] { border-color: color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 48%, #fff 52%); box-shadow: 0 0 0 1px color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 28%, transparent 72%); }
+      .sc-scene[data-drop-target="true"] { border-color: color-mix(in srgb, #53e3a6 65%, #fff 35%); box-shadow: 0 0 0 1px color-mix(in srgb, #53e3a6 45%, transparent 55%); }
+      .sc-scene-meta { display: flex; justify-content: space-between; gap: 1rem; font: 600 .72rem/1.2 "JetBrains Mono", monospace; letter-spacing: .04em; text-transform: uppercase; color: var(--vl-text-muted); }
+      .sc-title { font-size: clamp(1.6rem, 3.5vw, 3.1rem); line-height: 1.05; margin: 0; }
+      .sc-subtitle { margin: 0; max-width: 64ch; color: var(--vl-text-muted); }
+      .sc-el { transition: opacity .18s ease, transform .18s ease; }
+      .sc-el[data-selected="true"] { outline: 1px dashed color-mix(in srgb, var(--vl-brand-primary, #7ea0ff) 72%, #fff 28%); outline-offset: .3rem; }
+      .sc-el--shimmer-text { background: none !important; }
+      .sc-chip-row { display: flex; flex-wrap: wrap; gap: .55rem; }
+      .sc-chip { display: inline-flex; align-items: center; justify-content: center; width: fit-content; border-radius: 999px; border: 1px solid var(--vl-border-subtle); padding: .35rem .78rem; font-size: .8rem; background: color-mix(in srgb, var(--vl-bg-surface) 82%, #000 18%); color: var(--vl-text-main); text-decoration: none; }
+      .sc-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .75rem; }
+      .sc-card { border: 1px solid var(--vl-border-subtle); border-radius: .95rem; padding: .85rem; background: color-mix(in srgb, var(--vl-bg-surface) 78%, #000 22%); }
+      .sc-card h3 { margin: 0 0 .35rem; font-size: .98rem; }
+      .sc-card p { margin: 0; color: var(--vl-text-muted); font-size: .92rem; }
+      .sc-steps { counter-reset: scene-step; display: grid; gap: .75rem; }
+      .sc-step { border-left: 2px solid var(--vl-border-subtle); padding-left: .8rem; }
+      .sc-step strong::before { counter-increment: scene-step; content: counter(scene-step) ". "; color: var(--vl-text-muted); }
+
+      /* ── Inspector form atoms ────────────────────────── */
+      .sc-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .38rem; }
+      .sc-field + .sc-field { margin-top: .42rem; }
+      .sc-label { display: block; font-size: .67rem; color: var(--vl-text-muted); margin-bottom: .2rem; }
+      .sc-meta-chip { display: inline-flex; align-items: center; min-height: 2rem; border-radius: .6rem; border: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 80%, #000 20%); color: var(--vl-text-main); padding: .35rem .45rem; font-size: .66rem; }
+      .sc-input, .sc-select, .sc-textarea, .sc-button { width: 100%; border-radius: .6rem; border: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 84%, #000 16%); color: var(--vl-text-main); font: inherit; }
+      .sc-input, .sc-select { min-height: 1.95rem; padding: .3rem .45rem; font-size: .72rem; }
+      .sc-textarea { min-height: 4.5rem; padding: .45rem; resize: vertical; font-family: "JetBrains Mono", monospace; font-size: .66rem; }
+      .sc-btn-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .32rem; }
+      .sc-button { min-height: 1.95rem; padding: .32rem .45rem; cursor: pointer; font-size: .68rem; }
+      .sc-button-primary { background: color-mix(in srgb, var(--vl-bg-surface) 42%, var(--vl-brand-primary, #7ea0ff) 58%); }
+      .sc-input-range { width: 100%; accent-color: var(--vl-brand-primary, #7ea0ff); }
+      .sc-warning { font-size: .67rem; color: var(--vl-text-muted); white-space: pre-line; min-height: .5rem; }
+      .sc-empty { margin: 0; padding: .75rem; border: 1px dashed var(--vl-border-subtle); border-radius: .65rem; color: var(--vl-text-muted); font-size: .8rem; }
+      .sc-preview-motion { border: 1px solid var(--vl-border-subtle); border-radius: .62rem; padding: .5rem; display: grid; gap: .42rem; background: color-mix(in srgb, var(--vl-bg-surface) 84%, #000 16%); }
+      .sc-preview-motion__head { display: flex; justify-content: space-between; align-items: center; gap: .4rem; font-size: .64rem; color: var(--vl-text-muted); }
+      .sc-preview-motion__value { font-family: "JetBrains Mono", monospace; font-size: .62rem; color: var(--vl-text-main); }
+      .sc-preview-motion__row { display: grid; gap: .2rem; }
+      .sc-preview-motion__label { font-size: .62rem; color: var(--vl-text-muted); }
+
+      .sc-document [vl-timeline="view"],
+      .sc-document [vl-timeline="scroll"] {
+        animation-timeline: auto !important;
+        animation-range: normal !important;
+      }
+      .sc-document [vl-effect="rotate-scroll"],
+      .sc-document [vl-effect="wipe-reveal"],
+      .sc-document [vl-effect="depth-push"],
+      .sc-document [vl-effect="scroll-marquee"] {
+        animation-duration: 1400ms !important;
+      }
+
+      .sc-page-foot { display: flex; align-items: center; justify-content: space-between; gap: .65rem; padding: .35rem .72rem; border-top: 1px solid var(--vl-border-subtle); background: color-mix(in srgb, var(--vl-bg-surface) 90%, #000 10%); font-size: .64rem; color: var(--vl-text-muted); }
+      .sc-page-foot a { color: var(--vl-text-muted); text-decoration: none; border-bottom: 1px dashed transparent; }
+      .sc-page-foot a:hover { border-bottom-color: currentColor; }
+
+      /* ── Responsive ──────────────────────────────────── */
+      @media (max-width: 80rem) { .sc-studio { grid-template-columns: 1fr 18rem; } .sc-scenes-panel { display: none; } }
+      @media (max-width: 58rem) {
+        .sc-page-head { flex-wrap: wrap; }
+        .sc-page-head__nav { width: 100%; }
+        .sc-studio { grid-template-columns: 1fr; }
+        .sc-inspector { border-left: 0; border-top: 1px solid var(--vl-border-subtle); max-height: 45dvh; }
+        .sc-timeline-shell { min-height: 8rem; height: 9.5rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+
+    <header class="sc-page-head" aria-label="Scene Creator page header">
+      <a class="sc-page-head__brand" href="/index.html" aria-label="Velora home">
+        <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+          <g class="vl-logo-mark__group">
+            <g class="vl-logo-mark__full">
+              <g>
+                <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+                <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+                <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+                <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+                <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+                <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+                <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+                <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+                <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <span class="sc-page-head__meta">Scene Creator Studio</span>
+      </a>
+      <nav class="sc-page-head__nav" aria-label="Scene navigation">
+        <a href="/pages/scenes/scene-hero.html">Hero</a>
+        <a href="/pages/scenes/scene-features.html">Features</a>
+        <a href="/pages/scenes/scene-story.html">Story</a>
+        <a href="/pages/scenes/scene-creator.html" aria-current="page">Creator</a>
+      </nav>
+    </header>
+
+    <main id="content" class="vl-main sc-main">
+      <div class="sc-creator" aria-label="Scene Creator Studio">
+
+        <!-- ── Topbar ──────────────────────────────────── -->
+        <header class="sc-topbar" aria-label="Document toolbar">
+          <span class="sc-topbar-brand">Scene Creator</span>
+          <input class="sc-input" data-role="document-title" type="text" aria-label="Document title" placeholder="Document title" />
+          <select class="sc-select" data-role="add-scene-template" aria-label="Template for new scene"></select>
+          <button class="sc-button sc-button-primary" type="button" data-role="add-scene">Add Scene</button>
+          <button class="sc-button" type="button" data-role="duplicate-scene">Duplicate</button>
+          <button class="sc-button" type="button" data-role="remove-scene">Remove</button>
+          <button class="sc-button" type="button" data-role="sequence-scenes">Sequence</button>
+          <button class="sc-button sc-button-primary" type="button" data-role="wizard-open">Layout Wizard</button>
+          <span class="sc-status sc-message" aria-live="polite" data-role="message"></span>
+        </header>
+
+        <div class="sc-wizard" data-role="wizard-modal" hidden aria-hidden="true">
+          <div class="sc-wizard__card" role="dialog" aria-label="Layout Wizard">
+            <h2 class="sc-wizard__title">Scrolltelling Layout Wizard</h2>
+            <p class="sc-wizard__desc">Choose intent, density, and CTA style. Generate a full page draft or regenerate only the currently selected scene.</p>
+            <div class="sc-grid-2">
+              <div class="sc-field">
+                <label class="sc-label" for="wizard-hero-type">Hero Type</label>
+                <select id="wizard-hero-type" class="sc-select" data-role="wizard-hero-type">
+                  <option value="product">Product Launch</option>
+                  <option value="story">Narrative Story</option>
+                  <option value="minimal">Minimal Editorial</option>
+                </select>
+              </div>
+              <div class="sc-field">
+                <label class="sc-label" for="wizard-density">Content Density</label>
+                <select id="wizard-density" class="sc-select" data-role="wizard-density">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+            </div>
+            <div class="sc-field">
+              <label class="sc-label" for="wizard-cta-style">CTA Style</label>
+              <select id="wizard-cta-style" class="sc-select" data-role="wizard-cta-style">
+                <option value="primary">Primary Focus</option>
+                <option value="balanced">Balanced</option>
+                <option value="subtle">Subtle</option>
+              </select>
+            </div>
+            <div class="sc-btn-row">
+              <button class="sc-button" type="button" data-role="wizard-cancel">Cancel</button>
+              <button class="sc-button sc-button-primary" type="button" data-role="wizard-generate">Generate Layout</button>
+            </div>
+            <button class="sc-button" type="button" data-role="wizard-generate-scene">Regenerate Selected Scene</button>
+          </div>
+        </div>
+
+        <!-- ── Studio ─────────────────────────────────── -->
+        <div class="sc-studio">
+
+          <!-- Left: scenes panel -->
+          <aside class="sc-scenes-panel" aria-label="Document scenes">
+            <div class="sc-panel-head">
+              <span>Scenes</span>
+              <span class="sc-panel-count" data-role="scenes-count">0</span>
+            </div>
+            <div class="sc-scene-list" data-role="scene-list"></div>
+            <div class="sc-panel-footer">
+              <button class="sc-button" type="button" data-role="move-scene-up">↑ Up</button>
+              <button class="sc-button" type="button" data-role="move-scene-down">↓ Down</button>
+            </div>
+          </aside>
+
+          <!-- Center: canvas -->
+          <div class="sc-canvas">
+            <div class="sc-canvas-head">
+              <span class="sc-canvas-meta" data-role="preview-meta">—</span>
+              <button class="sc-button" type="button" data-role="reset" style="width:auto;padding:.32rem .75rem;font-size:.72rem;">Reset</button>
+            </div>
+            <div class="sc-canvas-body">
+              <div class="sc-component-dock" data-role="component-dock" aria-label="Component dock">
+                <span class="sc-dock-label">Drag To Scene</span>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="kicker">Kicker</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="title">Title</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="text">Paragraph</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="button">CTA</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="list">List</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="grid">Grid</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="flex">Flex</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="image">Image</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="video">Video</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="quote">Quote</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="cards">Cards</button>
+                <button class="sc-dock-chip" type="button" draggable="true" data-role="dock-component" data-kind="buttonGroup">Buttons</button>
+              </div>
+              <div data-role="preview-root"></div>
+            </div>
+          </div>
+
+          <!-- Right: inspector -->
+          <aside class="sc-inspector" aria-label="Inspector">
+            <div class="sc-inspector-tabs" role="tablist" aria-label="Inspector sections">
+              <button class="sc-tab" type="button" role="tab" id="tab-scene" aria-selected="true" aria-controls="panel-scene" data-tab="scene">Scene</button>
+              <button class="sc-tab" type="button" role="tab" id="tab-element" aria-selected="false" aria-controls="panel-element" data-tab="element">Element</button>
+              <button class="sc-tab" type="button" role="tab" id="tab-export" aria-selected="false" aria-controls="panel-export" data-tab="export">Export</button>
+            </div>
+            <div class="sc-inspector-body">
+
+              <!-- Scene panel -->
+              <div class="sc-inspector-panel" id="panel-scene" role="tabpanel" aria-labelledby="tab-scene" data-tab-panel="scene">
+                <div class="sc-field">
+                  <label class="sc-label" for="scene-select">Selected Scene</label>
+                  <select id="scene-select" class="sc-select" data-role="scene-select"></select>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-template-select">Template</label>
+                    <select id="scene-template-select" class="sc-select" data-role="scene-template"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-tag-select">Tag</label>
+                    <select id="scene-tag-select" class="sc-select" data-role="scene-tag">
+                      <option value="section">section</option>
+                      <option value="article">article</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="scene-name-input">Scene Name</label>
+                  <input id="scene-name-input" class="sc-input" data-role="scene-name" type="text" />
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-effect-select">Scene Effect</label>
+                    <select id="scene-effect-select" class="sc-select" data-role="scene-effect"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-timeline-select">Timeline</label>
+                    <select id="scene-timeline-select" class="sc-select" data-role="scene-timeline"></select>
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-range-select">Range</label>
+                    <select id="scene-range-select" class="sc-select" data-role="scene-range"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-length-input">Scroll Length (ms)</label>
+                    <input id="scene-length-input" class="sc-input" data-role="scene-length" type="number" min="1200" step="50" />
+                  </div>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="scene-range-custom-input">Custom Range</label>
+                  <input id="scene-range-custom-input" class="sc-input" data-role="scene-range-custom" type="text" placeholder="entry 0% cover 55%" />
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-entry-window-input">Entry Window (%)</label>
+                    <input id="scene-entry-window-input" class="sc-input" data-role="scene-entry-window" type="number" min="0" max="95" step="1" />
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-exit-window-input">Exit Window (%)</label>
+                    <input id="scene-exit-window-input" class="sc-input" data-role="scene-exit-window" type="number" min="5" max="100" step="1" />
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-bg-color-select">Background Color Token</label>
+                    <select id="scene-bg-color-select" class="sc-select" data-role="scene-bg-color"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="scene-text-color-select">Text Color Token</label>
+                    <select id="scene-text-color-select" class="sc-select" data-role="scene-text-color"></select>
+                  </div>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="scene-inline-css-input">Inline CSS (optional)</label>
+                  <input id="scene-inline-css-input" class="sc-input" data-role="scene-inline-css" type="text" placeholder="border: 1px solid var(--vl-border-subtle);" />
+                </div>
+              </div>
+
+
+              <!-- Element panel -->
+              <div class="sc-inspector-panel" id="panel-element" role="tabpanel" aria-labelledby="tab-element" data-tab-panel="element" hidden>
+                <div class="sc-field">
+                  <label class="sc-label" for="element-select">Selected Element</label>
+                  <select id="element-select" class="sc-select" data-role="element-select"></select>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="add-element-kind-select">Add Kind</label>
+                    <select id="add-element-kind-select" class="sc-select" data-role="add-element-kind"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label">Kind</label>
+                    <div class="sc-meta-chip" data-role="element-kind-meta">Body</div>
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="design-component-select">Design System Component</label>
+                    <select id="design-component-select" class="sc-select" data-role="design-component-select"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label">Component Info</label>
+                    <div class="sc-meta-chip" data-role="design-component-meta">Component preset bundle</div>
+                  </div>
+                </div>
+                <div class="sc-btn-row">
+                  <button class="sc-button sc-button-primary" type="button" data-role="add-element">Add Element</button>
+                  <button class="sc-button" type="button" data-role="add-design-component">Add Component</button>
+                </div>
+                <button class="sc-button" type="button" data-role="remove-element">Remove Selected Element</button>
+                <div class="sc-field">
+                  <label class="sc-label" for="element-label-input">Label</label>
+                  <input id="element-label-input" class="sc-input" data-role="element-label" type="text" />
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="element-text-input">Text / Items JSON</label>
+                  <textarea id="element-text-input" class="sc-textarea" data-role="element-text"></textarea>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-href-input">Link</label>
+                    <input id="element-href-input" class="sc-input" data-role="element-href" type="text" placeholder="#" />
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-item-count-input">Count</label>
+                    <input id="element-item-count-input" class="sc-input" data-role="element-item-count" type="number" min="1" max="8" step="1" />
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-tag-select">HTML Tag</label>
+                    <select id="element-tag-select" class="sc-select" data-role="element-tag"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-custom-tag-input">Custom Tag</label>
+                    <input id="element-custom-tag-input" class="sc-input" data-role="element-custom-tag" type="text" placeholder="figure" />
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-src-input">Media Source</label>
+                    <input id="element-src-input" class="sc-input" data-role="element-src" type="text" placeholder="/img/example.webp" />
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-alt-input">Alt / Caption</label>
+                    <input id="element-alt-input" class="sc-input" data-role="element-alt" type="text" placeholder="Descriptive alt text" />
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-bg-color-select">Background Color Token</label>
+                    <select id="element-bg-color-select" class="sc-select" data-role="element-bg-color"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-text-color-select">Text Color Token</label>
+                    <select id="element-text-color-select" class="sc-select" data-role="element-text-color"></select>
+                  </div>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="element-inline-css-input">Inline CSS (optional)</label>
+                  <input id="element-inline-css-input" class="sc-input" data-role="element-inline-css" type="text" placeholder="padding: .75rem; border-radius: .75rem;" />
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-effect-select">Effect</label>
+                    <select id="element-effect-select" class="sc-select" data-role="element-effect"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-timeline-select">Timeline</label>
+                    <select id="element-timeline-select" class="sc-select" data-role="element-timeline"></select>
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-range-select">Range</label>
+                    <select id="element-range-select" class="sc-select" data-role="element-range"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-mute-select">Status</label>
+                    <select id="element-mute-select" class="sc-select" data-role="element-mute">
+                      <option value="active">Active</option>
+                      <option value="muted">Muted</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="element-range-custom-input">Custom Range</label>
+                  <input id="element-range-custom-input" class="sc-input" data-role="element-range-custom" type="text" placeholder="entry 0% cover 45%" />
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-speed-select">Speed</label>
+                    <select id="element-speed-select" class="sc-select" data-role="element-speed"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-depth-select">Depth</label>
+                    <select id="element-depth-select" class="sc-select" data-role="element-depth"></select>
+                  </div>
+                </div>
+                <div class="sc-grid-2">
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-stagger-select">Stagger</label>
+                    <select id="element-stagger-select" class="sc-select" data-role="element-stagger"></select>
+                  </div>
+                  <div class="sc-field">
+                    <label class="sc-label" for="element-start-input">Offset (ms)</label>
+                    <input id="element-start-input" class="sc-input" data-role="element-start" type="number" min="0" step="50" />
+                  </div>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="element-length-input">Length (ms)</label>
+                  <input id="element-length-input" class="sc-input" data-role="element-length" type="number" min="250" step="50" />
+                </div>
+                <div class="sc-preview-motion" aria-label="Selected element animation preview controls">
+                  <div class="sc-preview-motion__head">
+                    <span>Preview Motion Controls</span>
+                    <span class="sc-preview-motion__value" data-role="preview-selected-effect">Effect: —</span>
+                  </div>
+                  <div class="sc-preview-motion__row">
+                    <label class="sc-preview-motion__label" for="preview-delay-range">Replay delay</label>
+                    <input id="preview-delay-range" class="sc-input-range" data-role="preview-delay" type="range" min="0" max="2000" step="50" value="0" />
+                    <span class="sc-preview-motion__value" data-role="preview-delay-value">0ms</span>
+                  </div>
+                  <div class="sc-preview-motion__row">
+                    <label class="sc-preview-motion__label" for="preview-speed-range">Playback speed</label>
+                    <input id="preview-speed-range" class="sc-input-range" data-role="preview-speed" type="range" min="0.25" max="3" step="0.05" value="1" />
+                    <span class="sc-preview-motion__value" data-role="preview-speed-value">1.00x</span>
+                  </div>
+                  <div class="sc-btn-row">
+                    <button class="sc-button" type="button" data-role="preview-replay-selected">Replay Selected</button>
+                    <button class="sc-button sc-button-primary" type="button" data-role="preview-replay-scene">Replay All Scene</button>
+                  </div>
+                </div>
+                <div class="sc-btn-row">
+                  <button class="sc-button" type="button" data-role="move-element-up">↑ Up</button>
+                  <button class="sc-button" type="button" data-role="move-element-down">↓ Down</button>
+                </div>
+                <button class="sc-button" type="button" data-role="cascade-elements">Cascade Elements</button>
+              </div>
+
+              <!-- Export panel -->
+              <div class="sc-inspector-panel" id="panel-export" role="tabpanel" aria-labelledby="tab-export" data-tab-panel="export" hidden>
+                <div class="sc-warning" data-role="support-warning"></div>
+                <div class="sc-field">
+                  <label class="sc-label" for="html-output">HTML Snippet</label>
+                  <textarea id="html-output" class="sc-textarea" data-role="output-html" readonly></textarea>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="css-output">CSS Snippet</label>
+                  <textarea id="css-output" class="sc-textarea" data-role="output-css" readonly></textarea>
+                </div>
+                <div class="sc-field">
+                  <label class="sc-label" for="json-output">State JSON</label>
+                  <textarea id="json-output" class="sc-textarea" data-role="output-json" placeholder="Paste JSON and click Import JSON"></textarea>
+                </div>
+                <div class="sc-btn-row">
+                  <button class="sc-button" type="button" data-role="copy-html">Copy HTML</button>
+                  <button class="sc-button" type="button" data-role="copy-css">Copy CSS</button>
+                  <button class="sc-button" type="button" data-role="copy-json">Copy JSON</button>
+                  <button class="sc-button" type="button" data-role="export-json">Export JSON</button>
+                  <button class="sc-button" type="button" data-role="import-json">Import JSON</button>
+                  <button class="sc-button sc-button-primary" type="button" data-role="download">Download HTML</button>
+                </div>
+              </div>
+
+            </div><!-- /.sc-inspector-body -->
+          </aside><!-- /.sc-inspector -->
+
+        </div><!-- /.sc-studio -->
+
+        <!-- ── Page Scroll Timeline ────────────────────── -->
+        <section class="sc-timeline-shell" aria-label="Page scroll timeline studio">
+          <div class="sc-timeline-head">
+            <span class="sc-label" style="margin:0;">Page Scroll Timeline</span>
+            <span class="sc-timeline-time" data-role="timeline-time">00:00 / 00:00</span>
+          </div>
+          <div class="sc-field">
+            <label class="sc-label vl-sr-only" for="timeline-scrub-input">Playhead position</label>
+            <input id="timeline-scrub-input" class="sc-input-range" data-role="timeline-scrub" type="range" min="0" max="18000" step="50" value="2200" />
+          </div>
+          <div class="sc-ruler" aria-hidden="true">
+            <div class="sc-ruler-markers">
+              <span>0%</span>
+              <span>25%</span>
+              <span>50%</span>
+              <span>75%</span>
+              <span>100%</span>
+            </div>
+            <div class="sc-playhead" data-role="timeline-playhead"></div>
+          </div>
+          <div class="sc-timeline-group">
+            <p class="sc-timeline-subhead">Scenes</p>
+            <div class="sc-lanes" data-role="scene-lanes"></div>
+          </div>
+          <div class="sc-timeline-group">
+            <p class="sc-timeline-subhead">Selected Scene Elements</p>
+            <div class="sc-lanes" data-role="element-lanes"></div>
+          </div>
+        </section>
+
+      </div><!-- /.sc-creator -->
+    </main>
+
+    <footer class="sc-page-foot" aria-label="Scene Creator page footer">
+      <span>Velora Scene Creator • Page-scroll composition workspace</span>
+      <span>
+        <a href="/pages/scenes/scene-hero.html">Scene Library</a>
+        •
+        <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </span>
+    </footer>
+
+    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/scene-creator.js"></script>
+  </body>
+</html>

@@ -1,0 +1,967 @@
+@layer velora.motion {
+    /*
+     * Velora Motion Extended — v2
+     * Additional effects, 3D systems, text reveals, scroll-driven patterns,
+     * ambient loops, and interaction primitives.
+     *
+     * New public API additions:
+     *   vl-effect="spring-up"        Spring physics entrance
+     *   vl-effect="glide-in"         High-momentum glide
+     *   vl-effect="zoom-blur"        Zoom + blur combo reveal
+     *   vl-effect="slice-in"         Clip-path slice from left
+     *   vl-effect="unfold"           Height unfold from top clip
+     *   vl-effect="slide-diagonal"   Corner diagonal entry
+     *   vl-effect="flip-in"          3D card flip reveal
+     *   vl-effect="spring-3d"        Spring 3D perspective entry
+     *   vl-effect="rise-3d"          Dramatic 3D perspective rise
+     *   vl-effect="pulse-ring"       Expanding sonar ring
+     *   vl-effect="spin-slow"        Slow continuous rotation
+     *   vl-effect="pendulum"         Pendulum swing loop
+     *   vl-effect="breathe"          Subtle scale breathe
+     *   vl-effect="drift"            Slow ambient horizontal drift
+     *   vl-effect="aurora"           Aurora background shift
+     *   vl-effect="border-beam"      Animated gradient border beam
+     *   vl-effect="spotlight"        Radial spotlight on hover
+     *   vl-effect="press"            Physical press feedback
+     *   vl-effect="bounce"           Elastic bounce loop
+     *   vl-effect="shimmer-text"     Text gradient shimmer
+     *   vl-effect="gradient-slide"   Background gradient position shift
+     *   vl-effect="rotate-scroll"    Rotation tied to scroll (+ vl-timeline="scroll")
+     *   vl-effect="wipe-reveal"      Scroll-driven clip wipe
+     *   vl-effect="depth-push"       Perspective depth on scroll
+     *   vl-children="wave"           Wave-pattern stagger
+     *   vl-children="blur-cascade"   Blur cascade mode
+     *   vl-children="zoom-stagger"   Scale-in stagger
+     *   vl-stagger="20ms|30ms|40ms|250ms|300ms"   Extra stagger values
+     *   vl-speed="slower|fastest"    Extra speed buckets
+     *   vl-range="exit|center|full"  Extra scroll ranges
+     *   vl-range="exit-short"        Smooth exit range
+     *   .vl-3d-stage                 Perspective scene container
+     *   .vl-cube / .vl-cube__face-* CSS 3D cube system
+     *   .vl-flip-card / inner/front/back  CSS 3D flip card
+     *   .vl-text-wave > span         Per-character wave text
+     *   .vl-text-split > span        Per-word split reveal
+     *   .vl-gradient-text            Animated gradient text clip
+     */
+
+    /* =========================================================================
+       EASING EXTENSIONS  (additional easing tokens)
+       ========================================================================= */
+    :root {
+        --vl-ease-bounce:      cubic-bezier(0.34, 1.72, 0.64, 1);
+        --vl-ease-elastic:     cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --vl-ease-smooth:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --vl-ease-expo-out:    cubic-bezier(0.19, 1, 0.22, 1);
+        --vl-ease-back-in:     cubic-bezier(0.36, 0, 0.66, -0.56);
+        --vl-ease-back-out:    cubic-bezier(0.34, 1.56, 0.64, 1);
+        --vl-duration-slowest: 1200ms;
+        --vl-duration-fastest: 80ms;
+    }
+
+    /* =========================================================================
+       KEYFRAMES  entrance — advanced
+       ========================================================================= */
+
+    /* Spring physics: overshoot then settle */
+    @keyframes vl-spring-up {
+        0%   { opacity: 0; transform: translate3d(0, 2rem, 0) scale(0.96); }
+        55%  { opacity: 1; transform: translate3d(0, -0.35rem, 0) scale(1.01); }
+        75%  { transform: translate3d(0, 0.12rem, 0) scale(0.995); }
+        100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    /* High-momentum glide — ease-expo-out */
+    @keyframes vl-glide-in {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 3rem, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    /* Zoom blur: scale from slightly large + blurred */
+    @keyframes vl-zoom-blur {
+        from {
+            opacity: 0;
+            transform: scale(1.06);
+            filter: blur(16px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+        }
+    }
+
+    /* Slice: clip-path wipe from left edge */
+    @keyframes vl-slice-in {
+        from {
+            clip-path: inset(0 100% 0 0 round 4px);
+            opacity: 0.4;
+        }
+        to {
+            clip-path: inset(0 0% 0 0 round 0px);
+            opacity: 1;
+        }
+    }
+
+    /* Unfold: reveals from a collapsed top state */
+    @keyframes vl-unfold {
+        from {
+            clip-path: inset(0 0 100% 0);
+            transform: translate3d(0, -0.5rem, 0);
+            opacity: 0;
+        }
+        to {
+            clip-path: inset(0 0 0% 0);
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+    }
+
+    /* Diagonal: comes from bottom-left corner */
+    @keyframes vl-slide-diagonal {
+        from {
+            opacity: 0;
+            transform: translate3d(-1.5rem, 1.5rem, 0) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    /* 3D card flip reveal (rotateY 90deg → 0deg) */
+    @keyframes vl-flip-in {
+        from {
+            opacity: 0;
+            transform: perspective(800px) rotateY(-90deg) translateZ(-40px);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(800px) rotateY(0deg) translateZ(0);
+        }
+    }
+
+    /* Spring 3D: perspective entry with spring overshoot */
+    @keyframes vl-spring-3d {
+        0%   { opacity: 0; transform: perspective(900px) rotateX(22deg) translate3d(0, 2rem, -60px) scale(0.92); }
+        60%  { opacity: 1; transform: perspective(900px) rotateX(-2deg) translate3d(0, -0.2rem, 4px) scale(1.01); }
+        80%  { transform: perspective(900px) rotateX(1deg) translate3d(0, 0.1rem, 0) scale(0.99); }
+        100% { transform: perspective(900px) rotateX(0deg) translate3d(0, 0, 0) scale(1); }
+    }
+
+    /* Rise 3D: dramatic overhead perspective entry */
+    @keyframes vl-rise-3d {
+        from {
+            opacity: 0;
+            transform: perspective(1600px) rotateX(35deg) translate3d(0, 4rem, -120px);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(1600px) rotateX(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    /* =========================================================================
+       KEYFRAMES  continuous / ambient loops
+       ========================================================================= */
+
+    /* Pulse ring: expanding transparent ring */
+    @keyframes vl-pulse-ring {
+        0%   { transform: scale(0.85); opacity: 0.8; }
+        70%  { transform: scale(1.3); opacity: 0; }
+        100% { transform: scale(0.85); opacity: 0; }
+    }
+
+    /* Slow continuous 360 spin */
+    @keyframes vl-spin-slow {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Pendulum swing */
+    @keyframes vl-pendulum {
+        0%, 100% { transform: rotate(-12deg); transform-origin: top center; }
+        50%      { transform: rotate(12deg);  transform-origin: top center; }
+    }
+
+    /* Breathe: subtle scale pulse */
+    @keyframes vl-breathe {
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(1.04); }
+    }
+
+    /* Drift: slow horizontal ambient float */
+    @keyframes vl-drift {
+        0%, 100% { transform: translate3d(0, 0, 0); }
+        33%      { transform: translate3d(0.5rem, -0.25rem, 0); }
+        66%      { transform: translate3d(-0.25rem, 0.3rem, 0); }
+    }
+
+    /* Aurora: animate gradient background-position */
+    @keyframes vl-aurora {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Border beam: rotating conic gradient border */
+    @keyframes vl-border-beam {
+        to { --vl-beam-angle: 360deg; }
+    }
+
+    /* Bounce: elastic bounce on loop */
+    @keyframes vl-bounce {
+        0%, 100% { transform: translate3d(0, 0, 0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+        50%      { transform: translate3d(0, -0.6rem, 0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+    }
+
+    /* Shimmer text: gradient sweep across text */
+    @keyframes vl-shimmer-text {
+        0%   { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+
+    /* Gradient slide: slow position drift for hero backgrounds */
+    @keyframes vl-gradient-slide {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Text wave: per-character vertical wave (use on child spans) */
+    @keyframes vl-wave-char {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-0.35em); }
+    }
+
+    /* Text split: per-word rise reveal */
+    @keyframes vl-word-rise {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 0.6em, 0);
+            clip-path: inset(0 0 100% 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+            clip-path: inset(0 0 0% 0);
+        }
+    }
+
+    /* =========================================================================
+       KEYFRAMES  scroll-driven
+       ========================================================================= */
+
+    /* Rotate on scroll */
+    @keyframes vl-rotate-scroll {
+        from { transform: rotate(var(--vl-rotate-from, 0deg)); }
+        to   { transform: rotate(var(--vl-rotate-to, 360deg)); }
+    }
+
+    /* Wipe reveal on scroll */
+    @keyframes vl-wipe-scroll {
+        from { clip-path: inset(0 100% 0 0); opacity: 0.3; }
+        to   { clip-path: inset(0 0% 0 0); opacity: 1; }
+    }
+
+    /* Depth push on scroll: zooms out from front */
+    @keyframes vl-depth-push {
+        from {
+            transform: perspective(1000px) translateZ(80px) scale(1.08);
+            opacity: 0.3;
+        }
+        to {
+            transform: perspective(1000px) translateZ(0px) scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* Skew slide: skewed lateral reveal */
+    @keyframes vl-skew-slide {
+        from {
+            opacity: 0;
+            transform: skewX(-8deg) translate3d(2rem, 0, 0);
+        }
+        to {
+            opacity: 1;
+            transform: skewX(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    /* Drop in: falls from above with spring */
+    @keyframes vl-drop-in {
+        0%   { opacity: 0; transform: translate3d(0, -2.5rem, 0) scale(0.94); }
+        55%  { opacity: 1; transform: translate3d(0, 0.3rem, 0) scale(1.01); }
+        75%  { transform: translate3d(0, -0.1rem, 0); }
+        100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    /* Hinge: swings on top edge like a door opening */
+    @keyframes vl-hinge-down {
+        from {
+            opacity: 0;
+            transform: perspective(600px) rotateX(-70deg);
+            transform-origin: top center;
+        }
+        to {
+            opacity: 1;
+            transform: perspective(600px) rotateX(0deg);
+            transform-origin: top center;
+        }
+    }
+
+    /* Stagger blur: for use on individual children */
+    @keyframes vl-blur-cascade {
+        from {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(0.92);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+    }
+
+    /* Zoom stagger: scale-in for children */
+    @keyframes vl-zoom-stagger {
+        from {
+            opacity: 0;
+            transform: scale(0.75) translate3d(0, 1rem, 0);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translate3d(0, 0, 0);
+        }
+    }
+
+    /* =========================================================================
+       PRIMITIVE EFFECTS — entrance advanced
+       ========================================================================= */
+    [vl-effect="spring-up"] {
+        animation: vl-spring-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-bounce) both;
+    }
+
+    [vl-effect="glide-in"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-glide-in var(--vl-motion-duration) var(--vl-ease-expo-out) both;
+    }
+
+    [vl-effect="zoom-blur"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-zoom-blur var(--vl-motion-duration) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-effect="slice-in"] {
+        animation: vl-slice-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="unfold"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-unfold var(--vl-motion-duration) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="slide-diagonal"] {
+        animation: vl-slide-diagonal var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="flip-in"] {
+        animation: vl-flip-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-back-out) both;
+    }
+
+    [vl-effect="spring-3d"] {
+        animation: vl-spring-3d var(--vl-motion-duration, var(--vl-duration-slower)) var(--vl-ease-bounce) both;
+    }
+
+    [vl-effect="rise-3d"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-rise-3d var(--vl-motion-duration) var(--vl-ease-expo-out) both;
+    }
+
+    [vl-effect="drop-in"] {
+        animation: vl-drop-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-bounce) both;
+    }
+
+    [vl-effect="skew-slide"] {
+        animation: vl-skew-slide var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-effect="hinge-down"] {
+        animation: vl-hinge-down var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+        transform-origin: top center;
+    }
+
+    /* =========================================================================
+       PRIMITIVE EFFECTS — continuous / ambient
+       ========================================================================= */
+    [vl-effect="pulse-ring"] {
+        animation: vl-pulse-ring 2.4s var(--vl-ease-out-soft) infinite;
+    }
+
+    [vl-effect="spin-slow"] {
+        animation: vl-spin-slow 12s linear infinite;
+        transform-origin: center;
+    }
+
+    [vl-effect="pendulum"] {
+        animation: vl-pendulum 2.2s var(--vl-ease-in-out-smooth) infinite;
+        transform-origin: top center;
+    }
+
+    [vl-effect="breathe"] {
+        animation: vl-breathe 4s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="drift"] {
+        animation: vl-drift 8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="bounce"] {
+        animation: vl-bounce 1.4s infinite;
+    }
+
+    [vl-effect="aurora"] {
+        background: linear-gradient(
+            135deg,
+            color-mix(in oklch, var(--vl-color-primary) 60%, var(--vl-bg-surface)),
+            color-mix(in oklch, var(--vl-color-secondary) 55%, var(--vl-bg-main)),
+            color-mix(in oklch, var(--vl-color-accent) 50%, var(--vl-bg-surface)),
+            color-mix(in oklch, var(--vl-color-primary) 40%, var(--vl-bg-inset))
+        );
+        background-size: 300% 300%;
+        animation: vl-aurora 12s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="gradient-slide"] {
+        background-size: 300% 300%;
+        animation: vl-gradient-slide 8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    /* =========================================================================
+       PRIMITIVE EFFECTS — interaction
+       ========================================================================= */
+
+    /* Spotlight: uses @property for smooth gradient tracking on hover */
+    @property --vl-spotlight-x { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
+    @property --vl-spotlight-y { syntax: "<percentage>"; inherits: true; initial-value: 50%; }
+
+    [vl-effect="spotlight"] {
+        position: relative;
+        overflow: hidden;
+        transition:
+            --vl-spotlight-x var(--vl-duration-normal) var(--vl-ease-out-soft),
+            --vl-spotlight-y var(--vl-duration-normal) var(--vl-ease-out-soft);
+    }
+
+    [vl-effect="spotlight"]::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at var(--vl-spotlight-x, 50%) var(--vl-spotlight-y, 50%),
+            color-mix(in oklch, var(--vl-color-primary) 15%, transparent) 0%,
+            transparent 65%
+        );
+        opacity: 0;
+        transition: opacity var(--vl-transition-normal);
+        pointer-events: none;
+    }
+
+    [vl-effect="spotlight"]:hover::before {
+        opacity: 1;
+    }
+
+    /* Border beam: conic gradient animated border */
+    @property --vl-beam-angle { syntax: "<angle>"; inherits: true; initial-value: 0deg; }
+
+    [vl-effect="border-beam"] {
+        position: relative;
+        --vl-beam-angle: 0deg;
+        animation: vl-border-beam 4s linear infinite;
+    }
+
+    [vl-effect="border-beam"]::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: conic-gradient(
+            from var(--vl-beam-angle),
+            transparent 0%,
+            color-mix(in oklch, var(--vl-color-primary) 85%, transparent) 18%,
+            transparent 36%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+
+    /* Press: physical depress feedback */
+    [vl-effect="press"] {
+        transition: transform var(--vl-duration-fast) var(--vl-ease-back-in), box-shadow var(--vl-duration-fast);
+        cursor: pointer;
+    }
+
+    [vl-effect="press"]:active {
+        transform: scale(0.96) translateY(1px);
+        box-shadow: inset 0 2px 6px color-mix(in oklch, var(--vl-color-primary) 20%, transparent);
+    }
+
+    /* Shimmer text: gradient sweep on text */
+    [vl-effect="shimmer-text"] {
+        background: linear-gradient(
+            90deg,
+            var(--vl-text-primary) 0%,
+            color-mix(in oklch, var(--vl-color-primary) 90%, white) 35%,
+            var(--vl-text-primary) 55%,
+            var(--vl-text-primary) 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: vl-shimmer-text 3s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    /* =========================================================================
+       PRIMITIVE EFFECTS — scroll-driven
+       ========================================================================= */
+    [vl-effect="rotate-scroll"] {
+        animation: vl-rotate-scroll linear both;
+        animation-timeline: view(block);
+        animation-range: cover;
+    }
+
+    [vl-effect="wipe-reveal"] {
+        animation: vl-wipe-scroll linear both;
+        animation-timeline: view(block);
+        animation-range: entry 0% cover 50%;
+    }
+
+    [vl-effect="depth-push"] {
+        animation: vl-depth-push linear both;
+        animation-timeline: view(block);
+        animation-range: entry 0% entry 100%;
+    }
+
+    /* =========================================================================
+       TEXT SYSTEMS
+       ========================================================================= */
+
+    /* Animated gradient text clip */
+    .vl-gradient-text {
+        background: linear-gradient(
+            90deg,
+            var(--vl-color-primary),
+            var(--vl-color-secondary),
+            var(--vl-brand-stone),
+            var(--vl-color-primary)
+        );
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: vl-shimmer-text 5s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    /* Wave text: each child span waves */
+    .vl-text-wave {
+        display: inline-flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+
+    .vl-text-wave > span {
+        display: inline-block;
+        animation: vl-wave-char 1.8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    .vl-text-wave > span:nth-child(1)  { animation-delay: 0ms; }
+    .vl-text-wave > span:nth-child(2)  { animation-delay: 80ms; }
+    .vl-text-wave > span:nth-child(3)  { animation-delay: 160ms; }
+    .vl-text-wave > span:nth-child(4)  { animation-delay: 240ms; }
+    .vl-text-wave > span:nth-child(5)  { animation-delay: 320ms; }
+    .vl-text-wave > span:nth-child(6)  { animation-delay: 400ms; }
+    .vl-text-wave > span:nth-child(7)  { animation-delay: 480ms; }
+    .vl-text-wave > span:nth-child(8)  { animation-delay: 560ms; }
+    .vl-text-wave > span:nth-child(9)  { animation-delay: 640ms; }
+    .vl-text-wave > span:nth-child(10) { animation-delay: 720ms; }
+
+    /* Split text: each child word rises in */
+    .vl-text-split {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.25em;
+        overflow: hidden;
+    }
+
+    .vl-text-split > span {
+        display: inline-block;
+        animation: vl-word-rise var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-split > span:nth-child(1) { animation-delay: 0ms; }
+    .vl-text-split > span:nth-child(2) { animation-delay: 90ms; }
+    .vl-text-split > span:nth-child(3) { animation-delay: 180ms; }
+    .vl-text-split > span:nth-child(4) { animation-delay: 270ms; }
+    .vl-text-split > span:nth-child(5) { animation-delay: 360ms; }
+    .vl-text-split > span:nth-child(6) { animation-delay: 450ms; }
+    .vl-text-split > span:nth-child(7) { animation-delay: 540ms; }
+    .vl-text-split > span:nth-child(8) { animation-delay: 630ms; }
+
+    /* Scroll-driven word split */
+    .vl-text-split[vl-timeline="view"] > span {
+        animation-timeline: view(block);
+        animation-range: entry 10% cover 50%;
+    }
+
+    /* =========================================================================
+       3D STAGE SYSTEM
+       Inspired by pure CSS 3D (amit_sheen style) — zero JavaScript
+       ========================================================================= */
+
+    /* Perspective container */
+    .vl-3d-stage {
+        perspective: var(--vl-3d-perspective, 1000px);
+        perspective-origin: var(--vl-3d-origin, 50% 50%);
+        transform-style: preserve-3d;
+    }
+
+    /* 3D scene: preserves child transforms in 3D space */
+    .vl-3d-scene {
+        transform-style: preserve-3d;
+        transform: rotateX(var(--vl-3d-rot-x, 0deg)) rotateY(var(--vl-3d-rot-y, 0deg));
+        transition:
+            transform var(--vl-duration-slow) var(--vl-ease-out-soft);
+    }
+
+    /* Spinning 3D scene */
+    .vl-3d-scene--spin {
+        animation: vl-spin-slow 18s linear infinite;
+        transform-style: preserve-3d;
+    }
+
+    .vl-3d-scene--spin-reverse {
+        animation: vl-spin-slow 24s linear infinite reverse;
+        transform-style: preserve-3d;
+    }
+
+    /* CSS Cube system ─────────────────────────────────────────────── */
+    .vl-cube {
+        --vl-cube-size: 120px;
+        width: var(--vl-cube-size);
+        height: var(--vl-cube-size);
+        position: relative;
+        transform-style: preserve-3d;
+        animation: vl-cube-tumble 8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    @keyframes vl-cube-tumble {
+        0%   { transform: rotateX(0deg)   rotateY(0deg); }
+        25%  { transform: rotateX(90deg)  rotateY(45deg); }
+        50%  { transform: rotateX(180deg) rotateY(180deg); }
+        75%  { transform: rotateX(270deg) rotateY(225deg); }
+        100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    .vl-cube__face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px solid color-mix(in oklch, var(--vl-color-primary) 40%, transparent);
+        background: color-mix(in oklch, var(--vl-bg-surface) 75%, transparent);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.75rem;
+        color: var(--vl-text-secondary);
+    }
+
+    .vl-cube__face--front  { transform: translateZ(calc(var(--vl-cube-size) / 2)); }
+    .vl-cube__face--back   { transform: rotateY(180deg) translateZ(calc(var(--vl-cube-size) / 2)); }
+    .vl-cube__face--left   { transform: rotateY(-90deg) translateZ(calc(var(--vl-cube-size) / 2)); }
+    .vl-cube__face--right  { transform: rotateY(90deg)  translateZ(calc(var(--vl-cube-size) / 2)); }
+    .vl-cube__face--top    { transform: rotateX(90deg)  translateZ(calc(var(--vl-cube-size) / 2)); }
+    .vl-cube__face--bottom { transform: rotateX(-90deg) translateZ(calc(var(--vl-cube-size) / 2)); }
+
+    /* Nested cubes (orbit rings) */
+    .vl-cube--lg { --vl-cube-size: 200px; }
+    .vl-cube--sm { --vl-cube-size: 60px; }
+    .vl-cube--xs { --vl-cube-size: 40px; }
+
+    /* Cube with glow */
+    .vl-cube--glow .vl-cube__face {
+        background: color-mix(in oklch, var(--vl-color-primary) 12%, transparent);
+        border-color: color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+        box-shadow: inset 0 0 20px color-mix(in oklch, var(--vl-color-primary) 15%, transparent);
+    }
+
+    /* CSS Flip Card system ─────────────────────────────────────────── */
+    .vl-flip-card {
+        perspective: 1000px;
+    }
+
+    .vl-flip-card__inner {
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform var(--vl-duration-slow) var(--vl-ease-out-soft);
+        width: 100%;
+        height: 100%;
+    }
+
+    .vl-flip-card:hover .vl-flip-card__inner,
+    .vl-flip-card[aria-pressed="true"] .vl-flip-card__inner {
+        transform: rotateY(180deg);
+    }
+
+    .vl-flip-card__front,
+    .vl-flip-card__back {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: inherit;
+    }
+
+    .vl-flip-card__back {
+        transform: rotateY(180deg);
+        background: var(--vl-bg-surface-elevated);
+    }
+
+    /* CSS 3D Orbit system ─────────────────────────────────────────── */
+    .vl-orbit-system {
+        position: relative;
+        transform-style: preserve-3d;
+    }
+
+    .vl-orbit-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1px dashed color-mix(in oklch, var(--vl-color-primary) 30%, transparent);
+        transform-style: preserve-3d;
+        animation: vl-spin-slow var(--vl-orbit-duration, 10s) linear infinite;
+    }
+
+    .vl-orbit-ring:nth-child(2) {
+        transform: rotateX(60deg);
+        animation-duration: 14s;
+        animation-direction: reverse;
+    }
+
+    .vl-orbit-ring:nth-child(3) {
+        transform: rotateX(120deg);
+        animation-duration: 18s;
+    }
+
+    .vl-orbit-dot {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--vl-color-primary);
+        top: -4px;
+        left: calc(50% - 4px);
+        box-shadow: 0 0 8px var(--vl-color-primary);
+    }
+
+    /* =========================================================================
+       CHILDREN CHOREOGRAPHY EXTENSIONS
+       ========================================================================= */
+
+    /* Wave: children animate in a wave pattern (stagger + wave-char keyframe) */
+    [vl-children="wave"] > * {
+        animation: vl-wave-char 1.8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-children="wave"] > *:nth-child(1)  { animation-delay: calc(0  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(2)  { animation-delay: calc(1  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(3)  { animation-delay: calc(2  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(4)  { animation-delay: calc(3  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(5)  { animation-delay: calc(4  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="wave"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 80ms)); }
+
+    /* Blur cascade: children blur-in with stagger */
+    [vl-children="blur-cascade"] > * {
+        animation: vl-blur-cascade var(--vl-duration-slower) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-children="blur-cascade"] > *:nth-child(1)  { animation-delay: calc(0  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(2)  { animation-delay: calc(1  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(3)  { animation-delay: calc(2  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(4)  { animation-delay: calc(3  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(5)  { animation-delay: calc(4  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 80ms)); }
+    [vl-children="blur-cascade"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 80ms)); }
+
+    /* Zoom stagger: children zoom-scale-in with stagger */
+    [vl-children="zoom-stagger"] > * {
+        animation: vl-zoom-stagger var(--vl-duration-slow) var(--vl-ease-spring) both;
+    }
+
+    [vl-children="zoom-stagger"] > *:nth-child(1)  { animation-delay: calc(0  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(2)  { animation-delay: calc(1  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(3)  { animation-delay: calc(2  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(4)  { animation-delay: calc(3  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(5)  { animation-delay: calc(4  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 70ms)); }
+    [vl-children="zoom-stagger"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 70ms)); }
+
+    /* Extra stagger values */
+    [vl-stagger="20ms"]  { --vl-stagger-step: 20ms; }
+    [vl-stagger="30ms"]  { --vl-stagger-step: 30ms; }
+    [vl-stagger="40ms"]  { --vl-stagger-step: 40ms; }
+    [vl-stagger="250ms"] { --vl-stagger-step: 250ms; }
+    [vl-stagger="300ms"] { --vl-stagger-step: 300ms; }
+
+    /* =========================================================================
+       SPEED EXTENSIONS
+       ========================================================================= */
+    [vl-speed="slower"]  { --vl-motion-duration: var(--vl-duration-slowest, 1200ms); }
+    [vl-speed="fastest"] { --vl-motion-duration: var(--vl-duration-fastest, 80ms); }
+
+    /* =========================================================================
+       RANGE EXTENSIONS
+       ========================================================================= */
+
+    /* Exit range: animate as element exits viewport */
+    [vl-range="exit"] {
+        animation-range: exit 0% exit 100%;
+    }
+
+    [vl-range="exit-short"] {
+        animation-range: contain 70% exit 100%;
+    }
+
+    /* Center: animate only while element is centered in viewport */
+    [vl-range="center"] {
+        animation-range: contain 30% contain 70%;
+    }
+
+    /* Full: entire cover range */
+    [vl-range="full"] {
+        animation-range: cover 0% cover 100%;
+    }
+
+    /* =========================================================================
+       GPU hints for new effects
+       ========================================================================= */
+    [vl-effect="spring-up"],
+    [vl-effect="glide-in"],
+    [vl-effect="zoom-blur"],
+    [vl-effect="slice-in"],
+    [vl-effect="unfold"],
+    [vl-effect="slide-diagonal"],
+    [vl-effect="flip-in"],
+    [vl-effect="spring-3d"],
+    [vl-effect="rise-3d"],
+    [vl-effect="drop-in"],
+    [vl-effect="skew-slide"],
+    [vl-effect="hinge-down"],
+    [vl-effect="rotate-scroll"],
+    [vl-effect="wipe-reveal"],
+    [vl-effect="depth-push"] {
+        will-change: transform, opacity;
+    }
+
+    [vl-effect="zoom-blur"],
+    [vl-effect="glide-in"] {
+        will-change: transform, opacity, filter;
+    }
+
+    /* =========================================================================
+       REDUCED MOTION — respects user preference for all new effects
+       ========================================================================= */
+    @media (prefers-reduced-motion: reduce) {
+        [vl-effect="spring-up"],
+        [vl-effect="glide-in"],
+        [vl-effect="zoom-blur"],
+        [vl-effect="slice-in"],
+        [vl-effect="unfold"],
+        [vl-effect="slide-diagonal"],
+        [vl-effect="flip-in"],
+        [vl-effect="spring-3d"],
+        [vl-effect="rise-3d"],
+        [vl-effect="drop-in"],
+        [vl-effect="skew-slide"],
+        [vl-effect="hinge-down"] {
+            animation: vl-fade-in var(--vl-duration-fast) linear both;
+        }
+
+        [vl-effect="pulse-ring"],
+        [vl-effect="spin-slow"],
+        [vl-effect="pendulum"],
+        [vl-effect="breathe"],
+        [vl-effect="drift"],
+        [vl-effect="bounce"],
+        [vl-effect="aurora"],
+        [vl-effect="gradient-slide"],
+        .vl-text-wave > span,
+        .vl-cube,
+        .vl-orbit-ring {
+            animation: none;
+        }
+
+        [vl-effect="rotate-scroll"],
+        [vl-effect="wipe-reveal"],
+        [vl-effect="depth-push"] {
+            animation: none;
+        }
+
+        [vl-children="wave"] > *,
+        [vl-children="blur-cascade"] > *,
+        [vl-children="zoom-stagger"] > * {
+            animation: vl-fade-in var(--vl-duration-fast) linear both;
+        }
+    }
+
+    /* =========================================================================
+       FALLBACK  browsers without scroll-driven animations
+       ========================================================================= */
+    @supports not (animation-timeline: view(block)) {
+        [vl-effect="rotate-scroll"],
+        [vl-effect="wipe-reveal"],
+        [vl-effect="depth-push"] {
+            animation-timeline: auto;
+            animation-range: normal;
+        }
+
+        [vl-effect="rotate-scroll"] {
+            animation: none;
+        }
+
+        [vl-effect="wipe-reveal"] {
+            animation: vl-slice-in var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+        }
+
+        [vl-effect="depth-push"] {
+            animation: vl-zoom-blur var(--vl-duration-slower) var(--vl-ease-out-soft) both;
+        }
+    }
+
+    /* Border beam graceful fallback: if @property/conic-gradient unsupported, show static border */
+    @supports not (background: conic-gradient(from 0deg, red, blue)) {
+        [vl-effect="border-beam"] {
+            border-color: color-mix(in oklch, var(--vl-color-primary) 40%, transparent);
+            animation: none;
+        }
+
+        [vl-effect="border-beam"]::before {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Blog 2 (Centered article header)
+  CSS approach:
+    * centered article heading with metadata row and framed media block
+    * compact and reusable for editorial systems
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Blog 2</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bg2 { min-height: 100vh; padding: var(--vl-space-xl) var(--vl-space-lg); background: var(--vl-bg-main); }
+      .bg2__wrap { max-width: 64rem; margin: 0 auto; text-align: center; }
+      .bg2__title { margin: var(--vl-space-sm) auto var(--vl-space-md); max-width: 48rem; font-family: var(--vl-font-family-display); font-size: clamp(2.7rem, 6vw, 4.6rem); line-height: 0.97; letter-spacing: var(--vl-tracking-tight); }
+      .bg2__media { margin-top: var(--vl-space-xl); min-height: 24rem; border-radius: var(--vl-radius-2xl); border: 1px solid var(--vl-border-subtle); background: linear-gradient(180deg, color-mix(in oklch, var(--vl-text-primary) 5%, transparent), transparent), radial-gradient(circle at 30% 30%, color-mix(in oklch, var(--vl-color-primary) 18%, transparent), transparent 35%), var(--vl-bg-surface); }
+    </style>
+  </head>
+  <body>
+    <section class="bg2">
+      <div class="bg2__wrap">
+        <p class="vl-kicker">Blog 2</p>
+        <h1 class="bg2__title">Inside the systems work that makes visual polish repeatable.</h1>
+        <p class="vl-banner__lead">Use this header when the article needs a centered opening and a strong image frame below the fold.</p>
+        <div class="vl-cluster" style="justify-content: center;">
+          <span class="vl-badge">Opinion</span>
+          <span class="vl-badge">June 12, 2026</span>
+          <span class="vl-badge vl-badge--accent">7 min read</span>
+        </div>
+        <div class="bg2__media"></div>
+      </div>
+    </section>
+  </body>
+</html>

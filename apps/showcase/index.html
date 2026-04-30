@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" data-editorial-theme="noir" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Velora Playground — a motion-native design system homepage with oklch tokens, browser-first components and workflows for premium brand systems."
+    />
+    <title>Velora Playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>@view-transition { navigation: auto; }</style>
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group">
+              <g class="vl-logo-mark__full">
+                <g>
+                  <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                  <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+                  <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+                  <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+                  <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+                  <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/zero-js-motion.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+        </nav>
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+            </svg>
+          </a>
+          <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="vl-main">
+      <section class="hp-hero" aria-label="Introduction">
+        <div class="hp-hero__orb hp-hero__orb--1" aria-hidden="true"></div>
+        <div class="hp-hero__orb hp-hero__orb--2" aria-hidden="true"></div>
+        <div class="hp-hero__orb hp-hero__orb--3" aria-hidden="true"></div>
+        <div class="hp-hero__inner">
+          <p class="vl-kicker" vl-effect="fade-in">Motion-native CSS framework</p>
+          <h1 class="hp-hero__title" vl-effect="clip-rise">Motion native.<br>Zero compromise.</h1>
+          <p class="hp-hero__sub vl-delay-400" vl-effect="fade-up">
+            Velora brings 120fps GPU animation to pure HTML and CSS.<br>No JavaScript. No runtime. Just the web platform at full power.
+          </p>
+          <div class="vl-cluster vl-delay-600" vl-effect="fade-up">
+            <a class="vl-cta" href="/pages/core/landing.html" vl-effect="icon-shift">Explore the framework <span>→</span></a>
+            <a class="vl-cta vl-cta--ghost" href="/pages/scenes/scroll-reveal.html">See it scroll</a>
+            <a class="vl-cta vl-cta--ghost" href="/pages/motion/zero-js-motion.html">Motion library</a>
+          </div>
+          <div class="hp-hero__stats vl-delay-800" vl-effect="fade-up">
+            <div class="vl-stat">
+              <span class="vl-stat__value vl-counter vl-counter--scroll vl-counter-to-0"></span>
+              <span class="vl-stat__label">JS dependencies</span>
+            </div>
+            <div class="vl-stat">
+              <span class="vl-stat__value vl-counter vl-counter--scroll vl-counter-to-120"></span>
+              <span class="vl-stat__label">target GPU fps</span>
+            </div>
+            <div class="vl-stat">
+              <span class="vl-stat__value vl-counter vl-counter--scroll vl-counter-to-37"></span>
+              <span class="vl-stat__label">playground pages</span>
+            </div>
+            <div class="vl-stat">
+              <span class="vl-stat__value vl-counter vl-counter--scroll vl-counter-to-28"></span>
+              <span class="vl-stat__label">CSS components</span>
+            </div>
+          </div>
+        </div>
+        <div class="hp-hero__scroll" aria-hidden="true">
+          <span class="hp-scroll-label">scroll</span>
+          <div class="hp-scroll-line"></div>
+        </div>
+      </section>
+
+      <div class="hp-marquee-strip" aria-hidden="true">
+        <div class="vl-marquee"><div class="vl-marquee__track">
+          <span>ZERO JAVASCRIPT</span><span class="hp-dot">&middot;</span>
+          <span>120FPS GPU</span><span class="hp-dot">&middot;</span>
+          <span>PURE CSS</span><span class="hp-dot">&middot;</span>
+          <span>BROWSER NATIVE</span><span class="hp-dot">&middot;</span>
+          <span>SCROLL DRIVEN</span><span class="hp-dot">&middot;</span>
+          <span>VIEW TRANSITIONS</span><span class="hp-dot">&middot;</span>
+          <span>CSS ANIMATIONS</span><span class="hp-dot">&middot;</span>
+          <span>OKLCH TOKENS</span><span class="hp-dot">&middot;</span>
+          <span>ZERO JAVASCRIPT</span><span class="hp-dot">&middot;</span>
+          <span>120FPS GPU</span><span class="hp-dot">&middot;</span>
+          <span>PURE CSS</span><span class="hp-dot">&middot;</span>
+          <span>BROWSER NATIVE</span><span class="hp-dot">&middot;</span>
+          <span>SCROLL DRIVEN</span><span class="hp-dot">&middot;</span>
+          <span>VIEW TRANSITIONS</span><span class="hp-dot">&middot;</span>
+          <span>CSS ANIMATIONS</span><span class="hp-dot">&middot;</span>
+          <span>OKLCH TOKENS</span><span class="hp-dot">&middot;</span>
+        </div></div>
+      </div>
+
+      <section class="hp-manifesto" aria-label="Framework philosophy">
+        <div class="vl-container" vl-children="cascade" vl-stagger="200ms" vl-speed="slow">
+          <p class="hp-manifesto__statement hp-reveal-early hp-motion-calm vl-delay-100" vl-effect="clip-rise" vl-timeline="view" vl-range="custom">
+            The browser is<br>the animation engine.
+          </p>
+          <p class="hp-manifesto__statement hp-reveal-mid hp-motion-calm vl-delay-300" vl-effect="blur-in" vl-timeline="view" vl-range="custom">
+            Zero JavaScript.<br>120fps GPU.
+          </p>
+          <p class="hp-manifesto__statement hp-manifesto__statement--accent hp-reveal-late hp-motion-calm vl-delay-520" vl-effect="text-reveal-up" vl-timeline="view" vl-range="custom">
+            Motion is a design<br>language, not a library.
+          </p>
+        </div>
+      </section>
+
+      <section class="hp-section hp-effects" id="effects" aria-label="Effect gallery">
+        <div class="vl-container">
+          <div class="hp-section__header hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="vl-kicker">Motion library</p>
+            <h2 class="hp-section__title">Every effect you see<br>is pure CSS.</h2>
+            <p class="hp-section__lead">14 entrance effects, 6 interaction effects, 3 text reveals, cinema zoom, parallax — all driven by <code>vl-effect</code> attributes and zero JavaScript.</p>
+          </div>
+          <div class="hp-effects-story" vl-children="sequence" vl-speed="slow">
+            <article class="hp-effect-chapter hp-reveal-early hp-motion-calm vl-card" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+              <div class="hp-effect-chapter__index">Chapter 01</div>
+              <div class="hp-effect-chapter__demo"><div class="hp-effect-box" vl-effect="elastic-in" vl-timeline="view"></div></div>
+              <div class="hp-effect-chapter__body">
+                <h3 class="hp-effect-chapter__title">Entry beats</h3>
+                <p class="hp-effect-chapter__desc">Build the first impression with restrained opacity and vertical movement, then chain blur and scale for cinematic cadence.</p>
+                <div class="hp-effect-chapter__tokens">
+                  <code class="hp-effect-label">vl-effect="fade-in"</code>
+                  <code class="hp-effect-label">vl-effect="fade-up"</code>
+                  <code class="hp-effect-label">vl-effect="blur-in"</code>
+                  <code class="hp-effect-label">vl-effect="scale-in"</code>
+                </div>
+              </div>
+            </article>
+            <article class="hp-effect-chapter hp-effect-chapter--offset hp-reveal-mid hp-motion-calm vl-card vl-card--glass vl-delay-240" vl-effect="tilt-in" vl-timeline="view" vl-range="custom">
+              <div class="hp-effect-chapter__index">Chapter 02</div>
+              <div class="hp-effect-chapter__demo"><div class="hp-effect-box" vl-effect="reveal-3d" vl-timeline="view"></div></div>
+              <div class="hp-effect-chapter__body">
+                <h3 class="hp-effect-chapter__title">Lateral choreography</h3>
+                <p class="hp-effect-chapter__desc">Drive attention across the composition with lateral reveals, perspective tilts, and 3D card entrances.</p>
+                <div class="hp-effect-chapter__tokens">
+                  <code class="hp-effect-label">vl-effect="slide-left"</code>
+                  <code class="hp-effect-label">vl-effect="tilt-in"</code>
+                  <code class="hp-effect-label">vl-effect="reveal-3d"</code>
+                </div>
+              </div>
+            </article>
+            <article class="hp-effect-chapter hp-reveal-late hp-motion-calm vl-card vl-card--aurora vl-delay-520" vl-effect="blur-in" vl-timeline="view" vl-range="custom">
+              <div class="hp-effect-chapter__index">Chapter 03</div>
+              <div class="hp-effect-chapter__demo"><div class="hp-effect-box" vl-effect="morph"></div></div>
+              <div class="hp-effect-chapter__body">
+                <h3 class="hp-effect-chapter__title">Atmosphere layer</h3>
+                <p class="hp-effect-chapter__desc">Add ongoing ambience through clip-driven reveals and floating loops that keep surfaces alive between interactions.</p>
+                <div class="hp-effect-chapter__tokens">
+                  <code class="hp-effect-label">vl-effect="clip-rise"</code>
+                  <code class="hp-effect-label">vl-effect="float"</code>
+                  <code class="hp-effect-label">vl-effect="cinema-zoom"</code>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="hp-effects-cta" vl-effect="fade-up" vl-timeline="view">
+            <a class="vl-cta vl-cta--ghost" href="/pages/motion/zero-js-motion.html" vl-effect="icon-shift">See full motion library <span>→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-section hp-scroll-demo hp-section--deep" id="scroll-demo" aria-label="Scroll-driven animations">
+        <div class="vl-container hp-scroll-demo__inner">
+          <div class="hp-scroll-demo__text" vl-pin>
+            <p class="vl-kicker hp-reveal-early hp-motion-calm" vl-effect="fade-in" vl-timeline="view" vl-range="custom">Scroll-driven</p>
+            <h2 class="hp-section__title hp-reveal-mid hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">Animation tied<br>to your scroll.</h2>
+            <p class="hp-section__body hp-reveal-mid hp-motion-calm vl-delay-100" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              Using <code>animation-timeline: view()</code> and <code>scroll(root)</code>, Velora connects CSS animations directly to scroll position. Zero JavaScript required.
+            </p>
+            <div class="hp-scroll-demo__attrs hp-reveal-late hp-motion-calm vl-delay-200" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">vl-timeline="view"</span>
+              <span class="vl-badge">vl-range="entry-short"</span>
+              <span class="vl-badge">vl-effect="parallax"</span>
+              <span class="vl-badge">vl-effect="cinema-zoom"</span>
+            </div>
+            <a class="vl-cta vl-cta--ghost hp-reveal-late hp-motion-calm vl-delay-300" href="/pages/scenes/scroll-reveal.html" vl-effect="icon-shift" vl-timeline="view" vl-range="custom">Full scroll demo <span>→</span></a>
+          </div>
+          <div class="hp-scroll-demo__stage">
+            <div class="hp-scroll-card hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">01</span>
+              <h3>Entry animation</h3>
+              <p>Fades in as it enters the viewport. <code>animation-range: entry 5% cover 42%</code>.</p>
+            </div>
+            <div class="hp-scroll-card hp-scroll-card--mid hp-reveal-mid hp-motion-calm" vl-effect="blur-in" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge">02</span>
+              <h3>Blur reveal</h3>
+              <p>Snaps from blur to sharp focus as it scrolls into view.</p>
+            </div>
+            <div class="hp-scroll-card hp-reveal-mid hp-motion-calm" vl-effect="slide-left" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">03</span>
+              <h3>Lateral slide</h3>
+              <p>Arrives from the right as the page scrolls past it.</p>
+            </div>
+            <div class="hp-scroll-card hp-scroll-card--accent hp-reveal-long" vl-effect="cinema-zoom" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge">04</span>
+              <h3>Cinema zoom</h3>
+              <p>Scales across the entire scroll journey. <code>animation-timeline: view(block)</code>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-section hp-transitions hp-section--alt" id="transitions" aria-label="View transitions">
+        <div class="vl-container">
+          <div class="hp-section__header hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="vl-kicker">Page transitions</p>
+            <h2 class="hp-section__title">Five cinematic<br>transitions. Pure CSS.</h2>
+            <p class="hp-section__lead">Navigate between pages with cinema-quality transitions. Choose your style from the header selector — it persists across every page.</p>
+          </div>
+          <div class="hp-vt-timeline" vl-children="cascade" vl-stagger="240ms" vl-speed="slow">
+            <div class="hp-vt-card hp-vt-card--featured hp-reveal-mid hp-motion-calm vl-card vl-card--glass" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+              <div class="hp-vt-preview hp-vt-preview--cinema"></div>
+              <div class="hp-vt-info">
+                <span class="vl-badge vl-badge--accent">Featured</span>
+                <strong>Cinema</strong>
+                <p>Letterbox curtain with zoom</p>
+                <code>vl-page-transition="cinema"</code>
+              </div>
+            </div>
+            <div class="hp-vt-track">
+              <div class="hp-vt-step hp-reveal-mid hp-motion-calm vl-card vl-card--glass vl-delay-240" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+                <div class="hp-vt-preview hp-vt-preview--wipe"></div>
+                <div class="hp-vt-info">
+                  <strong>Wipe</strong>
+                  <p>Clean horizontal wipe</p>
+                  <code>vl-page-transition="wipe"</code>
+                </div>
+              </div>
+              <div class="hp-vt-step hp-reveal-mid hp-motion-calm vl-card vl-card--glass vl-delay-300" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+                <div class="hp-vt-preview hp-vt-preview--glide"></div>
+                <div class="hp-vt-info">
+                  <strong>Glide</strong>
+                  <p>Fluid slide with depth blur</p>
+                  <code>vl-page-transition="glide"</code>
+                </div>
+              </div>
+              <div class="hp-vt-step hp-reveal-late hp-motion-calm vl-card vl-card--glass vl-delay-520" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+                <div class="hp-vt-preview hp-vt-preview--iris"></div>
+                <div class="hp-vt-info">
+                  <strong>Iris</strong>
+                  <p>Circular radial reveal</p>
+                  <code>vl-page-transition="iris"</code>
+                </div>
+              </div>
+              <div class="hp-vt-step hp-reveal-late hp-motion-calm vl-card vl-card--glass vl-delay-720" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+                <div class="hp-vt-preview hp-vt-preview--snap"></div>
+                <div class="hp-vt-info">
+                  <strong>Snap</strong>
+                  <p>Sharp, instant cut</p>
+                  <code>vl-page-transition="snap"</code>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="hp-transitions-hint hp-reveal-late hp-motion-calm" vl-effect="fade-in" vl-timeline="view" vl-range="custom">
+            Try them live — select a transition in the header and navigate between pages.
+          </p>
+        </div>
+      </section>
+
+      <section class="hp-section hp-storyline hp-section--deep" id="timeline" aria-label="Section timeline choreography">
+        <div class="vl-container hp-storyline__inner">
+          <aside class="hp-storyline__rail" vl-pin>
+            <p class="vl-kicker hp-reveal-early hp-motion-calm" vl-effect="fade-in" vl-timeline="view" vl-range="custom">Section timeline</p>
+            <h2 class="hp-section__title hp-reveal-mid hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              Reveal by section.<br>No scroll scrubbing.
+            </h2>
+            <p class="hp-section__body hp-reveal-mid hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              Each block appears when its section enters a defined range. Motion follows content order and reading rhythm instead of continuous scrub.
+            </p>
+            <ol class="hp-storyline__steps" aria-label="Timeline steps">
+              <li class="hp-storyline__step hp-reveal-early hp-motion-calm" vl-effect="flow-in" vl-timeline="view" vl-range="custom">Intent</li>
+              <li class="hp-storyline__step hp-reveal-mid hp-motion-calm" vl-effect="flow-in" vl-timeline="view" vl-range="custom">Structure</li>
+              <li class="hp-storyline__step hp-reveal-late hp-motion-calm" vl-effect="flow-in" vl-timeline="view" vl-range="custom">Depth</li>
+              <li class="hp-storyline__step hp-reveal-late hp-motion-calm vl-delay-240" vl-effect="flow-in" vl-timeline="view" vl-range="custom">Conversion</li>
+            </ol>
+          </aside>
+
+          <div class="hp-storyline__content" vl-children="cascade" vl-stagger="240ms" vl-speed="slow">
+            <article class="hp-story-beat hp-story-beat--intent hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">Step 01</span>
+              <h3 class="hp-story-beat__title">Intent appears first</h3>
+              <p class="hp-story-beat__body">Start each section with a clear, short message. Use early range reveals so users understand context before they hit detail.</p>
+            </article>
+
+            <article class="hp-story-beat hp-story-beat--structure hp-reveal-mid hp-motion-calm" vl-effect="blur-in" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge">Step 02</span>
+              <h3 class="hp-story-beat__title">Structure follows context</h3>
+              <p class="hp-story-beat__body">Cards, lists, and examples enter in the middle of the viewport journey, after headline and lead copy are already established.</p>
+            </article>
+
+            <article class="hp-story-beat hp-story-beat--depth hp-reveal-late hp-motion-calm" vl-effect="tilt-in" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">Step 03</span>
+              <h3 class="hp-story-beat__title">Depth appears later</h3>
+              <p class="hp-story-beat__body">Technical details and advanced controls reveal late, preventing overload and keeping cadence calm and editorial.</p>
+            </article>
+
+            <article class="hp-story-beat hp-story-beat--conversion hp-reveal-late hp-motion-calm vl-delay-520" vl-effect="clip-rise" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge">Step 04</span>
+              <h3 class="hp-story-beat__title">CTA closes the sequence</h3>
+              <p class="hp-story-beat__body">Action appears last, after trust and comprehension are built. This keeps conversion tied to narrative completion.</p>
+              <a class="vl-cta vl-cta--ghost" href="/pages/scenes/scene-story.html" vl-effect="icon-shift">Open story scene <span>→</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-section hp-color" id="color" aria-label="Color system">
+        <div class="vl-container">
+          <div class="hp-section__header hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="vl-kicker">Color system</p>
+            <h2 class="hp-section__title">oklch. Perceptually<br>uniform. Light-aware.</h2>
+            <p class="hp-section__lead">All tokens use <code>oklch()</code> for perceptually uniform color mixing that adapts seamlessly between light and dark themes.</p>
+          </div>
+          <div class="hp-color-grid" vl-children="stagger" vl-stagger="180ms" vl-speed="slow">
+            <div class="hp-color-swatch hp-color-swatch--primary hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">primary</span><code class="hp-color-token">--vl-color-primary</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--secondary hp-reveal-early hp-motion-calm vl-delay-180" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">secondary</span><code class="hp-color-token">--vl-color-secondary</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--surface-elevated hp-reveal-mid hp-motion-calm vl-delay-300" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">surface elevated</span><code class="hp-color-token">--vl-bg-surface-elevated</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--surface hp-reveal-mid hp-motion-calm vl-delay-420" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">surface</span><code class="hp-color-token">--vl-bg-surface</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--inset hp-reveal-late hp-motion-calm vl-delay-520" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">inset</span><code class="hp-color-token">--vl-bg-inset</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--success hp-reveal-late hp-motion-calm vl-delay-640" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">success</span><code class="hp-color-token">--vl-color-success</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--warning hp-reveal-late hp-motion-calm vl-delay-720" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">warning</span><code class="hp-color-token">--vl-color-warning</code>
+            </div>
+            <div class="hp-color-swatch hp-color-swatch--danger hp-reveal-late hp-motion-calm vl-delay-960" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <span class="hp-color-name">danger</span><code class="hp-color-token">--vl-color-danger</code>
+            </div>
+          </div>
+          <div class="hp-color-cta hp-reveal-late hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <a class="vl-cta vl-cta--ghost" href="/pages/color/color-system.html" vl-effect="icon-shift">Explore color system <span>→</span></a>
+            <a class="vl-cta vl-cta--ghost" href="/pages/color/design-tokens.html" vl-effect="icon-shift">All design tokens <span>→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-section hp-type hp-section--alt" id="typography" aria-label="Typography">
+        <div class="vl-container">
+          <div class="hp-section__header hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="vl-kicker">Typography system</p>
+            <h2 class="hp-section__title">Three fonts.<br>One voice.</h2>
+          </div>
+          <div class="hp-type-grid" vl-children="stagger" vl-stagger="200ms" vl-speed="slow">
+            <div class="hp-type-specimen hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <p class="hp-type-meta">Space Grotesk &middot; Display</p>
+              <p class="hp-type-sample--display">The web is<br>the platform.</p>
+              <p class="hp-type-weights">300 &middot; 400 &middot; 500 &middot; 600 &middot; 700</p>
+            </div>
+            <div class="hp-type-specimen hp-reveal-mid hp-motion-calm vl-delay-300" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <p class="hp-type-meta">Manrope &middot; Body &amp; UI</p>
+              <p class="hp-type-sample--body">Motion-native design that feels as fast as it looks. Premium typography for interfaces that demand precision and rhythm.</p>
+              <p class="hp-type-weights">300 &middot; 400 &middot; 500 &middot; 600 &middot; 700 &middot; 800</p>
+            </div>
+            <div class="hp-type-specimen hp-reveal-late hp-motion-calm vl-delay-640" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+              <p class="hp-type-meta">JetBrains Mono &middot; Code</p>
+              <p class="hp-type-sample--mono">vl-effect="fade-up"<br>animation-timeline: view(block);<br>--vl-color-primary: oklch(...);</p>
+              <p class="hp-type-weights">400 &middot; 600</p>
+            </div>
+          </div>
+          <div class="vl-flow-space-xl hp-reveal-late hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <a class="vl-cta vl-cta--ghost" href="/pages/typography/typography.html" vl-effect="icon-shift">Typography system <span>→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-section hp-scenes hp-section--deep" id="scenes" aria-label="Scene demos">
+        <div class="vl-container">
+          <div class="hp-section__header hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="vl-kicker">Scene system</p>
+            <h2 class="hp-section__title">Full-page cinematic<br>experiences. Pure CSS.</h2>
+            <p class="hp-section__lead">Complete UI scenes built entirely with Velora primitives — no JavaScript, no dependencies, no runtime.</p>
+          </div>
+          <div class="hp-scenes-grid" vl-children="stagger" vl-stagger="240ms" vl-speed="slow">
+            <a class="hp-scene-card hp-scene-card--featured hp-reveal-early hp-motion-calm vl-card vl-card--aurora" href="/pages/scenes/scene-hero.html" vl-effect="flow-in" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">Scene 01</span>
+              <h3 class="hp-scene-title">Hero Reveal</h3>
+              <p class="hp-scene-desc">Cinematic above-the-fold with scroll-triggered entrance animations and parallax depth.</p>
+              <span class="hp-scene-arrow">→</span>
+            </a>
+            <a class="hp-scene-card hp-reveal-mid hp-motion-calm vl-card vl-delay-240" href="/pages/scenes/scene-features.html" vl-effect="tilt-in" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge">Scene 02</span>
+              <h3 class="hp-scene-title">Feature Flow</h3>
+              <p class="hp-scene-desc">Staggered feature grid with blur-in reveals and animated icon badges.</p>
+              <span class="hp-scene-arrow">→</span>
+            </a>
+            <a class="hp-scene-card hp-reveal-late hp-motion-calm vl-card vl-card--glass vl-delay-520" href="/pages/scenes/scene-story.html" vl-effect="blur-in" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge">Scene 03</span>
+              <h3 class="hp-scene-title">Story Pin</h3>
+              <p class="hp-scene-desc">Sticky scroll narrative with pinned panels and progressive content reveal.</p>
+              <span class="hp-scene-arrow">→</span>
+            </a>
+            <a class="hp-scene-card hp-reveal-late hp-motion-calm vl-card vl-delay-720" href="/pages/scenes/scroll-reveal.html" vl-effect="slide-left" vl-timeline="view" vl-range="custom">
+              <span class="vl-badge vl-badge--accent">Live demo</span>
+              <h3 class="hp-scene-title">Scroll Reveal</h3>
+              <p class="hp-scene-desc">All 14 scroll-driven effects in one cinematic showcase with view timeline binding.</p>
+              <span class="hp-scene-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="all-pages" class="hp-section hp-catalog" aria-label="All pages">
+        <div class="vl-container">
+          <div class="hp-section__header hp-reveal-early hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="vl-kicker">37 pages &middot; complete system</p>
+            <h2 class="hp-section__title">The full playground.</h2>
+            <p class="hp-section__lead">Every page is built with Velora CSS — no external dependencies, no JavaScript frameworks.</p>
+          </div>
+
+          <div class="ds-catalog-group hp-reveal-mid hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="ds-catalog-group__title">Motion & Scenes</p>
+            <div class="hp-catalog-rail" vl-children="cascade" vl-stagger="180ms" vl-speed="slow">
+              <a class="ds-page-card vl-card" href="/pages/scenes/scene-hero.html"><p class="vl-kicker">Scene</p><div class="vl-card__title">Hero Reveal</div><p class="vl-card__body">Cinematic above-the-fold scene</p></a>
+              <a class="ds-page-card vl-card" href="/pages/scenes/scene-features.html"><p class="vl-kicker">Scene</p><div class="vl-card__title">Feature Flow</div><p class="vl-card__body">Staggered feature grid reveal</p></a>
+              <a class="ds-page-card vl-card" href="/pages/scenes/scene-story.html"><p class="vl-kicker">Scene</p><div class="vl-card__title">Story Pin</div><p class="vl-card__body">Sticky scroll narrative</p></a>
+              <a class="ds-page-card vl-card" href="/pages/scenes/scroll-reveal.html"><p class="vl-kicker">Demo</p><div class="vl-card__title">Scroll Reveal</div><p class="vl-card__body">14 scroll-driven effects</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/zero-js-motion.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Zero-JS Motion</div><p class="vl-card__body">Full motion library reference</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/motion-extended.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Motion v2 Extended</div><p class="vl-card__body">30+ new effects, 3D system, text utilities</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/motion-principles.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Motion Principles</div><p class="vl-card__body">Timing, easing, orchestration</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/kinetic-motion.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Kinetic Motion</div><p class="vl-card__body">Advanced kinetic effects</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/scale-shift.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Scale Shift</div><p class="vl-card__body">Scale &amp; transform actuators</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/interactions.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Interactions</div><p class="vl-card__body">Micro-interaction feedback</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/kinetic-cards.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Kinetic Cards</div><p class="vl-card__body">Card-level motion patterns</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/3d-explorer.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">3D Explorer</div><p class="vl-card__body">CSS 3D transform explorer</p></a>
+              <a class="ds-page-card vl-card" href="/pages/motion/3d-rotation.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">3D Rotation</div><p class="vl-card__body">Rotation vector tuner</p></a>
+            </div>
+          </div>
+
+          <div class="ds-catalog-group hp-reveal-mid hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="ds-catalog-group__title">Color & Tokens</p>
+            <div class="hp-catalog-rail" vl-children="cascade" vl-stagger="180ms" vl-speed="slow">
+              <a class="ds-page-card vl-card" href="/pages/color/design-tokens.html"><p class="vl-kicker">Tokens</p><div class="vl-card__title">Design Tokens</div><p class="vl-card__body">Full token reference</p></a>
+              <a class="ds-page-card vl-card" href="/pages/color/color-system.html"><p class="vl-kicker">Color</p><div class="vl-card__title">Color System</div><p class="vl-card__body">oklch color architecture</p></a>
+              <a class="ds-page-card vl-card" href="/pages/color/color-palette.html"><p class="vl-kicker">Color</p><div class="vl-card__title">Color Palette</div><p class="vl-card__body">Perceptual palette tool</p></a>
+              <a class="ds-page-card vl-card" href="/pages/color/tonal-stacking.html"><p class="vl-kicker">Color</p><div class="vl-card__title">Tonal Stacking</div><p class="vl-card__body">Elevation through tonal depth</p></a>
+              <a class="ds-page-card vl-card" href="/pages/color/tonal-tiers.html"><p class="vl-kicker">Color</p><div class="vl-card__title">Tonal Tiers</div><p class="vl-card__body">Surface tier documentation</p></a>
+              <a class="ds-page-card vl-card" href="/pages/color/token-spotlight.html"><p class="vl-kicker">Color</p><div class="vl-card__title">Token Spotlight</div><p class="vl-card__body">Surface noir token showcase</p></a>
+              <a class="ds-page-card vl-card" href="/pages/color/ambient-shadows.html"><p class="vl-kicker">Color</p><div class="vl-card__title">Ambient Shadows</div><p class="vl-card__body">Shadow theory &amp; recipes</p></a>
+              <a class="ds-page-card vl-card" href="/pages/tools/contrast-tool.html"><p class="vl-kicker">Tool</p><div class="vl-card__title">Contrast Tool</div><p class="vl-card__body">WCAG contrast checker</p></a>
+            </div>
+          </div>
+
+          <div class="ds-catalog-group hp-reveal-late hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="ds-catalog-group__title">Typography</p>
+            <div class="hp-catalog-rail" vl-children="cascade" vl-stagger="200ms" vl-speed="slow">
+              <a class="ds-page-card vl-card" href="/pages/typography/typography.html"><p class="vl-kicker">Type</p><div class="vl-card__title">Typography</div><p class="vl-card__body">Type scale &amp; specimens</p></a>
+              <a class="ds-page-card vl-card" href="/pages/typography/typography-spec.html"><p class="vl-kicker">Type</p><div class="vl-card__title">Type Spec</div><p class="vl-card__body">Technical specification</p></a>
+              <a class="ds-page-card vl-card" href="/pages/typography/typography-composition.html"><p class="vl-kicker">Type</p><div class="vl-card__title">Type Composition</div><p class="vl-card__body">Editorial composition patterns</p></a>
+            </div>
+          </div>
+
+          <div class="ds-catalog-group hp-reveal-late hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="ds-catalog-group__title">Components & UI</p>
+            <div class="hp-catalog-rail" vl-children="cascade" vl-stagger="180ms" vl-speed="slow">
+              <a class="ds-page-card vl-card" href="/pages/library/gallery.html"><p class="vl-kicker">Components</p><div class="vl-card__title">Component Gallery</div><p class="vl-card__body">Full component showcase</p></a>
+              <a class="ds-page-card vl-card" href="/pages/components/buttons.html"><p class="vl-kicker">Components</p><div class="vl-card__title">Buttons</div><p class="vl-card__body">CTA variants &amp; states</p></a>
+              <a class="ds-page-card vl-card" href="/pages/components/forms.html"><p class="vl-kicker">Components</p><div class="vl-card__title">Forms</div><p class="vl-card__body">Native form components</p></a>
+              <a class="ds-page-card vl-card" href="/pages/components/icons.html"><p class="vl-kicker">Components</p><div class="vl-card__title">Icons</div><p class="vl-card__body">Iconography system</p></a>
+              <a class="ds-page-card vl-card" href="/pages/components/component-lab.html"><p class="vl-kicker">Components</p><div class="vl-card__title">Component Lab</div><p class="vl-card__body">Technical library</p></a>
+              <a class="ds-page-card vl-card" href="/pages/components/component-wizard.html"><p class="vl-kicker">Tool</p><div class="vl-card__title">Component Wizard</div><p class="vl-card__body">Guided component builder</p></a>
+            </div>
+          </div>
+
+          <div class="ds-catalog-group hp-reveal-mid hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="ds-catalog-group__title">packages/pages library</p>
+            <div class="hp-catalog-rail" vl-children="cascade" vl-stagger="180ms" vl-speed="slow">
+              <a class="ds-page-card vl-card" href="/pages/library/index.html"><p class="vl-kicker">Library</p><div class="vl-card__title">Design library index</div><p class="vl-card__body">33 páginas migradas de packages/pages com shell Velora</p></a>
+              <a class="ds-page-card vl-card" href="/pages/library/interaction-feedback-micro-interactions.html"><p class="vl-kicker">Interactions</p><div class="vl-card__title">Micro-interactions</div><p class="vl-card__body">Feedback cinético e estados</p></a>
+              <a class="ds-page-card vl-card" href="/pages/library/motion-principles-overview.html"><p class="vl-kicker">Motion</p><div class="vl-card__title">Motion principles</div><p class="vl-card__body">Princípios de movimento</p></a>
+              <a class="ds-page-card vl-card" href="/pages/library/scroll-driven-reveal-showcase.html"><p class="vl-kicker">Scroll</p><div class="vl-card__title">Scroll-driven reveal</div><p class="vl-card__body">Reveals ligados ao scroll</p></a>
+            </div>
+          </div>
+
+          <div class="ds-catalog-group hp-reveal-late hp-motion-calm" vl-effect="fade-up" vl-timeline="view" vl-range="custom">
+            <p class="ds-catalog-group__title">Architecture & Tools</p>
+            <div class="hp-catalog-rail" vl-children="cascade" vl-stagger="180ms" vl-speed="slow">
+              <a class="ds-page-card vl-card" href="/pages/core/landing.html"><p class="vl-kicker">Framework</p><div class="vl-card__title">Landing</div><p class="vl-card__body">Framework overview</p></a>
+              <a class="ds-page-card vl-card" href="/pages/tools/architecture.html"><p class="vl-kicker">Architecture</p><div class="vl-card__title">Architecture</div><p class="vl-card__body">System blueprints</p></a>
+              <a class="ds-page-card vl-card" href="/pages/tools/system-modules.html"><p class="vl-kicker">Architecture</p><div class="vl-card__title">System Modules</div><p class="vl-card__body">Module overview</p></a>
+              <a class="ds-page-card vl-card" href="/pages/tools/brand-voice.html"><p class="vl-kicker">Editorial</p><div class="vl-card__title">Brand Voice</div><p class="vl-card__body">Editorial strategy</p></a>
+              <a class="ds-page-card vl-card" href="/pages/tools/accessibility.html"><p class="vl-kicker">A11y</p><div class="vl-card__title">Accessibility</div><p class="vl-card__body">WCAG guidelines &amp; audit</p></a>
+              <a class="ds-page-card vl-card" href="/pages/tools/converter.html"><p class="vl-kicker">Tool</p><div class="vl-card__title">CSS Converter</div><p class="vl-card__body">Convert CSS to Velora tokens</p></a>
+              <a class="ds-page-card vl-card" href="/pages/core/about.html"><p class="vl-kicker">Demo</p><div class="vl-card__title">View Transitions</div><p class="vl-card__body">Cross-document VT demo</p></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hp-cta-final" aria-label="Call to action">
+        <div class="hp-cta-final__orb" aria-hidden="true"></div>
+        <div class="vl-container hp-cta-final__inner">
+          <p class="vl-kicker" vl-effect="fade-in" vl-timeline="view">Ready to build?</p>
+          <h2 class="hp-cta-final__title" vl-effect="clip-rise" vl-timeline="view">
+            Start with motion.<br>End with magic.
+          </h2>
+          <p class="hp-cta-final__sub vl-delay-200" vl-effect="fade-up" vl-timeline="view">
+            The browser is your animation engine. Velora gives you the primitives.
+          </p>
+          <div class="vl-cluster hp-cta-final__actions vl-delay-400" vl-effect="fade-up" vl-timeline="view">
+            <a class="vl-cta" href="/pages/core/landing.html" vl-effect="icon-shift">Explore framework <span>→</span></a>
+            <a class="vl-cta vl-cta--ghost" href="/pages/scenes/scroll-reveal.html">Watch it scroll</a>
+            <a class="vl-cta vl-cta--ghost" href="/pages/scenes/scene-hero.html">See a scene</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="vl-footer" aria-label="Site footer">
+      <div class="vl-footer__inner vl-container">
+        <div class="vl-footer__grid vl-footer__grid--5">
+          <div class="vl-footer__col vl-footer__brand">
+            <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-effect="fade-up" vl-timeline="view">
+              <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+                <g class="vl-logo-mark__group">
+                  <g class="vl-logo-mark__full">
+                    <g>
+                      <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                      <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+                      <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+                      <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+                      <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+                      <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Framework</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/core/landing.html">Overview</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/design-tokens.html">Tokens</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/system-modules.html">System Modules</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/architecture.html">Architecture</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/brand-voice.html">Brand Voice</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/accessibility.html">Accessibility</a></li>
+            </ul>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Scenes &amp; Motion</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-hero.html">Hero Reveal</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-features.html">Feature Flow</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-story.html">Story Pin</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scroll-reveal.html">Scroll Reveal</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/motion-extended.html">Motion v2 Extended</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/motion-principles.html">Motion Principles</a></li>
+            </ul>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Color &amp; Type</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/color/color-system.html">Color System</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/color-palette.html">Color Palette</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/tonal-tiers.html">Tonal Tiers</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/ambient-shadows.html">Ambient Shadows</a></li>
+              <li><a class="vl-footer__link" href="/pages/typography/typography.html">Typography</a></li>
+              <li><a class="vl-footer__link" href="/pages/typography/typography-spec.html">Type Spec</a></li>
+            </ul>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Tools</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/library/gallery.html">Components</a></li>
+              <li><a class="vl-footer__link" href="/pages/components/forms.html">Forms</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
+              <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="vl-footer__bottom">
+          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+          <div class="vl-footer__social" aria-label="Velora social links">
+            <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Velora on X">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M18.244 2H21l-6.02 6.88L22 22h-5.634l-4.41-5.987L6.72 22H4l6.44-7.36L2 2h5.776l3.986 5.418L18.244 2Zm-.959 18h1.526L6.944 3.896H5.31L17.285 20Z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Velora on Dribbble">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2Zm6.756 4.294a8 8 0 0 1 1.855 5.06 18.45 18.45 0 0 0-5.427-.08 26.39 26.39 0 0 0-1.238-2.67 16.594 16.594 0 0 0 4.81-2.31ZM12 3.389c1.86 0 3.57.638 4.927 1.706a15.39 15.39 0 0 1-4.559 2.153c-1.043-1.89-2.2-3.468-2.383-3.715A8.614 8.614 0 0 1 12 3.389ZM8.446 4.106c.173.23 1.328 1.806 2.347 3.66a33.26 33.26 0 0 1-6.98.903 8.642 8.642 0 0 1 4.633-4.563ZM3.39 12c0-.665.078-1.311.223-1.93a34.67 34.67 0 0 0 7.874-1.03c.403.764.775 1.557 1.101 2.37-.164.048-.324.097-.484.148-4.997 1.612-7.645 6.05-7.88 6.457A8.56 8.56 0 0 1 3.389 12Zm1.823 7.083c.199-.337 2.47-4.041 7.328-5.69.125-.043.252-.083.382-.121.852 2.307 1.442 4.752 1.664 7.259A8.555 8.555 0 0 1 5.212 19.083Zm10.756.775c-.245-2.375-.791-4.69-1.55-6.887.064-.01.13-.019.195-.028a16.99 16.99 0 0 1 5.92.131 8.643 8.643 0 0 1-4.565 6.784Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <dialog id="playground-modal" class="vl-dialog">
+      <div class="vl-dialog__header">
+        <h2 class="vl-dialog__title">Brand checkpoint</h2>
+        <button type="button" class="vl-dialog__close" commandfor="playground-modal" command="close" aria-label="Close">×</button>
+      </div>
+      <div class="vl-dialog__body">
+        <p>Use modals for approval checkpoints, never to compensate for unclear navigation.</p>
+        <p>This example uses only the native dialog API with framework CSS transitions.</p>
+      </div>
+      <div class="vl-dialog__footer">
+        <button type="button" class="vl-cta vl-cta--ghost" commandfor="playground-modal" command="close">Close</button>
+        <button type="button" class="vl-cta" commandfor="playground-modal" command="close">Approve</button>
+      </div>
+    </dialog>
+
+    <dialog id="playground-drawer" class="vl-dialog vl-dialog--drawer">
+      <div class="vl-dialog__header">
+        <h2 class="vl-dialog__title">System drawer</h2>
+        <button type="button" class="vl-dialog__close" commandfor="playground-drawer" command="close" aria-label="Close">×</button>
+      </div>
+      <div class="vl-dialog__body">
+        <p>Drawers work for filters, contextual navigation and quick system settings.</p>
+        <p>The visual behavior stays inside Velora's rules: browser-native and CSS-first.</p>
+      </div>
+      <div class="vl-dialog__footer">
+        <button type="button" class="vl-cta vl-cta--ghost" commandfor="playground-drawer" command="close">Close</button>
+      </div>
+    </dialog>
+
+    <div id="playground-popover" popover class="vl-popover ds-popover">
+      Use popovers for short explanations near the action. If the content needs structure, promote it to a card or dialog.
+    </div>
+
+    <div id="playground-toast" popover="manual" class="vl-toast vl-toast--success">
+      <span class="vl-toast__icon" aria-hidden="true">✓</span>
+      <div class="vl-toast__content">Playground homepage reorganized for brand systems and native demos.</div>
+      <button type="button" class="vl-toast__close" popovertarget="playground-toast" popovertargetaction="hide" aria-label="Close">×</button>
+    </div>
+      <script src="/js/showcase-controls.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Blog 3 (Magazine split header)
+  CSS approach:
+    * two-column article opener with quote block and visual panel
+    * suited for interviews and insight pieces
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Blog 3</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bg3 { min-height: 100vh; padding: var(--vl-space-xl) var(--vl-space-lg); background: var(--vl-bg-main); }
+      .bg3__wrap { max-width: 80rem; margin: 0 auto; display: grid; gap: var(--vl-space-lg); grid-template-columns: 0.9fr 1.1fr; }
+      .bg3__quote, .bg3__story { padding: var(--vl-space-lg); border-radius: var(--vl-radius-2xl); border: 1px solid var(--vl-border-subtle); background: var(--vl-bg-surface); }
+      .bg3__title { margin: var(--vl-space-sm) 0 var(--vl-space-md); font-family: var(--vl-font-family-display); font-size: clamp(2.4rem, 5vw, 4.3rem); line-height: 0.98; }
+      @media (max-width: 980px) { .bg3__wrap { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <section class="bg3">
+      <div class="bg3__wrap">
+        <aside class="bg3__quote">
+          <p class="vl-kicker">Blog 3</p>
+          <p style="font-family: var(--vl-font-family-display); font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.1; margin: 0;">“The best interfaces remove explanation debt before it accumulates.”</p>
+          <p class="vl-card__body" style="margin-top: var(--vl-space-lg);">An opener for essays, interviews, and thoughtful product writing.</p>
+        </aside>
+        <article class="bg3__story">
+          <span class="vl-badge vl-badge--accent">Interview</span>
+          <h1 class="bg3__title">The discipline behind interfaces that feel obvious on first contact.</h1>
+          <p class="vl-banner__lead" style="margin-left: 0; text-align: left;">A split header that pairs a provocative quote with the main article narrative and supporting metadata.</p>
+          <div class="vl-cluster">
+            <span class="vl-badge">By Velora Studio</span>
+            <span class="vl-badge">9 min read</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>

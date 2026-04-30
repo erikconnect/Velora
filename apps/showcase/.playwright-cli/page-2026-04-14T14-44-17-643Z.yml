@@ -1,0 +1,200 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Main navigation" [ref=e3]:
+    - generic [ref=e4]:
+      - link "Velora home" [ref=e5] [cursor=pointer]:
+        - /url: /index.html
+        - img [ref=e6]
+      - navigation "Primary navigation" [ref=e20]:
+        - link "Framework" [ref=e21] [cursor=pointer]:
+          - /url: /pages/core/landing.html
+        - link "Components" [ref=e22] [cursor=pointer]:
+          - /url: /pages/library/gallery.html
+        - link "Scenes" [ref=e23] [cursor=pointer]:
+          - /url: /pages/scenes/scene-hero.html
+        - link "Motion" [ref=e24] [cursor=pointer]:
+          - /url: /pages/motion/zero-js-motion.html
+        - link "Tokens" [ref=e25] [cursor=pointer]:
+          - /url: /pages/color/design-tokens.html
+        - link "Library" [ref=e26] [cursor=pointer]:
+          - /url: /pages/library/index.html
+      - generic [ref=e27]:
+        - combobox "Page transition effect" [ref=e28] [cursor=pointer]:
+          - option "Cinema" [selected]
+          - option "Wipe"
+          - option "Glide"
+          - option "Iris"
+          - option "Snap"
+        - combobox "Editorial design theme" [ref=e29] [cursor=pointer]:
+          - option "Noir" [selected]
+          - option "Earth tech"
+        - group "Color theme" [ref=e30]:
+          - button "◑" [ref=e31] [cursor=pointer]
+          - button "☀" [ref=e32] [cursor=pointer]
+          - button "☾" [pressed] [ref=e33] [cursor=pointer]
+        - link "Velora GitHub repository" [ref=e34] [cursor=pointer]:
+          - /url: https://github.com/velora-css/velora
+          - img [ref=e35]
+        - link "Get Started" [ref=e37] [cursor=pointer]:
+          - /url: /pages/core/landing.html
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Documentation / Standards
+          - heading "Digital Inclusivity" [level=1] [ref=e43]:
+            - text: Digital
+            - emphasis [ref=e44]: Inclusivity
+          - paragraph [ref=e45]: Accessibility in Velora is not a secondary QA pass. Contrast, semantics, focus order and reduced-motion behavior are built into the same system that drives the visual identity.
+          - generic [ref=e46]:
+            - link "Contrast Tool" [ref=e47] [cursor=pointer]:
+              - /url: /pages/tools/contrast-tool.html
+            - link "Tokens" [ref=e48] [cursor=pointer]:
+              - /url: /pages/color/design-tokens.html
+            - link "Architecture" [ref=e49] [cursor=pointer]:
+              - /url: /pages/tools/architecture.html
+            - link "Forms" [ref=e50] [cursor=pointer]:
+              - /url: /pages/components/forms.html
+        - complementary [ref=e51]:
+          - paragraph [ref=e52]: Safety rules
+          - list [ref=e53]:
+            - listitem [ref=e54]: Use semantic HTML before any ARIA enhancement.
+            - listitem [ref=e55]: Keep contrast roles tokenized and measurable.
+            - listitem [ref=e56]: Respect reduced-motion automatically when scenes intensify.
+      - generic [ref=e57]:
+        - article [ref=e58]:
+          - paragraph [ref=e59]: Contrast ratio
+          - heading "Color contrast starts in the token engine." [level=2] [ref=e60]
+          - paragraph [ref=e61]: Perceptual color choices make it easier to maintain readable pairings across surface tiers. The goal is not only passing ratios, but consistent readability under real use.
+          - generic [ref=e63]:
+            - generic [ref=e64]: Display / body pairing
+            - strong [ref=e65]: 7:1
+        - article [ref=e68]:
+          - paragraph [ref=e69]: Touch target
+          - heading "48px minimum" [level=2] [ref=e70]
+          - paragraph [ref=e71]: Interactive actuators should keep generous hit areas even when the visual chrome looks compact and premium.
+        - article [ref=e72]:
+          - paragraph [ref=e73]: Semantic shell
+          - heading "Screen readers first" [level=2] [ref=e74]
+          - paragraph [ref=e75]: Navigation shells, skip links and landmark regions must remain native and understandable before any enhancement layer runs.
+          - generic [ref=e76]: <nav aria-label="Global"> <a href="#content">Skip to content</a> <ul>...</ul> </nav>
+        - article [ref=e77]:
+          - paragraph [ref=e78]: Motion safety
+          - heading "Reduced motion is mandatory." [level=2] [ref=e79]
+          - paragraph [ref=e80]: Cinematic reveals can exist, but they must gracefully collapse into opacity-based transitions when user preference demands it.
+      - generic [ref=e81]:
+        - paragraph [ref=e82]: Keyboard integrity
+        - heading "Focus order must mirror the visual logic." [level=2] [ref=e83]
+        - generic [ref=e84]:
+          - generic [ref=e85]: Visible Focus State
+          - generic [ref=e86]: Sequential Tabbing
+          - generic [ref=e87]: No Tab Leaks
+        - paragraph [ref=e88]: Overlays and dialogs should trap focus correctly, primary calls-to-action should be discoverable without hunting, and the active ring must stay visible on every surface tier.
+  - contentinfo "Site footer" [ref=e89]:
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - generic [ref=e92]:
+          - link "Velora home" [ref=e93] [cursor=pointer]:
+            - /url: /index.html
+            - img [ref=e94]
+          - paragraph [ref=e108]: Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.
+        - generic [ref=e109]:
+          - heading "Framework" [level=3] [ref=e110]
+          - list [ref=e111]:
+            - listitem [ref=e112]:
+              - link "Overview" [ref=e113] [cursor=pointer]:
+                - /url: /pages/core/landing.html
+            - listitem [ref=e114]:
+              - link "Tokens" [ref=e115] [cursor=pointer]:
+                - /url: /pages/color/design-tokens.html
+            - listitem [ref=e116]:
+              - link "System Modules" [ref=e117] [cursor=pointer]:
+                - /url: /pages/tools/system-modules.html
+            - listitem [ref=e118]:
+              - link "Architecture" [ref=e119] [cursor=pointer]:
+                - /url: /pages/tools/architecture.html
+            - listitem [ref=e120]:
+              - link "Brand Voice" [ref=e121] [cursor=pointer]:
+                - /url: /pages/tools/brand-voice.html
+            - listitem [ref=e122]:
+              - link "Accessibility" [ref=e123] [cursor=pointer]:
+                - /url: /pages/tools/accessibility.html
+        - generic [ref=e124]:
+          - heading "Scenes & Motion" [level=3] [ref=e125]
+          - list [ref=e126]:
+            - listitem [ref=e127]:
+              - link "Hero Reveal" [ref=e128] [cursor=pointer]:
+                - /url: /pages/scenes/scene-hero.html
+            - listitem [ref=e129]:
+              - link "Feature Flow" [ref=e130] [cursor=pointer]:
+                - /url: /pages/scenes/scene-features.html
+            - listitem [ref=e131]:
+              - link "Story Pin" [ref=e132] [cursor=pointer]:
+                - /url: /pages/scenes/scene-story.html
+            - listitem [ref=e133]:
+              - link "Scroll Reveal" [ref=e134] [cursor=pointer]:
+                - /url: /pages/scenes/scroll-reveal.html
+            - listitem [ref=e135]:
+              - link "Zero-JS Motion" [ref=e136] [cursor=pointer]:
+                - /url: /pages/motion/zero-js-motion.html
+            - listitem [ref=e137]:
+              - link "Motion v2 Extended" [ref=e138] [cursor=pointer]:
+                - /url: /pages/motion/motion-extended.html
+            - listitem [ref=e139]:
+              - link "Motion Principles" [ref=e140] [cursor=pointer]:
+                - /url: /pages/motion/motion-principles.html
+        - generic [ref=e141]:
+          - heading "Color & Type" [level=3] [ref=e142]
+          - list [ref=e143]:
+            - listitem [ref=e144]:
+              - link "Color System" [ref=e145] [cursor=pointer]:
+                - /url: /pages/color/color-system.html
+            - listitem [ref=e146]:
+              - link "Color Palette" [ref=e147] [cursor=pointer]:
+                - /url: /pages/color/color-palette.html
+            - listitem [ref=e148]:
+              - link "Tonal Tiers" [ref=e149] [cursor=pointer]:
+                - /url: /pages/color/tonal-tiers.html
+            - listitem [ref=e150]:
+              - link "Ambient Shadows" [ref=e151] [cursor=pointer]:
+                - /url: /pages/color/ambient-shadows.html
+            - listitem [ref=e152]:
+              - link "Typography" [ref=e153] [cursor=pointer]:
+                - /url: /pages/typography/typography.html
+            - listitem [ref=e154]:
+              - link "Type Spec" [ref=e155] [cursor=pointer]:
+                - /url: /pages/typography/typography-spec.html
+        - generic [ref=e156]:
+          - heading "Tools" [level=3] [ref=e157]
+          - list [ref=e158]:
+            - listitem [ref=e159]:
+              - link "Components" [ref=e160] [cursor=pointer]:
+                - /url: /pages/library/gallery.html
+            - listitem [ref=e161]:
+              - link "Forms" [ref=e162] [cursor=pointer]:
+                - /url: /pages/components/forms.html
+            - listitem [ref=e163]:
+              - link "Contrast Tool" [ref=e164] [cursor=pointer]:
+                - /url: /pages/tools/contrast-tool.html
+            - listitem [ref=e165]:
+              - link "Component Wizard" [ref=e166] [cursor=pointer]:
+                - /url: /pages/components/component-wizard.html
+            - listitem [ref=e167]:
+              - link "CSS Converter" [ref=e168] [cursor=pointer]:
+                - /url: /pages/tools/converter.html
+            - listitem [ref=e169]:
+              - link "View Transitions" [ref=e170] [cursor=pointer]:
+                - /url: /pages/core/about.html
+      - generic [ref=e171]:
+        - paragraph [ref=e172]: © 2026 Velora · Motion-native CSS framework · Zero JavaScript
+        - generic "Velora social links" [ref=e173]:
+          - link "Velora on GitHub" [ref=e174] [cursor=pointer]:
+            - /url: https://github.com/velora-css/velora
+            - img [ref=e175]
+          - link "Velora on X" [ref=e177] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e178]
+          - link "Velora on Dribbble" [ref=e180] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e181]

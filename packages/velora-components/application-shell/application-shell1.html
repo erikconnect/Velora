@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 1 (Sidebar analytics shell)
+  CSS approach:
+    * fixed desktop sidebar with card-based workspace
+    * mobile collapses into a stacked layout without JS
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 1</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as1 {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 17rem minmax(0, 1fr);
+        background: var(--vl-bg-main);
+      }
+
+      .as1__sidebar {
+        padding: var(--vl-space-lg);
+        border-right: 1px solid var(--vl-border-subtle);
+        background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
+      }
+
+      .as1__main {
+        padding: var(--vl-space-lg);
+        display: grid;
+        gap: var(--vl-space-lg);
+      }
+
+      .as1__topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--vl-space-md);
+        flex-wrap: wrap;
+      }
+
+      .as1__search {
+        min-width: min(100%, 20rem);
+        padding: 0.85rem 1rem;
+        border-radius: var(--vl-radius-full);
+        border: 1px solid var(--vl-border-subtle);
+        background: var(--vl-bg-surface);
+        color: var(--vl-text-primary);
+      }
+
+      .as1__stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--vl-space-md);
+      }
+
+      .as1__board {
+        display: grid;
+        gap: var(--vl-space-md);
+        grid-template-columns: 1.25fr 0.95fr;
+      }
+
+      .as1__panel {
+        padding: var(--vl-space-md);
+        border-radius: var(--vl-radius-2xl);
+        background: var(--vl-bg-surface);
+        border: 1px solid var(--vl-border-subtle);
+      }
+
+      .as1__list {
+        display: grid;
+        gap: var(--vl-space-sm);
+        margin: var(--vl-space-md) 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .as1__list li {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--vl-space-md);
+        padding-bottom: var(--vl-space-sm);
+        border-bottom: 1px solid var(--vl-border-subtle);
+      }
+
+      @media (max-width: 960px) {
+        .as1 {
+          grid-template-columns: 1fr;
+        }
+
+        .as1__sidebar {
+          border-right: 0;
+          border-bottom: 1px solid var(--vl-border-subtle);
+        }
+
+        .as1__stats,
+        .as1__board {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="as1">
+      <aside class="as1__sidebar">
+        <a href="#" class="vl-header__brand">Velora OS</a>
+        <nav class="vl-nav vl-nav--vertical" style="margin-top: var(--vl-space-lg); display: grid; gap: var(--vl-space-xs);">
+          <a href="#" class="vl-nav__link vl-nav__link--active">Overview</a>
+          <a href="#" class="vl-nav__link">Campaigns</a>
+          <a href="#" class="vl-nav__link">Audience</a>
+          <a href="#" class="vl-nav__link">Revenue</a>
+          <a href="#" class="vl-nav__link">Settings</a>
+        </nav>
+      </aside>
+
+      <main class="as1__main">
+        <div class="as1__topbar">
+          <div>
+            <p class="vl-kicker">Application Shell 1</p>
+            <h1 style="margin: 0; font-family: var(--vl-font-family-display);">Launch operations</h1>
+          </div>
+          <input class="as1__search" value="Search workspace" aria-label="Search workspace" />
+        </div>
+
+        <section class="as1__stats">
+          <article class="vl-card"><div class="vl-card__title">$184k</div><div class="vl-card__body">pipeline influenced</div></article>
+          <article class="vl-card"><div class="vl-card__title">41</div><div class="vl-card__body">active sequences</div></article>
+          <article class="vl-card"><div class="vl-card__title">92%</div><div class="vl-card__body">handoff accuracy</div></article>
+        </section>
+
+        <section class="as1__board">
+          <article class="as1__panel">
+            <h2 class="vl-card__title">Live initiatives</h2>
+            <ul class="as1__list">
+              <li><span>Spring partner push</span><strong>Ready</strong></li>
+              <li><span>EMEA onboarding refresh</span><strong>Review</strong></li>
+              <li><span>Pricing launch support</span><strong>Queued</strong></li>
+            </ul>
+          </article>
+          <article class="as1__panel">
+            <h2 class="vl-card__title">Team pulse</h2>
+            <p class="vl-card__body">Creative, lifecycle, and product marketing are aligned for next week’s release window.</p>
+            <div class="vl-cluster" style="margin-top: var(--vl-space-md);">
+              <span class="vl-badge vl-badge--accent">Synced</span>
+              <span class="vl-badge">3 approvals</span>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

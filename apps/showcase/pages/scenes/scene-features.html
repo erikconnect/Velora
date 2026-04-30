@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scene Features | Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+      @view-transition { navigation: auto; }
+      body { background: var(--vl-bg-main); overflow-x: hidden; }
+      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
+      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
+      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
+    </style>
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group">
+              <g class="vl-logo-mark__full">
+                <g>
+                  <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                  <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+                  <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+                  <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+                  <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+                  <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+                  <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/zero-js-motion.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+        </nav>
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-3-4 3-4-3-4 3V5Zm2 0v9.2l2-1.5 4 3 4-3 2 1.5V5H6Zm2.6 2.4h6.8v1.6H8.6V7.4Zm0 3.4h4.8v1.6H8.6v-1.6Z"/>
+            </svg>
+          </a>
+          <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+    <main id="content" class="vl-main">
+                  <div class="page-wrap hub-page hub-page--scenes">
+      <section class="hub-hero" vl-effect="fade-up" vl-timeline="view">
+        <div class="hub-hero__copy">
+          <p class="vl-kicker">Scenes</p>
+          <h1 class="vl-display-xl hub-hero__title">Scene Features</h1>
+          <p class="vl-body-lg hub-hero__lead">Feature scenes communicate capabilities: grids of cards, staggered reveals, and consistent iconography tied to tokens.</p>
+          <div class="hub-hero__actions">
+            <a class="vl-header-get-started" href="/pages/library/zero-js-motion-examples.html">Zero-JS motion examples</a>
+          <a class="hub-chip-link" href="/pages/library/motion-principles-overview.html" vl-effect="fade-up" vl-timeline="view">Motion principles</a>
+          <a class="hub-chip-link" href="/pages/scenes/scene-hero.html" vl-effect="fade-up" vl-timeline="view">Hero scene</a>
+          </div>
+        </div>
+        <aside class="hub-hero__meta" vl-effect="fade-left" vl-timeline="view">
+          <p class="hub-hero__meta-label">How this area fits the framework</p>
+          <ol class="hub-hero__meta-list">
+            <li><strong>Grid</strong> — responsive columns with shared gap tokens.</li>
+            <li><strong>Stagger</strong> — <code>vl-children</code> patterns for orchestrated entry.</li>
+            <li><strong>Content</strong> — each tile links to deeper Library docs.</li>
+          </ol>
+        </aside>
+      </section>
+
+      <section class="hub-grid" vl-children="stagger" vl-stagger="0.08">
+        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:0;">
+          <p class="hub-step-card__eyebrow">Framework move 1</p>
+          <h2 class="hub-step-card__title">Grid</h2>
+          <p class="hub-step-card__body">responsive columns with shared gap tokens.</p>
+        </article>
+        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:1;">
+          <p class="hub-step-card__eyebrow">Framework move 2</p>
+          <h2 class="hub-step-card__title">Stagger</h2>
+          <p class="hub-step-card__body"><code>vl-children</code> patterns for orchestrated entry.</p>
+        </article>
+        <article class="hub-step-card" vl-effect="fade-up" vl-timeline="view" style="--step-index:2;">
+          <p class="hub-step-card__eyebrow">Framework move 3</p>
+          <h2 class="hub-step-card__title">Content</h2>
+          <p class="hub-step-card__body">each tile links to deeper Library docs.</p>
+        </article>
+      </section>
+
+      <section class="hub-reference-section">
+        <div>
+          <p class="hub-section__eyebrow">Canonical source</p>
+          <h2 class="vl-title-lg" style="margin:0;">Reference the long-form Library page, then return here to explore the applied system.</h2>
+        </div>
+        <div class="hub-reference-grid">
+          <a class="hub-reference-card" href="/pages/library/zero-js-motion-examples.html" vl-effect="fade-up" vl-timeline="view">
+            <p class="hub-step-card__eyebrow">Primary Library reference</p>
+            <h3 class="hub-reference-card__title">Zero-JS motion examples</h3>
+            <p class="hub-reference-card__body">This is the canonical documentation migrated from <code>packages/pages</code>. Use it as the source of truth for scene features and return to this hub for related examples inside the showcase.</p>
+          </a>
+          <div class="hub-note" vl-effect="fade-up" vl-timeline="view">
+            <p class="hub-section__eyebrow">Applied system note</p>
+            <p>The hub page is not just a directory entry: it demonstrates the framework in the page itself through tokenized surfaces, editorial hierarchy, motion attributes and static-first HTML.</p>
+            <p>Area: <code>scenes</code>. Source page: <code>pages/scenes/scene-features.html</code>.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    </main>
+
+    <footer class="vl-footer" aria-label="Site footer">
+      <div class="vl-footer__inner vl-container">
+        <div class="vl-footer__grid vl-footer__grid--5">
+          <div class="vl-footer__col vl-footer__brand">
+            <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-effect="fade-up" vl-timeline="view">
+              <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+                <g class="vl-logo-mark__group">
+                  <g class="vl-logo-mark__full">
+                    <g>
+                      <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                      <path class="vl-logo-mark__shape" d="M144.01,32.16l.02,1.14c3.54-5.56,7.11-10.98,11.23-16.19l4.11-4.65c.44-.5,1.49-.62,2.18-.57l-1.57,1.48c-5.67,6.49-10.65,13.35-15.22,20.65-.67,1.08-1.34,1.97-1.46,3.29l7.15-10.98c3.09-4.75,6.67-9.04,10.36-13.27.83-.95,1.98-1.43,3.07-1.2l-4.15,4.3c-4.81,5.76-9.21,11.62-13.22,17.97l-6.29,9.96c-5.47,8.67-15.74,12.2-25.27,8.51-10.29-3.98-15.62-15.25-12.67-25.66s13.36-17.11,24.3-15.29c5.3.88,9.94,3.64,13.16,7.93,2.22,2.95,3.62,6.09,4.07,9.75l3.88-6.7c2.11-3.64,4.35-8.26,8.49-9.89l-2.2,2.59c-3.65,4.3-6.58,9.03-9.73,13.73-.37.56-.61.93-.21,1.65l4.56-7.17c2.25-3.53,4.67-6.8,7.41-9.94.84-.96,1.96-1.5,3.21-1.71l-1.47,1.57c-3.85,4.11-7.01,8.64-10.13,13.33l-3.61,5.35v.02ZM133.48,40.04c4.43-7.02,1.85-16.65-5.55-19.71-4.02-1.66-7.96-1.22-11.4.75-3.99,2.28-6.43,6.56-6.67,10.94-.24,4.38,1.8,9.01,5.54,11.64,6.01,4.23,14.12,2.67,18.09-3.61h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M214.5,53.11c-.15.29-1.01.3-1.21.08l-8.46-22.1,3.45,10.68,4.16,11.54h-1.16l-7.64-19.62c1.86,6.76,4.48,12.93,6.77,19.64h-5.07l-2.12-5.45c-6,6.74-15.93,7.8-23.48,3.93-11.41-5.84-15.15-20.38-7.98-30.92,5.88-8.66,17.14-11.96,26.71-7.58,4.5,2.06,7.93,5.66,9.63,10.35l10.69,29.59-1.19.07-6.05-16.44-3.92-9.75c2.67,8.94,5.9,17.33,9.05,26.12l-1.19.07-5.26-14.2-4.25-10.57c2.46,8.38,5.55,16.22,8.54,24.58l-.02-.02ZM202.71,32.63c0-7.27-5.9-13.17-13.17-13.17s-13.17,5.9-13.17,13.17,5.9,13.17,13.17,13.17,13.17-5.9,13.17-13.17Z"/>
+                      <path class="vl-logo-mark__shape" d="M45.32.08l-3.5,8.6-12.04,29c-.42,1.02-.69,1.86.23,2.66L46.85.1c.4-.05.87-.04,1.29,0l-3.55,8.57-14.05,33.48c.16.58.36,1.11.66,1.53L49.61.28c.39-.25,1-.3,1.38-.16l-12.4,29.28-10.19,23.96-6.52-.03L0,.04l14.04-.04,11.94,30.39L38.24.17c.42-.11.82-.14,1.33-.09l-12.45,30.76c-.42,1.03-.41,1.88.27,2.95L41.17.1l1.29.03-4.5,11.04-10.01,24.37.74,1.55,8.97-21.53L44.03.07l1.28.03v-.02Z"/>
+                      <rect class="vl-logo-mark__shape" x="90.08" y=".37" width="8.5" height="52.97"/>
+                      <path class="vl-logo-mark__shape" d="M155.03,53.31l-8.56.05-.03-18.27,9.43-13.38,4.91-6.16c1.68-1.8,3.32-4.21,5.52-3.63l-2.21,2.03-5.12,6.4c-2.35,1.35-3.59,3.65-3.95,6.42v26.54h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M166.61,19.96l-1.88-.13c1.89-2.53,3.7-4.76,5.89-6.87.9-.87,1.88-1.44,3.16-1.01-2.8,2.26-4.93,4.89-7.17,8.02h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M161.91,19.71l-2.19.33c1.81-2.52,3.77-4.94,6.06-7.21.84-.84,1.85-1.18,3.04-.94-2.67,2.26-4.75,4.77-6.92,7.82h.01Z"/>
+                      <path class="vl-logo-mark__shape" d="M164.14,19.8l-1.88.06c1.96-2.64,3.82-5.03,6.2-7.19.81-.74,1.86-1,2.75-.73l-2.64,2.46-4.42,5.4h0Z"/>
+                      <path class="vl-logo-mark__shape" d="M169.05,19.81l-1.86.05c1.94-2.66,3.82-5.03,6.21-7.18.84-.76,1.85-1.13,3.01-.76-1.82,1.33-3.43,2.78-4.81,4.57l-2.55,3.31h0Z"/>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+            <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Framework</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/core/landing.html">Overview</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/design-tokens.html">Tokens</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/system-modules.html">System Modules</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/architecture.html">Architecture</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/brand-voice.html">Brand Voice</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/accessibility.html">Accessibility</a></li>
+            </ul>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Scenes &amp; Motion</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-hero.html">Hero Reveal</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-features.html">Feature Flow</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-story.html">Story Pin</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scroll-reveal.html">Scroll Reveal</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/motion-extended.html">Motion v2 Extended</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/motion-principles.html">Motion Principles</a></li>
+            </ul>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Color &amp; Type</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/color/color-system.html">Color System</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/color-palette.html">Color Palette</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/tonal-tiers.html">Tonal Tiers</a></li>
+              <li><a class="vl-footer__link" href="/pages/color/ambient-shadows.html">Ambient Shadows</a></li>
+              <li><a class="vl-footer__link" href="/pages/typography/typography.html">Typography</a></li>
+              <li><a class="vl-footer__link" href="/pages/typography/typography-spec.html">Type Spec</a></li>
+            </ul>
+          </div>
+          <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Tools</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/library/gallery.html">Components</a></li>
+              <li><a class="vl-footer__link" href="/pages/components/forms.html">Forms</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/contrast-tool.html">Contrast Tool</a></li>
+              <li><a class="vl-footer__link" href="/pages/components/component-wizard.html">Component Wizard</a></li>
+              <li><a class="vl-footer__link" href="/pages/tools/converter.html">CSS Converter</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/about.html">View Transitions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="vl-footer__bottom">
+          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+          <div class="vl-footer__social" aria-label="Velora social links">
+            <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Velora on X">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M18.244 2H21l-6.02 6.88L22 22h-5.634l-4.41-5.987L6.72 22H4l6.44-7.36L2 2h5.776l3.986 5.418L18.244 2Zm-.959 18h1.526L6.944 3.896H5.31L17.285 20Z"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Velora on Dribbble">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2Zm6.756 4.294a8 8 0 0 1 1.855 5.06 18.45 18.45 0 0 0-5.427-.08 26.39 26.39 0 0 0-1.238-2.67 16.594 16.594 0 0 0 4.81-2.31ZM12 3.389c1.86 0 3.57.638 4.927 1.706a15.39 15.39 0 0 1-4.559 2.153c-1.043-1.89-2.2-3.468-2.383-3.715A8.614 8.614 0 0 1 12 3.389ZM8.446 4.106c.173.23 1.328 1.806 2.347 3.66a33.26 33.26 0 0 1-6.98.903 8.642 8.642 0 0 1 4.633-4.563ZM3.39 12c0-.665.078-1.311.223-1.93a34.67 34.67 0 0 0 7.874-1.03c.403.764.775 1.557 1.101 2.37-.164.048-.324.097-.484.148-4.997 1.612-7.645 6.05-7.88 6.457A8.56 8.56 0 0 1 3.389 12Zm1.823 7.083c.199-.337 2.47-4.041 7.328-5.69.125-.043.252-.083.382-.121.852 2.307 1.442 4.752 1.664 7.259A8.555 8.555 0 0 1 5.212 19.083Zm10.756.775c-.245-2.375-.791-4.69-1.55-6.887.064-.01.13-.019.195-.028a16.99 16.99 0 0 1 5.92.131 8.643 8.643 0 0 1-4.565 6.784Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+      <script src="/js/showcase-controls.js"></script>
+  </body>
+</html>
+
+
+

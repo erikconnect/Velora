@@ -1,4 +1,4 @@
-@layer velora.structures {
+@layer velora.components {
     /*
      * Page structures — header, footer, nav, sidebar, breadcrumb, dividers.
      * Awwwards-grade layout primitives for marketing sites and web apps.
@@ -53,6 +53,17 @@
         -webkit-text-fill-color: transparent;
     }
 
+    /* Logo image — color follows design system tokens */
+    .vl-logo {
+        display: block;
+        filter: var(--vl-logo-filter, brightness(0) invert(1));
+        opacity: var(--vl-logo-opacity, 0.9);
+        transition: opacity var(--vl-transition-fast);
+    }
+    .vl-header__brand:hover .vl-logo {
+        opacity: 1;
+    }
+
     .vl-header__nav {
         display: flex;
         align-items: center;
@@ -69,8 +80,9 @@
 
     .vl-header--glass {
         background: var(--vl-glass-bg);
-        backdrop-filter: var(--vl-backdrop-blur);
-        -webkit-backdrop-filter: var(--vl-backdrop-blur);
+        backdrop-filter: blur(var(--vl-backdrop-blur));
+        -webkit-backdrop-filter: blur(var(--vl-backdrop-blur));
+        border-bottom: 1px solid color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
     }
 
     .vl-header--transparent {
@@ -129,14 +141,13 @@
     .vl-nav__link::after {
         content: "";
         position: absolute;
-        inset-inline: 0;
         bottom: 0;
+        left: 50%;
+        width: 0;
         height: 2px;
         background: var(--vl-color-primary);
         border-radius: var(--vl-radius-full);
-        transform: scaleX(0);
-        transform-origin: center;
-        transition: transform var(--vl-transition-normal) var(--vl-ease-cinematic);
+        transition: width var(--vl-transition-normal) var(--vl-ease-cinematic), left var(--vl-transition-normal) var(--vl-ease-cinematic);
     }
 
     .vl-nav__link:hover {
@@ -144,7 +155,8 @@
     }
 
     .vl-nav__link:hover::after {
-        transform: scaleX(1);
+        width: 100%;
+        left: 0;
     }
 
     .vl-nav__link--active {
@@ -152,13 +164,32 @@
     }
 
     .vl-nav__link--active::after {
-        transform: scaleX(1);
+        width: 100%;
+        left: 0;
     }
 
     .vl-nav__link:focus-visible {
         outline: var(--vl-focus-ring-width) solid var(--vl-focus-ring-color);
         outline-offset: var(--vl-focus-ring-offset);
         border-radius: var(--vl-radius-sm);
+    }
+
+    /* — underline-expand compatibility: reset scaleX so the motion layer's
+       width/left animation can take effect — */
+    .vl-nav__link[vl-effect="underline-expand"]::after {
+        inset-inline: auto;
+        left: 50%;
+        width: 0;
+        transform: none;
+        transform-origin: unset;
+        transition: width var(--vl-transition-normal), left var(--vl-transition-normal);
+    }
+
+    .vl-nav__link[vl-effect="underline-expand"]:hover::after,
+    .vl-nav__link[vl-effect="underline-expand"].vl-nav__link--active::after {
+        width: 100%;
+        left: 0;
+        transform: none;
     }
 
     /* — Vertical (sidebar) — */
@@ -278,6 +309,14 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .vl-footer__brand .vl-logo {
+        margin-block-end: var(--vl-space-md);
+    }
+
+    .vl-footer__brand:hover .vl-logo {
+        opacity: 1;
     }
 
     .vl-footer__desc {

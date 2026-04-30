@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ambient Shadows Theory | Velora Noir</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            background: rgba(23, 27, 22, 0.7);
+        }
+        /* Custom shadows based on Design System Specification */
+        .vl-shadow-low {
+            box-shadow: 0 4px 20px rgba(187, 203, 177, 0.04);
+        }
+        .vl-shadow-medium {
+            box-shadow: 0 8px 30px rgba(187, 203, 177, 0.06);
+        }
+        .vl-shadow-high {
+            box-shadow: 0 16px 40px rgba(187, 203, 177, 0.08);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#4f5b3a",
+                      "on-secondary": "#1f211e",
+                      "surface": "#0d0f0c",
+                      "error-container": "#7e2b17",
+                      "on-primary-fixed": "#35432f",
+                      "surface-variant": "#212720",
+                      "surface-tint": "#bbcbb1",
+                      "on-secondary-fixed-variant": "#5a5c58",
+                      "primary-dim": "#aebea4",
+                      "on-surface-variant": "#a7ada2",
+                      "on-tertiary-fixed-variant": "#5a6745",
+                      "on-primary-fixed-variant": "#51604a",
+                      "on-secondary-container": "#bfc0bb",
+                      "on-tertiary-fixed": "#3e4a2b",
+                      "on-error": "#450900",
+                      "tertiary-container": "#e2f1c6",
+                      "error": "#ed7f64",
+                      "tertiary-fixed": "#e5f4c9",
+                      "surface-container-high": "#1c211b",
+                      "secondary": "#9d9e9a",
+                      "primary": "#bbcbb1",
+                      "secondary-fixed-dim": "#d4d5d0",
+                      "on-tertiary": "#576342",
+                      "primary-fixed-dim": "#c9d9be",
+                      "on-primary": "#364430",
+                      "surface-bright": "#272e25",
+                      "surface-container-highest": "#212720",
+                      "outline": "#71776e",
+                      "on-primary-container": "#c5d5ba",
+                      "inverse-primary": "#55634d",
+                      "tertiary-fixed-dim": "#d7e5bb",
+                      "tertiary": "#f1ffd4",
+                      "surface-dim": "#0d0f0c",
+                      "primary-container": "#3d4b36",
+                      "on-background": "#e1e7dc",
+                      "primary-fixed": "#d7e8cc",
+                      "on-secondary-fixed": "#3e403d",
+                      "secondary-container": "#3a3c39",
+                      "outline-variant": "#434a41",
+                      "tertiary-dim": "#d7e5bb",
+                      "surface-container-lowest": "#000000",
+                      "inverse-surface": "#fafaf4",
+                      "secondary-dim": "#9d9e9a",
+                      "on-error-container": "#ff9b82",
+                      "on-surface": "#e1e7dc",
+                      "surface-container-low": "#111410",
+                      "error-dim": "#ba573f",
+                      "secondary-fixed": "#e3e3de",
+                      "inverse-on-surface": "#545652",
+                      "surface-container": "#171b16",
+                      "background": "#0d0f0c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Manrope"],
+                      "label": ["Manrope"]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0d0f0c] dark:bg-[#0d0f0c] bg-[#1a1d18]">
+<div class="text-xl font-bold tracking-tighter text-[#bbcbb1] dark:text-[#bbcbb1]">Velora Noir</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase text-sm text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1" href="#">Principles</a>
+<a class="font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase text-sm text-[#6b7a63] hover:text-[#bbcbb1] transition-colors" href="#">Components</a>
+<a class="font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase text-sm text-[#6b7a63] hover:text-[#bbcbb1] transition-colors" href="#">Tokens</a>
+<a class="font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase text-sm text-[#6b7a63] hover:text-[#bbcbb1] transition-colors" href="#">Guides</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#bbcbb1] hover:opacity-80 transition-all duration-200 cursor-pointer">settings</span>
+</div>
+</nav>
+<div class="flex pt-16 min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:block w-72 h-[calc(100vh-64px)] fixed left-0 overflow-y-auto bg-surface-container-low p-8">
+<div class="space-y-12">
+<div>
+<h4 class="font-headline text-[10px] uppercase tracking-[0.2em] text-outline mb-6">Foundations</h4>
+<ul class="space-y-4">
+<li><a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Atmospheric Grid</a></li>
+<li><a class="text-sm font-bold text-primary transition-colors" href="#">Ambient Shadows</a></li>
+<li><a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Kinetic Motion</a></li>
+<li><a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Tonal Depth</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-[10px] uppercase tracking-[0.2em] text-outline mb-6">Components</h4>
+<ul class="space-y-4">
+<li><a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Glass Containers</a></li>
+<li><a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Input Fields</a></li>
+<li><a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Actuators</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 p-8 md:p-16 lg:p-24 max-w-7xl">
+<!-- Header Section -->
+<header class="mb-24">
+<div class="flex items-center gap-3 mb-4">
+<span class="font-label text-[10px] uppercase tracking-[0.15em] px-2 py-1 bg-primary-container text-on-primary-container rounded-sm">CORE_SPEC_03</span>
+<span class="font-label text-[10px] uppercase tracking-[0.15em] text-outline">// AMBIENT_SHADOWS</span>
+</div>
+<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tight text-on-surface mb-8">Ambient Shadows Theory</h1>
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
+                    A departure from directional lighting. Velora utilizes a multi-layered atmospheric shadow system to simulate depth through occlusion and translucency.
+                </p>
+</header>
+<!-- Section 1: Introduction -->
+<section class="mb-32">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<div>
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-6">Introduction to Ambient Shadows</h2>
+<div class="space-y-6 text-on-surface-variant leading-relaxed">
+<p>
+                                Traditional UI shadows often rely on a fixed "Global Light" source, resulting in harsh directional offsets. Velora rejects this in favor of <span class="text-primary">Ambient Shadows</span>.
+                            </p>
+<p>
+                                By centering the shadow around the element and utilizing high blur values, we simulate an environment where components are suspended in a viscous, semi-translucent fluid. Light doesn't just hit the surface; it passes through it, picking up the "Kinetic Green" tints of the underlying architecture.
+                            </p>
+</div>
+</div>
+<div class="aspect-video bg-surface-container rounded-lg overflow-hidden relative group">
+<img alt="Abstract fluid glass sculpture" class="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Close-up of frosted green glass panels layered on top of each other with soft atmospheric lighting and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMnCpaTZLt9wXi_IshjqtlJtO1quzdGlq4FR-Fxojhhn6ESLRi0CwkGwdOJlG-zJ-MaaEINOUmur7mbXSvgBF0QZV4-OIZvazFGlaZzXU9KIM79ZW_VG3FZxb14r3UHMCFnsnseRUUtKh0EJg7sFyTKf38GRsBP9YIGgMCHogQ9fsJBHbCk8Lw0-0f-M1EEKget6blVyY_KvdfRxkGmaQMvXKKUr93fpUHuwXUdzjlbpRctYrBFaOA42CgyRyeovmrKH-Ebj7praB1"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-3/4 h-1/2 glass-panel border border-outline-variant/20 rounded-md vl-shadow-high flex items-center justify-center">
+<span class="font-label text-[10px] tracking-widest text-primary uppercase">Translucent Simulation</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Visual Diagram of Elevation Tiers -->
+<section class="mb-32">
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-12">Visual Elevation Hierarchy</h2>
+<div class="relative py-24 bg-surface-container-low rounded-lg overflow-hidden flex flex-col items-center justify-center gap-12">
+<!-- Elevation Stack -->
+<div class="relative w-full max-w-md h-64 perspective-[1000px]">
+<!-- Layer 04 -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-surface-bright border border-primary/20 rounded vl-shadow-high flex flex-col p-4 z-40 transform translate-z-[80px]">
+<span class="font-headline text-sm font-bold">04 // Surface Bright</span>
+<span class="font-label text-[8px] text-primary mt-auto">BLUR: 40PX | ALPHA: 8%</span>
+</div>
+<!-- Layer 03 -->
+<div class="absolute top-8 left-1/2 -translate-x-1/2 w-64 h-32 bg-surface-container-highest border border-outline-variant/20 rounded vl-shadow-medium flex flex-col p-4 z-30 opacity-80 transform translate-z-[40px]">
+<span class="font-headline text-sm font-bold">03 // Container High</span>
+</div>
+<!-- Layer 02 -->
+<div class="absolute top-16 left-1/2 -translate-x-1/2 w-64 h-32 bg-surface-container border border-outline-variant/10 rounded vl-shadow-low flex flex-col p-4 z-20 opacity-60 transform translate-z-[20px]">
+<span class="font-headline text-sm font-bold">02 // Container</span>
+</div>
+<!-- Layer 01 -->
+<div class="absolute top-24 left-1/2 -translate-x-1/2 w-64 h-32 bg-surface-container-low rounded flex flex-col p-4 z-10 opacity-40">
+<span class="font-headline text-sm font-bold">01 // Container Low</span>
+</div>
+</div>
+<p class="font-body text-sm text-on-surface-variant max-w-lg text-center px-6">
+                        As elements rise, the background tonal shift moves toward <span class="text-on-surface">Surface Bright</span> while shadow blur increases and opacity deepens to emphasize the distance from the Base Noir.
+                    </p>
+</div>
+</section>
+<!-- Section 3: Technical Specs -->
+<section class="mb-32">
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-8">Technical Specifications</h2>
+<div class="bg-surface-container overflow-hidden rounded-md border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest">
+<th class="p-6 font-headline text-xs uppercase tracking-widest text-primary">Token Name</th>
+<th class="p-6 font-headline text-xs uppercase tracking-widest text-primary">Blur Value</th>
+<th class="p-6 font-headline text-xs uppercase tracking-widest text-primary">Ambient Alpha</th>
+<th class="p-6 font-headline text-xs uppercase tracking-widest text-primary">Application</th>
+</tr>
+</thead>
+<tbody class="text-sm font-body divide-y divide-outline-variant/10">
+<tr>
+<td class="p-6 font-mono text-xs text-on-surface">vl-shadow-low</td>
+<td class="p-6">20px</td>
+<td class="p-6">4%</td>
+<td class="p-6 text-on-surface-variant">In-page cards, Secondary buttons</td>
+</tr>
+<tr>
+<td class="p-6 font-mono text-xs text-on-surface">vl-shadow-medium</td>
+<td class="p-6">30px</td>
+<td class="p-6">6%</td>
+<td class="p-6 text-on-surface-variant">Hover states, Tooltips, Navigation clusters</td>
+</tr>
+<tr>
+<td class="p-6 font-mono text-xs text-on-surface">vl-shadow-high</td>
+<td class="p-6">40px</td>
+<td class="p-6">8%</td>
+<td class="p-6 text-on-surface-variant">Modals, Dialogs, Critical alerts</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+<div class="p-6 bg-surface-container-low rounded-md">
+<span class="font-label text-[10px] text-primary uppercase block mb-2">Variable: --vl-kinetic-blur</span>
+<code class="text-xs text-outline italic">Default: 24px (Atmospheric Standard)</code>
+</div>
+<div class="p-6 bg-surface-container-low rounded-md">
+<span class="font-label text-[10px] text-primary uppercase block mb-2">Variable: --vl-ambient-alpha</span>
+<code class="text-xs text-outline italic">Default: 0.05 (Optimized for OLED)</code>
+</div>
+</div>
+</section>
+<!-- Section 4: Use Case Examples -->
+<section>
+<h2 class="font-headline text-2xl font-bold text-on-surface mb-12">Implementation Contexts</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Modal Example -->
+<div class="p-12 bg-surface-container-low rounded-lg flex flex-col items-center justify-center gap-8 group">
+<div class="w-full max-w-xs glass-panel p-8 rounded-md vl-shadow-high border border-outline-variant/20 transform group-hover:-translate-y-2 transition-transform duration-500">
+<h3 class="font-headline text-lg font-bold mb-4">Confirm Action</h3>
+<p class="text-sm text-on-surface-variant mb-6">Are you sure you want to deploy these style tokens to production?</p>
+<div class="flex gap-4">
+<button class="flex-1 py-2 bg-primary text-on-primary font-bold text-xs rounded-sm">DEPLOY</button>
+<button class="flex-1 py-2 bg-secondary-container text-on-secondary-container font-bold text-xs rounded-sm">CANCEL</button>
+</div>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">Context: High Shadow (Modal)</span>
+</div>
+<!-- Section Divider Example -->
+<div class="p-12 bg-surface-container-low rounded-lg flex flex-col items-center justify-center gap-12 group">
+<div class="w-full flex flex-col gap-1">
+<div class="w-full h-24 bg-surface-container-high rounded-md vl-shadow-low flex items-center px-6 transform group-hover:scale-[1.02] transition-transform duration-500">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-lg">data_object</span>
+</div>
+<div class="ml-4">
+<span class="block font-bold text-sm">System Metadata</span>
+<span class="block text-[10px] text-outline">Last updated: 4m ago</span>
+</div>
+</div>
+<div class="w-full h-24 bg-surface-container-high rounded-md vl-shadow-low flex items-center px-6">
+<div class="w-10 h-10 rounded bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-lg">terminal</span>
+</div>
+<div class="ml-4">
+<span class="block font-bold text-sm">Kernel Log</span>
+<span class="block text-[10px] text-outline">Status: Stable</span>
+</div>
+</div>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">Context: Low Shadow (List)</span>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-[#0d0f0c] dark:bg-[#0d0f0c] border-t border-[#bbcbb1]/15 py-12 mt-24">
+<div class="w-full px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-sm font-bold text-[#6b7a63]">VELORA NOIR</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Manrope'] font-medium text-[10px] tracking-[0.05em] uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors underline-offset-4 hover:underline" href="#">Technical Metadata</a>
+<a class="font-['Manrope'] font-medium text-[10px] tracking-[0.05em] uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors underline-offset-4 hover:underline" href="#">API Docs</a>
+<a class="font-['Manrope'] font-medium text-[10px] tracking-[0.05em] uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors underline-offset-4 hover:underline" href="#">Changelog</a>
+</div>
+<div class="font-['Manrope'] font-medium text-[10px] tracking-[0.05em] uppercase text-[#6b7a63]">
+                © 2024 VELORA NOIR - SYSTEM STATUS: OPERATIONAL
+            </div>
+</div>
+</footer>
+</body></html>

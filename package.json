@@ -1,27 +1,27 @@
 {
   "name": "velora",
   "version": "1.0.0",
+  "description": "Motion-native CSS framework for premium web interfaces",
   "private": true,
-  "description": "Velora monorepo: motion-native CSS framework, docs, and playground.",
+  "license": "ISC",
+  "homepage": "https://www.veloracss.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velora-css/velora.git"
+  },
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --filter=playground",
+    "dev": "turbo run dev --filter=showcase",
     "dev:docs": "turbo run dev --filter=docs",
-    "dev:all": "turbo run dev --parallel --filter=playground --filter=docs",
-    "test": "turbo run build"
+    "dev:all": "turbo run dev",
+    "preview": "turbo run preview --filter=showcase"
   },
-  "keywords": [
-    "css",
-    "design-system",
-    "astro",
-    "vite",
-    "turbo",
-    "monorepo"
-  ],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
-    "turbo": "^2.9.5"
-  }
+    "turbo": "^2.5.4"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@10.33.0"
 }

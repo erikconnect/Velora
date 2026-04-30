@@ -2,8 +2,21 @@
   "name": "@velora/css",
   "version": "1.0.0",
   "description": "Core CSS design system for Velora",
-  "main": "src/velora.css",
   "license": "ISC",
+  "sideEffects": ["**/*.css"],
+  "main": "./src/velora.css",
+  "exports": {
+    ".": "./src/velora.css"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "homepage": "https://www.veloracss.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velora-css/velora.git"
+  },
   "scripts": {
     "build": "node ./scripts/stamp-build.mjs"
   }

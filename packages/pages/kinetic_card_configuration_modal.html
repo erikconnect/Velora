@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Motion Engine | Kinetic Card Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#1f211e",
+                        "secondary": "#9d9e9a",
+                        "surface-variant": "#212720",
+                        "primary-dim": "#aebea4",
+                        "on-secondary-fixed": "#3e403d",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "surface-dim": "#0d0f0c",
+                        "on-error": "#450900",
+                        "inverse-primary": "#55634d",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "surface-container-low": "#111410",
+                        "on-primary-container": "#c5d5ba",
+                        "secondary-dim": "#9d9e9a",
+                        "tertiary-fixed": "#e5f4c9",
+                        "surface": "#0d0f0c",
+                        "on-surface": "#e1e7dc",
+                        "surface-tint": "#bbcbb1",
+                        "on-surface-variant": "#a7ada2",
+                        "surface-bright": "#272e25",
+                        "tertiary": "#f1ffd4",
+                        "surface-container": "#171b16",
+                        "on-primary-fixed": "#35432f",
+                        "outline": "#71776e",
+                        "on-background": "#e1e7dc",
+                        "surface-container-high": "#1c211b",
+                        "primary-fixed": "#d7e8cc",
+                        "on-error-container": "#ff9b82",
+                        "on-primary-fixed-variant": "#51604a",
+                        "error-container": "#7e2b17",
+                        "tertiary-container": "#e2f1c6",
+                        "on-tertiary": "#576342",
+                        "on-secondary-container": "#bfc0bb",
+                        "inverse-on-surface": "#545652",
+                        "primary-container": "#3d4b36",
+                        "surface-container-lowest": "#000000",
+                        "primary": "#bbcbb1",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "secondary-fixed": "#e3e3de",
+                        "on-primary": "#364430",
+                        "secondary-container": "#3a3c39",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "on-tertiary-container": "#4f5b3a",
+                        "outline-variant": "#434a41",
+                        "tertiary-dim": "#d7e5bb",
+                        "inverse-surface": "#fafaf4",
+                        "error-dim": "#ba573f",
+                        "background": "#0d0f0c",
+                        "primary-fixed-dim": "#c9d9be",
+                        "error": "#ed7f64",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "surface-container-highest": "#212720"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+            font-family: 'Manrope', sans-serif;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111410;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3d4b36;
+        }
+        .glass-panel {
+            background: rgba(23, 27, 22, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .input-technical {
+            background-color: #212720;
+            border: 1px solid rgba(113, 119, 110, 0.15);
+            color: #e1e7dc;
+            transition: all 0.2s ease-out;
+        }
+        .input-technical:focus {
+            border-color: rgba(187, 203, 177, 0.6);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(187, 203, 177, 0.1);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-surface-container-lowest/90 backdrop-blur-sm z-0"></div>
+<!-- Main Modal Container -->
+<div class="relative z-10 w-full max-w-6xl glass-panel shadow-2xl overflow-hidden flex flex-col md:flex-row border-outline-variant/10 border-[0.5px]">
+<!-- Sidebar Navigation (Derived from Shared Component Logic) -->
+<aside class="hidden md:flex flex-col h-full w-64 bg-[#0d0f0c] p-6 border-r border-outline-variant/5">
+<div class="mb-8">
+<h2 class="text-lg font-black text-[#bbcbb1] font-headline uppercase tracking-tighter">Kinetic v1.2</h2>
+<p class="text-[10px] uppercase tracking-[0.2em] text-[#6b7a63] font-bold">Technical Mode</p>
+</div>
+<nav class="space-y-1 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-[#6b7a63] hover:text-[#bbcbb1] hover:bg-[#1a1d18] transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-xl">settings_input_component</span>
+<span class="font-label text-sm font-medium tracking-[0.01em]">Global Config</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcbb1] font-bold border-r-2 border-[#bbcbb1] bg-[#1a1d18] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-xl">show_chart</span>
+<span class="font-label text-sm tracking-[0.01em]">Motion Curves</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#6b7a63] hover:text-[#bbcbb1] hover:bg-[#1a1d18] transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-xl">reorder</span>
+<span class="font-label text-sm tracking-[0.01em]">Sequence</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#6b7a63] hover:text-[#bbcbb1] hover:bg-[#1a1d18] transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-xl">terminal</span>
+<span class="font-label text-sm tracking-[0.01em]">Logic</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#6b7a63] hover:text-[#bbcbb1] hover:bg-[#1a1d18] transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-xl">code</span>
+<span class="font-label text-sm tracking-[0.01em]">Export</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 px-4 py-2 text-[10px] uppercase tracking-widest text-[#6b7a63]">
+<span class="material-symbols-outlined text-sm">memory</span>
+<span>System Status: Optimal</span>
+</div>
+<div class="mt-4">
+<button class="w-full py-2 bg-primary text-on-primary text-xs font-bold uppercase tracking-widest hover:brightness-110 transition-all">Deploy Instance</button>
+</div>
+</div>
+</aside>
+<!-- Main Configuration Content -->
+<main class="flex-grow flex flex-col bg-surface overflow-y-auto max-h-[921px]">
+<!-- Header -->
+<header class="sticky top-0 z-20 px-8 py-6 bg-surface-container-low/80 backdrop-blur-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h1 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Kinetic Card Configuration</h1>
+<span class="bg-surface-variant text-primary-dim px-2 py-0.5 text-[10px] font-mono tracking-tighter">v0.4.2</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] uppercase tracking-[0.15em] text-on-surface-variant font-bold">Active Instance</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<div class="p-8 space-y-12">
+<!-- Grid: 2 Column Layout for Controls -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+<!-- Left Column: Primary Config -->
+<div class="space-y-12">
+<!-- Animation Range Section -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">sync_alt</span>
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest">Animation Range</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-high p-4 rounded-sm">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Entry Start %</label>
+<input class="input-technical w-full px-3 py-2 text-sm font-mono" placeholder="0" type="number" value="0"/>
+</div>
+<div class="bg-surface-container-high p-4 rounded-sm">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Entry End %</label>
+<input class="input-technical w-full px-3 py-2 text-sm font-mono" placeholder="35" type="number" value="35"/>
+</div>
+<div class="bg-surface-container-high p-4 rounded-sm">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Exit Start %</label>
+<input class="input-technical w-full px-3 py-2 text-sm font-mono" placeholder="65" type="number" value="65"/>
+</div>
+<div class="bg-surface-container-high p-4 rounded-sm">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Exit End %</label>
+<input class="input-technical w-full px-3 py-2 text-sm font-mono" placeholder="100" type="number" value="100"/>
+</div>
+</div>
+</section>
+<!-- Timing & Easing -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">timer</span>
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest">Timing &amp; Easing</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-high p-4 rounded-sm">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Easing Functions</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 text-xs bg-primary text-on-primary font-bold border border-primary text-left flex justify-between items-center">
+                                            Cinematic Glide
+                                            <span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="py-2 px-3 text-xs bg-surface-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-left">
+                                            Industrial Snap
+                                        </button>
+<button class="py-2 px-3 text-xs bg-surface-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-left">
+                                            Linear Precision
+                                        </button>
+<button class="py-2 px-3 text-xs bg-surface-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors text-left">
+                                            Elastic Bounce
+                                        </button>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-sm">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Duration (ms)</label>
+<div class="flex items-center gap-4">
+<input class="flex-grow accent-primary" max="2000" min="100" step="50" type="range" value="650"/>
+<span class="font-mono text-sm text-primary">650ms</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Vectors & Logic -->
+<div class="space-y-12">
+<!-- Transformation Vectors -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">view_in_ar</span>
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest">Transformation Vectors</h3>
+</div>
+<div class="bg-surface-container-high p-6 space-y-6 rounded-sm">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-medium">3D Rotation Intensity</p>
+<p class="text-[10px] text-on-surface-variant">X/Y axis pitch control</p>
+</div>
+<div class="flex items-center gap-3">
+<input class="input-technical w-16 px-2 py-1 text-xs font-mono text-center" type="number" value="12"/>
+<div class="w-10 h-5 bg-primary/20 rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-medium">Scale Factor</p>
+<p class="text-[10px] text-on-surface-variant">Hover expansion multiplier</p>
+</div>
+<div class="flex items-center gap-3">
+<input class="input-technical w-16 px-2 py-1 text-xs font-mono text-center" step="0.01" type="number" value="1.05"/>
+<div class="w-10 h-5 bg-primary/20 rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-sm font-medium">Opacity Depth</p>
+<p class="text-[10px] text-on-surface-variant">Dynamic transparency ramp</p>
+</div>
+<div class="flex items-center gap-3">
+<input class="input-technical w-16 px-2 py-1 text-xs font-mono text-center" step="0.1" type="number" value="0.8"/>
+<div class="w-10 h-5 bg-outline-variant/20 rounded-full relative cursor-pointer">
+<div class="absolute left-1 top-1 w-3 h-3 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Callbacks & Logic -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">code_blocks</span>
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest">Callbacks &amp; Logic</h3>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">OnEnter Trigger</label>
+<textarea class="input-technical w-full h-20 p-3 text-xs font-mono resize-none" spellcheck="false">function onEnter(ctx) {
+  console.log('Kinetic.Active', ctx.id);
+  ctx.layer.brighten(0.2);
+}</textarea>
+</div>
+<div>
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">OnLeave Trigger</label>
+<textarea class="input-technical w-full h-20 p-3 text-xs font-mono resize-none" spellcheck="false">function onLeave(ctx) {
+  ctx.reset();
+}</textarea>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Bento Grid Style Code Preview -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">terminal</span>
+<h3 class="font-headline font-bold text-sm uppercase tracking-widest">Generated CSS Output</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+<div class="md:col-span-2 bg-[#000000] p-6 rounded-l-sm border border-outline-variant/10">
+<pre class="text-xs font-mono text-on-primary-container/80 leading-relaxed"><span class="text-secondary-fixed">.kinetic-card</span> {
+  <span class="text-primary-dim">view-timeline-name</span>: <span class="text-tertiary-fixed-dim">--card-scroll</span>;
+  <span class="text-primary-dim">view-timeline-axis</span>: block;
+}
+
+<span class="text-secondary-fixed">@keyframes kinetic-reveal</span> {
+  <span class="text-secondary">from</span> { <span class="text-primary-dim">opacity</span>: 0; <span class="text-primary-dim">transform</span>: translateY(20px) scale(0.95); }
+  <span class="text-secondary">to</span> { <span class="text-primary-dim">opacity</span>: 1; <span class="text-primary-dim">transform</span>: translateY(0) scale(1); }
+}
+
+<span class="text-secondary-fixed">.kinetic-card-animation</span> {
+  <span class="text-primary-dim">animation-name</span>: kinetic-reveal;
+  <span class="text-primary-dim">animation-fill-mode</span>: both;
+  <span class="text-primary-dim">animation-range</span>: entry 0% entry 35%;
+  <span class="text-primary-dim">animation-timeline</span>: <span class="text-tertiary-fixed-dim">--card-scroll</span>;
+}</pre>
+</div>
+<div class="bg-surface-container-highest p-6 rounded-r-sm flex flex-col justify-between border border-outline-variant/10 md:border-l-0">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary mb-2">Live Statistics</p>
+<div class="space-y-4">
+<div>
+<p class="text-[8px] uppercase text-on-surface-variant">Payload Weight</p>
+<p class="text-lg font-headline font-bold">1.42 KB</p>
+</div>
+<div>
+<p class="text-[8px] uppercase text-on-surface-variant">Reflow Impact</p>
+<p class="text-lg font-headline font-bold text-error">Low</p>
+</div>
+</div>
+</div>
+<button class="w-full py-2 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                Copy CSS
+                            </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Sticky Footer Actions -->
+<footer class="sticky bottom-0 z-20 px-8 py-6 bg-surface-container-low/95 backdrop-blur-md border-t border-outline-variant/5 flex justify-between items-center">
+<button class="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant hover:text-error transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+                    Revert to Default
+                </button>
+<div class="flex gap-4">
+<button class="px-6 py-2 text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface hover:bg-surface-container-high transition-colors">
+                        Close
+                    </button>
+<button class="px-8 py-2 bg-primary text-on-primary text-[10px] uppercase tracking-[0.2em] font-bold shadow-lg shadow-primary/10 hover:brightness-110 active:scale-95 transition-all">
+                        Apply Changes
+                    </button>
+</div>
+</footer>
+</main>
+</div>
+<!-- Background Decorative Elements -->
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-secondary-container/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+</body></html>

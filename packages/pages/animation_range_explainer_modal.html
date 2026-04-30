@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ed7f64",
+                        "surface-bright": "#272e25",
+                        "on-surface-variant": "#a7ada2",
+                        "on-error-container": "#ff9b82",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "on-primary-container": "#c5d5ba",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "inverse-surface": "#fafaf4",
+                        "inverse-on-surface": "#545652",
+                        "primary-dim": "#aebea4",
+                        "on-secondary-container": "#bfc0bb",
+                        "secondary": "#9d9e9a",
+                        "outline": "#71776e",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "tertiary-container": "#e2f1c6",
+                        "inverse-primary": "#55634d",
+                        "primary-fixed": "#d7e8cc",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "surface": "#0d0f0c",
+                        "on-tertiary-container": "#4f5b3a",
+                        "surface-container-low": "#111410",
+                        "surface-container-lowest": "#000000",
+                        "surface-container-highest": "#212720",
+                        "on-surface": "#e1e7dc",
+                        "primary-container": "#3d4b36",
+                        "surface-tint": "#bbcbb1",
+                        "outline-variant": "#434a41",
+                        "on-background": "#e1e7dc",
+                        "tertiary-dim": "#d7e5bb",
+                        "on-primary": "#364430",
+                        "error-container": "#7e2b17",
+                        "background": "#0d0f0c",
+                        "surface-variant": "#212720",
+                        "secondary-dim": "#9d9e9a",
+                        "surface-dim": "#0d0f0c",
+                        "on-secondary": "#1f211e",
+                        "secondary-container": "#3a3c39",
+                        "tertiary": "#f1ffd4",
+                        "on-error": "#450900",
+                        "on-tertiary": "#576342",
+                        "primary-fixed-dim": "#c9d9be",
+                        "primary": "#bbcbb1",
+                        "on-primary-fixed": "#35432f",
+                        "on-secondary-fixed": "#3e403d",
+                        "on-primary-fixed-variant": "#51604a",
+                        "secondary-fixed": "#e3e3de",
+                        "error-dim": "#ba573f",
+                        "surface-container-high": "#1c211b",
+                        "tertiary-fixed": "#e5f4c9",
+                        "surface-container": "#171b16"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for technical aesthetic */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0d0f0c; }
+        ::-webkit-scrollbar-thumb { background: #3d4b36; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- Background Layer: Documentation Canvas (Blurred) -->
+<div aria-hidden="true" class="fixed inset-0 overflow-hidden blur-[8px] opacity-40 pointer-events-none">
+<!-- TopNavBar Mockup -->
+<header class="flex justify-between items-center px-8 h-16 w-full bg-[#0d0f0c] border-b border-[#bbcbb1]/15">
+<div class="text-xl font-bold tracking-tighter text-[#f5f7fa] font-headline">Velora Framework</div>
+<div class="flex gap-8">
+<span class="text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1 font-headline font-bold">Docs</span>
+<span class="text-[#f5f7fa]/60 font-headline font-bold">Components</span>
+<span class="text-[#f5f7fa]/60 font-headline font-bold">Showcase</span>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-[#bbcbb1]">terminal</span>
+</div>
+</header>
+<main class="flex">
+<!-- SideNavBar Mockup -->
+<aside class="w-64 h-[calc(100vh-64px)] p-6 bg-[#0d0f0c] border-r border-[#bbcbb1]/15 flex flex-col gap-4">
+<div class="mb-4">
+<div class="text-lg font-black text-[#bbcbb1] font-headline">Documentation</div>
+<div class="text-xs text-[#f5f7fa]/50 font-label">v2.4.0-kinetic</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="text-[#bbcbb1] font-bold font-body">Introduction</div>
+<div class="text-[#f5f7fa]/50 font-body">Layout</div>
+<div class="text-[#f5f7fa]/50 font-body">Animations</div>
+<div class="text-[#f5f7fa]/50 font-body">Transitions</div>
+</div>
+</aside>
+<!-- Documentation Content Mockup -->
+<section class="flex-1 p-12">
+<div class="max-w-4xl mx-auto">
+<h1 class="text-6xl font-headline font-bold tracking-[-0.03em] mb-8">Scroll-driven Orchestration</h1>
+<div class="grid grid-cols-2 gap-8 mb-12">
+<div class="h-64 bg-surface-container-highest"></div>
+<div class="h-64 bg-surface-container-highest"></div>
+</div>
+<p class="text-xl font-body leading-relaxed text-on-surface-variant">
+                        Leveraging the native browser engine to drive animations based on scroll progress without a single line of JavaScript. Velora uses CSS View Timeline for performance-first kinetic energy.
+                    </p>
+</div>
+</section>
+</main>
+</div>
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 bg-surface/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
+<!-- The Modal (Spec Spotlight) -->
+<div class="bg-surface-container-low border border-outline-variant/15 w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+<!-- Sidebar/Metadata Navigation -->
+<div class="w-full md:w-64 bg-surface-container-lowest p-8 border-r border-outline-variant/10 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-8">
+<div class="w-2 h-2 bg-primary"></div>
+<span class="text-[10px] font-label uppercase tracking-[0.2em] text-primary">Spec Details</span>
+</div>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface leading-none mb-4">animation-range</h2>
+<p class="text-xs font-body text-on-surface-variant/80 mb-6">CSS View Timeline Spec v1.0</p>
+<div class="space-y-4">
+<div class="p-3 bg-surface-container-highest border-l-2 border-primary">
+<span class="block text-[10px] font-label uppercase text-primary/70 mb-1">Status</span>
+<span class="text-sm font-body font-medium">Kinetic Ready</span>
+</div>
+<div class="p-3 border-l-2 border-outline-variant/30">
+<span class="block text-[10px] font-label uppercase text-on-surface-variant mb-1">Compatibility</span>
+<span class="text-sm font-body font-medium">Modern Browsers</span>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full py-3 bg-primary text-on-primary font-headline font-bold text-sm tracking-tight hover:bg-primary-dim transition-colors">
+                        CLOSE VIEWER
+                    </button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-8 md:p-12 bg-surface-container-low">
+<!-- Visual Diagram -->
+<div class="relative w-full aspect-video bg-surface-container-lowest mb-10 overflow-hidden border border-outline-variant/10 group">
+<!-- Viewport Simulation -->
+<div class="absolute inset-0 border-x-4 border-dashed border-outline-variant/20 flex items-center justify-center">
+<span class="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] font-label tracking-widest text-on-surface-variant uppercase">Interactive Viewport</span>
+</div>
+<!-- Diagram Labels -->
+<div class="absolute inset-0 p-6 pointer-events-none">
+<!-- Entry Zone -->
+<div class="absolute left-[15%] top-1/2 -translate-y-1/2 w-[30%] h-48 border-2 border-dashed border-primary/40 flex flex-col justify-between p-2">
+<span class="text-[9px] font-label text-primary font-bold">ENTRY: 0%</span>
+<span class="text-[9px] font-label text-primary font-bold self-end">ENTRY: 100%</span>
+</div>
+<!-- Cover Zone -->
+<div class="absolute left-[15%] right-[15%] bottom-8 h-2 border-x-2 border-b-2 border-dashed border-primary/20 flex justify-between items-end px-2">
+<span class="text-[9px] font-label text-on-surface-variant uppercase transform translate-y-full pt-1">Cover 0%</span>
+<span class="text-[9px] font-label text-on-surface-variant uppercase transform translate-y-full pt-1">Cover 100%</span>
+</div>
+</div>
+<!-- Kinetic Card Element -->
+<div class="absolute left-[-5%] top-1/2 -translate-y-1/2 w-48 h-32 bg-surface-container-highest border border-primary/30 flex items-center justify-center shadow-xl">
+<div class="text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">dashboard_customize</span>
+<div class="text-[10px] font-label uppercase tracking-widest text-on-surface">Kinetic Card</div>
+</div>
+</div>
+<!-- Grid Texture Overlay -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle, #bbcbb1 1px, transparent 1px); background-size: 20px 20px;"></div>
+</div>
+<!-- Technical Explanation Section -->
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<div class="flex items-baseline gap-3 mb-3">
+<h3 class="font-headline text-xl font-bold text-primary">Entry</h3>
+<div class="h-[1px] flex-1 bg-primary/20"></div>
+</div>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed">
+                            Starts when the element enters the viewport. Specifically, when the first edge of the element intersects with the edge of the viewport. Ideal for <span class="text-on-surface italic">reveal animations</span> and staggered entrance effects.
+                        </p>
+</div>
+<div>
+<div class="flex items-baseline gap-3 mb-3">
+<h3 class="font-headline text-xl font-bold text-primary">Cover</h3>
+<div class="h-[1px] flex-1 bg-primary/20"></div>
+</div>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed">
+                            Spans the entire duration the element is visible. This range tracks the element from the moment it first touches the viewport until it has completely exited the opposite side. Perfect for <span class="text-on-surface italic">parallax scrolling</span>.
+                        </p>
+</div>
+</div>
+<!-- Documentation Link -->
+<div class="mt-12 pt-8 border-t border-outline-variant/10 flex justify-between items-center">
+<div class="flex gap-4">
+<span class="text-[10px] font-label uppercase tracking-wider text-on-surface-variant/60">Related Props:</span>
+<code class="text-[10px] px-2 py-1 bg-surface-container-highest text-primary font-mono">view-timeline-name</code>
+<code class="text-[10px] px-2 py-1 bg-surface-container-highest text-primary font-mono">scroll-timeline</code>
+</div>
+<a class="group flex items-center gap-2 text-xs font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#">
+                        READ FULL SPEC
+                        <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Background Decor -->
+<div class="fixed top-20 right-20 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10"></div>
+<div class="fixed bottom-20 left-20 w-64 h-64 bg-primary-container/10 rounded-full blur-[100px] -z-10"></div>
+</body></html>

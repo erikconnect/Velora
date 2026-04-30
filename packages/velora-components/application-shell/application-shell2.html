@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 2 (Command center shell)
+  CSS approach:
+    * top navigation shell with a dense control strip
+    * three-column content zone for data-heavy workflows
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 2</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as2 {
+        min-height: 100vh;
+        background: var(--vl-bg-main);
+      }
+
+      .as2__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--vl-space-md);
+        padding: var(--vl-space-md) var(--vl-space-lg);
+        border-bottom: 1px solid var(--vl-border-subtle);
+        background: color-mix(in oklch, var(--vl-bg-surface) 76%, transparent);
+      }
+
+      .as2__controls {
+        display: flex;
+        gap: var(--vl-space-sm);
+        flex-wrap: wrap;
+        padding: var(--vl-space-md) var(--vl-space-lg);
+      }
+
+      .as2__chip {
+        padding: 0.65rem 0.9rem;
+        border-radius: var(--vl-radius-full);
+        border: 1px solid var(--vl-border-subtle);
+        background: var(--vl-bg-surface);
+      }
+
+      .as2__grid {
+        display: grid;
+        gap: var(--vl-space-md);
+        grid-template-columns: 1.1fr 0.95fr 0.95fr;
+        padding: 0 var(--vl-space-lg) var(--vl-space-lg);
+      }
+
+      .as2__panel {
+        padding: var(--vl-space-md);
+        border-radius: var(--vl-radius-2xl);
+        background: var(--vl-bg-surface);
+        border: 1px solid var(--vl-border-subtle);
+      }
+
+      .as2__rows {
+        display: grid;
+        gap: var(--vl-space-sm);
+        margin-top: var(--vl-space-md);
+      }
+
+      .as2__row {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--vl-space-md);
+        padding: var(--vl-space-sm) 0;
+        border-bottom: 1px solid var(--vl-border-subtle);
+      }
+
+      @media (max-width: 1040px) {
+        .as2__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="as2">
+      <header class="as2__header">
+        <a href="#" class="vl-header__brand">Velora Control</a>
+        <nav class="vl-cluster">
+          <a href="#" class="vl-nav__link vl-nav__link--active">Dashboard</a>
+          <a href="#" class="vl-nav__link">Reports</a>
+          <a href="#" class="vl-nav__link">Automations</a>
+        </nav>
+      </header>
+
+      <div class="as2__controls">
+        <span class="as2__chip">Q2 forecast</span>
+        <span class="as2__chip">Performance sync</span>
+        <span class="as2__chip">Pipeline view</span>
+        <span class="as2__chip">Weekly digest</span>
+      </div>
+
+      <main class="as2__grid">
+        <article class="as2__panel">
+          <p class="vl-kicker">Application Shell 2</p>
+          <h1 style="margin-top: 0; font-family: var(--vl-font-family-display);">Command center view</h1>
+          <p class="vl-card__body">This shell is designed for denser operating views where decisions, filters, and outcomes live on one screen.</p>
+          <div class="as2__rows">
+            <div class="as2__row"><span>North America</span><strong>+18%</strong></div>
+            <div class="as2__row"><span>Europe</span><strong>+11%</strong></div>
+            <div class="as2__row"><span>APAC</span><strong>+23%</strong></div>
+          </div>
+        </article>
+        <article class="as2__panel">
+          <h2 class="vl-card__title">Tasks</h2>
+          <div class="as2__rows">
+            <div class="as2__row"><span>Review copy deck</span><span class="vl-badge">Today</span></div>
+            <div class="as2__row"><span>Sync CRM stage map</span><span class="vl-badge vl-badge--accent">Next</span></div>
+            <div class="as2__row"><span>Publish recap</span><span class="vl-badge">Queued</span></div>
+          </div>
+        </article>
+        <article class="as2__panel">
+          <h2 class="vl-card__title">Signals</h2>
+          <div class="vl-grid vl-grid--3" style="margin-top: var(--vl-space-md);">
+            <div class="vl-card"><div class="vl-card__title">14</div><div class="vl-card__body">alerts</div></div>
+            <div class="vl-card"><div class="vl-card__title">7</div><div class="vl-card__body">owners</div></div>
+            <div class="vl-card"><div class="vl-card__title">3h</div><div class="vl-card__body">latency</div></div>
+          </div>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>

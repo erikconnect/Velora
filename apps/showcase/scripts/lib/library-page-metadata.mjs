@@ -1,0 +1,97 @@
+export const LIBRARY_PAGE_METADATA = {
+  "architectural_blueprint.html": {
+    template: "spec",
+    category: "Foundation",
+    eyebrow: "System Architecture",
+    displayTitle: "Architectural Blueprint",
+    lead: "How Velora layers tokens, surfaces, motion, and static delivery into one browser-first framework.",
+    features: ["Blueprint", "Spec", "Core"],
+    related: [
+      "/pages/library/system-modules-overview.html",
+      "/pages/library/tokens-foundation-refined.html",
+    ],
+  },
+  "tokens_foundation_refined.html": {
+    template: "spec",
+    category: "Tokens",
+    eyebrow: "Design Tokens",
+    displayTitle: "Tokens Foundation",
+    lead: "The semantic token base for color, spacing, radius, and surfaces used across the showcase.",
+    features: ["Spec", "Tokens", "Foundation"],
+    related: [
+      "/pages/library/color-system-specification.html",
+      "/pages/library/tonal-tiers-elevation-documentation.html",
+    ],
+  },
+  "motion_principles_overview.html": {
+    template: "spec",
+    category: "Motion",
+    eyebrow: "Motion Principles",
+    displayTitle: "Motion Principles",
+    lead: "The timing, reveal, and orchestration rules that make Velora motion feel precise instead of decorative.",
+    features: ["Motion", "Reference", "Sequencing"],
+    related: [
+      "/pages/library/zero-js-motion-examples.html",
+      "/pages/library/kinetic-motion-principles.html",
+    ],
+  },
+  "zero_js_motion_examples.html": {
+    template: "showcase",
+    category: "Motion",
+    eyebrow: "Zero-JS Motion",
+    lead: "Practical motion examples that rely on CSS, HTML attributes, and the browser runtime rather than custom logic.",
+    features: ["Showcase", "Examples", "Motion"],
+    related: [
+      "/pages/library/motion-principles-overview.html",
+      "/pages/library/scroll-driven-reveal-showcase.html",
+    ],
+  },
+  "contrast_accessibility_tool.html": {
+    template: "tool",
+    category: "Accessibility",
+    eyebrow: "Contrast Tool",
+    displayTitle: "Contrast Accessibility Tool",
+    lead: "A reference page for evaluating token pairings, contrast safety, and accessibility alignment.",
+    features: ["Tool", "Accessibility", "Color"],
+    related: [
+      "/pages/library/accessibility-wcag-guidelines.html",
+      "/pages/library/color-system-specification.html",
+    ],
+  },
+  "velora_landing_page_refined.html": {
+    template: "editorial",
+    category: "Editorial",
+    eyebrow: "Landing Reference",
+    displayTitle: "Velora Landing",
+    lead: "A high-polish editorial reference for how Velora communicates atmosphere, hierarchy, and product framing.",
+    features: ["Editorial", "Landing", "Reference"],
+    related: [
+      "/pages/library/typography-composition-patterns.html",
+      "/pages/library/brand-voice-editorial-strategy.html",
+    ],
+  },
+  "color_system_specification.html": {
+    template: "spec",
+    category: "Color",
+    eyebrow: "Color System",
+    displayTitle: "Color System",
+    lead: "A perceptual color architecture for tonal depth, semantic tiers, and interactive surfaces across Velora.",
+    features: ["Color", "Spec", "Tonal Logic"],
+    related: [
+      "/pages/library/tokens-foundation-refined.html",
+      "/pages/library/color-palette-perception.html",
+    ],
+  },
+  "component_lab_technical_library.html": {
+    template: "showcase",
+    category: "Components",
+    eyebrow: "Component Lab",
+    displayTitle: "Component Lab",
+    lead: "An exploratory library of actuators, states, and implementation details that shows how the framework behaves under real UI pressure.",
+    features: ["Showcase", "Components", "Inspector"],
+    related: [
+      "/pages/library/component-wizard-metadata.html",
+      "/pages/library/form-components-library.html",
+    ],
+  },
+};

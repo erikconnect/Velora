@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora | Motion Principles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#3e403d",
+                        "outline-variant": "#434a41",
+                        "on-background": "#e1e7dc",
+                        "outline": "#71776e",
+                        "on-error": "#450900",
+                        "secondary": "#9d9e9a",
+                        "surface": "#0d0f0c",
+                        "error-dim": "#ba573f",
+                        "surface-container-low": "#111410",
+                        "on-secondary": "#1f211e",
+                        "on-primary-fixed": "#35432f",
+                        "inverse-on-surface": "#545652",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "surface-container-highest": "#212720",
+                        "on-tertiary": "#576342",
+                        "inverse-surface": "#fafaf4",
+                        "secondary-dim": "#9d9e9a",
+                        "inverse-primary": "#55634d",
+                        "primary": "#bbcbb1",
+                        "on-primary": "#364430",
+                        "on-error-container": "#ff9b82",
+                        "primary-container": "#3d4b36",
+                        "secondary-container": "#3a3c39",
+                        "on-surface": "#e1e7dc",
+                        "tertiary-container": "#e2f1c6",
+                        "surface-bright": "#272e25",
+                        "on-primary-fixed-variant": "#51604a",
+                        "on-primary-container": "#c5d5ba",
+                        "surface-tint": "#bbcbb1",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "on-secondary-container": "#bfc0bb",
+                        "background": "#0d0f0c",
+                        "primary-fixed": "#d7e8cc",
+                        "error": "#ed7f64",
+                        "surface-container": "#171b16",
+                        "primary-dim": "#aebea4",
+                        "on-surface-variant": "#a7ada2",
+                        "tertiary-dim": "#d7e5bb",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "error-container": "#7e2b17",
+                        "on-tertiary-container": "#4f5b3a",
+                        "surface-container-high": "#1c211b",
+                        "tertiary": "#f1ffd4",
+                        "secondary-fixed": "#e3e3de",
+                        "surface-variant": "#212720",
+                        "primary-fixed-dim": "#c9d9be",
+                        "surface-dim": "#0d0f0c",
+                        "tertiary-fixed": "#e5f4c9",
+                        "surface-container-lowest": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+            -webkit-font-smoothing: antialiased;
+        }
+        .headline-font { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top Navigation -->
+<header class="bg-[#0d0f0c] docked full-width top-0 z-50">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-[-0.03em] text-[#bbcbb1] font-['Space_Grotesk'] uppercase">Velora</div>
+<div class="hidden md:flex items-center space-x-8 font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase text-sm">
+<a class="text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1" href="#">Principles</a>
+<a class="text-[#8a9685] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Easing</a>
+<a class="text-[#8a9685] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Sequencing</a>
+<a class="text-[#8a9685] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Interaction</a>
+<a class="text-[#8a9685] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Examples</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-[#bbcbb1] hover:scale-95 duration-150">settings</button>
+</div>
+</nav>
+</header>
+<main class="relative min-h-screen">
+<!-- Hero Section -->
+<section class="px-8 pt-32 pb-24 max-w-screen-2xl mx-auto grid grid-cols-12 gap-8 items-end">
+<div class="col-span-12 md:col-span-8">
+<span class="font-label text-xs tracking-[0.2em] uppercase text-primary mb-6 block">The Kinetic Philosophy</span>
+<h1 class="headline-font text-6xl md:text-8xl font-bold tracking-[-0.03em] leading-[0.9] text-on-surface uppercase mb-12">
+                    Motion<br/>Principles
+                </h1>
+<div class="max-w-xl">
+<p class="font-body text-lg text-on-surface-variant leading-relaxed">
+                        Our "Zero JS" philosophy leverages native browser APIs—scroll-timeline and view-transitions—to deliver high-performance motion that bypasses the main thread. We prioritize technical elegance over decorative clutter.
+                    </p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 flex justify-end">
+<div class="w-full aspect-square bg-surface-container-highest relative overflow-hidden flex items-center justify-center p-12">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"></div>
+<!-- Abstract Motion Graphic -->
+<div class="relative w-full h-full border border-outline-variant/30 flex items-center justify-center">
+<div class="w-2/3 h-2/3 border border-primary/40 rotate-45 flex items-center justify-center">
+<div class="w-1/2 h-1/2 bg-primary/20 backdrop-blur-sm"></div>
+</div>
+<div class="absolute top-4 left-4 font-label text-[10px] text-outline uppercase tracking-widest">FPS_TARGET: 120</div>
+<div class="absolute bottom-4 right-4 font-label text-[10px] text-outline uppercase tracking-widest">STABLE_V1.0.2</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Principles Bento Grid -->
+<section class="px-8 py-24 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-12 gap-1">
+<!-- Section 1: PERFORMANCE -->
+<div class="col-span-12 md:col-span-7 bg-surface-container-low p-12 flex flex-col justify-between group">
+<div class="flex justify-between items-start mb-24">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div class="font-label text-xs text-outline tracking-widest uppercase">01 / EFFICIENCY</div>
+</div>
+<div>
+<h2 class="headline-font text-4xl font-bold uppercase mb-6 tracking-tight">Performance</h2>
+<p class="font-body text-on-surface-variant max-w-md mb-8">
+                            Native hardware acceleration ensures consistent 120fps across all modern displays. By offloading computations to the GPU, Velora maintains sub-5ms latency for critical interactions.
+                        </p>
+<div class="flex space-x-4">
+<div class="h-[2px] w-12 bg-primary"></div>
+<div class="h-[2px] w-12 bg-outline-variant"></div>
+<div class="h-[2px] w-12 bg-outline-variant"></div>
+</div>
+</div>
+</div>
+<!-- Section 2: INTENT -->
+<div class="col-span-12 md:col-span-5 bg-surface-container-high p-12 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute inset-0 opacity-5 pointer-events-none">
+<div class="w-full h-full" style="background-image: radial-gradient(circle at 2px 2px, #bbcbb1 1px, transparent 0); background-size: 24px 24px;"></div>
+</div>
+<div class="flex justify-between items-start mb-24 relative z-10">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="explore">explore</span>
+<div class="font-label text-xs text-outline tracking-widest uppercase">02 / LOGIC</div>
+</div>
+<div class="relative z-10">
+<h2 class="headline-font text-4xl font-bold uppercase mb-6 tracking-tight">Intent</h2>
+<p class="font-body text-on-surface-variant mb-8">
+                            Every pixel movement has a purpose. We use spatial mental models to guide the eye through complex state transitions, ensuring users never lose their context during navigation.
+                        </p>
+<button class="bg-primary text-on-primary px-6 py-3 font-label text-xs font-bold uppercase tracking-widest hover:brightness-110 transition-all">
+                            Explore Archetypes
+                        </button>
+</div>
+</div>
+<!-- Section 3: DELIGHT (Wide) -->
+<div class="col-span-12 bg-surface-container-highest p-12 md:p-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<div class="flex items-center space-x-4 mb-8">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div class="font-label text-xs text-outline tracking-widest uppercase">03 / EXPERIENCE</div>
+</div>
+<h2 class="headline-font text-5xl font-bold uppercase mb-6 tracking-tight">Delight</h2>
+<p class="font-body text-lg text-on-surface-variant mb-8 leading-relaxed">
+                            Motion is the "soul" of the interface. We implement cinematic easing curves and subtle physics-based reactions that respond to user velocity, creating a tactile, premium experience that feels alive.
+                        </p>
+<div class="grid grid-cols-3 gap-4">
+<div class="border-l border-outline-variant pl-4">
+<div class="text-xs text-outline uppercase mb-1">Fluidity</div>
+<div class="font-headline text-xl">Bezier-4</div>
+</div>
+<div class="border-l border-outline-variant pl-4">
+<div class="text-xs text-outline uppercase mb-1">Impact</div>
+<div class="font-headline text-xl">Elastic-1</div>
+</div>
+<div class="border-l border-outline-variant pl-4">
+<div class="text-xs text-outline uppercase mb-1">Tension</div>
+<div class="font-headline text-xl">Spring-S</div>
+</div>
+</div>
+</div>
+<div class="relative h-64 md:h-full flex items-center justify-center">
+<div class="w-full h-full bg-gradient-to-tr from-surface to-primary/5 absolute inset-0"></div>
+<img class="w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="abstract 3d glass shards floating in a dark void with soft green neon illumination and deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGjfoRWXEWddTlffYHsEn7r5h0Pu96-FhgIrQS8YhLPKPL5HtYMvtkSLbFw6iJ5vKIEOqFggUDOCsNLnUypmik5ueyRhBb01mn4sDm28JQbITJy01gbKw3H_4u91ldntyOgnTR4_109nsN2wH-zvZscnOPVZcm92UhZOVEUTYGB1cdYLFXck53KtbG_TJdArzjWohJZhBMulupPVthol-aeYXgHyyV2zxb8MkfX_feKU-vMxGZ2C85LdXC25-zBEIyQ6Aiv154HKrx"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Deep Dive (Asymmetric) -->
+<section class="px-8 py-32 max-w-screen-2xl mx-auto flex flex-col md:flex-row gap-24 items-start">
+<div class="md:w-1/3">
+<h3 class="headline-font text-2xl font-bold uppercase mb-6 tracking-tight">The Stack</h3>
+<ul class="space-y-8">
+<li class="group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label text-xs tracking-widest uppercase text-on-surface">View Transitions</span>
+<span class="text-primary text-xs">READY</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-primary w-full origin-left"></div>
+</div>
+</li>
+<li class="group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label text-xs tracking-widest uppercase text-on-surface">Scroll Timeline</span>
+<span class="text-primary text-xs">READY</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 origin-left"></div>
+</div>
+</li>
+<li class="group">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label text-xs tracking-widest uppercase text-on-surface">Web Animations API</span>
+<span class="text-primary text-xs">READY</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-primary w-full origin-left"></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="md:w-2/3">
+<div class="bg-surface-container-low p-1 border-outline-variant/10">
+<div class="bg-surface p-8 md:p-16 border border-outline-variant/15">
+<h4 class="headline-font text-3xl font-bold uppercase mb-12 tracking-tight">Architecture of Flow</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-body text-on-surface-variant">
+<div>
+<h5 class="text-on-surface font-bold mb-4 uppercase text-xs tracking-widest">01. Kinetic Root</h5>
+<p class="text-sm leading-relaxed">
+                                    The foundation of Velora motion lies in the Kinetic Root—a centralized observer that synchronizes animation frames with the browser's render cycle, eliminating micro-stutters.
+                                </p>
+</div>
+<div>
+<h5 class="text-on-surface font-bold mb-4 uppercase text-xs tracking-widest">02. State Morphing</h5>
+<p class="text-sm leading-relaxed">
+                                    We treat UI elements as persistent entities. When a state changes, elements don't just appear; they morph through calculated paths to maintain user orientation.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0d0f0c] full-width bottom-0 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 border-t border-[#bbcbb1]/15 max-w-screen-2xl mx-auto">
+<div class="font-['Manrope'] text-[10px] tracking-[0.05em] uppercase text-[#4e584a] mb-6 md:mb-0">
+                © 2024 VELORA MOTION SYSTEMS. KINETIC ELEGANCE v1.0.2
+            </div>
+<div class="flex flex-wrap justify-center gap-8 font-['Manrope'] text-[10px] tracking-[0.05em] uppercase">
+<a class="text-[#4e584a] hover:text-[#bbcbb1] transition-colors duration-200" href="#">DOCUMENTATION</a>
+<a class="text-[#4e584a] hover:text-[#bbcbb1] transition-colors duration-200" href="#">REPOSITORY</a>
+<a class="text-[#4e584a] hover:text-[#bbcbb1] transition-colors duration-200" href="#">CHANGELOG</a>
+<a class="text-[#4e584a] hover:text-[#bbcbb1] transition-colors duration-200" href="#">LEGAL</a>
+</div>
+</div>
+</footer>
+</body></html>

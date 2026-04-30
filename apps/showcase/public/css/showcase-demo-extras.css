@@ -1,0 +1,54 @@
+/**
+ * Estilos que o CDN Tailwind não cobria (transforms 3D, painéis, ícones).
+ * Carregado depois de showcase-tw-demos.css.
+ */
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.glass-panel {
+  background: rgba(23, 27, 22, 0.75);
+  backdrop-filter: blur(12px);
+}
+
+.tonal-transition {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease;
+}
+
+/* Scroll reveal hero: hover 3D (substitui group-hover:rotate-x/y do CDN) */
+.demo-tilt-hover {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.group:hover .demo-tilt-hover {
+  transform: rotateX(6deg) rotateY(12deg);
+}
+
+/* Zero-JS / motion-extended: cartão 3D + escala no hover do grupo */
+.demo-card-tilt {
+  transform: rotateX(12deg) rotateY(-12deg) rotate(3deg);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.group:hover .demo-card-tilt {
+  transform: rotateX(12deg) rotateY(-12deg) rotate(3deg) scale(1.05);
+}
+
+/* motion-extended: cartão sem grupo hover */
+.demo-card-tilt-static {
+  transform: rotateX(12deg) rotateY(-12deg) rotate(3deg);
+}
+
+.kinetic-gradient {
+  background: linear-gradient(145deg, #bbcbb1 0%, #3d4b36 100%);
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(187, 203, 177, 0.3);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

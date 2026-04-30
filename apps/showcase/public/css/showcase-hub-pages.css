@@ -1,0 +1,251 @@
+/**
+ * Framework-facing hub pages in apps/showcase/pages/*
+ * These pages summarize a discipline area and point into Library pages
+ * while demonstrating Velora layout, surfaces and motion primitives.
+ */
+
+.hub-page {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hub-hero {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    min-height: clamp(24rem, 55vw, 34rem);
+    padding: clamp(2rem, 5vw, 3rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 75%, transparent);
+    background:
+        radial-gradient(circle at top right, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent 36%),
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 84%, transparent),
+            color-mix(in oklch, var(--vl-bg-surface) 96%, transparent)
+        );
+    overflow: clip;
+}
+
+.hub-hero__copy {
+    display: grid;
+    align-content: end;
+    gap: 1rem;
+}
+
+.hub-hero__title {
+    max-width: 10ch;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+}
+
+.hub-hero__lead {
+    max-width: 44rem;
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.hub-chip-link,
+.hub-hero__meta,
+.hub-step-card,
+.hub-reference-card,
+.hub-note {
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 75%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+.hub-chip-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    color: var(--vl-text-secondary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    transition:
+        transform var(--vl-transition-fast, 0.18s ease),
+        border-color var(--vl-transition-fast, 0.18s ease),
+        color var(--vl-transition-fast, 0.18s ease);
+}
+
+.hub-chip-link:hover {
+    transform: translateY(-1px);
+    color: var(--vl-text-primary);
+    border-color: color-mix(in oklch, var(--vl-color-primary) 46%, var(--vl-border-subtle));
+}
+
+.hub-hero__meta {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1rem 1.1rem;
+    align-content: start;
+}
+
+.hub-hero__meta-label,
+.hub-step-card__eyebrow,
+.hub-section__eyebrow {
+    margin: 0;
+    color: var(--vl-text-muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.hub-hero__meta-list {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--vl-text-secondary);
+    line-height: 1.55;
+}
+
+.hub-hero__meta-list li + li {
+    margin-top: 0.7rem;
+}
+
+.hub-grid,
+.hub-reference-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.hub-step-card,
+.hub-reference-card,
+.hub-note {
+    padding: 1.1rem 1.2rem;
+}
+
+.hub-step-card {
+    display: grid;
+    gap: 0.75rem;
+    min-height: 13rem;
+}
+
+.hub-step-card__title {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.hub-step-card__body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-reference-section {
+    display: grid;
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.hub-reference-card {
+    display: grid;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.hub-reference-card:hover {
+    transform: translateY(-2px);
+}
+
+.hub-reference-card__title {
+    margin: 0;
+    color: var(--vl-text-primary);
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.hub-reference-card__body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-note {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.hub-note p {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-page--motion .hub-hero {
+    background:
+        radial-gradient(circle at top right, color-mix(in oklch, var(--vl-color-primary) 20%, transparent), transparent 34%),
+        radial-gradient(circle at bottom left, color-mix(in oklch, var(--vl-color-info, var(--vl-color-primary)) 16%, transparent), transparent 40%),
+        linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 84%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+}
+
+.hub-page--color .hub-hero {
+    background:
+        linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 18%, transparent), transparent 42%),
+        radial-gradient(circle at right center, color-mix(in oklch, var(--vl-color-success, var(--vl-color-primary)) 18%, transparent), transparent 36%),
+        linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 82%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+}
+
+.hub-page--components .hub-hero,
+.hub-page--tools .hub-hero {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.hub-page--components .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.hub-page--components .hub-step-card,
+.hub-page--tools .hub-note {
+    background:
+        linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 86%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+}
+
+.hub-page--scenes .hub-hero {
+    min-height: clamp(26rem, 58vw, 38rem);
+}
+
+.hub-page--scenes .hub-hero__title,
+.hub-page--core .hub-hero__title {
+    max-width: 12ch;
+}
+
+.hub-page--typography .hub-hero__title {
+    max-width: 14ch;
+    letter-spacing: -0.06em;
+}
+
+.hub-page--typography .hub-step-card__title {
+    font-size: clamp(1.35rem, 2.2vw, 1.95rem);
+}
+
+@media (min-width: 860px) {
+    .hub-hero {
+        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        align-items: end;
+    }
+
+    .hub-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hub-reference-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    }
+}

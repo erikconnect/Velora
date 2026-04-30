@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 7 (CRM shell)
+  CSS approach:
+    * pipeline-focused shell with summary ribbon and opportunity table
+    * no scripting; all structure is static and dashboard-oriented
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 7</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as7 { min-height: 100vh; padding: var(--vl-space-lg); background: var(--vl-bg-main); }
+      .as7__wrap { max-width: 84rem; margin: 0 auto; display: grid; gap: var(--vl-space-lg); }
+      .as7__ribbon { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--vl-space-sm); }
+      .as7__cell, .as7__table { padding: var(--vl-space-md); border-radius: var(--vl-radius-2xl); border: 1px solid var(--vl-border-subtle); background: var(--vl-bg-surface); }
+      .as7__row { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 0.7fr; gap: var(--vl-space-md); padding: var(--vl-space-sm) 0; border-bottom: 1px solid var(--vl-border-subtle); }
+      @media (max-width: 980px) { .as7__ribbon, .as7__row { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="as7">
+      <div class="as7__wrap">
+        <div>
+          <p class="vl-kicker">Application Shell 7</p>
+          <h1 style="margin: 0; font-family: var(--vl-font-family-display);">CRM shell</h1>
+        </div>
+        <section class="as7__ribbon">
+          <article class="as7__cell"><div class="vl-card__title">$1.2M</div><div class="vl-card__body">open pipeline</div></article>
+          <article class="as7__cell"><div class="vl-card__title">19</div><div class="vl-card__body">accounts in play</div></article>
+          <article class="as7__cell"><div class="vl-card__title">7</div><div class="vl-card__body">late-stage deals</div></article>
+          <article class="as7__cell"><div class="vl-card__title">81%</div><div class="vl-card__body">forecast fit</div></article>
+          <article class="as7__cell"><div class="vl-card__title">3</div><div class="vl-card__body">owner changes</div></article>
+        </section>
+        <section class="as7__table">
+          <h2 class="vl-card__title">Opportunities</h2>
+          <div class="as7__row" style="margin-top: var(--vl-space-md); font-weight: var(--vl-font-weight-semibold); color: var(--vl-text-muted);"><span>Account</span><span>Stage</span><span>Value</span><span>Owner</span></div>
+          <div class="as7__row"><span>Northwind</span><span>Proposal</span><span>$180k</span><span>AM</span></div>
+          <div class="as7__row"><span>Fable Labs</span><span>Negotiation</span><span>$260k</span><span>JT</span></div>
+          <div class="as7__row"><span>Novus Health</span><span>Review</span><span>$94k</span><span>MK</span></div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

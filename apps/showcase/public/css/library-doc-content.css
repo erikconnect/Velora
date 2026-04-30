@@ -1,0 +1,719 @@
+/**
+ * Library pages generated from packages/pages.
+ * The Library is both documentation and framework showcase:
+ * editorial heroes, tonal surfaces, motion-ready sections, and
+ * page-specific layouts for priority references.
+ */
+
+.lib-packages-main {
+    position: relative;
+    z-index: 0;
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.lib-page {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+}
+
+.lib-page::before,
+.lib-page::after {
+    content: "";
+    position: absolute;
+    inset: auto;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.lib-page::before {
+    top: 0;
+    right: -10vw;
+    width: min(46rem, 64vw);
+    height: min(46rem, 64vw);
+    background:
+        radial-gradient(circle at center,
+            color-mix(in oklch, var(--vl-color-primary) 12%, transparent) 0%,
+            transparent 62%);
+    opacity: 0.9;
+}
+
+.lib-page::after {
+    left: -8vw;
+    bottom: 12rem;
+    width: min(34rem, 48vw);
+    height: min(34rem, 48vw);
+    background:
+        radial-gradient(circle at center,
+            color-mix(in oklch, var(--vl-color-primary) 7%, transparent) 0%,
+            transparent 70%);
+    opacity: 0.7;
+}
+
+.lib-page-hero {
+    display: grid;
+    gap: 1rem;
+    align-content: end;
+    min-height: clamp(24rem, 52vw, 40rem);
+    padding-top: clamp(5rem, 12vw, 8rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.lib-page-hero__eyebrow {
+    color: var(--vl-color-primary);
+    letter-spacing: 0.18em;
+}
+
+.lib-page-hero__title {
+    max-width: 11ch;
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    color: var(--vl-text-primary);
+    text-wrap: balance;
+}
+
+.lib-page-hero__lead {
+    max-width: 44rem;
+    margin: 0;
+    font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+    line-height: 1.6;
+    color: var(--vl-text-secondary);
+}
+
+.lib-page-hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lib-page-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 80%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 62%, transparent);
+    color: var(--vl-text-secondary);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.lib-page-rail {
+    position: sticky;
+    top: 4.75rem;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.75rem 1rem;
+    align-items: center;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    padding: 0.95rem 1.15rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 75%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-main) 86%, transparent);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--vl-border-subtle) 28%, transparent);
+}
+
+.lib-page-rail__back,
+.lib-page-rail__type,
+.lib-page-rail__source {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.lib-page-rail__back {
+    color: var(--vl-text-primary);
+    text-decoration: none;
+}
+
+.lib-page-rail__back:hover {
+    color: var(--vl-color-primary);
+}
+
+.lib-page-rail__type {
+    color: var(--vl-color-primary);
+}
+
+.lib-page-rail__source {
+    color: var(--vl-text-muted);
+}
+
+.lib-doc {
+    padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.lib-doc-article {
+    width: min(100%, 74rem);
+    margin-inline: auto;
+}
+
+.lib-doc-article :where(h1, h2, h3, h4, h5) {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--vl-text-primary);
+    text-wrap: balance;
+}
+
+.lib-doc-article h1 {
+    font-size: clamp(2.2rem, 6vw, 4.9rem);
+}
+
+.lib-doc-article h2 {
+    font-size: clamp(1.7rem, 3vw, 2.75rem);
+}
+
+.lib-doc-article h3 {
+    font-size: clamp(1.2rem, 2vw, 1.9rem);
+}
+
+.lib-doc-article h4,
+.lib-doc-article h5 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+}
+
+.lib-doc-article p,
+.lib-doc-article li,
+.lib-doc-article code,
+.lib-doc-article pre,
+.lib-doc-article span,
+.lib-doc-article a {
+    font-family: var(--vl-font-family);
+}
+
+.lib-doc-article p {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.7;
+}
+
+.lib-doc-article ul,
+.lib-doc-article ol {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--vl-text-secondary);
+}
+
+.lib-doc-article li + li {
+    margin-top: 0.65rem;
+}
+
+.lib-doc-article img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 16rem;
+    object-fit: cover;
+    border-radius: var(--vl-radius-md, 0.5rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+}
+
+.lib-doc-article pre {
+    margin: 0;
+    padding: 1.1rem 1.25rem;
+    border-radius: var(--vl-radius-md, 0.5rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 70%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 85%, var(--vl-bg-main));
+    color: var(--vl-text-secondary);
+    font-family: var(--vl-font-family-mono, ui-monospace, monospace);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    overflow-x: auto;
+}
+
+.lib-doc-article code {
+    font-family: var(--vl-font-family-mono, ui-monospace, monospace);
+    font-size: 0.88em;
+}
+
+.lib-doc-article button,
+.lib-doc-article a[href]:not(.lib-page-related__link):not(.lib-page-rail__back) {
+    transition:
+        transform var(--vl-transition-fast, 0.18s ease),
+        color var(--vl-transition-fast, 0.18s ease),
+        background var(--vl-transition-fast, 0.18s ease),
+        border-color var(--vl-transition-fast, 0.18s ease);
+}
+
+.lib-doc-article button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0.8rem 1.15rem;
+    border-radius: var(--vl-radius-sm, 0.25rem);
+    border: 1px solid color-mix(in oklch, var(--vl-color-primary) 42%, transparent);
+    background: color-mix(in oklch, var(--vl-color-primary) 18%, transparent);
+    color: var(--vl-text-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.lib-doc-article button:hover {
+    transform: translateY(-1px);
+    background: color-mix(in oklch, var(--vl-color-primary) 30%, transparent);
+}
+
+.lib-doc-article button:active {
+    transform: scale(0.98);
+}
+
+.lib-doc-article > header,
+.lib-doc-article > section,
+.lib-doc-article > footer,
+.lib-doc-article > div > section {
+    position: relative;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 78%, transparent),
+            color-mix(in oklch, var(--vl-bg-surface) 88%, transparent)
+        );
+    overflow: clip;
+}
+
+.lib-doc-article > header::before,
+.lib-doc-article > section::before,
+.lib-doc-article > footer::before,
+.lib-doc-article > div > section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in oklch, var(--vl-color-primary) 8%, transparent),
+            transparent 45%
+        );
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.lib-doc-article > header > *,
+.lib-doc-article > section > *,
+.lib-doc-article > footer > *,
+.lib-doc-article > div > section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.lib-doc-article > div {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
+}
+
+.lib-doc-article > header,
+.lib-doc-article > section > div,
+.lib-doc-article > footer,
+.lib-doc-article > div > div,
+.lib-doc-article > div > section > div {
+    display: grid;
+    gap: 1rem;
+}
+
+.lib-doc-article > header > div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    color: var(--vl-text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.lib-doc-article > header > p {
+    max-width: 54rem;
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+}
+
+.lib-doc-article > header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+}
+
+.lib-doc-article > header nav a {
+    color: var(--vl-text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+}
+
+.lib-doc-article > header nav a:hover {
+    color: var(--vl-color-primary);
+}
+
+.lib-doc-article > footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    color: var(--vl-text-muted);
+}
+
+.lib-doc-article > footer a {
+    color: var(--vl-text-muted);
+    text-decoration: none;
+}
+
+.lib-doc-article > footer a:hover {
+    color: var(--vl-color-primary);
+}
+
+.lib-page-related {
+    padding-top: clamp(2rem, 5vw, 3rem);
+}
+
+.lib-page-related__title {
+    margin: 0 0 1rem;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.lib-page-related__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.9rem;
+}
+
+.lib-page-related__link {
+    display: flex;
+    align-items: end;
+    min-height: 7.5rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 78%, transparent);
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 65%, transparent),
+            color-mix(in oklch, var(--vl-bg-surface) 95%, transparent)
+        );
+    color: var(--vl-text-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+}
+
+.lib-page-related__link:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklch, var(--vl-color-primary) 42%, var(--vl-border-subtle));
+}
+
+.lib-page--spec .lib-page-hero {
+    min-height: clamp(22rem, 44vw, 32rem);
+}
+
+.lib-page--showcase .lib-page-hero {
+    min-height: clamp(26rem, 56vw, 42rem);
+}
+
+.lib-page--tool .lib-page-rail {
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 82%, transparent);
+}
+
+.lib-page--editorial .lib-page-hero__title {
+    max-width: 9ch;
+}
+
+@media (min-width: 900px) {
+    .lib-page-hero {
+        grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+        align-items: end;
+    }
+
+    .lib-page-hero__chips,
+    .lib-page-hero__lead {
+        grid-column: 1;
+    }
+
+    .lib-page-hero::after {
+        content: "";
+        justify-self: end;
+        align-self: stretch;
+        width: min(100%, 25rem);
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+        background:
+            linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 10%, transparent), transparent 65%),
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 84%, transparent);
+        box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--vl-border-subtle) 24%, transparent);
+    }
+}
+
+@media (max-width: 899px) {
+    .lib-page-rail {
+        grid-template-columns: 1fr;
+        top: 4.25rem;
+    }
+
+    .lib-page-hero__title {
+        max-width: 13ch;
+    }
+}
+
+/* Motion Principles: bento + asymmetry, inspired by the Stitch reference */
+.lib-page--motion-principles-overview .lib-page-hero {
+    min-height: clamp(30rem, 68vw, 48rem);
+}
+
+.lib-page--motion-principles-overview .lib-doc-article > section:first-of-type > div {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.lib-page--motion-principles-overview .lib-doc-article > section:first-of-type > div > div:first-child h1 {
+    max-width: 7ch;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    text-transform: uppercase;
+}
+
+.lib-page--motion-principles-overview .lib-doc-article > section:first-of-type > div > div:last-child {
+    min-height: 18rem;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 78%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+.lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div {
+    display: grid;
+    gap: 1px;
+    background: color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+}
+
+.lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div > div {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: color-mix(in oklch, var(--vl-bg-surface) 96%, transparent);
+}
+
+.lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(3) > div {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Architectural Blueprint: denser technical composition */
+.lib-page--architectural-blueprint .lib-doc-article > section:first-of-type > div,
+.lib-page--architectural-blueprint .lib-doc-article > section:nth-of-type(2) > div,
+.lib-page--architectural-blueprint .lib-doc-article > section:nth-of-type(3) > div {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.lib-page--architectural-blueprint .lib-doc-article > section:nth-of-type(2) > div > div:last-child,
+.lib-page--architectural-blueprint .lib-doc-article > section:nth-of-type(3) > div > div:last-child {
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+/* Tokens Foundation: swatches + type system */
+.lib-page--tokens-foundation-refined .lib-doc-article > header {
+    min-height: 24rem;
+    align-content: end;
+}
+
+.lib-page--tokens-foundation-refined .lib-doc-article > section:first-of-type > div:nth-child(2),
+.lib-page--tokens-foundation-refined .lib-doc-article > section:nth-of-type(2) > div:nth-child(3),
+.lib-page--tokens-foundation-refined .lib-doc-article > section:nth-of-type(4) > div:nth-child(2) {
+    display: grid;
+    gap: 1rem;
+}
+
+.lib-page--tokens-foundation-refined .lib-doc-article > section:first-of-type > div:nth-child(2) > div,
+.lib-page--tokens-foundation-refined .lib-doc-article > section:nth-of-type(2) > div:nth-child(3) > div,
+.lib-page--tokens-foundation-refined .lib-doc-article > section:nth-of-type(4) > div:nth-child(2) > div {
+    padding: 1.15rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+/* Color System: technical shell + swatches */
+.lib-page--color-system-specification .lib-doc-article > header {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(2) {
+    background:
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 82%, transparent),
+            color-mix(in oklch, var(--vl-bg-surface) 98%, transparent)
+        );
+}
+
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(2) > div,
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(3) > div:last-child,
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(4) > div:last-child {
+    display: grid;
+    gap: 1rem;
+}
+
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(2) > div > div,
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(3) > div:last-child > div,
+.lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(4) > div:last-child > div {
+    padding: 1rem 1.1rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 74%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-main) 86%, transparent);
+}
+
+/* Component Lab: showcase cards + inspector */
+.lib-page--component-lab-technical-library .lib-doc-article > div:first-of-type > div:nth-child(2) {
+    display: grid;
+    gap: 1rem;
+}
+
+.lib-page--component-lab-technical-library .lib-doc-article > div:first-of-type > div:nth-child(2) > div {
+    padding: 1rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 74%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+.lib-page--component-lab-technical-library .lib-doc-article > div:first-of-type > section:first-of-type > div {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Landing page: stronger editorial rhythm */
+.lib-page--velora-landing-page-refined .lib-page-hero {
+    min-height: clamp(34rem, 74vw, 50rem);
+}
+
+.lib-page--velora-landing-page-refined .lib-doc-article > section:first-of-type,
+.lib-page--velora-landing-page-refined .lib-doc-article > section:last-of-type {
+    min-height: clamp(24rem, 52vw, 34rem);
+    display: grid;
+    align-items: end;
+}
+
+.lib-page--velora-landing-page-refined .lib-doc-article > section:nth-of-type(3) > div:last-child {
+    display: grid;
+    gap: 1rem;
+}
+
+.lib-page--velora-landing-page-refined .lib-doc-article > section:nth-of-type(3) > div:last-child > div {
+    padding: 1rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-main) 92%, transparent);
+}
+
+@media (min-width: 900px) {
+    .lib-page--motion-principles-overview .lib-doc-article > section:first-of-type > div,
+    .lib-page--architectural-blueprint .lib-doc-article > section:first-of-type > div,
+    .lib-page--architectural-blueprint .lib-doc-article > section:nth-of-type(2) > div,
+    .lib-page--architectural-blueprint .lib-doc-article > section:nth-of-type(3) > div,
+    .lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(3) > div,
+    .lib-page--velora-landing-page-refined .lib-doc-article > section:nth-of-type(2) > div,
+    .lib-page--velora-landing-page-refined .lib-doc-article > section:nth-of-type(4) > div {
+        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        align-items: center;
+    }
+
+    .lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div > div:nth-child(1) {
+        grid-column: span 7;
+    }
+
+    .lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div > div:nth-child(2) {
+        grid-column: span 5;
+    }
+
+    .lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div > div:nth-child(3) {
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+        gap: 1px;
+        background: color-mix(in oklch, var(--vl-border-subtle) 55%, transparent);
+        padding: 0;
+    }
+
+    .lib-page--motion-principles-overview .lib-doc-article > section:nth-of-type(2) > div > div:nth-child(3) > div {
+        min-height: 100%;
+        background: color-mix(in oklch, var(--vl-bg-surface) 96%, transparent);
+    }
+
+    .lib-page--tokens-foundation-refined .lib-doc-article > section:first-of-type > div:nth-child(2),
+    .lib-page--tokens-foundation-refined .lib-doc-article > section:nth-of-type(2) > div:nth-child(3),
+    .lib-page--tokens-foundation-refined .lib-doc-article > section:nth-of-type(4) > div:nth-child(2),
+    .lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(2) > div,
+    .lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(3) > div:last-child,
+    .lib-page--component-lab-technical-library .lib-doc-article > div:first-of-type > div:nth-child(2),
+    .lib-page--velora-landing-page-refined .lib-doc-article > section:nth-of-type(3) > div:last-child {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .lib-page--color-system-specification .lib-doc-article > div:first-of-type > section:nth-of-type(4) > div:last-child,
+    .lib-page--component-lab-technical-library .lib-doc-article > div:first-of-type > section:first-of-type > div {
+        grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+        align-items: start;
+    }
+}
+
+/* Index: still simple for now, but more premium and aligned with the new Library */
+.lib-index-hero {
+    padding: clamp(5rem, 12vw, 8rem) 0 2.5rem;
+}
+
+.lib-index-hero .hp-section__title {
+    max-width: 12ch;
+    margin-bottom: 1rem;
+}
+
+.lib-index-hero code {
+    font-family: var(--vl-font-family-mono, ui-monospace, monospace);
+    font-size: 0.85em;
+}
+
+.lib-index-grid-wrap {
+    padding-bottom: 4rem;
+}
+
+.lib-index-card {
+    min-height: 8rem;
+    transition:
+        transform var(--vl-transition-fast, 0.18s ease),
+        border-color var(--vl-transition-fast, 0.18s ease),
+        background var(--vl-transition-fast, 0.18s ease);
+}
+
+.lib-index-card:hover {
+    transform: translateY(-2px);
+}
+
+.lib-index-card .vl-card__title {
+    font-size: 1rem;
+    line-height: 1.35;
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Motion &amp; Sequencing | Motion Framework</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#71776e",
+                        "on-secondary": "#1f211e",
+                        "surface-container": "#171b16",
+                        "on-error-container": "#ff9b82",
+                        "secondary-fixed": "#e3e3de",
+                        "tertiary-container": "#e2f1c6",
+                        "primary-dim": "#aebea4",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "background": "#0d0f0c",
+                        "surface-bright": "#272e25",
+                        "surface": "#0d0f0c",
+                        "outline-variant": "#434a41",
+                        "error-container": "#7e2b17",
+                        "surface-container-lowest": "#000000",
+                        "secondary-dim": "#9d9e9a",
+                        "on-primary-fixed": "#35432f",
+                        "tertiary-fixed": "#e5f4c9",
+                        "inverse-on-surface": "#545652",
+                        "on-primary-container": "#c5d5ba",
+                        "error-dim": "#ba573f",
+                        "secondary": "#9d9e9a",
+                        "error": "#ed7f64",
+                        "primary-container": "#3d4b36",
+                        "surface-dim": "#0d0f0c",
+                        "primary": "#bbcbb1",
+                        "on-surface-variant": "#a7ada2",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "on-secondary-fixed": "#3e403d",
+                        "primary-fixed": "#d7e8cc",
+                        "tertiary-dim": "#d7e5bb",
+                        "surface-container-highest": "#212720",
+                        "primary-fixed-dim": "#c9d9be",
+                        "on-primary": "#364430",
+                        "on-secondary-container": "#bfc0bb",
+                        "surface-container-low": "#111410",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "on-tertiary-container": "#4f5b3a",
+                        "on-primary-fixed-variant": "#51604a",
+                        "surface-container-high": "#1c211b",
+                        "on-background": "#e1e7dc",
+                        "on-error": "#450900",
+                        "inverse-primary": "#55634d",
+                        "inverse-surface": "#fafaf4",
+                        "surface-variant": "#212720",
+                        "surface-tint": "#bbcbb1",
+                        "secondary-container": "#3a3c39",
+                        "on-tertiary": "#576342",
+                        "tertiary": "#f1ffd4",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "on-surface": "#e1e7dc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .kinetic-gradient {
+            background: linear-gradient(145deg, #bbcbb1 0%, #3d4b36 100%);
+        }
+        .glass-panel {
+            background: rgba(23, 27, 22, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .bezier-curve {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+        }
+    </style>
+</head>
+<body class="selection:bg-primary-container selection:text-primary">
+<nav class="w-full top-0 z-50 bg-[#0d0f0c] dark:bg-[#0d0f0c] flex justify-between items-center px-8 py-4 max-w-full mx-auto fixed">
+<div class="text-xl font-bold tracking-tighter text-[#bbcbb1] font-['Space_Grotesk']">
+            Motion Framework
+        </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#6b7a63] font-medium font-['Manrope'] uppercase tracking-[0.05em] text-[12px] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Principles</a>
+<a class="text-[#6b7a63] font-medium font-['Manrope'] uppercase tracking-[0.05em] text-[12px] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Easing</a>
+<a class="text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1 font-['Manrope'] uppercase tracking-[0.05em] text-[12px]" href="#">Sequencing</a>
+<a class="text-[#6b7a63] font-medium font-['Manrope'] uppercase tracking-[0.05em] text-[12px] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Interaction</a>
+<a class="text-[#6b7a63] font-medium font-['Manrope'] uppercase tracking-[0.05em] text-[12px] hover:text-[#bbcbb1] transition-colors duration-200" href="#">Handover</a>
+</div>
+<div class="flex items-center space-x-4 text-[#bbcbb1]">
+<button class="material-symbols-outlined scale-95 duration-150 hover:text-primary">settings</button>
+<button class="material-symbols-outlined scale-95 duration-150 hover:text-primary">help</button>
+</div>
+</nav>
+<main class="pt-24 pb-32">
+<section class="px-8 md:px-24 mb-32">
+<div class="max-w-5xl">
+<span class="font-label uppercase tracking-[0.2em] text-primary text-[11px] mb-6 block">Foundation v2.0</span>
+<h1 class="font-headline text-7xl md:text-9xl font-bold tracking-tighter text-on-surface mb-8 leading-[0.9]">
+                    Kinetic <br/> <span class="text-primary/40">Motion</span>
+</h1>
+<p class="font-body text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed">
+                    Motion in the framework is engineered for the <span class="text-on-surface font-semibold">Technical Aesthete</span>. We reject heavy libraries in favor of "Zero JS" execution, leveraging GPU-accelerated CSS features like Scroll-Timeline and View-Transitions for a browser-native performance profile.
+                </p>
+</div>
+</section>
+<section class="px-8 md:px-24 mb-32">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="space-y-8">
+<div>
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface mb-4">Cinematic Easing</h2>
+<p class="font-body text-on-surface-variant leading-relaxed">
+                            Every transition follows our proprietary mathematical curve: <code class="text-primary text-sm bg-surface-container px-2 py-1 rounded">cubic-bezier(0.2, 0.8, 0.2, 1)</code>. This ensures a rapid onset with a long, architectural deceleration that mimics high-end camera gimbal movements.
+                        </p>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-4 border-b border-outline-variant/20">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Entrance Velocity</span>
+<span class="font-label text-[10px] text-primary">0.82 m/s</span>
+</div>
+<div class="flex items-center justify-between py-4 border-b border-outline-variant/20">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Exit Deceleration</span>
+<span class="font-label text-[10px] text-primary">Linear Logarithmic</span>
+</div>
+</div>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-lg p-12 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,#bbcbb1_0%,transparent_70%)]"></div>
+<svg class="w-full h-full text-primary" viewbox="0 0 100 100">
+<path class="bezier-curve" d="M 10 90 C 20 10, 20 90, 90 10" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+<circle cx="10" cy="90" fill="currentColor" r="1.5"></circle>
+<circle cx="90" cy="10" fill="currentColor" r="1.5"></circle>
+</svg>
+</div>
+</div>
+</section>
+<section class="px-8 md:px-24 mb-32">
+<h3 class="font-label text-xs uppercase tracking-[0.3em] text-on-surface-variant mb-12">Motion Primitives</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-32 h-48 bg-primary/20 rounded border border-primary/30 group-hover:scale-110 transition-transform duration-700"></div>
+</div>
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40" data-alt="minimalist 3D architectural wireframe with subtle green accents and soft shadows in a dark void" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRzimB81C6QzPqIkXk12ysyYHg_ncfpdQnWX5v9jdXbNtohnbxZlUlV6x8_qDZhAO9jaSZUlVOJ1wAHSrUN1dcS6AqPiJCtofsBqEWyGN9ukUh7fvJ3rgkVFOE06jD3MaU-CgxjfIPNOhMGL0LGWDXKUfACVE-oAFG3k1pokDuJAZn78c6Fa86zDRQd8NAEaD6i05zfNWT5bEH-pok-T8dFjaF0dR144Kuq4I8u5pR22ILvIWqNMQ23JFLtIfteh8L3SbVL0lUKvTW"/>
+</div>
+<h4 class="font-headline text-xl font-bold mb-2">Reveal-3D</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        A subtle depth-based entrance animation using CSS 3D transforms to simulate physical lens focus shifts.
+                    </p>
+</div>
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
+<div class="absolute inset-0 flex flex-col items-center justify-center space-y-4">
+<div class="w-48 h-1 bg-primary/40 rounded-full"></div>
+<div class="w-32 h-1 bg-primary/20 rounded-full"></div>
+<div class="w-40 h-1 bg-primary/30 rounded-full"></div>
+</div>
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40" data-alt="abstract sequence of geometric glass panels floating in dark space with kinetic green light rays" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr5r3s2DUlbiNdgf7-yfZ_exxRWex7D-2t6xVBjsOyKDIXaBarVUmKo3hJgdrZ5HJBmGDPWZl_RRrDBslWg9d80WdSrWK-KiEadvy9J9KxKZPJWRhoNy3bgHYWGaQ439vj8Yalw4Unltp3fWeAhrkSpS8Xd6NW_3oZOZ2Yv7C2aYezrdaVb9U8ftzv8yMRGMtyoWF5ZrUNCL7pe5XX7GCpCnCdzQFp3IOdWeyPSIrPuGKW75GGdMgmUHqjyrEeX8_p8Pqw8n3f8O8G"/>
+</div>
+<h4 class="font-headline text-xl font-bold mb-2">Scroll-Driven Sequencing</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        Leveraging the Scroll-Timeline API to bind element transformations directly to the user's scroll progress.
+                    </p>
+</div>
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-high rounded-lg mb-6 overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-24 h-24 rounded-full border-2 border-primary/50 group-hover:scale-150 transition-transform duration-1000"></div>
+</div>
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40" data-alt="macro photograph of liquid metal morphing with iridescent green reflections on a deep black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0-KwzzriI87xw3PKO5aX4TTi9-gJx5LSVmu1WNPFzkgD0ytXCgKhBMKgVNB8GU7KL64nUATImjMUvuW7YFDgQVG9Ib0zAbYQdn1WUjdvScyTbXbnt2eEKfWzrzABrGymsCDkDgB7unCKQIQx3SAkhY5J-K0or6o8jXBQ6tSnwKU4JK_Hjcd0ptCVVeKXYFwFeNlbUArSaWgsy4OMJ016sUrPPnuskIuH90DObsgovkLNh07tS0DBx0tm25ZdHVZjrn14iH1NQQ7h9"/>
+</div>
+<h4 class="font-headline text-xl font-bold mb-2">MPA View Transitions</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        Native cross-document transitions that allow elements to morph seamlessly between disparate routes.
+                    </p>
+</div>
+</div>
+</section>
+<section class="px-8 md:px-24">
+<div class="bg-surface-container-low p-12 rounded-lg border border-outline-variant/10">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
+<div>
+<h3 class="font-headline text-3xl font-bold mb-2">Technical Implementation</h3>
+<p class="font-body text-on-surface-variant">Standardized motion layers for global consistency.</p>
+</div>
+<div class="flex space-x-2">
+<div class="px-3 py-1 rounded bg-primary/10 text-primary text-[10px] font-label uppercase tracking-wider">v2.0.4 SPEC</div>
+<div class="px-3 py-1 rounded bg-on-surface/5 text-on-surface-variant text-[10px] font-label uppercase tracking-wider">GPU ACCELERATED</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div class="space-y-4">
+<span class="font-label text-[10px] text-primary uppercase">@layer velora.motion</span>
+<pre class="bg-surface-container-highest p-6 rounded-lg text-sm text-on-secondary-container font-mono overflow-x-auto leading-relaxed border-l-2 border-primary">@layer velora.motion {
+  .kinetic-reveal {
+    animation: reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    view-transition-name: hero-element;
+  }
+
+  @keyframes reveal {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px) scale(0.98); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
+  }
+}</pre>
+</div>
+<div class="space-y-4">
+<span class="font-label text-[10px] text-primary uppercase">Scroll Timeline Bind</span>
+<pre class="bg-surface-container-highest p-6 rounded-lg text-sm text-on-secondary-container font-mono overflow-x-auto leading-relaxed border-l-2 border-primary">.sequenced-item {
+  animation: parallax auto linear;
+  animation-timeline: scroll(root);
+}
+
+@keyframes parallax {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}</pre>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-[#0d0f0c] dark:bg-[#0d0f0c] w-full border-t border-[#bbcbb1]/15">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full space-y-6 md:space-y-0">
+<div class="font-['Manrope'] uppercase tracking-[0.05em] text-[10px] text-[#6b7a63]">
+                © 2024 KINETIC ELEGANCE. TECHNICAL SPECIFICATION V2.0.4
+            </div>
+<div class="flex space-x-8">
+<a class="font-['Manrope'] uppercase tracking-[0.05em] text-[10px] text-[#6b7a63] hover:text-[#bbcbb1] underline underline-offset-4 ease-out duration-300" href="#">Github</a>
+<a class="font-['Manrope'] uppercase tracking-[0.05em] text-[10px] text-[#6b7a63] hover:text-[#bbcbb1] underline underline-offset-4 ease-out duration-300" href="#">Changelog</a>
+<a class="font-['Manrope'] uppercase tracking-[0.05em] text-[10px] text-[#6b7a63] hover:text-[#bbcbb1] underline underline-offset-4 ease-out duration-300" href="#">Accessibility</a>
+<a class="font-['Manrope'] uppercase tracking-[0.05em] text-[10px] text-[#6b7a63] hover:text-[#bbcbb1] underline underline-offset-4 ease-out duration-300" href="#">Status</a>
+</div>
+</div>
+</footer>
+</body></html>

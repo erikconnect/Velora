@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+  Velora -- FAQ 1 (Accordion)
+  CSS approach:
+    * <details name="faq-group"> exclusive accordion -- browser closes siblings automatically
+    * .vl-accordion from Velora's component layer handles all animation, spacing, chevron
+    * ::details-content height: 0 -> auto is animated by velora.css (interpolate-size in reset)
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- FAQ 1 (Accordion)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      /* Section heading -- Velora token-styled */
+      .faq-heading {
+        font-family: var(--vl-font-family-display);
+        font-size: var(--vl-font-size-4xl);
+        font-weight: var(--vl-font-weight-bold);
+        line-height: var(--vl-leading-tight);
+        letter-spacing: var(--vl-tracking-tight);
+        margin-bottom: var(--vl-space-sm);
+      }
+
+      .faq-subheading {
+        font-family: var(--vl-font-family-display);
+        font-size: var(--vl-font-size-2xl);
+        font-weight: var(--vl-font-weight-semibold);
+        line-height: var(--vl-leading-snug);
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <section class="vl-section">
+      <div class="vl-container vl-container--narrow">
+
+        <!-- Section header -->
+        <div style="text-align: center; margin-bottom: var(--vl-space-xl);" vl-children="stagger">
+          <p class="vl-kicker" style="justify-content: center;">FAQs</p>
+          <h2 class="faq-heading">Frequently asked questions</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            varius enim in eros elementum tristique.
+          </p>
+        </div>
+
+        <!-- Accordion list: name="faq-group" makes it exclusive (browser closes siblings) -->
+        <div class="vl-stack--sm" style="display: flex; flex-direction: column;">
+
+          <details class="vl-accordion" name="faq-group" open>
+            <summary>What is Velora?</summary>
+            <div class="vl-accordion__content">
+              Velora is a motion-native CSS framework that delivers premium,
+              cinematic web experiences using zero JavaScript for animations
+              or routing. It harnesses the modern Web Platform &mdash; scroll-driven
+              animations, view transitions, and native CSS state &mdash; to run
+              entirely on the GPU at 120fps.
+            </div>
+          </details>
+
+          <details class="vl-accordion" name="faq-group">
+            <summary>How does the accordion work without JavaScript?</summary>
+            <div class="vl-accordion__content">
+              The native HTML <code>&lt;details&gt;</code> element manages
+              open/closed state with zero scripting. Adding the same
+              <code>name</code> attribute to a group turns them into an exclusive
+              accordion &mdash; the browser closes siblings automatically. Height is
+              animated via <code>::details-content</code> paired with
+              <code>interpolate-size: allow-keywords</code> from the Velora reset.
+            </div>
+          </details>
+
+          <details class="vl-accordion" name="faq-group">
+            <summary>What browsers are supported?</summary>
+            <div class="vl-accordion__content">
+              Velora targets Chrome 140+ (the 2026 baseline). The core
+              technologies &mdash; <code>scroll-timeline</code>,
+              <code>view-timeline</code>, <code>@view-transition</code>,
+              <code>::details-content</code>, and
+              <code>interpolate-size</code> &mdash; are all natively supported.
+              Progressive enhancement is encouraged for features with partial coverage.
+            </div>
+          </details>
+
+          <details class="vl-accordion" name="faq-group">
+            <summary>Can I use Velora with React or Vue?</summary>
+            <div class="vl-accordion__content">
+              Velora's CSS can be loaded in any environment, including React or
+              Vue apps. However, the framework's design philosophy is
+              browser-first: components are authored in semantic HTML with CSS
+              managing all state and animation. This replaces the need for
+              Framer Motion, GSAP, or Locomotive Scroll in most marketing contexts.
+            </div>
+          </details>
+
+          <details class="vl-accordion" name="faq-group">
+            <summary>Is there a paid or premium tier?</summary>
+            <div class="vl-accordion__content">
+              The core framework is open-source. Premium template packs &mdash; full
+              landing pages, dashboard scenes, and animated hero sections &mdash; will
+              be sold separately. A Visual Builder SaaS is planned for a later phase.
+            </div>
+          </details>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div style="text-align: center; margin-top: var(--vl-space-2xl);" vl-effect="fade-up">
+          <h4 class="faq-subheading" style="margin-bottom: var(--vl-space-sm);">Still have questions?</h4>
+          <p style="color: var(--vl-text-secondary); margin-bottom: var(--vl-space-lg);">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+          <a href="#" class="vl-cta--ghost vl-cta">Contact</a>
+        </div>
+
+      </div>
+    </section>
+
+  </body>
+</html>

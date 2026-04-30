@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0d0f0c",
+                        "on-tertiary": "#576342",
+                        "error-dim": "#ba573f",
+                        "on-surface-variant": "#a7ada2",
+                        "secondary": "#9d9e9a",
+                        "on-secondary-fixed": "#3e403d",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "secondary-container": "#3a3c39",
+                        "inverse-on-surface": "#545652",
+                        "on-primary-container": "#c5d5ba",
+                        "on-secondary": "#1f211e",
+                        "outline": "#71776e",
+                        "surface-variant": "#212720",
+                        "outline-variant": "#434a41",
+                        "surface-bright": "#272e25",
+                        "secondary-fixed": "#e3e3de",
+                        "on-error": "#450900",
+                        "on-background": "#e1e7dc",
+                        "on-primary-fixed": "#35432f",
+                        "inverse-primary": "#55634d",
+                        "error": "#ed7f64",
+                        "surface-container": "#171b16",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "surface-container-highest": "#212720",
+                        "on-tertiary-container": "#4f5b3a",
+                        "tertiary-dim": "#d7e5bb",
+                        "secondary-dim": "#9d9e9a",
+                        "primary-container": "#3d4b36",
+                        "primary": "#bbcbb1",
+                        "surface-container-lowest": "#000000",
+                        "tertiary": "#f1ffd4",
+                        "primary-fixed": "#d7e8cc",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "on-error-container": "#ff9b82",
+                        "surface-tint": "#bbcbb1",
+                        "on-primary-fixed-variant": "#51604a",
+                        "error-container": "#7e2b17",
+                        "surface": "#0d0f0c",
+                        "on-surface": "#e1e7dc",
+                        "tertiary-fixed": "#e5f4c9",
+                        "surface-container-high": "#1c211b",
+                        "primary-fixed-dim": "#c9d9be",
+                        "inverse-surface": "#fafaf4",
+                        "surface-dim": "#0d0f0c",
+                        "primary-dim": "#aebea4",
+                        "on-secondary-container": "#bfc0bb",
+                        "tertiary-container": "#e2f1c6",
+                        "surface-container-low": "#111410",
+                        "on-primary": "#364430"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .display-ultra {
+            font-size: clamp(8rem, 15vw, 12rem);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            font-weight: 700;
+        }
+        .text-vertical {
+            writing-mode: vertical-rl;
+        }
+        .no-line-boundary {
+            background-image: linear-gradient(to bottom, #111410, #0d0f0c);
+        }
+        .glass-panel {
+            background-color: rgba(33, 39, 32, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="w-full top-0 z-50 fixed bg-[#0d0f0c]">
+<div class="flex justify-between items-center px-8 py-6 w-full max-w-[1440px] mx-auto">
+<div class="text-xl font-bold tracking-tighter text-[#bbcbb1] uppercase font-['Space_Grotesk']">
+                Technical Aesthete
+            </div>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] font-bold tracking-tight">
+<a class="text-[#bbcbb1] border-b border-[#bbcbb1] pb-1 cursor-pointer active:opacity-80" href="#">Spec</a>
+<a class="text-[#8d9289] hover:text-[#bbcbb1] transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Scales</a>
+<a class="text-[#8d9289] hover:text-[#bbcbb1] transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Glyphs</a>
+<a class="text-[#8d9289] hover:text-[#bbcbb1] transition-colors duration-200 cursor-pointer active:opacity-80" href="#">Reference</a>
+</div>
+<div class="flex items-center gap-4 text-[#bbcbb1]">
+<span class="material-symbols-outlined cursor-pointer active:opacity-80">settings</span>
+<span class="material-symbols-outlined cursor-pointer active:opacity-80">grid_view</span>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed flex flex-col h-full pt-24 px-4 pb-8 h-screen w-64 left-0 border-r border-[#bbcbb1]/15 bg-[#0d0f0c] hidden lg:flex">
+<div class="mb-10 px-4">
+<h2 class="font-headline font-bold text-[#bbcbb1] text-lg tracking-tight">Typography</h2>
+<p class="font-['Manrope'] font-medium uppercase tracking-[0.05em] text-[10px] text-[#8d9289]">Scale System v1.0</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcbb1] font-bold border-r-2 border-[#bbcbb1] font-['Manrope'] font-medium uppercase tracking-[0.05em] text-xs transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-lg">text_increase</span>
+                Display XL
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#8d9289] hover:bg-[#1a1c19] font-['Manrope'] font-medium uppercase tracking-[0.05em] text-xs transition-all duration-300 ease-out duration-200" href="#">
+<span class="material-symbols-outlined text-lg">format_size</span>
+                Headline LG
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#8d9289] hover:bg-[#1a1c19] font-['Manrope'] font-medium uppercase tracking-[0.05em] text-xs transition-all duration-300 ease-out duration-200" href="#">
+<span class="material-symbols-outlined text-lg">match_word</span>
+                Title MD
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#8d9289] hover:bg-[#1a1c19] font-['Manrope'] font-medium uppercase tracking-[0.05em] text-xs transition-all duration-300 ease-out duration-200" href="#">
+<span class="material-symbols-outlined text-lg">notes</span>
+                Body SM
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#8d9289] hover:bg-[#1a1c19] font-['Manrope'] font-medium uppercase tracking-[0.05em] text-xs transition-all duration-300 ease-out duration-200" href="#">
+<span class="material-symbols-outlined text-lg">label</span>
+                Label XS
+            </a>
+</nav>
+</aside>
+<main class="lg:ml-64 pt-24 min-h-screen">
+<!-- Hero Section -->
+<section class="relative px-8 lg:px-16 py-20 overflow-hidden flex flex-col justify-center min-h-[819px]">
+<div class="absolute top-20 right-0 text-[#1a1c19] pointer-events-none select-none z-0">
+<div class="display-ultra leading-none text-right opacity-40">SYSTEM</div>
+</div>
+<div class="relative z-10">
+<p class="font-label text-primary uppercase tracking-[0.2em] text-sm mb-6 flex items-center gap-4">
+<span class="w-12 h-px bg-primary"></span>
+                    Display Scale 01
+                </p>
+<h1 class="display-ultra font-headline text-on-surface mb-8">KINETIC</h1>
+<div class="max-w-2xl">
+<p class="text-xl md:text-2xl font-light text-on-surface-variant leading-relaxed mb-10">
+                        The DISPLAY_ULTRA token is designed for moments of high-impact technical branding. It is an architectural element, not just a font size.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-sm font-headline font-bold text-sm tracking-tight uppercase hover:opacity-90 transition-opacity">
+                            View Documentation
+                        </button>
+<button class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-sm font-headline font-bold text-sm tracking-tight uppercase hover:bg-outline-variant transition-colors">
+                            Download Specs
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs Bento -->
+<section class="px-8 lg:px-16 py-24 bg-surface-container-low">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-1">
+<div class="md:col-span-2 bg-surface p-12 flex flex-col justify-between aspect-square md:aspect-auto">
+<div>
+<span class="text-primary font-label uppercase tracking-widest text-xs">Property Analysis</span>
+<h3 class="text-4xl font-headline font-bold mt-4 mb-8">Structural Integrity</h3>
+</div>
+<div class="space-y-6">
+<div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
+<span class="font-label text-on-surface-variant text-sm">SIZE</span>
+<span class="font-headline text-3xl font-bold">160px / 10rem</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
+<span class="font-label text-on-surface-variant text-sm">WEIGHT</span>
+<span class="font-headline text-3xl font-bold">700 BOLD</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/20 pb-4">
+<span class="font-label text-on-surface-variant text-sm">TRACKING</span>
+<span class="font-headline text-3xl font-bold">-0.05em</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-label text-on-surface-variant text-sm">LINE HEIGHT</span>
+<span class="font-headline text-3xl font-bold">0.9</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-6">architecture</span>
+<p class="font-headline font-bold text-lg mb-2">Mathematical Precision</p>
+<p class="text-sm text-on-surface-variant px-4">Derived from a golden ratio progression of the base 16px unit.</p>
+</div>
+<div class="bg-primary p-8 flex flex-col justify-between text-on-primary">
+<span class="material-symbols-outlined text-4xl">font_download</span>
+<div>
+<h4 class="font-headline font-extrabold text-2xl leading-tight mb-2">Space Grotesk Variable</h4>
+<p class="text-xs uppercase tracking-tighter opacity-80">Primary Heading Asset</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Brute Principle -->
+<section class="px-8 lg:px-16 py-32 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="relative bg-surface-container-highest p-1 aspect-[4/5] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 opacity-10 flex flex-col items-center justify-center pointer-events-none">
+<div class="text-[300px] font-bold font-headline leading-none -rotate-12">TYPE</div>
+</div>
+<div class="relative z-10 p-12 w-full h-full flex flex-col justify-between border border-outline-variant/10">
+<div class="flex justify-between items-start">
+<span class="font-label text-primary">001 // CONCEPT</span>
+<span class="text-xs font-label">V.1.02.24</span>
+</div>
+<div class="display-ultra font-headline tracking-tighter leading-none">BRUTE</div>
+<div class="grid grid-cols-2 gap-8">
+<p class="text-xs uppercase leading-relaxed text-on-surface-variant">The removal of decorative imagery in favor of typographic dominance.</p>
+<p class="text-xs uppercase leading-relaxed text-on-surface-variant">Texture is achieved through the intersection of glyphs and negative space.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="text-5xl font-headline font-bold mb-8 tracking-tighter uppercase">Editorial Brute</h2>
+<div class="space-y-8 text-on-surface-variant leading-relaxed">
+<p class="text-lg">
+                        We reject the 'Modern Web' template—characterized by soft gradients and rounded corners. The Editorial Brute concept treats typography as the primary graphic element, replacing photography with massive, architectural letterforms.
+                    </p>
+<p>
+                        In this philosophy, the <span class="text-on-surface font-bold">DISPLAY_ULTRA</span> scale serves as the anchor. It creates its own environment of hierarchy, allowing secondary and tertiary information to be read as technical metadata rather than marketing copy.
+                    </p>
+<ul class="space-y-4 pt-6">
+<li class="flex gap-4 items-start">
+<span class="w-1.5 h-1.5 bg-primary mt-2"></span>
+<span>Asymmetric composition as a standard layout principle.</span>
+</li>
+<li class="flex gap-4 items-start">
+<span class="w-1.5 h-1.5 bg-primary mt-2"></span>
+<span>High-contrast surfaces that emphasize glyph sharpness.</span>
+</li>
+<li class="flex gap-4 items-start">
+<span class="w-1.5 h-1.5 bg-primary mt-2"></span>
+<span>Minimalist color palette focused on Kinetic Green and Surface Noir.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Contextual Mockup Section -->
+<section class="px-8 lg:px-16 py-32 bg-[#131512]">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<h2 class="text-4xl font-headline font-bold uppercase tracking-tighter">Applied Context</h2>
+<p class="font-label text-on-surface-variant text-sm tracking-widest max-w-sm text-right">MOCKUP_V01: BACKGROUND ANCHORING IN EDITORIAL LAYOUTS</p>
+</div>
+<div class="relative bg-surface p-12 lg:p-24 overflow-hidden shadow-2xl">
+<!-- Background anchor text -->
+<div class="absolute -top-12 -left-10 text-[#1a1c19] text-[280px] font-headline font-bold leading-none pointer-events-none z-0 select-none">
+                    VELORA
+                </div>
+<div class="relative z-10 flex flex-col md:flex-row gap-16">
+<div class="flex-1">
+<div class="glass-panel p-8 inline-block mb-12">
+<h4 class="text-primary font-label uppercase tracking-widest text-xs mb-2">Technical Note</h4>
+<p class="text-sm font-bold font-headline uppercase">Overlap allows for depth perception between layers.</p>
+</div>
+<h3 class="text-6xl font-headline font-bold mb-8 tracking-tighter">The future of <br/> kinetic design.</h3>
+<div class="w-24 h-1 bg-primary mb-12"></div>
+<p class="max-w-md text-on-surface-variant text-lg leading-relaxed mb-8">
+                            When used as a background anchor, DISPLAY_ULTRA provides a sense of scale and permanence, anchoring the lighter components in space.
+                        </p>
+</div>
+<div class="w-full md:w-1/3 flex flex-col gap-8">
+<div class="p-8 bg-surface-container-highest border-l-4 border-primary">
+<h5 class="font-label text-xs mb-2 opacity-60">USAGE STATS</h5>
+<div class="text-3xl font-headline font-bold">98% Impact</div>
+<p class="text-xs mt-2 text-on-surface-variant uppercase">Compared to standard heading tokens.</p>
+</div>
+<div class="p-8 bg-surface-container-high">
+<h5 class="font-label text-xs mb-2 opacity-60">READABILITY</h5>
+<div class="text-3xl font-headline font-bold">Optimal</div>
+<p class="text-xs mt-2 text-on-surface-variant uppercase">Designed for 4K and large format displays.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Usage Guidelines -->
+<section class="px-8 lg:px-16 py-32">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-1 overflow-hidden bg-outline-variant/10">
+<div class="bg-surface p-12 lg:p-20">
+<div class="flex items-center gap-4 mb-10">
+<span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+<h3 class="text-3xl font-headline font-bold uppercase tracking-tighter">When to Use</h3>
+</div>
+<ul class="space-y-8">
+<li class="flex gap-6">
+<span class="text-4xl font-headline font-bold text-outline-variant">01</span>
+<div>
+<p class="font-headline font-bold text-lg mb-2">Hero Section Only</p>
+<p class="text-on-surface-variant text-sm">Restrict usage to the initial landing state or section intros to maintain punch.</p>
+</div>
+</li>
+<li class="flex gap-6">
+<span class="text-4xl font-headline font-bold text-outline-variant">02</span>
+<div>
+<p class="font-headline font-bold text-lg mb-2">Max 3 Words</p>
+<p class="text-on-surface-variant text-sm">Conciseness is key. Avoid long phrases that break across more than two lines.</p>
+</div>
+</li>
+<li class="flex gap-6">
+<span class="text-4xl font-headline font-bold text-outline-variant">03</span>
+<div>
+<p class="font-headline font-bold text-lg mb-2">Graphic Backgrounds</p>
+<p class="text-on-surface-variant text-sm">Ideal for low-opacity watermark effects behind technical data tables.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="bg-surface p-12 lg:p-20">
+<div class="flex items-center gap-4 mb-10">
+<span class="material-symbols-outlined text-error text-4xl">cancel</span>
+<h3 class="text-3xl font-headline font-bold uppercase tracking-tighter">When to Avoid</h3>
+</div>
+<ul class="space-y-8">
+<li class="flex gap-6">
+<span class="text-4xl font-headline font-bold text-outline-variant">01</span>
+<div>
+<p class="font-headline font-bold text-lg mb-2">Standard Lists</p>
+<p class="text-on-surface-variant text-sm">Never use for list items, body titles, or interactive navigational elements.</p>
+</div>
+</li>
+<li class="flex gap-6">
+<span class="text-4xl font-headline font-bold text-outline-variant">02</span>
+<div>
+<p class="font-headline font-bold text-lg mb-2">Body Content</p>
+<p class="text-on-surface-variant text-sm">Using this for paragraphs or small titles destroys the visual hierarchy system.</p>
+</div>
+</li>
+<li class="flex gap-6">
+<span class="text-4xl font-headline font-bold text-outline-variant">03</span>
+<div>
+<p class="font-headline font-bold text-lg mb-2">Mobile Overflow</p>
+<p class="text-on-surface-variant text-sm">Exercise caution on small screens; use responsive sizing to prevent horizontal scroll.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Footer / Technical Metadata -->
+<footer class="px-8 lg:px-16 py-12 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-8 bg-surface">
+<div class="flex gap-8">
+<div class="text-xs font-label text-on-surface-variant uppercase tracking-widest">
+                    Build: <span class="text-on-surface">v1.4.2-PROD</span>
+</div>
+<div class="text-xs font-label text-on-surface-variant uppercase tracking-widest">
+                    Status: <span class="text-primary font-bold">OPERATIONAL</span>
+</div>
+</div>
+<div class="text-xs font-label text-on-surface-variant uppercase tracking-widest text-right">
+                © 2024 Kinetic Elegance Design Systems. All rights reserved.
+            </div>
+</footer>
+</main>
+<!-- Visual Polish: Noise Texture Overlay (Simulated with Gradient) -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-[100] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+</body></html>

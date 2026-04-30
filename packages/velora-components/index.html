@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora — Component Catalog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/src/velora.css" />
+    <style>
+      body {
+        min-height: 100dvh;
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent),
+          var(--vl-bg-main);
+        font-family: var(--vl-font-family);
+        color: var(--vl-text-primary);
+        margin: 0;
+      }
+
+      /* ── Topbar ──────────────────────────────────────────────────── */
+      .vc-topbar {
+        position: sticky; top: 0; z-index: 200;
+        background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
+      }
+      .vc-topbar__inner {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 1rem; max-width: 72rem; margin-inline: auto;
+        padding: 0.75rem max(1.5rem, env(safe-area-inset-left, 0px));
+      }
+      .vc-brand {
+        font-family: var(--vl-font-family-display, var(--vl-font-family));
+        font-size: 1.1rem; font-weight: 700; text-decoration: none;
+        background: var(--vl-gradient-brand);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .vc-topbar__links { display: flex; gap: 1.5rem; }
+      .vc-topbar__link {
+        font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+        color: var(--vl-text-muted); text-decoration: none;
+        transition: color 0.15s;
+      }
+      .vc-topbar__link:hover { color: var(--vl-text-primary); }
+      .vc-topbar__cta {
+        font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+        color: var(--vl-color-primary); text-decoration: none;
+        border: 1px solid color-mix(in oklch, var(--vl-color-primary) 40%, transparent);
+        border-radius: 6px; padding: 0.3rem 0.75rem;
+        transition: background 0.15s, color 0.15s;
+      }
+      .vc-topbar__cta:hover {
+        background: var(--vl-color-primary); color: var(--vl-bg-main);
+      }
+
+      /* ── Page hero ───────────────────────────────────────────────── */
+      .vc-hero {
+        padding: 4rem 1.5rem 2rem;
+        max-width: 72rem; margin-inline: auto;
+      }
+      .vc-hero__kicker {
+        font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--vl-color-primary);
+        margin-bottom: 0.75rem;
+      }
+      .vc-hero__title {
+        font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800;
+        line-height: 1.1; letter-spacing: -0.03em;
+        background: var(--vl-gradient-brand);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0 0 1rem;
+      }
+      .vc-hero__desc {
+        font-size: 1rem; color: var(--vl-text-secondary);
+        max-width: 52ch; line-height: 1.6; margin: 0;
+      }
+      .vc-hero__stats {
+        display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
+      }
+      .vc-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+      .vc-stat__num {
+        font-size: 1.75rem; font-weight: 800; line-height: 1;
+        color: var(--vl-color-primary);
+        font-family: var(--vl-font-family-mono, monospace);
+      }
+      .vc-stat__label { font-size: 0.75rem; color: var(--vl-text-muted); }
+
+      /* ── Section + grid ──────────────────────────────────────────── */
+      .vc-main { max-width: 72rem; margin-inline: auto; padding: 2rem 1.5rem 4rem; }
+      .vc-section { margin-bottom: 3.5rem; }
+      .vc-section__header {
+        display: flex; align-items: baseline; justify-content: space-between;
+        margin-bottom: 1.25rem; padding-bottom: 0.75rem;
+        border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+      }
+      .vc-section__title {
+        font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--vl-color-primary); margin: 0;
+      }
+      .vc-section__count {
+        font-size: 0.7rem; color: var(--vl-text-muted);
+        font-family: var(--vl-font-family-mono, monospace);
+      }
+      .vc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      /* ── Component card ──────────────────────────────────────────── */
+      .vc-card {
+        display: flex; flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 70%, transparent);
+        background: color-mix(in oklch, var(--vl-bg-surface) 60%, transparent);
+        text-decoration: none; color: inherit;
+        overflow: hidden;
+        transition: border-color 0.18s, transform 0.18s, background 0.18s;
+      }
+      .vc-card:hover {
+        border-color: color-mix(in oklch, var(--vl-color-primary) 50%, transparent);
+        background: color-mix(in oklch, var(--vl-bg-surface) 80%, transparent);
+        transform: translateY(-2px);
+      }
+      .vc-card__preview {
+        height: 100px; display: flex; align-items: center; justify-content: center;
+        background: color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent);
+        border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+        font-size: 2rem; color: var(--vl-color-primary);
+      }
+      .vc-card__body { padding: 0.875rem 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
+      .vc-card__name { font-size: 0.85rem; font-weight: 600; color: var(--vl-text-primary); }
+      .vc-card__desc { font-size: 0.75rem; color: var(--vl-text-muted); line-height: 1.45; flex: 1; }
+      .vc-card__tags { display: flex; gap: 0.3rem; margin-top: 0.5rem; flex-wrap: wrap; }
+      .vc-tag {
+        font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em;
+        text-transform: uppercase; padding: 0.1rem 0.45rem;
+        border: 1px solid currentColor; border-radius: 4px;
+      }
+      .vc-tag--css   { color: oklch(60% 0.18 265); }
+      .vc-tag--zero  { color: oklch(60% 0.15 145); }
+      .vc-tag--html  { color: oklch(60% 0.18 30);  }
+      .vc-tag--page  { color: var(--vl-color-primary); }
+      .vc-tag--new   { color: oklch(65% 0.2 160); }
+
+      /* ── Page card (playground links) — wider variant ────────────── */
+      .vc-card--page .vc-card__preview { height: 70px; font-size: 1.5rem; }
+    </style>
+  </head>
+  <body>
+
+    <header class="vc-topbar" aria-label="Component catalog navigation">
+      <div class="vc-topbar__inner">
+        <a href="index.html" class="vc-brand">Velora Components</a>
+        <nav class="vc-topbar__links" aria-label="Quick navigation">
+          <a href="#standalone" class="vc-topbar__link">Standalone</a>
+          <a href="#playground" class="vc-topbar__link">Playground Pages</a>
+          <a href="#shells" class="vc-topbar__link">App Shells</a>
+        </nav>
+        <a href="../../../apps/playground/index.html" class="vc-topbar__cta">Open Playground →</a>
+      </div>
+    </header>
+
+    <div class="vc-hero">
+      <p class="vc-hero__kicker">CSS-native · Zero JavaScript · OKLCH Tokens</p>
+      <h1 class="vc-hero__title">Velora Component Catalog</h1>
+      <p class="vc-hero__desc">Every component is a standalone HTML file built with <code>@velora/css</code> — no frameworks, no JavaScript, no external dependencies.</p>
+      <div class="vc-hero__stats">
+        <div class="vc-stat"><span class="vc-stat__num">37</span><span class="vc-stat__label">Playground pages</span></div>
+        <div class="vc-stat"><span class="vc-stat__num">28</span><span class="vc-stat__label">Component variants</span></div>
+        <div class="vc-stat"><span class="vc-stat__num">0</span><span class="vc-stat__label">JavaScript required</span></div>
+      </div>
+    </div>
+
+    <main class="vc-main">
+
+      <!-- ── Standalone Components ──────────────────────────────────── -->
+      <div id="standalone"></div>
+
+      <!-- Navigation -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Navigation</h2>
+          <span class="vc-section__count">1 component</span>
+        </div>
+        <div class="vc-grid">
+          <a href="navbar/navbar16.html" class="vc-card">
+            <div class="vc-card__preview">☰</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Navbar 16</div>
+              <div class="vc-card__desc">Full-screen overlay menu with hamburger animation + social links</div>
+              <div class="vc-card__tags">
+                <span class="vc-tag vc-tag--css">:has()</span>
+                <span class="vc-tag vc-tag--html">checkbox toggle</span>
+                <span class="vc-tag vc-tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Hero / Headers -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Hero / Headers</h2>
+          <span class="vc-section__count">1 component</span>
+        </div>
+        <div class="vc-grid">
+          <a href="hero/header1.html" class="vc-card">
+            <div class="vc-card__preview">✦</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Header 1</div>
+              <div class="vc-card__desc">Centered hero with tagline, heading, body and CTA buttons</div>
+              <div class="vc-card__tags">
+                <span class="vc-tag vc-tag--css">@starting-style</span>
+                <span class="vc-tag vc-tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Banners -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Banners</h2>
+          <span class="vc-section__count">6 components</span>
+        </div>
+        <div class="vc-grid">
+          <a href="banner/banner11.html" class="vc-card">
+            <div class="vc-card__preview">B11</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Banner 11</div>
+              <div class="vc-card__desc">Off-grid editorial banner with a right-side proof rail</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">off-grid</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="banner/banner12.html" class="vc-card">
+            <div class="vc-card__preview">B12</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Banner 12</div>
+              <div class="vc-card__desc">Split-stage banner with stacked signal and metric cards</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">split layout</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="banner/banner13.html" class="vc-card">
+            <div class="vc-card__preview">B13</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Banner 13</div>
+              <div class="vc-card__desc">Centered launch banner with a bento-style proof grid</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">bento</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="banner/banner14.html" class="vc-card">
+            <div class="vc-card__preview">B14</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Banner 14</div>
+              <div class="vc-card__desc">Layered announcement banner with compact right-column stack</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">announcement</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="banner/banner15.html" class="vc-card">
+            <div class="vc-card__preview">B15</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Banner 15</div>
+              <div class="vc-card__desc">Stacked control panels with layered depth and launch sequencing</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">depth</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="banner/banner16.html" class="vc-card">
+            <div class="vc-card__preview">B16</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Banner 16</div>
+              <div class="vc-card__desc">Centered banner with orbit chips and a bottom timeline rail</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">timeline</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Features / Layout -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Features / Layout</h2>
+          <span class="vc-section__count">2 components</span>
+        </div>
+        <div class="vc-grid">
+          <a href="features/layout-grid.html" class="vc-card">
+            <div class="vc-card__preview">▦</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Layout — Feature Grid</div>
+              <div class="vc-card__desc">4-column feature cards with icons and descriptions</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">CSS Grid</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="features/layout-bordered.html" class="vc-card">
+            <div class="vc-card__preview">▤</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Layout — Bordered</div>
+              <div class="vc-card__desc">2-column bordered feature layout with dividers</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">CSS Grid</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Blog -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Blog</h2>
+          <span class="vc-section__count">4 components</span>
+        </div>
+        <div class="vc-grid">
+          <a href="blog/blog1.html" class="vc-card">
+            <div class="vc-card__preview">✍</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Blog 1</div>
+              <div class="vc-card__desc">Editorial split header with lead visual panel</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">editorial</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="blog/blog2.html" class="vc-card">
+            <div class="vc-card__preview">✍</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Blog 2</div>
+              <div class="vc-card__desc">Centered article header with framed media block</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">centered</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="blog/blog3.html" class="vc-card">
+            <div class="vc-card__preview">✍</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Blog 3</div>
+              <div class="vc-card__desc">Magazine-style split article opener with quote panel</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">magazine</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+          <a href="blog/blog4.html" class="vc-card">
+            <div class="vc-card__preview">✍</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Blog 4</div>
+              <div class="vc-card__desc">Feature editorial grid with lead story and related cards</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">feature grid</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Accordion / FAQ -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Accordion / FAQ</h2>
+          <span class="vc-section__count">1 component</span>
+        </div>
+        <div class="vc-grid">
+          <a href="accordion/faq.html" class="vc-card">
+            <div class="vc-card__preview">◿</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">FAQ 1</div>
+              <div class="vc-card__desc">Exclusive accordion — one item open at a time, animated height</div>
+              <div class="vc-card__tags">
+                <span class="vc-tag vc-tag--html">&lt;details&gt;</span>
+                <span class="vc-tag vc-tag--css">::details-content</span>
+                <span class="vc-tag vc-tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Footer</h2>
+          <span class="vc-section__count">1 component</span>
+        </div>
+        <div class="vc-grid">
+          <a href="footer/footer5.html" class="vc-card">
+            <div class="vc-card__preview">▬</div>
+            <div class="vc-card__body">
+              <div class="vc-card__name">Footer 5</div>
+              <div class="vc-card__desc">Multi-column footer with logo, nav links and social icons</div>
+              <div class="vc-card__tags"><span class="vc-tag vc-tag--css">CSS Grid</span><span class="vc-tag vc-tag--zero">zero JS</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Application Shells ──────────────────────────────────────── -->
+      <div id="shells"></div>
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Application Shells</h2>
+          <span class="vc-section__count">8 variants</span>
+        </div>
+        <div class="vc-grid">
+          <a href="application-shell/application-shell1.html" class="vc-card">
+            <div class="vc-card__preview">AS1</div>
+            <div class="vc-card__body"><div class="vc-card__name">Analytics Shell</div><div class="vc-card__desc">Sidebar analytics shell with KPI cards and workspace panels</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">sidebar</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell2.html" class="vc-card">
+            <div class="vc-card__preview">AS2</div>
+            <div class="vc-card__body"><div class="vc-card__name">Command Center</div><div class="vc-card__desc">Command center shell with filter chips and three-column data layout</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">top nav</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell3.html" class="vc-card">
+            <div class="vc-card__preview">AS3</div>
+            <div class="vc-card__body"><div class="vc-card__name">Split Workspace</div><div class="vc-card__desc">Split workspace shell with queue, canvas, and inspector panes</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">split view</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell4.html" class="vc-card">
+            <div class="vc-card__preview">AS4</div>
+            <div class="vc-card__body"><div class="vc-card__name">Executive Report</div><div class="vc-card__desc">Executive report shell with summary cards and narrative panel</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">reporting</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell5.html" class="vc-card">
+            <div class="vc-card__preview">AS5</div>
+            <div class="vc-card__body"><div class="vc-card__name">Operations Board</div><div class="vc-card__desc">Operations board shell with multi-column workflow lanes</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">board</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell6.html" class="vc-card">
+            <div class="vc-card__preview">AS6</div>
+            <div class="vc-card__body"><div class="vc-card__name">Media Workspace</div><div class="vc-card__desc">Media workspace shell with preview canvas and asset library</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">media</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell7.html" class="vc-card">
+            <div class="vc-card__preview">AS7</div>
+            <div class="vc-card__body"><div class="vc-card__name">CRM Pipeline</div><div class="vc-card__desc">CRM shell with opportunity ribbon and pipeline table</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">crm</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="application-shell/application-shell8.html" class="vc-card">
+            <div class="vc-card__preview">AS8</div>
+            <div class="vc-card__body"><div class="vc-card__name">Support Inbox</div><div class="vc-card__desc">Support shell with inbox list and conversation thread</div><div class="vc-card__tags"><span class="vc-tag vc-tag--css">support</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Playground Pages ───────────────────────────────────────── -->
+      <div id="playground"></div>
+
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Playground — Scenes</h2>
+          <span class="vc-section__count">4 pages</span>
+        </div>
+        <div class="vc-grid">
+          <a href="../../../apps/playground/scene-hero.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◉</div>
+            <div class="vc-card__body"><div class="vc-card__name">Scene — Hero Reveal</div><div class="vc-card__desc">Cinematic hero with scroll-driven entrance and depth layers</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">scene</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/scene-features.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◈</div>
+            <div class="vc-card__body"><div class="vc-card__name">Scene — Feature Flow</div><div class="vc-card__desc">Staggered feature cards with scroll-sequenced reveals</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">scene</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/scene-story.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◆</div>
+            <div class="vc-card__body"><div class="vc-card__name">Scene — Story Pin</div><div class="vc-card__desc">Scroll-driven sticky narrative with 3 distinct motion characters</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">scene</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/scroll-reveal.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">↕</div>
+            <div class="vc-card__body"><div class="vc-card__name">Scroll Reveal</div><div class="vc-card__desc">Full showcase of scroll-driven animation techniques</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">showcase</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Playground — Motion</h2>
+          <span class="vc-section__count">6 pages</span>
+        </div>
+        <div class="vc-grid">
+          <a href="../../../apps/playground/motion-principles.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◐</div>
+            <div class="vc-card__body"><div class="vc-card__name">Motion Principles</div><div class="vc-card__desc">Philosophical and technical foundation for animation in Velora</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/kinetic-motion.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">→</div>
+            <div class="vc-card__body"><div class="vc-card__name">Kinetic Motion</div><div class="vc-card__desc">Cinematic easing curves, scroll sequencing, MPA view transitions</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/scale-shift.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⬡</div>
+            <div class="vc-card__body"><div class="vc-card__name">Scale Shift</div><div class="vc-card__desc">Micro-scale transforms giving buttons and cards physical presence</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/interactions.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⟳</div>
+            <div class="vc-card__body"><div class="vc-card__name">Interactions</div><div class="vc-card__desc">Actuator response, temporal feedback, system messaging patterns</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/kinetic-cards.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">▣</div>
+            <div class="vc-card__body"><div class="vc-card__name">Kinetic Cards</div><div class="vc-card__desc">Cards that carry motion — glass, bordered, and bento variants</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/3d-explorer.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⬡</div>
+            <div class="vc-card__body"><div class="vc-card__name">3D Explorer</div><div class="vc-card__desc">CSS 3D transform system with isometric grid and live vector panels</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Playground — Color &amp; Tokens</h2>
+          <span class="vc-section__count">6 pages</span>
+        </div>
+        <div class="vc-grid">
+          <a href="../../../apps/playground/color-system.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview" style="background: linear-gradient(135deg, oklch(65% 0.18 140), oklch(45% 0.12 140));">⬤</div>
+            <div class="vc-card__body"><div class="vc-card__name">Color System</div><div class="vc-card__desc">Kinetic Green, Cream, Noir — semantic tiers in OKLCH</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/color-palette.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◩</div>
+            <div class="vc-card__body"><div class="vc-card__name">Color Palette</div><div class="vc-card__desc">Full tonal scales C_100→C_900 and S_000→S_600</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/tonal-stacking.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⧉</div>
+            <div class="vc-card__body"><div class="vc-card__name">Tonal Stacking</div><div class="vc-card__desc">3D isometric stack, elevation formula, depth spec</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/tonal-tiers.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">▤</div>
+            <div class="vc-card__body"><div class="vc-card__name">Tonal Tiers</div><div class="vc-card__desc">ΔL depth formula, background token reference, correlation scale</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/token-spotlight.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◎</div>
+            <div class="vc-card__body"><div class="vc-card__name">Token Spotlight</div><div class="vc-card__desc">Deep-dive into Surface Noir — the cinematic darkness foundation</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/ambient-shadows.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◌</div>
+            <div class="vc-card__body"><div class="vc-card__name">Ambient Shadows</div><div class="vc-card__desc">Elevation shadow scale S/00–S/04 with colored OKLCH shadows</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Playground — Typography &amp; Components</h2>
+          <span class="vc-section__count">9 pages</span>
+        </div>
+        <div class="vc-grid">
+          <a href="../../../apps/playground/typography.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">Aa</div>
+            <div class="vc-card__body"><div class="vc-card__name">Typography</div><div class="vc-card__desc">Manrope, Space Grotesk, JetBrains Mono specimens</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">type</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/typography-composition.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">Aa</div>
+            <div class="vc-card__body"><div class="vc-card__name">Type Composition</div><div class="vc-card__desc">Editorial hierarchy, animated clip-rise type, bento patterns</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/typography-spec.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">Aa</div>
+            <div class="vc-card__body"><div class="vc-card__name">Typography Spec</div><div class="vc-card__desc">Display scales, line-height, letter-spacing, weight reference</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/gallery.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⊞</div>
+            <div class="vc-card__body"><div class="vc-card__name">Component Gallery</div><div class="vc-card__desc">Full library of Velora components — cards, badges, CTAs</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">library</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/component-lab.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⚗</div>
+            <div class="vc-card__body"><div class="vc-card__name">Component Lab</div><div class="vc-card__desc">Button states, card variants, badge system, navigation patterns</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/buttons.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⬭</div>
+            <div class="vc-card__body"><div class="vc-card__name">Buttons / Actuators</div><div class="vc-card__desc">Every button variant, state, and interaction</div><div class="vc-card__tags"><span class="vc-tag vc-tag--page">ui</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/forms.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⊟</div>
+            <div class="vc-card__body"><div class="vc-card__name">Form Elements</div><div class="vc-card__desc">Inputs, selects, checkboxes, toggles, range sliders</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/icons.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◈</div>
+            <div class="vc-card__body"><div class="vc-card__name">Icon System</div><div class="vc-card__desc">CSS icon primitives, Unicode symbol grid, SVG usage patterns</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/3d-rotation.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⬡</div>
+            <div class="vc-card__body"><div class="vc-card__name">3D Rotation</div><div class="vc-card__desc">Perspective playground, CSS card flip, animated cube</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="vc-section">
+        <div class="vc-section__header">
+          <h2 class="vc-section__title">Playground — Architecture &amp; Tools</h2>
+          <span class="vc-section__count">6 pages</span>
+        </div>
+        <div class="vc-grid">
+          <a href="../../../apps/playground/system-modules.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⊛</div>
+            <div class="vc-card__body"><div class="vc-card__name">System Modules</div><div class="vc-card__desc">Framework layer architecture — tokens, motion, structures</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/architecture.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⊞</div>
+            <div class="vc-card__body"><div class="vc-card__name">Architecture</div><div class="vc-card__desc">Tonal stack, cascade layers, MPA view transition design</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/brand-voice.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">✦</div>
+            <div class="vc-card__body"><div class="vc-card__name">Brand Voice</div><div class="vc-card__desc">Personality traits, do/don't vocabulary, editorial phrasing</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/accessibility.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◎</div>
+            <div class="vc-card__body"><div class="vc-card__name">Accessibility</div><div class="vc-card__desc">WCAG standards, reduced-motion, keyboard focus, ARIA</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+          <a href="../../../apps/playground/contrast-tool.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">◑</div>
+            <div class="vc-card__body"><div class="vc-card__name">Contrast Tool</div><div class="vc-card__desc">Live WCAG contrast checker with color pickers and AA/AAA pass/fail</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--html">interactive</span></div></div>
+          </a>
+          <a href="../../../apps/playground/component-wizard.html" class="vc-card vc-card--page">
+            <div class="vc-card__preview">⚙</div>
+            <div class="vc-card__body"><div class="vc-card__name">Component Wizard</div><div class="vc-card__desc">JSON schema, prop tables, variant matrix, usage examples</div><div class="vc-card__tags"><span class="vc-tag vc-tag--new">new</span><span class="vc-tag vc-tag--zero">zero JS</span></div></div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora — Component Catalog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/src/velora.css" />
+
+    <style>
+      /* ── Catalog card ── */
+      .catalog-card {
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--vl-radius-md);
+        border: 1px solid var(--vl-border-subtle);
+        text-decoration: none;
+        color: var(--vl-text-primary);
+        transition: border-color var(--vl-transition-fast), background var(--vl-transition-fast);
+        overflow: hidden;
+      }
+      .catalog-card:hover {
+        border-color: var(--vl-border-strong);
+        background: var(--vl-bg-surface);
+      }
+      .catalog-card__preview {
+        height: 180px;
+        overflow: hidden;
+        border-bottom: 1px solid var(--vl-border-subtle);
+        background: var(--vl-bg-surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+      }
+      .catalog-card__body { padding: var(--vl-space-md) 1.25rem; }
+      .catalog-card__name { font-weight: var(--vl-font-weight-bold); font-size: var(--vl-font-size-md); }
+      .catalog-card__desc { font-size: var(--vl-font-size-sm); color: var(--vl-text-muted); margin-top: var(--vl-space-xs); }
+      .catalog-card__tags { display: flex; gap: 0.375rem; margin-top: var(--vl-space-sm); flex-wrap: wrap; }
+      .tag {
+        font-size: var(--vl-font-size-xs);
+        font-weight: var(--vl-font-weight-semibold);
+        letter-spacing: var(--vl-tracking-wide);
+        text-transform: uppercase;
+        padding: 0.125rem 0.5rem;
+        border: 1px solid currentColor;
+        border-radius: var(--vl-radius-sm);
+      }
+      .tag--css     { color: oklch(60% 0.18 265); }
+      .tag--zero    { color: oklch(60% 0.15 145); }
+      .tag--details { color: oklch(60% 0.18 305); }
+
+      /* ── Catalog section label ── */
+      .catalog-section-label {
+        font-size: var(--vl-font-size-xs);
+        font-weight: var(--vl-font-weight-bold);
+        letter-spacing: var(--vl-tracking-display);
+        text-transform: uppercase;
+        color: var(--vl-text-muted);
+        margin-bottom: var(--vl-space-md);
+        padding-bottom: var(--vl-space-xs);
+        border-bottom: 1px solid var(--vl-border-subtle);
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ── Top bar ── -->
+    <header style="border-bottom: 1px solid var(--vl-border-subtle); padding: var(--vl-space-md) var(--vl-space-lg); display: flex; align-items: center; justify-content: space-between;">
+      <strong style="font-size: var(--vl-font-size-lg); letter-spacing: var(--vl-tracking-tight); background: var(--vl-gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Velora Components</strong>
+      <span style="font-size: var(--vl-font-size-sm); color: var(--vl-text-muted);">CSS-native ports of Relume React components</span>
+    </header>
+
+    <main style="padding: var(--vl-space-xl) var(--vl-space-lg); max-width: 1200px; margin: 0 auto;">
+
+      <!-- ── Navbars ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Navbars</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="navbar/navbar16.html" class="catalog-card">
+            <div class="catalog-card__preview">☰</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Navbar 16</div>
+              <div class="catalog-card__desc">Full-screen overlay menu with hamburger animation + social links</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">:has()</span>
+                <span class="tag tag--css">checkbox toggle</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Application Shells ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Application Shells</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="application-shell/application-shell1.html" class="catalog-card">
+            <div class="catalog-card__preview">AS1</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 1</div>
+              <div class="catalog-card__desc">Sidebar analytics shell with KPI cards and workspace panels</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">sidebar</span>
+                <span class="tag tag--css">analytics</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell2.html" class="catalog-card">
+            <div class="catalog-card__preview">AS2</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 2</div>
+              <div class="catalog-card__desc">Command center shell with filter chips and three-column data layout</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">top nav</span>
+                <span class="tag tag--css">command center</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell3.html" class="catalog-card">
+            <div class="catalog-card__preview">AS3</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 3</div>
+              <div class="catalog-card__desc">Split workspace shell with queue, canvas, and inspector panes</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">split view</span>
+                <span class="tag tag--css">workspace</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell4.html" class="catalog-card">
+            <div class="catalog-card__preview">AS4</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 4</div>
+              <div class="catalog-card__desc">Executive report shell with summary cards and narrative panel</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">reporting</span>
+                <span class="tag tag--css">summary</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell5.html" class="catalog-card">
+            <div class="catalog-card__preview">AS5</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 5</div>
+              <div class="catalog-card__desc">Operations board shell with multi-column workflow lanes</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">board</span>
+                <span class="tag tag--css">workflow</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell6.html" class="catalog-card">
+            <div class="catalog-card__preview">AS6</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 6</div>
+              <div class="catalog-card__desc">Media workspace shell with preview canvas and asset library</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">media</span>
+                <span class="tag tag--css">preview</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell7.html" class="catalog-card">
+            <div class="catalog-card__preview">AS7</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 7</div>
+              <div class="catalog-card__desc">CRM shell with opportunity ribbon and pipeline table</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">crm</span>
+                <span class="tag tag--css">pipeline</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="application-shell/application-shell8.html" class="catalog-card">
+            <div class="catalog-card__preview">AS8</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Application Shell 8</div>
+              <div class="catalog-card__desc">Support shell with inbox list and conversation thread</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">support</span>
+                <span class="tag tag--css">thread</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Blogs ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Blogs</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="blog/blog1.html" class="catalog-card">
+            <div class="catalog-card__preview">BG1</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Blog 1</div>
+              <div class="catalog-card__desc">Editorial split header with lead visual panel</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">editorial</span>
+                <span class="tag tag--css">split</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="blog/blog2.html" class="catalog-card">
+            <div class="catalog-card__preview">BG2</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Blog 2</div>
+              <div class="catalog-card__desc">Centered article header with framed media block</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">centered</span>
+                <span class="tag tag--css">media frame</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="blog/blog3.html" class="catalog-card">
+            <div class="catalog-card__preview">BG3</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Blog 3</div>
+              <div class="catalog-card__desc">Magazine-style split article opener with quote panel</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">magazine</span>
+                <span class="tag tag--css">quote block</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="blog/blog4.html" class="catalog-card">
+            <div class="catalog-card__preview">BG4</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Blog 4</div>
+              <div class="catalog-card__desc">Feature editorial grid with lead story and related cards</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">feature</span>
+                <span class="tag tag--css">grid</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- -- Banners -- -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Banners</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="banner/banner11.html" class="catalog-card">
+            <div class="catalog-card__preview">B11</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Banner 11</div>
+              <div class="catalog-card__desc">Off-grid editorial banner with a right-side proof rail</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">off-grid</span>
+                <span class="tag tag--css">glass cards</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="banner/banner12.html" class="catalog-card">
+            <div class="catalog-card__preview">B12</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Banner 12</div>
+              <div class="catalog-card__desc">Split-stage banner with stacked signal and metric cards</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">split layout</span>
+                <span class="tag tag--css">proof stack</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="banner/banner13.html" class="catalog-card">
+            <div class="catalog-card__preview">B13</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Banner 13</div>
+              <div class="catalog-card__desc">Centered launch banner with a bento-style proof grid</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">bento</span>
+                <span class="tag tag--css">aurora card</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="banner/banner14.html" class="catalog-card">
+            <div class="catalog-card__preview">B14</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Banner 14</div>
+              <div class="catalog-card__desc">Layered announcement banner with a compact right-column stack</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">announcement</span>
+                <span class="tag tag--css">layered panel</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="banner/banner15.html" class="catalog-card">
+            <div class="catalog-card__preview">B15</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Banner 15</div>
+              <div class="catalog-card__desc">Stacked control panels with layered depth and launch sequencing</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">stacked cards</span>
+                <span class="tag tag--css">depth</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="banner/banner16.html" class="catalog-card">
+            <div class="catalog-card__preview">B16</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Banner 16</div>
+              <div class="catalog-card__desc">Centered banner with orbit chips and a bottom timeline rail</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">floating chips</span>
+                <span class="tag tag--css">timeline</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Hero / Headers ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Hero / Headers</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="hero/header1.html" class="catalog-card">
+            <div class="catalog-card__preview">✦</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Header 1</div>
+              <div class="catalog-card__desc">Centered hero with tagline, heading, body and CTA buttons</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">@starting-style</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Features / Layout ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Features / Layout</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="features/layout-grid.html" class="catalog-card">
+            <div class="catalog-card__preview">▦</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Layout — Feature Grid</div>
+              <div class="catalog-card__desc">4-column feature cards with icons and descriptions</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">CSS Grid</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+          <a href="features/layout-bordered.html" class="catalog-card">
+            <div class="catalog-card__preview">▤</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Layout — Bordered</div>
+              <div class="catalog-card__desc">2-column bordered feature layout (Layout 358)</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">CSS Grid</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Accordion / FAQ ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Accordion / FAQ</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="accordion/faq.html" class="catalog-card">
+            <div class="catalog-card__preview">◿</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">FAQ 1</div>
+              <div class="catalog-card__desc">Exclusive accordion — one item open at a time, animated height</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--details">&lt;details&gt;</span>
+                <span class="tag tag--css">::details-content</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── Footer ── -->
+      <section style="margin-bottom: 3rem;">
+        <h2 class="catalog-section-label">Footer</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          <a href="footer/footer5.html" class="catalog-card">
+            <div class="catalog-card__preview">▬</div>
+            <div class="catalog-card__body">
+              <div class="catalog-card__name">Footer 5</div>
+              <div class="catalog-card__desc">Multi-column footer with logo, nav links and social icons</div>
+              <div class="catalog-card__tags">
+                <span class="tag tag--css">CSS Grid</span>
+                <span class="tag tag--zero">zero JS</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>

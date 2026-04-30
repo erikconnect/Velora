@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Banner 12 (Split stage with signal cards)
+  CSS approach:
+    * full-height split layout with stacked proof cards
+    * uses Velora cards and tokens for a clean uncommon hero/banner hybrid
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Banner 12</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bn12 {
+        min-height: 100vh;
+        background:
+          linear-gradient(130deg, oklch(16% 0.03 240), oklch(11% 0.02 255) 52%, oklch(14% 0.04 180)),
+          var(--vl-bg-main);
+      }
+
+      .bn12__content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 78rem;
+        margin-inline: auto;
+        padding: max(var(--vl-space-xl), 6vh) var(--vl-container-gutter);
+        display: grid;
+        gap: var(--vl-space-lg);
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        align-items: center;
+      }
+
+      .bn12__copy {
+        display: grid;
+        gap: var(--vl-space-md);
+      }
+
+      .bn12__title {
+        margin: 0;
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(3rem, 6vw, 5.25rem);
+        line-height: 0.95;
+        letter-spacing: var(--vl-tracking-tight);
+      }
+
+      .bn12__lead {
+        margin: 0;
+        max-width: 34rem;
+        color: var(--vl-text-secondary);
+        font-size: var(--vl-font-size-lg);
+      }
+
+      .bn12__proof {
+        display: grid;
+        gap: var(--vl-space-md);
+      }
+
+      .bn12__proof-card {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(1.1rem, 2vw, 1.5rem);
+        border-radius: var(--vl-radius-2xl);
+        background: color-mix(in oklch, var(--vl-bg-surface) 82%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 10%, transparent);
+        box-shadow: 0 1rem 2.4rem oklch(5% 0.03 240 / 0.26);
+      }
+
+      .bn12__proof-card::before {
+        content: "";
+        position: absolute;
+        inset: auto -10% -40% 25%;
+        height: 8rem;
+        background: radial-gradient(circle, color-mix(in oklch, var(--vl-color-primary) 40%, transparent), transparent 68%);
+        filter: blur(18px);
+        opacity: 0.7;
+      }
+
+      .bn12__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--vl-space-xs);
+      }
+
+      .bn12__small {
+        margin: 0;
+        color: var(--vl-text-muted);
+        font-size: var(--vl-font-size-sm);
+      }
+
+      @media (max-width: 900px) {
+        .bn12__content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="vl-banner bn12">
+      <div class="vl-banner__scrim" aria-hidden="true"></div>
+      <div class="vl-banner__glow" aria-hidden="true"></div>
+
+      <div class="bn12__content">
+        <div class="bn12__copy" vl-children="stagger">
+          <p class="vl-kicker">Banner 12</p>
+          <h1 class="bn12__title">A banner that behaves like a command center.</h1>
+          <p class="bn12__lead">
+            Split the message and the proof into two coordinated zones so the page opens with structure instead of a generic headline block.
+          </p>
+          <div class="vl-cluster">
+            <a href="#" class="vl-cta">Open preview</a>
+            <a href="#" class="vl-cta vl-cta--ghost">Read the pattern</a>
+          </div>
+        </div>
+
+        <div class="bn12__proof">
+          <article class="bn12__proof-card">
+            <div class="bn12__meta">
+              <span class="vl-badge vl-badge--accent">Operations</span>
+              <span class="vl-badge">Realtime</span>
+            </div>
+            <h2 class="vl-card__title" style="margin-top: var(--vl-space-sm);">Routing launches across product, growth, and support.</h2>
+            <p class="vl-card__body">One hero can present the strategy, the trigger, and the owner without dropping into dashboard UI.</p>
+          </article>
+
+          <article class="bn12__proof-card">
+            <div class="bn12__small">Current rollout</div>
+            <div class="vl-grid vl-grid--3" style="margin-top: var(--vl-space-sm);">
+              <div class="vl-card">
+                <div class="vl-card__title">91%</div>
+                <div class="vl-card__body">handoff clarity</div>
+              </div>
+              <div class="vl-card">
+                <div class="vl-card__title">14</div>
+                <div class="vl-card__body">markets queued</div>
+              </div>
+              <div class="vl-card">
+                <div class="vl-card__title">4d</div>
+                <div class="vl-card__body">to publish</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

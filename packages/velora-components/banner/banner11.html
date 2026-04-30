@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Banner 11 (Off-grid editorial banner)
+  CSS approach:
+    * builds on .vl-banner base structure
+    * asymmetrical grid with frosted cards for the uncommon layout
+    * zero JS interactions; hover is handled with native CSS transitions
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Banner 11</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bn11 {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 20% 18%, oklch(72% 0.16 215 / 0.32), transparent 24%),
+          radial-gradient(circle at 82% 24%, oklch(76% 0.14 145 / 0.24), transparent 22%),
+          linear-gradient(180deg, oklch(16% 0.03 250), oklch(10% 0.02 250));
+      }
+
+      .bn11__mesh {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.28;
+        background-image:
+          linear-gradient(color-mix(in oklch, var(--vl-text-primary) 14%, transparent) 1px, transparent 1px),
+          linear-gradient(90deg, color-mix(in oklch, var(--vl-text-primary) 14%, transparent) 1px, transparent 1px);
+        background-size: clamp(3rem, 5vw, 4.5rem) clamp(3rem, 5vw, 4.5rem);
+        mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+      }
+
+      .bn11__content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 78rem;
+        margin-inline: auto;
+        padding: max(var(--vl-space-xl), 6vh) var(--vl-container-gutter);
+        display: grid;
+        gap: var(--vl-space-lg);
+        grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.85fr);
+        align-items: end;
+      }
+
+      .bn11__hero {
+        display: grid;
+        gap: var(--vl-space-md);
+        padding: clamp(1.5rem, 3vw, 2.25rem);
+        border-radius: var(--vl-radius-2xl);
+        background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 10%, transparent);
+        box-shadow: 0 1.25rem 3rem oklch(6% 0.04 250 / 0.38);
+        backdrop-filter: blur(18px);
+      }
+
+      .bn11__title {
+        margin: 0;
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(2.8rem, 6vw, 5.8rem);
+        line-height: 0.94;
+        letter-spacing: var(--vl-tracking-tight);
+        text-wrap: balance;
+      }
+
+      .bn11__lead {
+        max-width: 36rem;
+        margin: 0;
+        color: color-mix(in oklch, var(--vl-text-secondary) 92%, transparent);
+        font-size: var(--vl-font-size-lg);
+      }
+
+      .bn11__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--vl-space-sm);
+        align-items: center;
+      }
+
+      .bn11__rail {
+        display: grid;
+        gap: var(--vl-space-md);
+      }
+
+      .bn11__card {
+        padding: var(--vl-space-md);
+        border-radius: var(--vl-radius-xl);
+        background: color-mix(in oklch, var(--vl-bg-surface) 78%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 8%, transparent);
+        box-shadow: 0 0.8rem 2rem oklch(6% 0.03 250 / 0.24);
+        backdrop-filter: blur(14px);
+      }
+
+      .bn11__metric {
+        margin: 0 0 var(--vl-space-xs);
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1;
+      }
+
+      .bn11__eyebrow {
+        font-size: var(--vl-font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: var(--vl-tracking-display);
+        color: var(--vl-text-muted);
+      }
+
+      .bn11__list {
+        display: grid;
+        gap: var(--vl-space-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .bn11__list li {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--vl-space-md);
+        padding-top: var(--vl-space-sm);
+        border-top: 1px solid color-mix(in oklch, var(--vl-text-primary) 8%, transparent);
+      }
+
+      @media (max-width: 900px) {
+        .bn11__content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="vl-banner vl-banner--mesh bn11">
+      <div class="bn11__mesh" aria-hidden="true"></div>
+      <div class="vl-banner__scrim" aria-hidden="true"></div>
+      <div class="vl-banner__glow" aria-hidden="true"></div>
+
+      <div class="bn11__content">
+        <div class="bn11__hero" vl-children="stagger">
+          <p class="vl-kicker vl-kicker--pulse">Banner 11</p>
+          <h1 class="bn11__title vl-text-gradient">Off-grid launches that still feel ordered.</h1>
+          <p class="bn11__lead">
+            Build a high-signal campaign banner with editorial asymmetry, dense messaging, and a conversion rail that keeps the page anchored.
+          </p>
+          <div class="bn11__actions">
+            <a href="#" class="vl-cta">Launch campaign</a>
+            <a href="#" class="vl-cta vl-cta--ghost">See layout system</a>
+          </div>
+        </div>
+
+        <aside class="bn11__rail">
+          <div class="bn11__card">
+            <div class="bn11__eyebrow">Deployment lift</div>
+            <p class="bn11__metric">2.4x</p>
+            <p style="margin: 0; color: var(--vl-text-secondary);">Teams use the right rail to highlight one decisive number instead of burying proof below the fold.</p>
+          </div>
+
+          <div class="bn11__card">
+            <div class="bn11__eyebrow">Live blocks</div>
+            <ul class="bn11__list">
+              <li><span>Signal-led copy</span><strong>Ready</strong></li>
+              <li><span>Proof modules</span><strong>3 variants</strong></li>
+              <li><span>CTA hierarchy</span><strong>Dual path</strong></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </body>
+</html>

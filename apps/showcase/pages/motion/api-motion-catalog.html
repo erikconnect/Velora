@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-editorial-theme="noir" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Catalogo vivo com todos os efeitos e modos da API de Motion da Velora em uma unica pagina." />
+    <title>Motion API Catalog | Velora</title>
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <style>
+      @view-transition { navigation: auto; }
+      .api-shell { max-width: min(1280px, calc(100vw - 3rem)); margin: 0 auto; padding: 7rem 0 4rem; }
+      .api-title { margin: 0 0 0.6rem; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 0.95; letter-spacing: -0.04em; }
+      .api-sub { margin: 0; color: var(--vl-text-secondary); max-width: 74ch; }
+      .api-controls { margin-top: 1rem; padding: 0.8rem; border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent); border-radius: 12px; background: color-mix(in oklch, var(--vl-bg-surface-elevated) 70%, transparent); display: grid; gap: 0.75rem; }
+      .api-controls-head { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; font-size: 0.78rem; color: var(--vl-text-secondary); }
+      .api-controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; }
+      .api-control { display: grid; gap: 0.35rem; }
+      .api-control label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--vl-text-muted); }
+      .api-control input[type="range"] { width: 100%; }
+      .api-selected { font-family: var(--vl-font-family-mono); font-size: 0.72rem; color: var(--vl-text-primary); }
+      .api-section { margin-top: 2.2rem; }
+      .api-section h2 { margin: 0 0 0.9rem; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--vl-text-muted); }
+      .api-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
+      .api-card { min-height: 156px; border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent); background: color-mix(in oklch, var(--vl-bg-surface-elevated) 78%, transparent); border-radius: 14px; padding: 0.9rem; display: grid; gap: 0.7rem; align-content: start; overflow: clip; }
+      .api-card.is-selected { border-color: color-mix(in oklch, var(--vl-color-primary) 55%, var(--vl-border-subtle)); box-shadow: 0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 35%, transparent); }
+      .api-card strong { font-family: var(--vl-font-family-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--vl-text-muted); text-transform: uppercase; }
+      .api-target { min-height: 84px; border-radius: 10px; background: color-mix(in oklch, var(--vl-bg-main) 80%, transparent); border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent); display: grid; place-items: center; text-align: center; padding: 0.65rem; font-size: 0.84rem; }
+      .api-target-inline { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; }
+      .api-chip-row { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+      .api-chip { border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent); background: color-mix(in oklch, var(--vl-bg-main) 86%, transparent); border-radius: 999px; padding: 0.25rem 0.55rem; font-size: 0.68rem; font-family: var(--vl-font-family-mono); }
+      .api-scroll-track { display: flex; gap: 0.65rem; width: max-content; }
+      .api-scroll-track .api-chip { min-width: 120px; text-align: center; }
+      .api-children > * { min-height: 36px; border-radius: 8px; display: grid; place-items: center; background: color-mix(in oklch, var(--vl-color-primary) 10%, transparent); border: 1px solid color-mix(in oklch, var(--vl-color-primary) 36%, transparent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+      .api-typewriter { --vl-type-chars: 30ch; --vl-type-steps: 30; }
+      .api-hover .api-target { cursor: pointer; }
+      .api-footer { margin-top: 2rem; color: var(--vl-text-muted); font-size: 0.8rem; }
+
+      /* Para facilitar inspeção: demos com timeline de view/scroll rodam como auto dentro do catalogo. */
+      .api-card .api-target[vl-timeline="view"],
+      .api-card .api-target[vl-timeline="scroll"] {
+        animation-timeline: auto !important;
+        animation-range: normal !important;
+      }
+
+      .api-card .api-target[vl-effect="rotate-scroll"],
+      .api-card .api-target[vl-effect="wipe-reveal"],
+      .api-card .api-target[vl-effect="depth-push"],
+      .api-card .api-scroll-track[vl-effect="scroll-marquee"] {
+        animation-duration: 1400ms !important;
+      }
+
+      .api-card .api-target[vl-effect="shimmer-text"] {
+        background: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
+    <main id="content" class="api-shell">
+      <h1 class="api-title" vl-effect="clip-rise" vl-timeline="view">Velora Motion API Catalog</h1>
+      <p class="api-sub" vl-effect="fade-up" vl-timeline="view">
+        Pagina unica para validar visualmente todos os efeitos e modos declarativos da API de Motion. Cada card mostra o atributo exato
+        (`vl-effect`, `vl-children`, `vl-range`, `vl-speed`, `vl-once`) ja em funcionamento.
+      </p>
+      <section class="api-controls" aria-label="Animation controls">
+        <div class="api-controls-head">
+          <span>Clique em um card para selecionar. Hover/focus no card para replay.</span>
+          <span class="api-selected" id="api-selected-card">Selecionado: nenhum</span>
+        </div>
+        <div class="api-controls-grid">
+          <div class="api-control">
+            <label for="api-delay-range">Replay delay</label>
+            <input id="api-delay-range" type="range" min="0" max="2000" step="50" value="0" />
+            <span class="api-selected" id="api-delay-value">0ms</span>
+          </div>
+          <div class="api-control">
+            <label for="api-speed-range">Playback speed</label>
+            <input id="api-speed-range" type="range" min="0.25" max="3" step="0.05" value="1" />
+            <span class="api-selected" id="api-speed-value">1.00x</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Core Entrances</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>fade-in</strong><div class="api-target" vl-effect="fade-in" vl-timeline="view">Fade In</div></article>
+          <article class="api-card"><strong>fade-up</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view">Fade Up</div></article>
+          <article class="api-card"><strong>fade-down</strong><div class="api-target" vl-effect="fade-down" vl-timeline="view">Fade Down</div></article>
+          <article class="api-card"><strong>slide-left</strong><div class="api-target" vl-effect="slide-left" vl-timeline="view">Slide Left</div></article>
+          <article class="api-card"><strong>slide-right</strong><div class="api-target" vl-effect="slide-right" vl-timeline="view">Slide Right</div></article>
+          <article class="api-card"><strong>scale-in</strong><div class="api-target" vl-effect="scale-in" vl-timeline="view">Scale In</div></article>
+          <article class="api-card"><strong>blur-in</strong><div class="api-target" vl-effect="blur-in" vl-timeline="view">Blur In</div></article>
+          <article class="api-card"><strong>reveal-3d</strong><div class="api-target" vl-effect="reveal-3d" vl-timeline="view">Reveal 3D</div></article>
+          <article class="api-card"><strong>flow-in</strong><div class="api-target" vl-effect="flow-in" vl-timeline="view">Flow In</div></article>
+          <article class="api-card"><strong>clip-rise</strong><div class="api-target" vl-effect="clip-rise" vl-timeline="view">Clip Rise</div></article>
+          <article class="api-card"><strong>tilt-in</strong><div class="api-target" vl-effect="tilt-in" vl-timeline="view">Tilt In</div></article>
+          <article class="api-card"><strong>elastic-in</strong><div class="api-target" vl-effect="elastic-in" vl-timeline="view">Elastic In</div></article>
+        </div>
+      </section>
+
+      <section class="api-section api-hover">
+        <h2>Hover / Interaction</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>hover-lift</strong><div class="api-target" vl-effect="hover-lift">Passe o mouse</div></article>
+          <article class="api-card"><strong>hover-glow</strong><div class="api-target" vl-effect="hover-glow">Passe o mouse</div></article>
+          <article class="api-card"><strong>underline-expand</strong><a class="api-target api-target-inline" href="#" vl-effect="underline-expand">Underline Expand</a></article>
+          <article class="api-card"><strong>icon-shift</strong><a class="api-target api-target-inline" href="#" vl-effect="icon-shift">Icon Shift <span>→</span></a></article>
+          <article class="api-card"><strong>hover-tilt-3d</strong><div class="api-target" vl-effect="hover-tilt-3d">Tilt 3D</div></article>
+          <article class="api-card"><strong>hover-depth-stack</strong><div class="api-target" vl-effect="hover-depth-stack">Depth Stack</div></article>
+          <article class="api-card"><strong>hover-spotlight</strong><div class="api-target" vl-effect="hover-spotlight">Spotlight</div></article>
+          <article class="api-card"><strong>hover-card-stack</strong><div class="api-target" vl-effect="hover-card-stack"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>hover-shell-lift</strong><div class="api-target" vl-effect="hover-shell-lift">Shell Lift</div></article>
+          <article class="api-card"><strong>spotlight</strong><div class="api-target" vl-effect="spotlight">Extended Spotlight</div></article>
+          <article class="api-card"><strong>press</strong><button class="api-target api-target-inline" type="button" vl-effect="press">Press</button></article>
+          <article class="api-card"><strong>hover-prism</strong><div class="api-target" vl-effect="hover-prism">Hover Prism</div></article>
+          <article class="api-card"><strong>hover-depth-press</strong><button class="api-target api-target-inline" type="button" vl-effect="hover-depth-press">Hover Depth Press</button></article>
+          <article class="api-card"><strong>border-beam</strong><div class="api-target" vl-effect="border-beam">Border Beam</div></article>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Text Effects</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>text-reveal</strong><div class="api-target" vl-effect="text-reveal" vl-timeline="view">Text Reveal</div></article>
+          <article class="api-card"><strong>text-reveal-up</strong><div class="api-target" vl-effect="text-reveal-up" vl-timeline="view">Text Reveal Up</div></article>
+          <article class="api-card"><strong>text-reveal-down</strong><div class="api-target" vl-effect="text-reveal-down" vl-timeline="view">Text Reveal Down</div></article>
+          <article class="api-card"><strong>text-line-reveal</strong><div class="api-target" vl-effect="text-line-reveal" vl-timeline="view">Line Reveal</div></article>
+          <article class="api-card"><strong>text-word-rise</strong><div class="api-target" vl-effect="text-word-rise" vl-timeline="view">Word Rise</div></article>
+          <article class="api-card"><strong>typewriter</strong><div class="api-target api-typewriter" vl-effect="typewriter">Typewriter completo funcionando</div></article>
+          <article class="api-card"><strong>typewriter-soft</strong><div class="api-target api-typewriter" vl-effect="typewriter-soft">Typewriter soft completo</div></article>
+          <article class="api-card"><strong>shimmer-text</strong><div class="api-target"><span vl-effect="shimmer-text">Shimmer Text</span></div></article>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Ambient / Continuous</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>shimmer</strong><div class="api-target" vl-effect="shimmer">Shimmer</div></article>
+          <article class="api-card"><strong>float</strong><div class="api-target" vl-effect="float">Float</div></article>
+          <article class="api-card"><strong>glow-breathe</strong><div class="api-target" vl-effect="glow-breathe">Glow Breathe</div></article>
+          <article class="api-card"><strong>wobble</strong><div class="api-target" vl-effect="wobble">Wobble</div></article>
+          <article class="api-card"><strong>orbit</strong><div class="api-target" vl-effect="orbit">Orbit</div></article>
+          <article class="api-card"><strong>rock</strong><div class="api-target" vl-effect="rock">Rock</div></article>
+          <article class="api-card"><strong>morph</strong><div class="api-target" vl-effect="morph">Morph</div></article>
+          <article class="api-card"><strong>pulse-ring</strong><div class="api-target" vl-effect="pulse-ring">Pulse Ring</div></article>
+          <article class="api-card"><strong>spin-slow</strong><div class="api-target" vl-effect="spin-slow">Spin Slow</div></article>
+          <article class="api-card"><strong>pendulum</strong><div class="api-target" vl-effect="pendulum">Pendulum</div></article>
+          <article class="api-card"><strong>breathe</strong><div class="api-target" vl-effect="breathe">Breathe</div></article>
+          <article class="api-card"><strong>drift</strong><div class="api-target" vl-effect="drift">Drift</div></article>
+          <article class="api-card"><strong>bounce</strong><div class="api-target" vl-effect="bounce">Bounce</div></article>
+          <article class="api-card"><strong>aurora</strong><div class="api-target" vl-effect="aurora">Aurora</div></article>
+          <article class="api-card"><strong>gradient-slide</strong><div class="api-target" vl-effect="gradient-slide">Gradient Slide</div></article>
+          <article class="api-card"><strong>mesh-pan</strong><div class="api-target" vl-effect="mesh-pan">Mesh Pan</div></article>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Extended Entrances / 3D</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>spring-up</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view">Spring Up</div></article>
+          <article class="api-card"><strong>glide-in</strong><div class="api-target" vl-effect="glide-in" vl-timeline="view">Glide In</div></article>
+          <article class="api-card"><strong>zoom-blur</strong><div class="api-target" vl-effect="zoom-blur" vl-timeline="view">Zoom Blur</div></article>
+          <article class="api-card"><strong>slice-in</strong><div class="api-target" vl-effect="slice-in" vl-timeline="view">Slice In</div></article>
+          <article class="api-card"><strong>unfold</strong><div class="api-target" vl-effect="unfold" vl-timeline="view">Unfold</div></article>
+          <article class="api-card"><strong>slide-diagonal</strong><div class="api-target" vl-effect="slide-diagonal" vl-timeline="view">Slide Diagonal</div></article>
+          <article class="api-card"><strong>flip-in</strong><div class="api-target" vl-effect="flip-in" vl-timeline="view">Flip In</div></article>
+          <article class="api-card"><strong>spring-3d</strong><div class="api-target" vl-effect="spring-3d" vl-timeline="view">Spring 3D</div></article>
+          <article class="api-card"><strong>rise-3d</strong><div class="api-target" vl-effect="rise-3d" vl-timeline="view">Rise 3D</div></article>
+          <article class="api-card"><strong>drop-in</strong><div class="api-target" vl-effect="drop-in" vl-timeline="view">Drop In</div></article>
+          <article class="api-card"><strong>skew-slide</strong><div class="api-target" vl-effect="skew-slide" vl-timeline="view">Skew Slide</div></article>
+          <article class="api-card"><strong>hinge-down</strong><div class="api-target" vl-effect="hinge-down" vl-timeline="view">Hinge Down</div></article>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Scroll / Timeline Effects</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>cinema-zoom</strong><div class="api-target" vl-effect="cinema-zoom" vl-timeline="view">Cinema Zoom</div></article>
+          <article class="api-card"><strong>parallax</strong><div class="api-target" vl-effect="parallax" vl-timeline="view">Parallax</div></article>
+          <article class="api-card"><strong>scroll-marquee</strong><div class="api-target"><div class="api-scroll-track" vl-effect="scroll-marquee" vl-timeline="scroll"><span class="api-chip">API</span><span class="api-chip">MOTION</span><span class="api-chip">SCROLL</span><span class="api-chip">MARQUEE</span></div></div></article>
+          <article class="api-card"><strong>depth-drift</strong><div class="api-target" vl-effect="depth-drift" vl-timeline="view">Depth Drift</div></article>
+          <article class="api-card"><strong>rotate-scroll</strong><div class="api-target" vl-effect="rotate-scroll" vl-timeline="scroll">Rotate Scroll</div></article>
+          <article class="api-card"><strong>wipe-reveal</strong><div class="api-target" vl-effect="wipe-reveal" vl-timeline="view">Wipe Reveal</div></article>
+          <article class="api-card"><strong>depth-push</strong><div class="api-target" vl-effect="depth-push" vl-timeline="view">Depth Push</div></article>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Children Modes</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>stagger</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>cascade</strong><div class="api-target api-children" vl-children="cascade" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>sequence</strong><div class="api-target api-children" vl-children="sequence"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>orchestrate</strong><div class="api-target api-children" vl-children="orchestrate" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>wave</strong><div class="api-target api-children" vl-children="wave"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>blur-cascade</strong><div class="api-target api-children" vl-children="blur-cascade"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>zoom-stagger</strong><div class="api-target api-children" vl-children="zoom-stagger"><span>A</span><span>B</span><span>C</span></div></article>
+          <article class="api-card"><strong>cinema-stagger</strong><div class="api-target api-children" vl-children="cinema-stagger"><span>A</span><span>B</span><span>C</span></div></article>
+        </div>
+      </section>
+
+      <section class="api-section">
+        <h2>Ranges, Speed, Once</h2>
+        <div class="api-grid">
+          <article class="api-card"><strong>vl-range presets</strong><div class="api-chip-row"><span class="api-chip">entry</span><span class="api-chip">entry-short</span><span class="api-chip">entry-long</span><span class="api-chip">cover</span><span class="api-chip">contain</span><span class="api-chip">custom</span><span class="api-chip">scene-soft</span><span class="api-chip">scene-focus</span><span class="api-chip">exit</span><span class="api-chip">exit-short</span><span class="api-chip">center</span><span class="api-chip">full</span></div></article>
+          <article class="api-card"><strong>vl-speed presets</strong><div class="api-chip-row"><span class="api-chip">fastest</span><span class="api-chip">fast</span><span class="api-chip">normal</span><span class="api-chip">slow</span><span class="api-chip">slower</span><span class="api-chip">cinema</span></div></article>
+          <article class="api-card"><strong>vl-once + view</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view" vl-once>One-shot Entry</div></article>
+          <article class="api-card"><strong>vl-enter focus</strong><div class="api-target" vl-effect="glide-in" vl-timeline="view" vl-enter="focus">Focused Entry Window</div></article>
+        </div>
+      </section>
+
+      <p class="api-footer">Arquivo: <code>/pages/motion/api-motion-catalog.html</code></p>
+    </main>
+    <script>
+      (() => {
+        const cards = Array.from(document.querySelectorAll(".api-card"));
+        if (!cards.length) return;
+        const delayRange = document.getElementById("api-delay-range");
+        const speedRange = document.getElementById("api-speed-range");
+        const delayValue = document.getElementById("api-delay-value");
+        const speedValue = document.getElementById("api-speed-value");
+        const selectedLabel = document.getElementById("api-selected-card");
+        let selectedCard = null;
+
+        const replayCardAnimations = (card) => {
+          if (!card) return;
+          const delayMs = Number(delayRange?.value || 0);
+          const speedRate = Number(speedRange?.value || 1);
+          const targets = card.querySelectorAll("[vl-effect], [vl-children] > *");
+          window.setTimeout(() => {
+            targets.forEach((node) => {
+              node.style.animation = "none";
+              // Force reflow so the same keyframe can restart.
+              void node.offsetWidth;
+              node.style.animation = "";
+            });
+            card.getAnimations({ subtree: true }).forEach((anim) => {
+              anim.playbackRate = speedRate;
+            });
+          }, delayMs);
+        };
+
+        const selectCard = (card) => {
+          cards.forEach((item) => item.classList.remove("is-selected"));
+          selectedCard = card;
+          card.classList.add("is-selected");
+          const label = card.querySelector("strong")?.textContent || "card";
+          if (selectedLabel) selectedLabel.textContent = `Selecionado: ${label}`;
+        };
+
+        cards.forEach((card) => {
+          card.addEventListener("click", () => selectCard(card));
+          card.addEventListener("focusin", () => {
+            if (!selectedCard) selectCard(card);
+          });
+          card.addEventListener("mouseenter", () => replayCardAnimations(card));
+          card.addEventListener("focusin", () => replayCardAnimations(card));
+        });
+
+        if (cards[0]) selectCard(cards[0]);
+
+        if (delayRange && delayValue) {
+          delayRange.addEventListener("input", () => {
+            delayValue.textContent = `${Number(delayRange.value)}ms`;
+            replayCardAnimations(selectedCard);
+          });
+        }
+
+        if (speedRange && speedValue) {
+          speedRange.addEventListener("input", () => {
+            speedValue.textContent = `${Number(speedRange.value).toFixed(2)}x`;
+            replayCardAnimations(selectedCard);
+          });
+        }
+      })();
+    </script>
+    <script src="/js/showcase-controls.js"></script>
+  </body>
+</html>

@@ -1,0 +1,260 @@
+/**
+ * landing.css — Velora marketing landing page styles.
+ * Page-level composition only. Framework tokens and components live in @velora/css.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ─── Typography overrides ─────────────────────────────────────── */
+:root {
+  --vl-font-family: "Manrope", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --vl-font-family-display: "Space Grotesk", "Outfit", sans-serif;
+}
+
+/* ─── Page background ───────────────────────────────────────────── */
+body {
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse at 20% 0%, color-mix(in oklch, var(--vl-color-primary) 12%, transparent), transparent 50%),
+    radial-gradient(ellipse at 80% 10%, color-mix(in oklch, var(--vl-color-secondary) 8%, transparent), transparent 45%),
+    var(--vl-bg-main);
+  background-attachment: fixed;
+}
+
+/* ─── Header brand ──────────────────────────────────────────────── */
+.lp-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.lp-brand__logo {
+  display: block;
+  height: 28px;
+  width: auto;
+  /* SVG strokes adapt to dark theme via its own media query */
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* ─── Hero section ──────────────────────────────────────────────── */
+.lp-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: clamp(5rem, 14vh, 10rem) clamp(3rem, 8vh, 6rem);
+}
+
+.lp-hero__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--vl-text-primary);
+  text-wrap: balance;
+}
+
+.lp-hero__lead {
+  max-width: 54ch;
+  margin: 0;
+  color: var(--vl-text-secondary);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: var(--vl-leading-relaxed);
+}
+
+.lp-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--vl-space-lg);
+  margin-top: var(--vl-space-lg);
+}
+
+/* ─── Hero code ornament ────────────────────────────────────────── */
+.lp-code-card {
+  text-align: left;
+  max-width: 38rem;
+  width: 100%;
+  margin: var(--vl-space-lg) auto 0;
+}
+
+/* ─── Marquee strip ─────────────────────────────────────────────── */
+.lp-marquee-wrap {
+  border-block: 1px solid color-mix(in oklch, var(--vl-text-primary) 8%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface) 60%, transparent);
+  overflow: hidden;
+}
+
+/* ─── Features bento grid ───────────────────────────────────────── */
+.lp-bento {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--vl-space-md);
+}
+
+.lp-bento__featured {
+  grid-column: span 2;
+}
+
+.lp-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--vl-radius-lg);
+  background: color-mix(in oklch, var(--vl-color-primary) 16%, transparent);
+  color: var(--vl-color-primary);
+  font-size: 1.375rem;
+  margin-bottom: var(--vl-space-md);
+  flex-shrink: 0;
+}
+
+/* ─── How it works split ────────────────────────────────────────── */
+.lp-how-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+/* ─── Code block ────────────────────────────────────────────────── */
+.lp-code {
+  font-family: var(--vl-font-family-mono);
+  font-size: var(--vl-font-size-sm);
+  line-height: 1.75;
+  color: var(--vl-text-secondary);
+  white-space: pre;
+  overflow-x: auto;
+  tab-size: 2;
+}
+
+.lp-code-header {
+  display: flex;
+  align-items: center;
+  gap: var(--vl-space-sm);
+  margin-bottom: var(--vl-space-md);
+  padding-bottom: var(--vl-space-md);
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-text-primary) 10%, transparent);
+}
+
+.lp-code-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.lp-code-dot--red   { background: oklch(58% 0.18 25); }
+.lp-code-dot--amber { background: oklch(70% 0.15 80); }
+.lp-code-dot--green { background: oklch(65% 0.16 145); }
+
+.lp-code-filename {
+  margin-left: auto;
+  font-family: var(--vl-font-family-mono);
+  font-size: var(--vl-font-size-xs);
+  color: var(--vl-text-muted);
+  letter-spacing: var(--vl-tracking-wide);
+}
+
+.lp-code .lp-tok-tag    { color: var(--vl-color-primary); }
+.lp-code .lp-tok-attr   { color: var(--vl-color-secondary); }
+.lp-code .lp-tok-val    { color: oklch(68% 0.12 60); }
+.lp-code .lp-tok-text   { color: var(--vl-text-secondary); }
+.lp-code .lp-tok-class  { color: var(--vl-color-accent); opacity: 0.85; }
+
+/* ─── Stats proof section ───────────────────────────────────────── */
+.lp-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--vl-space-md);
+}
+
+/* ─── Section headings ──────────────────────────────────────────── */
+.lp-section-header {
+  text-align: center;
+  max-width: 44rem;
+  margin-inline: auto;
+  margin-bottom: var(--vl-space-xl);
+}
+
+.lp-section-title {
+  margin: var(--vl-space-sm) 0 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--vl-text-primary);
+  text-wrap: balance;
+}
+
+.lp-section-lead {
+  margin: var(--vl-space-md) 0 0;
+  color: var(--vl-text-secondary);
+  font-size: var(--vl-font-size-lg);
+  line-height: var(--vl-leading-relaxed);
+}
+
+/* ─── CTA section ───────────────────────────────────────────────── */
+.lp-cta-section {
+  text-align: center;
+}
+
+.lp-cta-title {
+  margin: var(--vl-space-sm) 0 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--vl-text-primary);
+  text-wrap: balance;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 64rem) {
+  .lp-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lp-bento__featured {
+    grid-column: 1 / -1;
+  }
+
+  .lp-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 48rem) {
+  .lp-how-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-bento__featured {
+    grid-column: auto;
+  }
+
+  .lp-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 30rem) {
+  .lp-proof-grid {
+    grid-template-columns: 1fr;
+  }
+}

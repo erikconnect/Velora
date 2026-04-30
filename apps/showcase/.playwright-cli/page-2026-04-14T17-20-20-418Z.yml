@@ -1,0 +1,246 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Main navigation" [ref=e3]:
+    - generic [ref=e4]:
+      - link "Velora home":
+        - /url: /index.html
+      - navigation "Primary navigation" [ref=e18]:
+        - link "Framework" [ref=e19] [cursor=pointer]:
+          - /url: /pages/core/landing.html
+        - link "Components" [ref=e20] [cursor=pointer]:
+          - /url: /pages/library/gallery.html
+        - link "Scenes" [ref=e21] [cursor=pointer]:
+          - /url: /pages/scenes/scene-hero.html
+        - link "Motion" [ref=e22] [cursor=pointer]:
+          - /url: /pages/motion/zero-js-motion.html
+        - link "Tokens" [ref=e23] [cursor=pointer]:
+          - /url: /pages/color/design-tokens.html
+        - link "Library" [ref=e24] [cursor=pointer]:
+          - /url: /pages/library/index.html
+      - generic [ref=e25]:
+        - link "Velora GitHub repository" [ref=e26] [cursor=pointer]:
+          - /url: https://github.com/velora-css/velora
+          - img [ref=e27]
+        - link "Get Started" [ref=e29] [cursor=pointer]:
+          - /url: /pages/core/landing.html
+  - main [ref=e30]:
+    - generic [ref=e32]:
+      - complementary [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: A
+          - generic [ref=e36]:
+            - heading "Blueprint Shell" [level=2] [ref=e37]
+            - paragraph [ref=e38]: Technical navigation
+        - navigation "Architecture sections" [ref=e39]:
+          - link "Architecture Blueprint" [ref=e40] [cursor=pointer]:
+            - /url: /pages/tools/architecture.html
+          - link "System Modules" [ref=e41] [cursor=pointer]:
+            - /url: /pages/tools/system-modules.html
+          - link "Design Tokens" [ref=e42] [cursor=pointer]:
+            - /url: /pages/color/design-tokens.html
+          - link "Motion Principles" [ref=e43] [cursor=pointer]:
+            - /url: /pages/motion/motion-principles.html
+          - link "Accessibility" [ref=e44] [cursor=pointer]:
+            - /url: /pages/tools/accessibility.html
+        - generic [ref=e45]:
+          - strong [ref=e46]: Framework shell active
+          - generic [ref=e47]: "runtime: css only"
+          - generic [ref=e48]: "view logic: shared transitions"
+      - generic [ref=e49]:
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: Task 03 // Architecture Sequence
+            - heading "A cinematic blueprint for how the framework holds together." [level=1] [ref=e54]
+            - paragraph [ref=e55]: Velora uses a technical shell, browser-native surfaces and explicit transition logic so large pages still feel authored instead of stitched together. The architecture is visible as a live stage, not just a set of notes.
+            - generic [ref=e56]:
+              - generic [ref=e57]: shell + canvas
+              - generic [ref=e58]: tonal hierarchy
+              - generic [ref=e59]: actuator states
+              - generic [ref=e60]: view transitions
+            - generic [ref=e61]:
+              - link "Inspect Modules" [ref=e62] [cursor=pointer]:
+                - /url: /pages/tools/system-modules.html
+              - link "Framework Overview" [ref=e63] [cursor=pointer]:
+                - /url: /pages/core/landing.html
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - generic [ref=e73]: shell
+              - generic [ref=e74]: stack
+              - generic [ref=e75]: view logic
+            - generic [ref=e76]:
+              - generic [ref=e77]: architecture.map
+              - code [ref=e78]: sidebar -> canvas -> scenes -> actuators -> transitions
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - paragraph [ref=e82]: Scene 02 // Tonal Stack
+            - heading "Depth is defined by materials, not ornamental shadow." [level=2] [ref=e83]
+            - paragraph [ref=e84]: The stack scene shows how base, container and elevated layers create structure across a full-canvas interface while leaving room for content and motion to read clearly.
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - generic [ref=e88]: surface / base
+              - generic [ref=e90]: container / low
+              - generic [ref=e92]: container / high
+            - generic [ref=e93]:
+              - generic [ref=e94]: Tonal instruction
+              - heading "Three layers, one surface language." [level=3] [ref=e95]
+              - paragraph [ref=e96]: OKLCH-based deltas keep the shell readable without collapsing the page into boxed panels.
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - paragraph [ref=e101]: Scene 03 // Actuators
+              - heading "Controls behave like tuned mechanical parts." [level=2] [ref=e102]
+            - paragraph [ref=e103]: Buttons, inputs and overlays all inherit the same resistance model so interaction stays coherent across routes and shells.
+          - generic [ref=e104]:
+            - article [ref=e105]:
+              - generic [ref=e106]:
+                - generic [ref=e107]:
+                  - text: BTN_ACTUATOR_01
+                  - heading "Primary trigger" [level=3] [ref=e108]
+                - strong [ref=e109]: 200ms
+              - button "EXECUTE ACTION" [ref=e110] [cursor=pointer]
+              - paragraph [ref=e111]: Buttons compress, brighten and recover with a single state model shared across the framework.
+            - article [ref=e112]:
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - text: FIELD_ACTUATOR_02
+                  - heading "Input shell" [level=3] [ref=e115]
+                - strong [ref=e116]: focus
+              - generic [ref=e117]:
+                - generic [ref=e118]: Scene endpoint
+                - textbox "Scene endpoint" [ref=e119]: scroll-reveal
+              - paragraph [ref=e120]: Focus states live in the component contract instead of being re-authored per route.
+            - article [ref=e121]:
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - text: Overlay handshake
+                  - heading "Dialogs inherit stack, tone and motion primitives." [level=3] [ref=e124]
+                - strong [ref=e125]: 4ms
+              - paragraph [ref=e130]: Actuators stay lightweight because the framework already defines the surfaces, transitions and interaction cadence underneath.
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - paragraph [ref=e135]: Scene 04 // Transitions + View Logic
+              - heading "Page transitions preserve context instead of cutting between disconnected states." [level=2] [ref=e136]
+            - paragraph [ref=e137]: Shared view logic lets the framework move from source to target with continuity while staying out of the main thread.
+          - generic [ref=e138]:
+            - article [ref=e139]:
+              - generic [ref=e140]: source route
+              - heading "System Modules" [level=3] [ref=e141]
+            - article [ref=e146]:
+              - generic [ref=e147]: view logic
+              - heading "Shared elements interpolate through the handoff group." [level=3] [ref=e148]
+              - paragraph [ref=e150]:
+                - code [ref=e151]: ::view-transition-group
+                - text: keeps orientation, hierarchy and motion ownership aligned.
+            - article [ref=e152]:
+              - generic [ref=e153]: target route
+              - heading "Architecture" [level=3] [ref=e154]
+          - generic [ref=e159]:
+            - link "Inspect Tokens" [ref=e160] [cursor=pointer]:
+              - /url: /pages/color/design-tokens.html
+            - link "Zero-JS Motion" [ref=e161] [cursor=pointer]:
+              - /url: /pages/motion/zero-js-motion.html
+            - link "Scroll Reveal" [ref=e162] [cursor=pointer]:
+              - /url: /pages/scenes/scroll-reveal.html
+  - contentinfo "Site footer" [ref=e163]:
+    - generic [ref=e164]:
+      - generic [ref=e165]:
+        - generic [ref=e166]:
+          - link "Velora home" [ref=e167] [cursor=pointer]:
+            - /url: /index.html
+            - img [ref=e168]
+          - paragraph [ref=e182]: Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.
+        - generic [ref=e183]:
+          - heading "Framework" [level=3] [ref=e184]
+          - list [ref=e185]:
+            - listitem [ref=e186]:
+              - link "Overview" [ref=e187] [cursor=pointer]:
+                - /url: /pages/core/landing.html
+            - listitem [ref=e188]:
+              - link "Tokens" [ref=e189] [cursor=pointer]:
+                - /url: /pages/color/design-tokens.html
+            - listitem [ref=e190]:
+              - link "System Modules" [ref=e191] [cursor=pointer]:
+                - /url: /pages/tools/system-modules.html
+            - listitem [ref=e192]:
+              - link "Architecture" [ref=e193] [cursor=pointer]:
+                - /url: /pages/tools/architecture.html
+            - listitem [ref=e194]:
+              - link "Brand Voice" [ref=e195] [cursor=pointer]:
+                - /url: /pages/tools/brand-voice.html
+            - listitem [ref=e196]:
+              - link "Accessibility" [ref=e197] [cursor=pointer]:
+                - /url: /pages/tools/accessibility.html
+        - generic [ref=e198]:
+          - heading "Scenes & Motion" [level=3] [ref=e199]
+          - list [ref=e200]:
+            - listitem [ref=e201]:
+              - link "Hero Reveal" [ref=e202] [cursor=pointer]:
+                - /url: /pages/scenes/scene-hero.html
+            - listitem [ref=e203]:
+              - link "Feature Flow" [ref=e204] [cursor=pointer]:
+                - /url: /pages/scenes/scene-features.html
+            - listitem [ref=e205]:
+              - link "Story Pin" [ref=e206] [cursor=pointer]:
+                - /url: /pages/scenes/scene-story.html
+            - listitem [ref=e207]:
+              - link "Scroll Reveal" [ref=e208] [cursor=pointer]:
+                - /url: /pages/scenes/scroll-reveal.html
+            - listitem [ref=e209]:
+              - link "Zero-JS Motion" [ref=e210] [cursor=pointer]:
+                - /url: /pages/motion/zero-js-motion.html
+            - listitem [ref=e211]:
+              - link "Motion v2 Extended" [ref=e212] [cursor=pointer]:
+                - /url: /pages/motion/motion-extended.html
+            - listitem [ref=e213]:
+              - link "Motion Principles" [ref=e214] [cursor=pointer]:
+                - /url: /pages/motion/motion-principles.html
+        - generic [ref=e215]:
+          - heading "Color & Type" [level=3] [ref=e216]
+          - list [ref=e217]:
+            - listitem [ref=e218]:
+              - link "Color System" [ref=e219] [cursor=pointer]:
+                - /url: /pages/color/color-system.html
+            - listitem [ref=e220]:
+              - link "Color Palette" [ref=e221] [cursor=pointer]:
+                - /url: /pages/color/color-palette.html
+            - listitem [ref=e222]:
+              - link "Tonal Tiers" [ref=e223] [cursor=pointer]:
+                - /url: /pages/color/tonal-tiers.html
+            - listitem [ref=e224]:
+              - link "Ambient Shadows" [ref=e225] [cursor=pointer]:
+                - /url: /pages/color/ambient-shadows.html
+            - listitem [ref=e226]:
+              - link "Typography" [ref=e227] [cursor=pointer]:
+                - /url: /pages/typography/typography.html
+            - listitem [ref=e228]:
+              - link "Type Spec" [ref=e229] [cursor=pointer]:
+                - /url: /pages/typography/typography-spec.html
+        - generic [ref=e230]:
+          - heading "Tools" [level=3] [ref=e231]
+          - list [ref=e232]:
+            - listitem [ref=e233]:
+              - link "Components" [ref=e234] [cursor=pointer]:
+                - /url: /pages/library/gallery.html
+            - listitem [ref=e235]:
+              - link "Forms" [ref=e236] [cursor=pointer]:
+                - /url: /pages/components/forms.html
+            - listitem [ref=e237]:
+              - link "Contrast Tool" [ref=e238] [cursor=pointer]:
+                - /url: /pages/tools/contrast-tool.html
+            - listitem [ref=e239]:
+              - link "Component Wizard" [ref=e240] [cursor=pointer]:
+                - /url: /pages/components/component-wizard.html
+            - listitem [ref=e241]:
+              - link "CSS Converter" [ref=e242] [cursor=pointer]:
+                - /url: /pages/tools/converter.html
+            - listitem [ref=e243]:
+              - link "View Transitions" [ref=e244] [cursor=pointer]:
+                - /url: /pages/core/about.html
+      - generic [ref=e245]:
+        - paragraph [ref=e246]: © 2026 Velora · Motion-native CSS framework · Zero JavaScript
+        - generic "Velora social links" [ref=e247]:
+          - link "Velora on GitHub" [ref=e248] [cursor=pointer]:
+            - /url: https://github.com/velora-css/velora
+            - img [ref=e249]

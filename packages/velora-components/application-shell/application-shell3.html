@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 3 (Workspace split shell)
+  CSS approach:
+    * left work queue, center canvas, right inspector
+    * dashboard/editor hybrid layout with responsive fallback
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 3</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as3 {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 18rem minmax(0, 1fr) 20rem;
+        background: var(--vl-bg-main);
+      }
+
+      .as3__pane {
+        padding: var(--vl-space-lg);
+      }
+
+      .as3__pane + .as3__pane {
+        border-left: 1px solid var(--vl-border-subtle);
+      }
+
+      .as3__canvas {
+        border-radius: var(--vl-radius-2xl);
+        border: 1px solid var(--vl-border-subtle);
+        background: linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface) 82%, transparent), var(--vl-bg-surface));
+        min-height: 32rem;
+        padding: var(--vl-space-lg);
+        display: grid;
+        align-content: space-between;
+      }
+
+      .as3__queue {
+        display: grid;
+        gap: var(--vl-space-sm);
+        margin-top: var(--vl-space-md);
+      }
+
+      .as3__ticket {
+        padding: var(--vl-space-sm);
+        border-radius: var(--vl-radius-lg);
+        background: var(--vl-bg-surface);
+        border: 1px solid var(--vl-border-subtle);
+      }
+
+      @media (max-width: 1100px) {
+        .as3 {
+          grid-template-columns: 1fr;
+        }
+
+        .as3__pane + .as3__pane {
+          border-left: 0;
+          border-top: 1px solid var(--vl-border-subtle);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="as3">
+      <aside class="as3__pane">
+        <a href="#" class="vl-header__brand">Velora Studio</a>
+        <div class="as3__queue">
+          <div class="as3__ticket"><strong>Draft hero</strong><br /><span style="color: var(--vl-text-muted);">Due today</span></div>
+          <div class="as3__ticket"><strong>Refine CTA stack</strong><br /><span style="color: var(--vl-text-muted);">Assigned</span></div>
+          <div class="as3__ticket"><strong>Publish changelog</strong><br /><span style="color: var(--vl-text-muted);">Queued</span></div>
+        </div>
+      </aside>
+
+      <main class="as3__pane">
+        <div class="as3__canvas">
+          <div>
+            <p class="vl-kicker">Application Shell 3</p>
+            <h1 style="margin-top: 0; font-family: var(--vl-font-family-display);">Workspace canvas</h1>
+            <p class="vl-card__body">A split shell for editors, builders, and operators who need a large central surface without losing queue context.</p>
+          </div>
+          <div class="vl-grid vl-grid--3">
+            <div class="vl-card"><div class="vl-card__title">Blocks</div><div class="vl-card__body">18 active</div></div>
+            <div class="vl-card"><div class="vl-card__title">Owners</div><div class="vl-card__body">6 synced</div></div>
+            <div class="vl-card"><div class="vl-card__title">Ready</div><div class="vl-card__body">2 pages</div></div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="as3__pane">
+        <h2 class="vl-card__title">Inspector</h2>
+        <div class="vl-stack" style="gap: var(--vl-space-sm); margin-top: var(--vl-space-md);">
+          <div class="vl-card"><div class="vl-card__title">Typography</div><div class="vl-card__body">Display + body scale</div></div>
+          <div class="vl-card"><div class="vl-card__title">Spacing</div><div class="vl-card__body">Compact section rhythm</div></div>
+          <div class="vl-card"><div class="vl-card__title">Status</div><div class="vl-card__body">Linked to campaign v4</div></div>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>

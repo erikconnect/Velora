@@ -1,0 +1,22 @@
+{
+  "name": "showcase",
+  "version": "1.0.0",
+  "description": "Static showcase for Velora",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "tailwindcss": "3.4.17",
+    "vite": "^8.0.7"
+  },
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "npm run build:tw-demos",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:tw-demos": "tailwindcss -c tailwind.config.cjs -i ./src/showcase-tw-demos.css -o ./public/css/showcase-tw-demos.css --minify",
+    "test:library": "node --test scripts/lib/port-library-pages.test.mjs",
+    "port:library": "node scripts/port-packages-pages.mjs",
+    "sync:shell": "node scripts/sync-shell-from-index.mjs",
+    "fill:hubs": "node scripts/refresh-showcase-hubs.mjs"
+  }
+}

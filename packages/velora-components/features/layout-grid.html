@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Layout: Feature Grid (Bento image cards)
+  CSS approach:
+    * CSS Grid for the bento layout (1 wide card spanning 2 cols + 2 regular)
+    * vl-effect="reveal-3d" vl-timeline="view" on each card via anonymous view() timeline -- no JS needed
+    * Buttons use .vl-cta and .arrow-link with Velora tokens
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Layout: Feature Grid</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      /* Bento grid -- 4 col on desktop; wide card spans 2 */
+      .bento-grid {
+        display: grid;
+        gap: var(--vl-space-md);
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 36rem) {
+        .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (min-width: 64rem) {
+        .bento-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .bento-grid__wide { grid-column: span 2; }
+      }
+
+      /* Image card base */
+      .bento-card {
+        position: relative;
+        border-radius: var(--vl-radius-xl);
+        overflow: hidden;
+        min-height: 18rem;
+      }
+
+      .bento-card__bg {
+        position: absolute;
+        inset: 0;
+        background: oklch(0% 0 0 / 0.45);
+      }
+
+      .bento-card__bg img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .bento-card__content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: var(--vl-space-lg);
+      }
+
+      .bento-card__content--end { justify-content: flex-end; }
+      .bento-card__content--between { justify-content: space-between; }
+
+      /* Ghost arrow link on dark background */
+      .arrow-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--vl-space-xs);
+        color: oklch(95% 0.01 260);
+        font-size: var(--vl-font-size-sm);
+        font-weight: var(--vl-font-weight-medium);
+        text-decoration: none;
+        transition: gap var(--vl-transition-fast);
+      }
+      .arrow-link:hover { gap: var(--vl-space-sm); }
+
+      .section-heading {
+        font-family: var(--vl-font-family-display);
+        font-size: var(--vl-font-size-4xl);
+        font-weight: var(--vl-font-weight-bold);
+        line-height: var(--vl-leading-tight);
+        letter-spacing: var(--vl-tracking-tight);
+        margin-bottom: var(--vl-space-sm);
+      }
+
+      .card-heading {
+        font-family: var(--vl-font-family-display);
+        font-size: var(--vl-font-size-xl);
+        font-weight: var(--vl-font-weight-semibold);
+        color: oklch(98% 0.01 260);
+        margin-bottom: var(--vl-space-xs);
+      }
+
+      .card-body {
+        font-size: var(--vl-font-size-sm);
+        color: oklch(80% 0.02 260);
+        margin-bottom: var(--vl-space-md);
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <section class="vl-section">
+      <div class="vl-container">
+
+        <!-- Section header -->
+        <div class="vl-section-header" style="align-items: center; text-align: center; max-width: 100%; margin-inline: auto;" vl-children="stagger">
+          <p class="vl-kicker" style="justify-content: center;">Tagline</p>
+          <h2 class="section-heading">Short heading goes here</h2>
+          <p style="color: var(--vl-text-secondary);">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+        </div>
+
+        <!-- Bento grid -->
+        <div class="bento-grid">
+
+          <!-- Card 1: wide (spans 2 cols on desktop) with dual CTAs -->
+          <div class="bento-card bento-grid__wide" style="min-height: 22rem;" vl-effect="reveal-3d" vl-timeline="view">
+            <div class="bento-card__bg">
+              <img src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg" alt="CSS-native animations" />
+            </div>
+            <div class="bento-card__content bento-card__content--end">
+              <div class="vl-cluster">
+                <a href="#" class="vl-cta" style="font-size: var(--vl-font-size-sm); padding: var(--vl-space-xs) var(--vl-space-md);">Explore</a>
+                <a href="#" class="arrow-link">
+                  Learn more
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bento-card" vl-effect="reveal-3d" vl-timeline="view">
+            <div class="bento-card__bg">
+              <img src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg" alt="Reusable scenes" />
+            </div>
+            <div class="bento-card__content bento-card__content--between">
+              <img src="https://d22po4pjz3o32e.cloudfront.net/relume-icon-white.svg" width="48" height="48" alt="" />
+              <div>
+                <h3 class="card-heading">Reusable scenes</h3>
+                <p class="card-body">Orchestrate layouts, transitions, and state together.</p>
+                <a href="#" class="arrow-link">
+                  Explore
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bento-card" vl-effect="reveal-3d" vl-timeline="view">
+            <div class="bento-card__bg">
+              <img src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg" alt="Progressive enhancement" />
+            </div>
+            <div class="bento-card__content bento-card__content--between">
+              <img src="https://d22po4pjz3o32e.cloudfront.net/relume-icon-white.svg" width="48" height="48" alt="" />
+              <div>
+                <h3 class="card-heading">Progressive enhancement</h3>
+                <p class="card-body">Works with or without JavaScript. Accessibility built in.</p>
+                <a href="#" class="arrow-link">
+                  Explore
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </body>
+</html>

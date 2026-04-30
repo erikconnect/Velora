@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 4 (Executive report shell)
+  CSS approach:
+    * report-first shell with summary row and narrative column
+    * strong on readibility and presentation for stakeholder views
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 4</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as4 {
+        min-height: 100vh;
+        padding: var(--vl-space-lg);
+        background: var(--vl-bg-main);
+      }
+
+      .as4__wrap {
+        max-width: 84rem;
+        margin: 0 auto;
+        display: grid;
+        gap: var(--vl-space-lg);
+      }
+
+      .as4__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: var(--vl-space-md);
+        flex-wrap: wrap;
+      }
+
+      .as4__summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--vl-space-md);
+      }
+
+      .as4__body {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: var(--vl-space-md);
+      }
+
+      .as4__panel {
+        padding: var(--vl-space-md);
+        border-radius: var(--vl-radius-2xl);
+        border: 1px solid var(--vl-border-subtle);
+        background: var(--vl-bg-surface);
+      }
+
+      @media (max-width: 960px) {
+        .as4__summary,
+        .as4__body {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="as4">
+      <div class="as4__wrap">
+        <header class="as4__header">
+          <div>
+            <p class="vl-kicker">Application Shell 4</p>
+            <h1 style="margin: 0; font-family: var(--vl-font-family-display);">Executive report shell</h1>
+          </div>
+          <div class="vl-cluster">
+            <a href="#" class="vl-cta vl-cta--ghost">Export PDF</a>
+            <a href="#" class="vl-cta">Share report</a>
+          </div>
+        </header>
+
+        <section class="as4__summary">
+          <article class="vl-card"><div class="vl-card__title">37%</div><div class="vl-card__body">pipeline growth</div></article>
+          <article class="vl-card"><div class="vl-card__title">12d</div><div class="vl-card__body">to close</div></article>
+          <article class="vl-card"><div class="vl-card__title">8</div><div class="vl-card__body">priority accounts</div></article>
+          <article class="vl-card"><div class="vl-card__title">94%</div><div class="vl-card__body">forecast confidence</div></article>
+        </section>
+
+        <section class="as4__body">
+          <article class="as4__panel">
+            <h2 class="vl-card__title">Narrative</h2>
+            <p class="vl-card__body">This shell is optimized for reporting screens where numbers, context, and recommendations must stay readable for stakeholders.</p>
+            <div class="vl-card vl-card--glass" style="margin-top: var(--vl-space-md);">
+              <div class="vl-card__title">Recommendation</div>
+              <div class="vl-card__body">Prioritize expansion opportunities in accounts where onboarding completion already exceeds 80%.</div>
+            </div>
+          </article>
+          <article class="as4__panel">
+            <h2 class="vl-card__title">Highlights</h2>
+            <div class="vl-stack" style="gap: var(--vl-space-sm); margin-top: var(--vl-space-md);">
+              <span class="vl-badge vl-badge--accent">Forecast ahead</span>
+              <span class="vl-badge">Retention stable</span>
+              <span class="vl-badge">Ops aligned</span>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

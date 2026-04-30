@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Banner 14 (Layered announcement banner)
+  CSS approach:
+    * layered announcement strip above a compact media-style panel
+    * uncommon composition without any JavaScript dependencies
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Banner 14</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bn14 {
+        min-height: 100vh;
+        background:
+          linear-gradient(180deg, oklch(18% 0.04 205), oklch(8% 0.02 250)),
+          var(--vl-bg-main);
+      }
+
+      .bn14__content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 80rem;
+        margin-inline: auto;
+        padding: max(var(--vl-space-xl), 6vh) var(--vl-container-gutter);
+        display: grid;
+        gap: var(--vl-space-lg);
+      }
+
+      .bn14__strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--vl-space-sm);
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--vl-space-sm) var(--vl-space-md);
+        border-radius: var(--vl-radius-full);
+        background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 10%, transparent);
+        backdrop-filter: blur(16px);
+      }
+
+      .bn14__panel {
+        display: grid;
+        gap: var(--vl-space-lg);
+        grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+        padding: clamp(1.25rem, 2vw, 1.8rem);
+        border-radius: var(--vl-radius-2xl);
+        background: color-mix(in oklch, var(--vl-bg-surface) 76%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 10%, transparent);
+        box-shadow: 0 1.4rem 3rem oklch(6% 0.04 245 / 0.34);
+      }
+
+      .bn14__title {
+        margin: 0;
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        line-height: 0.96;
+        letter-spacing: var(--vl-tracking-tight);
+      }
+
+      .bn14__stack {
+        display: grid;
+        gap: var(--vl-space-sm);
+      }
+
+      @media (max-width: 900px) {
+        .bn14__panel {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="vl-banner bn14">
+      <div class="vl-banner__scrim" aria-hidden="true"></div>
+      <div class="vl-banner__glow" aria-hidden="true"></div>
+
+      <div class="bn14__content">
+        <div class="bn14__strip">
+          <div class="vl-cluster" style="gap: var(--vl-space-xs); align-items: center;">
+            <span class="vl-badge vl-badge--accent">New release</span>
+            <span style="color: var(--vl-text-secondary);">Route uncommon campaigns from one banner system.</span>
+          </div>
+          <a href="#" class="vl-nav__link">Read changelog</a>
+        </div>
+
+        <div class="bn14__panel">
+          <div vl-children="stagger">
+            <p class="vl-kicker">Banner 14</p>
+            <h1 class="bn14__title">Announcements that feel engineered, not pasted on.</h1>
+            <p class="vl-banner__lead" style="margin-left: 0; max-width: 34rem; text-align: left;">
+              This composition gives you a launch strip, a campaign message, and a right-column stack for proof or scheduling.
+            </p>
+            <div class="vl-cluster">
+              <a href="#" class="vl-cta">Ship update</a>
+              <a href="#" class="vl-cta vl-cta--ghost">Book a walkthrough</a>
+            </div>
+          </div>
+
+          <div class="bn14__stack">
+            <div class="vl-card">
+              <div class="vl-card__title">Rollout status</div>
+              <div class="vl-card__body">EMEA and NA templates are synchronized. APAC messaging is scheduled for tomorrow.</div>
+            </div>
+            <div class="vl-card vl-card--glass">
+              <div class="vl-card__title">Decision window</div>
+              <div class="vl-card__body">Most teams decide whether to engage within the first 9 seconds. Keep the signal sharp.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Banner 15 (Stacked control panels)
+  CSS approach:
+    * layered cards create the uncommon stacked-panel effect
+    * purely decorative depth via transforms and shadows
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Banner 15</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bn15 {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 84% 20%, oklch(70% 0.16 35 / 0.16), transparent 24%),
+          radial-gradient(circle at 18% 82%, oklch(72% 0.16 225 / 0.18), transparent 24%),
+          linear-gradient(180deg, oklch(14% 0.03 250), oklch(8% 0.02 250));
+      }
+
+      .bn15__content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 80rem;
+        margin-inline: auto;
+        padding: max(var(--vl-space-xl), 6vh) var(--vl-container-gutter);
+        display: grid;
+        gap: var(--vl-space-xl);
+        grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.95fr);
+        align-items: center;
+      }
+
+      .bn15__title {
+        margin: var(--vl-space-sm) 0 var(--vl-space-md);
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(2.9rem, 6vw, 5.3rem);
+        line-height: 0.95;
+        letter-spacing: var(--vl-tracking-tight);
+      }
+
+      .bn15__stack {
+        position: relative;
+        min-height: 28rem;
+      }
+
+      .bn15__panel {
+        position: absolute;
+        inset: auto 0 auto auto;
+        width: min(100%, 28rem);
+        padding: var(--vl-space-md);
+        border-radius: var(--vl-radius-2xl);
+        background: color-mix(in oklch, var(--vl-bg-surface) 80%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 9%, transparent);
+        box-shadow: 0 1.25rem 3rem oklch(5% 0.03 250 / 0.26);
+        backdrop-filter: blur(16px);
+      }
+
+      .bn15__panel--back {
+        top: 1rem;
+        right: 2.5rem;
+        transform: rotate(-5deg);
+      }
+
+      .bn15__panel--mid {
+        top: 6.25rem;
+        right: 1.1rem;
+        transform: rotate(3deg);
+      }
+
+      .bn15__panel--front {
+        top: 11.5rem;
+        right: 0;
+      }
+
+      @media (max-width: 900px) {
+        .bn15__content {
+          grid-template-columns: 1fr;
+        }
+
+        .bn15__stack {
+          min-height: 24rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="vl-banner bn15">
+      <div class="vl-banner__scrim" aria-hidden="true"></div>
+      <div class="vl-banner__glow" aria-hidden="true"></div>
+
+      <div class="bn15__content">
+        <div vl-children="stagger">
+          <p class="vl-kicker">Banner 15</p>
+          <h1 class="bn15__title">Stack your launch logic in plain view.</h1>
+          <p class="vl-banner__lead" style="margin-left: 0; text-align: left;">
+            Three layered control panels give the banner a physical sense of workflow while still keeping the copy area clean and direct.
+          </p>
+          <div class="vl-cluster">
+            <a href="#" class="vl-cta">Start sequence</a>
+            <a href="#" class="vl-cta vl-cta--ghost">See stack notes</a>
+          </div>
+        </div>
+
+        <div class="bn15__stack" aria-hidden="true">
+          <div class="bn15__panel bn15__panel--back">
+            <div class="vl-card__title">01. Message</div>
+            <div class="vl-card__body">Set narrative and timing.</div>
+          </div>
+          <div class="bn15__panel bn15__panel--mid">
+            <div class="vl-card__title">02. Audience</div>
+            <div class="vl-card__body">Prioritize segments and owners.</div>
+          </div>
+          <div class="bn15__panel bn15__panel--front">
+            <div class="vl-card__title">03. Release</div>
+            <div class="vl-card__body">Deploy, monitor, and iterate.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

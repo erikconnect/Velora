@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 5 (Operations board)
+  CSS approach:
+    * left navigation rail plus dense kanban-style content
+    * responsive collapse keeps every column readable without JS
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 5</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as5 { min-height: 100vh; display: grid; grid-template-columns: 15rem minmax(0, 1fr); background: var(--vl-bg-main); }
+      .as5__rail { padding: var(--vl-space-lg); border-right: 1px solid var(--vl-border-subtle); background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent); }
+      .as5__main { padding: var(--vl-space-lg); display: grid; gap: var(--vl-space-lg); }
+      .as5__board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--vl-space-md); }
+      .as5__column { padding: var(--vl-space-md); border-radius: var(--vl-radius-2xl); background: var(--vl-bg-surface); border: 1px solid var(--vl-border-subtle); }
+      .as5__ticket { padding: var(--vl-space-sm); border-radius: var(--vl-radius-lg); background: color-mix(in oklch, var(--vl-bg-main) 74%, transparent); border: 1px solid var(--vl-border-subtle); }
+      @media (max-width: 980px) { .as5 { grid-template-columns: 1fr; } .as5__rail { border-right: 0; border-bottom: 1px solid var(--vl-border-subtle); } .as5__board { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="as5">
+      <aside class="as5__rail">
+        <a href="#" class="vl-header__brand">Velora Ops</a>
+        <div class="vl-stack" style="margin-top: var(--vl-space-lg);">
+          <a href="#" class="vl-nav__link vl-nav__link--active">Board</a>
+          <a href="#" class="vl-nav__link">Reviews</a>
+          <a href="#" class="vl-nav__link">Schedule</a>
+          <a href="#" class="vl-nav__link">Archive</a>
+        </div>
+      </aside>
+      <main class="as5__main">
+        <div>
+          <p class="vl-kicker">Application Shell 5</p>
+          <h1 style="margin: 0; font-family: var(--vl-font-family-display);">Operations board</h1>
+        </div>
+        <section class="as5__board">
+          <article class="as5__column">
+            <h2 class="vl-card__title">Backlog</h2>
+            <div class="vl-stack" style="margin-top: var(--vl-space-md);">
+              <div class="as5__ticket"><strong>Homepage refresh</strong><div class="vl-card__body">Awaiting copy</div></div>
+              <div class="as5__ticket"><strong>Launch email</strong><div class="vl-card__body">Needs legal review</div></div>
+            </div>
+          </article>
+          <article class="as5__column">
+            <h2 class="vl-card__title">Active</h2>
+            <div class="vl-stack" style="margin-top: var(--vl-space-md);">
+              <div class="as5__ticket"><strong>Partner kit</strong><div class="vl-card__body">Design in progress</div></div>
+              <div class="as5__ticket"><strong>Release notes</strong><div class="vl-card__body">Editing</div></div>
+            </div>
+          </article>
+          <article class="as5__column">
+            <h2 class="vl-card__title">Ready</h2>
+            <div class="vl-stack" style="margin-top: var(--vl-space-md);">
+              <div class="as5__ticket"><strong>Pricing update</strong><div class="vl-card__body">Approved and queued</div></div>
+              <div class="as5__ticket"><strong>Customer proof</strong><div class="vl-card__body">Asset complete</div></div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

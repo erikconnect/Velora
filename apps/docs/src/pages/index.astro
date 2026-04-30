@@ -1,96 +1,148 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Base from "../layouts/Base.astro";
 ---
 
-<Layout title="Velora — Motion-Native CSS Framework">
-  <main>
-    <!-- Hero -->
-    <section class="vl-section vl-section--loose">
-      <div class="vl-container vl-stack vl-stack--lg" style="max-width: 48rem; margin-inline: auto; text-align: center;">
-        <span class="vl-kicker" style="align-self: center;">CSS-Only Motion Framework</span>
-        <h1 class="vl-text-gradient vl-vt-shared-hero" style="font-size: clamp(2.5rem, 6vw, 4rem); font-family: var(--vl-font-family-display); font-weight: var(--vl-font-weight-bold); line-height: 1.1;">
-          Velora
-        </h1>
-        <p style="font-size: var(--vl-font-size-lg); color: var(--vl-text-secondary); max-width: 38rem; margin-inline: auto; line-height: var(--vl-leading-relaxed);">
-          A motion-native CSS framework with scroll-driven animations,
-          view transitions, container queries, and glassmorphic components &mdash;
-          all without a single line of JavaScript.
-        </p>
-        <div class="vl-cluster" style="justify-content: center; gap: var(--vl-space-sm);">
-          <a href="/getting-started" class="vl-cta">Get Started</a>
-          <a href="/components" class="vl-cta vl-cta--ghost">Browse Components</a>
-        </div>
-      </div>
-    </section>
+<Base title="Getting Started" description="Velora CSS — a motion-native design system. Zero JavaScript animations. Modern CSS only.">
+  <span class="vl-kicker">Documentation</span>
 
-    <!-- Features -->
-    <section class="vl-section">
-      <div class="vl-container">
-        <div class="vl-section-header" style="text-align: center;">
-          <h2 class="vl-section-header__title">Why Velora?</h2>
-          <p class="vl-section-header__desc">Built on modern CSS — no build step, no runtime, no compromise.</p>
-        </div>
-        <div class="vl-grid vl-grid--auto vl-motion-stagger">
-          <div class="vl-card">
-            <div class="vl-card__title">Motion System</div>
-            <p class="vl-card__body">
-              Scroll-driven reveals, stagger animations, parallax, keyframes, and 3D
-              transforms — all powered by CSS <code class="vl-code">animation-timeline</code>.
-            </p>
-          </div>
-          <div class="vl-card">
-            <div class="vl-card__title">View Transitions</div>
-            <p class="vl-card__body">
-              Seamless page-to-page morphing with six built-in presets: velora, wipe,
-              glide, iris, cinema, and snap. Zero JavaScript required.
-            </p>
-          </div>
-          <div class="vl-card">
-            <div class="vl-card__title">Forms &amp; Components</div>
-            <p class="vl-card__body">
-              Production-ready cards, accordions, carousels, galleries, banners,
-              badges, and a full form library with accessible inputs and toggles.
-            </p>
-          </div>
-          <div class="vl-card">
-            <div class="vl-card__title">Zero JavaScript</div>
-            <p class="vl-card__body">
-              Every animation, transition, and interactive component is pure CSS.
-              OKLCH colors, <code class="vl-code">@layer</code> cascade, container queries — the modern platform.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <h1 class="docs-page-title">Getting Started</h1>
+  <p class="docs-page-lead docs-page-lead--narrow">
+    A motion-native design system. Declarative HTML attributes. Zero JavaScript for animation. Modern CSS only.
+  </p>
 
-    <!-- Getting Started -->
-    <section class="vl-section">
-      <div class="vl-container">
-        <div class="vl-section-header" style="text-align: center;">
-          <h2 class="vl-section-header__title">Get Up and Running</h2>
-          <p class="vl-section-header__desc">Three steps to motion-native interfaces.</p>
-        </div>
-        <div class="vl-stack vl-stack--lg" style="max-width: 40rem; margin-inline: auto;">
-          <div class="vl-stack">
-            <h3>1. Install</h3>
-            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">pnpm add @velora/css</pre>
-          </div>
-          <div class="vl-stack">
-            <h3>2. Import</h3>
-            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">import "@velora/css";</pre>
-          </div>
-          <div class="vl-stack">
-            <h3>3. Build</h3>
-            <pre class="vl-code" style="display: block; padding: var(--vl-space-sm) var(--vl-space-md); overflow-x: auto;">&lt;div class="vl-card vl-motion-fade-up"&gt;
-  &lt;div class="vl-card__title"&gt;Hello Velora&lt;/div&gt;
-  &lt;p class="vl-card__body"&gt;Your first motion component.&lt;/p&gt;
-&lt;/div&gt;</pre>
-          </div>
-          <div style="text-align: center;">
-            <a href="/getting-started" class="vl-cta">Full Installation Guide →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-</Layout>
+  <h2>Installation</h2>
+  <p>Install the package from the npm registry:</p>
+  <pre><code>pnpm add @velora/css
+# or
+npm install @velora/css</code></pre>
+
+  <p>Then import it once at the root of your app:</p>
+  <pre><code>@import "@velora/css";</code></pre>
+
+  <p>Or in a bundler entrypoint:</p>
+  <pre><code>import "@velora/css";</code></pre>
+
+  <h2>Quick Start</h2>
+  <p>Add motion to any element with two attributes:</p>
+  <pre><code>&lt;!-- Fade up when scrolled into view --&gt;
+&lt;div vl-effect="fade-up" vl-timeline="view"&gt;
+  Reveals on scroll
+&lt;/div&gt;
+
+&lt;!-- Staggered children entrance --&gt;
+&lt;section vl-children="stagger" vl-stagger="100ms"&gt;
+  &lt;div&gt;Child 1&lt;/div&gt;
+  &lt;div&gt;Child 2&lt;/div&gt;
+  &lt;div&gt;Child 3&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- Full scene orchestration --&gt;
+&lt;section
+  vl-scene="hero"
+  vl-effect="scene-hero-reveal"
+  vl-timeline="view"
+  vl-range="entry 0% cover 70%"
+  vl-pin&gt;
+  &lt;h1&gt;Heading fades up&lt;/h1&gt;
+  &lt;img src="hero.jpg" alt="" /&gt;
+  &lt;p&gt;Copy blurs in&lt;/p&gt;
+  &lt;a href="#" class="vl-cta"&gt;Get started&lt;/a&gt;
+&lt;/section&gt;</code></pre>
+
+  <h2>Page Transitions</h2>
+  <p>Enable MPA cross-document view transitions with one attribute:</p>
+  <pre><code>&lt;!-- In your root layout --&gt;
+&lt;html vl-page-transition="cinema"&gt;</code></pre>
+  <p>
+    Requires <code>@view-transition &#123; navigation: auto; &#125;</code> in your CSS (already included with Velora).
+    Supported in Chrome 111+, Edge 111+.
+  </p>
+
+  <h2>Philosophy</h2>
+  <p>
+    Velora is a <strong>declarative motion system for HTML</strong> — not a UI kit, not a JavaScript animation library.
+  </p>
+  <p>The core idea is a three-step contract:</p>
+  <ol>
+    <li>Write <strong>semantic HTML</strong></li>
+    <li>Add <strong><code>vl-*</code> attributes</strong> to declare intent</li>
+    <li>Velora maps those to <strong>CSS-based motion, layout, and transitions</strong></li>
+  </ol>
+  <p>
+    The framework proves that modern HTML and CSS are sufficient to build premium motion systems when the
+    architecture is designed correctly.
+  </p>
+
+  <h2>CSS Layer Stack</h2>
+  <p>Velora organizes CSS into 8 cascade layers, making it safe to override at any point:</p>
+  <pre><code>@layer velora.reset,
+       velora.tokens,
+       velora.layout,
+       velora.motion,
+       velora.components,
+       velora.transitions,
+       velora.utilities,
+       velora.overrides;</code></pre>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Contents</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>velora.reset</code></td><td>Browser normalization and base adjustments</td></tr>
+      <tr><td><code>velora.tokens</code></td><td>Colors, spacing, typography, motion tokens</td></tr>
+      <tr><td><code>velora.layout</code></td><td>Container, stack, grid, and scene wrappers</td></tr>
+      <tr><td><code>velora.motion</code></td><td>Effect presets, timelines, stagger, reveals</td></tr>
+      <tr><td><code>velora.components</code></td><td>Cards, buttons, navbars, accordions, badges</td></tr>
+      <tr><td><code>velora.transitions</code></td><td>Page transitions and shared element rules</td></tr>
+      <tr><td><code>velora.utilities</code></td><td>Low-level opt-in utility classes</td></tr>
+      <tr><td><code>velora.overrides</code></td><td>Last-mile overrides; highest specificity</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Accessibility</h2>
+  <p>
+    All Velora motion is <code>prefers-reduced-motion</code> aware. Users who have requested reduced motion
+    see instant transitions with no animation.
+  </p>
+  <pre><code>/* Built into every Velora effect */
+@media (prefers-reduced-motion: reduce) &#123;
+  [vl-effect],
+  [vl-scene],
+  [vl-page-transition] &#123;
+    animation: none !important;
+    transition-duration: 0ms !important;
+  &#125;
+&#125;</code></pre>
+
+  <h2>Explore the Docs</h2>
+  <div class="docs-grid-cards">
+    <a href="/tokens/" class="vl-card docs-card-link" vl-effect="hover-lift">
+      <div class="vl-card__title">Design Tokens</div>
+      <p class="vl-card__body">CSS custom properties for color, typography, spacing, and motion.</p>
+    </a>
+    <a href="/effects/" class="vl-card docs-card-link" vl-effect="hover-lift">
+      <div class="vl-card__title">Motion Effects</div>
+      <p class="vl-card__body">All <code>vl-effect</code> values — entrance, interaction, continuous, text, cinema.</p>
+    </a>
+    <a href="/scenes/" class="vl-card docs-card-link" vl-effect="hover-lift">
+      <div class="vl-card__title">Scenes</div>
+      <p class="vl-card__body">Multi-element orchestrations with <code>vl-scene</code> and <code>vl-children</code>.</p>
+    </a>
+    <a href="/transitions/" class="vl-card docs-card-link" vl-effect="hover-lift">
+      <div class="vl-card__title">Page Transitions</div>
+      <p class="vl-card__body">MPA view transitions with shared element morphing.</p>
+    </a>
+    <a href="/attributes/" class="vl-card docs-card-link" vl-effect="hover-lift">
+      <div class="vl-card__title">Attribute Reference</div>
+      <p class="vl-card__body">Complete reference for every <code>vl-*</code> attribute.</p>
+    </a>
+    <a href="/agents/" class="vl-card docs-card-link" vl-effect="hover-lift">
+      <div class="vl-card__title">Agent Handbook</div>
+      <p class="vl-card__body">Rules, patterns, and safe prompts for AI coding agents.</p>
+    </a>
+  </div>
+</Base>

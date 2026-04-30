@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Banner 13 (Bento launch banner)
+  CSS approach:
+    * centered banner copy plus bento grid underneath
+    * uses existing .vl-grid--auto and .vl-card variants for a fast zero-JS layout
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Banner 13</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bn13 {
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 12% 18%, oklch(70% 0.18 300 / 0.2), transparent 22%),
+          radial-gradient(circle at 86% 82%, oklch(68% 0.16 180 / 0.2), transparent 24%),
+          linear-gradient(180deg, oklch(15% 0.03 280), oklch(9% 0.02 260));
+      }
+
+      .bn13__content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        max-width: 78rem;
+        margin-inline: auto;
+        padding: max(var(--vl-space-xl), 6vh) var(--vl-container-gutter);
+      }
+
+      .bn13__header {
+        text-align: center;
+        max-width: 44rem;
+        margin: 0 auto var(--vl-space-xl);
+      }
+
+      .bn13__title {
+        margin: var(--vl-space-sm) 0 var(--vl-space-md);
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: var(--vl-tracking-tight);
+      }
+
+      .bn13__grid {
+        display: grid;
+        gap: var(--vl-space-md);
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+
+      .bn13__tile {
+        min-height: 12rem;
+      }
+
+      .bn13__tile--wide {
+        grid-column: span 7;
+      }
+
+      .bn13__tile--tall {
+        grid-column: span 5;
+      }
+
+      .bn13__tile--half {
+        grid-column: span 6;
+      }
+
+      @media (max-width: 900px) {
+        .bn13__tile--wide,
+        .bn13__tile--tall,
+        .bn13__tile--half {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="vl-banner bn13">
+      <div class="vl-banner__scrim" aria-hidden="true"></div>
+      <div class="vl-banner__glow" aria-hidden="true"></div>
+
+      <div class="bn13__content">
+        <div class="bn13__header" vl-children="stagger">
+          <p class="vl-kicker">Banner 13</p>
+          <h1 class="bn13__title vl-text-gradient">Bento storytelling for uncommon launches.</h1>
+          <p class="vl-banner__lead">
+            Center the promise, then spread the proof across tiles that can hold metrics, quotes, logistics, and the next action.
+          </p>
+          <div class="vl-cluster" style="justify-content: center;">
+            <a href="#" class="vl-cta">Explore system</a>
+            <a href="#" class="vl-cta vl-cta--ghost">View notes</a>
+          </div>
+        </div>
+
+        <div class="bn13__grid">
+          <article class="vl-card vl-card--aurora bn13__tile bn13__tile--wide">
+            <div class="vl-card__title">Campaign signal stack</div>
+            <div class="vl-card__body">Message architecture, launch scope, and social proof live in one composition instead of three disconnected sections.</div>
+          </article>
+
+          <article class="vl-card bn13__tile bn13__tile--tall">
+            <div class="vl-card__title">78%</div>
+            <div class="vl-card__body">of buyers decide in the first screen whether your product feels coordinated.</div>
+          </article>
+
+          <article class="vl-card bn13__tile bn13__tile--half">
+            <div class="vl-card__title">Primary CTA</div>
+            <div class="vl-card__body">Use one high-contrast action and one secondary reading path.</div>
+          </article>
+
+          <article class="vl-card bn13__tile bn13__tile--half">
+            <div class="vl-card__title">Rollout map</div>
+            <div class="vl-card__body">Sales enablement, onboarding, and lifecycle sequences can each own a tile without breaking the banner rhythm.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

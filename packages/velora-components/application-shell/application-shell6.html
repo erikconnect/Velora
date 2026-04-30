@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Application Shell 6 (Media workspace)
+  CSS approach:
+    * top summary row plus wide content canvas and side library
+    * built for review-heavy teams without JS controls
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Application Shell 6</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .as6 { min-height: 100vh; padding: var(--vl-space-lg); background: var(--vl-bg-main); }
+      .as6__wrap { max-width: 84rem; margin: 0 auto; display: grid; gap: var(--vl-space-lg); }
+      .as6__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--vl-space-md); }
+      .as6__body { display: grid; grid-template-columns: 1.35fr 0.85fr; gap: var(--vl-space-md); }
+      .as6__canvas, .as6__library { padding: var(--vl-space-md); border-radius: var(--vl-radius-2xl); border: 1px solid var(--vl-border-subtle); background: var(--vl-bg-surface); }
+      .as6__preview { min-height: 26rem; border-radius: var(--vl-radius-xl); background: linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 18%, transparent), color-mix(in oklch, var(--vl-color-secondary) 12%, transparent)); border: 1px solid var(--vl-border-subtle); }
+      @media (max-width: 980px) { .as6__stats, .as6__body { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="as6">
+      <div class="as6__wrap">
+        <div>
+          <p class="vl-kicker">Application Shell 6</p>
+          <h1 style="margin: 0; font-family: var(--vl-font-family-display);">Media workspace</h1>
+        </div>
+        <section class="as6__stats">
+          <article class="vl-card"><div class="vl-card__title">124</div><div class="vl-card__body">assets tagged</div></article>
+          <article class="vl-card"><div class="vl-card__title">31</div><div class="vl-card__body">campaign cuts</div></article>
+          <article class="vl-card"><div class="vl-card__title">9</div><div class="vl-card__body">approval requests</div></article>
+          <article class="vl-card"><div class="vl-card__title">2h</div><div class="vl-card__body">avg response</div></article>
+        </section>
+        <section class="as6__body">
+          <article class="as6__canvas">
+            <div class="as6__preview"></div>
+            <div class="vl-cluster" style="margin-top: var(--vl-space-md); justify-content: space-between;">
+              <div>
+                <div class="vl-card__title">Spring cutdown</div>
+                <div class="vl-card__body">Master preview v12</div>
+              </div>
+              <span class="vl-badge vl-badge--accent">Ready to review</span>
+            </div>
+          </article>
+          <aside class="as6__library">
+            <h2 class="vl-card__title">Library</h2>
+            <div class="vl-stack" style="margin-top: var(--vl-space-md);">
+              <div class="vl-card"><div class="vl-card__title">Hero stills</div><div class="vl-card__body">18 options</div></div>
+              <div class="vl-card"><div class="vl-card__title">Quote overlays</div><div class="vl-card__body">6 approved</div></div>
+              <div class="vl-card"><div class="vl-card__title">Mobile crops</div><div class="vl-card__body">Queued</div></div>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

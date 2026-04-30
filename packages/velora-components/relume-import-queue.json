@@ -1,0 +1,47 @@
+{
+  "source": "https://www.relume.io/react/components?uncommon-2=Uncommon",
+  "capturedAt": "2026-04-08",
+  "notes": [
+    "Extracted from scraped page content.",
+    "Preview and direct code endpoints appear auth-gated for this session.",
+    "Use the react component page links below to open each component and copy JSX manually."
+  ],
+  "components": [
+    {
+      "name": "Banner 11",
+      "category": "Banner",
+      "relumePage": "https://www.relume.io/react-components/banner-11",
+      "cid": "uncommon-components/section_banner11"
+    },
+    {
+      "name": "Banner 12",
+      "category": "Banner",
+      "relumePage": "https://www.relume.io/react-components/banner-12",
+      "cid": "uncommon-components/section_banner12"
+    },
+    {
+      "name": "Banner 13",
+      "category": "Banner",
+      "relumePage": "https://www.relume.io/react-components/banner-13",
+      "cid": "uncommon-components/section_banner13"
+    },
+    {
+      "name": "Banner 14",
+      "category": "Banner",
+      "relumePage": "https://www.relume.io/react-components/banner-14",
+      "cid": "uncommon-components/section_banner14"
+    },
+    {
+      "name": "Banner 15",
+      "category": "Banner",
+      "relumePage": "https://www.relume.io/react-components/banner-15",
+      "cid": "uncommon-components-2/section_banner15"
+    },
+    {
+      "name": "Banner 16",
+      "category": "Banner",
+      "relumePage": "https://www.relume.io/react-components/banner-16",
+      "cid": "uncommon-components-2/section_banner16"
+    }
+  ]
+}

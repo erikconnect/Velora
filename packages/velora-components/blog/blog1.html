@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+  Velora -- Blog 1 (Editorial lead)
+  CSS approach:
+    * large editorial split layout with lead image panel and metadata rail
+    * static but motion-ready via existing Velora tokens and gradients
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora -- Blog 1</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+
+    <style>
+      .bg1 { min-height: 100vh; padding: var(--vl-space-xl) var(--vl-space-lg); background: var(--vl-bg-main); }
+      .bg1__wrap { max-width: 78rem; margin: 0 auto; display: grid; gap: var(--vl-space-lg); grid-template-columns: 1.15fr 0.85fr; align-items: center; }
+      .bg1__art { min-height: 34rem; border-radius: var(--vl-radius-2xl); background: linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 24%, transparent), color-mix(in oklch, var(--vl-color-secondary) 14%, transparent)); border: 1px solid var(--vl-border-subtle); }
+      .bg1__title { margin: var(--vl-space-sm) 0 var(--vl-space-md); font-family: var(--vl-font-family-display); font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 0.96; letter-spacing: var(--vl-tracking-tight); }
+      @media (max-width: 980px) { .bg1__wrap { grid-template-columns: 1fr; } .bg1__art { min-height: 22rem; } }
+    </style>
+  </head>
+  <body>
+    <section class="bg1">
+      <div class="bg1__wrap">
+        <div>
+          <p class="vl-kicker">Blog 1</p>
+          <h1 class="bg1__title">How uncommon layouts create memorability without losing clarity.</h1>
+          <p class="vl-banner__lead" style="margin-left: 0; text-align: left;">A long-form editorial header that prioritizes title weight, metadata hierarchy, and a premium visual panel.</p>
+          <div class="vl-cluster">
+            <span class="vl-badge vl-badge--accent">Design Systems</span>
+            <span class="vl-badge">8 min read</span>
+          </div>
+        </div>
+        <div class="bg1__art"></div>
+      </div>
+    </section>
+  </body>
+</html>

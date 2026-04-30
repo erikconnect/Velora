@@ -1,0 +1,6 @@
+/**
+ * Utilitários Tailwind compilados para demos (sem preflight).
+ * Build: npm run build:tw-demos
+ */
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,1132 @@
+@layer velora.motion {
+    /*
+     * Velora Motion System  declarative attribute grammar
+     *
+     * Public API:
+     *   vl-effect    Named motion preset (primitive, interaction, state, scene)
+     *   vl-timeline  Progress model: view | scroll | auto | state | hover
+     *   vl-range     Animation range for scroll-driven motion
+     *   vl-pin       Boolean  sticky scene behavior
+     *   vl-scrub     Boolean  continuous scroll-linked motion
+     *   vl-once      Boolean  one-shot reveal
+     *   vl-children  Child choreography: stagger | cascade | sequence
+     *   vl-stagger   Stagger interval override (e.g. "120ms")
+     *   vl-depth     Parallax depth multiplier: 1 | 2 | 3 | 4
+     *   vl-speed     Duration category: slow | normal | fast
+     *   vl-scene     Scene container marker
+     *   vl-targets   Descendant selector hint (limited CSS-only support)
+     *
+     * CSS custom properties used by the attribute system:
+     *   --vl-motion-duration   Duration for current effect
+     *   --vl-motion-distance   Translation distance
+     *   --vl-motion-ease       Easing function
+     *   --vl-stagger-step      Delay between staggered children
+     *   --vl-range             Animation range value
+     *
+     * All animations: zero JavaScript. Modern CSS only.
+     */
+
+    /* =========================================================================
+       KEYFRAMES  entrance
+       ========================================================================= */
+    @keyframes vl-fade-in {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    @keyframes vl-fade-up {
+        from {
+            opacity: 0;
+            transform: translate3d(0, var(--vl-motion-distance, 1.25rem), 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-fade-down {
+        from {
+            opacity: 0;
+            transform: translate3d(0, calc(-1 * var(--vl-motion-distance, 1.25rem)), 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-slide-left {
+        from {
+            opacity: 0;
+            transform: translate3d(var(--vl-motion-distance, 1.5rem), 0, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-slide-right {
+        from {
+            opacity: 0;
+            transform: translate3d(calc(-1 * var(--vl-motion-distance, 1.5rem)), 0, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-scale-in {
+        from {
+            opacity: 0;
+            transform: scale(0.94) translate3d(0, 0.5rem, 0);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-blur-in {
+        from {
+            opacity: 0;
+            filter: blur(14px);
+            transform: translate3d(0, 0.75rem, 0);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-3d-entry {
+        from {
+            opacity: 0;
+            transform: perspective(1200px) rotateX(12deg) translate3d(0, 2rem, 0);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(1200px) rotateX(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-flow-in {
+        from {
+            opacity: 0;
+            filter: blur(6px);
+            transform: translate3d(0, var(--vl-motion-distance, 1.5rem), 0) scale(0.97);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @keyframes vl-tilt-in {
+        from {
+            opacity: 0;
+            transform: perspective(900px) rotateY(-8deg) translate3d(0, 1rem, 0);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(900px) rotateY(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-clip-rise {
+        from {
+            opacity: 0.2;
+            clip-path: inset(100% 0 0 0);
+        }
+        to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    /* =========================================================================
+       KEYFRAMES  continuous / ambient
+       ========================================================================= */
+    @keyframes vl-shimmer {
+        to { background-position: 200% center; }
+    }
+
+    @keyframes vl-float {
+        0%, 100% { transform: translate3d(0, 0, 0); }
+        50%      { transform: translate3d(0, -0.35rem, 0); }
+    }
+
+    @keyframes vl-glow-breathe {
+        0%, 100% {
+            opacity: 0.55;
+            filter: drop-shadow(0 0 0.35rem color-mix(in oklch, var(--vl-color-primary) 40%, transparent));
+        }
+        50% {
+            opacity: 1;
+            filter: drop-shadow(0 0 0.85rem color-mix(in oklch, var(--vl-color-primary) 55%, transparent));
+        }
+    }
+
+    @keyframes vl-parallax-shift {
+        from { transform: translate3d(0, var(--vl-parallax-from, -12%), 0); }
+        to   { transform: translate3d(0, var(--vl-parallax-to, 12%), 0); }
+    }
+
+    @keyframes vl-scroll-scale {
+        from { opacity: 0.35; transform: scale(0.92); }
+        to   { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes vl-tilt-wobble {
+        0%, 100% { transform: rotate(-2.5deg); }
+        50%      { transform: rotate(2.5deg); }
+    }
+
+    @keyframes vl-orbit-spin {
+        from { transform: rotate(0deg) translateX(var(--vl-orbit-radius, 2.5rem)) rotate(0deg); }
+        to   { transform: rotate(360deg) translateX(var(--vl-orbit-radius, 2.5rem)) rotate(-360deg); }
+    }
+
+    @keyframes vl-rock {
+        0%, 100% { transform: rotate(-4deg); }
+        50%      { transform: rotate(4deg); }
+    }
+
+    @keyframes vl-rotate-flat {
+        to { transform: rotate(360deg); }
+    }
+
+    /* =========================================================================
+       KEYFRAMES  text reveal (clip-path based)
+       ========================================================================= */
+    @keyframes vl-clip-reveal-ltr {
+        from { clip-path: inset(0 100% 0 0); }
+        to   { clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes vl-clip-reveal-up {
+        from {
+            clip-path: inset(100% 0 0 0);
+            transform: translate3d(0, 0.5rem, 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-clip-reveal-down {
+        from {
+            clip-path: inset(0 0 100% 0);
+            transform: translate3d(0, -0.5rem, 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    /* =========================================================================
+       KEYFRAMES  cinema / scroll-driven
+       ========================================================================= */
+    @keyframes vl-cinema-zoom {
+        from { transform: scale(1); filter: brightness(1); }
+        to   { transform: scale(1.15); filter: brightness(0.85); }
+    }
+
+    @keyframes vl-scroll-horizontal {
+        from { transform: translate3d(0, 0, 0); }
+        to   { transform: translate3d(var(--vl-scroll-x-distance, -200%), 0, 0); }
+    }
+
+    @keyframes vl-morph {
+        0%   { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        25%  { border-radius: 58% 42% 45% 55% / 55% 30% 70% 45%; }
+        50%  { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+        75%  { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+        100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    }
+
+    @keyframes vl-elastic-in {
+        0%   { opacity: 0; transform: scale(0.3); }
+        50%  { opacity: 1; transform: scale(1.05); }
+        70%  { transform: scale(0.97); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes vl-typewriter {
+        from { width: 0; }
+        to   { width: var(--vl-type-chars, 100%); }
+    }
+
+    @keyframes vl-blink-caret {
+        0%, 100% { border-color: transparent; }
+        50%      { border-color: var(--vl-color-primary); }
+    }
+
+    @keyframes vl-word-rise {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 0.7em, 0);
+            filter: blur(4px);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes vl-line-wipe {
+        from {
+            opacity: 0;
+            clip-path: inset(0 100% 0 0);
+        }
+        to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-depth-drift {
+        from {
+            transform: translate3d(0, var(--vl-depth-from, 6%), 0) scale(var(--vl-depth-scale-from, 0.96));
+            opacity: 0.38;
+        }
+        to {
+            transform: translate3d(0, var(--vl-depth-to, -6%), 0) scale(var(--vl-depth-scale-to, 1.04));
+            opacity: 1;
+        }
+    }
+
+    /* =========================================================================
+       PRIMITIVE EFFECTS  [vl-effect="<name>"]
+       Each preset sets tokenized variables per handbook
+       ========================================================================= */
+
+    /* --- Base: any element with vl-effect gets composable defaults --- */
+    [vl-effect] {
+        --vl-motion-duration: var(--vl-duration-slow);
+        --vl-motion-ease: var(--vl-ease-cinematic);
+        animation-fill-mode: both;
+    }
+
+    /* --- Entrance primitives --- */
+    [vl-effect="fade-in"] {
+        animation: vl-fade-in var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    [vl-effect="fade-up"] {
+        animation: vl-fade-up var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    [vl-effect="fade-down"] {
+        animation: vl-fade-down var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    [vl-effect="slide-left"] {
+        animation: vl-slide-left var(--vl-motion-duration) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-effect="slide-right"] {
+        animation: vl-slide-right var(--vl-motion-duration) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-effect="scale-in"] {
+        animation: vl-scale-in var(--vl-motion-duration) var(--vl-ease-spring) both;
+    }
+
+    [vl-effect="blur-in"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-blur-in var(--vl-motion-duration) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-effect="reveal-3d"] {
+        animation: vl-3d-entry var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    [vl-effect="flow-in"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-flow-in var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    [vl-effect="clip-rise"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-clip-rise var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    [vl-effect="tilt-in"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+        animation: vl-tilt-in var(--vl-motion-duration) var(--vl-motion-ease) both;
+    }
+
+    /* --- Interaction effects --- */
+    [vl-effect="hover-lift"] {
+        transition: transform var(--vl-transition-normal), box-shadow var(--vl-transition-normal);
+    }
+
+    [vl-effect="hover-lift"]:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-glow"] {
+        transition: box-shadow var(--vl-transition-normal);
+    }
+
+    [vl-effect="hover-glow"]:hover {
+        box-shadow: var(--vl-shadow-glow);
+    }
+
+    [vl-effect="underline-expand"] {
+        position: relative;
+    }
+
+    [vl-effect="underline-expand"]::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: currentColor;
+        transition: width var(--vl-transition-normal), left var(--vl-transition-normal);
+    }
+
+    [vl-effect="underline-expand"]:hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+    [vl-effect="icon-shift"] {
+        transition: transform var(--vl-transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    [vl-effect="icon-shift"]:hover > :last-child {
+        transform: translateX(4px);
+    }
+
+    [vl-effect="icon-shift"] > :last-child {
+        transition: transform var(--vl-transition-fast);
+    }
+
+    [vl-effect="hover-tilt-3d"] {
+        transform-style: preserve-3d;
+        transform-origin: center;
+        transition:
+            transform var(--vl-transition-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic),
+            border-color var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-tilt-3d"]:hover,
+    [vl-effect="hover-tilt-3d"]:focus-visible {
+        transform: perspective(1200px) rotateX(4deg) rotateY(-4deg) translate3d(0, -6px, 0);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-depth-stack"] {
+        transition:
+            transform var(--vl-transition-normal) var(--vl-ease-cinematic),
+            filter var(--vl-transition-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-depth-stack"]:hover,
+    [vl-effect="hover-depth-stack"]:focus-visible {
+        transform: translate3d(0, -8px, 0) scale(1.01);
+        filter: saturate(1.06);
+        box-shadow: var(--vl-shadow-float), var(--vl-shadow-glow);
+    }
+
+    [vl-effect="hover-spotlight"] {
+        position: relative;
+        isolation: isolate;
+        overflow: clip;
+    }
+
+    [vl-effect="hover-spotlight"]::after {
+        content: "";
+        position: absolute;
+        inset: -20%;
+        background: radial-gradient(circle at center, color-mix(in oklch, var(--vl-color-primary) 22%, transparent), transparent 58%);
+        opacity: 0;
+        transform: scale(0.88);
+        transition:
+            opacity var(--vl-transition-normal) var(--vl-ease-cinematic),
+            transform var(--vl-transition-normal) var(--vl-ease-cinematic);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    [vl-effect="hover-spotlight"]:hover::after,
+    [vl-effect="hover-spotlight"]:focus-visible::after {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    [vl-effect="hover-card-stack"] {
+        transform-style: preserve-3d;
+        transition:
+            transform var(--vl-transition-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic),
+            border-color var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-card-stack"]:hover,
+    [vl-effect="hover-card-stack"]:focus-visible {
+        transform: perspective(1300px) rotateX(5deg) rotateY(-5deg) translate3d(0, -10px, 0);
+        box-shadow: var(--vl-shadow-float), 0 24px 48px rgba(0, 0, 0, 0.26);
+    }
+
+    [vl-effect="hover-card-stack"] > * {
+        transition: transform var(--vl-transition-normal) var(--vl-ease-cinematic), opacity var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-card-stack"]:hover > *:nth-child(1),
+    [vl-effect="hover-card-stack"]:focus-visible > *:nth-child(1) {
+        transform: translate3d(0, -2px, 0);
+    }
+
+    [vl-effect="hover-card-stack"]:hover > *:nth-child(2),
+    [vl-effect="hover-card-stack"]:focus-visible > *:nth-child(2) {
+        transform: translate3d(0, -4px, 0);
+    }
+
+    [vl-effect="hover-card-stack"]:hover > *:nth-child(3),
+    [vl-effect="hover-card-stack"]:focus-visible > *:nth-child(3) {
+        transform: translate3d(0, -6px, 0);
+    }
+
+    [vl-effect="hover-shell-lift"] {
+        position: relative;
+        overflow: clip;
+        transition:
+            transform var(--vl-transition-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="hover-shell-lift"]::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent 52%);
+        opacity: 0;
+        transition: opacity var(--vl-transition-normal) var(--vl-ease-cinematic);
+        pointer-events: none;
+    }
+
+    [vl-effect="hover-shell-lift"]:hover,
+    [vl-effect="hover-shell-lift"]:focus-visible {
+        transform: translate3d(0, -6px, 0) scale(1.01);
+        box-shadow: var(--vl-shadow-float);
+    }
+
+    [vl-effect="hover-shell-lift"]:hover::before,
+    [vl-effect="hover-shell-lift"]:focus-visible::before {
+        opacity: 1;
+    }
+
+    @media (hover: none) {
+        [vl-effect="hover-lift"]:hover,
+        [vl-effect="hover-glow"]:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+
+    /* --- State effects --- */
+    [vl-effect="accordion"] {
+        overflow: hidden;
+        transition: height var(--vl-transition-normal), opacity var(--vl-transition-normal);
+    }
+
+    [vl-effect="drawer"] {
+        transition:
+            transform var(--vl-transition-normal),
+            opacity var(--vl-transition-normal),
+            visibility var(--vl-transition-normal) allow-discrete,
+            display var(--vl-transition-normal) allow-discrete;
+    }
+
+    [vl-effect="panel-swap"] {
+        transition: opacity var(--vl-transition-normal), transform var(--vl-transition-fast);
+    }
+
+    /* --- Continuous / ambient effects --- */
+    [vl-effect="shimmer"] {
+        animation: vl-shimmer 2.5s var(--vl-ease-in-out-smooth) infinite;
+        background-size: 200% auto;
+    }
+
+    [vl-effect="float"] {
+        animation: vl-float 5.5s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="glow-breathe"] {
+        animation: vl-glow-breathe 3.5s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="wobble"] {
+        animation: vl-tilt-wobble 2.8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="orbit"] {
+        display: inline-block;
+        transform-origin: center center;
+        animation: vl-orbit-spin 14s linear infinite;
+    }
+
+    [vl-effect="rock"] {
+        animation: vl-rock 4s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="morph"] {
+        animation: vl-morph 8s var(--vl-ease-in-out-smooth) infinite;
+    }
+
+    [vl-effect="elastic-in"] {
+        animation: vl-elastic-in 0.7s var(--vl-ease-spring) both;
+    }
+
+    /* --- Text reveals --- */
+    [vl-effect="text-reveal"] {
+        animation: vl-clip-reveal-ltr 0.8s var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="text-reveal-up"] {
+        animation: vl-clip-reveal-up 0.8s var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="text-reveal-down"] {
+        animation: vl-clip-reveal-down 0.8s var(--vl-ease-cinematic) both;
+    }
+
+    /* --- Cinema / scroll-specific --- */
+    [vl-effect="cinema-zoom"] {
+        animation: vl-cinema-zoom linear both;
+        animation-timeline: view(block);
+        animation-range: entry 0% exit 100%;
+        will-change: transform, filter;
+    }
+
+    [vl-effect="parallax"] {
+        animation: vl-parallax-shift both linear;
+        animation-timeline: view(block);
+        animation-range: cover;
+    }
+
+    [vl-effect="typewriter"] {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 2px solid var(--vl-color-primary);
+        width: 0;
+        animation:
+            vl-typewriter var(--vl-type-duration, 2s) steps(var(--vl-type-steps, 20)) forwards,
+            vl-blink-caret 0.75s step-end infinite;
+        font-family: var(--vl-font-family-mono);
+    }
+
+    [vl-effect="typewriter-soft"] {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 1px solid color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+        width: 0;
+        display: inline-block;
+        max-width: 100%;
+        animation:
+            vl-typewriter var(--vl-type-duration, 2.4s) steps(var(--vl-type-steps, 26)) forwards,
+            vl-blink-caret 0.95s step-end 4;
+        font-family: var(--vl-font-family-mono);
+        letter-spacing: 0.04em;
+    }
+
+    /*
+     * Looping typewriter: types each character forward then reverses (erases),
+     * repeating indefinitely. Uses alternate direction so step count matches
+     * the character count in both directions. Cursor blinks throughout.
+     */
+    [vl-effect="typewriter-loop"] {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 1px solid color-mix(in oklch, var(--vl-color-primary) 60%, transparent);
+        width: 0;
+        display: inline-block;
+        max-width: 100%;
+        animation:
+            vl-typewriter var(--vl-type-duration, 2.6s) steps(var(--vl-type-steps, 36)) infinite alternate,
+            vl-blink-caret 0.9s step-end infinite;
+        font-family: var(--vl-font-family-mono);
+        letter-spacing: 0.04em;
+    }
+
+    [vl-effect="text-line-reveal"] {
+        display: inline-block;
+        animation: vl-line-wipe var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="text-word-rise"] {
+        display: inline-block;
+        animation: vl-word-rise var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-effect="scroll-marquee"] {
+        animation: vl-scroll-horizontal both linear;
+        animation-timeline: scroll(root);
+        animation-range: var(--vl-marquee-range, cover 0% cover 100%);
+        --vl-scroll-x-distance: var(--vl-marquee-distance, -36%);
+        will-change: transform;
+    }
+
+    [vl-effect="depth-drift"] {
+        animation: vl-depth-drift both linear;
+        animation-timeline: view(block);
+        animation-range: var(--vl-range, entry 0% cover 85%);
+        transform-origin: center center;
+    }
+
+    /* =========================================================================
+       TIMELINE BINDINGS  [vl-timeline="<value>"]
+       ========================================================================= */
+    [vl-timeline="view"] {
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 42%;
+        animation-timing-function: linear;
+    }
+
+    [vl-timeline="scroll"] {
+        animation-timeline: scroll(root);
+        animation-timing-function: linear;
+    }
+
+    [vl-timeline="auto"] {
+        animation-timeline: auto;
+    }
+
+    [vl-timeline="hover"] {
+        animation-play-state: paused;
+    }
+
+    [vl-timeline="hover"]:hover {
+        animation-play-state: running;
+    }
+
+    /* =========================================================================
+       RANGE PRESETS  [vl-range="<value>"]
+       ========================================================================= */
+    [vl-range="entry"] {
+        animation-range: entry 0% entry 100%;
+    }
+
+    [vl-range="entry-short"] {
+        animation-range: entry 15% cover 35%;
+    }
+
+    [vl-range="entry-long"] {
+        animation-range: entry 0% cover 70%;
+    }
+
+    [vl-range="cover"] {
+        animation-range: cover 0% cover 100%;
+    }
+
+    [vl-range="contain"] {
+        animation-range: contain 0% contain 100%;
+    }
+
+    [vl-range="custom"] {
+        animation-range: var(--vl-range, entry 5% cover 42%);
+    }
+
+    [vl-range="scene-soft"] {
+        animation-range: entry 0% cover 82%;
+    }
+
+    [vl-range="scene-focus"] {
+        animation-range: entry 20% cover 65%;
+    }
+
+    /* =========================================================================
+       BOOLEAN ATTRIBUTES
+       ========================================================================= */
+    [vl-pin] {
+        position: sticky;
+        top: 0;
+        z-index: var(--vl-z-sticky);
+    }
+
+    [vl-scrub] {
+        animation-fill-mode: both;
+        animation-timing-function: linear;
+    }
+
+    [vl-once] {
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+    }
+
+    [vl-once][vl-timeline="view"] {
+        animation-range: entry 10% cover 36%;
+    }
+
+    [vl-enter="focus"] {
+        animation-fill-mode: both;
+    }
+
+    [vl-enter="focus"][vl-timeline="view"] {
+        animation-range: entry 12% cover 34%;
+    }
+
+    /* =========================================================================
+       CHILD CHOREOGRAPHY  [vl-children="<mode>"]
+       ========================================================================= */
+    [vl-children="stagger"] > * {
+        animation: vl-fade-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
+    }
+
+    [vl-children="stagger"] > *:nth-child(1)  { animation-delay: calc(0  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(2)  { animation-delay: calc(1  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(3)  { animation-delay: calc(2  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(4)  { animation-delay: calc(3  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(5)  { animation-delay: calc(4  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(9)  { animation-delay: calc(8  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(10) { animation-delay: calc(9  * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(11) { animation-delay: calc(10 * var(--vl-stagger-step)); }
+    [vl-children="stagger"] > *:nth-child(12) { animation-delay: calc(11 * var(--vl-stagger-step)); }
+
+    [vl-children="cascade"] > * {
+        animation: vl-flow-in var(--vl-duration-slower) var(--vl-ease-out-soft) both;
+    }
+
+    [vl-children="cascade"] > *:nth-child(1)  { animation-delay: calc(0  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(2)  { animation-delay: calc(1  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(3)  { animation-delay: calc(2  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(4)  { animation-delay: calc(3  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(5)  { animation-delay: calc(4  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step)); }
+    [vl-children="cascade"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step)); }
+
+    [vl-children="sequence"] > * {
+        --vl-seq-duration: var(--vl-motion-duration, var(--vl-duration-slow));
+        animation: vl-fade-up var(--vl-seq-duration) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
+    }
+
+    [vl-children="sequence"] > *:nth-child(1)  { animation-delay: calc(0 * var(--vl-seq-duration)); }
+    [vl-children="sequence"] > *:nth-child(2)  { animation-delay: calc(1 * var(--vl-seq-duration)); }
+    [vl-children="sequence"] > *:nth-child(3)  { animation-delay: calc(2 * var(--vl-seq-duration)); }
+    [vl-children="sequence"] > *:nth-child(4)  { animation-delay: calc(3 * var(--vl-seq-duration)); }
+    [vl-children="sequence"] > *:nth-child(5)  { animation-delay: calc(4 * var(--vl-seq-duration)); }
+    [vl-children="sequence"] > *:nth-child(6)  { animation-delay: calc(5 * var(--vl-seq-duration)); }
+
+    [vl-children="orchestrate"] > * {
+        animation: vl-flow-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
+    }
+
+    [vl-children="orchestrate"] > *:nth-child(odd) {
+        animation-name: vl-fade-up;
+    }
+
+    [vl-children="orchestrate"] > *:nth-child(1)  { animation-delay: calc(0  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(2)  { animation-delay: calc(1  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(3)  { animation-delay: calc(2  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(4)  { animation-delay: calc(3  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(5)  { animation-delay: calc(4  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step)); }
+    [vl-children="orchestrate"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step)); }
+
+    [vl-stagger="60ms"]  { --vl-stagger-step: 60ms; }
+    [vl-stagger="80ms"]  { --vl-stagger-step: 80ms; }
+    [vl-stagger="100ms"] { --vl-stagger-step: 100ms; }
+    [vl-stagger="120ms"] { --vl-stagger-step: 120ms; }
+    [vl-stagger="140ms"] { --vl-stagger-step: 140ms; }
+    [vl-stagger="150ms"] { --vl-stagger-step: 150ms; }
+    [vl-stagger="180ms"] { --vl-stagger-step: 180ms; }
+    [vl-stagger="200ms"] { --vl-stagger-step: 200ms; }
+    [vl-stagger="220ms"] { --vl-stagger-step: 220ms; }
+    [vl-stagger="240ms"] { --vl-stagger-step: 240ms; }
+    [vl-stagger="280ms"] { --vl-stagger-step: 280ms; }
+    [vl-stagger="320ms"] { --vl-stagger-step: 320ms; }
+
+    /* =========================================================================
+       DEPTH  [vl-depth="1-4"]
+       ========================================================================= */
+    [vl-depth="1"] { --vl-motion-distance: 0.75rem; }
+    [vl-depth="2"] { --vl-motion-distance: 1.5rem; }
+    [vl-depth="3"] { --vl-motion-distance: 2.5rem; }
+    [vl-depth="4"] { --vl-motion-distance: 4rem; }
+
+    /* =========================================================================
+       SPEED  [vl-speed="slow|normal|fast"]
+       ========================================================================= */
+    [vl-speed="fast"]   { --vl-motion-duration: var(--vl-duration-fast); }
+    [vl-speed="normal"] { --vl-motion-duration: var(--vl-duration-normal); }
+    [vl-speed="slow"]   { --vl-motion-duration: var(--vl-duration-slow); }
+    [vl-speed="cinema"] { --vl-motion-duration: var(--vl-duration-slower); }
+
+    [vl-state="smooth"] {
+        transition:
+            transform var(--vl-duration-normal) var(--vl-ease-cinematic),
+            opacity var(--vl-duration-normal) var(--vl-ease-cinematic),
+            background-color var(--vl-duration-normal) var(--vl-ease-cinematic),
+            color var(--vl-duration-normal) var(--vl-ease-cinematic),
+            box-shadow var(--vl-duration-normal) var(--vl-ease-cinematic),
+            border-color var(--vl-duration-normal) var(--vl-ease-cinematic);
+    }
+
+    /* =========================================================================
+       SCENE SYSTEM  [vl-scene="<name>"]
+       ========================================================================= */
+    [vl-scene] {
+        position: relative;
+        contain: layout style;
+    }
+
+    [vl-effect="scene-hero-reveal"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+    }
+
+    [vl-effect="scene-hero-reveal"] > *:nth-child(1) {
+        animation: vl-fade-up var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-effect="scene-hero-reveal"] > *:nth-child(2) {
+        animation: vl-scale-in var(--vl-duration-slower) var(--vl-ease-spring) both;
+        animation-delay: 120ms;
+    }
+
+    [vl-effect="scene-hero-reveal"] > *:nth-child(3) {
+        animation: vl-blur-in var(--vl-duration-slower) var(--vl-ease-out-soft) both;
+        animation-delay: 240ms;
+    }
+
+    [vl-effect="scene-hero-reveal"] > *:nth-child(n+4) {
+        animation: vl-fade-up var(--vl-duration-slow) var(--vl-ease-cinematic) both;
+        animation-delay: calc(240ms + (var(--vl-stagger-step) * 2));
+    }
+
+    [vl-effect="scene-feature-flow"] {
+        --vl-motion-duration: var(--vl-duration-slower);
+    }
+
+    [vl-effect="scene-feature-flow"][vl-timeline="view"] > * {
+        animation: vl-flow-in both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 40%;
+    }
+
+    [vl-effect="scene-feature-flow"][vl-timeline="view"] > *:nth-child(1) {
+        animation-range: entry 0% cover 35%;
+    }
+
+    [vl-effect="scene-feature-flow"][vl-timeline="view"] > *:nth-child(2) {
+        animation-range: entry 5% cover 40%;
+    }
+
+    [vl-effect="scene-feature-flow"][vl-timeline="view"] > *:nth-child(3) {
+        animation-range: entry 10% cover 45%;
+    }
+
+    [vl-effect="scene-feature-flow"][vl-timeline="view"] > *:nth-child(4) {
+        animation-range: entry 15% cover 50%;
+    }
+
+    [vl-effect="scene-feature-flow"][vl-timeline="view"] > *:nth-child(n+5) {
+        animation-range: entry 20% cover 55%;
+    }
+
+    [vl-effect="scene-story-pin"] {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    [vl-effect="scene-story-pin"] > * {
+        animation: vl-fade-up both linear;
+        animation-timeline: view(block);
+        animation-range: entry 10% cover 50%;
+    }
+
+    [vl-effect="scene-layer-stack"] {
+        perspective: 1200px;
+    }
+
+    [vl-effect="scene-layer-stack"] > * {
+        animation: vl-3d-entry both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 42%;
+    }
+
+    [vl-effect="scene-layer-stack"] > *:nth-child(1) { --vl-motion-distance: 1rem; }
+    [vl-effect="scene-layer-stack"] > *:nth-child(2) { --vl-motion-distance: 2rem; }
+    [vl-effect="scene-layer-stack"] > *:nth-child(3) { --vl-motion-distance: 3rem; }
+    [vl-effect="scene-layer-stack"] > *:nth-child(4) { --vl-motion-distance: 4rem; }
+
+    /* =========================================================================
+       GPU / composition hints
+       ========================================================================= */
+    [vl-effect]:not([vl-effect="hover-lift"]):not([vl-effect="hover-glow"]):not([vl-effect="underline-expand"]):not([vl-effect="icon-shift"]):not([vl-effect="accordion"]):not([vl-effect="drawer"]):not([vl-effect="panel-swap"]) {
+        will-change: transform, opacity;
+    }
+
+    /* =========================================================================
+       SPECIAL LAYOUT HELPERS (kept as classes  structural, not motion intent)
+       ========================================================================= */
+    .vl-scroll-snap-sections {
+        scroll-snap-type: y mandatory;
+        overflow-y: auto;
+        height: 100dvh;
+    }
+
+    .vl-scroll-snap-sections > * {
+        scroll-snap-align: start;
+        min-height: 100dvh;
+    }
+
+    .vl-scroll-horizontal-track {
+        animation: vl-scroll-horizontal linear both;
+        animation-timeline: view(block);
+        animation-range: contain 0% contain 100%;
+        display: flex;
+        gap: var(--vl-space-lg);
+        width: max-content;
+        will-change: transform;
+    }
+
+    /* =========================================================================
+       FALLBACK  browsers without scroll-driven animations
+       ========================================================================= */
+    @supports not (animation-timeline: view(block)) {
+        [vl-timeline="view"],
+        [vl-timeline="scroll"] {
+            animation-timeline: auto;
+            animation-range: normal;
+        }
+
+        [vl-timeline="view"][vl-effect="fade-up"],
+        [vl-timeline="view"][vl-effect="fade-in"],
+        [vl-timeline="view"][vl-effect="fade-down"] {
+            animation-duration: var(--vl-duration-slower);
+            animation-timing-function: var(--vl-ease-cinematic);
+        }
+
+        [vl-timeline="view"][vl-effect="reveal-3d"] {
+            animation-name: vl-3d-entry;
+            animation-duration: var(--vl-duration-slower);
+            animation-timing-function: var(--vl-ease-cinematic);
+        }
+
+        [vl-timeline="view"][vl-effect="blur-in"] {
+            animation-duration: var(--vl-duration-slower);
+            animation-timing-function: var(--vl-ease-out-soft);
+        }
+
+        [vl-timeline="view"][vl-effect="flow-in"] {
+            animation-duration: var(--vl-duration-slower);
+            animation-timing-function: var(--vl-ease-cinematic);
+        }
+
+        [vl-effect="scene-feature-flow"][vl-timeline="view"] > *,
+        [vl-effect="scene-story-pin"] > *,
+        [vl-effect="scene-layer-stack"] > *,
+        [vl-effect="cinema-zoom"],
+        [vl-effect="parallax"],
+        [vl-effect="scroll-marquee"],
+        [vl-effect="depth-drift"],
+        .vl-scroll-horizontal-track {
+            animation-timeline: auto;
+            animation-range: normal;
+            animation-duration: var(--vl-duration-slower);
+            animation-timing-function: var(--vl-ease-cinematic);
+        }
+    }
+
+    /* =========================================================================
+       ACCESSIBILITY  reduced motion
+       ========================================================================= */
+    @media (prefers-reduced-motion: reduce) {
+        [vl-effect],
+        [vl-scene],
+        [vl-children="stagger"] > *,
+        [vl-children="cascade"] > *,
+        [vl-children="sequence"] > * {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+        }
+
+        [vl-effect="hover-lift"]:hover,
+        [vl-effect="hover-glow"]:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        [vl-effect="underline-expand"]::after {
+            transition: none;
+        }
+
+        [vl-effect="typewriter"] {
+            width: auto;
+            border-right: none;
+            white-space: normal;
+            animation: none;
+        }
+
+        [vl-effect="typewriter-soft"] {
+            width: auto;
+            border-right: none;
+            white-space: normal;
+            animation: none;
+        }
+
+        [vl-effect="typewriter-loop"] {
+            width: auto;
+            border-right: none;
+            white-space: normal;
+            animation: none;
+        }
+
+        .vl-scroll-horizontal-track {
+            animation: none;
+            will-change: auto;
+        }
+
+        [vl-effect="hover-tilt-3d"]:hover,
+        [vl-effect="hover-tilt-3d"]:focus-visible,
+        [vl-effect="hover-depth-stack"]:hover,
+        [vl-effect="hover-depth-stack"]:focus-visible {
+            transform: none;
+            box-shadow: none;
+            filter: none;
+        }
+
+        [vl-effect="hover-spotlight"]::after {
+            display: none;
+        }
+
+        [vl-effect="hover-card-stack"]:hover,
+        [vl-effect="hover-card-stack"]:focus-visible,
+        [vl-effect="hover-shell-lift"]:hover,
+        [vl-effect="hover-shell-lift"]:focus-visible {
+            transform: none;
+            box-shadow: none;
+        }
+
+        [vl-effect="hover-shell-lift"]::before {
+            display: none;
+        }
+    }
+}
