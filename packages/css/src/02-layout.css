@@ -8,12 +8,26 @@
      * para compatibilidade com minificadores CSS (ex.: Vite/lightningcss).
      */
 
+    /* --- Layout mode by attribute ---------------------------------------
+       Contract:
+       - data-layout="boxed"      -> container max width padrão
+       - data-layout="full-width" -> ocupa largura total mantendo gutters
+       Use no elemento de seção/header/footer/página que encapsula .vl-container.
+    --------------------------------------------------------------------- */
+    [data-layout="boxed"] {
+        --vl-layout-container-max: var(--vl-container-max);
+    }
+
+    [data-layout="full-width"] {
+        --vl-layout-container-max: none;
+    }
+
     /* --- Container principal (viewport-like width) --- */
     .vl-container {
         container-type: inline-size;
         container-name: velora;
         width: 100%;
-        max-width: var(--vl-container-max);
+        max-width: var(--vl-layout-container-max, var(--vl-container-max));
         margin-inline: auto;
         padding-left: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
         padding-right: max(var(--vl-container-gutter), env(safe-area-inset-right, 0px));

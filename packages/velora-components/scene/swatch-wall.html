@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Swatch Wall
+  ─────────────────────────────────────────────────────────────
+  Grid of token/technique explanation cards. Used in act sections
+  to break down concepts, values and system rules visually.
+  Always placed after a Scene Header, inside the scene inner wrapper.
+
+  API on .showcase-cinema-swatch-wall:
+    vl-children   stagger
+    vl-stagger    0.08 (fractional seconds) or 80ms (milliseconds)
+
+  API on each .showcase-cinema-swatch:
+    vl-effect     hover-prism | hover-depth-press | hover-card-stack
+
+  Swatch modifiers:
+    --accent    Primary colour tint — use for the most important card
+    --surface   Neutral surface — mid-priority cards
+    --panel     Panel shade — supporting or context cards
+    --ink       Darkest / inverted — emphasis or contrast card
+
+  Inner structure (each swatch article):
+    span      — Category or token type (e.g. "Gap", "Motion", "Color")
+    strong    — Name and value (e.g. "--vl-gap-section: 4rem")
+    small     — Human-readable description (e.g. "Between major sections")
+
+  Layout note:
+    Auto-fill grid. 3–4 cards per row at full width.
+    Responsive — collapses to 2 then 1 column at breakpoints.
+    Defined in showcase.css, not inline.
+
+  Count guidance:
+    3 cards — minimal, focused concept
+    4 cards — full contrast set (accent/surface/panel/ink)
+    6 cards — comprehensive reference (two rows at desktop)
+    Max 8 cards — beyond this, split into two swatch walls.
+
+  Accessibility:
+    Each article is a semantic landmark. The span/strong/small
+    structure is readable by screen readers without ARIA additions.
+    Avoid putting interactive elements inside swatch cards.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swatch Wall — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: 4-card full contrast set
+         Most common use — covers all 4 colour roles.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: 3-card focused concept
+         Use when only 3 values or techniques need to be shown.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+        <span>[Category]</span>
+        <strong>[Name: Value]</strong>
+        <small>[Human description]</small>
+      </article>
+
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: 6-card comprehensive reference
+         Use for full token families or multi-step techniques.
+         Two rows at desktop, stacked on mobile.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.06">
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+        <span>[Category]</span>
+        <strong>[Name: Value A]</strong>
+        <small>[Description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+        <span>[Category]</span>
+        <strong>[Name: Value B]</strong>
+        <small>[Description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+        <span>[Category]</span>
+        <strong>[Name: Value C]</strong>
+        <small>[Description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
+        <span>[Category]</span>
+        <strong>[Name: Value D]</strong>
+        <small>[Description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-card-stack">
+        <span>[Category]</span>
+        <strong>[Name: Value E]</strong>
+        <small>[Description]</small>
+      </article>
+
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-prism">
+        <span>[Category]</span>
+        <strong>[Name: Value F]</strong>
+        <small>[Description]</small>
+      </article>
+
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         REFERENCE: Live example (Spacing tokens)
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
+        <span>Gap</span>
+        <strong>--vl-gap-section: 4rem</strong>
+        <small>Between major sections</small>
+      </article>
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
+        <span>Gap</span>
+        <strong>--vl-gap-block: 1.5rem</strong>
+        <small>Between heading and body</small>
+      </article>
+      <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
+        <span>Gap</span>
+        <strong>--vl-gap-inline: 0.75rem</strong>
+        <small>Between kicker and title</small>
+      </article>
+    </div>
+
+  </body>
+</html>

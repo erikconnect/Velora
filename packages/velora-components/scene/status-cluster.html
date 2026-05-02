@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Status Cluster
+  ─────────────────────────────────────────────────────────────
+  Compact diagnostics line used inside scene stages to summarize
+  mode, motion character, content type or current technical state.
+  Usually appears below a material stack or pinned to a stage edge.
+
+  API on .showcase-cinema-status:
+    vl-children   wave | stagger (optional internal sequencing)
+    vl-effect     glow-breathe | fade-up | shimmer-text
+    vl-stagger    80ms–150ms between status items
+
+  Inner structure:
+    span    — Short status token, 1–3 words
+    span    — Short status token, 1–3 words
+    span    — Short status token, 1–3 words
+
+  Modifiers:
+    .showcase-cinema-status--tokens  right-aligned token summary
+
+  Placement:
+    Inside .showcase-cinema-stage, under .showcase-cinema-material-stack,
+    or beside a scene visual. Keep clusters brief: 3 items preferred.
+
+  Accessibility:
+    - Add aria-label when the status set needs extra context
+    - Use visible text, not icon-only tokens
+    - Avoid using status clusters for critical live updates
+
+  CSS layers consumed:
+    velora.components → @layer velora.showcase
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status Cluster — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Scene metadata
+         Default three-token cluster under a material stack.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-status" aria-label="Scene metadata">
+      <span>[Trait 1]</span>
+      <span>[Trait 2]</span>
+      <span>[Trait 3]</span>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: Token status
+         Right-aligned status cluster for color/token scenes.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-status showcase-cinema-status--tokens" aria-label="Token metadata">
+      <span>[Token family]</span>
+      <span>[Mode]</span>
+      <span>[Scale]</span>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: Animated diagnostics
+         Use sparingly for active scene state or hero diagnostics.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-status"
+      aria-label="Scene diagnostics"
+      vl-children="wave"
+      vl-effect="glow-breathe"
+      vl-stagger="100ms"
+    >
+      <span>[State 1]</span>
+      <span>[State 2]</span>
+      <span>[State 3]</span>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         REFERENCE: Live example (from scene-hero.html)
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-status">
+      <span>First fold</span>
+      <span>Large type</span>
+      <span>Entry motion</span>
+    </div>
+
+  </body>
+</html>

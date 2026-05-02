@@ -1,0 +1,54 @@
+/**
+ * Temas editoriais alinhados a:
+ * - packages/pages/velora_noir/DESIGN.md (Surface Noir, kinetic green)
+ * - packages/pages/velora_earth_tech/DESIGN.md (Human Laboratory, warm cream)
+ *
+ * Controlado por html[data-editorial-theme="noir"|"earth"] (ver showcase-controls.js).
+ */
+
+/* ── Noir: dark kinetic base (#0d0f0c) + primary #bbcbb1 ───────────── */
+html[data-editorial-theme="noir"] {
+    --lib-noir-base: #0d0f0c;
+    --lib-noir-elevated: #171b16;
+    --lib-noir-high: #1c211b;
+    --lib-noir-cream: #e1e7dc;
+    --lib-noir-accent: #bbcbb1;
+}
+
+html[data-editorial-theme="noir"][data-theme="dark"],
+html[data-editorial-theme="noir"]:not([data-theme="light"]) {
+    --vl-bg-main: var(--lib-noir-base);
+    --vl-bg-surface: #121510;
+    --vl-bg-surface-elevated: var(--lib-noir-elevated);
+    --vl-bg-inset: #0a0c09;
+    --vl-text-primary: var(--lib-noir-cream);
+    --vl-text-secondary: color-mix(in oklch, var(--lib-noir-cream) 92%, transparent);
+    --vl-text-muted: #a7ada2;
+    --vl-border-subtle: color-mix(in oklch, var(--lib-noir-accent) 22%, transparent);
+    --vl-color-primary: var(--lib-noir-accent);
+    --vl-color-primary-soft: color-mix(in oklch, var(--lib-noir-accent) 20%, transparent);
+}
+
+/* ── Earth tech: warm light (#fbf9f4) + deep green primary ───────── */
+html[data-editorial-theme="earth"][data-theme="light"],
+html[data-editorial-theme="earth"] {
+    --lib-earth-canvas: #fbf9f4;
+    --lib-earth-container: #f0eee9;
+    --lib-earth-high: #eae8e3;
+    --lib-earth-ink: #1b1c19;
+    --lib-earth-primary: #182317;
+}
+
+html[data-editorial-theme="earth"][data-theme="light"],
+html[data-editorial-theme="earth"] {
+    --vl-bg-main: var(--lib-earth-canvas);
+    --vl-bg-surface: #f5f3ee;
+    --vl-bg-surface-elevated: var(--lib-earth-container);
+    --vl-bg-inset: var(--lib-earth-high);
+    --vl-text-primary: var(--lib-earth-ink);
+    --vl-text-secondary: #2a2c26;
+    --vl-text-muted: #5c5f56;
+    --vl-border-subtle: color-mix(in oklch, #747871 25%, transparent);
+    --vl-color-primary: var(--lib-earth-primary);
+    --vl-color-primary-soft: color-mix(in oklch, var(--lib-earth-primary) 18%, transparent);
+}

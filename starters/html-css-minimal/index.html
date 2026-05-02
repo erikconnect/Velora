@@ -18,12 +18,15 @@
     </header>
 
     <main id="content" class="starter-main">
-      <section class="starter-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
+      <section class="starter-hero" vl-scene="cinematic-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
         <p class="starter-kicker">Zero-JS Motion</p>
         <h1>Start with HTML + CSS only.</h1>
         <p>
           This section uses canonical Velora attributes and works without any
           JavaScript animation runtime.
+        </p>
+        <p class="starter-note">
+          Motion-safe by default: users with reduced-motion preferences see non-animated content states.
         </p>
         <div class="starter-actions" vl-children="orchestrate" vl-stagger="120ms">
           <a class="vl-btn vl-btn--primary" href="#">Primary action</a>
@@ -44,6 +47,24 @@
           <h2>Accessibility</h2>
           <p>Reduced-motion behavior remains handled by framework CSS.</p>
         </article>
+      </section>
+
+      <section class="starter-reveal" vl-scene="editorial-cinema">
+        <h2 vl-scroll="reveal" vl-range="entry-long">Scroll-Driven Reveal</h2>
+        <p vl-scroll="media-zoom" vl-range="scene-focus">
+          Keep reading while this paragraph subtly shifts with the viewport timeline.
+        </p>
+      </section>
+
+      <section class="starter-faq" aria-label="Starter FAQ">
+        <details class="starter-disclosure" vl-effect="border-trace" open>
+          <summary>How do I stagger children?</summary>
+          <p>Use <code>vl-children="stagger"</code> and optionally set <code>vl-stagger="120ms"</code>.</p>
+        </details>
+        <details class="starter-disclosure" vl-effect="gradient-sweep">
+          <summary>How do I keep it accessible?</summary>
+          <p>Prefer semantic HTML and rely on framework reduced-motion fallbacks for every motion channel.</p>
+        </details>
       </section>
     </main>
   </body>

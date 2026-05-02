@@ -27,3 +27,9 @@ docs/
 
 # Local backup archives
 packages/pages/backup/*.zip
+
+# Project backups (local only)
+output/backups/
+
+# Legacy emergency snapshots (local only)
+packages/pages/legacy-backup/

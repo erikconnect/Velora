@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Chip Row
+  ─────────────────────────────────────────────────────────────
+  Horizontal strip of navigational or contextual chips/tags.
+  Used to cross-link related pages, highlight techniques, or
+  surface quick entry points to deeper reference material.
+
+  Two chip types:
+    .showcase-ref-chip (anchor)  — navigational, always an <a>
+    .showcase-cinema-chip (span) — informational label, not interactive
+
+  Placement:
+    After a Scene Header, inside a Scene Copy Block, or after
+    a code block. Never inside a Material Stack or Stage.
+
+  .showcase-cinema-chip-row     — container for both chip types
+  .showcase-cinema-chip         — informational span (no href)
+  .showcase-ref-chip            — navigational link (with href)
+
+  ARIA / accessibility:
+    - When chips are purely informational (spans):
+        role="list" on .showcase-cinema-chip-row
+        role="listitem" on each .showcase-cinema-chip
+    - When chips are navigational (anchors):
+        No extra ARIA needed — links are natively accessible
+    - aria-label on the row if context needs clarification
+
+  Count guidance:
+    2–5 chips optimal. Beyond 5, use a chip-row--wrap variant
+    which allows wrapping (toggled by CSS modifier).
+
+  Variants:
+    Default — horizontal, no wrap, scroll overflow on small screens
+    --wrap  — flex-wrap: wrap (add modifier for larger chip sets)
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chip Row — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Navigational (anchor chips)
+         Cross-links to related pages. Most common use case.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-chip-row">
+      <a class="showcase-ref-chip" href="[url]">[Page 1]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 2]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 3]</a>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: Informational (label chips)
+         Technique tags or feature flags — not interactive.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-chip-row" role="list" aria-label="Key techniques">
+      <span class="showcase-cinema-chip" role="listitem">[Technique 1]</span>
+      <span class="showcase-cinema-chip" role="listitem">[Technique 2]</span>
+      <span class="showcase-cinema-chip" role="listitem">[Technique 3]</span>
+      <span class="showcase-cinema-chip" role="listitem">[Technique 4]</span>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: Mixed (label + link)
+         First chip is a label; remaining are navigational links.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-chip-row">
+      <span class="showcase-cinema-chip">[Context label]</span>
+      <a class="showcase-ref-chip" href="[url]">[Reference page]</a>
+      <a class="showcase-ref-chip" href="[url]">[Reference page]</a>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT D: Wrapping (larger sets)
+         When you need 6+ chips — add --wrap modifier.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-chip-row showcase-cinema-chip-row--wrap">
+      <a class="showcase-ref-chip" href="[url]">[Page 1]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 2]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 3]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 4]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 5]</a>
+      <a class="showcase-ref-chip" href="[url]">[Page 6]</a>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         REFERENCE: Live examples (from showcase pages)
+    ───────────────────────────────────────────────────────────── -->
+
+    <!-- From typography-composition.html (navigational) -->
+    <div class="showcase-cinema-chip-row">
+      <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Type Spec</a>
+      <a class="showcase-ref-chip" href="/pages/color/design-tokens.html">Design Tokens</a>
+    </div>
+
+    <!-- From scene-features.html (scene cross-links) -->
+    <div class="showcase-cinema-chip-row">
+      <a class="showcase-ref-chip" href="/pages/scenes/scene-hero.html">Hero Scene</a>
+      <a class="showcase-ref-chip" href="/pages/scenes/scene-features.html">Feature Scene</a>
+      <a class="showcase-ref-chip" href="/pages/scenes/scene-story.html">Story Scene</a>
+    </div>
+
+    <!-- From scene copy block (informational technique tags) -->
+    <div class="showcase-cinema-chip-row" role="list" aria-label="Key techniques">
+      <span class="showcase-cinema-chip" role="listitem">view-timeline</span>
+      <span class="showcase-cinema-chip" role="listitem">vl-children="stagger"</span>
+      <span class="showcase-cinema-chip" role="listitem">zero JS</span>
+    </div>
+
+  </body>
+</html>

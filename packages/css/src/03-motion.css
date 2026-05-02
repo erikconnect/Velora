@@ -359,6 +359,43 @@
         }
     }
 
+    @keyframes vl-aurora-drift {
+        0% {
+            background-position: 0% 50%;
+            filter: hue-rotate(0deg);
+        }
+        50% {
+            background-position: 100% 50%;
+            filter: hue-rotate(12deg);
+        }
+        100% {
+            background-position: 0% 50%;
+            filter: hue-rotate(0deg);
+        }
+    }
+
+    @keyframes vl-crossfade-scrub {
+        from {
+            opacity: 0.25;
+            transform: scale(0.985);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes vl-text-highlight-sweep {
+        from {
+            background-size: 0% 100%;
+            color: color-mix(in oklch, var(--vl-text-primary) 82%, transparent);
+        }
+        to {
+            background-size: 100% 100%;
+            color: var(--vl-text-primary);
+        }
+    }
+
     /* =========================================================================
        PRIMITIVE EFFECTS  [vl-effect="<name>"]
        Each preset sets tokenized variables per handbook
@@ -488,6 +525,18 @@
         --vl-scroll-range: cover 0% cover 100%;
     }
 
+    :is([vl-scroll~="crossfade"], [vl-effect~="crossfade"]) {
+        --vl-scroll-name: vl-crossfade-scrub;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: entry 5% cover 55%;
+    }
+
+    :is([vl-scroll~="text-highlight"], [vl-effect~="text-highlight"]) {
+        --vl-scroll-name: vl-text-highlight-sweep;
+        --vl-scroll-timeline: view(inline);
+        --vl-scroll-range: entry 0% cover 100%;
+    }
+
     [vl-loop],
     [vl-loop-effect] {
         animation-name: var(--vl-loop-name, none);
@@ -539,6 +588,13 @@
         --vl-loop-ease: linear;
         display: inline-block;
         transform-origin: center center;
+    }
+
+    :is([vl-loop~="aurora-drift"], [vl-loop-effect~="aurora-drift"], [vl-effect~="aurora-drift"]) {
+        --vl-loop-name: vl-aurora-drift;
+        --vl-loop-duration: 12s;
+        --vl-loop-ease: var(--vl-ease-in-out-smooth);
+        background-size: 300% 300%;
     }
 
     /* Generic loop count: vl-loop="-1" = infinite, vl-loop="N" = N iterations.
@@ -1800,6 +1856,254 @@
             animation-direction: var(--vl-motion-direction, normal);
         }
         }
+    }
+
+    /* =========================================================================
+       KEYFRAMES  cinematic enter & mask
+       ========================================================================= */
+    @keyframes vl-reveal-cinematic {
+        from {
+            opacity: 0;
+            transform: perspective(1400px) translate3d(0, 3rem, -80px) scale(0.94);
+            filter: blur(8px) brightness(0.72);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(1400px) translate3d(0, 0, 0) scale(1);
+            filter: blur(0) brightness(1);
+        }
+    }
+
+    @keyframes vl-depth-enter {
+        from {
+            opacity: 0;
+            transform: perspective(1000px) rotateX(18deg) translate3d(0, 2.5rem, -60px);
+        }
+        to {
+            opacity: 1;
+            transform: perspective(1000px) rotateX(0deg) translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-mask-sweep {
+        from {
+            opacity: 0.1;
+            clip-path: inset(0 100% 0 0 round 0.25rem);
+        }
+        to {
+            opacity: 1;
+            clip-path: inset(0 0% 0 0 round 0.25rem);
+        }
+    }
+
+    /* =========================================================================
+       ENTER PRESETS  extended (cinematic, depth, mask)
+       ========================================================================= */
+    :is([vl-enter~="reveal-cinematic"], [vl-effect~="reveal-cinematic"]) {
+        --vl-enter-name: vl-reveal-cinematic;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-cinematic);
+    }
+
+    :is([vl-enter~="depth-enter"], [vl-effect~="depth-enter"]) {
+        --vl-enter-name: vl-depth-enter;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-spring);
+    }
+
+    :is([vl-enter~="mask-sweep"], [vl-effect~="mask-sweep"]) {
+        --vl-enter-name: vl-mask-sweep;
+        --vl-enter-duration: var(--vl-duration-slow);
+        --vl-enter-ease: var(--vl-ease-cinematic);
+    }
+
+    [vl-effect="reveal-cinematic"] {
+        animation: vl-reveal-cinematic var(--vl-enter-duration, var(--vl-duration-slower)) var(--vl-enter-ease, var(--vl-ease-cinematic)) both;
+    }
+
+    [vl-effect="depth-enter"] {
+        animation: vl-depth-enter var(--vl-enter-duration, var(--vl-duration-slower)) var(--vl-enter-ease, var(--vl-ease-spring)) both;
+    }
+
+    [vl-effect="mask-sweep"] {
+        animation: vl-mask-sweep var(--vl-enter-duration, var(--vl-duration-slow)) var(--vl-enter-ease, var(--vl-ease-cinematic)) both;
+    }
+
+    /* =========================================================================
+       SCROLL PRESETS  extended (reveal, media-zoom)
+       ========================================================================= */
+    :is([vl-scroll~="reveal"], [vl-effect~="scroll-reveal"]) {
+        --vl-scroll-name: vl-fade-up;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: entry 5% cover 42%;
+    }
+
+    :is([vl-scroll~="media-zoom"], [vl-effect~="media-zoom"]) {
+        --vl-scroll-name: vl-scroll-scale;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: entry 0% cover 70%;
+    }
+
+    /* =========================================================================
+       HOVER PRESETS  extended (gradient-sweep, border-trace)
+       ========================================================================= */
+    :is([vl-hover~="gradient-sweep"], [vl-effect~="gradient-sweep"]) {
+        position: relative;
+        isolation: isolate;
+        overflow: clip;
+    }
+
+    :is([vl-hover~="gradient-sweep"], [vl-effect~="gradient-sweep"])::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            105deg,
+            transparent 25%,
+            color-mix(in oklch, var(--vl-color-primary) 18%, transparent) 50%,
+            transparent 75%
+        );
+        background-size: 200% 100%;
+        background-position: 100% 0;
+        opacity: 0;
+        transition:
+            background-position var(--vl-duration-slow) var(--vl-ease-cinematic),
+            opacity var(--vl-transition-fast);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    :is([vl-hover~="gradient-sweep"], [vl-effect~="gradient-sweep"]):hover::before,
+    :is([vl-hover~="gradient-sweep"], [vl-effect~="gradient-sweep"]):focus-visible::before {
+        background-position: 0% 0;
+        opacity: 1;
+    }
+
+    :is([vl-hover~="border-trace"], [vl-effect~="border-trace"]) {
+        position: relative;
+        isolation: isolate;
+        transition: box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic);
+    }
+
+    :is([vl-hover~="border-trace"], [vl-effect~="border-trace"])::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 2px solid transparent;
+        background:
+            linear-gradient(var(--vl-bg-main, oklch(14% 0.01 95)), var(--vl-bg-main, oklch(14% 0.01 95))) padding-box,
+            linear-gradient(
+                135deg,
+                color-mix(in oklch, var(--vl-color-primary) 72%, transparent),
+                color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 56%, transparent),
+                color-mix(in oklch, var(--vl-color-primary) 38%, transparent)
+            ) border-box;
+        opacity: 0;
+        transition: opacity var(--vl-transition-normal) var(--vl-ease-cinematic);
+        pointer-events: none;
+    }
+
+    :is([vl-hover~="border-trace"], [vl-effect~="border-trace"]):hover::after,
+    :is([vl-hover~="border-trace"], [vl-effect~="border-trace"]):focus-visible::after {
+        opacity: 1;
+    }
+
+    /* =========================================================================
+       NAMED SCENE PRESETS  [vl-scene="<preset>"]
+       Provides ready-made layout + motion choreography for common surface types.
+       ========================================================================= */
+
+    /* cinematic-hero: full-viewport hero with depth-entry choreography */
+    [vl-scene="cinematic-hero"] {
+        display: grid;
+        place-items: center;
+        min-height: 100svh;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    [vl-scene="cinematic-hero"] > * {
+        animation: vl-reveal-cinematic var(--vl-duration-slower) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-scene="cinematic-hero"] > *:nth-child(2) { animation-delay: 160ms; }
+    [vl-scene="cinematic-hero"] > *:nth-child(3) { animation-delay: 300ms; }
+    [vl-scene="cinematic-hero"] > *:nth-child(4) { animation-delay: 440ms; }
+    [vl-scene="cinematic-hero"] > *:nth-child(n+5) { animation-delay: 560ms; }
+
+    /* sticky-story: scroll-pinned storytelling section */
+    [vl-scene="sticky-story"] {
+        position: sticky;
+        top: 0;
+        min-height: 100svh;
+        overflow: hidden;
+        display: grid;
+        align-content: start;
+    }
+
+    [vl-scene="sticky-story"] > * {
+        animation: vl-fade-up both linear;
+        animation-timeline: view(block);
+        animation-range: entry 0% cover 55%;
+    }
+
+    /* glass-bento: auto-grid with glassmorphism tiles */
+    [vl-scene="glass-bento"] {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+        gap: var(--vl-space-md, 1rem);
+    }
+
+    [vl-scene="glass-bento"] > * {
+        background: var(--vl-glass-bg, oklch(100% 0 0 / 0.07));
+        backdrop-filter: blur(12px) saturate(1.4);
+        -webkit-backdrop-filter: blur(12px) saturate(1.4);
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle, oklch(60% 0 0)) 38%, transparent);
+        border-radius: var(--vl-radius-lg, 1rem);
+        animation: vl-scale-in both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 45%;
+    }
+
+    /* product-reveal: two-column media + copy reveal */
+    [vl-scene="product-reveal"] {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--vl-space-xl, 3rem);
+        align-items: center;
+        container-type: inline-size;
+    }
+
+    @container (max-width: 44rem) {
+        [vl-scene="product-reveal"] {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    [vl-scene="product-reveal"] > *:first-child {
+        animation: vl-tilt-in both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 48%;
+    }
+
+    [vl-scene="product-reveal"] > *:last-child {
+        animation: vl-fade-up both linear;
+        animation-timeline: view(block);
+        animation-range: entry 10% cover 50%;
+    }
+
+    /* editorial-cinema: full-bleed editorial with clip-rise reveals */
+    [vl-scene="editorial-cinema"] {
+        display: grid;
+        gap: var(--vl-space-xl, 3rem);
+        container-type: inline-size;
+    }
+
+    [vl-scene="editorial-cinema"] > * {
+        animation: vl-clip-rise both linear;
+        animation-timeline: view(block);
+        animation-range: entry 5% cover 42%;
     }
 
     /* =========================================================================

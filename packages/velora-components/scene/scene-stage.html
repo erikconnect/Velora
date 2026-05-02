@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Scene Stage
+  ─────────────────────────────────────────────────────────────
+  The visual/interactive container placed on the right of a
+  split scene. Carries the 3D/glass/depth presentation layer
+  while the copy block handles the narrative.
+
+  API:
+    vl-effect     rise-3d | depth-push | spring-3d | depth-drift
+                  parallax | float
+    vl-timeline   view | scroll
+    vl-range      scene-soft | entry-long | scene-focus
+    vl-speed      cinema | slow | fast
+    vl-once       optional — recommended for hero stages
+    vl-children   stagger (for nested card groups)
+    vl-stagger    delay between children (e.g. 0.08 or 80ms)
+
+  Variants (modifier class on .showcase-cinema-stage):
+    --[page]-hero       Hero intro stage
+    --[page]-motion     Code/API demonstration stage
+    --[page]-reference  Metrics/spec reference stage
+
+  Patterns extracted from showcase:
+    A: Material Stack  — stacked cards showing structure/depth
+    B: Swatch Wall     — token or technique explanation cards
+    C: Code Stage      — code block + tip card side by side
+    D: Easing List     — metric list with progress bars
+
+  Accessibility:
+    - Outer div must have aria-label describing the visual
+    - Decorative elements must be aria-hidden="true"
+    - All data shown here should also be available in text
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scene Stage — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Material Stack
+         Hero scenes — stacked cards showing component structure.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--[page]-hero"
+      aria-label="[Describe visual stack content]"
+      vl-effect="rise-3d"
+      vl-once
+      vl-children="stagger"
+      vl-stagger="0.08"
+    >
+      <div class="showcase-cinema-material-stack">
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="gradient-sweep">
+          <span>[Label]</span>
+          <strong>[Primary descriptor]</strong>
+        </article>
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="border-trace">
+          <span>[Label]</span>
+          <strong>[Secondary descriptor]</strong>
+        </article>
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+          <span>[Label]</span>
+          <strong>[Tertiary descriptor]</strong>
+        </article>
+      </div>
+      <div class="showcase-cinema-status" aria-label="Scene metadata">
+        <span>[Trait 1]</span>
+        <span>[Trait 2]</span>
+        <span>[Trait 3]</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: Code Stage
+         Motion/API scenes — code snippet + tip card.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--[page]-motion"
+      vl-effect="depth-push"
+      vl-timeline="view"
+      vl-once
+    >
+      <div class="showcase-cinema-code" aria-label="Code example">
+        <span>[Section label]</span>
+        <code>&lt;section vl-effect="[effect]" vl-timeline="view" vl-once&gt;</code>
+        <code>  &lt;!-- content block --&gt;</code>
+        <code>&lt;/section&gt;</code>
+      </div>
+      <aside class="showcase-cinema-sidecard" vl-effect="hover-prism">
+        <span>Tip</span>
+        <h3>[Short heading].</h3>
+        <p>[Explanation of the code pattern shown above.]</p>
+      </aside>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: Easing / Metrics List
+         Reference scenes — named values with progress indicators.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--[page]-reference"
+      vl-effect="spring-3d"
+      vl-once
+    >
+      <ul class="showcase-cinema-easing-list">
+        <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press">
+          <span>[Category]</span>
+          <strong>[Name · Value]</strong>
+          <div class="showcase-cinema-meter">
+            <span class="showcase-cinema-meter__track" style="--fill: 70%"></span>
+          </div>
+        </li>
+        <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press">
+          <span>[Category]</span>
+          <strong>[Name · Value]</strong>
+          <div class="showcase-cinema-meter">
+            <span class="showcase-cinema-meter__track" style="--fill: 85%"></span>
+          </div>
+        </li>
+        <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press">
+          <span>[Category]</span>
+          <strong>[Name · Value]</strong>
+          <div class="showcase-cinema-meter">
+            <span class="showcase-cinema-meter__track" style="--fill: 50%"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT D: Depth/Scroll Stage
+         Scroll storytelling — parallax layer with sidecard.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--[page]-scroll"
+      vl-effect="depth-drift"
+      vl-timeline="scroll"
+      vl-range="scene-soft"
+      vl-speed="cinema"
+    >
+      <div class="showcase-cinema-layer-stack" aria-hidden="true" vl-effect="float">
+        <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--base"><span>Base</span></div>
+        <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--surface"><span>Surface</span></div>
+        <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--raised"><span>Elevated</span></div>
+        <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--accent"><span>Primary</span></div>
+      </div>
+      <aside class="showcase-cinema-sidecard" vl-effect="hover-tilt-3d" vl-children="stagger" vl-stagger="150ms" vl-speed="slow">
+        <p class="showcase-ref-label">[Context label]</p>
+        <h3>[Short heading].</h3>
+        <p>[Supporting explanation.]</p>
+        <div class="showcase-cinema-meter">
+          <span>[Metric label]</span>
+          <div class="showcase-cinema-meter__track">
+            <span class="showcase-cinema-meter__fill" style="--fill: 72%"></span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </body>
+</html>

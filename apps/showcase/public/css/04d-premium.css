@@ -527,6 +527,124 @@
   }
 
   /* ============================================================
+     13. Premium Surface Utilities
+     ============================================================ */
+
+  @keyframes vl-premium-aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .vl-glass {
+    background: var(--vl-glass-bg, oklch(100% 0 0 / 0.08));
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 44%, transparent);
+    backdrop-filter: blur(14px) saturate(1.35);
+    -webkit-backdrop-filter: blur(14px) saturate(1.35);
+  }
+
+  .vl-glow {
+    box-shadow:
+      0 0.35rem 1.5rem color-mix(in oklch, var(--vl-color-primary) 22%, transparent),
+      0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 30%, transparent) inset;
+  }
+
+  .vl-aurora {
+    background:
+      linear-gradient(
+        120deg,
+        color-mix(in oklch, var(--vl-color-primary) 55%, var(--vl-bg-surface-elevated)),
+        color-mix(in oklch, var(--vl-color-accent, var(--vl-color-secondary)) 48%, var(--vl-bg-main)),
+        color-mix(in oklch, var(--vl-color-primary) 36%, var(--vl-bg-inset))
+      );
+    background-size: 240% 240%;
+    animation: vl-premium-aurora 12s var(--vl-ease-in-out-smooth) infinite;
+  }
+
+  .vl-gradient-text {
+    background-image: linear-gradient(
+      120deg,
+      color-mix(in oklch, var(--vl-color-primary) 78%, white),
+      color-mix(in oklch, var(--vl-color-accent, var(--vl-color-secondary)) 70%, white)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .vl-depth-card {
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+    box-shadow:
+      0 10px 24px color-mix(in oklch, black 20%, transparent),
+      0 1px 0 color-mix(in oklch, white 10%, transparent) inset;
+    transform: translateZ(0);
+    transition:
+      transform var(--vl-transition-normal) var(--vl-ease-cinematic),
+      box-shadow var(--vl-transition-normal) var(--vl-ease-cinematic);
+  }
+
+  .vl-depth-card:is(:hover, :focus-within) {
+    transform: translate3d(0, -6px, 0);
+    box-shadow:
+      0 18px 40px color-mix(in oklch, black 28%, transparent),
+      0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 26%, transparent) inset;
+  }
+
+  .vl-border-trace {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .vl-border-trace::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--vl-color-primary) 76%, transparent),
+      color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 64%, transparent),
+      color-mix(in oklch, var(--vl-color-primary) 38%, transparent)
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.66;
+    pointer-events: none;
+  }
+
+  .vl-surface-premium {
+    background:
+      radial-gradient(circle at 14% 12%, color-mix(in oklch, var(--vl-color-primary) 16%, transparent), transparent 48%),
+      linear-gradient(160deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent), color-mix(in oklch, var(--vl-bg-inset) 86%, transparent));
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 72%, transparent);
+    box-shadow: 0 16px 44px color-mix(in oklch, black 24%, transparent);
+  }
+
+  .vl-frame-cinematic {
+    position: relative;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 56%, transparent);
+    overflow: clip;
+  }
+
+  .vl-frame-cinematic::before,
+  .vl-frame-cinematic::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: clamp(0.8rem, 2.2vw, 1.6rem);
+    background: color-mix(in oklch, black 38%, transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .vl-frame-cinematic::before { top: 0; }
+  .vl-frame-cinematic::after { bottom: 0; }
+
+  /* ============================================================
      Reduced Motion
      Disable or simplify every animation for a11y compliance.
      ============================================================ */
@@ -570,6 +688,15 @@
     /* Mesh drift */
     .vl-gradient-mesh--animate {
       animation: none;
+    }
+
+    .vl-aurora {
+      animation: none;
+      background-position: 50% 50%;
+    }
+
+    .vl-depth-card:is(:hover, :focus-within) {
+      transform: none;
     }
 
     /* Marquee */

@@ -59,3 +59,44 @@ body {
   background: var(--vl-bg-surface);
   padding: 1rem;
 }
+
+.starter-note {
+  margin-top: 0.8rem;
+  color: var(--vl-text-secondary);
+  max-width: 62ch;
+}
+
+.starter-reveal,
+.starter-faq {
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-xl);
+  background: var(--vl-bg-surface);
+  padding: 1.3rem;
+}
+
+.starter-reveal h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(1.3rem, 3.2vw, 2rem);
+}
+
+.starter-faq {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.starter-disclosure {
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-md);
+  background: var(--vl-bg-main);
+  padding: 0.85rem 1rem;
+}
+
+.starter-disclosure summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.starter-disclosure p {
+  margin: 0.65rem 0 0;
+}

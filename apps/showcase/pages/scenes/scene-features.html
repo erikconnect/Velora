@@ -227,7 +227,7 @@
       <div class="showcase-ref-page showcase-ref-page--scene-features showcase-ref-page--cinema">
 
         <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
-        <section id="feat-hero" class="showcase-cinema-scene showcase-cinema-scene--feat-hero" vl-scene="feature-hero" data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="feat-hero" class="showcase-cinema-scene showcase-cinema-scene--feat-hero" vl-scene="cinematic-hero" data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive" vl-effect="reveal-cinematic" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
               <div class="showcase-ref-tokens-kicker">
@@ -247,11 +247,11 @@
 
             <div class="showcase-cinema-stage showcase-cinema-stage--feat-hero" aria-label="Features overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
               <div class="showcase-cinema-material-stack">
-                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="hover-prism">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent vl-surface-premium" vl-effect="gradient-sweep">
                   <span>Grid</span>
                   <strong>Responsive columns + gap tokens</strong>
                 </article>
-                <article class="showcase-cinema-material-card showcase-cinema-material-card--base" vl-effect="hover-depth-press">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base vl-depth-card" vl-effect="border-trace">
                   <span>Stagger</span>
                   <strong>vl-children orchestrated entry</strong>
                 </article>
@@ -270,7 +270,7 @@
         </section>
 
         <!-- ═══ Scene 02 · Grid ═══════════════════════════════════════════ -->
-        <section id="feat-grid" class="showcase-cinema-scene showcase-cinema-scene--feat-grid" vl-scene="feature-grid" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="feat-grid" class="showcase-cinema-scene showcase-cinema-scene--feat-grid" vl-scene="glass-bento" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
               <div>
@@ -319,7 +319,7 @@
         </section>
 
         <!-- ═══ Scene 03 · Stagger ════════════════════════════════════════ -->
-        <section id="feat-container" class="showcase-cinema-scene showcase-cinema-scene--feat-container" vl-scene="feature-container-lab" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="feat-container" class="showcase-cinema-scene showcase-cinema-scene--feat-container" vl-scene="product-reveal" data-vl-scene-density="balanced" vl-effect="depth-enter" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
               <div>
@@ -334,7 +334,7 @@
             </div>
 
             <div class="scene-lab-board">
-              <article class="scene-lab-demo" vl-scene="feature-wide" data-vl-scene-density="editorial">
+              <article class="scene-lab-demo vl-frame-cinematic" vl-scene="editorial-cinema" data-vl-scene-density="editorial">
                 <div data-vl-scene-inner>
                   <div data-vl-scene-layout="split">
                     <div class="scene-lab-copy" vl-children="stagger" vl-stagger="80ms">
@@ -380,7 +380,7 @@
                 </div>
               </article>
 
-              <aside class="scene-lab-demo" vl-scene="feature-compact" data-vl-scene-density="compact">
+              <aside class="scene-lab-demo vl-glass" vl-scene="glass-bento" data-vl-scene-density="compact">
                 <div data-vl-scene-inner>
                   <div class="scene-lab-copy" vl-children="stagger" vl-stagger="70ms">
                     <p class="showcase-ref-kicker">Compact scene</p>
@@ -411,7 +411,7 @@
           </div>
         </section>
 
-        <section id="feat-stagger" class="showcase-cinema-scene showcase-cinema-scene--feat-stagger" vl-scene="feature-stagger" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="feat-stagger" class="showcase-cinema-scene showcase-cinema-scene--feat-stagger" vl-scene="glass-bento" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
               <p class="showcase-ref-kicker">Act II // Stagger</p>
@@ -440,7 +440,7 @@
         </section>
 
         <!-- ═══ Scene 04 · Content ════════════════════════════════════════ -->
-        <section id="feat-content" class="showcase-cinema-scene showcase-cinema-scene--feat-content" vl-scene="feature-content" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="feat-content" class="showcase-cinema-scene showcase-cinema-scene--feat-content" vl-scene="editorial-cinema" data-vl-scene-density="balanced" vl-effect="mask-sweep" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
               <p class="showcase-ref-kicker">Act III // Content</p>
@@ -472,7 +472,7 @@
         </section>
 
         <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
-        <section id="feat-payoff" class="showcase-cinema-scene showcase-cinema-scene--feat-payoff" vl-scene="feature-payoff" data-vl-scene-density="editorial" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="feat-payoff" class="showcase-cinema-scene showcase-cinema-scene--feat-payoff" vl-scene="sticky-story" data-vl-scene-density="editorial" vl-effect="fade-up" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
             <p class="showcase-ref-kicker">Act IV // Applied features</p>
             <h2 class="showcase-cinema-heading">Grid, stagger and content tiles: a reusable feature scene.</h2>

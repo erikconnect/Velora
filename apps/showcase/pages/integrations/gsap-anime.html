@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motion Enhancements | Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
+    <meta
+      name="description"
+      content="GSAP and Anime.js integration patterns as optional enhancement layers on top of Velora CSS native motion."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @view-transition { navigation: auto; }
+      body { background: var(--vl-bg-main); overflow-x: hidden; }
+
+      #int-hero { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #int-gsap { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #int-anime { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #int-code { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #int-payoff { view-timeline-name: --tl-5; view-timeline-axis: block; }
+    </style>
+  </head>
+  <body class="showcase-page-shell">
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;integrations</span>
+      <a class="vl-bussola__stop" href="#int-hero">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#int-gsap">
+        <span class="vl-bussola__label">GSAP</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#int-anime">
+        <span class="vl-bussola__label">Anime</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#int-code">
+        <span class="vl-bussola__label">Code</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#int-payoff">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+          <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
+            <g class="vl-logo-mark__group">
+              <g class="vl-logo-mark__full">
+                <g>
+                  <path class="vl-logo-mark__shape" d="M78.18,39.66h7.54c-3.36,9.89-13.29,15.76-23.66,14.12-4.7-.74-8.95-3.02-12.29-6.47-2.82-2.92-5.01-6.47-5.58-10.57-.25-1.81-.14-3.75-.05-5.57.53-11.27,9.69-19.81,20.89-19.82,13.37,0,22.14,11.34,21.1,24.44h-33.56c.79,3.6,2.8,6.77,5.96,8.63,6.68,3.95,15.35,1.89,19.66-4.77h0ZM77.49,29.64c-1.13-6.02-6.28-10.33-12.36-10.32s-11.11,4.11-12.43,10.3l24.79.02Z"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <nav class="vl-header__nav" aria-label="Primary navigation">
+          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/zero-js-motion.html">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="vl-main">
+      <div class="showcase-ref-page showcase-ref-page--integrations showcase-ref-page--cinema">
+
+        <section id="int-hero" class="showcase-cinema-scene showcase-cinema-scene--int-hero" vl-scene="cinematic-hero" data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive" vl-effect="reveal-cinematic" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
+              <div class="showcase-ref-tokens-kicker">
+                <span class="showcase-ref-tokens-kicker__line"></span>
+                <p class="showcase-ref-kicker" data-role="kicker">Integrations // Motion Enhancements</p>
+              </div>
+              <h1 class="showcase-ref-title" data-role="title">Use <em>GSAP or Anime.js</em> as optional enhancement, never as core dependency.</h1>
+              <p class="showcase-ref-lead" data-role="lead">
+                Velora remains native-first: motion primitives work with HTML/CSS only.
+                JS engines are layered only when a project needs advanced sequencing.
+              </p>
+              <div class="showcase-ref-tokens-actions">
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a>
+                <a class="showcase-ref-tokens-button" href="/pages/motion/api-motion-catalog.html">Motion API Catalog</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--int-hero" aria-label="Integration principles" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="0.08">
+              <div class="showcase-cinema-material-stack">
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent vl-surface-premium" vl-effect="gradient-sweep">
+                  <span>Baseline</span>
+                  <strong>CSS timelines first</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--base vl-depth-card" vl-effect="border-trace">
+                  <span>Enhancement</span>
+                  <strong>JS only when needed</strong>
+                </article>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+                  <span>Contract</span>
+                  <strong>No lock-in to runtime</strong>
+                </article>
+              </div>
+              <div class="showcase-cinema-status">
+                <span>native-first</span>
+                <span>optional JS</span>
+                <span>progressive</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="int-gsap" class="showcase-cinema-scene showcase-cinema-scene--int-gsap" vl-scene="sticky-story" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act I // GSAP ScrollTrigger</p>
+                <h2 class="showcase-cinema-heading">Map ScrollTrigger orchestration to existing Velora tokens.</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                Keep design values in CSS tokens. Let GSAP coordinate complex choreography
+                while preserving tokenized duration, easing and spacing.
+              </p>
+            </div>
+
+            <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="0.08">
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism" data-role="gsap-card">
+                <span>Token</span>
+                <strong>--vl-duration-slow</strong>
+                <small>Duration source of truth</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press" data-role="gsap-card">
+                <span>Token</span>
+                <strong>--vl-ease-cinematic</strong>
+                <small>Easing contract stays in CSS</small>
+              </article>
+              <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack" data-role="gsap-card">
+                <span>Pattern</span>
+                <strong>ScrollTrigger timeline</strong>
+                <small>Use only for advanced sequencing</small>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="int-anime" class="showcase-cinema-scene showcase-cinema-scene--int-anime" vl-scene="product-reveal" data-vl-scene-density="balanced" vl-effect="depth-enter" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
+            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
+              <p class="showcase-ref-kicker">Act II // Anime.js Timeline</p>
+              <h2 class="showcase-cinema-heading">Compose micro-sequences while keeping vl-stagger semantics.</h2>
+              <p class="showcase-ref-lead">
+                Anime.js can drive local timelines for cards or labels.
+                Keep semantic structure and reduced-motion behavior in CSS.
+              </p>
+              <div class="showcase-cinema-chip-row">
+                <a class="showcase-ref-chip" href="/pages/library/kinetic-card-configuration-modal.html" data-role="chip">Card Pattern</a>
+                <a class="showcase-ref-chip" href="/pages/library/interaction-feedback-micro-interactions.html" data-role="chip">Micro-Feedback</a>
+                <a class="showcase-ref-chip" href="/pages/library/zero-js-motion-examples.html" data-role="chip">Zero-JS fallback</a>
+              </div>
+            </div>
+
+            <div class="showcase-cinema-stage showcase-cinema-stage--int-anime" vl-effect="spring-3d" vl-once>
+              <ul class="showcase-cinema-easing-list">
+                <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press" data-role="anime-item">
+                  <span>Timeline</span>
+                  <strong>stagger() by token rhythm</strong>
+                </li>
+                <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press" data-role="anime-item">
+                  <span>Targeting</span>
+                  <strong>data-role attributes over deep selectors</strong>
+                </li>
+                <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press" data-role="anime-item">
+                  <span>Fallback</span>
+                  <strong>CSS-first static output stays readable</strong>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="int-code" class="showcase-cinema-scene showcase-cinema-scene--int-code" vl-scene="editorial-cinema" data-vl-scene-density="balanced" vl-effect="mask-sweep" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+              <div>
+                <p class="showcase-ref-kicker">Act III // Example Snippets</p>
+                <h2 class="showcase-cinema-heading">Reference integration snippets (no runtime imported here).</h2>
+              </div>
+              <p class="showcase-ref-lead">
+                The examples below show how to plug JS runtimes into already semantic Velora markup.
+                This page is documentation only and does not execute JS libraries.
+              </p>
+            </div>
+
+            <pre class="vl-code-block">// GSAP + ScrollTrigger (example only)
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// gsap.registerPlugin(ScrollTrigger);
+
+// gsap.timeline({
+//   scrollTrigger: {
+//     trigger: "[data-scene='hero']",
+//     start: "top 70%",
+//     end: "bottom 30%",
+//     scrub: true
+//   }
+// })
+// .from("[data-role='kicker']", { y: 28, opacity: 0, duration: 0.6 })
+// .from("[data-role='title']", { y: 40, opacity: 0, duration: 0.9 }, "&lt;0.08")
+// .from("[data-role='lead']", { y: 22, opacity: 0, duration: 0.7 }, "&lt;0.08");</pre>
+
+            <pre class="vl-code-block">// Anime.js timeline (example only)
+// import anime from "animejs";
+
+// anime.timeline({ easing: "cubicBezier(0.22, 1, 0.36, 1)" })
+//   .add({
+//     targets: "[data-role='chip']",
+//     translateY: [12, 0],
+//     opacity: [0, 1],
+//     delay: anime.stagger(80),
+//     duration: 420
+//   })
+//   .add({
+//     targets: "[data-role='meter-fill']",
+//     width: ["0%", "72%"],
+//     duration: 560
+//   }, "-=220");</pre>
+
+            <p class="vl-code-note">Keep token values in CSS variables and treat JS timelines as optional orchestration.</p>
+          </div>
+        </section>
+
+        <section id="int-payoff" class="showcase-cinema-scene showcase-cinema-scene--int-payoff" vl-scene="sticky-story" data-vl-scene-density="editorial" vl-effect="fade-up" vl-timeline="view" vl-once>
+          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+            <p class="showcase-ref-kicker">Act IV // Applied</p>
+            <h2 class="showcase-cinema-heading">Baseline in CSS. Enhancement in JS. Contract always intact.</h2>
+            <p class="showcase-ref-lead">
+              Use GSAP or Anime.js only when timeline complexity justifies it.
+              Velora remains portable and robust when JavaScript is absent.
+            </p>
+            <div class="showcase-cinema-payoff-links">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/zero-js-motion.html">Review Native Motion</a>
+              <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-hero.html">Open Scene Hero</a>
+              <a class="showcase-ref-tokens-button" href="/pages/motion/api-motion-catalog.html">Open Motion API</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReducedMotion) return;
+
+        var hasGsap = typeof window.gsap !== "undefined";
+        var hasScrollTrigger = typeof window.ScrollTrigger !== "undefined";
+        var hasAnime = typeof window.anime !== "undefined";
+
+        if (hasGsap && hasScrollTrigger) {
+          window.gsap.registerPlugin(window.ScrollTrigger);
+
+          window.gsap.timeline({
+            scrollTrigger: {
+              trigger: "#int-hero",
+              start: "top 75%",
+              end: "bottom 30%",
+              scrub: true
+            }
+          })
+            .from("#int-hero [data-role='kicker']", { y: 18, opacity: 0, duration: 0.45 })
+            .from("#int-hero [data-role='title']", { y: 32, opacity: 0, duration: 0.7 }, "<0.08")
+            .from("#int-hero [data-role='lead']", { y: 24, opacity: 0, duration: 0.55 }, "<0.1");
+
+          window.gsap.from("#int-gsap [data-role='gsap-card']", {
+            y: 28,
+            opacity: 0,
+            stagger: 0.12,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: "#int-gsap",
+              start: "top 70%",
+              toggleActions: "play none none reverse"
+            }
+          });
+        }
+
+        if (hasAnime) {
+          window.anime.timeline({
+            targets: "#int-anime [data-role='anime-item']",
+            autoplay: false,
+            easing: "cubicBezier(0.22, 1, 0.36, 1)"
+          }).add({
+            translateY: [14, 0],
+            opacity: [0, 1],
+            delay: window.anime.stagger(80),
+            duration: 420
+          });
+
+          var animeScene = document.querySelector("#int-anime");
+          var animeItems = document.querySelectorAll("#int-anime [data-role='anime-item']");
+          var chipItems = document.querySelectorAll("#int-anime [data-role='chip']");
+
+          if (animeScene && animeItems.length) {
+            var played = false;
+            var observer = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting && !played) {
+                  played = true;
+
+                  window.anime({
+                    targets: animeItems,
+                    translateY: [14, 0],
+                    opacity: [0, 1],
+                    delay: window.anime.stagger(80),
+                    duration: 420,
+                    easing: "cubicBezier(0.22, 1, 0.36, 1)"
+                  });
+
+                  if (chipItems.length) {
+                    window.anime({
+                      targets: chipItems,
+                      translateY: [10, 0],
+                      opacity: [0, 1],
+                      delay: window.anime.stagger(70),
+                      duration: 360,
+                      easing: "easeOutQuad"
+                    });
+                  }
+                }
+              });
+            }, { threshold: 0.35 });
+
+            observer.observe(animeScene);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Editorial Panel
+  ─────────────────────────────────────────────────────────────
+  Storytelling card for system sections, reference bento grids and
+  motion narratives. Used when a scene needs a compact explanation
+  with label, heading, copy and an optional action.
+
+  API on .showcase-cinema-panel:
+    vl-effect     hover-tilt-3d | hover-prism | spotlight |
+                  spring-3d | rise-3d | fade-up
+    vl-timeline   view (when animated into a scene)
+    vl-once       optional — fires entrance only once
+
+  Modifiers:
+    .showcase-cinema-panel--featured   stronger surface treatment
+
+  Inner structure:
+    p.showcase-ref-label   — Category or role label
+    h3                     — Short panel heading
+    p                      — Supporting copy, 1–2 sentences
+    (optional) a.showcase-ref-chip — Reference or next action
+
+  Placement:
+    Inside .showcase-cinema-card-grid, bento sections, or
+    .showcase-cinema-scene__inner single-column layouts.
+
+  Accessibility:
+    - h3 assumes the parent scene already owns the h2
+    - Links must describe destination/action, not just "Learn more"
+    - Featured panels should not be the only way to identify priority
+
+  CSS layers consumed:
+    velora.motion → @layer velora.effects
+    velora.components → @layer velora.showcase
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editorial Panel — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Standard panel
+         Reference card for bento grids and system sections.
+    ───────────────────────────────────────────────────────────── -->
+    <article class="showcase-cinema-panel" vl-effect="hover-tilt-3d">
+      <p class="showcase-ref-label">[Category label]</p>
+      <h3>[Panel heading]</h3>
+      <p>[Short explanation of the system idea, scene primitive or reference concept.]</p>
+      <a class="showcase-ref-chip" href="[url]">[Reference action]</a>
+    </article>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: Featured panel
+         Higher-emphasis panel for lead ideas inside a card grid.
+    ───────────────────────────────────────────────────────────── -->
+    <article
+      class="showcase-cinema-panel showcase-cinema-panel--featured"
+      vl-effect="hover-prism"
+      vl-timeline="view"
+      vl-once
+    >
+      <p class="showcase-ref-label">[Featured label]</p>
+      <h3>[Primary panel heading]</h3>
+      <p>[1–2 sentence explanation of why this idea is central to the current scene.]</p>
+      <a class="showcase-ref-chip" href="[url]">[Primary reference]</a>
+    </article>
+
+    <!-- ─────────────────────────────────────────────────────────
+         REFERENCE: Live examples (from landing.html)
+    ───────────────────────────────────────────────────────────── -->
+    <article class="showcase-cinema-panel" vl-effect="hover-tilt-3d">
+      <p class="showcase-ref-label">Zero JS Motion</p>
+      <h3>Native actuators</h3>
+      <p>Use browser timelines for entry, emphasis and state interpolation with no scroll listeners in sight.</p>
+      <a class="showcase-ref-chip" href="/pages/motion/zero-js-motion.html">Open Motion Core</a>
+    </article>
+
+    <article class="showcase-cinema-panel showcase-cinema-panel--featured" vl-effect="hover-prism">
+      <p class="showcase-ref-label">Scroll Reveal</p>
+      <h3>Scene interpolation</h3>
+      <p>Timelines phase copy, layers and rails together so each frame feels authored instead of triggered.</p>
+      <a class="showcase-ref-chip" href="/pages/scenes/scroll-reveal.html">Inspect Scroll Scene</a>
+    </article>
+
+  </body>
+</html>

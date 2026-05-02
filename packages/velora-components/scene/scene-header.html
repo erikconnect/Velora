@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Scene Header
+  ─────────────────────────────────────────────────────────────
+  Act intro block used at the top of single-column scenes.
+  Combines kicker, section heading and lead paragraph into an
+  orchestrated entrance. Always sits inside .showcase-cinema-scene__inner.
+
+  API on .showcase-cinema-scene__header:
+    vl-children   orchestrate (sequential, stagger between divs)
+    vl-stagger    default 100ms — increase for slower page pace
+
+  Inner structure:
+    div (left/main column)
+      p.showcase-ref-kicker   — "Act N // Topic" label
+      h2.showcase-cinema-heading — anchor heading for the act
+    p.showcase-ref-lead         — supporting paragraph (right column on wide)
+
+  Layout note:
+    The .showcase-cinema-scene__header uses a CSS grid split
+    internally — left is the kicker/heading column, right is
+    the lead. This is handled by showcase.css, not inline styles.
+
+  Heading level:
+    Always h2 (scene 1 owns h1 via Scene Copy Block).
+    Use h3 only when this header is nested inside another section.
+
+  Chip row:
+    Optional. Add .showcase-cinema-chip-row immediately after
+    the header div for quick-link navigation to related pages.
+
+  Accessibility:
+    - Heading must follow document hierarchy (h1 → h2 → h3)
+    - Lead paragraph is visible text, not aria-describedby
+    - Kicker text should be meaningful, not purely decorative
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scene Header — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Standard (kicker + heading + lead)
+         Default use case — full-width single column sections.
+    ───────────────────────────────────────────────────────────── -->
+    <section class="showcase-cinema-scene" vl-effect="fade-up" vl-timeline="view" vl-once>
+      <div class="showcase-cinema-scene__inner">
+
+        <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+          <div>
+            <p class="showcase-ref-kicker">Act N // [Topic]</p>
+            <h2 class="showcase-cinema-heading">[One powerful section heading — single statement.]</h2>
+          </div>
+          <p class="showcase-ref-lead">
+            [Supporting paragraph. 1–2 sentences that elaborate on the heading without repeating it.
+            Describes what the user will see or learn in this act.]
+          </p>
+        </div>
+
+        <!-- Act content (grid, swatch wall, etc.) goes here -->
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: With chip row
+         Use when the act has related pages or cross-references.
+    ───────────────────────────────────────────────────────────── -->
+    <section class="showcase-cinema-scene" vl-effect="fade-up" vl-timeline="view" vl-once>
+      <div class="showcase-cinema-scene__inner">
+
+        <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+          <div>
+            <p class="showcase-ref-kicker">Act N // [Topic]</p>
+            <h2 class="showcase-cinema-heading">[Section heading — strong, declarative, ends without period optional.]</h2>
+          </div>
+          <p class="showcase-ref-lead">
+            [Lead paragraph. Describes concept and sets expectation for the content below.]
+          </p>
+        </div>
+
+        <!-- Chip row with related links -->
+        <div class="showcase-cinema-chip-row">
+          <a class="showcase-ref-chip" href="[url]">[Related page 1]</a>
+          <a class="showcase-ref-chip" href="[url]">[Related page 2]</a>
+          <a class="showcase-ref-chip" href="[url]">[Related page 3]</a>
+        </div>
+
+        <!-- Act content goes here -->
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: Compact (no lead — single kicker + heading)
+         Use for tighter acts where lead would be redundant.
+    ───────────────────────────────────────────────────────────── -->
+    <section class="showcase-cinema-scene" vl-effect="fade-up" vl-timeline="view" vl-once>
+      <div class="showcase-cinema-scene__inner">
+
+        <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="80ms">
+          <div>
+            <p class="showcase-ref-kicker">Act N // [Topic]</p>
+            <h2 class="showcase-cinema-heading">[Compact heading — let the content speak for itself.]</h2>
+          </div>
+        </div>
+
+        <!-- Act content goes here -->
+
+      </div>
+    </section>
+
+  </body>
+</html>

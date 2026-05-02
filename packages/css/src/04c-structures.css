@@ -36,7 +36,7 @@
         justify-content: space-between;
         gap: var(--vl-space-md);
         width: 100%;
-        max-width: var(--vl-container-max);
+        max-width: var(--vl-layout-container-max, var(--vl-container-max));
         margin-inline: auto;
         padding-inline: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
     }
@@ -375,7 +375,7 @@
 
     .vl-footer__inner {
         width: 100%;
-        max-width: var(--vl-container-max);
+        max-width: var(--vl-layout-container-max, var(--vl-container-max));
         margin-inline: auto;
         padding-inline: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
     }

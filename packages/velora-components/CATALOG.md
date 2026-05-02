@@ -110,6 +110,34 @@ The following components are queued for conversion from Relume. See `relume-impo
 
 ---
 
+## Showcase Extraction Queue (Phase 1)
+
+Priority list extracted from current showcase pages to build a reusable component infrastructure.
+
+| Name | Source Pattern | Priority | Status | Notes |
+|------|----------------|----------|--------|-------|
+| Scene Wrapper | `showcase-cinema-scene` + `showcase-cinema-scene__inner` | P0 | ✅ Stable | `scene/scene-wrapper.html` — 4 variants |
+| Scene Rail (Bussola) | `showcase-cinema-rail` + `vl-bussola` | P0 | ✅ Stable | `scene/scene-rail.html` — view-timeline sync, CSS-only |
+| Scene Stage | `showcase-cinema-stage` | P0 | ✅ Stable | `scene/scene-stage.html` — 4 variants (stack, code, metrics, scroll) |
+| Scene Copy Block | `showcase-cinema-copy` | P0 | ✅ Stable | `scene/scene-copy.html` — 4 variants (hero, act, payoff, minimal) |
+| Scene Header | `showcase-cinema-scene__header` | P1 | ✅ Stable | `scene/scene-header.html` — 3 variants (standard, with chips, compact) |
+| Swatch Wall | `showcase-cinema-swatch-wall` + `showcase-cinema-swatch` | P1 | ✅ Stable | `scene/swatch-wall.html` — 3-card, 4-card, 6-card variants |
+| Material Stack | `showcase-cinema-material-stack` + `showcase-cinema-material-card` | P1 | ✅ Stable | `scene/material-stack.html` — 3-card + contrast pair variants |
+| Side Card | `showcase-cinema-sidecard` | P1 | ✅ Stable | `scene/side-card.html` — principle, with-meter, orchestrated variants |
+| Chip Row | `showcase-cinema-chip-row` | P1 | ✅ Stable | `scene/chip-row.html` — navigational, informational, mixed, wrapping |
+| Meter | `showcase-cinema-meter` + `showcase-cinema-meter__track` + `showcase-cinema-meter__fill` | P2 | ✅ Stable | `scene/meter.html` — 3 variants (standard, utility fill, metric group) |
+| Status Cluster | `showcase-cinema-status` | P2 | ✅ Stable | `scene/status-cluster.html` — 3 variants (metadata, token status, animated diagnostics) |
+| Editorial Panel | `showcase-cinema-panel` | P2 | ✅ Stable | `scene/editorial-panel.html` — 2 variants (standard, featured) |
+
+Extraction acceptance criteria:
+
+1. Must run with native HTML/CSS only.
+2. Must map to Velora tokens and `vl-*` motion attributes.
+3. Must include at least one documented variant.
+4. Must include accessibility notes and reduced-motion behavior.
+
+---
+
 ## Adding a Component
 
 1. Copy `_shell.html` as your starting template

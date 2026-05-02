@@ -54,6 +54,42 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-easing` -> replace with canonical easing tokens / effect contracts
 - `vl-transition` -> replace with `vl-page-transition` + shared VT classes
 
+### 2.3 Stable value extensions (current)
+
+- `vl-enter`: `reveal-cinematic`, `depth-enter`, `mask-sweep`
+- `vl-scroll`: `reveal`, `media-zoom`, `crossfade`, `text-highlight`
+- `vl-loop` / `vl-loop-effect`: `aurora-drift`
+- `vl-hover`: `gradient-sweep`, `border-trace`
+- `vl-scene`: `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema`
+
+### 2.4 Authoring profile (v2 target: practical and flexible)
+
+This profile defines the preferred authoring model for new scenes. Goal: build fast with predictable defaults using native HTML/CSS first.
+
+- **Entry/Exit:** `vl-enter`, `vl-exit`
+- **Timing:** `vl-duration`, `vl-speed`
+- **Range/Direction:** `vl-range`, `vl-direction`
+- **Scroll/Timeline:** `vl-scroll`, `vl-timeline`, `vl-scrub`, `vl-once`
+- **Scene composition:** `vl-scene`, `vl-children`, `vl-stagger`
+- **Easing:** use canonical easing tokens via effect contracts (do not introduce ad-hoc easing values in pages)
+
+Authoring rule for new demos/pages:
+
+1. Start with a `vl-scene` preset.
+2. Add one entry behavior (`vl-enter`) and one progression behavior (`vl-scroll` or `vl-timeline`).
+3. Tune timing with `vl-duration` + `vl-speed` only when needed.
+4. Tune choreography with `vl-stagger` only on grouped children.
+
+### 2.5 Baseline scene recipe (recommended)
+
+Use this minimum recipe as default for new section-level scenes:
+
+- section: `vl-scene` + (`vl-enter` or `vl-scroll`)
+- media block: optional `vl-range` + `vl-direction`
+- child cluster: optional `vl-children` + `vl-stagger`
+
+This keeps the API compact while preserving flexibility for advanced timelines.
+
 ## 3) Design Catalog Matrix (scope)
 
 - **Core:** `#color-tokens`, `#typography`, `#spacing`, `#primitives`
@@ -91,6 +127,28 @@ Validation is mandatory in `verify:contract`:
 2. `vl-*` attribute validation against stable/deprecated matrix
 3. In-page anchor validation (`href="#id"` target must exist)
 4. Contract checklist report generation per page
+
+## 7) Authoring Rules (Framework-first)
+
+### 7.1 Inline CSS policy
+
+- `style="..."` and page-local inline CSS are **last resort only**.
+- Prefer framework primitives and declarative attributes in HTML.
+- If inline CSS is temporarily required, it must be justified and scheduled for removal.
+
+### 7.2 Declarative layout policy
+
+- Use `data-layout` on structural wrappers instead of inline width overrides.
+- Allowed values:
+  - `data-layout="boxed"`
+  - `data-layout="full-width"`
+- Header, sections, and footer must follow the same contract.
+
+### 7.3 HTML layer ergonomics
+
+- Cards, sections, and structural containers should be configurable through attributes/classes that are easy to apply in markup.
+- Behavioral semantics stay in `vl-*` attributes.
+- Visual/layout semantics stay in structural classes and declarative `data-*` attributes.
 
 ---
 

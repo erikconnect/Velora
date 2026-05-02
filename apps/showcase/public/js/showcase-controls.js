@@ -6,6 +6,10 @@
   const THEME_KEY = "vl-theme";
   const TRANSITION_KEY = "vl-page-transition";
   const EDITORIAL_KEY = "vl-editorial-theme";
+  const applyThemePackFromEditorial = (editorial) => {
+    const pack = editorial === "earth" ? "velora-earth" : "velora-noir";
+    root.setAttribute("data-theme-pack", pack);
+  };
 
   const applyTheme = (theme) => {
     if (theme === "auto") {
@@ -17,6 +21,7 @@
     themeButtons.forEach((button) => {
       const isActive = button.dataset.dsTheme === theme;
       button.classList.toggle("is-active", isActive);
+      button.classList.toggle("vl-badge--accent", isActive);
       button.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
   };
@@ -30,6 +35,7 @@
   const applyEditorial = (value, { persist = true, syncThemeToggle = true } = {}) => {
     const v = value === "earth" ? "earth" : "noir";
     root.setAttribute("data-editorial-theme", v);
+    applyThemePackFromEditorial(v);
     if (persist) {
       localStorage.setItem(EDITORIAL_KEY, v);
     }

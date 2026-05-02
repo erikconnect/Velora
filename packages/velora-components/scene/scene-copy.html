@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Scene Copy Block
+  ─────────────────────────────────────────────────────────────
+  Narrative copy container for cinematic scenes. Handles the
+  orchestrated entrance of kicker → heading → lead → actions.
+
+  API on .showcase-cinema-copy:
+    vl-children   orchestrate (sequential cascade) or stagger
+    vl-stagger    delay between children (default: 120ms)
+    vl-speed      cinema | slow | normal
+
+  Inner element roles:
+    .showcase-ref-tokens-kicker     — kicker row (line + label)
+    .showcase-ref-kicker            — kicker text inside the row
+    h1 / h2 .showcase-ref-title     — primary heading
+    .showcase-cinema-heading        — section-level heading (acts)
+    .showcase-ref-lead              — supporting paragraph
+    .showcase-ref-tokens-actions    — CTA button group
+    .showcase-cinema-chip-row       — tag/chip cluster
+
+  Kicker line colours:
+    Default (dark): --vl-color-primary or CSS var
+    Earth Tech light: overridden via theme token
+
+  Heading guidelines (Velora contract):
+    h1 on scene 1, h2 on all subsequent acts.
+    Use <em> for accent emphasis — it receives gradient treatment.
+
+  Lead guidelines:
+    1–2 sentences. No more than 18 words per line ideally.
+    Uses `showcase-ref-lead` which applies vl-text-secondary.
+
+  Accessibility:
+    - Heading hierarchy must follow page order (h1 → h2 → h3)
+    - Actions must have descriptive link text (no "click here")
+    - Chips are informational, not interactive (use spans, not buttons)
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scene Copy Block — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Hero Copy (Scene 1, full)
+         Kicker · h1 title · lead · actions · chips
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms" vl-speed="cinema">
+
+      <!-- Kicker row: decorative line + label -->
+      <div class="showcase-ref-tokens-kicker">
+        <span class="showcase-ref-tokens-kicker__line" aria-hidden="true"></span>
+        <p class="showcase-ref-kicker">[Category] // [Page context]</p>
+      </div>
+
+      <!-- Primary heading — h1 for scene 1 only -->
+      <h1 class="showcase-ref-title">
+        [Headline with <em>accent emphasis</em> on key phrase.
+      </h1>
+
+      <!-- Supporting lead -->
+      <p class="showcase-ref-lead">
+        [1–2 sentences describing the value or concept. Keep under 18 words per line.]
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="showcase-ref-tokens-actions">
+        <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="[url]">
+          [Primary action]
+        </a>
+        <a class="showcase-ref-tokens-button" href="[url]">
+          [Secondary action]
+        </a>
+      </div>
+
+      <!-- Optional chips (technique tags) -->
+      <div class="showcase-cinema-chip-row" role="list" aria-label="Key techniques">
+        <span class="showcase-cinema-chip" role="listitem">[Technique 1]</span>
+        <span class="showcase-cinema-chip" role="listitem">[Technique 2]</span>
+        <span class="showcase-cinema-chip" role="listitem">[Technique 3]</span>
+      </div>
+
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: Act Copy (Scene 2+, section heading)
+         Act kicker · h2 · lead — no CTA buttons
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
+      <div>
+        <p class="showcase-ref-kicker">Act N // [Label]</p>
+        <h2 class="showcase-cinema-heading">[Section heading — one powerful line.]</h2>
+      </div>
+      <p class="showcase-ref-lead">
+        [Supporting explanation of what this act demonstrates.]
+      </p>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: Payoff Copy (last scene, closing CTA)
+         Kicker · h2 · lead · links — centered layout
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
+      <p class="showcase-ref-kicker">Act N // Applied</p>
+      <h2 class="showcase-cinema-heading">[Closing payoff heading.]</h2>
+      <p class="showcase-ref-lead">
+        [Brief, action-oriented closing line. What do you want the reader to do?]
+      </p>
+      <div class="showcase-cinema-payoff-links">
+        <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="[url]">[Primary CTA]</a>
+        <a class="showcase-ref-tokens-button" href="[url]">[Secondary CTA]</a>
+        <a class="showcase-ref-tokens-button" href="[url]">[Tertiary CTA]</a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT D: Minimal (staggered text only)
+         Small sub-sections, nested inside other components.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-copy" vl-children="stagger" vl-stagger="80ms">
+      <p class="showcase-ref-kicker">[Kicker label]</p>
+      <h3>[Sub-heading]</h3>
+      <p class="showcase-ref-lead">[Short supporting sentence.]</p>
+    </div>
+
+  </body>
+</html>

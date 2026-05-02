@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Material Stack
+  ─────────────────────────────────────────────────────────────
+  Stacked card composition used in scene stages to demonstrate
+  structure, layers and depth. Paired with a status cluster.
+  Lives inside .showcase-cinema-stage — see scene-stage.html.
+
+  API on .showcase-cinema-stage (parent):
+    vl-effect     rise-3d | depth-push | spring-3d
+    vl-once       fire entrance only once
+    vl-children   stagger (applies to cards inside the stack)
+    vl-stagger    0.08 seconds between cards
+
+  Card modifiers on .showcase-cinema-material-card:
+    --accent    Primary tint card — use for the key/lead card
+    --base      Neutral mid card — supporting information
+    --ink       Darkest card — emphasis, contrast, or conclusion
+
+  Premium utilities available on cards:
+    vl-surface-premium   glass + gradient shell surface
+    vl-depth-card        soft inner shadow depth card
+    class="vl-surface-premium"   combined glass surface
+
+  Per-card effects (vl-effect):
+    gradient-sweep   — animated gradient on hover
+    border-trace     — border illuminates on hover
+    hover-depth-press — subtle 3D press on hover
+
+  Inner structure per card:
+    span    — Category or phase label (e.g. "Scroll", "Entry")
+    strong  — Primary descriptor (e.g. "Ranges, not timeouts")
+
+  Status cluster (optional, below the stack):
+    .showcase-cinema-status — horizontal pill row with 3 trait tags.
+    aria-label="Scene metadata" on the container.
+
+  Accessibility:
+    - Outer stage div: aria-label describing the visual content
+    - Status cluster: aria-label="Scene metadata"
+    - Decorative stacking effect is presentational — content is
+      readable without visual order thanks to semantic markup
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Stack — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: 3-card stack + status cluster
+         Standard use for hero scenes. accent → base → ink order.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--[page]-hero"
+      aria-label="[Describe what the stack represents visually]"
+      vl-effect="rise-3d"
+      vl-once
+      vl-children="stagger"
+      vl-stagger="0.08"
+    >
+      <div class="showcase-cinema-material-stack">
+
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--accent vl-surface-premium" vl-effect="gradient-sweep">
+          <span>[Phase label]</span>
+          <strong>[Primary descriptor — most important concept]</strong>
+        </article>
+
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--base vl-depth-card" vl-effect="border-trace">
+          <span>[Phase label]</span>
+          <strong>[Secondary descriptor]</strong>
+        </article>
+
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+          <span>[Phase label]</span>
+          <strong>[Tertiary descriptor — supporting detail]</strong>
+        </article>
+
+      </div>
+
+      <div class="showcase-cinema-status" aria-label="Scene metadata">
+        <span>[Trait 1]</span>
+        <span>[Trait 2]</span>
+        <span>[Trait 3]</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: 2-card stack (contrast pair)
+         Use for binary concepts or before/after comparisons.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--[page]-contrast"
+      aria-label="[Describe the comparison]"
+      vl-effect="depth-push"
+      vl-once
+      vl-children="stagger"
+      vl-stagger="0.1"
+    >
+      <div class="showcase-cinema-material-stack">
+
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--accent" vl-effect="gradient-sweep">
+          <span>[Before / Without]</span>
+          <strong>[State A descriptor]</strong>
+        </article>
+
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="border-trace">
+          <span>[After / With]</span>
+          <strong>[State B descriptor]</strong>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         REFERENCE: Live example (from scene-story.html)
+         Scroll-driven narrative stage with 3 technique cards.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-stage showcase-cinema-stage--story-hero"
+      aria-label="Story scene overview"
+      vl-effect="rise-3d"
+      vl-once
+      vl-children="stagger"
+      vl-stagger="0.08"
+    >
+      <div class="showcase-cinema-material-stack">
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--accent vl-surface-premium" vl-effect="gradient-sweep">
+          <span>Scroll</span>
+          <strong>Ranges, not timeouts</strong>
+        </article>
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--base vl-depth-card" vl-effect="border-trace">
+          <span>Persist</span>
+          <strong>Nav + progress visible</strong>
+        </article>
+        <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
+          <span>Reference</span>
+          <strong>Scroll-driven reveal spec</strong>
+        </article>
+      </div>
+      <div class="showcase-cinema-status" aria-label="Scene metadata">
+        <span>Scroll-driven</span>
+        <span>Pinned sections</span>
+        <span>Progressive</span>
+      </div>
+    </div>
+
+  </body>
+</html>

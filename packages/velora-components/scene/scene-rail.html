@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Scene Rail (Bussola)
+  ─────────────────────────────────────────────────────────────
+  Sticky vertical navigation that syncs with page section
+  view-timelines. Appears on the right side of the viewport.
+  Works entirely with CSS (view-timeline + :has()) — no JS.
+
+  How it works:
+    1. Each section declares a view-timeline-name (--tl-N).
+    2. The bussola CSS watches those timelines.
+    3. The active dot highlights as each section enters view.
+
+  Markup rules:
+    - `nav.showcase-cinema-rail.vl-bussola` is canonical
+    - Every `.vl-bussola__stop[href="#id"]` must map to a
+      real section `id` on the same page
+    - `.vl-bussola__cap` is the mini label (page context)
+    - Keep stop count ≤ 7 for readable rail height
+    - Order must match DOM section order (top to bottom)
+
+  Companion section style (one per section):
+    #section-id {
+      view-timeline-name: --tl-N;
+      view-timeline-axis: block;
+    }
+
+  Accessibility:
+    - nav has aria-label="Page sections"
+    - Each stop label is visible to screen readers
+    - Dot is aria-hidden
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scene Rail — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+    <style>
+      /* Declare view-timelines for each page section (one per section) */
+      #section-1 { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #section-2 { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #section-3 { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #section-4 { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #section-5 { view-timeline-name: --tl-5; view-timeline-axis: block; }
+    </style>
+  </head>
+  <body class="showcase-page-shell">
+
+    <!-- Skip link — always first child of body -->
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <!-- ─────────────────────────────────────────────────────────
+         SCENE RAIL (BUSSOLA)
+         Replace the cap label and stop hrefs/labels for each page.
+    ───────────────────────────────────────────────────────────── -->
+    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+      <!-- Mini page context label (e.g. "velora", "scenes", "story") -->
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;[page]</span>
+
+      <a class="vl-bussola__stop" href="#section-1">
+        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#section-2">
+        <span class="vl-bussola__label">Act I</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#section-3">
+        <span class="vl-bussola__label">Act II</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#section-4">
+        <span class="vl-bussola__label">Reference</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#section-5">
+        <span class="vl-bussola__label">Apply</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+    </nav>
+
+    <!-- Example page sections (show the rail is working) -->
+    <main id="content" class="vl-main">
+      <section id="section-1" class="showcase-cinema-scene">
+        <div class="showcase-cinema-scene__inner">
+          <h1 class="showcase-cinema-heading">Section 1 — Intro</h1>
+        </div>
+      </section>
+
+      <section id="section-2" class="showcase-cinema-scene">
+        <div class="showcase-cinema-scene__inner">
+          <h2 class="showcase-cinema-heading">Section 2 — Act I</h2>
+        </div>
+      </section>
+
+      <section id="section-3" class="showcase-cinema-scene">
+        <div class="showcase-cinema-scene__inner">
+          <h2 class="showcase-cinema-heading">Section 3 — Act II</h2>
+        </div>
+      </section>
+
+      <section id="section-4" class="showcase-cinema-scene">
+        <div class="showcase-cinema-scene__inner">
+          <h2 class="showcase-cinema-heading">Section 4 — Reference</h2>
+        </div>
+      </section>
+
+      <section id="section-5" class="showcase-cinema-scene">
+        <div class="showcase-cinema-scene__inner">
+          <h2 class="showcase-cinema-heading">Section 5 — Apply</h2>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>

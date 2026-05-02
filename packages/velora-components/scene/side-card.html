@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+  VELORA COMPONENT — Side Card
+  ─────────────────────────────────────────────────────────────
+  Contextual explanation card placed alongside code blocks or
+  layer stacks in a scene stage. Typically paired with
+  .showcase-cinema-code or .showcase-cinema-layer-stack.
+
+  API on .showcase-cinema-sidecard:
+    vl-effect     hover-prism | hover-tilt-3d | hover-depth-press
+    vl-children   stagger (for internal content orchestration)
+    vl-stagger    150ms between internal elements
+    vl-speed      slow | normal (default: normal)
+
+  Inner structure:
+    span    — Role label (e.g. "Principle", "Tip", "Pattern")
+    h3      — Short heading — 3–5 words
+    p       — Explanation — 1–2 sentences max
+    (optional) .showcase-cinema-meter — progress/intensity indicator
+
+  Meter sub-component (optional):
+    .showcase-cinema-meter
+      span (metric label)
+      .showcase-cinema-meter__track
+        .showcase-cinema-meter__fill[style="--fill: 72%"]
+
+  Usage context:
+    - Inside .showcase-cinema-stage (right panel of code examples)
+    - Inside .showcase-cinema-scene__inner--split (right column)
+    - Never use standalone — always paired with a primary visual
+
+  Size note:
+    Side card is narrow by design (fits the stage secondary slot).
+    Keep h3 to max 5 words and p to 1–2 sentences.
+
+  Accessibility:
+    - h3 heading implies this is inside a scene with h1/h2 hierarchy
+    - Meter track is decorative — if the fill value is meaningful,
+      include the numeric value in visible text as well
+    - If used as a "tip", role="note" can be added to the outer div
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Side Card — Velora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/src/velora.css" />
+  </head>
+  <body>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT A: Principle/Tip card
+         Explains the rationale behind an adjacent code example.
+    ───────────────────────────────────────────────────────────── -->
+    <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+      <span>[Role: Principle | Tip | Pattern]</span>
+      <h3>[Short heading — 3–5 words.]</h3>
+      <p>[1–2 sentence explanation of the concept shown in the adjacent visual.]</p>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT B: With meter
+         Shows a quantitative relationship or intensity level.
+    ───────────────────────────────────────────────────────────── -->
+    <div
+      class="showcase-cinema-sidecard"
+      vl-effect="hover-tilt-3d"
+      vl-children="stagger"
+      vl-stagger="150ms"
+      vl-speed="slow"
+    >
+      <span>[Role: Context | Metric | Signal]</span>
+      <h3>[Heading referencing the metric.]</h3>
+      <p>[Brief supporting description of what the meter represents.]</p>
+      <div class="showcase-cinema-meter">
+        <span>[Metric label]</span>
+        <div class="showcase-cinema-meter__track">
+          <span class="showcase-cinema-meter__fill" style="--fill: 72%"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────
+         VARIANT C: Orchestrated stagger (for scroll-story stages)
+         More detailed card with slower, deliberate entrance.
+    ───────────────────────────────────────────────────────────── -->
+    <aside
+      class="showcase-cinema-sidecard"
+      vl-effect="hover-tilt-3d"
+      vl-children="stagger"
+      vl-stagger="150ms"
+      vl-speed="slow"
+    >
+      <p class="showcase-ref-label">[Context label]</p>
+      <h3>[Short heading.]</h3>
+      <p>[Supporting explanation — how this relates to the current act.]</p>
+    </aside>
+
+    <!-- ─────────────────────────────────────────────────────────
+         REFERENCE: Live examples (from typography-composition.html)
+    ───────────────────────────────────────────────────────────── -->
+
+    <!-- Principle: always top-down -->
+    <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+      <span>Principle</span>
+      <h3>Always top-down.</h3>
+      <p>Kicker first, then heading, then lead, then body. Never skip a level.</p>
+    </div>
+
+    <!-- Pattern: same structure, different skin -->
+    <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
+      <span>Pattern</span>
+      <h3>Same structure, different skin.</h3>
+      <p>Every scene type uses kicker/title/lead/body. Motion and colour vary per context.</p>
+    </div>
+
+  </body>
+</html>
