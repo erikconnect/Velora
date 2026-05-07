@@ -152,13 +152,14 @@ This is a pnpm + Turborepo monorepo:
 
 ```text
 velora/
+├── docs/                   # Markdown source of truth (contract, workspace, agents)
 ├── packages/
 │   ├── css/                # @velora/css — canonical framework source
 │   ├── pages/              # legacy/reference HTML pages used by showcase tooling
 │   └── velora-components/  # component HTML catalog and source material
 ├── apps/
-│   ├── showcase/           # Vite showcase (primary interactive app)
-│   └── docs/               # Astro documentation site
+│   ├── showcase/           # Vite showcase (primary interactive app + API catalogs)
+│   └── docs/               # Astro documentation site (published guides)
 ├── turbo.json
 └── pnpm-workspace.yaml
 ```
@@ -166,9 +167,9 @@ velora/
 ```bash
 pnpm install     # install all dependencies
 pnpm dev         # run showcase locally
-pnpm dev:docs    # run docs locally
-pnpm dev:all     # run all dev tasks
-pnpm build       # build css + showcase + docs
+pnpm dev:docs    # run Astro docs (port 4321)
+pnpm dev:all     # all dev tasks (showcase + docs + any other apps)
+pnpm build       # build css, showcase, and docs
 ```
 
 If `pnpm` is unavailable on your machine, activate the pinned version with Corepack:
@@ -190,7 +191,7 @@ Velora targets modern browsers with native support for CSS layers, container que
 
 Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-AI agents (GitHub Copilot, Cursor, and similar tools) should read the [Agent Handbook](docs/velora_agent_handbook.md) before making changes. It defines the product thesis, non-negotiable rules, attribute system contract, and safe prompting patterns. For task assignment, refer to the [Agent Skill Sets](docs/velora_agent_skill_sets.md) which defines 14 project-specific operating profiles.
+AI agents (GitHub Copilot, Cursor, and similar tools) should read the [Agent Handbook](docs/agents/handbook.md) before making changes. It defines the product thesis, non-negotiable rules, attribute system contract, and safe prompting patterns. For task assignment, refer to the [Agent Skill Sets](docs/agents/skill-sets.md) which defines 14 project-specific operating profiles. The documentation index is [docs/README.md](docs/README.md).
 
 ## License
 

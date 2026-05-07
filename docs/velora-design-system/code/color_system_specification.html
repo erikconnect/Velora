@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora System | Color &amp; Perception</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#7e2b17",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "on-error-container": "#ff9b82",
+                        "outline": "#71776e",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "error-dim": "#ba573f",
+                        "on-background": "#e1e7dc",
+                        "on-surface": "#e1e7dc",
+                        "primary-dim": "#aebea4",
+                        "background": "#0d0f0c",
+                        "secondary-dim": "#9d9e9a",
+                        "primary-fixed": "#d7e8cc",
+                        "primary-container": "#3d4b36",
+                        "primary": "#bbcbb1",
+                        "tertiary-container": "#e2f1c6",
+                        "surface-container-highest": "#212720",
+                        "tertiary-dim": "#d7e5bb",
+                        "surface-container": "#171b16",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "on-secondary-container": "#bfc0bb",
+                        "surface-container-high": "#1c211b",
+                        "on-primary": "#364430",
+                        "on-primary-container": "#c5d5ba",
+                        "surface-tint": "#bbcbb1",
+                        "surface": "#0d0f0c",
+                        "surface-variant": "#212720",
+                        "on-primary-fixed": "#35432f",
+                        "secondary": "#9d9e9a",
+                        "on-tertiary-container": "#4f5b3a",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "on-surface-variant": "#a7ada2",
+                        "inverse-primary": "#55634d",
+                        "on-secondary-fixed": "#3e403d",
+                        "inverse-surface": "#fafaf4",
+                        "error": "#ed7f64",
+                        "surface-container-lowest": "#000000",
+                        "inverse-on-surface": "#545652",
+                        "on-secondary": "#1f211e",
+                        "surface-container-low": "#111410",
+                        "secondary-container": "#3a3c39",
+                        "tertiary": "#f1ffd4",
+                        "on-tertiary": "#576342",
+                        "on-error": "#450900",
+                        "surface-bright": "#272e25",
+                        "on-primary-fixed-variant": "#51604a",
+                        "outline-variant": "#434a41",
+                        "primary-fixed-dim": "#c9d9be",
+                        "surface-dim": "#0d0f0c",
+                        "tertiary-fixed": "#e5f4c9",
+                        "secondary-fixed": "#e3e3de",
+                        "on-secondary-fixed-variant": "#5a5c58"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(23, 27, 22, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen bg-surface selection:bg-primary selection:text-on-primary">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen sticky left-0 w-64 flex flex-col bg-[#0d0f0c] dark:bg-[#0d0f0c] py-8 gap-4">
+<div class="px-8 mb-8">
+<h1 class="font-['Space_Grotesk'] font-black text-[#bbcbb1] text-2xl tracking-tighter">VELORA</h1>
+<p class="font-['Manrope'] text-[10px] tracking-[0.2em] text-[#6b7a63] uppercase mt-1">v2.4.0-Stable</p>
+</div>
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-8 py-3 text-[#bbcbb1] font-bold border-r-2 border-[#bbcbb1] bg-[#1a1d18] cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Tokens</span>
+</div>
+<div class="flex items-center gap-3 px-8 py-3 text-[#6b7a63] hover:bg-[#1a1d18] hover:text-[#bbcbb1] cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="animation">animation</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Motion</span>
+</div>
+<div class="flex items-center gap-3 px-8 py-3 text-[#6b7a63] hover:bg-[#1a1d18] hover:text-[#bbcbb1] cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="extension">extension</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Components</span>
+</div>
+</nav>
+<div class="mt-auto flex flex-col gap-1">
+<div class="flex items-center gap-3 px-8 py-3 text-[#6b7a63] hover:bg-[#1a1d18] hover:text-[#bbcbb1] cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Documentation</span>
+</div>
+<div class="flex items-center gap-3 px-8 py-3 text-[#6b7a63] hover:bg-[#1a1d18] hover:text-[#bbcbb1] cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Repository</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto">
+<!-- TopNavBar Anchor -->
+<header class="w-full top-0 sticky z-50 bg-[#1a1d18] flex justify-between items-center px-8 py-4">
+<div class="font-['Space_Grotesk'] font-bold tracking-tighter text-[#bbcbb1] uppercase text-xl">
+                VELORA SYSTEM
+            </div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4 items-center">
+<span class="font-['Space_Grotesk'] font-bold tracking-tight text-sm uppercase text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1 cursor-pointer">Colors</span>
+<span class="font-['Space_Grotesk'] font-bold tracking-tight text-sm uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors duration-200 cursor-pointer">Type</span>
+<span class="font-['Space_Grotesk'] font-bold tracking-tight text-sm uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors duration-200 cursor-pointer">Grid</span>
+</div>
+<div class="flex items-center gap-3 ml-4">
+<span class="material-symbols-outlined text-[#6b7a63] cursor-pointer" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-[#6b7a63] cursor-pointer" data-icon="help">help</span>
+<div class="w-8 h-8 rounded-sm bg-surface-container-highest overflow-hidden">
+<img alt="System Architect Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a professional system architect with neutral expression in high key lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIUinG-NH1iACV7SbG97G7T5JW1p1cIuSximkBKl2kAMSKkKWluJEoQ0QFk-yO7Czw8cnt3xPjCCpEjbElw61ErUP78HOgTudjtDlPXvib1-MBe9yLNr8B5OKgdgoImibgMS0N9eHNMZ9KkSxIydxvqNhTennky6WcUS429XWw6jI7EhUaRad08QBEpr8KtrEVv7jF-uEx0TE_Fd1MdJbsZY8zVuDNukcrLsX1omsQt_t6V008De7EWfCoYT0mfZzTQGX4H5TNoiRT"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-12 max-w-7xl mx-auto space-y-24">
+<!-- Header Section -->
+<section class="space-y-4">
+<h2 class="font-headline text-6xl font-bold tracking-tighter text-on-surface">Color Palette &amp; Semantic Logic</h2>
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
+                    A technical implementation of <span class="text-primary">oklch()</span> color spaces for superior perceptual uniformity. Engineered for high-end editorial experiences through intentional asymmetry and tonal depth.
+                </p>
+</section>
+<!-- Main Swatches Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Primary Swatch -->
+<div class="group cursor-default">
+<div class="h-80 bg-primary mb-6 transition-transform duration-500 group-hover:-translate-y-2 flex items-end p-6">
+<span class="font-headline font-black text-on-primary text-4xl opacity-20">KINETIC</span>
+</div>
+<div class="space-y-2">
+<p class="font-label text-[10px] tracking-[0.2em] text-primary uppercase">Primary // Kinetic Green</p>
+<h3 class="font-headline text-2xl font-bold">#bbcbb1</h3>
+<div class="flex justify-between items-center text-xs font-body text-on-surface-variant pt-2">
+<span>RGBA(187, 203, 177, 1)</span>
+<span class="px-2 py-0.5 bg-surface-container-highest">WCAG AA 4.5:1</span>
+</div>
+<p class="text-sm text-on-surface-variant pt-4 border-t border-outline-variant/20">High-intent action accent. Used for primary actuators, focus indicators, and critical system feedback.</p>
+</div>
+</div>
+<!-- Secondary Swatch -->
+<div class="group cursor-default">
+<div class="h-80 bg-on-surface mb-6 transition-transform duration-500 group-hover:-translate-y-2 flex items-end p-6">
+<span class="font-headline font-black text-surface text-4xl opacity-20">CREAM</span>
+</div>
+<div class="space-y-2">
+<p class="font-label text-[10px] tracking-[0.2em] text-on-surface-variant uppercase">Secondary // Velora Cream</p>
+<h3 class="font-headline text-2xl font-bold">#e1e7dc</h3>
+<div class="flex justify-between items-center text-xs font-body text-on-surface-variant pt-2">
+<span>RGBA(225, 231, 220, 1)</span>
+<span class="px-2 py-0.5 bg-surface-container-highest">WCAG AA 12.1:1</span>
+</div>
+<p class="text-sm text-on-surface-variant pt-4 border-t border-outline-variant/20">Humanist neutral base. Designed for optimal legibility and warmth across high-density reading environments.</p>
+</div>
+</div>
+<!-- Foundation Swatch -->
+<div class="group cursor-default">
+<div class="h-80 bg-surface-container-lowest mb-6 transition-transform duration-500 group-hover:-translate-y-2 flex items-end p-6 border border-outline-variant/10">
+<span class="font-headline font-black text-on-surface text-4xl opacity-10 uppercase">Noir</span>
+</div>
+<div class="space-y-2">
+<p class="font-label text-[10px] tracking-[0.2em] text-on-surface-variant uppercase">Foundation // Surface Noir</p>
+<h3 class="font-headline text-2xl font-bold">#0d0f0c</h3>
+<div class="flex justify-between items-center text-xs font-body text-on-surface-variant pt-2">
+<span>RGBA(13, 15, 12, 1)</span>
+<span class="px-2 py-0.5 bg-surface-container-highest">Base Layer</span>
+</div>
+<p class="text-sm text-on-surface-variant pt-4 border-t border-outline-variant/20">The architectural foundation. A deep, desaturated black that provides infinite depth and zero-eye-strain focus.</p>
+</div>
+</div>
+</section>
+<!-- Semantic Tiers -->
+<section class="space-y-8">
+<div class="flex items-end justify-between border-b border-outline-variant/10 pb-4">
+<h3 class="font-headline text-2xl font-bold uppercase tracking-tight">Semantic &amp; Utility Tiers</h3>
+<p class="font-label text-[10px] text-on-surface-variant">TONAL LOGIC V1.2</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low p-6 space-y-4">
+<div class="w-full h-12 bg-tertiary-dim"></div>
+<div>
+<p class="font-label text-[10px] text-tertiary uppercase">Success</p>
+<p class="text-xs text-on-surface-variant">Validated state</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 space-y-4">
+<div class="w-full h-12 bg-on-tertiary-container"></div>
+<div>
+<p class="font-label text-[10px] text-on-tertiary-container uppercase">Warning</p>
+<p class="text-xs text-on-surface-variant">Destructive intent</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 space-y-4">
+<div class="w-full h-12 bg-error"></div>
+<div>
+<p class="font-label text-[10px] text-error uppercase">Error</p>
+<p class="text-xs text-on-surface-variant">System failure</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 space-y-4">
+<div class="w-full h-12 bg-secondary"></div>
+<div>
+<p class="font-label text-[10px] text-secondary uppercase">Disabled</p>
+<p class="text-xs text-on-surface-variant">Inactive node</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Actuator Lab -->
+<section class="bg-surface-container-low p-12 space-y-12">
+<div class="max-w-xl">
+<h3 class="font-headline text-3xl font-bold mb-4 uppercase tracking-tighter">Actuator Lab</h3>
+<p class="font-body text-on-surface-variant">Real-time preview of kinetic actuators and component surfaces using the active color mapping.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-primary cursor-pointer ring-2 ring-primary ring-offset-4 ring-offset-surface"></div>
+<div class="w-12 h-12 bg-on-surface cursor-pointer hover:opacity-80 transition-opacity"></div>
+<div class="w-12 h-12 bg-tertiary cursor-pointer hover:opacity-80 transition-opacity"></div>
+<div class="w-12 h-12 bg-error cursor-pointer hover:opacity-80 transition-opacity"></div>
+</div>
+<div class="p-8 bg-surface-container-highest border border-outline-variant/5">
+<pre class="text-[10px] font-mono text-on-primary-container leading-relaxed">{
+  "component": "ActuatorPrimary",
+  "state": "focused",
+  "tokens": {
+    "background": "var(--primary)",
+    "outline": "var(--primary-container)",
+    "text": "var(--on-primary)"
+  }
+}
+                            </pre>
+</div>
+</div>
+<div class="glass-panel p-10 space-y-8 border border-outline-variant/10">
+<div class="space-y-2">
+<p class="font-label text-[10px] text-on-surface-variant uppercase">Primary Actuator</p>
+<button class="w-full py-4 bg-primary text-on-primary font-headline font-bold uppercase tracking-widest text-sm hover:opacity-90 transition-all">
+                                Initialize Sequence
+                            </button>
+</div>
+<div class="space-y-2">
+<p class="font-label text-[10px] text-on-surface-variant uppercase">Input State</p>
+<div class="w-full p-4 bg-surface-container-highest ring-1 ring-primary/50 flex justify-between items-center">
+<span class="text-sm font-body text-on-surface">system_input_active</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="space-y-2">
+<p class="font-label text-[10px] text-on-surface-variant uppercase">Text Snippet</p>
+<p class="text-sm leading-relaxed text-on-surface">
+<span class="text-primary font-bold">Kinetic Green</span> is the primary driver for all interactive surfaces within the Velora ecosystem.
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Metadata Footer -->
+<footer class="pt-24 pb-12 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-outline-variant/10">
+<div class="space-y-4">
+<p class="font-label text-[10px] text-primary tracking-widest uppercase">Color Space</p>
+<div class="space-y-2">
+<h4 class="font-headline font-bold">OKLCH Perception</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Designed for consistent lightness across the spectrum. All colors are mathematically derived to ensure uniform visual weight regardless of hue.</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="font-label text-[10px] text-primary tracking-widest uppercase">Compliance</p>
+<div class="space-y-2">
+<h4 class="font-headline font-bold">WCAG 2.1 Level AA</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">All core UI elements maintain a minimum contrast ratio of 4.5:1. Primary data blocks target a 7:1 ratio for enhanced accessibility.</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="font-label text-[10px] text-primary tracking-widest uppercase">Environment</p>
+<div class="space-y-2">
+<h4 class="font-headline font-bold">Reference Monitor</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Calibrated against D65 standard illuminant. Optimized for high-bit depth OLED displays with P3 color gamut support.</p>
+</div>
+</div>
+</footer>
+</div>
+</main>
+</body></html>

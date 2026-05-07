@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Elegance - Accessibility Tool</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#fafaf4",
+            "tertiary-dim": "#d7e5bb",
+            "on-primary-container": "#c5d5ba",
+            "secondary-container": "#3a3c39",
+            "on-secondary-fixed-variant": "#5a5c58",
+            "on-primary-fixed": "#35432f",
+            "on-secondary": "#1f211e",
+            "secondary-fixed": "#e3e3de",
+            "outline": "#71776e",
+            "on-tertiary-fixed": "#3e4a2b",
+            "surface-bright": "#272e25",
+            "primary-dim": "#aebea4",
+            "error-dim": "#ba573f",
+            "surface-container-lowest": "#000000",
+            "surface-container-low": "#111410",
+            "on-surface-variant": "#a7ada2",
+            "secondary-dim": "#9d9e9a",
+            "on-tertiary": "#576342",
+            "on-surface": "#e1e7dc",
+            "inverse-on-surface": "#545652",
+            "tertiary": "#f1ffd4",
+            "on-error": "#450900",
+            "surface-container": "#171b16",
+            "surface-container-high": "#1c211b",
+            "surface-dim": "#0d0f0c",
+            "primary-container": "#3d4b36",
+            "outline-variant": "#434a41",
+            "on-error-container": "#ff9b82",
+            "primary-fixed-dim": "#c9d9be",
+            "on-background": "#e1e7dc",
+            "on-secondary-container": "#bfc0bb",
+            "error": "#ed7f64",
+            "on-tertiary-container": "#4f5b3a",
+            "on-primary-fixed-variant": "#51604a",
+            "secondary-fixed-dim": "#d4d5d0",
+            "primary-fixed": "#d7e8cc",
+            "on-tertiary-fixed-variant": "#5a6745",
+            "error-container": "#7e2b17",
+            "surface-container-highest": "#212720",
+            "inverse-primary": "#55634d",
+            "tertiary-fixed-dim": "#d7e5bb",
+            "surface-variant": "#212720",
+            "tertiary-container": "#e2f1c6",
+            "background": "#0d0f0c",
+            "surface-tint": "#bbcbb1",
+            "on-secondary-fixed": "#3e403d",
+            "primary": "#bbcbb1",
+            "tertiary-fixed": "#e5f4c9",
+            "surface": "#0d0f0c",
+            "on-primary": "#364430",
+            "secondary": "#9d9e9a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Space Grotesk"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #0d0f0c;
+      color: #e1e7dc;
+      font-family: 'Manrope', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-surface selection:bg-primary selection:text-on-primary">
+<nav class="w-full top-0 sticky bg-[#0d0f0c] text-[#bbcbb1] z-50 transition-opacity active:opacity-80">
+<div class="flex justify-between items-center w-full px-8 h-16 bg-[#1a1d18]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#bbcbb1] font-['Space_Grotesk']">Kinetic Elegance</span>
+<div class="hidden md:flex gap-6 font-['Space_Grotesk'] font-bold tracking-tight">
+<a class="text-[#bbcbb1]/60 hover:text-[#bbcbb1] transition-colors duration-200" href="#">Framework</a>
+<a class="text-[#bbcbb1] border-b border-[#bbcbb1] pb-1 hover:text-[#bbcbb1] transition-colors duration-200" href="#">Docs</a>
+<a class="text-[#bbcbb1]/60 hover:text-[#bbcbb1] transition-colors duration-200" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#bbcbb1]/60 hover:text-[#bbcbb1] cursor-pointer">settings</span>
+<span class="material-symbols-outlined text-[#bbcbb1]/60 hover:text-[#bbcbb1] cursor-pointer">help</span>
+<div class="w-8 h-8 rounded bg-surface-container-highest overflow-hidden">
+<img alt="User profile" data-alt="Close-up portrait of a professional designer in minimalist studio lighting with neutral tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLwl5jCGhTtS6ELKX7Gno11ZbjJKYbBzf18Eb8K3iLBt4u8Z1hZDFf_TKPOLKsW7nu-IisUBfD-1d2ogdKbPqBDtn4K8SMVd2vm7GC-D8KekN8Z9RGBD4kddtUfTtKcTJ01Lk7C-W4TdE2-Y7RcC7L_vooNoCbLtkd9cxV8TYOLcvSh2z5wq7Nyy42amuGCCuFPIEaQLsn4XM0SUvYI5BCYMTTIbWHsSHk_2_o1GBjJ1zl_vac6H_pzgKDJhgeH8sAii7-0rcLPQ_P"/>
+</div>
+</div>
+</div>
+</nav>
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#0d0f0c] text-[#bbcbb1] z-40 hidden md:block border-r border-outline-variant/10">
+<div class="flex flex-col py-8 gap-12 h-full bg-[#141612]">
+<div class="px-8">
+<h2 class="text-lg font-bold text-[#bbcbb1] font-['Space_Grotesk'] tracking-tight">Documentation</h2>
+<p class="text-[10px] font-['Manrope'] tracking-widest uppercase opacity-40 mt-1">V2.4 Kinetic</p>
+</div>
+<nav class="flex flex-col gap-1 font-['Manrope'] text-sm tracking-wide uppercase font-medium">
+<a class="flex items-center gap-4 py-3 text-[#bbcbb1]/40 pl-4 hover:bg-[#1a1d18] hover:text-[#bbcbb1] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">palette</span>
+<span>Tokens</span>
+</a>
+<a class="flex items-center gap-4 py-3 text-[#bbcbb1]/40 pl-4 hover:bg-[#1a1d18] hover:text-[#bbcbb1] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">animation</span>
+<span>Motion</span>
+</a>
+<a class="flex items-center gap-4 py-3 text-[#bbcbb1] font-bold border-l-2 border-[#bbcbb1] pl-4 hover:bg-[#1a1d18] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">extension</span>
+<span>Components</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 font-['Manrope'] text-sm tracking-wide uppercase font-medium">
+<a class="flex items-center gap-4 py-3 text-[#bbcbb1]/40 pl-4 hover:bg-[#1a1d18] hover:text-[#bbcbb1] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-4 py-3 text-[#bbcbb1]/40 pl-4 hover:bg-[#1a1d18] hover:text-[#bbcbb1] transition-all" href="#">
+<span class="material-symbols-outlined text-lg">contact_support</span>
+<span>Support</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="md:ml-64 p-8 min-h-screen">
+<header class="mb-12">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold tracking-widest uppercase rounded-sm">Utility</span>
+<span class="text-on-surface-variant text-[10px] font-bold tracking-widest uppercase">Accessibility Layer</span>
+</div>
+<h1 class="text-5xl font-headline font-bold tracking-tighter text-on-surface">Contrast &amp; Legibility</h1>
+<p class="text-on-surface-variant font-body mt-4 max-w-2xl text-lg leading-relaxed">
+        Validate tonal equilibrium across the Velora design system. Our framework utilizes perceived lightness metrics to ensure peak accessibility in high-end technical environments.
+      </p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-8 space-y-8">
+<section class="bg-surface-container-low p-8 rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">contrast</span>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-12">
+<div>
+<p class="font-label text-[10px] font-bold tracking-[0.2em] text-primary mb-2 uppercase">Luminance Ratio</p>
+<div class="flex items-baseline gap-2">
+<span class="text-8xl md:text-9xl font-headline font-bold tracking-tighter text-on-surface">15.8</span>
+<span class="text-3xl font-headline font-medium text-on-surface-variant">:1</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 w-full md:w-auto">
+<div class="bg-surface-container-high p-6 rounded-sm min-w-[180px]">
+<p class="font-label text-[10px] font-bold tracking-widest text-on-surface-variant mb-4 uppercase">Foreground</p>
+<div class="flex items-center justify-between">
+<span class="text-2xl font-headline font-bold text-primary">#BBCBB1</span>
+<div class="w-6 h-6 rounded-sm bg-[#BBCBB1]"></div>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 rounded-sm min-w-[180px]">
+<p class="font-label text-[10px] font-bold tracking-widest text-on-surface-variant mb-4 uppercase">Background</p>
+<div class="flex items-center justify-between">
+<span class="text-2xl font-headline font-bold text-on-surface">#0D0F0C</span>
+<div class="w-6 h-6 rounded-sm bg-[#0D0F0C]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-high p-8 rounded-lg">
+<h3 class="font-headline text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">preview</span>
+              Live Rendering
+            </h3>
+<div class="space-y-4">
+<div class="p-8 rounded bg-[#0D0F0C] border border-outline-variant/10">
+<h4 class="text-[#BBCBB1] font-headline text-3xl font-bold tracking-tight mb-2">Kinetic Elegance</h4>
+<p class="text-[#BBCBB1] font-body text-sm leading-relaxed opacity-80">
+                  The quick brown fox jumps over the lazy dog. Velora Framework ensures that your technical documentation remains legible across all luminance tiers.
+                </p>
+</div>
+<div class="p-8 rounded bg-[#BBCBB1] border border-outline-variant/10">
+<h4 class="text-[#0D0F0C] font-headline text-3xl font-bold tracking-tight mb-2">Kinetic Elegance</h4>
+<p class="text-[#0D0F0C] font-body text-sm leading-relaxed opacity-80">
+                  The quick brown fox jumps over the lazy dog. Tonal reversal maintains structural integrity and brand cohesion.
+                </p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 rounded-lg">
+<h3 class="font-headline text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rule</span>
+              WCAG 2.1 Compliance
+            </h3>
+<div class="space-y-6">
+<div class="space-y-3">
+<p class="font-label text-[10px] font-bold tracking-[0.1em] text-on-surface-variant uppercase">Normal Text</p>
+<div class="flex items-center justify-between p-4 bg-surface-container-highest rounded-sm">
+<span class="font-body font-semibold">Level AA (4.5:1)</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="font-bold text-xs uppercase tracking-widest">Pass</span>
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-highest rounded-sm">
+<span class="font-body font-semibold">Level AAA (7:1)</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="font-bold text-xs uppercase tracking-widest">Pass</span>
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<p class="font-label text-[10px] font-bold tracking-[0.1em] text-on-surface-variant uppercase">Large Text</p>
+<div class="flex items-center justify-between p-4 bg-surface-container-highest rounded-sm">
+<span class="font-body font-semibold">Level AA (3:1)</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="font-bold text-xs uppercase tracking-widest">Pass</span>
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-highest rounded-sm">
+<span class="font-body font-semibold">Level AAA (4.5:1)</span>
+<div class="flex items-center gap-2 text-primary">
+<span class="font-bold text-xs uppercase tracking-widest">Pass</span>
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-4 space-y-8">
+<section class="bg-surface-container p-8 rounded-lg">
+<h3 class="font-headline text-xl font-bold mb-6">Configuration</h3>
+<div class="space-y-6">
+<div>
+<label class="block font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase mb-2">Foreground Hex</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-headline font-bold">#</span>
+<input class="w-full bg-surface-container-highest border-none focus:ring-1 focus:ring-primary pl-8 pr-4 py-3 font-headline text-lg font-bold text-on-surface rounded-sm" type="text" value="BBCBB1"/>
+</div>
+</div>
+<div>
+<label class="block font-label text-[10px] font-bold tracking-widest text-on-surface-variant uppercase mb-2">Background Hex</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-headline font-bold">#</span>
+<input class="w-full bg-surface-container-highest border-none focus:ring-1 focus:ring-primary pl-8 pr-4 py-3 font-headline text-lg font-bold text-on-surface rounded-sm" type="text" value="0D0F0C"/>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 font-headline font-bold tracking-tight rounded-sm hover:opacity-90 transition-opacity uppercase text-sm">
+              Sync Visual Tokens
+            </button>
+</div>
+</section>
+<section class="bg-surface-container-low p-8 rounded-lg">
+<h3 class="font-headline text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">science</span>
+            Color Space (OKLCH)
+          </h3>
+<div class="space-y-6 font-body text-sm">
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-widest uppercase">Perceived Lightness</span>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-2">
+<span class="font-mono text-on-surface">L: 78.42%</span>
+<div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[78%]"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-widest uppercase">Chroma (Intensity)</span>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-2">
+<span class="font-mono text-on-surface">C: 0.034</span>
+<div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[34%]"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-widest uppercase">Hue Angle</span>
+<div class="flex items-center justify-between border-b border-outline-variant/10 pb-2">
+<span class="font-mono text-on-surface">H: 145.2°</span>
+<div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[40%]"></div>
+</div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mt-4">
+              OKLCH provides superior perceptual uniformity, ensuring accessibility remains constant across different hues.
+            </p>
+</div>
+</section>
+<div class="relative rounded-lg overflow-hidden h-48 group">
+<img alt="Technical abstract background" class="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-60 transition-opacity" data-alt="Dark technical background with subtle geometric glass textures and deep green ambient light gradients" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbk3DEfItxeutb5Cs5jMZlQiTBmK4xDpD0Uj4kCaGgRWDDaLvLyzfVHX-MuwpbFDHwTMt6zZKs8jKhoq19rAa_PoYbYfY1jZpq3BfHsOI8dkOOaMb_Y4G31bYOXsbIweTlAc9hhGr3i_NvGxGQD54cotkrPsDuCYLdWa1abzdV4Xlm1CmHX7GkPsl_LvaD39-Fnu8ILV6wt2OP5g4zmj5Z7dqqCOyDHdlx5R3MObjMlHTs0I8M1xtraBgEXtlKQ2EIOMpTL2EJE_Zr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="font-headline font-bold text-sm tracking-tight">Technical Spec V2</p>
+<p class="font-body text-[10px] uppercase tracking-widest text-on-surface-variant">Precision Engineering</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="md:ml-64 p-8 border-t border-outline-variant/5 mt-12 bg-surface-dim">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="text-primary font-headline font-bold tracking-tighter">Velora</span>
+<span class="h-4 w-[1px] bg-outline-variant/30"></span>
+<span class="text-[10px] font-label font-bold tracking-widest uppercase text-on-surface-variant">Kinetic Elegance System</span>
+</div>
+<div class="flex gap-8 text-[10px] font-label font-bold tracking-[0.2em] uppercase text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Safety</a>
+<a class="hover:text-primary transition-colors" href="#">Ethics</a>
+<a class="hover:text-primary transition-colors" href="#">License</a>
+</div>
+</div>
+</footer>
+</body></html>

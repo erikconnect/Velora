@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scale Shift Actuator - VELORA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#bbcbb1",
+                        "secondary-dim": "#9d9e9a",
+                        "primary-fixed": "#d7e8cc",
+                        "primary-container": "#3d4b36",
+                        "primary-dim": "#aebea4",
+                        "background": "#0d0f0c",
+                        "on-surface": "#e1e7dc",
+                        "on-background": "#e1e7dc",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "error-dim": "#ba573f",
+                        "outline": "#71776e",
+                        "error-container": "#7e2b17",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "on-error-container": "#ff9b82",
+                        "surface-tint": "#bbcbb1",
+                        "on-primary-container": "#c5d5ba",
+                        "on-primary": "#364430",
+                        "surface-container-high": "#1c211b",
+                        "tertiary-dim": "#d7e5bb",
+                        "surface-container": "#171b16",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "on-secondary-container": "#bfc0bb",
+                        "tertiary-container": "#e2f1c6",
+                        "surface-container-highest": "#212720",
+                        "error": "#ed7f64",
+                        "on-secondary-fixed": "#3e403d",
+                        "inverse-surface": "#fafaf4",
+                        "inverse-primary": "#55634d",
+                        "on-surface-variant": "#a7ada2",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "secondary": "#9d9e9a",
+                        "on-tertiary-container": "#4f5b3a",
+                        "surface": "#0d0f0c",
+                        "surface-variant": "#212720",
+                        "on-primary-fixed": "#35432f",
+                        "tertiary-fixed": "#e5f4c9",
+                        "secondary-fixed": "#e3e3de",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "primary-fixed-dim": "#c9d9be",
+                        "surface-dim": "#0d0f0c",
+                        "outline-variant": "#434a41",
+                        "surface-bright": "#272e25",
+                        "on-primary-fixed-variant": "#51604a",
+                        "on-error": "#450900",
+                        "tertiary": "#f1ffd4",
+                        "on-tertiary": "#576342",
+                        "surface-container-lowest": "#000000",
+                        "inverse-on-surface": "#545652",
+                        "on-secondary": "#1f211e",
+                        "surface-container-low": "#111410",
+                        "secondary-container": "#3a3c39"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scale-shift-active:active {
+            transform: scale(0.98);
+            transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden">
+<nav class="fixed top-0 w-full border-b border-[#bbcbb1]/15 bg-[#0d0f0c]/80 backdrop-blur-xl z-50">
+<div class="flex justify-between items-center px-8 h-16 w-full max-w-[1440px] mx-auto">
+<div class="text-xl font-bold tracking-tighter text-[#bbcbb1] font-headline uppercase">VELORA</div>
+<div class="hidden md:flex gap-x-8 items-center h-full">
+<a class="font-headline tracking-[-0.03em] font-bold uppercase text-[#bbcbb1]/60 hover:text-[#bbcbb1] transition-colors" href="#">Primitives</a>
+<a class="font-headline tracking-[-0.03em] font-bold uppercase text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1" href="#">Actuators</a>
+<a class="font-headline tracking-[-0.03em] font-bold uppercase text-[#bbcbb1]/60 hover:text-[#bbcbb1] transition-colors" href="#">Motion</a>
+<a class="font-headline tracking-[-0.03em] font-bold uppercase text-[#bbcbb1]/60 hover:text-[#bbcbb1] transition-colors" href="#">Tokens</a>
+</div>
+<div class="flex items-center gap-x-4">
+<span class="material-symbols-outlined text-[#bbcbb1]/60 cursor-pointer hover:bg-[#bbcbb1]/5 p-2 rounded transition-all">settings</span>
+<span class="material-symbols-outlined text-[#bbcbb1]/60 cursor-pointer hover:bg-[#bbcbb1]/5 p-2 rounded transition-all">terminal</span>
+<button class="bg-primary text-on-primary px-4 py-1.5 font-headline font-bold uppercase text-xs tracking-wider rounded-sm scale-98 active:opacity-80 transition-transform">Sandbox</button>
+</div>
+</div>
+</nav>
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 border-r border-[#bbcbb1]/10 bg-[#0d0f0c] flex flex-col py-6 px-4 gap-y-4 hidden lg:flex">
+<div class="flex flex-col gap-y-1 mb-4">
+<div class="text-lg font-black text-[#bbcbb1] font-headline">VELORA DOCS</div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-[#bbcbb1]/40 font-bold">v2.4.0-kinetic</div>
+</div>
+<nav class="flex flex-col gap-y-1">
+<a class="text-[#bbcbb1]/50 hover:text-[#bbcbb1] hover:bg-[#bbcbb1]/5 px-4 py-2 transition-all font-label text-sm" href="#">Architecture</a>
+<a class="text-[#bbcbb1]/50 hover:text-[#bbcbb1] hover:bg-[#bbcbb1]/5 px-4 py-2 transition-all font-label text-sm" href="#">Layout</a>
+<div class="bg-[#bbcbb1]/10 text-[#bbcbb1] font-medium rounded-sm px-4 py-2 font-label text-sm flex items-center gap-x-2">
+<span class="material-symbols-outlined text-xs">ads_click</span>
+                Interactions
+            </div>
+<a class="text-[#bbcbb1]/50 hover:text-[#bbcbb1] hover:bg-[#bbcbb1]/5 px-4 py-2 transition-all font-label text-sm" href="#">Physics</a>
+<a class="text-[#bbcbb1]/50 hover:text-[#bbcbb1] hover:bg-[#bbcbb1]/5 px-4 py-2 transition-all font-label text-sm" href="#">Optimization</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-[#bbcbb1]/5">
+<div class="flex items-center gap-x-3 px-2 mb-4">
+<div class="w-8 h-8 rounded-sm bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div>
+<div class="text-xs font-bold text-on-surface">Interaction Feedback</div>
+<div class="text-[10px] text-on-surface-variant">Core Principle #04</div>
+</div>
+</div>
+<button class="w-full bg-primary-container/20 text-primary border border-primary/20 py-2 rounded-sm text-xs font-headline font-bold uppercase tracking-widest hover:bg-primary-container/40 transition-all">Export Spec</button>
+</div>
+</aside>
+<main class="lg:pl-64 pt-16 h-screen w-full relative">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#171b16_0%,_#0d0f0c_100%)] z-0"></div>
+<div class="relative z-10 w-full h-full p-8 md:p-12 lg:p-20 flex flex-col items-center justify-center">
+<div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7 flex flex-col gap-y-8">
+<div class="space-y-2">
+<div class="inline-flex items-center gap-x-2 text-primary font-label text-[10px] font-extrabold tracking-[0.3em] uppercase">
+<span class="w-2 h-2 bg-primary"></span>
+                            Modal: System Actuator
+                        </div>
+<h1 class="text-5xl md:text-7xl font-headline font-bold text-on-surface leading-none tracking-[-0.04em]">Scale Shift Actuator</h1>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/15 p-6 rounded-lg backdrop-blur-md">
+<p class="text-on-surface-variant leading-relaxed font-light text-lg mb-6">
+                            The <span class="text-on-surface font-medium">Scale Shift</span> principle utilizes a tactical 2% reduction (scale(0.98)) on activation. This micro-interaction simulates physical compression, providing instant tactile reassurance without the need for skeletal layouts or heavy shadows.
+                        </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-4 rounded border border-outline-variant/5">
+<div class="text-[10px] font-extrabold tracking-widest text-primary/60 uppercase mb-1">Timing Curve</div>
+<div class="text-sm font-headline text-on-surface">200ms Cinematic</div>
+</div>
+<div class="bg-surface-container p-4 rounded border border-outline-variant/5">
+<div class="text-[10px] font-extrabold tracking-widest text-primary/60 uppercase mb-1">Compression</div>
+<div class="text-sm font-headline text-on-surface">-0.02 Scale Vector</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-x-4 bg-surface-container-highest/50 p-4 rounded-sm border-l-2 border-primary">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+<div class="text-xs text-on-surface-variant font-label tracking-wide">
+<strong class="text-on-surface">SUPPORTING SENSORY LAYER:</strong> Subtly coupled with a high-frequency 40ms audio feedback pulse to reinforce the perceived resistance.
+                        </div>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col items-center justify-center gap-y-12">
+<div class="relative group">
+<div class="absolute -inset-16 bg-primary/10 blur-[100px] rounded-full opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<button class="relative scale-shift-active w-64 h-64 bg-surface-container-highest border border-primary/20 rounded-lg flex flex-col items-center justify-center gap-y-4 shadow-[0_40px_100px_rgba(0,0,0,0.4)] hover:border-primary/40 group transition-all">
+<div class="w-16 h-16 rounded-full border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl">touch_app</span>
+</div>
+<span class="font-headline font-bold text-lg tracking-widest text-on-surface uppercase">EXECUTE ACTION</span>
+<div class="flex gap-x-1">
+<span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+<span class="w-1.5 h-1.5 bg-primary/40 rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-primary/40 rounded-full"></span>
+</div>
+</button>
+<div class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary/40 uppercase tracking-[0.4em] whitespace-nowrap">
+                            Tap to Test Kinematics
+                        </div>
+</div>
+<div class="w-full bg-[#000000] p-6 rounded-lg border border-outline-variant/10 shadow-2xl">
+<div class="flex items-center justify-between mb-4">
+<div class="flex gap-x-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error-dim/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/20"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/20"></div>
+</div>
+<div class="text-[9px] font-mono text-primary/40 uppercase">actuator_spec.css</div>
+</div>
+<pre class="font-mono text-xs text-[#d7e8cc]/80 leading-relaxed overflow-x-auto"><span class="text-primary-dim">.actuator-active</span> {
+  <span class="text-secondary-dim">transition:</span> <span class="text-on-surface">transform 200ms;</span>
+  <span class="text-secondary-dim">transition-timing-function:</span> 
+    <span class="text-on-tertiary-fixed-variant">cubic-bezier(0.2, 0, 0, 1)</span>;
+}
+
+<span class="text-primary-dim">.actuator-active:active</span> {
+  <span class="text-secondary-dim">transform:</span> <span class="text-on-surface">scale(0.98)</span>;
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 right-12 flex gap-x-8 z-10">
+<div class="flex flex-col items-end">
+<div class="text-[10px] font-extrabold tracking-[0.2em] text-primary/30 uppercase">System Integrity</div>
+<div class="text-xs font-bold text-on-surface">OPTIMAL</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="text-[10px] font-extrabold tracking-[0.2em] text-primary/30 uppercase">Latency Target</div>
+<div class="text-xs font-bold text-on-surface">16ms</div>
+</div>
+</div>
+</main>
+<div class="fixed inset-0 pointer-events-none z-50">
+<div class="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+</div>
+</body></html>

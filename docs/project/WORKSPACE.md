@@ -5,14 +5,16 @@ This file is the practical map of the current project structure and what is cons
 ## 1) Primary product surfaces
 
 - `packages/css/`: canonical source for Velora framework CSS (`@velora/css`).
-- `apps/showcase/`: living showcase app (Vite) with demos, tools, scenes, and motion pages.
-- `apps/docs/`: Astro docs site for framework guidance and concepts.
+- `apps/showcase/`: living showcase app (Vite) with demos, tools, scenes, motion pages, and **live API catalogs** (`api-motion-catalog.html`, `api-design-catalog.html`).
+- `docs/` (repo root): **Markdown source of truth** — workspace map, contract matrix, playbooks, agent handbook. Authoritative for governance text and cross-links to catalogs.
+- `apps/docs/`: **Astro documentation site** — published guides; must stay aligned with `docs/project/CONTRACT.md` and the showcase catalogs.
 
 ### Surface intent (product boundary)
 
 - `packages/css` = framework product (kit CSS oficial).
-- `apps/showcase` = site de demonstração e storytelling técnico.
-- `apps/docs` = documentação oficial do framework.
+- `apps/showcase` = site de demonstração e storytelling técnico + catálogos vivos do contrato.
+- `docs/` (Markdown) = contrato escrito, governança e instruções para agentes.
+- `apps/docs` = documentação navegável (Astro); consome o mesmo contrato, não o substitui.
 
 See also: `PRODUCT_SURFACES_PLAN.md` and `SHOWCASE_PAGE_PLAYBOOK.md`.
 
@@ -27,8 +29,8 @@ See also: `PRODUCT_SURFACES_PLAN.md` and `SHOWCASE_PAGE_PLAYBOOK.md`.
 Root scripts:
 
 - `pnpm dev`: runs showcase via Turborepo filter.
-- `pnpm dev:docs`: runs docs only.
-- `pnpm dev:all`: runs all workspace dev tasks.
+- `pnpm dev:docs`: runs the Astro `apps/docs` app (default port 4321).
+- `pnpm dev:all`: runs all workspace `dev` tasks (showcase + docs, etc.).
 - `pnpm build`: builds all packages/apps in pipeline order.
 
 Per workspace:
@@ -40,7 +42,7 @@ Per workspace:
 ## 4) Current status (validated)
 
 - `pnpm install --frozen-lockfile`: works.
-- `pnpm build`: works across `@velora/css`, `showcase`, and `docs`.
+- `pnpm build`: works across `@velora/css`, `showcase`, and `docs` (Astro app).
 
 ## 5) Organization rules for next iterations
 
@@ -60,7 +62,7 @@ Per workspace:
   - **Owner:** showcase surface
   - **Truth level:** derived + showcase-specific
   - **Rule:** sync from framework sources; keep only showcase extras local.
-- `apps/showcase/pages/`**
+- `apps/showcase/pages/`
   - **Owner:** showcase content
   - **Truth level:** product
   - **Rule:** shared shell is propagated by script, not hand-copied.
@@ -71,7 +73,7 @@ Per workspace:
 - `packages/velora-components`
   - **Owner:** component source library
   - **Truth level:** reference input
-  - **Rule:** use as source material for showcase/docs, not as runtime app.
+  - **Rule:** use as source material for showcase, not as runtime app.
 
 ## 7) Operational scripts (showcase)
 
@@ -105,8 +107,8 @@ Framework CSS anti-drift flow:
 - Keep commits split by concern:
   - framework (`packages/css`)
   - showcase app (`apps/showcase`)
-  - docs (`apps/docs`)
-  - infrastructure/docs (`README`, `WORKSPACE`, CI)
+  - Astro docs app (`apps/docs`)
+  - Markdown governance (`docs/`, `README`, CI)
 
 ## 9) Motion API contract (CSS-only)
 

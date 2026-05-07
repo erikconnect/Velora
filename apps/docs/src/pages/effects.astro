@@ -1,0 +1,370 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Motion Effects" description="Complete reference for all vl-effect values — entrance, interaction, continuous, text, and cinema effects.">
+  <span class="vl-kicker">Motion</span>
+
+  <h1 class="docs-page-title">Motion Effects</h1>
+  <p class="docs-page-lead">
+    Named motion presets applied via the <code>vl-effect</code> attribute. All effects are pure CSS —
+    no JavaScript involved.
+  </p>
+
+  <h2>How Effects Work</h2>
+  <p>
+    Add <code>vl-effect</code> to any element to apply a preset. Combine with
+    <code>vl-timeline</code> to control <em>when</em> the animation plays:
+  </p>
+  <pre><code>&lt;!-- Plays immediately on page load --&gt;
+&lt;h1 vl-effect="fade-up"&gt;Heading&lt;/h1&gt;
+
+&lt;!-- Plays when element enters the viewport --&gt;
+&lt;div vl-effect="blur-in" vl-timeline="view"&gt;Content&lt;/div&gt;
+
+&lt;!-- Plays once, stays visible after --&gt;
+&lt;div vl-effect="clip-rise" vl-timeline="view" vl-once&gt;One-shot reveal&lt;/div&gt;
+
+&lt;!-- Custom depth and speed --&gt;
+&lt;div
+  vl-effect="fade-up"
+  vl-timeline="view"
+  style="--vl-motion-distance: 2.5rem; --vl-motion-duration: 700ms;"&gt;
+  Deep, slow reveal
+&lt;/div&gt;</code></pre>
+
+  <h2>Entrance Primitives</h2>
+  <p>
+    Affect the element itself. Best combined with <code>vl-timeline="view"</code> for scroll-driven reveals.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Description</th><th>Default duration</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>fade-in</code></td>
+        <td>Simple opacity 0 → 1 entrance</td>
+        <td><code>--vl-duration-slow</code> (500ms)</td>
+      </tr>
+      <tr>
+        <td><code>fade-up</code></td>
+        <td>Opacity + translateY upward. Workhorse reveal effect.</td>
+        <td>500ms</td>
+      </tr>
+      <tr>
+        <td><code>fade-down</code></td>
+        <td>Opacity + translateY downward. Good for dropdowns and menus.</td>
+        <td>500ms</td>
+      </tr>
+      <tr>
+        <td><code>slide-left</code></td>
+        <td>Opacity + slide in from the right. Uses <code>--vl-ease-out-soft</code>.</td>
+        <td>500ms</td>
+      </tr>
+      <tr>
+        <td><code>slide-right</code></td>
+        <td>Opacity + slide in from the left. Uses <code>--vl-ease-out-soft</code>.</td>
+        <td>500ms</td>
+      </tr>
+      <tr>
+        <td><code>scale-in</code></td>
+        <td>Scales from 0.94 with a subtle upward nudge. Uses spring easing.</td>
+        <td>500ms</td>
+      </tr>
+      <tr>
+        <td><code>blur-in</code></td>
+        <td>Cinematic blur (14px) dissolve entrance. Dramatic and modern.</td>
+        <td><code>--vl-duration-slower</code> (800ms)</td>
+      </tr>
+      <tr>
+        <td><code>reveal-3d</code></td>
+        <td>Perspective rotateX entry — page flip feel.</td>
+        <td>500ms</td>
+      </tr>
+      <tr>
+        <td><code>flow-in</code></td>
+        <td>Blur + translate + scale — cinematic combination. Premium look.</td>
+        <td>800ms</td>
+      </tr>
+      <tr>
+        <td><code>clip-rise</code></td>
+        <td>Clip-path reveal from bottom. Text feels like it emerges from the page.</td>
+        <td>800ms</td>
+      </tr>
+      <tr>
+        <td><code>tilt-in</code></td>
+        <td>Perspective rotateY entry. Great for cards arriving from the side.</td>
+        <td>800ms</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>CSS Variable Hooks (Entrance)</h3>
+  <pre><code>&lt;div
+  vl-effect="fade-up"
+  style="
+    --vl-motion-duration: 600ms;   /* override speed */
+    --vl-motion-distance: 2rem;    /* override travel distance */
+    --vl-motion-ease: var(--vl-ease-spring); /* override easing */
+  "&gt;
+  Custom entrance
+&lt;/div&gt;</code></pre>
+
+  <h3>Live Demo</h3>
+  <div class="docs-grid-3 docs-section-block">
+    <div class="vl-card" vl-effect="fade-up" vl-timeline="view">
+      <div class="vl-card__title">fade-up</div>
+      <p class="vl-card__body">Opacity + translate Y.</p>
+    </div>
+    <div class="vl-card" vl-effect="blur-in" vl-timeline="view">
+      <div class="vl-card__title">blur-in</div>
+      <p class="vl-card__body">Cinematic blur dissolve.</p>
+    </div>
+    <div class="vl-card" vl-effect="reveal-3d" vl-timeline="view">
+      <div class="vl-card__title">reveal-3d</div>
+      <p class="vl-card__body">Perspective rotateX entry.</p>
+    </div>
+  </div>
+
+  <h2>Interaction Effects</h2>
+  <p>
+    Applied to interactive elements. These respond to user hover — no timeline needed.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Trigger</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>hover-lift</code></td>
+        <td><code>:hover</code></td>
+        <td>Translates up 4px + floating shadow. Classic card hover.</td>
+      </tr>
+      <tr>
+        <td><code>hover-glow</code></td>
+        <td><code>:hover</code></td>
+        <td>Adds a primary-colored glow shadow ring. Great for media embeds.</td>
+      </tr>
+      <tr>
+        <td><code>underline-expand</code></td>
+        <td><code>:hover</code></td>
+        <td>Expanding underline grows from center. Elegant nav link effect.</td>
+      </tr>
+      <tr>
+        <td><code>icon-shift</code></td>
+        <td><code>:hover</code></td>
+        <td>Last child (icon/arrow) shifts 4px on hover. Use on inline elements with an icon sibling.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre><code>&lt;!-- hover-lift on a card --&gt;
+&lt;div class="vl-card" vl-effect="hover-lift"&gt;
+  Hover me
+&lt;/div&gt;
+
+&lt;!-- underline-expand on a nav link --&gt;
+&lt;a href="/about" vl-effect="underline-expand"&gt;About&lt;/a&gt;
+
+&lt;!-- icon-shift on a CTA --&gt;
+&lt;a href="/docs" vl-effect="icon-shift"&gt;
+  Read the docs
+  &lt;svg aria-hidden="true"&gt;&lt;!-- arrow icon --&gt;&lt;/svg&gt;
+&lt;/a&gt;</code></pre>
+
+  <p>
+    <strong>Touch devices:</strong> Hover effects automatically disable via <code>@media (hover: none)</code>.
+  </p>
+
+  <h2>State Effects</h2>
+  <p>
+    Used with toggled elements like accordions, drawers, and panels. Typically paired with
+    <code>[open]</code>, a class toggle, or <code>:checked</code>:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>accordion</code></td>
+        <td>Height + opacity transition for disclosure panels. Use with <code>interpolate-size: allow-keywords</code> (included in Velora reset).</td>
+      </tr>
+      <tr>
+        <td><code>drawer</code></td>
+        <td>Transform + opacity + <code>visibility</code> transition with <code>transition-behavior: allow-discrete</code>.</td>
+      </tr>
+      <tr>
+        <td><code>panel-swap</code></td>
+        <td>Opacity + quick transform for tab panel swaps.</td>
+      </tr>
+    </tbody>
+  </table>
+  <pre><code>&lt;!-- Use the .vl-accordion component for a complete implementation --&gt;
+&lt;details class="vl-accordion"&gt;
+  &lt;summary&gt;Question&lt;/summary&gt;
+  &lt;div class="vl-accordion__content"&gt;Answer text&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+
+  <h2>Continuous / Ambient Effects</h2>
+  <p>
+    Loop indefinitely. Use to add life to decorative elements, loading states, or ambient backgrounds.
+    Always respect <code>prefers-reduced-motion</code> — wrap with the media query if adding ambient
+    effects to content-critical elements.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Loop duration</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>shimmer</code></td><td>2.5s</td><td>Background shimmer sweep. Use on skeleton loaders or accent lines. Requires <code>background-size: 200% auto</code> and a gradient background.</td></tr>
+      <tr><td><code>float</code></td><td>5.5s</td><td>Gentle vertical bob. Great for hero illustrations.</td></tr>
+      <tr><td><code>glow-breathe</code></td><td>3.5s</td><td>Pulsing box-shadow. Use on live indicators or accent dots.</td></tr>
+      <tr><td><code>wobble</code></td><td>2.8s</td><td>Tilt oscillation (±3deg). Attention-grabbing but subtle.</td></tr>
+      <tr><td><code>orbit</code></td><td>14s</td><td>Circular orbit — full 360deg spin. For orbital icons or decorative rings.</td></tr>
+      <tr><td><code>rock</code></td><td>4s</td><td>Wider tilt oscillation (±6deg). More playful than wobble.</td></tr>
+      <tr><td><code>morph</code></td><td>8s</td><td>Organic border-radius morphing. Use on blobs and abstract shapes.</td></tr>
+      <tr><td><code>elastic-in</code></td><td>0.7s</td><td>Springy scale-in entrance. One-shot spring pop, not a loop.</td></tr>
+    </tbody>
+  </table>
+
+  <pre><code>&lt;!-- Floating hero illustration --&gt;
+&lt;img src="hero-visual.png" alt="" vl-effect="float" /&gt;
+
+&lt;!-- Breathing glow on a live badge --&gt;
+&lt;span class="vl-badge" vl-effect="glow-breathe"&gt;Live&lt;/span&gt;
+
+&lt;!-- Shimmer skeleton --&gt;
+&lt;div
+  vl-effect="shimmer"
+  style="
+    height: 1rem;
+    border-radius: var(--vl-radius-md);
+    background: linear-gradient(
+      90deg,
+      var(--vl-bg-surface-elevated) 0%,
+      var(--vl-bg-surface) 50%,
+      var(--vl-bg-surface-elevated) 100%
+    );
+    background-size: 200% auto;
+  "&gt;
+&lt;/div&gt;</code></pre>
+
+  <h2>Text Reveal Effects</h2>
+  <p>
+    Clip-path-based reveals designed for headlines. Apply to heading elements for editorial impact.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Direction</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>text-reveal</code></td><td>Left → right</td><td>Horizontal clip sweep across text</td></tr>
+      <tr><td><code>text-reveal-up</code></td><td>Bottom → top</td><td>Text rises up from a clipped baseline</td></tr>
+      <tr><td><code>text-reveal-down</code></td><td>Top → bottom</td><td>Text falls into view from above</td></tr>
+    </tbody>
+  </table>
+  <pre><code>&lt;h1 vl-effect="text-reveal-up" vl-timeline="view"&gt;
+  Premium interfaces start here
+&lt;/h1&gt;</code></pre>
+
+  <h2>Cinema / Scroll Effects</h2>
+  <p>
+    These effects use <code>animation-timeline: view(block)</code> internally. They are inherently
+    scroll-driven and do <em>not</em> need <code>vl-timeline="view"</code> added separately.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Range</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>cinema-zoom</code></td>
+        <td><code>entry 0% exit 100%</code></td>
+        <td>Slow zoom + focus shift tied to scroll position. Ken Burns feel for hero images.</td>
+      </tr>
+      <tr>
+        <td><code>parallax</code></td>
+        <td><code>cover</code></td>
+        <td>Vertical parallax shift as element scrolls through viewport.</td>
+      </tr>
+      <tr>
+        <td><code>typewriter</code></td>
+        <td>N/A (time-based)</td>
+        <td>CSS typewriter effect with blinking caret. Configure with <code>--vl-type-duration</code> and <code>--vl-type-steps</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre><code>&lt;!-- Cinema zoom on a hero image --&gt;
+&lt;img src="hero.jpg" alt="Hero" vl-effect="cinema-zoom" /&gt;
+
+&lt;!-- Parallax section background --&gt;
+&lt;div vl-effect="parallax"&gt;
+  &lt;img src="bg.jpg" alt="" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Typewriter with custom timing --&gt;
+&lt;p
+  vl-effect="typewriter"
+  style="--vl-type-duration: 3s; --vl-type-steps: 40;"&gt;
+  Building the future of motion design.
+&lt;/p&gt;</code></pre>
+
+  <h2>Speed Modifier</h2>
+  <p>Override the animation duration category with <code>vl-speed</code>:</p>
+  <pre><code>&lt;div vl-effect="fade-up" vl-speed="fast"&gt;Quick reveal&lt;/div&gt;
+&lt;div vl-effect="flow-in" vl-speed="slow"&gt;Slow dramatic reveal&lt;/div&gt;</code></pre>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Duration</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>fast</code></td><td><code>--vl-duration-fast</code> (150ms)</td></tr>
+      <tr><td><code>normal</code></td><td><code>--vl-duration-normal</code> (300ms)</td></tr>
+      <tr><td><code>slow</code></td><td><code>--vl-duration-slow</code> (500ms)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Depth Modifier</h2>
+  <p>Control the translation distance with <code>vl-depth</code>:</p>
+  <pre><code>&lt;div vl-effect="fade-up" vl-depth="1"&gt;Subtle — 0.75rem travel&lt;/div&gt;
+&lt;div vl-effect="fade-up" vl-depth="4"&gt;Dramatic — 4rem travel&lt;/div&gt;</code></pre>
+  <table>
+    <thead>
+      <tr><th>Value</th><th><code>--vl-motion-distance</code></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>1</code></td><td>0.75rem</td></tr>
+      <tr><td><code>2</code></td><td>1.5rem</td></tr>
+      <tr><td><code>3</code></td><td>2.5rem</td></tr>
+      <tr><td><code>4</code></td><td>4rem</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Accessibility</h2>
+  <p>
+    All <code>vl-effect</code> animations automatically disable via:
+  </p>
+  <pre><code>@media (prefers-reduced-motion: reduce) &#123;
+  [vl-effect] &#123;
+    animation: none !important;
+  &#125;
+&#125;</code></pre>
+  <p>
+    Interaction effects (<code>hover-lift</code>, <code>hover-glow</code>) also disable on touch devices
+    via <code>@media (hover: none)</code>.
+  </p>
+
+  <h2>Browser Support</h2>
+  <p>
+    Entrance, interaction, state, and continuous effects work in all modern browsers (Chrome 89+, Firefox 90+, Safari 15+).
+  </p>
+  <p>
+    Scroll-driven effects (<code>cinema-zoom</code>, <code>parallax</code>, <code>vl-timeline="view"</code>)
+    require Chrome 115+ / Edge 115+. A graceful fallback is included via
+    <code>@supports not (animation-timeline: view(block))</code> — these elements simply appear in their
+    final state on unsupported browsers.
+  </p>
+</Base>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architectural Blueprint | Velora Framework</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+        }
+        .glass-panel {
+            background: rgba(23, 27, 22, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "on-primary-fixed-variant": "#51604a",
+                        "surface-container-high": "#1c211b",
+                        "surface-tint": "#bbcbb1",
+                        "tertiary-dim": "#d7e5bb",
+                        "surface-bright": "#272e25",
+                        "on-secondary": "#1f211e",
+                        "primary": "#bbcbb1",
+                        "outline": "#71776e",
+                        "error-dim": "#ba573f",
+                        "primary-fixed-dim": "#c9d9be",
+                        "on-primary": "#364430",
+                        "primary-container": "#3d4b36",
+                        "on-tertiary": "#576342",
+                        "secondary": "#9d9e9a",
+                        "surface-container": "#171b16",
+                        "surface-container-highest": "#212720",
+                        "on-tertiary-container": "#4f5b3a",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "surface-dim": "#0d0f0c",
+                        "outline-variant": "#434a41",
+                        "background": "#0d0f0c",
+                        "secondary-dim": "#9d9e9a",
+                        "error": "#ed7f64",
+                        "error-container": "#7e2b17",
+                        "tertiary-fixed": "#e5f4c9",
+                        "surface": "#0d0f0c",
+                        "tertiary": "#f1ffd4",
+                        "primary-fixed": "#d7e8cc",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "surface-container-low": "#111410",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "on-secondary-fixed": "#3e403d",
+                        "primary-dim": "#aebea4",
+                        "surface-container-lowest": "#000000",
+                        "on-background": "#e1e7dc",
+                        "on-primary-fixed": "#35432f",
+                        "on-error": "#450900",
+                        "secondary-container": "#3a3c39",
+                        "on-error-container": "#ff9b82",
+                        "secondary-fixed": "#e3e3de",
+                        "on-surface": "#e1e7dc",
+                        "on-secondary-container": "#bfc0bb",
+                        "tertiary-container": "#e2f1c6",
+                        "inverse-surface": "#fafaf4",
+                        "surface-variant": "#212720",
+                        "inverse-primary": "#55634d",
+                        "on-surface-variant": "#a7ada2",
+                        "on-primary-container": "#c5d5ba",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "inverse-on-surface": "#545652"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-body selection:bg-primary/30 selection:text-primary">
+<!-- Persistent SideNavBar -->
+<aside class="h-screen w-72 flex-col fixed left-0 top-0 bg-[#0d0f0c] dark:bg-[#0d0f0c] border-r border-[#bbcbb1]/15 flex flex-col h-full py-8 z-50">
+<div class="px-8 mb-12">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary flex items-center justify-center rounded-sm">
+<span class="material-symbols-outlined text-on-primary text-lg" data-icon="architecture">architecture</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-[-0.03em] text-[#bbcbb1] font-headline">Kinetic Elegance</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-[#bbcbb1]/50 font-label">System Documentation</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 text-[#bbcbb1] font-bold border-r-2 border-[#bbcbb1] pl-6 py-3 transition-all font-headline" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span>Core Philosophy</span>
+</a>
+<a class="flex items-center gap-4 text-[#bbcbb1]/60 font-medium pl-6 py-3 hover:text-[#bbcbb1]/90 hover:bg-[#bbcbb1]/5 transition-colors font-headline" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span>Tonal Layering</span>
+</a>
+<a class="flex items-center gap-4 text-[#bbcbb1]/60 font-medium pl-6 py-3 hover:text-[#bbcbb1]/90 hover:bg-[#bbcbb1]/5 transition-colors font-headline" href="#">
+<span class="material-symbols-outlined" data-icon="animation">animation</span>
+<span>Motion Primitives</span>
+</a>
+<a class="flex items-center gap-4 text-[#bbcbb1]/60 font-medium pl-6 py-3 hover:text-[#bbcbb1]/90 hover:bg-[#bbcbb1]/5 transition-colors font-headline" href="#">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+<span>Performance Metrics</span>
+</a>
+</nav>
+<div class="px-8 mt-auto">
+<div class="p-4 bg-surface-container-high rounded-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-sm bg-primary-container overflow-hidden">
+<img alt="Architectural Framework Logo" class="w-full h-full object-cover grayscale contrast-125" data-alt="Close-up portrait of a designer in a dark studio setting with soft directional lighting and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs_P8JCITghc18hTMVNcwCylDoqCR12DB4OIcL-OzixtiUchVl5pWXnyYz49SfsUTBd8RsB8Vy-Jt_sq37leJX-zNh4_JuhEgAteOR1HoKuISVe3q4AntLozYzhJqWI94KqGoxUJNj-4Wztjiu5je9RJrbnzheO2GfiuzxXRvT-1OM6PQpUMgLN5dNCAMf607WL_7mxcG75C4_SJ-L-KTc7BJGZ4NXIWEn56-YPYAm2jMwJGW4NEO7sVvPhkMv_dcYEhUBOw6ucuFV"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-on-surface truncate">Lead Architect</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">v1.4.2 stable</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-18rem)] z-40 bg-[#0d0f0c]/80 backdrop-blur-xl border-b border-[#bbcbb1]/15 flex justify-between items-center px-10 h-16 ml-72">
+<div class="flex items-center gap-2">
+<span class="text-lg font-black tracking-tighter text-[#bbcbb1] font-headline">Architectural Blueprint</span>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-sm ml-2">PRO</span>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden lg:flex items-center gap-6">
+<span class="text-[#bbcbb1] font-bold font-label text-sm cursor-pointer transition-colors hover:text-[#bbcbb1]">DOCS</span>
+<span class="text-[#bbcbb1]/60 font-label text-sm cursor-pointer transition-colors hover:text-[#bbcbb1]">API</span>
+<span class="text-[#bbcbb1]/60 font-label text-sm cursor-pointer transition-colors hover:text-[#bbcbb1]">SHOWCASE</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer active:scale-95 transition-transform text-[#bbcbb1]/60 hover:text-[#bbcbb1]">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer active:scale-95 transition-transform text-[#bbcbb1]/60 hover:text-[#bbcbb1]">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-72 pt-16 min-h-screen">
+<!-- Hero Section -->
+<section class="px-12 py-32 max-w-6xl mx-auto">
+<div class="grid grid-cols-12 gap-12 items-center">
+<div class="col-span-8">
+<span class="font-label text-primary tracking-[0.3em] uppercase text-xs mb-6 block">Foundational Core</span>
+<h1 class="font-headline text-7xl font-bold tracking-[-0.04em] text-on-surface mb-8 leading-[0.95]">
+                        Architectural <br/>
+<span class="text-primary/40">Blueprint.</span>
+</h1>
+<p class="font-body text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                        Velora rejects the overhead of modern abstractions. We leverage browser-native performance to create high-end, tactile experiences that move with the speed of thought.
+                    </p>
+<div class="mt-12 flex items-center gap-8">
+<button class="bg-primary text-on-primary px-8 py-4 font-bold text-sm rounded-sm hover:brightness-110 transition-all active:scale-95">
+                            INITIATE FRAMEWORK
+                        </button>
+<div class="flex items-center gap-3 text-on-surface-variant font-label text-xs tracking-widest cursor-pointer hover:text-primary transition-colors">
+<span>VIEW CORE SPECS</span>
+<span class="material-symbols-outlined text-sm" data-icon="north_east">north_east</span>
+</div>
+</div>
+</div>
+<div class="col-span-4 relative">
+<div class="aspect-square bg-surface-container border border-outline-variant/20 rounded-sm relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 opacity-20">
+<div class="h-full w-full bg-[radial-gradient(#bbcbb1_1px,transparent_1px)] [background-size:16px_16px]"></div>
+</div>
+<span class="material-symbols-outlined text-8xl text-primary/20" data-icon="deployed_code" style="font-variation-settings: 'wght' 100;">deployed_code</span>
+<div class="absolute bottom-4 left-4 font-label text-[10px] text-primary/40 uppercase tracking-widest">
+                            Primitive_Ref_01
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 1: The Tonal Stack -->
+<section class="bg-surface-container-low py-32">
+<div class="max-w-6xl mx-auto px-12">
+<div class="flex flex-col md:flex-row gap-20 items-start">
+<div class="w-full md:w-1/2">
+<span class="font-label text-primary/60 tracking-[0.2em] uppercase text-[10px] mb-4 block">Visual Physics</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface mb-8">The Tonal Stack</h2>
+<div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
+<p>
+                                Traditional UI relies on shadows to denote depth. Velora utilizes <strong>OKLCH-based tonal layering</strong>—a perceptually uniform color space that creates depth through luminosity shifts rather than artificial dropshadows.
+                            </p>
+<p>
+                                By nesting surfaces with precise lightness deltas, we achieve a "etched" or "machined" aesthetic. This reduces layout shifts and improves GPU rendering efficiency by eliminating complex shadow calculations.
+                            </p>
+</div>
+<div class="mt-12 p-6 bg-surface-container-highest border-l-2 border-primary/40">
+<p class="font-headline italic text-on-surface">"Depth is not a shadow; it is the relationship between materials."</p>
+</div>
+</div>
+<!-- 3D Exploded Diagram -->
+<div class="w-full md:w-1/2 relative py-12">
+<div class="relative h-[400px] w-full flex items-center justify-center">
+<!-- Bottom Layer -->
+<div class="absolute transform -rotate-[35deg] skew-x-[15deg] w-64 h-64 bg-surface-dim border border-primary/20 transition-transform hover:translate-y-[-10px] z-10 flex flex-col justify-end p-4">
+<span class="font-label text-[10px] text-primary/30 uppercase">Surface Base</span>
+</div>
+<!-- Middle Layer -->
+<div class="absolute transform -rotate-[35deg] skew-x-[15deg] translate-y-[-60px] translate-x-[20px] w-64 h-64 bg-surface-container border border-primary/40 transition-transform hover:translate-y-[-70px] z-20 flex flex-col justify-end p-4">
+<span class="font-label text-[10px] text-primary/60 uppercase">Container Low</span>
+</div>
+<!-- Top Layer -->
+<div class="absolute transform -rotate-[35deg] skew-x-[15deg] translate-y-[-120px] translate-x-[40px] w-64 h-64 bg-surface-container-highest border border-primary transition-transform hover:translate-y-[-130px] z-30 flex flex-col justify-end p-4">
+<div class="w-12 h-2 bg-primary mb-2"></div>
+<span class="font-label text-[10px] text-on-surface uppercase">Container Highest</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Kinetic Actuators -->
+<section class="py-32">
+<div class="max-w-6xl mx-auto px-12">
+<div class="grid grid-cols-12 gap-12">
+<div class="col-span-12 lg:col-span-4">
+<span class="font-label text-primary/60 tracking-[0.2em] uppercase text-[10px] mb-4 block">Interaction Logic</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface mb-8">Kinetic Actuators</h2>
+<p class="font-body text-on-surface-variant leading-relaxed">
+                            Buttons and inputs are not just targets; they are mechanical interfaces. We use CSS transitions to simulate the tactile resistance of hardware. No bloat, just pure browser-native feedback.
+                        </p>
+</div>
+<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Component State Representation -->
+<div class="bg-surface-container-high p-8 rounded-sm group cursor-crosshair">
+<div class="flex justify-between items-start mb-12">
+<span class="font-label text-[10px] text-primary uppercase">ID: BTN_ACTUATOR_01</span>
+<span class="material-symbols-outlined text-primary/30" data-icon="bolt">bolt</span>
+</div>
+<div class="flex flex-col items-center gap-8">
+<button class="w-full bg-primary text-on-primary font-headline font-bold py-4 active:scale-95 transition-all">
+                                    EXECUTE ACTION
+                                </button>
+<div class="w-full space-y-3">
+<div class="flex justify-between text-[10px] font-label text-on-surface-variant border-b border-outline-variant/20 pb-1">
+<span>REST STATE</span>
+<span>scale(1.0)</span>
+</div>
+<div class="flex justify-between text-[10px] font-label text-primary border-b border-primary/20 pb-1">
+<span>ACTIVE STATE</span>
+<span>scale(0.95)</span>
+</div>
+<div class="flex justify-between text-[10px] font-label text-on-surface-variant border-b border-outline-variant/20 pb-1">
+<span>TRANSITION</span>
+<span>200ms ease-out</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interaction visual -->
+<div class="bg-surface-container p-8 rounded-sm border border-outline-variant/10">
+<div class="h-full flex flex-col">
+<div class="flex gap-1 mb-6">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div class="w-2 h-2 rounded-full bg-[#E5F4C9]/20"></div>
+<div class="w-2 h-2 rounded-full bg-[#E5F4C9]/20"></div>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<div class="relative">
+<div class="w-32 h-32 border-2 border-primary rounded-sm animate-pulse flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="fingerprint">fingerprint</span>
+</div>
+<div class="absolute -top-2 -right-2 bg-background p-1 border border-primary/40 text-[8px] font-mono text-primary">
+                                            LATENCY: 4ms
+                                        </div>
+</div>
+</div>
+<p class="text-center font-label text-[10px] text-on-surface-variant mt-6 uppercase tracking-widest">High-Frequency Input Tracking</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: MPA View Transitions -->
+<section class="bg-surface-container-lowest py-32">
+<div class="max-w-6xl mx-auto px-12">
+<div class="text-center mb-20">
+<span class="font-label text-primary/60 tracking-[0.2em] uppercase text-[10px] mb-4 block">Navigation Architecture</span>
+<h2 class="font-headline text-5xl font-bold tracking-tight text-on-surface">MPA View Transitions</h2>
+</div>
+<div class="relative bg-surface-container-high/30 p-1 rounded-lg border border-outline-variant/10 overflow-hidden">
+<!-- Morphing Diagram Container -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 p-12">
+<!-- State A -->
+<div class="space-y-8">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary/40">VIEW_ALPHA (SOURCE)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">0.0s</span>
+</div>
+<div class="space-y-4">
+<div class="h-4 w-3/4 bg-on-surface/10 rounded-sm"></div>
+<div class="h-4 w-1/2 bg-on-surface/10 rounded-sm"></div>
+<div class="aspect-video w-full bg-primary/20 rounded-sm flex items-center justify-center overflow-hidden">
+<img alt="Modern Architecture detail" class="w-full h-full object-cover opacity-50 grayscale" data-alt="Abstract architectural photography of concrete structures with strong geometric lines and dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBcSl4yJ7AcClOiifomhiFBiNWV7gGDcz9SB6dfInK61Yq4vAB8wUX2rP8ZiveLjBlyINBnsmg-x5QzwM6MQH3uNhT6ihQOcKiCBaVfqa_xPmg17ra0owOPHND26v0CUFpLQDTOKkTuTQhI5V0yrRTLNvZI9FXPjVwF-5NnjRazhh_hxyUQXQ18kUob4uIgv_Os49UExvuwozHr45Ixe8349H49IQdAsbkIZPne8VXFUXtbXcK55QLZGZZNgytoTmOJejT1g7fHFKI"/>
+</div>
+</div>
+</div>
+<!-- State B -->
+<div class="space-y-8 relative">
+<div class="absolute inset-y-0 -left-6 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent hidden md:block"></div>
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary">VIEW_BETA (TARGET)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">0.4s</span>
+</div>
+<div class="space-y-4">
+<div class="h-8 w-full bg-primary/40 rounded-sm flex items-center px-4">
+<div class="h-2 w-20 bg-on-primary/60"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square bg-surface-container rounded-sm border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/40" data-icon="transform">transform</span>
+</div>
+<div class="aspect-square bg-surface-container rounded-sm border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/40" data-icon="move_down">move_down</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Browser API Info -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 glass-panel px-6 py-3 rounded-sm border border-primary/20 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="auto_awesome">auto_awesome</span>
+<p class="font-label text-[10px] text-on-surface uppercase tracking-widest">Utilizing <code>::view-transition-group</code> for Zero-JS Fluidity</p>
+</div>
+</div>
+<div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div>
+<h4 class="font-headline text-on-surface font-bold mb-2">Native Fluidity</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Hardware accelerated page transitions that feel like a single-page app.</p>
+</div>
+<div>
+<h4 class="font-headline text-on-surface font-bold mb-2">Persistent Context</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Elements are tracked across navigation events for seamless spatial continuity.</p>
+</div>
+<div>
+<h4 class="font-headline text-on-surface font-bold mb-2">JS Suppression</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Zero execution overhead for motion, keeping main-thread performance optimal.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer / Documentation Links -->
+<footer class="px-12 py-20 border-t border-outline-variant/10">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-primary font-headline">Velora v1.0.0</span>
+<span class="text-xs text-on-surface-variant font-body">© 2024 Architectural Systems Inc.</span>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-label text-on-surface-variant hover:text-primary transition-colors" href="#">GITHUB</a>
+<a class="text-xs font-label text-on-surface-variant hover:text-primary transition-colors" href="#">CHANGELOG</a>
+<a class="text-xs font-label text-on-surface-variant hover:text-primary transition-colors" href="#">LICENSE</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB for quick terminal access (contextual) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-sm shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="terminal">terminal</span>
+</button>
+</div>
+</body></html>

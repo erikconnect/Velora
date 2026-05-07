@@ -1,6 +1,6 @@
 # Showcase Contract Checklist
 
-- Pages scanned: **79**
+- Pages scanned: **81**
 - Unknown vl-* attrs: **0**
 - Deprecated vl-* attrs: **0**
 - Broken #anchors: **0**
@@ -93,6 +93,16 @@
 - Broken #anchors: none
 
 ### OK - `pages/core/landing.html`
+- Unknown vl-* attrs: none
+- Deprecated vl-* attrs: none
+- Broken #anchors: none
+
+### OK - `pages/core/page-template.html`
+- Unknown vl-* attrs: none
+- Deprecated vl-* attrs: none
+- Broken #anchors: none
+
+### OK - `pages/integrations/gsap-anime.html`
 - Unknown vl-* attrs: none
 - Deprecated vl-* attrs: none
 - Broken #anchors: none

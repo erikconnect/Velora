@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora Framework | Component Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Manrope:wght@400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-dim": "#ba573f",
+                    "on-tertiary": "#576342",
+                    "on-secondary": "#1f211e",
+                    "on-primary-container": "#c5d5ba",
+                    "error": "#ed7f64",
+                    "on-primary-fixed": "#35432f",
+                    "secondary-dim": "#9d9e9a",
+                    "inverse-on-surface": "#545652",
+                    "surface-variant": "#212720",
+                    "surface": "#0d0f0c",
+                    "primary-dim": "#aebea4",
+                    "tertiary": "#f1ffd4",
+                    "primary-fixed-dim": "#c9d9be",
+                    "on-background": "#e1e7dc",
+                    "on-secondary-fixed": "#3e403d",
+                    "surface-bright": "#272e25",
+                    "secondary-container": "#3a3c39",
+                    "secondary": "#9d9e9a",
+                    "outline": "#71776e",
+                    "on-tertiary-fixed": "#3e4a2b",
+                    "inverse-surface": "#fafaf4",
+                    "on-tertiary-container": "#4f5b3a",
+                    "on-error": "#450900",
+                    "primary": "#bbcbb1",
+                    "on-surface-variant": "#a7ada2",
+                    "on-surface": "#e1e7dc",
+                    "on-primary": "#364430",
+                    "surface-container-highest": "#212720",
+                    "background": "#0d0f0c",
+                    "on-primary-fixed-variant": "#51604a",
+                    "surface-container-high": "#1c211b",
+                    "secondary-fixed-dim": "#d4d5d0",
+                    "surface-container-low": "#111410",
+                    "surface-dim": "#0d0f0c",
+                    "tertiary-dim": "#d7e5bb",
+                    "inverse-primary": "#55634d",
+                    "error-container": "#7e2b17",
+                    "surface-tint": "#bbcbb1",
+                    "on-tertiary-fixed-variant": "#5a6745",
+                    "surface-container-lowest": "#000000",
+                    "tertiary-fixed": "#e5f4c9",
+                    "outline-variant": "#434a41",
+                    "secondary-fixed": "#e3e3de",
+                    "tertiary-fixed-dim": "#d7e5bb",
+                    "tertiary-container": "#e2f1c6",
+                    "on-error-container": "#ff9b82",
+                    "primary-fixed": "#d7e8cc",
+                    "on-secondary-fixed-variant": "#5a5c58",
+                    "surface-container": "#171b16",
+                    "primary-container": "#3d4b36",
+                    "on-secondary-container": "#bfc0bb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"],
+                    "mono": ["JetBrains Mono"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+        }
+        .glass-panel {
+            background: rgba(33, 39, 32, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 sticky left-0 border-r border-[#bbcbb1]/15 bg-[#0d0f0c] flex flex-col py-6 px-4">
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-sm">settings_input_component</span>
+</div>
+<h2 class="font-headline font-bold text-lg tracking-tight text-primary">Component Lab</h2>
+</div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-medium">Technical Library v1.0</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded transition-all duration-200 ease-in-out bg-[#bbcbb1]/10 text-[#bbcbb1] border-r-4 border-[#bbcbb1]" href="component_lab_technical_library.html">
+<span class="material-symbols-outlined text-xl">settings_input_component</span>
+<span class="font-body text-sm tracking-wide">Actuators</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded transition-all duration-200 ease-in-out text-[#6b7a63] hover:bg-[#1a1d19] hover:text-[#bbcbb1]" href="architectural_blueprint.html">
+<span class="material-symbols-outlined text-xl">layers</span>
+<span class="font-body text-sm tracking-wide">Containers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded transition-all duration-200 ease-in-out text-[#6b7a63] hover:bg-[#1a1d19] hover:text-[#bbcbb1]" href="form_components_library.html">
+<span class="material-symbols-outlined text-xl">input</span>
+<span class="font-body text-sm tracking-wide">Inputs</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4 pt-6 border-t border-outline-variant/15">
+<a class="block w-full py-2.5 bg-primary text-on-primary text-xs font-bold uppercase tracking-widest rounded transition-all text-center hover:brightness-110" href="component_wizard_metadata.html">
+          Open Contribution Wizard
+        </a>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#6b7a63] hover:text-[#bbcbb1] transition-colors" href="architectural_blueprint.html">
+<span class="material-symbols-outlined text-lg">menu_book</span>
+<span class="text-xs tracking-wide">Documentation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#6b7a63] hover:text-[#bbcbb1] transition-colors" href="https://github.com">
+<span class="material-symbols-outlined text-lg">code</span>
+<span class="text-xs tracking-wide">GitHub</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-surface relative">
+<!-- Top Header -->
+<header class="w-full top-0 sticky z-10 bg-[#0d0f0c] flex justify-between items-center px-8 h-16 border-b border-outline-variant/10">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-headline font-bold tracking-tighter text-[#bbcbb1]">VELORA</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-xs font-headline font-bold tracking-tight uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors duration-200" href="architectural_blueprint.html">Docs</a>
+<a class="text-xs font-headline font-bold tracking-tight uppercase text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1" href="component_lab_technical_library.html">Framework</a>
+<a class="text-xs font-headline font-bold tracking-tight uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors duration-200" href="component_gallery.html">Enterprise</a>
+<a class="text-xs font-headline font-bold tracking-tight uppercase text-[#6b7a63] hover:text-[#bbcbb1] transition-colors duration-200" href="velora_landing_page_refined.html">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">settings</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">help_outline</span>
+<div class="w-8 h-8 rounded bg-surface-container-highest border border-outline-variant/20 overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover opacity-80" data-alt="Close-up portrait of a professional developer with neutral expression in a high-tech studio setting with soft moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzvZxDqipJQexeXXlEsHkJ9-wwTRh21m_buiPKN_q16UG_LjY4SBP8jUxYv-jSjBOxZ9soG4I89v_KJtgWMUvEXmKI4J9M8N4TAUDb9Z8XoMsMSaXDRDBkcbg9N2axa5uIiXrFV_beKcfOnDhfmUuY9HWm5nfy9zRJHMVdtpMuIASMiA2jPB-C1LJ5SrH1VO3pHOUGt9C_vexhj70spy234WjlWUmKHZJjBegt0ofNG7k6_4wf5Eb8wiptpm3P7Il7RLyajQ26sLZ_"/>
+</div>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto">
+<div class="mb-12">
+<h1 class="font-headline text-5xl font-bold tracking-tighter text-on-surface mb-2">Actuators</h1>
+<p class="text-on-surface-variant max-w-2xl font-body leading-relaxed">High-performance interactive elements engineered for maximum tactile feedback and minimal overhead. Defined by kinetic response and geometric precision.</p>
+</div>
+<!-- Bento Grid of Components -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+<!-- Component Card 1 -->
+<div class="group bg-surface-container-low rounded p-1 transition-all duration-300 hover:bg-surface-container-high relative overflow-hidden">
+<div class="aspect-video bg-surface-container-lowest rounded-sm mb-4 flex items-center justify-center p-8 relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#bbcbb1 0.5px, transparent 0.5px); background-size: 10px 10px;"></div>
+<button class="px-6 py-2.5 bg-primary text-on-primary font-bold text-xs uppercase tracking-widest rounded-sm shadow-xl shadow-primary/5 group-hover:scale-105 transition-transform duration-300">
+                                Kinetic Primary
+                            </button>
+</div>
+<div class="px-4 pb-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-lg font-bold text-on-surface">Primary Actuator</h3>
+<span class="bg-primary-container/20 text-primary text-[10px] px-2 py-0.5 rounded font-mono border border-primary/10">120 FPS Native</span>
+</div>
+<code class="block text-[11px] font-mono text-primary/60 mb-3">.vl-actuator-primary</code>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">Utilizes @starting-style for zero-JS entrance and physics-based scaling transforms.</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-bold">Stable Architecture</span>
+</div>
+</div>
+</div>
+<!-- Component Card 2 -->
+<div class="group bg-surface-container-low rounded p-1 transition-all duration-300 hover:bg-surface-container-high">
+<div class="aspect-video bg-surface-container-lowest rounded-sm mb-4 flex items-center justify-center p-8 relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(0deg, #bbcbb1 0.5px, transparent 0.5px), linear-gradient(90deg, #bbcbb1 0.5px, transparent 0.5px); background-size: 20px 20px;"></div>
+<button class="px-6 py-2.5 bg-transparent border border-outline-variant text-primary font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-primary/5 transition-colors">
+                                Ghost Actuator
+                            </button>
+</div>
+<div class="px-4 pb-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-lg font-bold text-on-surface">Ghost Variant</h3>
+<span class="bg-secondary-container/30 text-secondary-dim text-[10px] px-2 py-0.5 rounded font-mono border border-outline-variant/20">60 FPS Render</span>
+</div>
+<code class="block text-[11px] font-mono text-primary/60 mb-3">.vl-actuator-ghost</code>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">Leverages CSS custom properties for dynamic theming with zero layout thrashing.</p>
+</div>
+</div>
+<!-- Component Card 3 -->
+<div class="group bg-surface-container-low rounded p-1 transition-all duration-300 hover:bg-surface-container-high">
+<div class="aspect-video bg-surface-container-lowest rounded-sm mb-4 flex items-center justify-center p-8">
+<a class="text-primary text-xs font-bold uppercase tracking-[0.2em] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" href="form_components_library.html">
+                                Editorial Link
+                            </a>
+</div>
+<div class="px-4 pb-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-lg font-bold text-on-surface">Semantic Link</h3>
+<span class="bg-primary-container/20 text-primary text-[10px] px-2 py-0.5 rounded font-mono border border-primary/10">0ms Latency</span>
+</div>
+<code class="block text-[11px] font-mono text-primary/60 mb-3">.vl-link-kinetic</code>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">An editorial-first navigation element with CSS-only hover states and directional ink.</p>
+</div>
+</div>
+</div>
+<!-- Detail View Section (Simulated Active Detail) -->
+<section class="mt-20 border-t border-outline-variant/15 pt-16">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="text-xs font-mono text-primary px-3 py-1 bg-primary/10 rounded">INSPECTOR</span>
+<h2 class="font-headline text-3xl font-bold tracking-tight">Kinetic Primary Detail</h2>
+</div>
+<div class="space-y-10">
+<div>
+<h4 class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-4">Variations &amp; States</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container rounded-sm flex flex-col items-center gap-3 border border-outline-variant/10">
+<span class="text-[10px] text-on-surface-variant font-mono uppercase">Default State</span>
+<button class="w-full py-2 bg-primary text-on-primary font-bold text-[10px] uppercase tracking-widest rounded-sm">Primary</button>
+</div>
+<div class="p-4 bg-surface-container rounded-sm flex flex-col items-center gap-3 border border-primary/30">
+<span class="text-[10px] text-primary font-mono uppercase">Hover State</span>
+<button class="w-full py-2 bg-[#d7e8cc] text-on-primary font-bold text-[10px] uppercase tracking-widest rounded-sm transform scale-[1.02]">Primary</button>
+</div>
+<div class="p-4 bg-surface-container rounded-sm flex flex-col items-center gap-3 border border-outline-variant/10">
+<span class="text-[10px] text-on-surface-variant font-mono uppercase">Disabled</span>
+<button class="w-full py-2 bg-secondary-container text-on-surface-variant/40 font-bold text-[10px] uppercase tracking-widest rounded-sm cursor-not-allowed">Primary</button>
+</div>
+<div class="p-4 bg-surface-container rounded-sm flex flex-col items-center gap-3 border border-outline-variant/10">
+<span class="text-[10px] text-on-surface-variant font-mono uppercase">Focus Ring</span>
+<button class="w-full py-2 bg-primary text-on-primary font-bold text-[10px] uppercase tracking-widest rounded-sm ring-2 ring-primary ring-offset-2 ring-offset-background">Primary</button>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-4">Implementation Specs</h4>
+<ul class="space-y-3">
+<li class="flex justify-between py-2 border-b border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">Border Radius</span>
+<span class="text-xs font-mono text-on-surface">0.125rem (sm)</span>
+</li>
+<li class="flex justify-between py-2 border-b border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">Background Token</span>
+<span class="text-xs font-mono text-on-surface">var(--vl-primary)</span>
+</li>
+<li class="flex justify-between py-2 border-b border-outline-variant/10">
+<span class="text-xs text-on-surface-variant">Typography</span>
+<span class="text-xs font-mono text-on-surface">Space Grotesk Bold</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Code Snippet Block -->
+<div class="glass-panel rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col">
+<div class="flex items-center justify-between px-6 py-4 bg-surface-container-highest border-b border-outline-variant/20">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error/30"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/30"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/30"></div>
+</div>
+<span class="text-[10px] font-mono text-on-surface-variant tracking-wider uppercase">actuator-primary.html</span>
+<span class="text-[10px] font-mono text-on-surface-variant">Copy enabled in docs app</span>
+</div>
+<div class="p-6 flex-1 bg-surface-container-lowest font-mono text-xs leading-relaxed overflow-x-auto">
+<pre class="text-[#899c82]"><span class="text-[#ed7f64]">&lt;button</span> 
+  <span class="text-[#bbcbb1]">class</span>=<span class="text-[#e5f4c9]">"px-6 py-2.5 bg-primary text-on-primary 
+         font-bold text-xs uppercase tracking-widest 
+         rounded-sm shadow-xl shadow-primary/5 
+         hover:scale-105 transition-transform 
+         duration-300"</span>
+<span class="text-[#ed7f64]">&gt;</span>
+  KINETIC PRIMARY
+<span class="text-[#ed7f64]">&lt;/button&gt;</span></pre>
+</div>
+<div class="p-4 bg-surface-container border-t border-outline-variant/10">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<p class="text-[10px] text-on-surface-variant">Zero-JS runtime requires modern browser CSS support.</p>
+</div>
+<span class="text-[10px] text-primary font-bold tracking-widest uppercase">Validated 1.2ms</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Contextual Decorative Section (Asymmetry) -->
+<div class="relative w-full h-96 mt-20 overflow-hidden">
+<div class="absolute inset-0 bg-surface-container-low transform -skew-y-3 translate-y-20"></div>
+<div class="relative z-1 max-w-7xl mx-auto px-8 py-20 flex justify-end">
+<div class="max-w-md text-right">
+<span class="text-primary text-xs font-mono mb-2 block uppercase tracking-[0.3em]">The Philosophy</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight mb-4">Kinetic Elegance by Default</h2>
+<p class="text-on-surface-variant leading-loose text-sm">Every component in the Velora Lab is stress-tested to maintain 120 FPS performance while providing a visual depth usually reserved for bespoke editorial designs.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Background Decoration -->
+<div class="fixed inset-0 pointer-events-none opacity-20 overflow-hidden -z-10">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/20 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[5%] right-[5%] w-[30%] h-[30%] bg-tertiary-container/10 blur-[100px] rounded-full"></div>
+</div>
+</body></html>

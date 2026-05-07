@@ -95,4 +95,72 @@
       localStorage.setItem(TRANSITION_KEY, nextTransition);
     });
   }
+
+  /* ── Mobile navigation (hamburger) ──────────────────────────────────── */
+  const header = document.querySelector(".vl-header");
+  const menuBtn = document.querySelector(".vl-header__menu-btn");
+  const drawer = document.querySelector(".vl-header__drawer");
+
+  if (menuBtn && drawer && header) {
+    menuBtn.addEventListener("click", () => {
+      const isOpen = header.hasAttribute("data-menu-open");
+      if (isOpen) {
+        header.removeAttribute("data-menu-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        drawer.setAttribute("aria-hidden", "true");
+      } else {
+        header.setAttribute("data-menu-open", "");
+        menuBtn.setAttribute("aria-expanded", "true");
+        drawer.setAttribute("aria-hidden", "false");
+      }
+    });
+
+    // Close on outside click / Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && header.hasAttribute("data-menu-open")) {
+        header.removeAttribute("data-menu-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        drawer.setAttribute("aria-hidden", "true");
+        menuBtn.focus();
+      }
+    });
+
+    // Sync mobile controls with desktop values on open
+    const mobileVtSelect = drawer.querySelector(".ds-vt-select");
+    const mobileEditorialSelect = drawer.querySelector(".ds-editorial-select");
+    const mobileThemeBtns = Array.from(drawer.querySelectorAll(".ds-theme-btn"));
+
+    if (mobileVtSelect && transitionSelect) {
+      mobileVtSelect.value = transitionSelect.value;
+      mobileVtSelect.addEventListener("change", (e) => {
+        if (transitionSelect) transitionSelect.value = e.target.value;
+        const nextTransition = e.target.value;
+        root.setAttribute("vl-page-transition", nextTransition);
+        localStorage.setItem(TRANSITION_KEY, nextTransition);
+      });
+    }
+
+    if (mobileEditorialSelect && editorialSelect) {
+      mobileEditorialSelect.value = editorialSelect.value;
+      mobileEditorialSelect.addEventListener("change", (e) => {
+        applyEditorial(e.target.value, { syncThemeToggle: true });
+        if (editorialSelect) syncEditorialSelect(e.target.value);
+      });
+    }
+
+    mobileThemeBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const theme = btn.dataset.dsTheme || "auto";
+        localStorage.setItem(THEME_KEY, theme);
+        applyTheme(theme);
+        if (theme === "light") applyEditorial("earth", { syncThemeToggle: false });
+        else if (theme === "dark") applyEditorial("noir", { syncThemeToggle: false });
+        if (theme === "auto" && editorialSelect) {
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          applyEditorial(prefersDark ? "noir" : "earth", { syncThemeToggle: false });
+        }
+      });
+    });
+  }
+
 })();

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velora | Iconography System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#bbcbb1",
+                    "primary-container": "#3d4b36",
+                    "on-error-container": "#ff9b82",
+                    "surface-dim": "#0d0f0c",
+                    "on-secondary-fixed-variant": "#5a5c58",
+                    "on-surface-variant": "#a7ada2",
+                    "tertiary-dim": "#d7e5bb",
+                    "on-tertiary-container": "#4f5b3a",
+                    "on-primary": "#364430",
+                    "inverse-on-surface": "#545652",
+                    "surface-container-highest": "#212720",
+                    "on-secondary-container": "#bfc0bb",
+                    "outline": "#71776e",
+                    "tertiary-container": "#e2f1c6",
+                    "secondary": "#9d9e9a",
+                    "on-secondary": "#1f211e",
+                    "secondary-fixed": "#e3e3de",
+                    "surface-variant": "#212720",
+                    "secondary-fixed-dim": "#d4d5d0",
+                    "error": "#ed7f64",
+                    "primary-dim": "#aebea4",
+                    "secondary-dim": "#9d9e9a",
+                    "surface-container-lowest": "#000000",
+                    "on-tertiary-fixed-variant": "#5a6745",
+                    "on-secondary-fixed": "#3e403d",
+                    "primary-fixed-dim": "#c9d9be",
+                    "inverse-primary": "#55634d",
+                    "on-error": "#450900",
+                    "secondary-container": "#3a3c39",
+                    "surface-tint": "#bbcbb1",
+                    "outline-variant": "#434a41",
+                    "surface-bright": "#272e25",
+                    "on-surface": "#e1e7dc",
+                    "on-tertiary": "#576342",
+                    "surface-container-low": "#111410",
+                    "primary-fixed": "#d7e8cc",
+                    "surface": "#0d0f0c",
+                    "on-background": "#e1e7dc",
+                    "tertiary-fixed-dim": "#d7e5bb",
+                    "error-container": "#7e2b17",
+                    "tertiary": "#f1ffd4",
+                    "tertiary-fixed": "#e5f4c9",
+                    "on-primary-fixed": "#35432f",
+                    "on-primary-container": "#c5d5ba",
+                    "surface-container-high": "#1c211b",
+                    "error-dim": "#ba573f",
+                    "on-primary-fixed-variant": "#51604a",
+                    "on-tertiary-fixed": "#3e4a2b",
+                    "inverse-surface": "#fafaf4",
+                    "background": "#0d0f0c",
+                    "surface-container": "#171b16"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #0d0f0c;
+        }
+        .headline-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar for technical look */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0f0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3d4b36;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 w-full z-50 bg-[#0d0f0c] flex justify-between items-center px-8 py-4 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#bbcbb1] font-['Space_Grotesk'] uppercase">Velora</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#8a9385] font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase hover:text-[#bbcbb1] transition-colors duration-200" href="component_gallery.html">Showcase</a>
+<a class="text-[#8a9385] font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase hover:text-[#bbcbb1] transition-colors duration-200" href="architectural_blueprint.html">Guides</a>
+<a class="text-[#8a9385] font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase hover:text-[#bbcbb1] transition-colors duration-200" href="component_lab_technical_library.html">API</a>
+<a class="text-[#8a9385] font-['Space_Grotesk'] font-bold tracking-[-0.03em] uppercase hover:text-[#bbcbb1] transition-colors duration-200" href="system_modules_overview.html">Changelog</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#8a9385]" aria-hidden="true">settings</span>
+<span class="material-symbols-outlined text-[#8a9385]" aria-hidden="true">account_circle</span>
+</div>
+</header>
+<!-- SideNavBar Implementation -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-[#0d0f0c] flex flex-col h-full border-r border-[#ffffff0a] hidden md:flex">
+<div class="px-6 mb-8">
+<h2 class="text-lg font-bold text-[#bbcbb1] font-['Manrope']">Asset Library</h2>
+<span class="text-xs text-on-surface-variant font-mono">v1.2.0-Alpha</span>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="group flex items-center py-2 px-4 text-[#8a9385] pl-4 hover:bg-[#1a1d19] hover:text-[#bbcbb1] transition-all" href="system_modules_overview.html">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-medium text-sm tracking-[0.01em]">Overview</span>
+</a>
+<a class="group flex items-center py-2 px-4 text-[#8a9385] pl-4 hover:bg-[#1a1d19] hover:text-[#bbcbb1] transition-all" href="tokens_foundation_refined.html">
+<span class="material-symbols-outlined mr-3">toll</span>
+<span class="font-medium text-sm tracking-[0.01em]">Design Tokens</span>
+</a>
+<!-- Active Tab: Icon Library -->
+<a class="group flex items-center py-2 px-4 text-[#bbcbb1] font-bold border-l-2 border-[#bbcbb1] pl-4 transition-all" href="iconography_system_searchable_grid.html">
+<span class="material-symbols-outlined mr-3">category</span>
+<span class="font-medium text-sm tracking-[0.01em]">Icon Library</span>
+</a>
+<a class="group flex items-center py-2 px-4 text-[#8a9385] pl-4 hover:bg-[#1a1d19] hover:text-[#bbcbb1] transition-all" href="component_gallery.html">
+<span class="material-symbols-outlined mr-3">extension</span>
+<span class="font-medium text-sm tracking-[0.01em]">Core Components</span>
+</a>
+<a class="group flex items-center py-2 px-4 text-[#8a9385] pl-4 hover:bg-[#1a1d19] hover:text-[#bbcbb1] transition-all" href="component_lab_technical_library.html">
+<span class="material-symbols-outlined mr-3">layers</span>
+<span class="font-medium text-sm tracking-[0.01em]">Pro Layouts</span>
+</a>
+<a class="group flex items-center py-2 px-4 text-[#8a9385] pl-4 hover:bg-[#1a1d19] hover:text-[#bbcbb1] transition-all" href="component_wizard_metadata.html">
+<span class="material-symbols-outlined mr-3">folder_open</span>
+<span class="font-medium text-sm tracking-[0.01em]">Asset Manager</span>
+</a>
+</nav>
+<div class="px-6 py-6 border-t border-[#ffffff0a]">
+<a class="block w-full py-2 bg-primary text-on-primary font-bold text-sm tracking-tighter rounded-sm hover:opacity-90 transition-opacity text-center" href="../../../CONTRIBUTING.md">
+                Submit Asset
+            </a>
+<div class="mt-6 space-y-4">
+<a class="flex items-center text-[#8a9385] text-xs font-medium hover:text-[#bbcbb1] transition-colors" href="architectural_blueprint.html">
+<span class="material-symbols-outlined text-sm mr-2">menu_book</span> Documentation
+                </a>
+<a class="flex items-center text-[#8a9385] text-xs font-medium hover:text-[#bbcbb1] transition-colors" href="https://github.com">
+<span class="material-symbols-outlined text-sm mr-2">contact_support</span> Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 min-h-screen">
+<div class="max-w-7xl mx-auto px-8">
+<!-- Hero / Header Section -->
+<div class="mb-12">
+<div class="flex items-baseline gap-4 mb-2">
+<h1 class="headline-font text-5xl font-bold tracking-[-0.03em] uppercase text-on-surface">Precision Icons</h1>
+<span class="font-mono text-primary text-sm bg-primary-container/20 px-2 py-0.5 rounded">MOD_042</span>
+</div>
+<p class="text-on-surface-variant max-w-2xl font-light tracking-wide leading-relaxed">
+                    A rigorous iconography system designed for technical clarity and high-density information display. Built on a 24px grid with opt-in weight variants.
+                </p>
+</div>
+<!-- Controls Section -->
+<div class="sticky top-20 z-40 py-6 bg-surface/90 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+<div class="relative flex-1 bg-surface-container-highest rounded-sm py-4 px-4 border border-outline-variant/15">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-sm">Static icon index. Search and copy actions are enabled in the docs app build.</p>
+ </div>
+</div>
+<div class="flex items-center gap-2">
+<div class="bg-surface-container-low p-1 flex gap-1 rounded-sm">
+<span class="px-4 py-2 bg-primary-container text-primary text-xs font-bold uppercase tracking-widest rounded-sm">Outlined</span>
+<span class="px-4 py-2 text-on-surface-variant text-xs font-bold uppercase tracking-widest rounded-sm">Light</span>
+</div>
+<div class="bg-surface-container-low p-1 flex gap-1 rounded-sm">
+<span class="px-4 py-2 bg-primary-container text-primary text-xs font-bold uppercase tracking-widest rounded-sm">24px</span>
+<span class="px-4 py-2 text-on-surface-variant text-xs font-bold uppercase tracking-widest rounded-sm">20px</span>
+</div>
+</div>
+</div>
+<!-- Category Filters -->
+<div class="flex flex-wrap gap-4 mb-16">
+<span class="text-xs font-bold uppercase tracking-widest text-primary border-b-2 border-primary pb-1">All Assets</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-1 border-b-2 border-transparent">Navigation</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-1 border-b-2 border-transparent">Action</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-1 border-b-2 border-transparent">System</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-1 border-b-2 border-transparent">Communication</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant pb-1 border-b-2 border-transparent">Editor</span>
+</div>
+<!-- Icon Grid: Bento-style Precision -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-0.5 bg-outline-variant/10 rounded-sm overflow-hidden mb-24">
+<!-- Icon Card 1 -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform duration-300 mb-4" style="font-variation-settings: 'wght' 300;">dashboard</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">dashboard</span>
+<!-- Hover Specs Overlay -->
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity pointer-events-none">
+<div class="flex justify-between items-center text-[8px] font-mono text-primary/80">
+<span>GRID: 24PX</span>
+<span>PATHS: 03</span>
+</div>
+</div>
+</div>
+<!-- Icon Card 2 -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform duration-300 mb-4" style="font-variation-settings: 'wght' 300;">toll</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">design_token</span>
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 flex flex-col justify-end p-4 transition-opacity pointer-events-none">
+<div class="flex justify-between items-center text-[8px] font-mono text-primary/80">
+<span>GRID: 24PX</span>
+<span>PATHS: 02</span>
+</div>
+</div>
+</div>
+<!-- Icon Card 3 -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform duration-300 mb-4" style="font-variation-settings: 'wght' 300;">category</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">assets</span>
+</div>
+<!-- Icon Card 4 -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform duration-300 mb-4" style="font-variation-settings: 'wght' 300;">extension</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">plugins</span>
+</div>
+<!-- Icon Card 5 -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform duration-300 mb-4" style="font-variation-settings: 'wght' 300;">layers</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">stack</span>
+</div>
+<!-- Icon Card 6 -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform duration-300 mb-4" style="font-variation-settings: 'wght' 300;">folder_open</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">archive</span>
+</div>
+<!-- Repeat Pattern for more icons -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">sync_alt</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">transfer</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">database</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">storage</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">terminal</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">console</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">lan</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">connection</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">memory</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">processing</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">hub</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">node</span>
+</div>
+<!-- Extra Row for Density -->
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">grid_view</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">layout_grid</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">code</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">syntax</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">monitoring</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">metrics</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">security</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">vault</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">settings_input_component</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">parameter</span>
+</div>
+<div class="group relative aspect-square bg-surface hover:bg-surface-container-high transition-all duration-300 flex flex-col items-center justify-center p-6 border-[0.5px] border-outline-variant/10">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-4" style="font-variation-settings: 'wght' 300;">api</span>
+<span class="text-[10px] font-mono text-on-surface-variant uppercase tracking-tighter">endpoint</span>
+</div>
+</div>
+<!-- Detail Sidebar (Simulated Popover Design) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24">
+<div class="lg:col-span-2">
+<div class="bg-surface-container-low p-8 rounded-sm">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="headline-font text-2xl font-bold text-on-surface mb-2">Usage Guidelines</h3>
+<p class="text-on-surface-variant text-sm">Follow these standards to maintain kinetic consistency across all digital interfaces.</p>
+</div>
+<span class="font-mono text-[10px] text-primary bg-primary-container/20 px-3 py-1 rounded-full uppercase">Compliance: Grade A</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Clearance Zone</h4>
+<div class="aspect-video bg-surface-container-highest border border-outline-variant/20 flex items-center justify-center relative">
+<div class="w-24 h-24 border border-dashed border-primary/40 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary">center_focus_strong</span>
+</div>
+<span class="absolute bottom-2 right-2 font-mono text-[8px] text-outline">FIG. 04 - MIN CLEARANCE</span>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Alignment Logic</h4>
+<div class="aspect-video bg-surface-container-highest border border-outline-variant/20 flex flex-col items-center justify-center space-y-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-2xl text-on-surface-variant">arrow_forward</span>
+<div class="h-[1px] w-12 bg-primary"></div>
+<span class="material-symbols-outlined text-2xl text-primary">arrow_forward</span>
+</div>
+<span class="font-mono text-[10px] text-on-surface-variant">X-AXIS OPTICAL CENTERED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-primary p-6 rounded-sm">
+<h3 class="font-['Space_Grotesk'] text-on-primary font-bold uppercase text-lg mb-2">Technical Pack</h3>
+<p class="text-on-primary/80 text-xs mb-6 font-medium">Download the full Velora Icon set in SVG, EPS, and React formats.</p>
+<a class="block w-full py-3 bg-on-primary text-primary font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-opacity text-center" href="../../../packages/img/SVG/">
+                            Open SVG Bundle
+                        </a>
+</div>
+<div class="bg-surface-container-highest p-6 rounded-sm border border-outline-variant/10">
+<h3 class="text-on-surface font-bold text-sm mb-4">Asset Statistics</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-xs text-on-surface-variant">Total Glyphs</span>
+<span class="font-mono text-xs text-primary">1,240</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-on-surface-variant">Weight Classes</span>
+<span class="font-mono text-xs text-primary">03</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-on-surface-variant">License</span>
+<span class="font-mono text-xs text-primary">MIT-S</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="bg-surface-container-lowest py-12 px-8 md:ml-64 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-4">
+<span class="headline-font text-lg font-bold text-primary uppercase">Velora</span>
+<span class="text-[10px] font-mono text-outline">DESIGN_SYSTEM_ICONOGRAPHY // 2024</span>
+</div>
+<div class="flex gap-8">
+<a class="text-[10px] font-mono text-on-surface-variant hover:text-primary transition-colors" href="system_modules_overview.html">CHANGELOG</a>
+<a class="text-[10px] font-mono text-on-surface-variant hover:text-primary transition-colors" href="../../../CONTRIBUTING.md">CONTRIBUTE</a>
+<a class="text-[10px] font-mono text-on-surface-variant hover:text-primary transition-colors" href="accessibility_wcag_guidelines.html">SECURITY</a>
+</div>
+</div>
+</footer>
+</body></html>

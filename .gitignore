@@ -21,8 +21,8 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Local AI context
-docs/
+# Local AI / machine-specific (keep internal notes out of the repo)
+docs/internal/
 .worktrees/
 
 # Local backup archives

@@ -14,6 +14,10 @@ The canonical template registry lives in:
 
 - `apps/showcase/config/template-registry.mjs`
 
+HTML starter for new showcase pages (shell + bussola + blocos Velora):
+
+- `apps/showcase/pages/core/page-template.html`
+
 It defines sections and owned pages for the `default` template.
 
 ## Audit flow

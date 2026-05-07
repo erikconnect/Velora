@@ -196,11 +196,13 @@
     @keyframes vl-clip-rise {
         from {
             opacity: 0.2;
-            clip-path: inset(100% 0 0 0);
+            clip-path: inset(112% -6% -14% -6%);
+            transform: translate3d(0, 0.16em, 0);
         }
         to {
             opacity: 1;
-            clip-path: inset(0 0 0 0);
+            clip-path: inset(-14% -6% -14% -6%);
+            transform: translate3d(0, 0, 0);
         }
     }
 
@@ -340,11 +342,13 @@
     @keyframes vl-line-wipe {
         from {
             opacity: 0;
-            clip-path: inset(0 100% 0 0);
+            clip-path: inset(-14% 100% -14% -6%);
+            transform: translate3d(-0.08em, 0, 0);
         }
         to {
             opacity: 1;
-            clip-path: inset(0 0 0 0);
+            clip-path: inset(-14% -6% -14% -6%);
+            transform: translate3d(0, 0, 0);
         }
     }
 
@@ -745,6 +749,7 @@
 
     [vl-effect="clip-rise"] {
         --vl-motion-duration: var(--vl-duration-slower);
+        overflow: visible;
         animation: vl-clip-rise var(--vl-motion-duration) var(--vl-motion-ease) both;
     }
 
@@ -1164,6 +1169,47 @@
         position: relative;
     }
 
+    [vl-effect="hover-orb-grid"] > .vl-orb-zones {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+        grid-template-rows: repeat(10, minmax(0, 1fr));
+        pointer-events: none;
+    }
+
+    [vl-effect="hover-orb-grid"] > .vl-orb-zones > span {
+        display: block;
+        pointer-events: auto;
+    }
+
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 1):hover) { --mouse-x: 5%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 2):hover) { --mouse-x: 15%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 3):hover) { --mouse-x: 25%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 4):hover) { --mouse-x: 35%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 5):hover) { --mouse-x: 45%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 6):hover) { --mouse-x: 55%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 7):hover) { --mouse-x: 65%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 8):hover) { --mouse-x: 75%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n + 9):hover) { --mouse-x: 85%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(10n):hover) { --mouse-x: 95%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 1):nth-child(-n + 10):hover) { --mouse-y: 5%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 11):nth-child(-n + 20):hover) { --mouse-y: 15%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 21):nth-child(-n + 30):hover) { --mouse-y: 25%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 31):nth-child(-n + 40):hover) { --mouse-y: 35%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 41):nth-child(-n + 50):hover) { --mouse-y: 45%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 51):nth-child(-n + 60):hover) { --mouse-y: 55%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 61):nth-child(-n + 70):hover) { --mouse-y: 65%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 71):nth-child(-n + 80):hover) { --mouse-y: 75%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 81):nth-child(-n + 90):hover) { --mouse-y: 85%; }
+    [vl-effect="hover-orb-grid"]:has(> .vl-orb-zones > span:nth-child(n + 91):nth-child(-n + 100):hover) { --mouse-y: 95%; }
+
+    [vl-effect="hover-orb-grid"]:has(> ul > li:nth-child(1):hover) { --mouse-x: 25%; --mouse-y: 25%; }
+    [vl-effect="hover-orb-grid"]:has(> ul > li:nth-child(2):hover) { --mouse-x: 75%; --mouse-y: 25%; }
+    [vl-effect="hover-orb-grid"]:has(> ul > li:nth-child(3):hover) { --mouse-x: 25%; --mouse-y: 75%; }
+    [vl-effect="hover-orb-grid"]:has(> ul > li:nth-child(4):hover) { --mouse-x: 75%; --mouse-y: 75%; }
+
     [vl-effect="hover-orb-grid"] > ul {
         margin: 0;
         padding: 0;
@@ -1383,6 +1429,7 @@
 
     [vl-effect="text-line-reveal"] {
         display: inline-block;
+        overflow: visible;
         animation: vl-line-wipe var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
     }
 
@@ -1410,9 +1457,25 @@
        TIMELINE BINDINGS  [vl-timeline="<value>"]
        ========================================================================= */
     [vl-timeline="view"] {
-        animation-timeline: view(block);
+        animation-timeline: view();
         animation-range: entry 5% cover 42%;
         animation-timing-function: linear;
+    }
+
+    [vl-timeline="view"][vl-effect="clip-rise"] {
+        animation-name: vl-clip-rise;
+        animation-duration: var(--vl-motion-duration, var(--vl-duration-slower));
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: var(--vl-range, entry 5% cover 42%);
+    }
+
+    [vl-timeline="view"][vl-effect="text-line-reveal"] {
+        animation-name: vl-line-wipe;
+        animation-duration: var(--vl-motion-duration, var(--vl-duration-slow));
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: var(--vl-range, entry 8% cover 48%);
     }
 
     [vl-timeline="scroll"] {
@@ -1809,7 +1872,7 @@
     /* =========================================================================
        FALLBACK  browsers without scroll-driven animations
        ========================================================================= */
-    @supports not (animation-timeline: view(block)) {
+    @supports not (animation-timeline: view()) {
         [vl-timeline="view"],
         [vl-timeline="scroll"] {
             animation-timeline: auto;
@@ -1839,6 +1902,18 @@
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
+        [vl-timeline="view"][vl-effect="clip-rise"] {
+            animation-name: vl-clip-rise;
+            animation-duration: var(--vl-duration-slower);
+            animation-timing-function: var(--vl-ease-cinematic);
+        }
+
+        [vl-timeline="view"][vl-effect="text-line-reveal"] {
+            animation-name: vl-line-wipe;
+            animation-duration: var(--vl-duration-slow);
+            animation-timing-function: var(--vl-ease-cinematic);
+        }
+
         [vl-effect="scene-feature-flow"][vl-timeline="view"] > *,
         [vl-effect="scene-story-pin"] > *,
         [vl-effect="scene-layer-stack"] > *,
@@ -1851,10 +1926,10 @@
             animation-range: normal;
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
+        }
 
         [vl-effect][vl-direction] {
             animation-direction: var(--vl-motion-direction, normal);
-        }
         }
     }
 

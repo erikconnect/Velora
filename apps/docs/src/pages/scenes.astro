@@ -1,0 +1,254 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Scenes" description="Multi-element motion orchestrations with vl-scene, vl-children, and scene presets.">
+  <span class="vl-kicker">Orchestration</span>
+
+  <h1 class="docs-page-title">Scenes</h1>
+  <p class="docs-page-lead">
+    Scenes coordinate the motion of an element <em>and all its descendants</em> as a single
+    choreographed unit. This is the difference between a primitive effect and a scene.
+  </p>
+
+  <h2>Primitive vs Scene</h2>
+  <p>
+    A <strong>primitive effect</strong> animates one element:
+  </p>
+  <pre><code>&lt;div vl-effect="fade-up" vl-timeline="view"&gt;
+  Just this element fades up
+&lt;/div&gt;</code></pre>
+  <p>
+    A <strong>scene preset</strong> coordinates the element <em>and its children</em> with distinct timings
+    per child slot:
+  </p>
+  <pre><code>&lt;section
+  vl-scene="hero"
+  vl-effect="scene-hero-reveal"
+  vl-timeline="view"&gt;
+  &lt;h1&gt;1st child — fades up (slowest)&lt;/h1&gt;
+  &lt;img src="hero.jpg" alt="" /&gt;  &lt;!-- 2nd child — scales in after 120ms --&gt;
+  &lt;p&gt;3rd child — blurs in after 240ms&lt;/p&gt;
+  &lt;a href="#" class="vl-cta"&gt;4th+ children — staggered fade&lt;/a&gt;
+&lt;/section&gt;</code></pre>
+
+  <h2>The vl-scene Attribute</h2>
+  <p>
+    Add <code>vl-scene</code> to a container to mark it as a scene host. This applies CSS containment
+    (<code>contain: layout style</code>) so the scene is self-contained.
+  </p>
+  <pre><code>&lt;section vl-scene="hero"&gt;...&lt;/section&gt;
+&lt;section vl-scene="story"&gt;...&lt;/section&gt;
+&lt;section vl-scene="features"&gt;...&lt;/section&gt;</code></pre>
+  <p>
+    The value is a semantic label — it doesn't change behavior today but documents intent and allows
+    future CSS hooks via <code>[vl-scene="hero"]</code> selectors.
+  </p>
+
+  <h2>Scene Presets</h2>
+  <p>
+    Scene presets are set via <code>vl-effect</code> on the scene host. They define child-specific
+    animation sequences:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Children behavior</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>scene-hero-reveal</code></td>
+        <td>
+          1st → <code>fade-up</code> (800ms, cinematic)<br/>
+          2nd → <code>scale-in</code> (800ms, spring, 120ms delay)<br/>
+          3rd → <code>blur-in</code> (800ms, soft, 240ms delay)<br/>
+          4th+ → <code>fade-up</code> (staggered)
+        </td>
+      </tr>
+      <tr>
+        <td><code>scene-feature-flow</code></td>
+        <td>
+          Each child gets a <code>flow-in</code> animation tied to <code>view(block)</code> scroll timeline,
+          with cascading animation ranges (1st enters earliest, later children enter progressively later).
+          Requires <code>vl-timeline="view"</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>scene-story-pin</code></td>
+        <td>
+          Container becomes sticky (<code>position: sticky; min-height: 100vh</code>). Children use
+          <code>fade-up</code> tied to the block scroll timeline.
+        </td>
+      </tr>
+      <tr>
+        <td><code>scene-layer-stack</code></td>
+        <td>
+          Container gets <code>perspective: 1200px</code>. Children use <code>3d-entry</code> with
+          increasing translation depth per child (1rem → 4rem).
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Hero Reveal — Full Example</h3>
+  <pre><code>&lt;section
+  vl-scene="hero"
+  vl-effect="scene-hero-reveal"
+  vl-timeline="view"
+  vl-range="entry 0% cover 70%"
+  vl-pin&gt;
+
+  &lt;h1 class="vl-vt-shared-hero"&gt;
+    Build motion-rich interfaces
+  &lt;/h1&gt;
+
+  &lt;img
+    src="/hero.jpg"
+    alt="Motion design system preview"
+    class="vl-vt-shared-media"
+    width="1200"
+    height="675"
+  /&gt;
+
+  &lt;p&gt;
+    Velora proves that HTML and CSS are enough to build premium motion.
+  &lt;/p&gt;
+
+  &lt;a href="/docs" class="vl-cta" vl-effect="icon-shift"&gt;
+    Get started
+    &lt;svg aria-hidden="true" width="16" height="16"&gt;...&lt;/svg&gt;
+  &lt;/a&gt;
+&lt;/section&gt;</code></pre>
+
+  <h3>Feature Flow — Full Example</h3>
+  <pre><code>&lt;section
+  vl-scene="features"
+  vl-effect="scene-feature-flow"
+  vl-timeline="view"&gt;
+
+  &lt;!-- Each direct child flows in with cascading scroll-driven ranges --&gt;
+  &lt;div class="vl-card"&gt;
+    &lt;div class="vl-card__title"&gt;Feature One&lt;/div&gt;
+    &lt;p class="vl-card__body"&gt;Description&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="vl-card"&gt;...&lt;/div&gt;
+  &lt;div class="vl-card"&gt;...&lt;/div&gt;
+  &lt;div class="vl-card"&gt;...&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+  <h3>Story Pin — Full Example</h3>
+  <pre><code>&lt;!-- Wrap in a tall outer container to create scroll space --&gt;
+&lt;div style="height: 300vh;"&gt;
+  &lt;section
+    vl-scene="story"
+    vl-effect="scene-story-pin"&gt;
+    &lt;h2&gt;Chapter One&lt;/h2&gt;
+    &lt;p&gt;This section stays fixed while you scroll.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+
+  <h2>Child Choreography — vl-children</h2>
+  <p>
+    For custom compositions that don't use a named scene preset, use <code>vl-children</code> to
+    choreograph direct children:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Effect on children</th><th>Easing</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>stagger</code></td>
+        <td><code>fade-up</code> with incremental delays (n × stagger-step)</td>
+        <td><code>--vl-ease-cinematic</code></td>
+      </tr>
+      <tr>
+        <td><code>cascade</code></td>
+        <td><code>flow-in</code> (blur + translate + scale) with incremental delays</td>
+        <td><code>--vl-ease-out-soft</code></td>
+      </tr>
+      <tr>
+        <td><code>sequence</code></td>
+        <td><code>fade-up</code> with delays based on full animation duration (one-after-another)</td>
+        <td><code>--vl-ease-cinematic</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Supports up to 12 children for <code>stagger</code> and <code>cascade</code>, 6 for <code>sequence</code>.</p>
+
+  <pre><code>&lt;!-- Staggered grid of cards --&gt;
+&lt;div
+  vl-children="stagger"
+  vl-stagger="80ms"
+  vl-timeline="view"
+  style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;"&gt;
+  &lt;div class="vl-card"&gt;Card 1&lt;/div&gt;
+  &lt;div class="vl-card"&gt;Card 2&lt;/div&gt;
+  &lt;div class="vl-card"&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Sequential one-after-another reveal --&gt;
+&lt;ol vl-children="sequence" vl-timeline="view"&gt;
+  &lt;li&gt;Step 1 — plays first&lt;/li&gt;
+  &lt;li&gt;Step 2 — plays after step 1 finishes&lt;/li&gt;
+  &lt;li&gt;Step 3 — plays after step 2 finishes&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+  <h2>Stagger Interval — vl-stagger</h2>
+  <p>
+    Override the default <code>--vl-stagger-step</code> (45ms) with one of the preset values:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Delay per child</th><th>Feel</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>60ms</code></td><td>60ms</td><td>Quick, snappy</td></tr>
+      <tr><td><code>80ms</code></td><td>80ms</td><td>Balanced</td></tr>
+      <tr><td><code>100ms</code></td><td>100ms</td><td>Comfortable</td></tr>
+      <tr><td><code>120ms</code></td><td>120ms</td><td>Slightly cinematic</td></tr>
+      <tr><td><code>150ms</code></td><td>150ms</td><td>Deliberate pacing</td></tr>
+      <tr><td><code>200ms</code></td><td>200ms</td><td>Dramatic, slow cascade</td></tr>
+    </tbody>
+  </table>
+  <pre><code>&lt;div vl-children="stagger" vl-stagger="120ms"&gt;
+  &lt;div&gt;Plays at 0ms&lt;/div&gt;
+  &lt;div&gt;Plays at 120ms&lt;/div&gt;
+  &lt;div&gt;Plays at 240ms&lt;/div&gt;
+  &lt;div&gt;Plays at 360ms&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h2>Live Demo</h2>
+  <div
+    vl-children="stagger"
+    vl-stagger="100ms"
+    vl-timeline="view"
+    class="docs-grid-3 docs-section-block">
+    <div class="vl-card">
+      <div class="vl-card__title">Child 1</div>
+      <p class="vl-card__body">Fades up immediately.</p>
+    </div>
+    <div class="vl-card">
+      <div class="vl-card__title">Child 2</div>
+      <p class="vl-card__body">100ms after child 1.</p>
+    </div>
+    <div class="vl-card">
+      <div class="vl-card__title">Child 3</div>
+      <p class="vl-card__body">200ms after child 1.</p>
+    </div>
+  </div>
+
+  <h2>Accessibility</h2>
+  <p>
+    Scene presets and <code>vl-children</code> choreography all disable under
+    <code>prefers-reduced-motion: reduce</code> — children appear in their final state instantly.
+    Semantic structure (heading hierarchy, landmark roles) should be maintained regardless of motion.
+  </p>
+
+  <h2>Browser Support</h2>
+  <p>
+    <code>scene-hero-reveal</code>, <code>scene-layer-stack</code>, and <code>vl-children</code>
+    orchestrations use time-based delays and work in all modern browsers.
+    <code>scene-feature-flow</code> and <code>scene-story-pin</code> use scroll-driven timelines and
+    require Chrome 115+ / Edge 115+. Unsupported browsers see a static layout.
+  </p>
+</Base>

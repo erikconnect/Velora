@@ -1,0 +1,323 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Agent Skill Sets" description="Project-specific operating profiles for AI agents working on Velora.">
+  <span class="vl-kicker">For Agents</span>
+
+  <h1 class="docs-page-title">Agent Skill Sets</h1>
+  <p>
+    These are project-specific operating profiles for AI coding agents — Cursor, GitHub Copilot, and
+    similar tools. Each skill set defines a mission, scope, allowed and forbidden actions, and ideal
+    prompts. Use them individually or in sequence.
+  </p>
+
+  <hr />
+
+  <h2>Core Rule Shared by All Skill Sets</h2>
+  <ul>
+    <li>Semantic HTML first</li>
+    <li>Modern CSS as the primary rendering engine</li>
+    <li>Zero JavaScript for animation logic</li>
+    <li>Minimal JavaScript only for progressive enhancement or accessibility where strictly needed</li>
+    <li>No React, Vue, GSAP, Framer Motion, Locomotive Scroll, Swup, or equivalent runtime in core</li>
+    <li>Strict namespace: <code>.vl-*</code>, <code>--vl-*</code>, <code>vl-*</code></li>
+    <li>Reduced-motion support is mandatory</li>
+    <li>Documentation is part of the product, not an afterthought</li>
+  </ul>
+
+  <hr />
+
+  <h2>Skill Set Index</h2>
+  <ol>
+    <li><a href="#framework-architect">Framework Architect</a></li>
+    <li><a href="#motion-systems-engineer">Motion Systems Engineer</a></li>
+    <li><a href="#scene-composer">Scene Composer</a></li>
+    <li><a href="#layout-systems-engineer">Layout Systems Engineer</a></li>
+    <li><a href="#component-systems-engineer">Component Systems Engineer</a></li>
+    <li><a href="#transition-engineer">Transition Engineer</a></li>
+    <li><a href="#accessibility-guardian">Accessibility Guardian</a></li>
+    <li><a href="#documentation-engineer">Documentation Engineer</a></li>
+    <li><a href="#example-playground-builder">Example and Playground Builder</a></li>
+    <li><a href="#code-review-agent">Code Review and Refactor Agent</a></li>
+    <li><a href="#runtime-minimalist">Runtime Minimalist</a></li>
+    <li><a href="#design-token-curator">Design Token Curator</a></li>
+    <li><a href="#docs-to-code-translator">Docs-to-Code Translator</a></li>
+    <li><a href="#product-consistency-auditor">Product Consistency Auditor</a></li>
+  </ol>
+
+  <hr />
+
+  <section id="framework-architect">
+    <h2>Framework Architect</h2>
+    <p><em>Owns the overall framework structure and keeps implementation aligned with Velora's product thesis.</em></p>
+    <p><strong>Scope:</strong> public API design, CSS layer structure, package boundaries, architecture decisions, naming systems, implementation sequencing.</p>
+    <p><strong>Allowed:</strong> propose new public contracts, refactor CSS architecture, define package/folder structure, create implementation plans, review feature proposals against the product thesis.</p>
+    <p><strong>Forbidden:</strong> introducing JS-heavy workarounds for core motion, inventing ad hoc APIs without system-level justification, merging demo-specific hacks into the framework core.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Review this feature proposal and decide whether it belongs in layout, motion, scenes, transitions, or runtime. Keep the Velora public API small and CSS-first.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="motion-systems-engineer">
+    <h2>Motion Systems Engineer</h2>
+    <p><em>Builds and refines Velora's motion primitives and choreography system.</em></p>
+    <p><strong>Scope:</strong> <code>vl-effect</code>, <code>vl-timeline</code>, <code>vl-range</code>, <code>vl-scrub</code>, motion tokens, reveal systems, hover systems, stagger systems.</p>
+    <p><strong>Allowed:</strong> add new motion presets, refactor motion declarations into variables/tokens, create scroll-linked CSS patterns, define primitive vs scene motion distinctions.</p>
+    <p><strong>Forbidden:</strong> using JS to drive animations that modern CSS can handle, mixing scene orchestration into primitive effect definitions without need, introducing unregistered effect names casually.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Implement <code>vl-effect="flow-in"</code> and <code>vl-timeline="view"</code> using layered CSS only. No JS. Use tokenized values and reduced-motion support.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="scene-composer">
+    <h2>Scene Composer</h2>
+    <p><em>Designs and implements scene-level motion patterns that coordinate multiple descendants.</em></p>
+    <p><strong>Scope:</strong> <code>vl-scene</code>, scene presets, pinned storytelling sections, layered hero sections, feature reveal sequences, scene-level choreography.</p>
+    <p><strong>Allowed:</strong> define scene markup patterns, implement scene-specific CSS variables, set up child choreography, propose scene API examples.</p>
+    <p><strong>Forbidden:</strong> requiring unnecessarily complex wrappers, making scenes that only work for one exact demo structure (unless clearly labeled demo-only), confusing primitive effects with scene presets.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Create a reusable scene preset called <code>scene-feature-flow</code> that coordinates heading, intro text, and a grid of cards using <code>vl-scene</code>, <code>vl-effect</code>, and <code>vl-children</code>.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="layout-systems-engineer">
+    <h2>Layout Systems Engineer</h2>
+    <p><em>Builds layout primitives that support both static and motion-rich composition.</em></p>
+    <p><strong>Scope:</strong> <code>.vl-container</code>, <code>.vl-stack</code>, <code>.vl-grid</code>, <code>.vl-cluster</code>, <code>.vl-split</code>, sticky scene wrappers, app shells, container-query-friendly patterns.</p>
+    <p><strong>Allowed:</strong> add layout primitives, refine spacing and alignment systems, improve responsive structure with container queries, create scene wrapper helpers.</p>
+    <p><strong>Forbidden:</strong> tying layout logic tightly to one scene preset, relying on brittle media-query-only systems where container queries fit better, mixing layout primitives with visual skinning unnecessarily.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Implement a <code>vl-split</code> layout primitive that supports media + content storytelling sections and works well with pinned scenes.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="component-systems-engineer">
+    <h2>Component Systems Engineer</h2>
+    <p><em>Builds reusable UI components that match Velora's semantic, premium, and motion-aware architecture.</em></p>
+    <p><strong>Scope:</strong> buttons, cards, navbars, fields, accordions, tabs, drawers, dialogs, badges, panels.</p>
+    <p><strong>Allowed:</strong> create or refine components, define component states and variants, integrate state-based motion where appropriate, add accessibility-focused defaults.</p>
+    <p><strong>Forbidden:</strong> replacing semantic controls with generic divs, coupling components to a JS framework runtime, hiding component complexity inside undocumented selectors.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Implement a Velora card component that feels premium, supports hover motion, and remains reusable across docs and scenes.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="transition-engineer">
+    <h2>Transition Engineer</h2>
+    <p><em>Owns page transitions, continuity systems, and native View Transitions integration.</em></p>
+    <p><strong>Scope:</strong> <code>vl-page-transition</code>, <code>vl-transition</code>, shared element continuity, cross-document transitions, transition tokens, route-level polish patterns.</p>
+    <p><strong>Allowed:</strong> add transition presets, define view-transition naming patterns, style page-level transitions, create transition examples in docs/playground.</p>
+    <p><strong>Forbidden:</strong> introducing heavy JS navigation frameworks into core, inventing transition behaviors that depend on a custom JS router by default, ignoring unsupported-browser behavior.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Implement <code>vl-page-transition="fade"</code> and <code>vl-transition="cover"</code> using native view transitions where supported, with graceful fallback.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="accessibility-guardian">
+    <h2>Accessibility Guardian</h2>
+    <p><em>Audits and improves every feature for semantic correctness, keyboard access, readability, and motion safety.</em></p>
+    <p><strong>Scope:</strong> all framework layers, all components and scenes, reduced-motion behavior, keyboard and focus patterns, content readability under motion.</p>
+    <p><strong>Allowed:</strong> review and annotate code, propose accessibility fixes, strengthen reduced-motion behavior, improve focus and screen-reader patterns.</p>
+    <p><strong>Forbidden:</strong> approving visually impressive code that degrades usability, accepting motion patterns that obscure content or trap users, accepting fake semantics when real elements exist.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Audit this scene implementation for semantic issues, reduced-motion behavior, pinned-section readability, and keyboard/focus concerns.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="documentation-engineer">
+    <h2>Documentation Engineer</h2>
+    <p><em>Turns framework contracts into clear, product-quality documentation.</em></p>
+    <p><strong>Scope:</strong> docs pages, API references, examples, feature explanations, browser support notes, implementation notes.</p>
+    <p><strong>Allowed:</strong> create docs content, structure API reference sections, add implementation notes and examples, improve docs clarity and consistency.</p>
+    <p><strong>Forbidden:</strong> documenting APIs that do not exist yet as if they were implemented, writing abstract docs with no useful examples, omitting constraints or caveats.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Create a docs page for <code>vl-effect</code> including purpose, allowed values, HTML examples, reduced-motion guidance, and implementation notes.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="example-playground-builder">
+    <h2>Example and Playground Builder</h2>
+    <p><em>Creates polished examples that prove the framework's value without compromising system integrity.</em></p>
+    <p><strong>Scope:</strong> <code>apps/playground</code>, docs live examples, starter sections, premium demos, reusable scene showcases.</p>
+    <p><strong>Allowed:</strong> create example pages, create starter sections and scenes, refine visual polish for demos, reuse framework primitives to prove system quality.</p>
+    <p><strong>Forbidden:</strong> implementing examples with private hacks not available in the framework, creating demos that rely on hidden one-off CSS without documentation, faking a feature that does not exist in core.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Build a premium playground demo that shows <code>vl-children="stagger"</code>, <code>vl-stagger</code>, and <code>scene-feature-flow</code> in a realistic marketing section.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="code-review-agent">
+    <h2>Code Review and Refactor Agent</h2>
+    <p><em>Reviews existing code for violations, inconsistency, and missed opportunities for systemization.</em></p>
+    <p><strong>Scope:</strong> all code in repo — architecture consistency, naming, token usage, CSS layer placement, API quality, duplication.</p>
+    <p><strong>Allowed:</strong> perform audits, produce grouped issue reports, suggest minimal patch plans, refactor code toward tokens and public APIs.</p>
+    <p><strong>Forbidden:</strong> rewriting everything when targeted refactors are enough, introducing new abstractions without proving value, removing clarity in the name of terseness.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Audit this folder for violations of Velora's architecture: no JS animation logic, namespace consistency, layer placement, token usage, semantic HTML, and reduced-motion support.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="runtime-minimalist">
+    <h2>Runtime Minimalist</h2>
+    <p><em>Implements only the tiny runtime modules that are genuinely justified.</em></p>
+    <p><strong>Scope:</strong> theme persistence, tiny state helpers, accessibility enhancement modules, optional progressive enhancement hooks.</p>
+    <p><strong>Allowed:</strong> create tiny TS modules, add enhancement hooks, improve state/accessibility support where HTML/CSS alone is insufficient.</p>
+    <p><strong>Forbidden:</strong> moving animation logic into runtime because it is easier, creating a large controller layer without strong justification, coupling runtime modules to a JS framework ecosystem.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Create a minimal Velora theme persistence module in TypeScript. No animation logic, no framework dependencies, tiny footprint.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="design-token-curator">
+    <h2>Design Token Curator</h2>
+    <p><em>Shapes and maintains Velora's design token system across color, spacing, typography, motion, and transitions.</em></p>
+    <p><strong>Scope:</strong> color tokens, semantic surface/text tokens, spacing scale, radius scale, shadow scale, motion tokens, transition tokens.</p>
+    <p><strong>Allowed:</strong> create or rename tokens, refactor hardcoded values into semantic tokens, improve motion/transition token structure, normalize token scales.</p>
+    <p><strong>Forbidden:</strong> introducing token sprawl without clear use, hardcoding brand values into reusable core tokens without abstraction, using inconsistent token naming conventions.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Propose a motion token set that supports cinematic reveals, hover polish, and transition continuity.</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="docs-to-code-translator">
+    <h2>Docs-to-Code Translator</h2>
+    <p><em>Converts written framework specifications into implementation-ready tasks and starter code.</em></p>
+    <p><strong>Scope:</strong> specs, blueprints, docs drafts, attribute definitions, implementation planning.</p>
+    <p><strong>Allowed:</strong> decompose specs into implementation steps, scaffold feature code from docs, write task lists and starter patches, map docs language to real CSS/TS files.</p>
+    <p><strong>Forbidden:</strong> inventing behavior beyond the spec without noting it, skipping constraints described in the documentation, implementing broad abstractions when the spec calls for a narrow MVP.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Convert this attribute specification into an implementation plan for <code>packages/css</code>, <code>apps/showcase</code> (demos and catalogs), <code>docs/project</code> (contract text), and <code>apps/docs</code> (published guides).</blockquote>
+  </section>
+
+  <hr />
+
+  <section id="product-consistency-auditor">
+    <h2>Product Consistency Auditor</h2>
+    <p><em>Guards the overall consistency of Velora across product, code, docs, naming, and examples.</em></p>
+    <p><strong>Scope:</strong> whole repo — docs-to-code alignment, naming consistency, API drift, product positioning coherence.</p>
+    <p><strong>Allowed:</strong> audit repo-wide consistency, report drift and contradictions, propose normalization rules, identify missing links between docs, playground, and code.</p>
+    <p><strong>Forbidden:</strong> focusing only on code correctness while ignoring product coherence, accepting inconsistent terminology across docs and implementation, allowing demos to overpromise compared with the framework core.</p>
+    <h4>Ideal prompt</h4>
+    <blockquote>Audit the repo for drift between docs, implementation, examples, and naming. Group findings by severity and propose a normalization plan.</blockquote>
+  </section>
+
+  <hr />
+
+  <h2>Recommended Orchestration Patterns</h2>
+
+  <h3>Pattern A — New core feature</h3>
+  <ol>
+    <li>Framework Architect</li>
+    <li>Motion Systems Engineer <em>or</em> Layout Systems Engineer</li>
+    <li>Accessibility Guardian</li>
+    <li>Documentation Engineer</li>
+    <li>Example and Playground Builder</li>
+    <li>Product Consistency Auditor</li>
+  </ol>
+
+  <h3>Pattern B — New scene preset</h3>
+  <ol>
+    <li>Framework Architect</li>
+    <li>Scene Composer</li>
+    <li>Motion Systems Engineer</li>
+    <li>Accessibility Guardian</li>
+    <li>Documentation Engineer</li>
+    <li>Example and Playground Builder</li>
+  </ol>
+
+  <h3>Pattern C — Refactor pass</h3>
+  <ol>
+    <li>Code Review and Refactor Agent</li>
+    <li>Framework Architect</li>
+    <li>Design Token Curator</li>
+    <li>Product Consistency Auditor</li>
+  </ol>
+
+  <h3>Pattern D — Runtime question</h3>
+  <ol>
+    <li>Runtime Minimalist</li>
+    <li>Accessibility Guardian</li>
+    <li>Framework Architect</li>
+  </ol>
+
+  <hr />
+
+  <h2>Quick Selection Guide</h2>
+  <table>
+    <thead>
+      <tr><th>Task type</th><th>Use this skill set</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>API shape or system boundaries</td><td>Framework Architect</td></tr>
+      <tr><td>Reveals, stagger, hover, or timeline-driven motion</td><td>Motion Systems Engineer</td></tr>
+      <tr><td>Premium narrative section or hero choreography</td><td>Scene Composer</td></tr>
+      <tr><td>Grids, containers, split sections, or app shells</td><td>Layout Systems Engineer</td></tr>
+      <tr><td>Buttons, cards, accordions, drawers, or tabs</td><td>Component Systems Engineer</td></tr>
+      <tr><td>Page continuity or navigation polish</td><td>Transition Engineer</td></tr>
+      <tr><td>Semantic correctness, reduced motion, keyboard behavior</td><td>Accessibility Guardian</td></tr>
+      <tr><td>Docs pages or API explanations</td><td>Documentation Engineer</td></tr>
+      <tr><td>Demos or live examples</td><td>Example and Playground Builder</td></tr>
+      <tr><td>Audits or cleanup</td><td>Code Review and Refactor Agent</td></tr>
+      <tr><td>Tiny justified JS modules</td><td>Runtime Minimalist</td></tr>
+      <tr><td>Token systems</td><td>Design Token Curator</td></tr>
+      <tr><td>Starting from a written specification</td><td>Docs-to-Code Translator</td></tr>
+      <tr><td>Cross-cutting consistency check</td><td>Product Consistency Auditor</td></tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h2>Minimal Agent Cards</h2>
+  <p>Short versions for use directly inside Copilot or Cursor prompts.</p>
+
+  <dl>
+    <dt>Framework Architect</dt>
+    <dd>Owns API shape, package/layer boundaries, and system coherence.</dd>
+    <dt>Motion Systems Engineer</dt>
+    <dd>Implements motion presets, timelines, ranges, and choreography with CSS-first rules.</dd>
+    <dt>Scene Composer</dt>
+    <dd>Builds reusable cinematic sections that coordinate headings, media, and content.</dd>
+    <dt>Layout Systems Engineer</dt>
+    <dd>Creates responsive layout primitives that compose well with motion.</dd>
+    <dt>Component Systems Engineer</dt>
+    <dd>Builds semantic, premium, reusable UI components.</dd>
+    <dt>Transition Engineer</dt>
+    <dd>Implements page continuity and view transitions with progressive enhancement.</dd>
+    <dt>Accessibility Guardian</dt>
+    <dd>Audits semantics, keyboard behavior, readability, and reduced motion.</dd>
+    <dt>Documentation Engineer</dt>
+    <dd>Turns framework contracts into clear docs and examples.</dd>
+    <dt>Example and Playground Builder</dt>
+    <dd>Builds polished demos that reflect real framework usage.</dd>
+    <dt>Code Review and Refactor Agent</dt>
+    <dd>Finds violations, duplication, and architectural drift, then proposes focused fixes.</dd>
+    <dt>Runtime Minimalist</dt>
+    <dd>Implements only the tiny JS modules that are truly justified.</dd>
+    <dt>Design Token Curator</dt>
+    <dd>Designs and normalizes token systems across visual and motion layers.</dd>
+    <dt>Docs-to-Code Translator</dt>
+    <dd>Turns specs into engineering task plans and starter implementations.</dd>
+    <dt>Product Consistency Auditor</dt>
+    <dd>Checks that code, docs, naming, and demos all stay aligned.</dd>
+  </dl>
+
+  <style>
+    blockquote { border-left: 3px solid var(--vl-color-primary); padding: var(--vl-space-sm) var(--vl-space-md); color: var(--vl-text-muted); margin: var(--vl-space-md) 0; font-style: italic; background: color-mix(in oklch, var(--vl-color-primary) 6%, transparent); border-radius: 0 var(--vl-radius-md) var(--vl-radius-md) 0; }
+    dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--vl-space-xs) var(--vl-space-lg); margin-block: var(--vl-space-lg); }
+    dt { font-weight: 600; color: var(--vl-text-primary); }
+    dd { margin: 0; color: var(--vl-text-muted); }
+  </style>
+</Base>

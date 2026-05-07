@@ -13,16 +13,6 @@
     <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link rel="stylesheet" href="/css/landing.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
-    <style>
-      @view-transition { navigation: auto; }
-      body { background: var(--vl-bg-main); overflow-x: hidden; }
-      /* ── Page section view-timelines (consumed by the shared bussola) ── */
-      #lnd-hero     { view-timeline-name: --tl-1; view-timeline-axis: block; }
-      #lnd-layering { view-timeline-name: --tl-2; view-timeline-axis: block; }
-      #lnd-system   { view-timeline-name: --tl-3; view-timeline-axis: block; }
-      #lnd-editorial { view-timeline-name: --tl-4; view-timeline-axis: block; }
-      #lnd-payoff   { view-timeline-name: --tl-5; view-timeline-axis: block; }
-    </style>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -103,6 +93,42 @@
             </svg>
           </a>
           <a class="vl-header-get-started" href="/pages/tools/architecture.html" vl-effect="hover-depth-press">Get Started</a>
+        </div>
+        <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Open navigation menu" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="4" width="16" height="1.8" rx="0.9"/>
+            <rect x="1" y="8.1" width="16" height="1.8" rx="0.9"/>
+            <rect x="1" y="12.2" width="16" height="1.8" rx="0.9"/>
+          </svg>
+        </button>
+      </div>
+      <div class="vl-header__drawer" id="vl-mobile-nav" aria-hidden="true">
+        <nav class="vl-header__mobile-nav" aria-label="Mobile navigation">
+          <a class="vl-header__mobile-link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-header__mobile-link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-header__mobile-link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-header__mobile-link" href="/pages/motion/zero-js-motion.html">Motion</a>
+          <a class="vl-header__mobile-link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-header__mobile-link" href="/pages/library/index.html">Library</a>
+        </nav>
+        <div class="vl-header__mobile-actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+          <a class="vl-header-get-started" href="/pages/tools/architecture.html">Get Started</a>
         </div>
       </div>
     </header>

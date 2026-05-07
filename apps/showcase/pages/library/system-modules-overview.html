@@ -41,12 +41,12 @@
           </svg>
         </a>
         <nav class="vl-header__nav" aria-label="Primary navigation">
-          <a class="vl-nav__link" href="/pages/core/landing.html">Framework</a>
-          <a class="vl-nav__link" href="/pages/library/gallery.html">Components</a>
-          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html">Scenes</a>
-          <a class="vl-nav__link" href="/pages/motion/zero-js-motion.html">Motion</a>
-          <a class="vl-nav__link" href="/pages/color/design-tokens.html">Tokens</a>
-          <a class="vl-nav__link" href="/pages/library/index.html">Library</a>
+          <a class="vl-nav__link" href="/pages/core/landing.html" vl-effect="underline-expand">Framework</a>
+          <a class="vl-nav__link" href="/pages/library/gallery.html" vl-effect="underline-expand">Components</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-hero.html" vl-effect="underline-expand">Scenes</a>
+          <a class="vl-nav__link" href="/pages/motion/zero-js-motion.html" vl-effect="underline-expand">Motion</a>
+          <a class="vl-nav__link" href="/pages/color/design-tokens.html" vl-effect="underline-expand">Tokens</a>
+          <a class="vl-nav__link" href="/pages/library/index.html" vl-effect="underline-expand">Library</a>
         </nav>
         <div class="vl-header__actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -70,7 +70,43 @@
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
-          <a class="vl-header-get-started" href="/pages/core/landing.html">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/tools/architecture.html" vl-effect="hover-depth-press">Get Started</a>
+        </div>
+        <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Abrir menu de navegacao" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="4" width="16" height="1.8" rx="0.9"/>
+            <rect x="1" y="8.1" width="16" height="1.8" rx="0.9"/>
+            <rect x="1" y="12.2" width="16" height="1.8" rx="0.9"/>
+          </svg>
+        </button>
+      </div>
+      <div class="vl-header__drawer" id="vl-mobile-nav" aria-hidden="true">
+        <nav class="vl-header__mobile-nav" aria-label="Mobile navigation">
+          <a class="vl-header__mobile-link" href="/pages/core/landing.html">Framework</a>
+          <a class="vl-header__mobile-link" href="/pages/library/gallery.html">Components</a>
+          <a class="vl-header__mobile-link" href="/pages/scenes/scene-hero.html">Scenes</a>
+          <a class="vl-header__mobile-link" href="/pages/motion/zero-js-motion.html">Motion</a>
+          <a class="vl-header__mobile-link" href="/pages/color/design-tokens.html">Tokens</a>
+          <a class="vl-header__mobile-link" href="/pages/library/index.html">Library</a>
+        </nav>
+        <div class="vl-header__mobile-actions">
+          <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
+          </div>
+          <a class="vl-header-get-started" href="/pages/tools/architecture.html">Get Started</a>
         </div>
       </div>
     </header>
@@ -264,6 +300,7 @@
               <li><a class="vl-footer__link" href="/pages/scenes/scene-features.html">Feature Flow</a></li>
               <li><a class="vl-footer__link" href="/pages/scenes/scene-story.html">Story Pin</a></li>
               <li><a class="vl-footer__link" href="/pages/scenes/scroll-reveal.html">Scroll Reveal</a></li>
+              <li><a class="vl-footer__link" href="/pages/integrations/gsap-anime.html">Motion Enhancements</a></li>
               <li><a class="vl-footer__link" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a></li>
               <li><a class="vl-footer__link" href="/pages/motion/motion-extended.html">Motion v2 Extended</a></li>
               <li><a class="vl-footer__link" href="/pages/motion/motion-principles.html">Motion Principles</a></li>

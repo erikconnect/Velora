@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" fill="none" aria-hidden="true">
+  <title>Velora @layer cascade</title>
+  <g stroke="currentColor" stroke-width="1" opacity="0.22">
+    <path d="M12 12h536v276H12z"/>
+    <path d="M24 24h512v252H24z"/>
+    <path d="M36 36h488v228H36z"/>
+  </g>
+  <g stroke="currentColor" stroke-width="1.2" opacity="0.45">
+    <line x1="48" y1="52" x2="512" y2="52"/>
+    <line x1="48" y1="108" x2="512" y2="108"/>
+    <line x1="48" y1="164" x2="512" y2="164"/>
+    <line x1="48" y1="220" x2="512" y2="220"/>
+  </g>
+  <g fill="currentColor" font-family="system-ui, sans-serif" font-size="13" opacity="0.9">
+    <text x="56" y="44">velora.reset</text>
+    <text x="56" y="100">velora.tokens</text>
+    <text x="56" y="156">velora.layout</text>
+    <text x="56" y="212">velora.motion</text>
+    <text x="56" y="268">velora.components</text>
+  </g>
+  <g opacity="0.35" stroke="currentColor" stroke-width="1">
+    <rect x="320" y="64" width="200" height="112" rx="6"/>
+    <path d="M332 88h176M332 104h140M332 120h160M332 136h128M332 152h152"/>
+  </g>
+  <circle cx="472" cy="228" r="36" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="472" cy="228" r="8" fill="currentColor" opacity="0.35"/>
+</svg>

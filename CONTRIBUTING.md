@@ -29,17 +29,13 @@ pnpm build
 pnpm dev
 ```
 
-4. Run docs locally (optional):
+4. Run the Astro docs site (optional):
 
 ```bash
 pnpm dev:docs
 ```
 
-5. Run both playground and docs simultaneously:
-
-```bash
-pnpm dev:all
-```
+5. Governance and contract Markdown live under [docs/README.md](docs/README.md) (repository `docs/`, not the Astro app).
 
 ## Monorepo Structure
 
@@ -48,8 +44,9 @@ This is a **pnpm workspace** managed with **Turborepo**.
 | Workspace | Path | Purpose |
 |-----------|------|---------|
 | `@velora/css` | `packages/css/` | Core CSS framework |
-| `showcase` | `apps/showcase/` | Vite dev playground (30+ demo pages) |
-| `docs` | `apps/docs/` | Astro documentation site |
+| `showcase` | `apps/showcase/` | Vite dev playground (30+ demo pages + live API catalogs) |
+| `docs` (app) | `apps/docs/` | Astro documentation site |
+| Docs (Markdown) | `docs/` | Contract matrix, workspace map, playbooks, agent handbook (versioned narrative SOT) |
 
 `turbo.json` defines the build pipeline: `packages/css` must build before `apps/*`.
 

@@ -17,6 +17,7 @@ export const TEMPLATE_REGISTRY = {
         "index.html",
         "pages/core/about.html",
         "pages/core/landing.html",
+        "pages/core/page-template.html",
       ],
       scenes: [
         "pages/scenes/scene-hero.html",

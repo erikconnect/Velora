@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#f1ffd4",
+                    "on-primary": "#364430",
+                    "on-tertiary-fixed": "#3e4a2b",
+                    "inverse-surface": "#fafaf4",
+                    "primary-container": "#3d4b36",
+                    "surface-variant": "#212720",
+                    "surface-container": "#171b16",
+                    "surface-bright": "#272e25",
+                    "primary-fixed": "#d7e8cc",
+                    "outline": "#71776e",
+                    "on-secondary": "#1f211e",
+                    "surface-tint": "#bbcbb1",
+                    "surface": "#0d0f0c",
+                    "surface-dim": "#0d0f0c",
+                    "inverse-on-surface": "#545652",
+                    "tertiary-fixed": "#e5f4c9",
+                    "on-surface": "#e1e7dc",
+                    "error-dim": "#ba573f",
+                    "on-secondary-container": "#bfc0bb",
+                    "on-primary-container": "#c5d5ba",
+                    "on-error": "#450900",
+                    "surface-container-high": "#1c211b",
+                    "surface-container-lowest": "#000000",
+                    "tertiary-dim": "#d7e5bb",
+                    "secondary-fixed": "#e3e3de",
+                    "secondary-dim": "#9d9e9a",
+                    "on-tertiary": "#576342",
+                    "tertiary-fixed-dim": "#d7e5bb",
+                    "secondary-container": "#3a3c39",
+                    "on-tertiary-fixed-variant": "#5a6745",
+                    "tertiary-container": "#e2f1c6",
+                    "on-primary-fixed": "#35432f",
+                    "error-container": "#7e2b17",
+                    "surface-container-highest": "#212720",
+                    "on-secondary-fixed-variant": "#5a5c58",
+                    "on-secondary-fixed": "#3e403d",
+                    "primary-fixed-dim": "#c9d9be",
+                    "on-surface-variant": "#a7ada2",
+                    "on-error-container": "#ff9b82",
+                    "outline-variant": "#434a41",
+                    "primary": "#bbcbb1",
+                    "error": "#ed7f64",
+                    "secondary": "#9d9e9a",
+                    "primary-dim": "#aebea4",
+                    "inverse-primary": "#55634d",
+                    "on-background": "#e1e7dc",
+                    "on-primary-fixed-variant": "#51604a",
+                    "on-tertiary-container": "#4f5b3a",
+                    "surface-container-low": "#111410",
+                    "background": "#0d0f0c",
+                    "secondary-fixed-dim": "#d4d5d0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"],
+                    "mono": ["JetBrains Mono"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0d0f0c;
+            color: #e1e7dc;
+        }
+        .grid-blueprint {
+            background-image: radial-gradient(#1c211b 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#0d0f0c] dark:bg-[#0d0f0c] shadow-none">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#bbcbb1] dark:text-[#bbcbb1] font-['Space_Grotesk']">Velora</span>
+<div class="hidden md:flex gap-6">
+<a class="text-[#8a9382] hover:text-[#bbcbb1] transition-colors font-['Space_Grotesk'] tracking-[-0.03em] font-bold" href="#">Docs</a>
+<a class="text-[#bbcbb1] border-b-2 border-[#bbcbb1] pb-1 font-['Space_Grotesk'] tracking-[-0.03em] font-bold" href="#">Framework</a>
+<a class="text-[#8a9382] hover:text-[#bbcbb1] transition-colors font-['Space_Grotesk'] tracking-[-0.03em] font-bold" href="#">Performance</a>
+<a class="text-[#8a9382] hover:text-[#bbcbb1] transition-colors font-['Space_Grotesk'] tracking-[-0.03em] font-bold" href="#">Showcase</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#1a1d18] transition-all duration-200 text-[#bbcbb1]">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<button class="p-2 hover:bg-[#1a1d18] transition-all duration-200 text-[#bbcbb1]">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto grid-blueprint min-h-screen">
+<!-- Header Section -->
+<header class="mb-24 flex flex-col md:flex-row justify-between items-end gap-8">
+<div class="max-w-2xl">
+<p class="text-primary font-label text-xs uppercase tracking-[0.2em] mb-4">Design System v1.0.4</p>
+<h1 class="font-headline text-6xl md:text-8xl font-bold tracking-[-0.04em] text-on-surface leading-none">
+                    Typography Specification &amp; Hierarchy
+                </h1>
+</div>
+<div class="hidden md:block text-right">
+<span class="text-on-surface-variant font-mono text-[10px] uppercase leading-relaxed">
+                    Framework Identity: kinetic_elegance<br/>
+                    Render Engine: oklch_optimized<br/>
+                    Status: system_operational
+                </span>
+</div>
+</header>
+<!-- 1. Display Scales -->
+<section class="mb-32">
+<div class="flex items-center gap-4 mb-12">
+<span class="w-12 h-[1px] bg-outline-variant"></span>
+<h2 class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">01. Display Scales</h2>
+</div>
+<div class="space-y-24">
+<div class="relative group">
+<div class="absolute -left-4 top-0 font-mono text-[10px] text-primary/40 rotate-180 [writing-mode:vertical-lr]">DISPLAY_ULTRA</div>
+<div class="flex flex-col md:flex-row md:items-baseline gap-6">
+<span class="font-headline text-[120px] md:text-[160px] font-bold tracking-[-0.05em] leading-[0.85] text-on-surface group-hover:text-primary transition-colors">
+                            Velora
+                        </span>
+<div class="border-l border-outline-variant/30 pl-6 space-y-1">
+<p class="font-mono text-xs text-primary">160PX / 700 WEIGHT</p>
+<p class="font-mono text-xs text-on-surface-variant">-0.05EM TRACKING</p>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -left-4 top-0 font-mono text-[10px] text-primary/40 rotate-180 [writing-mode:vertical-lr]">DISPLAY_LARGE</div>
+<div class="flex flex-col md:flex-row md:items-baseline gap-6">
+<span class="font-headline text-8xl font-bold tracking-[-0.03em] leading-tight text-on-surface">
+                            Kinetic
+                        </span>
+<div class="border-l border-outline-variant/30 pl-6 space-y-1">
+<p class="font-mono text-xs text-primary">96PX / 700 WEIGHT</p>
+<p class="font-mono text-xs text-on-surface-variant">-0.03EM TRACKING</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Editorial Hierarchy -->
+<section class="mb-32 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-3">
+<div class="sticky top-24">
+<div class="flex items-center gap-4 mb-6">
+<span class="w-8 h-[1px] bg-outline-variant"></span>
+<h2 class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">02. Editorial</h2>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed font-body">
+                        The architectural backbone of the framework. Utilizes Space Grotesk for technical precision and visual weight.
+                    </p>
+</div>
+</div>
+<div class="lg:col-span-9 space-y-12">
+<div class="bg-surface-container-low p-8 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<h1 class="font-headline text-5xl font-bold text-on-surface mb-2">H1 Header Section</h1>
+<p class="font-mono text-[10px] text-on-surface-variant">USAGE: PRIMARY PAGE ANCHORS / 48PX / 1.1LH</p>
+</div>
+<span class="font-mono text-[10px] text-primary bg-primary-container/20 px-2 py-1 rounded">SPACE GROTESK BOLD</span>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<h2 class="font-headline text-4xl font-semibold text-on-surface mb-2">H2 Sub-section Heading</h2>
+<p class="font-mono text-[10px] text-on-surface-variant">USAGE: MAJOR MODULE DIVISIONS / 36PX / 1.2LH</p>
+</div>
+<span class="font-mono text-[10px] text-primary bg-primary-container/20 px-2 py-1 rounded">SPACE GROTESK SEMIBOLD</span>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<h3 class="font-headline text-2xl font-semibold text-on-surface mb-2">H3 Interior Module Title</h3>
+<p class="font-mono text-[10px] text-on-surface-variant">USAGE: CARD TITLES &amp; COMPONENT LABELS / 24PX / 1.3LH</p>
+</div>
+<span class="font-mono text-[10px] text-primary bg-primary-container/20 px-2 py-1 rounded">SPACE GROTESK MEDIUM</span>
+</div>
+</div>
+</section>
+<!-- 3. Body Variants & Principles -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-32">
+<!-- Body Variants -->
+<section>
+<div class="flex items-center gap-4 mb-12">
+<span class="w-12 h-[1px] bg-outline-variant"></span>
+<h2 class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">03. Body Variants</h2>
+</div>
+<div class="space-y-12">
+<div class="space-y-4">
+<p class="font-mono text-[10px] text-primary">BODY_MD / 16PX / MANROPE REGULAR</p>
+<p class="font-body text-base leading-relaxed text-on-surface max-w-md">
+                            The standard body variant is designed for high legibility in documentation and interface descriptions. It maintains a 1.6 line-height to ensure comfort during long-form reading sessions.
+                        </p>
+</div>
+<div class="space-y-4">
+<p class="font-mono text-[10px] text-primary">BODY_SM / 14PX / MANROPE MEDIUM</p>
+<p class="font-body text-sm leading-relaxed text-on-surface-variant max-w-md">
+                            Small variants are used for metadata, tooltips, and secondary interface elements. We increase the weight to Medium to preserve ink-trap clarity at smaller optical sizes on high-DPI displays.
+                        </p>
+</div>
+<div class="space-y-4">
+<p class="font-mono text-[10px] text-primary">LABEL_XS / 10PX / MANROPE BOLD CAPS</p>
+<p class="font-body text-[10px] uppercase tracking-[0.1em] font-bold text-on-surface max-w-md">
+                            TECHNICAL METADATA AND SYSTEM STATUS INDICATORS.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Typographic Principles -->
+<section class="bg-surface-container-high p-12 rounded-xl relative overflow-hidden border border-outline-variant/10">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary/20 text-6xl">architecture</span>
+</div>
+<h2 class="font-headline text-3xl font-bold mb-8 text-primary">The Kinetic Voice</h2>
+<div class="space-y-6 text-on-surface/80 font-body leading-relaxed">
+<p>
+<strong class="text-on-surface">Negative Space as Structure:</strong> We reject the use of lines to contain thought. Instead, we use varying scales and geometric proximity to create hierarchy. White space is not "empty"—it is the frame.
+                    </p>
+<p>
+<strong class="text-on-surface">Extreme Contrast:</strong> By pairing massive Display headings with microscopic metadata, we create a tension that feels both technical and luxurious. This "Editorially Brute" style is the core of Velora.
+                    </p>
+<div class="pt-8 flex gap-4">
+<div class="h-1 w-full bg-primary/20 rounded-full">
+<div class="h-full w-1/3 bg-primary rounded-full"></div>
+</div>
+</div>
+<p class="font-mono text-[10px] text-primary-dim">CORE_PRINCIPLE_01 // ASYMMETRIC_BALANCE</p>
+</div>
+</section>
+</div>
+<!-- 4. Technical Monospace -->
+<section class="mb-12">
+<div class="flex items-center gap-4 mb-8">
+<span class="w-12 h-[1px] bg-outline-variant"></span>
+<h2 class="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">04. Technical Monospace</h2>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/10 rounded-lg overflow-hidden">
+<div class="bg-surface-container px-6 py-3 border-b border-outline-variant/10 flex justify-between items-center">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-error-dim/40"></div>
+<div class="w-2 h-2 rounded-full bg-primary/40"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant/40"></div>
+</div>
+<span class="font-mono text-[10px] text-on-surface-variant uppercase">velora-config.json</span>
+</div>
+<div class="p-8">
+<pre class="font-mono text-sm leading-loose text-on-surface-variant overflow-x-auto"><span class="text-primary">"typography"</span>: {
+    <span class="text-primary">"family"</span>: <span class="text-tertiary">"Space Grotesk"</span>,
+    <span class="text-primary">"weight"</span>: <span class="text-tertiary">700</span>,
+    <span class="text-primary">"letter_spacing"</span>: <span class="text-tertiary">"-0.03em"</span>,
+    <span class="text-primary">"rendering"</span>: <span class="text-tertiary">"anti-aliased-kinetic"</span>,
+    <span class="text-primary">"principles"</span>: [
+        <span class="text-tertiary">"zero_borders"</span>,
+        <span class="text-tertiary">"tonal_depth"</span>,
+        <span class="text-tertiary">"asymmetric_flow"</span>
+    ]
+}</pre>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#0d0f0c] dark:bg-[#0d0f0c] border-t border-[#bbcbb1]/15">
+<div class="flex items-center gap-6">
+<span class="font-['Space_Grotesk'] text-[#bbcbb1] font-bold text-lg">Velora</span>
+<span class="font-['Manrope'] text-xs uppercase tracking-[0.05em] text-[#8a9382]">© 2024 VELORA KINETIC ELEGANCE. ALL SYSTEMS OPERATIONAL.</span>
+</div>
+<div class="flex gap-8">
+<a class="font-['Manrope'] text-xs uppercase tracking-[0.05em] text-[#8a9382] hover:text-[#bbcbb1] transition-colors" href="#">System Status</a>
+<a class="font-['Manrope'] text-xs uppercase tracking-[0.05em] text-[#8a9382] hover:text-[#bbcbb1] transition-colors" href="#">API Reference</a>
+<a class="font-['Manrope'] text-xs uppercase tracking-[0.05em] text-[#8a9382] hover:text-[#bbcbb1] transition-colors" href="#">GitHub</a>
+<a class="font-['Manrope'] text-xs uppercase tracking-[0.05em] text-[#8a9382] hover:text-[#bbcbb1] transition-colors" href="#">Security</a>
+</div>
+</footer>
+</body></html>

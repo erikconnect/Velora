@@ -8,7 +8,7 @@ Garantir que:
 
 - **Showcase** seja apenas demonstração e storytelling técnico do Velora.
 - **Framework** seja um kit CSS canônico + starter mínimo para começar projetos.
-- **Docs** seja a documentação oficial e estável da API/contratos do framework.
+- **Docs** combinem (a) pasta **`docs/`** (Markdown: contrato, governança, agentes) e (b) app **`apps/docs`** (Astro: guias publicados), ambos alinhados aos catálogos do showcase.
 
 ---
 
@@ -23,18 +23,19 @@ Garantir que:
   - Site de demonstração.
   - Exemplos editoriais, catálogos vivos e páginas narrativas.
   - Não define API oficial; apenas consome e demonstra.
-- `apps/docs`
-  - Site oficial de documentação do framework.
-  - Contratos, guias, referência, migração e boas práticas.
+- `docs/` (raiz do monorepo, Markdown)
+  - Fonte narrativa versionada: `project/CONTRACT.md`, playbooks, `WORKSPACE.md`, handbook de agentes.
+- `apps/docs` (Astro)
+  - Site de documentação navegável; não substitui o contrato em Markdown — espelha e explica o mesmo modelo.
 
 ### 1.2 Regra de decisão
 
 Se houver conflito entre superfícies:
 
 1. `packages/css` prevalece
-2. `CONTRACT.md` prevalece
+2. `docs/project/CONTRACT.md` prevalece (texto do contrato)
 3. catálogos (`api-motion-catalog`, `api-design-catalog`) refletem o contrato
-4. docs explicam o contrato
+4. `docs/project` e ficheiros relacionados explicam o contrato
 5. showcase exemplifica o contrato
 
 ### 1.3 Definition of Done (boundary)
@@ -82,7 +83,9 @@ Criar starter de referência para “projeto do zero”:
 
 ### 3.2 Docs (fonte de aprendizado)
 
-- Estrutura alvo:
+- **Markdown (`docs/`):** contrato, governança, agentes — sempre versionado com o código.
+- **Astro (`apps/docs`):** guias e páginas navegáveis — mesma história, outro formato.
+- Estrutura alvo (Astro + narrativa):
   - Introdução
   - Instalação / setup
   - Contrato de atributos
@@ -101,10 +104,10 @@ Criar starter de referência para “projeto do zero”:
 
 ## Sequência recomendada de execução
 
-1. Boundary/gov (este documento + `CONTRACT.md` + playbook)
+1. Boundary/gov (este documento + `docs/project/CONTRACT.md` + playbook)
 2. Starter oficial do framework
 3. Curadoria final dos catálogos
-4. Migração da documentação final para `apps/docs`
+4. Curadoria do conteúdo Astro em `apps/docs` para refletir o contrato e os catálogos
 5. Revisão final de consistência com `pnpm verify:contract`
 
 ---

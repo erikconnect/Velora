@@ -3,6 +3,36 @@
  * Page-level composition only. Framework tokens and components live in @velora/css.
  */
 
+@view-transition {
+  navigation: auto;
+}
+
+/* Section view timelines — consumed by `.vl-bussola` in showcase-reference-pages.css */
+#lnd-hero {
+  view-timeline-name: --tl-1;
+  view-timeline-axis: block;
+}
+
+#lnd-layering {
+  view-timeline-name: --tl-2;
+  view-timeline-axis: block;
+}
+
+#lnd-system {
+  view-timeline-name: --tl-3;
+  view-timeline-axis: block;
+}
+
+#lnd-editorial {
+  view-timeline-name: --tl-4;
+  view-timeline-axis: block;
+}
+
+#lnd-payoff {
+  view-timeline-name: --tl-5;
+  view-timeline-axis: block;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -19,6 +49,7 @@
 body {
   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: hidden;
   background:
     radial-gradient(ellipse at 20% 0%, color-mix(in oklch, var(--vl-color-primary) 12%, transparent), transparent 50%),
     radial-gradient(ellipse at 80% 10%, color-mix(in oklch, var(--vl-color-secondary) 8%, transparent), transparent 45%),

@@ -29,7 +29,7 @@ Regras:
 
 Antes de usar qualquer atributo `vl-*`, confirme no contrato:
 
-- `CONTRACT.md`
+- `docs/project/CONTRACT.md`
 - `apps/showcase/scripts/validate-showcase-contract.mjs`
 
 Nunca usar aliases deprecados:
@@ -46,7 +46,7 @@ Nunca usar aliases deprecados:
 - Não simular API de motion só com classes.
 - Não criar novo `vl-`* em página sem atualizar:
   1. `packages/css/src`
-  2. `CONTRACT.md`
+  2. `docs/project/CONTRACT.md`
   3. catálogo correspondente
   4. validador de contrato
 
@@ -81,4 +81,4 @@ Na raiz do repositório:
 
 ---
 
-Se este playbook conflitar com `CONTRACT.md`, o `CONTRACT.md` prevalece.
+Se este playbook conflitar com `docs/project/CONTRACT.md`, o contrato em `docs/project/CONTRACT.md` prevalece.

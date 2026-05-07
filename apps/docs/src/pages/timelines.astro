@@ -1,0 +1,68 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Timelines">
+  <span class="vl-kicker">Motion</span>
+
+  <h1 class="docs-page-title">Timelines</h1>
+  <p class="docs-page-lead docs-page-lead--compact">
+    Control when and how animations progress via <code>vl-timeline</code>.
+    See also: <a href="/attributes/#vl-timeline" class="docs-link-primary">Attribute Reference → vl-timeline</a>.
+  </p>
+
+  <h2>Timeline Modes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>view</code></td><td>Scroll-driven via <code>view(block)</code> — element's viewport entry controls progress</td></tr>
+      <tr><td><code>scroll</code></td><td>Scroll-driven via <code>scroll(root)</code> — page scroll position controls progress</td></tr>
+      <tr><td><code>auto</code></td><td>Standard time-based (document timeline)</td></tr>
+      <tr><td><code>hover</code></td><td>Animation paused until hover</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Range Presets</h2>
+  <p>Pair <code>vl-timeline="view"</code> with <code>vl-range</code> to control the animation window:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Value</th>
+        <th>Range</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>entry</code></td><td><code>entry 0% entry 100%</code></td></tr>
+      <tr><td><code>entry-short</code></td><td><code>entry 15% cover 35%</code></td></tr>
+      <tr><td><code>entry-long</code></td><td><code>entry 0% cover 70%</code></td></tr>
+      <tr><td><code>cover</code></td><td><code>cover 0% cover 100%</code></td></tr>
+      <tr><td><code>contain</code></td><td><code>contain 0% contain 100%</code></td></tr>
+      <tr><td><code>custom</code></td><td>Uses <code>--vl-range</code> custom property</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Boolean Modifiers</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>vl-pin</code></td><td>Sticky positioning for scroll-driven scenes</td></tr>
+      <tr><td><code>vl-scrub</code></td><td>Continuous linked motion (linear timing)</td></tr>
+      <tr><td><code>vl-once</code></td><td>Play animation only once (forwards fill)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Example</h2>
+  <pre><code>&lt;div vl-effect="fade-up" vl-timeline="view" vl-range="entry-short" vl-once&gt;
+  Appears quickly as it enters the viewport, then stays visible.
+&lt;/div&gt;</code></pre>
+</Base>

@@ -1,0 +1,252 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Page Transitions" description="MPA cross-document view transitions with vl-page-transition presets and shared element morphing.">
+  <span class="vl-kicker">Navigation</span>
+
+  <h1 class="docs-page-title">Page Transitions</h1>
+  <p class="docs-page-lead">
+    Native cross-document View Transitions — no router, no JavaScript. Just CSS and the
+    <code>vl-page-transition</code> attribute.
+  </p>
+
+  <h2>How to Enable</h2>
+  <p>
+    View Transitions require the browser's navigation opt-in. Velora ships this in its main CSS entry:
+  </p>
+  <pre><code>/* Already included with @import "@velora/css" */
+@view-transition &#123;
+  navigation: auto;
+&#125;</code></pre>
+  <p>
+    Then set the transition preset on your root <code>&lt;html&gt;</code> element:
+  </p>
+  <pre><code>&lt;!-- In your root layout --&gt;
+&lt;html vl-page-transition="cinema"&gt;</code></pre>
+  <p>
+    Omit the attribute (or use an unknown value) to get the default Velora transition.
+  </p>
+
+  <h2>Root Transition Presets</h2>
+  <p>
+    Applied to the <code>&lt;html&gt;</code> element via <code>vl-page-transition</code>:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Out animation</th><th>In animation</th><th>Feel</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>(default / velora)</em></td>
+        <td>Blur + scale down + fade</td>
+        <td>Blur + scale up + fade</td>
+        <td>Cinematic, asymmetric</td>
+      </tr>
+      <tr>
+        <td><code>wipe</code></td>
+        <td>Clip-path curtain closes upward</td>
+        <td>Clip-path curtain opens downward</td>
+        <td>Editorial, theatrical</td>
+      </tr>
+      <tr>
+        <td><code>glide</code></td>
+        <td>Slide left + fade</td>
+        <td>Slide from right + fade</td>
+        <td>App-like, directional</td>
+      </tr>
+      <tr>
+        <td><code>iris</code></td>
+        <td>Circular clip closes from center</td>
+        <td>Circular clip opens from center</td>
+        <td>Dramatic, cinematic iris</td>
+      </tr>
+      <tr>
+        <td><code>cinema</code></td>
+        <td>Blur + brightness flash + scale + clip-inset</td>
+        <td>Blur + scale + clip-inset + brightness</td>
+        <td>Most dramatic, premium</td>
+      </tr>
+      <tr>
+        <td><code>snap</code></td>
+        <td>Quick down + slight tilt</td>
+        <td>Quick from above + slight tilt</td>
+        <td>Snappy, spring-based</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre><code>&lt;!-- Default Velora transition --&gt;
+&lt;html&gt;
+
+&lt;!-- Wipe curtain --&gt;
+&lt;html vl-page-transition="wipe"&gt;
+
+&lt;!-- Cinematic iris --&gt;
+&lt;html vl-page-transition="iris"&gt;
+
+&lt;!-- Ultra-dramatic cinema --&gt;
+&lt;html vl-page-transition="cinema"&gt;</code></pre>
+
+  <h2>Transition Timing</h2>
+  <p>Override the duration globally with a CSS custom property:</p>
+  <pre><code>:root &#123;
+  --vl-vt-root-duration: 0.4s;    /* speed up all page transitions */
+  --vl-vt-shared-duration: 0.5s;  /* speed up shared element transitions */
+&#125;</code></pre>
+
+  <h2>Shared Element Transitions</h2>
+  <p>
+    Shared elements morph smoothly between pages when they carry a stable <code>view-transition-name</code>.
+    Velora provides built-in classes with pre-defined names and matching keyframes:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Class</th><th><code>view-transition-name</code></th><th>Keyframe pair</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.vl-vt-shared-hero</code></td>
+        <td><code>hero-title</code></td>
+        <td>Translate + scale hero heading between pages</td>
+      </tr>
+      <tr>
+        <td><code>.vl-vt-shared-media</code></td>
+        <td><code>hero-media</code></td>
+        <td>Cross-fade with saturation + scale shift for images</td>
+      </tr>
+      <tr>
+        <td><code>.vl-vt-shared-nav</code></td>
+        <td><code>site-nav</code></td>
+        <td>Glide nav from above on page enter</td>
+      </tr>
+      <tr>
+        <td><code>.vl-vt-shared-brand</code></td>
+        <td><code>site-brand</code></td>
+        <td>Spring snap for brand logo between pages</td>
+      </tr>
+      <tr>
+        <td><code>.vl-vt-shared-card</code></td>
+        <td><code>shared-card</code></td>
+        <td>Glide from card list → detail page</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Hero Morph Example</h3>
+  <pre><code>&lt;!-- Page A: blog list --&gt;
+&lt;article&gt;
+  &lt;img src="post.jpg" alt="" class="vl-vt-shared-media" /&gt;
+  &lt;h2 class="vl-vt-shared-hero"&gt;Post Title&lt;/h2&gt;
+  &lt;a href="/posts/post-title"&gt;Read more&lt;/a&gt;
+&lt;/article&gt;
+
+&lt;!-- Page B: blog post --&gt;
+&lt;article&gt;
+  &lt;img src="post.jpg" alt="" class="vl-vt-shared-media" /&gt;
+  &lt;h1 class="vl-vt-shared-hero"&gt;Post Title&lt;/h1&gt;
+  &lt;p&gt;Article content...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  <p>
+    When navigating from Page A to Page B, the image and heading morph seamlessly.
+    The browser matches elements by <code>view-transition-name</code>.
+  </p>
+
+  <h3>Nav Persistence Example</h3>
+  <pre><code>&lt;!-- In your shared navigation (both pages) --&gt;
+&lt;nav class="vl-vt-shared-nav" aria-label="Site navigation"&gt;
+  &lt;a href="/" class="vl-vt-shared-brand"&gt;
+    &lt;img src="/logo.svg" alt="Velora" /&gt;
+  &lt;/a&gt;
+  &lt;!-- links ... --&gt;
+&lt;/nav&gt;</code></pre>
+
+  <h3>Card to Detail Example</h3>
+  <pre><code>&lt;!-- List page: multiple cards --&gt;
+&lt;!-- Use unique transition names to avoid conflicts --&gt;
+&lt;div
+  class="vl-card vl-vt-shared-card"
+  style="view-transition-name: card-42;"&gt;
+  &lt;!-- card content --&gt;
+&lt;/div&gt;
+
+&lt;!-- Detail page --&gt;
+&lt;article style="view-transition-name: card-42;"&gt;
+  &lt;!-- expanded content --&gt;
+&lt;/article&gt;</code></pre>
+  <p>
+    <strong>Important:</strong> When you have multiple cards, override <code>view-transition-name</code>
+    per item with a unique slug or ID to prevent name collisions.
+  </p>
+
+  <h2>Shared Element Keyframes</h2>
+  <p>Each shared class has its own keyframe pair. You can inspect and override them:</p>
+  <pre><code>/* Hero title: translates + scales between pages */
+::view-transition-old(hero-title) &#123; animation-name: vl-vt-hero-old; &#125;
+::view-transition-new(hero-title) &#123; animation-name: vl-vt-hero-new; &#125;
+
+/* Shared media: saturation cross-fade */
+::view-transition-old(hero-media) &#123; animation-name: vl-vt-media-cross; animation-direction: reverse; &#125;
+::view-transition-new(hero-media) &#123; animation-name: vl-vt-media-cross; &#125;
+
+/* Custom duration for hero --&gt;
+::view-transition-old(hero-title),
+::view-transition-new(hero-title) &#123;
+  animation-duration: 0.75s;
+&#125;</code></pre>
+
+  <h2>Accessibility</h2>
+  <p>
+    All view transition animations honor <code>prefers-reduced-motion: reduce</code>. Under reduced motion,
+    all transition durations drop to 0.12s linear with no filter effects. The page still transitions,
+    but nearly instantly.
+  </p>
+  <pre><code>/* Built into velora.transitions layer */
+@media (prefers-reduced-motion: reduce) &#123;
+  ::view-transition-old(root),
+  ::view-transition-new(root) &#123;
+    animation-duration: 0.12s !important;
+    animation-timing-function: linear !important;
+    filter: none !important;
+  &#125;
+&#125;</code></pre>
+
+  <h2>Browser Support</h2>
+  <div class="vl-card docs-section-block">
+    <div class="docs-grid-3">
+      <div>
+        <div class="vl-badge vl-badge--accent docs-badge-gap">Supported</div>
+        <p class="vl-card__body">Chrome 111+, Edge 111+</p>
+      </div>
+      <div>
+        <div class="vl-badge vl-badge--accent docs-badge-gap">In preview</div>
+        <p class="vl-card__body">Safari Technology Preview</p>
+      </div>
+      <div>
+        <div class="vl-badge docs-badge-gap">Fallback</div>
+        <p class="vl-card__body">Firefox, Safari 17 — instant navigation, no transition effect</p>
+      </div>
+    </div>
+  </div>
+  <p>
+    No polyfills or JavaScript required. Browsers that don't support View Transitions simply navigate
+    instantly — the page works correctly in all cases.
+  </p>
+
+  <h2>Integration with Astro</h2>
+  <p>
+    Velora's transitions work perfectly with Astro's MPA mode. Add <code>vl-page-transition</code> to
+    the <code>&lt;html&gt;</code> tag in your base layout:
+  </p>
+  <pre><code>---
+// src/layouts/Base.astro
+---
+&lt;html lang="en" vl-page-transition="cinema"&gt;
+  &lt;head&gt;
+    &lt;!-- velora/css already includes @view-transition &#123; navigation: auto &#125; --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;slot /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</Base>

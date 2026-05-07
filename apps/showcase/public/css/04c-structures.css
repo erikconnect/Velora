@@ -38,7 +38,8 @@
         width: 100%;
         max-width: var(--vl-layout-container-max, var(--vl-container-max));
         margin-inline: auto;
-        padding-inline: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
+        padding-left: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
+        padding-right: max(var(--vl-container-gutter), env(safe-area-inset-right, 0px));
     }
 
     .vl-header__brand {
@@ -377,7 +378,8 @@
         width: 100%;
         max-width: var(--vl-layout-container-max, var(--vl-container-max));
         margin-inline: auto;
-        padding-inline: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
+        padding-left: max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
+        padding-right: max(var(--vl-container-gutter), env(safe-area-inset-right, 0px));
     }
 
     .vl-footer__grid {
@@ -434,15 +436,24 @@
         margin-block-end: var(--vl-space-md);
     }
 
+    .vl-footer__brand .vl-logo-lockup {
+        margin-block-end: var(--vl-space-lg);
+    }
+
     .vl-footer__brand:hover .vl-logo {
         opacity: 1;
     }
 
     .vl-footer__desc {
+        background: none;
         color: var(--vl-text-muted);
+        -webkit-text-fill-color: currentColor;
+        font-family: var(--vl-font-family-body, var(--vl-font-family-sans, inherit));
         font-size: var(--vl-font-size-sm);
+        font-weight: var(--vl-font-weight-regular, 400);
         line-height: var(--vl-leading-relaxed);
         max-width: 24ch;
+        margin: 0;
     }
 
     .vl-footer__bottom {
@@ -616,6 +627,143 @@
     }
 
     /* =========================================================================
+       5. MOBILE HEADER — hamburger + drawer
+       ========================================================================= */
+
+    /* Hamburger button — hidden on desktop */
+    .vl-header__menu-btn {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        background: transparent;
+        border: 1px solid color-mix(in oklch, var(--vl-text-primary) 15%, transparent);
+        border-radius: var(--vl-radius-md);
+        color: var(--vl-text-primary);
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background var(--vl-transition-fast) var(--vl-ease-out-soft),
+                    border-color var(--vl-transition-fast) var(--vl-ease-out-soft);
+    }
+
+    .vl-header__menu-btn:hover {
+        background: color-mix(in oklch, var(--vl-text-primary) 8%, transparent);
+        border-color: color-mix(in oklch, var(--vl-text-primary) 30%, transparent);
+    }
+
+    .vl-header__menu-btn:focus-visible {
+        outline: var(--vl-focus-ring-width) solid var(--vl-focus-ring-color);
+        outline-offset: var(--vl-focus-ring-offset);
+    }
+
+    /* Mobile nav drawer — hidden by default */
+    .vl-header__drawer {
+        display: none;
+        border-top: 1px solid color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
+        padding: var(--vl-space-md) max(var(--vl-container-gutter), env(safe-area-inset-left, 0px));
+        padding-bottom: var(--vl-space-lg);
+    }
+
+    .vl-header__mobile-nav {
+        display: flex;
+        flex-direction: column;
+        margin-block-end: var(--vl-space-md);
+    }
+
+    .vl-header__mobile-link {
+        display: block;
+        padding-block: var(--vl-space-sm);
+        color: var(--vl-text-secondary);
+        font-size: var(--vl-font-size-base);
+        font-weight: var(--vl-font-weight-medium);
+        text-decoration: none;
+        border-bottom: 1px solid color-mix(in oklch, var(--vl-text-primary) 8%, transparent);
+        transition: color var(--vl-transition-fast) var(--vl-ease-out-soft);
+    }
+
+    .vl-header__mobile-link:last-child {
+        border-bottom: none;
+    }
+
+    .vl-header__mobile-link:hover {
+        color: var(--vl-text-primary);
+    }
+
+    .vl-header__mobile-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--vl-space-sm);
+        padding-top: var(--vl-space-md);
+        border-top: 1px solid color-mix(in oklch, var(--vl-text-primary) 8%, transparent);
+    }
+
+    /* ── Mobile breakpoint (≤ 48rem / 768px) ── */
+
+    @media (max-width: 48rem) {
+        .vl-header__nav {
+            display: none;
+        }
+
+        /* In actions: keep GitHub icon + Get Started, hide controls */
+        .vl-header__actions .ds-vt-select,
+        .vl-header__actions .ds-editorial-select,
+        .vl-header__actions .ds-theme-toggle {
+            display: none;
+        }
+
+        .vl-header__menu-btn {
+            display: flex;
+        }
+
+        /* Drawer visible when header carries [data-menu-open] */
+        .vl-header[data-menu-open] .vl-header__drawer {
+            display: block;
+            animation: vl-fade-down var(--vl-duration-normal) var(--vl-ease-cinematic) forwards;
+        }
+    }
+
+    /* ── Desktop: always hide mobile-only elements ── */
+    @media (min-width: 48.0625rem) {
+        .vl-header__menu-btn {
+            display: none !important;
+        }
+
+        .vl-header__drawer {
+            display: none !important;
+        }
+    }
+
+    /* =========================================================================
+       6. MOBILE FOOTER — stack columns on small screens
+       ========================================================================= */
+
+    @media (max-width: 48rem) {
+        .vl-footer__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--vl-space-lg);
+        }
+
+        .vl-footer__brand {
+            grid-column: 1 / -1;
+        }
+
+        .vl-footer__bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--vl-space-sm);
+        }
+    }
+
+    @media (max-width: 30rem) {
+        .vl-footer__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* =========================================================================
        REDUCED MOTION
        ========================================================================= */
 
@@ -625,6 +773,10 @@
         }
 
         .vl-header {
+            transition: none;
+        }
+
+        .vl-header__menu-btn {
             transition: none;
         }
     }

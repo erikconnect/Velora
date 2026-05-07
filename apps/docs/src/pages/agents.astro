@@ -1,0 +1,290 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Agent Handbook" description="Operational guide for AI coding agents working on Velora.">
+  <span class="vl-kicker">For Agents</span>
+
+  <h1 class="docs-page-title">Agent Handbook</h1>
+  <p>
+    This is the operational guide for AI coding agents working on Velora — including GitHub Copilot,
+    Cursor, and similar tools. It defines the product thesis, non-negotiable rules, attribute system
+    contract, and safe prompting patterns that all agents must follow.
+  </p>
+
+  <hr />
+
+  <h2>Product Thesis</h2>
+  <p>
+    Velora is not a generic UI kit and not a JavaScript animation wrapper.
+    Velora is a <strong>declarative motion system for HTML</strong>, powered by modern CSS.
+  </p>
+  <p>The core idea:</p>
+  <ol>
+    <li>Developers write semantic HTML.</li>
+    <li>They add Velora classes and <code>vl-*</code> attributes.</li>
+    <li>Velora maps those contracts to CSS-based layout, motion, scenes, and transitions.</li>
+  </ol>
+  <pre><code>&lt;section
+  vl-scene="hero"
+  vl-timeline="view"
+  vl-effect="scene-hero-reveal"
+  vl-range="entry 0% cover 70%"
+  vl-pin&gt;
+  &lt;h1&gt;Build motion-rich interfaces with HTML and CSS&lt;/h1&gt;
+  &lt;p&gt;No animation libraries. No framework runtime.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+
+  <hr />
+
+  <h2>Non-Negotiable Rules</h2>
+  <p>All agents must follow these rules without exception.</p>
+
+  <h3>2.1 No JS frameworks in core</h3>
+  <p>
+    Do <strong>not</strong> introduce React, Vue, Framer Motion, GSAP, Locomotive Scroll, Swup, or any
+    comparable runtime as part of the Velora core.
+  </p>
+
+  <h3>2.2 No JavaScript animation logic in core motion</h3>
+  <p>
+    Do <strong>not</strong> implement animation timing, scroll choreography, reveal effects, or page
+    transitions with JS if modern CSS can handle it.
+  </p>
+  <p>Preferred platform features:</p>
+  <ul>
+    <li><code>@view-transition</code></li>
+    <li><code>view-transition-name</code></li>
+    <li><code>view-timeline</code></li>
+    <li><code>scroll-timeline</code></li>
+    <li><code>animation-range</code></li>
+    <li><code>@starting-style</code></li>
+    <li><code>transition-behavior: allow-discrete</code></li>
+    <li>Container queries</li>
+    <li><code>interpolate-size: allow-keywords</code></li>
+    <li>Logical properties</li>
+    <li><code>:has()</code> where appropriate</li>
+  </ul>
+
+  <h3>2.3 HTML first</h3>
+  <p>Preserve semantic HTML. Avoid wrapper-heavy markup unless structurally necessary.</p>
+
+  <h3>2.4 CSS-first architecture</h3>
+  <p>Velora is implemented as layered CSS with a coherent token system and a stable public API.</p>
+
+  <h3>2.5 Minimal runtime only when truly needed</h3>
+  <p>JavaScript may be used only for:</p>
+  <ul>
+    <li>Theme persistence</li>
+    <li>Accessibility helpers where HTML alone is insufficient</li>
+    <li>Tiny enhancement modules</li>
+    <li>Future optional runtime hooks</li>
+  </ul>
+  <p>JS is additive — never the foundation of the motion engine.</p>
+
+  <h3>2.6 All styling contracts must be namespaced</h3>
+  <ul>
+    <li>Classes: <code>.vl-*</code></li>
+    <li>Custom properties: <code>--vl-*</code></li>
+    <li>Attributes: <code>vl-*</code></li>
+  </ul>
+
+  <h3>2.7 Design tokens use modern color primitives</h3>
+  <p>Prefer <code>oklch()</code> and tokenized semantic variables.</p>
+
+  <h3>2.8 Accessibility is mandatory</h3>
+  <p>Every feature must account for:</p>
+  <ul>
+    <li>Semantic structure</li>
+    <li>Keyboard access</li>
+    <li>Visible focus states</li>
+    <li>Reduced motion</li>
+    <li>Content readability</li>
+    <li>Progressive enhancement</li>
+  </ul>
+
+  <hr />
+
+  <h2>Attribute System Contract</h2>
+  <p>
+    Agents must treat the attribute system as a <strong>declarative grammar</strong>, not a random set
+    of flags.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Attribute</th><th>Purpose</th><th>Example values</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>vl-scene</code></td><td>Marks a motion-aware scene container</td><td><code>"hero"</code>, <code>"story"</code>, <code>"features"</code></td></tr>
+      <tr><td><code>vl-effect</code></td><td>Declares the named effect preset</td><td><code>"fade-up"</code>, <code>"flow-in"</code>, <code>"scene-hero-reveal"</code></td></tr>
+      <tr><td><code>vl-timeline</code></td><td>Declares the progress model</td><td><code>"view"</code>, <code>"scroll"</code>, <code>"auto"</code>, <code>"hover"</code></td></tr>
+      <tr><td><code>vl-range</code></td><td>Active progress range for timeline motion</td><td><code>"entry 0% cover 40%"</code></td></tr>
+      <tr><td><code>vl-pin</code></td><td>Boolean — pinned/sticky scene behavior</td><td>presence only</td></tr>
+      <tr><td><code>vl-scrub</code></td><td>Boolean — scroll-scrubbed animation</td><td>presence only</td></tr>
+      <tr><td><code>vl-once</code></td><td>Boolean — animate once only</td><td>presence only</td></tr>
+      <tr><td><code>vl-children</code></td><td>Child choreography mode</td><td><code>"stagger"</code>, <code>"cascade"</code></td></tr>
+      <tr><td><code>vl-stagger</code></td><td>Stagger delay override</td><td><code>"fast"</code>, <code>"slow"</code>, numeric</td></tr>
+      <tr><td><code>vl-depth</code></td><td>Depth/parallax intensity modifier</td><td><code>"shallow"</code>, <code>"deep"</code></td></tr>
+      <tr><td><code>vl-speed</code></td><td>Duration/speed modifier</td><td><code>"slow"</code>, <code>"fast"</code></td></tr>
+      <tr><td><code>vl-targets</code></td><td>Selects specific descendant targets</td><td>CSS selector string</td></tr>
+      <tr><td><code>vl-page-transition</code></td><td>Page transition preset</td><td><code>"fade"</code>, <code>"slide"</code>, <code>"morph"</code></td></tr>
+      <tr><td><code>vl-transition</code></td><td>Shared element or local transition</td><td><code>"cover"</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Primitive vs Scene Presets</h3>
+  <p>This distinction is mandatory.</p>
+  <p>
+    A <strong>primitive effect</strong> affects the element itself:
+  </p>
+  <pre><code>&lt;div vl-effect="fade-up"&gt;&lt;/div&gt;</code></pre>
+  <p>
+    A <strong>scene preset</strong> coordinates the element and its descendants:
+  </p>
+  <pre><code>&lt;section vl-scene="hero" vl-effect="scene-hero-reveal"&gt;&lt;/section&gt;</code></pre>
+  <p>Agents must not blur these concepts.</p>
+
+  <hr />
+
+  <h2>CSS Layer Architecture</h2>
+  <pre><code>@layer velora.reset, velora.tokens, velora.layout, velora.motion,
+       velora.components, velora.transitions, velora.utilities, velora.overrides;</code></pre>
+
+  <table>
+    <thead>
+      <tr><th>Layer</th><th>Contents</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>velora.reset</code></td><td>Reset, normalize, base browser adjustments</td></tr>
+      <tr><td><code>velora.tokens</code></td><td>Colors, spacing, typography, motion tokens</td></tr>
+      <tr><td><code>velora.layout</code></td><td>Container, stack, grid, scene wrappers</td></tr>
+      <tr><td><code>velora.motion</code></td><td>Effect presets, timelines, stagger, reveals</td></tr>
+      <tr><td><code>velora.components</code></td><td>Cards, buttons, nav, accordion, dialog</td></tr>
+      <tr><td><code>velora.transitions</code></td><td>Page transitions, shared element rules</td></tr>
+      <tr><td><code>velora.utilities</code></td><td>Low-level opt-in utility classes</td></tr>
+      <tr><td><code>velora.overrides</code></td><td>Last-mile overrides only</td></tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h2>Implementation Rules</h2>
+
+  <h3>Prefer variables over hardcoded values</h3>
+  <pre><code>/* Bad */
+[vl-effect="fade-up"] &#123;
+  transform: translateY(28px);
+  transition: all 480ms cubic-bezier(0.2, 0.8, 0.2, 1);
+&#125;
+
+/* Better */
+[vl-effect="fade-up"] &#123;
+  --vl-translate-y-from: 1.75rem;
+  --vl-motion-duration: var(--vl-motion-normal);
+  --vl-motion-ease: var(--vl-ease-cinematic);
+&#125;</code></pre>
+
+  <h3>Prefer composition over monolith selectors</h3>
+  <p>Build small contracts that compose: scene host → effect preset → timeline binding → child choreography → transition layer.</p>
+
+  <h3>Keep examples premium but realistic</h3>
+  <p>Examples should feel cinematic and polished, but remain maintainable and instructive.</p>
+
+  <hr />
+
+  <h2>What Agents Must Never Do</h2>
+  <ul>
+    <li>Introduce GSAP, Framer Motion, ScrollTrigger, Locomotive Scroll, Barba.js, Swup, React, or Vue into core motion</li>
+    <li>Replace semantic elements with div soup unnecessarily</li>
+    <li>Bypass the attribute system with bespoke scene logic when a general <code>vl-*</code> contract should exist</li>
+    <li>Hardcode brand or demo-specific values into the framework core</li>
+    <li>Ignore reduced motion — every animation pattern must have a fallback</li>
+  </ul>
+
+  <hr />
+
+  <h2>Reduced Motion Baseline</h2>
+  <pre><code>@media (prefers-reduced-motion: reduce) &#123;
+  [vl-effect],
+  [vl-scene],
+  [vl-transition],
+  [vl-page-transition] &#123;
+    animation: none !important;
+    transition-duration: 0ms !important;
+  &#125;
+&#125;</code></pre>
+
+  <hr />
+
+  <h2>Safe Prompting Patterns</h2>
+
+  <h3>For framework code</h3>
+  <blockquote>
+    Implement <code>vl-effect="fade-up"</code> and <code>vl-timeline="view"</code> in
+    <code>packages/css</code> using layered CSS only. Do not use JavaScript. Preserve the existing
+    namespace and token system. Keep the implementation reusable, documented, and reduced-motion aware.
+  </blockquote>
+
+  <h3>For new scene presets</h3>
+  <blockquote>
+    Create a new scene preset called <code>scene-feature-flow</code> that coordinates heading, copy,
+    and cards using scroll-driven CSS. Use <code>vl-scene</code>, <code>vl-effect</code>,
+    <code>vl-children</code>, and CSS custom properties. Avoid demo-specific hardcoding.
+  </blockquote>
+
+  <h3>For docs</h3>
+  <blockquote>
+    Create a docs page for <code>vl-effect</code> with API explanation, allowed values,
+    implementation notes, accessibility notes, and two HTML examples using only semantic markup.
+  </blockquote>
+
+  <h3>For refactors</h3>
+  <blockquote>
+    Refactor this implementation so that public behavior is expressed through <code>vl-*</code>
+    attributes and tokenized CSS variables rather than one-off component selectors.
+  </blockquote>
+
+  <h3>For reviews</h3>
+  <blockquote>
+    Review this Velora code for violations of project rules: no JS animation logic, semantic HTML,
+    namespace correctness, reduced-motion support, token usage, and layer organization.
+  </blockquote>
+
+  <hr />
+
+  <h2>Definition of Done</h2>
+  <p>A Velora feature is done when:</p>
+  <ol>
+    <li>The public API is clear</li>
+    <li>Namespaces are correct (<code>.vl-*</code>, <code>--vl-*</code>, <code>vl-*</code>)</li>
+    <li>Tokens are used appropriately</li>
+    <li>Reduced-motion behavior exists</li>
+    <li>Docs can explain it simply</li>
+    <li>The playground demonstrates it cleanly</li>
+    <li>Implementation fits the architecture</li>
+    <li>No forbidden JS framework or runtime pattern was introduced</li>
+  </ol>
+
+  <hr />
+
+  <h2>Final Instruction</h2>
+  <p>When in doubt, choose the path that is:</p>
+  <ul>
+    <li>More semantic</li>
+    <li>More CSS-native</li>
+    <li>More tokenized</li>
+    <li>More composable</li>
+    <li>More accessible</li>
+    <li>Easier to document</li>
+    <li>Less dependent on JavaScript</li>
+  </ul>
+  <p>
+    Velora should prove that modern HTML and CSS are enough to build premium motion systems when the
+    architecture is designed correctly.
+  </p>
+
+  <style>
+    blockquote { border-left: 3px solid var(--vl-color-primary); padding: var(--vl-space-sm) var(--vl-space-md); color: var(--vl-text-muted); margin: var(--vl-space-md) 0; font-style: italic; background: color-mix(in oklch, var(--vl-color-primary) 6%, transparent); border-radius: 0 var(--vl-radius-md) var(--vl-radius-md) 0; }
+  </style>
+</Base>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MotionEngine | 3D Rotation Vector Tuner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0d0f0c",
+                        "secondary-fixed-dim": "#d4d5d0",
+                        "surface-bright": "#272e25",
+                        "outline": "#71776e",
+                        "on-tertiary-container": "#4f5b3a",
+                        "primary-fixed-dim": "#c9d9be",
+                        "tertiary-fixed-dim": "#d7e5bb",
+                        "on-tertiary-fixed": "#3e4a2b",
+                        "secondary": "#9d9e9a",
+                        "surface-container-low": "#111410",
+                        "on-secondary": "#1f211e",
+                        "on-secondary-container": "#bfc0bb",
+                        "on-error-container": "#ff9b82",
+                        "surface-container-lowest": "#000000",
+                        "surface-container-highest": "#212720",
+                        "secondary-container": "#3a3c39",
+                        "on-tertiary": "#576342",
+                        "error-container": "#7e2b17",
+                        "on-background": "#e1e7dc",
+                        "primary-dim": "#aebea4",
+                        "on-primary-fixed": "#35432f",
+                        "error-dim": "#ba573f",
+                        "surface-tint": "#bbcbb1",
+                        "secondary-fixed": "#e3e3de",
+                        "on-surface": "#e1e7dc",
+                        "tertiary-fixed": "#e5f4c9",
+                        "tertiary": "#f1ffd4",
+                        "outline-variant": "#434a41",
+                        "error": "#ed7f64",
+                        "inverse-primary": "#55634d",
+                        "primary-container": "#3d4b36",
+                        "on-secondary-fixed-variant": "#5a5c58",
+                        "surface-dim": "#0d0f0c",
+                        "on-tertiary-fixed-variant": "#5a6745",
+                        "surface-variant": "#212720",
+                        "on-surface-variant": "#a7ada2",
+                        "on-primary": "#364430",
+                        "inverse-on-surface": "#545652",
+                        "on-secondary-fixed": "#3e403d",
+                        "inverse-surface": "#fafaf4",
+                        "secondary-dim": "#9d9e9a",
+                        "tertiary-container": "#e2f1c6",
+                        "tertiary-dim": "#d7e5bb",
+                        "surface-container-high": "#1c211b",
+                        "primary": "#bbcbb1",
+                        "on-primary-container": "#c5d5ba",
+                        "on-error": "#450900",
+                        "background": "#0d0f0c",
+                        "surface-container": "#171b16",
+                        "on-primary-fixed-variant": "#51604a",
+                        "primary-fixed": "#d7e8cc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .perspective-lg { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; }
+        .tuned-rotation { transform: rotateX(25deg) rotateY(-35deg) rotateZ(5deg); }
+        .glass-panel { backdrop-filter: blur(12px); background-color: rgba(23, 27, 22, 0.8); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary overflow-hidden h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#0d0f0c] dark:bg-[#0d0f0c] text-[#bbcbb1] dark:text-[#bbcbb1] flex justify-between items-center px-6 py-4">
+<div class="text-xl font-headline font-bold tracking-tighter text-[#bbcbb1]">MotionEngine</div>
+<div class="hidden md:flex space-x-8">
+<a class="text-[#a4ad9f] font-medium hover:text-[#bbcbb1] transition-colors duration-200 font-headline uppercase tracking-widest text-xs" href="#">Dashboard</a>
+<a class="text-[#bbcbb1] border-b-2 border-[#6b7a63] pb-1 font-headline uppercase tracking-widest text-xs" href="#">Assets</a>
+<a class="text-[#a4ad9f] font-medium hover:text-[#bbcbb1] transition-colors duration-200 font-headline uppercase tracking-widest text-xs" href="#">Timeline</a>
+<a class="text-[#a4ad9f] font-medium hover:text-[#bbcbb1] transition-colors duration-200 font-headline uppercase tracking-widest text-xs" href="#">Settings</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer">account_circle</button>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-sm font-headline font-bold uppercase text-xs tracking-wider active:scale-95 transition-all">Deploy</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-full w-64 z-40 bg-[#0d0f0c] dark:bg-[#0d0f0c] flex flex-col py-8 space-y-6">
+<div class="px-8 mb-4">
+<div class="text-lg font-headline font-bold text-[#bbcbb1] tracking-tight">Project Alpha</div>
+<div class="text-[10px] font-label tracking-widest uppercase text-on-surface-variant">60 FPS / Kinetic</div>
+</div>
+<nav class="flex flex-col space-y-2">
+<a class="flex items-center text-[#bbcbb1] font-bold border-l-4 border-[#6b7a63] pl-4 py-2 transition-all duration-300 ease-out hover:bg-[#1a1d18] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">3d_rotation</span> Viewport
+            </a>
+<a class="flex items-center text-[#727d6d] pl-4 py-2 transition-all duration-300 ease-out hover:bg-[#1a1d18] hover:text-[#bbcbb1] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">location_searching</span> Coordinates
+            </a>
+<a class="flex items-center text-[#727d6d] pl-4 py-2 transition-all duration-300 ease-out hover:bg-[#1a1d18] hover:text-[#bbcbb1] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">link</span> Constraints
+            </a>
+<a class="flex items-center text-[#727d6d] pl-4 py-2 transition-all duration-300 ease-out hover:bg-[#1a1d18] hover:text-[#bbcbb1] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">timeline</span> Keyframes
+            </a>
+<a class="flex items-center text-[#727d6d] pl-4 py-2 transition-all duration-300 ease-out hover:bg-[#1a1d18] hover:text-[#bbcbb1] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">ios_share</span> Export
+            </a>
+</nav>
+<div class="mt-auto pb-24 space-y-2">
+<a class="flex items-center text-[#727d6d] pl-8 py-2 transition-all hover:text-[#bbcbb1] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">help</span> Docs
+            </a>
+<a class="flex items-center text-[#727d6d] pl-8 py-2 transition-all hover:text-[#bbcbb1] font-label uppercase text-[10px] tracking-wide" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">contact_support</span> Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-8 h-[calc(100vh-4rem)] overflow-auto bg-surface-container-low flex items-center justify-center">
+<!-- Modal: 3D Rotation Vector Tuner -->
+<div class="w-full max-w-6xl glass-panel grid grid-cols-12 gap-0 overflow-hidden shadow-2xl rounded-lg">
+<!-- Left: 3D Visualization Area -->
+<div class="col-span-12 lg:col-span-7 h-[600px] bg-surface relative flex items-center justify-center overflow-hidden border-r border-outline-variant/15">
+<!-- Architectural Grid Background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(var(--outline-variant) 1px, transparent 1px), linear-gradient(90deg, var(--outline-variant) 1px, transparent 1px); background-size: 40px 40px;"></div>
+<div class="perspective-lg">
+<div class="preserve-3d tuned-rotation transition-transform duration-700">
+<div class="w-64 h-80 bg-primary-container border-2 border-primary/40 relative flex items-center justify-center">
+<!-- Visual Content Inside 3D Card -->
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="abstract 3D architectural geometric rendering with sharp lines and tech noir green lighting on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS7Ifj3DMlgdkFvl8pVpfk97hCfZKe5rsjpbul9x-nDtieV-bTb8vtm6hsj3B94uIyfr1c6U2oD0qH4XYcWZGms11fruzxyR6mDUj4o0io-aFBu5SEC0GFN27rLB3L-i5SRW-St2Zgyz-r8LfOz9c93ojb945TaXUlsFTMQkt5qmsulc98y6CydwmgxuL6HVdbgg8gNE_jEm4Vq-GpyyYUiHhwbe_Wi2h4gWNTdn1CJEAzHNjLOnhV2FMbiiAl46IkimJvus6WkJFV"/>
+<div class="z-10 text-center px-4">
+<div class="font-headline text-3xl font-bold text-primary tracking-tighter">VECTOR_01</div>
+<div class="text-[10px] font-label text-on-primary-container mt-2 tracking-widest">REAL-TIME RENDER</div>
+</div>
+<!-- Pivot Point Visual Indicator -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary ring-4 ring-primary/20"></div>
+</div>
+</div>
+</div>
+<!-- HUD Overlays -->
+<div class="absolute top-8 left-8">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label text-[10px] tracking-widest text-on-surface-variant">ACTIVE_SESSION / ID:99X-ROT</span>
+</div>
+</div>
+<div class="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+<div class="space-y-1">
+<div class="text-[9px] font-label text-outline uppercase tracking-widest">Transformation Matrix</div>
+<div class="font-mono text-[11px] text-primary/80">matrix3d(0.819, 0, -0.573, 0, 0.242, 0.906, 0.346, 0, 0.519, -0.422, 0.742, 0, 0, 0, 0, 1)</div>
+</div>
+<div class="flex space-x-4">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-base">view_in_ar</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-highest hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-base">grid_on</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container-low p-10 flex flex-col justify-between h-full">
+<div>
+<div class="flex justify-between items-start mb-10">
+<div>
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface">Vector Tuner</h2>
+<p class="font-label text-xs text-on-surface-variant tracking-wider uppercase mt-1">Spatial Manipulation Module v2.4</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">3d_rotation</span>
+</div>
+<!-- Rotation Controls -->
+<div class="space-y-8">
+<!-- X Rotation -->
+<div class="group">
+<div class="flex justify-between items-center mb-4">
+<label class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">X-Axis Rotation Intensity</label>
+<span class="text-primary font-mono text-sm">25.00°</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest appearance-none rounded-full accent-primary cursor-pointer" max="180" min="-180" type="range" value="25"/>
+</div>
+<!-- Y Rotation -->
+<div class="group">
+<div class="flex justify-between items-center mb-4">
+<label class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">Y-Axis Rotation Intensity</label>
+<span class="text-primary font-mono text-sm">-35.00°</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest appearance-none rounded-full accent-primary cursor-pointer" max="180" min="-180" type="range" value="-35"/>
+</div>
+<!-- Z Rotation -->
+<div class="group">
+<div class="flex justify-between items-center mb-4">
+<label class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase">Z-Axis Rotation Intensity</label>
+<span class="text-primary font-mono text-sm">5.00°</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest appearance-none rounded-full accent-primary cursor-pointer" max="180" min="-180" type="range" value="5"/>
+</div>
+</div>
+<!-- Axis Mapping & Pivot -->
+<div class="grid grid-cols-2 gap-8 mt-12">
+<div>
+<label class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase block mb-4">Pivot Point</label>
+<div class="grid grid-cols-3 gap-1 w-24 h-24">
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-primary border border-primary ring-2 ring-primary/20"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+<button class="bg-surface-container-highest hover:bg-primary-container transition-colors"></button>
+</div>
+</div>
+<div>
+<label class="font-label text-[10px] tracking-widest text-on-surface-variant uppercase block mb-4">Axis Mapping</label>
+<div class="space-y-3">
+<div class="flex items-center space-x-3 bg-surface-container-high p-2 px-3 rounded-sm group cursor-pointer hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm text-outline group-hover:text-primary">mouse</span>
+<span class="text-xs font-medium text-on-surface-variant">Viewport XY</span>
+</div>
+<div class="flex items-center space-x-3 bg-primary-container p-2 px-3 rounded-sm group cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary">swap_vert</span>
+<span class="text-xs font-medium text-on-primary-container">Scroll Position</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="pt-10 flex space-x-4 border-t border-outline-variant/10">
+<button class="flex-1 bg-primary text-on-primary font-headline font-bold uppercase text-xs tracking-[0.15em] py-4 rounded-sm transition-all hover:shadow-[0_0_20px_rgba(187,203,177,0.3)] active:scale-95">
+                        Apply Vector
+                    </button>
+<button class="px-6 border border-outline-variant text-on-surface-variant font-headline font-bold uppercase text-xs tracking-[0.15em] hover:bg-surface-container-highest transition-all active:scale-95">
+                        Revert
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden on this modal-focused view as per rules) -->
+</body></html>

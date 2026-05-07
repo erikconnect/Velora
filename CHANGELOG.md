@@ -64,11 +64,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Visible focus rings with configurable token-driven styling
 - Semantic HTML-first component patterns
 
-#### Apps & Documentation
-- Vite MPA showcase (`apps/showcase`) with 30+ demo pages covering all framework features
-- Astro documentation site (`apps/docs`) with 9 pages: Getting Started, Tokens, Effects, Scenes, Timelines, Transitions, Attributes, Agents, Skills
-- Agent Handbook (`docs/velora_agent_handbook.md`) — 20-section guide for AI-assisted development
-- Agent Skill Sets (`docs/velora_agent_skill_sets.md`) — 14 operating profiles for AI agents
+#### Apps & documentation
+- Vite MPA showcase (`apps/showcase`) with 30+ demo pages covering framework features and live API catalogs (`api-motion-catalog`, `api-design-catalog`)
+- Astro documentation site (`apps/docs`) for published guides
+- Versioned Markdown under repository `docs/` (workspace guide, contract matrix, playbooks, agent handbook and skill sets — see [docs/README.md](docs/README.md))
 - Component library with copy-paste HTML (`packages/velora-components/`)
 
 #### Toolchain

@@ -10,7 +10,7 @@ These pages have been **superseded** by:
 |---|---|
 | Component demos | [`apps/showcase/pages/`](../../apps/showcase/pages/) |
 | Copy-paste components | [`packages/velora-components/`](../velora-components/) |
-| Documentation | [`apps/docs/`](../../apps/docs/) |
+| Documentation | [`docs/`](../../docs/) and live catalogs in [`apps/showcase/pages/`](../../apps/showcase/pages/) |
 
 ## Why it still exists
 
