@@ -1,28 +1,25 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   THE IMPOSSIBLE DEMO — Velora Cinematic CSS Experience
-   Zero JavaScript. Pure browser-native motion.
+   THE IMPOSSIBLE DEMO — Layout & Atmosphere Only
+   All motion comes from Velora's declarative attribute system (vl-*).
+   ZERO custom keyframes. The design system IS the animation engine.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Velora Brand Tokens (demo-scoped) ── */
+/* ── Dark cinema palette (uses Velora brand tokens) ── */
 :root {
     --demo-void: oklch(7% 0.008 110);
     --demo-deep: oklch(11% 0.012 110);
     --demo-surface: oklch(15% 0.015 110);
-    --demo-surface-elevated: oklch(18% 0.018 110);
     --demo-border: oklch(24% 0.02 110);
     --demo-border-glow: oklch(55% 0.08 128 / 0.4);
-
     --demo-text: oklch(92% 0.01 90);
     --demo-text-soft: oklch(72% 0.015 110);
     --demo-text-muted: oklch(55% 0.01 110);
-
     --demo-moss: oklch(58% 0.07 128);
     --demo-olive: oklch(68% 0.08 128);
     --demo-stone: oklch(80% 0.04 95);
     --demo-gold: oklch(78% 0.1 85);
-
-    --demo-glow-moss: oklch(50% 0.12 128 / 0.25);
-    --demo-glow-gold: oklch(70% 0.12 85 / 0.2);
+    --demo-glow-moss: oklch(50% 0.12 128 / 0.2);
+    --demo-glow-gold: oklch(70% 0.12 85 / 0.15);
 }
 
 /* ── Body ── */
@@ -31,7 +28,6 @@
     color: var(--demo-text);
     font-family: var(--vl-font-family-display, "Space Grotesk", system-ui, sans-serif);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .impossible-demo *::selection {
@@ -39,25 +35,21 @@
     color: var(--demo-void);
 }
 
-/* ── Scene shared ── */
+/* ── Scene shared layout ── */
 .demo-scene {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
     position: relative;
     padding: clamp(3rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4rem);
-    overflow: clip;
 }
 
 .demo-scene__inner {
     max-width: 72rem;
     width: 100%;
+    margin: 0 auto;
     position: relative;
     z-index: 2;
 }
 
-/* ── Scene dividers ── */
+/* ── Dividers ── */
 .demo-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--demo-border-glow), transparent);
@@ -67,67 +59,31 @@
 .demo-divider::after {
     content: "";
     position: absolute;
-    inset: -40px 20% 0 20%;
+    inset: -40px 20%;
     height: 80px;
-    background: radial-gradient(ellipse at 50% 0%, var(--demo-glow-moss), transparent 70%);
+    background: radial-gradient(ellipse at 50% 50%, var(--demo-glow-moss), transparent 70%);
     pointer-events: none;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   PROGRESS — scroll-linked top bar
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.demo-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    z-index: 200;
-    background: var(--demo-void);
-}
-
-.demo-progress__bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--demo-moss), var(--demo-gold));
-    transform-origin: left;
-    animation: demo-progress-fill linear;
-    animation-timeline: scroll(root);
-}
-
-@keyframes demo-progress-fill {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    SCENE 1 — HERO
+   Atmosphere + brand mark. Motion via vl-scene="cinematic-hero" preset.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .demo-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-align: center;
-    gap: 2.5rem;
+    min-height: 100dvh;
 }
 
-/* Atmospheric layers */
 .demo-hero__bg {
     position: absolute;
     inset: 0;
+    z-index: 0;
     pointer-events: none;
-}
-
-.demo-hero__bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
     background:
         radial-gradient(ellipse 90% 60% at 50% 40%, var(--demo-glow-moss), transparent 70%),
         radial-gradient(ellipse 50% 70% at 75% 70%, var(--demo-glow-gold), transparent 60%);
-    animation: demo-atmos 18s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    opacity: 0.7;
 }
 
 .demo-hero__bg::after {
@@ -137,18 +93,10 @@
     background: radial-gradient(circle at 50% 50%, transparent 30%, var(--demo-void) 80%);
 }
 
-@keyframes demo-atmos {
-    0%   { opacity: 0.5; transform: scale(1) translateY(0); }
-    50%  { opacity: 0.8; transform: scale(1.05) translateY(-1%); }
-    100% { opacity: 0.6; transform: scale(1.1) translateY(-2%); }
-}
-
-/* Velora mark */
 .demo-hero__mark {
     width: clamp(2.5rem, 5vw, 4rem);
     height: auto;
     color: var(--demo-moss);
-    animation: vl-blur-lift 0.8s var(--vl-ease-silk, cubic-bezier(0.4, 0, 0.2, 1)) both;
     opacity: 0.8;
 }
 
@@ -158,70 +106,35 @@
     letter-spacing: 0.25em;
     color: var(--demo-olive);
     font-weight: 500;
-    animation: vl-blur-lift 0.9s var(--vl-ease-silk, cubic-bezier(0.4, 0, 0.2, 1)) 0.1s both;
 }
 
 .demo-hero__title {
-    font-size: clamp(3.5rem, 13vw, 11rem);
-    font-weight: 700;
-    line-height: 0.88;
-    letter-spacing: -0.045em;
-    position: relative;
-    z-index: 2;
+    color: var(--demo-text);
 }
 
-.demo-hero__title span {
-    display: block;
-    animation: vl-cinematic-mask 1.1s var(--vl-ease-cinematic, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+.demo-hero__title .hl {
+    color: var(--demo-moss);
 }
-
-.demo-hero__title span:nth-child(1) { animation-delay: 0.2s; }
-.demo-hero__title span:nth-child(2) { animation-delay: 0.4s; color: var(--demo-stone); }
-.demo-hero__title span:nth-child(3) { animation-delay: 0.6s; color: var(--demo-moss); }
 
 .demo-hero__sub {
     font-size: clamp(0.95rem, 2vw, 1.35rem);
     color: var(--demo-text-soft);
     max-width: 32ch;
+    margin: 0 auto;
     line-height: 1.6;
     font-weight: 300;
-    animation: vl-opacity-reveal 1.2s var(--vl-ease-fluid, cubic-bezier(0.25, 0.8, 0.25, 1)) 0.9s both;
 }
 
 .demo-hero__scroll-cue {
-    position: absolute;
-    bottom: clamp(2rem, 4vw, 3.5rem);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--demo-text-muted);
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    animation: demo-cue-breathe 3.5s var(--vl-ease-in-out-smooth, ease-in-out) infinite;
-}
-
-.demo-hero__scroll-cue::after {
-    content: "";
-    width: 1px;
-    height: 2rem;
-    background: linear-gradient(to bottom, var(--demo-moss), transparent);
-    animation: demo-cue-line 2.5s ease-in-out infinite;
-}
-
-@keyframes demo-cue-breathe {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.9; }
-}
-
-@keyframes demo-cue-line {
-    0%, 100% { transform: scaleY(1); opacity: 0.4; }
-    50% { transform: scaleY(1.3); opacity: 0.8; }
+    color: var(--demo-text-muted);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    SCENE 2 — SCROLL ORCHESTRATION
+   Layout only. Motion via vl-scene="glass-bento" + vl-children + vl-effect.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .demo-scroll {
@@ -240,9 +153,6 @@
     color: var(--demo-olive);
     margin-bottom: 1rem;
     display: block;
-    animation: vl-fade-up linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
 }
 
 .demo-scroll__heading {
@@ -250,51 +160,17 @@
     font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 1;
-    animation: vl-cinematic-mask linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 45%;
-}
-
-.demo-scroll__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-    gap: 1.5rem;
 }
 
 .demo-scroll__card {
-    background: var(--demo-surface);
-    border: 1px solid var(--demo-border);
-    border-radius: clamp(0.75rem, 1.5vw, 1.25rem);
     padding: clamp(1.5rem, 3vw, 2.5rem);
     position: relative;
-    animation: demo-card-rise linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 65%;
-    transition: border-color 0.4s var(--vl-ease-cinematic, ease), box-shadow 0.4s var(--vl-ease-cinematic, ease);
+    transition: border-color 0.4s, box-shadow 0.4s;
 }
 
 .demo-scroll__card:hover {
     border-color: var(--demo-border-glow);
     box-shadow: 0 8px 32px var(--demo-glow-moss);
-}
-
-.demo-scroll__card:nth-child(2) { animation-range: entry 5% entry 70%; }
-.demo-scroll__card:nth-child(3) { animation-range: entry 10% entry 75%; }
-.demo-scroll__card:nth-child(4) { animation-range: entry 5% entry 70%; }
-.demo-scroll__card:nth-child(5) { animation-range: entry 10% entry 75%; }
-.demo-scroll__card:nth-child(6) { animation-range: entry 15% entry 80%; }
-
-@keyframes demo-card-rise {
-    from {
-        opacity: 0;
-        transform: translateY(2.5rem) scale(0.96);
-        filter: blur(4px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
 }
 
 .demo-scroll__card-num {
@@ -321,134 +197,58 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SCENE 3 — KINETIC TYPOGRAPHY
+   SCENE 3 — TYPOGRAPHY
+   Layout only. Motion via vl-scene="editorial-cinema" + typography classes.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .demo-type {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5rem;
 }
 
-.demo-type__block {
-    overflow: clip;
+.demo-type__title {
+    color: var(--demo-text);
 }
 
-.demo-type__mega {
-    font-size: clamp(4rem, 16vw, 15rem);
-    font-weight: 700;
-    line-height: 0.85;
-    letter-spacing: -0.05em;
-}
-
-.demo-type__mega span {
-    display: block;
-    animation: demo-type-reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 5% entry 50%;
-}
-
-.demo-type__mega span:nth-child(2) {
-    animation-range: entry 15% entry 60%;
-    color: var(--demo-olive);
-}
-
-.demo-type__mega span:nth-child(3) {
-    animation-range: entry 25% entry 70%;
+.demo-type__title .hl {
     color: var(--demo-moss);
 }
 
-@keyframes demo-type-reveal {
-    from {
-        opacity: 0;
-        clip-path: inset(100% 0 0 0);
-        transform: translateY(0.5em);
-    }
-    to {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transform: translateY(0);
-    }
-}
-
 .demo-type__lines {
+    margin-top: clamp(2rem, 4vw, 4rem);
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     align-items: center;
 }
 
 .demo-type__line {
-    font-size: clamp(0.95rem, 2.2vw, 1.5rem);
+    font-size: clamp(0.95rem, 2.2vw, 1.4rem);
     color: var(--demo-text-soft);
     font-weight: 300;
-    animation: demo-line-enter linear both;
-    animation-timeline: view();
-    animation-range: entry 10% entry 60%;
-}
-
-.demo-type__line:nth-child(2) { animation-range: entry 15% entry 65%; }
-.demo-type__line:nth-child(3) { animation-range: entry 20% entry 70%; }
-.demo-type__line:nth-child(4) { animation-range: entry 25% entry 75%; }
-
-@keyframes demo-line-enter {
-    from {
-        opacity: 0;
-        filter: blur(8px);
-        transform: translateY(1rem);
-    }
-    to {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateY(0);
-    }
 }
 
 .demo-type__words {
-    perspective: 1000px;
+    margin-top: clamp(3rem, 5vw, 5rem);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.3em;
-}
-
-.demo-type__word {
     font-size: clamp(2.5rem, 8vw, 7rem);
     font-weight: 700;
     letter-spacing: -0.03em;
-    display: inline-block;
-    animation: demo-word-sweep linear both;
-    animation-timeline: view();
-    animation-range: entry 5% entry 55%;
 }
 
-.demo-type__word:nth-child(1) { color: var(--demo-stone); }
-.demo-type__word:nth-child(2) { animation-range: entry 12% entry 62%; color: var(--demo-olive); }
-.demo-type__word:nth-child(3) { animation-range: entry 19% entry 69%; color: var(--demo-moss); }
-.demo-type__word:nth-child(4) { animation-range: entry 26% entry 76%; color: var(--demo-gold); }
-
-@keyframes demo-word-sweep {
-    from {
-        opacity: 0;
-        clip-path: inset(0 100% 0 0);
-        transform: rotateY(-6deg) translateX(-0.5em);
-    }
-    to {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transform: rotateY(0) translateX(0);
-    }
-}
+.demo-type__words span:nth-child(1) { color: var(--demo-stone); }
+.demo-type__words span:nth-child(2) { color: var(--demo-olive); }
+.demo-type__words span:nth-child(3) { color: var(--demo-moss); }
+.demo-type__words span:nth-child(4) { color: var(--demo-gold); }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SCENE 4 — DEPTH & LAYERS
+   SCENE 4 — DEPTH
+   Layout only. Motion via vl-effect="depth-enter/rise-3d/parallax-depth".
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .demo-depth {
-    perspective: 1400px;
     background:
         radial-gradient(ellipse 80% 50% at 50% 0%, var(--demo-glow-moss), transparent 60%),
         var(--demo-void);
@@ -466,9 +266,6 @@
     color: var(--demo-olive);
     margin-bottom: 1rem;
     display: block;
-    animation: vl-fade-up linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 35%;
 }
 
 .demo-depth__heading {
@@ -476,9 +273,6 @@
     font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 1;
-    animation: vl-cinematic-mask linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 45%;
 }
 
 .demo-depth__stack {
@@ -495,32 +289,12 @@
     border-radius: clamp(0.75rem, 1.5vw, 1.25rem);
     padding: clamp(2rem, 4vw, 3rem);
     position: relative;
-    animation: demo-depth-enter linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 70%;
-    transform-style: preserve-3d;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    transition: border-color 0.4s, box-shadow 0.4s;
 }
 
 .demo-depth__panel:hover {
     border-color: var(--demo-border-glow);
     box-shadow: 0 12px 40px var(--demo-glow-moss);
-}
-
-.demo-depth__panel:nth-child(2) { animation-range: entry 8% entry 78%; }
-.demo-depth__panel:nth-child(3) { animation-range: entry 16% entry 86%; }
-
-@keyframes demo-depth-enter {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 3rem, -180px) rotateX(6deg);
-        filter: blur(3px);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotateX(0deg);
-        filter: blur(0);
-    }
 }
 
 .demo-depth__panel-badge {
@@ -553,32 +327,30 @@
     font-family: var(--vl-font-family-mono, "JetBrains Mono", monospace);
     font-size: 0.8em;
     padding: 0.15em 0.4em;
-    background: var(--demo-surface-elevated);
+    background: oklch(20% 0.015 110);
     border-radius: 0.25rem;
     color: var(--demo-olive);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SCENE 5 — FINALE: "No JavaScript."
+   SCENE 5 — FINALE
+   Layout only. Motion via vl-scene="cinematic-hero" preset.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .demo-finale {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-align: center;
-    gap: clamp(2rem, 4vw, 3.5rem);
+    min-height: 100dvh;
 }
 
 .demo-finale__bg {
     position: absolute;
     inset: 0;
+    z-index: 0;
     pointer-events: none;
     background:
-        radial-gradient(ellipse 80% 70% at 50% 50%, var(--demo-glow-moss), transparent 65%),
-        radial-gradient(ellipse 40% 50% at 65% 60%, var(--demo-glow-gold), transparent 60%);
-    animation: demo-finale-pulse 10s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+        radial-gradient(ellipse 80% 70% at 50% 50%, var(--demo-glow-moss), transparent 60%),
+        radial-gradient(ellipse 40% 50% at 65% 60%, var(--demo-glow-gold), transparent 55%);
+    opacity: 0.6;
 }
 
 .demo-finale__bg::after {
@@ -588,29 +360,15 @@
     background: radial-gradient(circle at 50% 50%, transparent 20%, var(--demo-void) 75%);
 }
 
-@keyframes demo-finale-pulse {
-    from { opacity: 0.4; transform: scale(1); }
-    to   { opacity: 0.7; transform: scale(1.08); }
-}
-
 .demo-finale__code {
     font-family: var(--vl-font-family-mono, "JetBrains Mono", monospace);
     font-size: clamp(0.75rem, 1.5vw, 1.05rem);
     background: var(--demo-surface);
     border: 1px solid var(--demo-border);
-    border-radius: clamp(0.5rem, 1vw, 0.75rem);
+    border-radius: 0.6rem;
     padding: 1.25rem 2rem;
     color: var(--demo-text-soft);
-    position: relative;
-    z-index: 2;
-    animation: demo-code-enter linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 35%;
-}
-
-@keyframes demo-code-enter {
-    from { opacity: 0; transform: translateY(1.5rem); filter: blur(6px); }
-    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+    display: inline-block;
 }
 
 .demo-finale__code .hl-tag { color: var(--demo-stone); }
@@ -618,51 +376,16 @@
 .demo-finale__code .hl-val { color: var(--demo-gold); }
 
 .demo-finale__punchline {
-    font-size: clamp(4rem, 15vw, 13rem);
-    font-weight: 700;
-    line-height: 0.88;
-    letter-spacing: -0.045em;
-    position: relative;
-    z-index: 2;
-    animation: demo-punch linear both;
-    animation-timeline: view();
-    animation-range: entry 10% entry 50%;
-}
-
-@keyframes demo-punch {
-    from {
-        opacity: 0;
-        clip-path: inset(100% 0 0 0);
-        transform: translateY(0.2em);
-    }
-    60% {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transform: translateY(-0.02em);
-    }
-    to {
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-        transform: translateY(0);
-    }
+    color: var(--demo-text);
 }
 
 .demo-finale__desc {
     font-size: clamp(0.95rem, 1.8vw, 1.25rem);
     color: var(--demo-text-soft);
     max-width: 38ch;
+    margin: 0 auto;
     line-height: 1.65;
     font-weight: 300;
-    position: relative;
-    z-index: 2;
-    animation: demo-desc-enter linear both;
-    animation-timeline: view();
-    animation-range: entry 25% entry 60%;
-}
-
-@keyframes demo-desc-enter {
-    from { opacity: 0; filter: blur(4px); }
-    to   { opacity: 1; filter: blur(0); }
 }
 
 .demo-finale__actions {
@@ -670,16 +393,6 @@
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
-    position: relative;
-    z-index: 2;
-    animation: demo-actions-enter linear both;
-    animation-timeline: view();
-    animation-range: entry 35% entry 70%;
-}
-
-@keyframes demo-actions-enter {
-    from { opacity: 0; transform: translateY(1rem); }
-    to   { opacity: 1; transform: translateY(0); }
 }
 
 .demo-finale__btn {
@@ -691,10 +404,7 @@
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
-    transition:
-        transform 0.3s var(--vl-ease-cinematic, ease),
-        box-shadow 0.3s var(--vl-ease-cinematic, ease),
-        border-color 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
 .demo-finale__btn:hover {
@@ -722,24 +432,43 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   PROGRESS BAR (only custom animation — scroll-linked via design system)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 200;
+    background: var(--demo-void);
+}
+
+.demo-progress__bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--demo-moss), var(--demo-gold));
+    transform-origin: left;
+    transform: scaleX(var(--scroll-pct, 0));
+    animation: demo-progress-scroll linear;
+    animation-timeline: scroll(root);
+}
+
+@keyframes demo-progress-scroll {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 48rem) {
-    .demo-hero__title {
-        font-size: clamp(2.8rem, 15vw, 5.5rem);
-    }
-    .demo-type__mega {
-        font-size: clamp(3rem, 16vw, 8rem);
-    }
-    .demo-finale__punchline {
-        font-size: clamp(3rem, 16vw, 7rem);
+    .demo-type__words {
+        font-size: clamp(2rem, 10vw, 4rem);
     }
     .demo-scroll__grid {
         grid-template-columns: 1fr;
-    }
-    .demo-type__word {
-        font-size: clamp(2rem, 10vw, 4rem);
     }
 }
 

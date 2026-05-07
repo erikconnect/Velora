@@ -1,7 +1,7 @@
 # Showcase Contract Checklist
 
 - Pages scanned: **47**
-- Unknown vl-* attrs: **0**
+- Unknown vl-* attrs: **1**
 - Deprecated vl-* attrs: **0**
 - Broken #anchors: **0**
 
@@ -87,8 +87,8 @@
 - Deprecated vl-* attrs: none
 - Broken #anchors: none
 
-### OK - `pages/demo/impossible.html`
-- Unknown vl-* attrs: none
+### FAIL - `pages/demo/impossible.html`
+- Unknown vl-* attrs: `vl-reveal-cinematic`
 - Deprecated vl-* attrs: none
 - Broken #anchors: none
 
