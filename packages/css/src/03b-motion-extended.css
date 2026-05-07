@@ -2140,4 +2140,188 @@
             display: none;
         }
     } 
+
+    /* =========================================================================
+       CINEMATIC TYPOGRAPHY SYSTEM
+       Reveal, stagger, masking, split-line, and oversized type motion.
+       ========================================================================= */
+
+    /* --- Keyframes: typography-specific --- */
+
+    @keyframes vl-text-rise {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 110%, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-text-mask-up {
+        from {
+            clip-path: inset(100% 0 0 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-text-mask-down {
+        from {
+            clip-path: inset(0 0 100% 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-text-blur-reveal {
+        from {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(1.1);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes vl-text-slide-mask {
+        from {
+            clip-path: inset(0 100% 0 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-text-oversized-drift {
+        from {
+            opacity: 0;
+            transform: translate3d(-2%, 0, 0) scale(1.02);
+            filter: blur(4px);
+        }
+        50% {
+            opacity: 1;
+            filter: blur(0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes vl-char-cascade {
+        0%   { opacity: 0; transform: translate3d(0, 0.5em, 0); filter: blur(4px); }
+        60%  { opacity: 1; filter: blur(0); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+    }
+
+    /* --- Reveal systems --- */
+
+    .vl-text-reveal {
+        overflow: hidden;
+    }
+
+    .vl-text-reveal > * {
+        animation: vl-text-rise var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-reveal[vl-children="stagger"] > * {
+        --_i: var(--vl-child-index, 0);
+        animation-delay: calc(var(--_i) * var(--vl-stagger-step, 80ms));
+    }
+
+    /* --- Mask systems --- */
+
+    .vl-text-mask-up {
+        animation: vl-text-mask-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-mask-down {
+        animation: vl-text-mask-down var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-slide-mask {
+        animation: vl-text-slide-mask var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-silk, var(--vl-ease-cinematic)) both;
+    }
+
+    /* --- Blur reveal --- */
+
+    .vl-text-blur-reveal {
+        animation: vl-text-blur-reveal var(--vl-motion-duration, var(--vl-duration-slower)) var(--vl-ease-fluid, var(--vl-ease-out-soft)) both;
+    }
+
+    /* --- Split-line systems: per-line stagger --- */
+
+    .vl-split-lines {
+        overflow: hidden;
+    }
+
+    .vl-split-lines > * {
+        display: block;
+        overflow: hidden;
+        animation: vl-text-mask-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+        --_i: var(--vl-child-index, 0);
+        animation-delay: calc(var(--_i) * var(--vl-stagger-step, 120ms));
+    }
+
+    /* --- Oversized cinematic typography --- */
+
+    .vl-type-cinematic {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(3rem, 10vw, 8rem);
+        font-weight: var(--vl-font-weight-bold, 700);
+        line-height: var(--vl-leading-tight, 1.1);
+        letter-spacing: var(--vl-tracking-tight, -0.03em);
+        animation: vl-text-oversized-drift var(--vl-duration-slower, 800ms) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-type-cinematic-hero {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(4rem, 14vw, 12rem);
+        font-weight: var(--vl-font-weight-bold, 700);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        animation: vl-text-blur-reveal var(--vl-duration-slower, 800ms) var(--vl-ease-cinematic) both;
+    }
+
+    /* --- Character cascade (with CSS counter/nth-child stagger) --- */
+
+    .vl-char-cascade > span {
+        display: inline-block;
+        animation: vl-char-cascade var(--vl-duration-slow, 500ms) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-char-cascade > span:nth-child(1)  { animation-delay: 0ms; }
+    .vl-char-cascade > span:nth-child(2)  { animation-delay: 30ms; }
+    .vl-char-cascade > span:nth-child(3)  { animation-delay: 60ms; }
+    .vl-char-cascade > span:nth-child(4)  { animation-delay: 90ms; }
+    .vl-char-cascade > span:nth-child(5)  { animation-delay: 120ms; }
+    .vl-char-cascade > span:nth-child(6)  { animation-delay: 150ms; }
+    .vl-char-cascade > span:nth-child(7)  { animation-delay: 180ms; }
+    .vl-char-cascade > span:nth-child(8)  { animation-delay: 210ms; }
+    .vl-char-cascade > span:nth-child(9)  { animation-delay: 240ms; }
+    .vl-char-cascade > span:nth-child(10) { animation-delay: 270ms; }
+    .vl-char-cascade > span:nth-child(n+11) {
+        animation-delay: calc((var(--vl-child-index, 10) - 1) * 30ms);
+    }
+
+    /* --- Scroll-triggered text reveals --- */
+
+    .vl-text-reveal[vl-timeline="view"],
+    .vl-text-mask-up[vl-timeline="view"],
+    .vl-text-mask-down[vl-timeline="view"],
+    .vl-text-blur-reveal[vl-timeline="view"],
+    .vl-text-slide-mask[vl-timeline="view"],
+    .vl-type-cinematic[vl-timeline="view"],
+    .vl-type-cinematic-hero[vl-timeline="view"] {
+        animation-timeline: view();
+        animation-range: entry 10% entry 60%;
+    }
 }
