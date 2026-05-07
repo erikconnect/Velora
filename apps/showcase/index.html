@@ -19,6 +19,8 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+  <script src="/js/showcase-state.js"></script>
   </head>
   <body class="showcase-page-shell showcase-home-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -92,6 +94,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -133,6 +137,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -161,9 +167,7 @@
             <p class="vl-kicker" vl-effect="fade-in">Motion-native CSS framework</p>
             <h1
               class="showcase-home-hero__title"
-              vl-effect="clip-rise"
-              vl-timeline="view"
-              vl-range="entry 5% cover 45%"
+              vl-enter="clip-rise"
               vl-speed="cinema"
             >
               Build cinematic interfaces with pure CSS.
@@ -279,7 +283,7 @@
               </article>
               <article class="showcase-home-metric vl-stat" vl-effect="fade-up" vl-timeline="view" vl-range="entry 5% cover 40%">
                 <span class="showcase-home-metric__eyebrow">Library</span>
-                <span class="vl-stat__value"><span class="vl-counter vl-counter--once" style="--vl-counter-to: 80"></span><span class="showcase-home-metric__suffix">+</span></span>
+                <span class="vl-stat__value"><span class="vl-counter vl-counter--once" style="--vl-counter-to: 46"></span><span class="showcase-home-metric__suffix">+</span></span>
                 <span class="vl-stat__label">pages across scenes and tools</span>
               </article>
             </div>
@@ -426,7 +430,7 @@
           <div class="vl-container showcase-home-display-head">
             <div class="showcase-home-display-text">
               <p class="vl-kicker" vl-effect="shimmer-text" vl-timeline="view" vl-range="entry 0% cover 35%">Act II · Display</p>
-              <h2 class="showcase-home-display__title" vl-effect="clip-rise" vl-timeline="view" vl-range="entry 5% cover 42%" vl-speed="cinema">
+              <h2 class="showcase-home-display__title" vl-enter="clip-rise" vl-timeline="view" vl-range="entry 5% cover 42%" vl-speed="cinema">
                 Type becomes interface.
               </h2>
               <p class="showcase-home-display__intro" vl-effect="text-reveal-up" vl-timeline="view" vl-range="entry 8% cover 48%" vl-speed="slow">
@@ -1102,6 +1106,6 @@
       </div>
     </footer>
 
-    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
   </body>
 </html>

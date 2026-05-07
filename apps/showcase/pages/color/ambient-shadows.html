@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/showcase.css" />
     <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+
+  <script src="/js/showcase-state.js"></script>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -65,6 +67,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -106,6 +110,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -555,7 +561,7 @@
             </div>
 
             <div class="showcase-cinema-payoff-links shd-payoff-links">
-              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/ambient-shadows-theory.html">Read Full Theory</a>
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/color/ambient-shadows.html">Read Full Theory</a>
               <a class="showcase-ref-tokens-button" href="/pages/color/tonal-tiers.html">Explore Tonal Tiers</a>
               <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Inspect Tokens</a>
             </div>
@@ -661,11 +667,7 @@
         </div>
       </div>
     </footer>
-          <!-- showcase-controls.js — SHOWCASE UI ONLY.
-         Handles the dark/light toggle, editorial theme switcher and page-transition
-         selector in the demo header. This is NOT part of the Velora framework.
-         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
-    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
   </body>
 </html>
 

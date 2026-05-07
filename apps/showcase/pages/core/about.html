@@ -90,6 +90,8 @@
         padding: .4rem;
       }
     </style>
+
+  <script src="/js/showcase-state.js"></script>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -158,6 +160,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -199,6 +203,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -232,7 +238,7 @@
               </div>
               <div class="showcase-ref-tokens-actions">
                 <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/api-motion-catalog.html">Open Motion Catalog</a>
-                <a class="showcase-ref-tokens-button" href="/pages/library/velora-landing-page-refined.html">Editorial Landing</a>
+                <a class="showcase-ref-tokens-button" href="/pages/core/landing.html">Editorial Landing</a>
                 <a class="showcase-ref-tokens-button" href="/pages/core/landing.html">Framework Tour</a>
               </div>
               <div class="about-scope-legend">
@@ -394,7 +400,7 @@
                 About is not marketing copy. It is a guided bridge to real specs, catalogs, and implementation references.
               </p>
               <div class="showcase-cinema-chip-row about-cta-chips">
-                <a class="showcase-ref-chip" href="/pages/library/architectural-blueprint.html">Blueprint</a>
+                <a class="showcase-ref-chip" href="/pages/tools/architecture.html">Blueprint</a>
                 <a class="showcase-ref-chip" href="/pages/motion/api-motion-catalog.html">Motion API</a>
                 <a class="showcase-ref-chip" href="/pages/components/api-design-catalog.html">Design API</a>
                 <a class="showcase-ref-chip" href="/pages/library/index.html">Library Hub</a>
@@ -564,11 +570,7 @@
         </div>
       </div>
     </footer>
-          <!-- showcase-controls.js — SHOWCASE UI ONLY.
-         Handles the dark/light toggle, editorial theme switcher and page-transition
-         selector in the demo header. This is NOT part of the Velora framework.
-         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
-    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
   </body>
 </html>
 

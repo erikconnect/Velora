@@ -21,6 +21,8 @@
       #type-body      { view-timeline-name: --tl-3; view-timeline-axis: block; }
       #type-utility   { view-timeline-name: --tl-4; view-timeline-axis: block; }
     </style>
+
+  <script src="/js/showcase-state.js"></script>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -85,6 +87,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -126,6 +130,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -226,7 +232,7 @@
 
             <div class="showcase-cinema-chip-row">
               <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Type Spec</a>
-              <a class="showcase-ref-chip" href="/pages/library/typography-samples.html">All Samples</a>
+              <a class="showcase-ref-chip" href="/pages/typography/typography.html">All Samples</a>
             </div>
           </div>
         </section>
@@ -332,7 +338,7 @@
             <div class="showcase-cinema-chip-row">
               <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html">Type Spec</a>
               <a class="showcase-ref-chip" href="/pages/typography/typography-composition.html">Composition Patterns</a>
-              <a class="showcase-ref-chip" href="/pages/library/typography-samples.html">All Samples</a>
+              <a class="showcase-ref-chip" href="/pages/typography/typography.html">All Samples</a>
             </div>
           </div>
         </section>
@@ -435,11 +441,7 @@
         </div>
       </div>
     </footer>
-          <!-- showcase-controls.js — SHOWCASE UI ONLY.
-         Handles the dark/light toggle, editorial theme switcher and page-transition
-         selector in the demo header. This is NOT part of the Velora framework.
-         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
-    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
   </body>
 </html>
 

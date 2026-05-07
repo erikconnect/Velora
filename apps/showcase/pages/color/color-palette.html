@@ -22,6 +22,8 @@
       #palette-tokens     { view-timeline-name: --tl-4; view-timeline-axis: block; }
       #palette-payoff     { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
+
+  <script src="/js/showcase-state.js"></script>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -90,6 +92,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -131,6 +135,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -158,7 +164,7 @@
                 stay legible across themes, screen technologies and ambient-light conditions.
               </p>
               <div class="showcase-ref-tokens-actions">
-                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/color-palette-perception.html">Palette Perception Doc</a>
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/color/color-palette.html">Palette Perception Doc</a>
                 <a class="showcase-ref-tokens-button" href="/pages/color/tonal-tiers.html">Tonal Tiers</a>
                 <a class="showcase-ref-tokens-button" href="/pages/color/color-system.html">Color System</a>
               </div>
@@ -334,7 +340,7 @@
               </article>
             </div>
             <div class="showcase-cinema-payoff-links">
-              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/library/color-palette-perception.html">Read Full Specification</a>
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/color/color-palette.html">Read Full Specification</a>
               <a class="showcase-ref-tokens-button" href="/pages/color/design-tokens.html">Inspect All Tokens</a>
               <a class="showcase-ref-tokens-button" href="/pages/color/tonal-tiers.html">Explore Tonal Tiers</a>
             </div>
@@ -439,11 +445,7 @@
         </div>
       </div>
     </footer>
-          <!-- showcase-controls.js — SHOWCASE UI ONLY.
-         Handles the dark/light toggle, editorial theme switcher and page-transition
-         selector in the demo header. This is NOT part of the Velora framework.
-         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
-    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
   </body>
 </html>
 

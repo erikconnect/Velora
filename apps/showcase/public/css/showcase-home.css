@@ -891,18 +891,6 @@
   text-wrap: balance;
 }
 
-.showcase-home-hero__title[vl-effect="clip-rise"] {
-  overflow: visible;
-  clip-path: inset(-0.18em -0.08em -0.22em -0.08em);
-  transform: translate3d(0, 0, 0);
-  animation-name: vl-clip-rise;
-  animation-duration: var(--vl-motion-duration, var(--vl-duration-slower));
-  animation-fill-mode: both;
-  animation-timing-function: linear;
-  animation-timeline: view();
-  animation-range: var(--vl-range, entry 5% cover 45%);
-}
-
 .showcase-home-lead {
   margin: 0;
   max-inline-size: 45rem;

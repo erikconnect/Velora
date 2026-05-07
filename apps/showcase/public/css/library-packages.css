@@ -1,6 +1,0 @@
-/**
- * @deprecated Importar library-ds-themes.css + library-doc-content.css diretamente.
- * Mantido como atalho para caches antigos.
- */
-@import "./library-ds-themes.css";
-@import "./library-doc-content.css";

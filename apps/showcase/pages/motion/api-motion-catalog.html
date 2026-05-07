@@ -8,9 +8,11 @@
   <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
   <link rel="stylesheet" href="/css/velora.css" />
   <link rel="stylesheet" href="/css/showcase.css" />
-  <link rel="stylesheet" href="/css/showcase-hub-pages.css" />
+    <link rel="stylesheet" href="/css/showcase-hub.css" />
   <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
   <link rel="stylesheet" href="/css/showcase-api-motion-catalog.css" />
+
+ <script src="/js/showcase-state.js"></script>
  </head>
  <body>
   <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -67,6 +69,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -108,6 +112,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -1196,10 +1202,6 @@
     card.addEventListener("click", replay);
    });
   </script>
-    <!-- showcase-controls.js — SHOWCASE UI ONLY.
-     Handles the dark/light toggle, editorial theme switcher and page-transition
-     selector in the demo header. This is NOT part of the Velora framework.
-     Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
-  <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
  </body>
 </html>

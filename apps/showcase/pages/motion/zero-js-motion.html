@@ -8,7 +8,6 @@
 <link href="/css/velora.css" rel="stylesheet"/>
 <link href="/css/showcase.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/showcase-tw-demos.css" />
-    <link rel="stylesheet" href="/css/showcase-demo-extras.css" />
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -25,6 +24,8 @@
         ::-webkit-scrollbar-thumb { background: #434a41; border-radius: 2px; }
         ::-webkit-scrollbar-thumb:hover { background: #bbcbb1; }
     </style>
+
+<script src="/js/showcase-state.js"></script>
 </head>
 <body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
 <a class="vl-sr-only" href="#content">Skip to content</a>
@@ -71,6 +72,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -112,6 +115,8 @@
           <select class="ds-editorial-select" title="Editorial design theme" aria-label="Editorial design theme">
             <option value="noir">Noir</option>
             <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
           </select>
           <div class="ds-theme-toggle" role="group" aria-label="Color theme">
             <button class="ds-theme-btn" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
@@ -426,9 +431,5 @@
     </footer>
 
 <!-- No bottom nav for desktop - part of the clean desktop high-fidelity conversion -->
-    <!-- showcase-controls.js — SHOWCASE UI ONLY.
-         Handles the dark/light toggle, editorial theme switcher and page-transition
-         selector in the demo header. This is NOT part of the Velora framework.
-         Velora's own motion system is entirely CSS-driven with zero JS dependencies. -->
-    <script src="/js/showcase-controls.js"></script>
+    <script src="/js/showcase-ui.js"></script>
 </body></html>

@@ -52,3 +52,53 @@ html[data-editorial-theme="earth"] {
     --vl-color-primary: var(--lib-earth-primary);
     --vl-color-primary-soft: color-mix(in oklch, var(--lib-earth-primary) 18%, transparent);
 }
+
+/* ── Aethel: copper/stone dark (#000000) + accent #9B6E49 ──────────── */
+html[data-editorial-theme="aethel"] {
+    --lib-aethel-base: #000000;
+    --lib-aethel-surface: #1c1917;
+    --lib-aethel-elevated: #292524;
+    --lib-aethel-text: #a8a29e;
+    --lib-aethel-text-hi: #e7e5e4;
+    --lib-aethel-accent: #9B6E49;
+    --lib-aethel-tertiary: #9aa945;
+}
+
+html[data-editorial-theme="aethel"][data-theme="dark"],
+html[data-editorial-theme="aethel"]:not([data-theme="light"]) {
+    --vl-bg-main: var(--lib-aethel-base);
+    --vl-bg-surface: var(--lib-aethel-surface);
+    --vl-bg-surface-elevated: var(--lib-aethel-elevated);
+    --vl-bg-inset: #0a0908;
+    --vl-text-primary: var(--lib-aethel-text-hi);
+    --vl-text-secondary: var(--lib-aethel-text);
+    --vl-text-muted: #78716c;
+    --vl-border-subtle: color-mix(in oklch, var(--lib-aethel-accent) 20%, transparent);
+    --vl-color-primary: var(--lib-aethel-accent);
+    --vl-color-primary-soft: color-mix(in oklch, var(--lib-aethel-accent) 18%, transparent);
+}
+
+/* ── Meridian Geo: deep forest dark (#0d100a) + muted green #7A9A6E ── */
+html[data-editorial-theme="meridian"] {
+    --lib-meridian-base: #0d100a;
+    --lib-meridian-surface: #131710;
+    --lib-meridian-elevated: #1a1f17;
+    --lib-meridian-sand: #c4b99a;
+    --lib-meridian-cream: #e8efe2;
+    --lib-meridian-accent: #7a9a6e;
+    --lib-meridian-accent-hi: #a8c89a;
+}
+
+html[data-editorial-theme="meridian"][data-theme="dark"],
+html[data-editorial-theme="meridian"]:not([data-theme="light"]) {
+    --vl-bg-main: var(--lib-meridian-base);
+    --vl-bg-surface: var(--lib-meridian-surface);
+    --vl-bg-surface-elevated: var(--lib-meridian-elevated);
+    --vl-bg-inset: #080b07;
+    --vl-text-primary: var(--lib-meridian-cream);
+    --vl-text-secondary: var(--lib-meridian-sand);
+    --vl-text-muted: #7a8070;
+    --vl-border-subtle: color-mix(in oklch, var(--lib-meridian-accent) 22%, transparent);
+    --vl-color-primary: var(--lib-meridian-accent);
+    --vl-color-primary-soft: color-mix(in oklch, var(--lib-meridian-accent) 18%, transparent);
+}
