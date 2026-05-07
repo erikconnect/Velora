@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/landing.css" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
   </head>
-  <body class="showcase-page-shell">
+  <body class="showcase-page-shell showcase-landing-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
     <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
       <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
@@ -39,6 +39,7 @@
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
     </nav>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -132,191 +133,212 @@
         </div>
       </div>
     </header>
-    <main id="content" class="vl-main">
-      <div class="showcase-ref-page showcase-ref-page--landing showcase-ref-page--cinema">
-        <section id="lnd-hero" class="showcase-cinema-scene showcase-cinema-scene--landing-hero" vl-effect="fade-up" vl-timeline="view">
-          <div class="showcase-landing-hero__wash" aria-hidden="true"></div>
-          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
-            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="200ms" vl-speed="cinema">
-              <div class="showcase-ref-landing-kicker">
-                <span class="showcase-ref-landing-kicker__line"></span>
-                <p class="showcase-ref-kicker showcase-ref-kicker--typewriter-manifesto" vl-effect="typewriter-soft" vl-speed="cinema">Manifesto // Browser-first precision</p>
-              </div>
-              <h1 class="showcase-ref-title">
-                Velora stages interfaces as <em vl-effect="shimmer-text">moving<br>architecture.</em>
-              </h1>
-              <p class="showcase-ref-lead">
-                A framework for teams that want the browser to feel composed, not assembled: perceptual tokens, tonal
-                depth, narrative motion and components that read like scenes instead of boxes.
-              </p>
-              <div class="showcase-ref-landing-actions">
-                <a class="showcase-ref-landing-button showcase-ref-landing-button--primary" href="/pages/tools/architecture.html" vl-effect="icon-shift">View Architecture <span aria-hidden="true">→</span></a>
-                <a class="showcase-ref-landing-button showcase-ref-landing-button--secondary" href="/pages/scenes/scene-hero.html" vl-effect="hover-tilt-3d">Hero Scene</a>
-                <a class="showcase-ref-landing-button showcase-ref-landing-button--secondary" href="/pages/integrations/gsap-anime.html" vl-effect="hover-tilt-3d">Motion Enhancements</a>
-              </div>
-              <div class="showcase-cinema-inline-metrics" vl-effect="scroll-marquee" vl-timeline="scroll" vl-range="full" vl-speed="cinema">
-                <span>120fps Compositor Flow</span>
-                <span>Zero-JS Motion Core</span>
-                <span>OKLCH Tonal System</span>
-              </div>
-            </div>
-            <div class="showcase-cinema-stage showcase-cinema-stage--landing-hero" aria-label="Layered interface demonstration" vl-effect="parallax" vl-timeline="scroll" vl-range="scene-soft" vl-speed="cinema" vl-children="stagger" vl-stagger="200ms">
-              <div class="showcase-cinema-orbit" vl-effect="orbit">
-                <span class="showcase-cinema-orbit__ring showcase-cinema-orbit__ring--outer"></span>
-                <span class="showcase-cinema-orbit__ring showcase-cinema-orbit__ring--mid"></span>
-                <span class="showcase-cinema-orbit__ring showcase-cinema-orbit__ring--inner"></span>
-              </div>
-              <article class="showcase-cinema-glasscard showcase-cinema-glasscard--primary" vl-effect="hover-prism" vl-speed="slow">
-                <p class="showcase-ref-label">Scene Engine</p>
-                <h2>Hero / Layer / Reveal</h2>
-                <p>The first frame opens with depth, pacing and a surface stack that keeps moving while the copy locks in.</p>
-              </article>
-              <article class="showcase-cinema-glasscard showcase-cinema-glasscard--secondary" vl-effect="border-beam" vl-speed="slow">
-                <p class="showcase-ref-label">Scroll State</p>
-                <strong>entry 0% -> cover 55%</strong>
-                <span>Depth shifts, glow interpolation and type arrival all stay on the compositor path.</span>
-              </article>
-              <div class="showcase-cinema-status" vl-children="wave" vl-effect="glow-breathe">
-                <span>Latency 0.04ms</span>
-                <span>Rail synced</span>
-                <span>View timelines armed</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="lnd-layering" class="showcase-cinema-scene showcase-cinema-scene--landing-layering" vl-effect="unfold" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
-          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
-            <div class="showcase-landing-layer__ambient" aria-hidden="true"></div>
-            <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="200ms" vl-speed="cinema">
-              <p class="showcase-ref-kicker showcase-ref-kicker--typewriter-act" vl-effect="typewriter-soft" vl-speed="cinema">Act I // Layering</p>
-              <h2 class="showcase-cinema-heading">Hierarchy without chrome.</h2>
-              <p class="showcase-ref-lead">
-                Velora replaces default card sameness with recession, offsets and tonal states. Sections read as depth
-                cues, not a stack of bordered rectangles.
-              </p>
-              <div class="showcase-cinema-chip-row" vl-children="zoom-stagger" vl-stagger="120ms">
-                <a class="showcase-ref-chip" href="/pages/color/tonal-tiers.html" vl-effect="hover-spotlight">Tonal Tiers</a>
-                <a class="showcase-ref-chip" href="/pages/color/ambient-shadows.html" vl-effect="hover-spotlight">Ambient Shadows</a>
-                <a class="showcase-ref-chip" href="/pages/color/tonal-stacking.html" vl-effect="hover-spotlight">Tonal Stacking</a>
-              </div>
-              <pre class="vl-code-block">&lt;!-- Four-layer depth stack --&gt;
-&lt;div class="vl-bg-main"&gt;
-  &lt;div class="vl-bg-surface"&gt;
-    &lt;div class="vl-bg-elevated"&gt;
-      &lt;span class="vl-bg-accent"&gt;Primary&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</pre>
-              <p class="vl-code-note">Each tier is one OKLCH lightness step apart. Velora derives the entire depth stack from your base hue &mdash; no manual shadow tuning required.</p>
-            </div>
-              <div class="showcase-cinema-stage showcase-cinema-stage--layering" vl-effect="depth-drift" vl-timeline="scroll" vl-range="scene-soft" vl-speed="cinema">
-              <div class="showcase-cinema-layer-stack" aria-hidden="true" vl-effect="float">
-                <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--base"><span>Canvas</span></div>
-                <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--surface"><span>Surface</span></div>
-                <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--raised"><span>Elevated</span></div>
-                <div class="showcase-cinema-layer-stack__plane showcase-cinema-layer-stack__plane--accent"><span>Primary</span></div>
-              </div>
-              <aside class="showcase-cinema-sidecard" vl-effect="hover-tilt-3d" vl-children="stagger" vl-stagger="150ms" vl-speed="slow">
-                <p class="showcase-ref-label">Depth State</p>
-                <h3>Four layers, one rhythm.</h3>
-                <p>Background, inset, elevated and accent states reveal themselves as you scroll past the scene midpoint.</p>
-                <div class="showcase-cinema-meter">
-                  <span>Surface Shift</span>
-                  <div class="showcase-cinema-meter__track"><span class="showcase-cinema-meter__fill showcase-cinema-meter__fill--72"></span></div>
-                </div>
-                <div class="showcase-cinema-meter">
-                  <span>Glow Reserve</span>
-                  <div class="showcase-cinema-meter__track"><span class="showcase-cinema-meter__fill showcase-cinema-meter__fill--54"></span></div>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        <section id="lnd-system" class="showcase-cinema-scene showcase-cinema-scene--landing-system" vl-effect="wipe-reveal" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
-          <div class="showcase-cinema-scene__inner">
-            <div class="showcase-cinema-scene__header">
-              <div>
-                <p class="showcase-ref-kicker"><span vl-effect="shimmer-text">Act II // Motion + system</span></p>
-                <h2 class="showcase-cinema-heading" vl-effect="clip-rise" vl-timeline="view" vl-range="scene-focus" vl-speed="cinema">
-                  The framework demonstrates itself while you scroll.
-                </h2>
-              </div>
-              <p class="showcase-ref-lead" vl-effect="text-reveal-up" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
-                Timelines, stagger and scene modules are part of the composition language. The page becomes proof of the
-                primitives rather than a brochure about them.
-              </p>
-            </div>
-            <div class="showcase-cinema-card-grid" vl-children="cinema-stagger" vl-stagger="180ms" vl-speed="cinema">
-              <article class="showcase-cinema-panel" vl-effect="hover-tilt-3d">
-                <p class="showcase-ref-label">Zero JS Motion</p>
-                <h3>Native actuators</h3>
-                <p>Use browser timelines for entry, emphasis and state interpolation with no scroll listeners in sight.</p>
-                <a class="showcase-ref-chip" href="/pages/motion/zero-js-motion.html" vl-effect="underline-expand">Open Motion Core</a>
-              </article>
-              <article class="showcase-cinema-panel showcase-cinema-panel--featured" vl-effect="hover-prism">
-                <p class="showcase-ref-label">Scroll Reveal</p>
-                <h3>Scene interpolation</h3>
-                <p>Timelines phase copy, layers and rails together so each frame feels authored instead of triggered.</p>
-                <a class="showcase-ref-chip" href="/pages/scenes/scroll-reveal.html" vl-effect="border-beam">Inspect Scroll Scene</a>
-              </article>
-              <article class="showcase-cinema-panel" vl-effect="spotlight">
-                <p class="showcase-ref-label">System Modules</p>
-                <h3>Composable modules</h3>
-                <p>Cards, bands, metrics and shells form a system that scales from marketing pages to technical docs.</p>
-                <a class="showcase-ref-chip" href="/pages/tools/system-modules.html" vl-effect="icon-shift">Browse Modules <span aria-hidden="true">→</span></a>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="lnd-editorial" class="showcase-cinema-scene showcase-cinema-scene--landing-editorial" vl-effect="glide-in" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
-          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--editorial" vl-effect="aurora">
-              <div class="showcase-cinema-editorial-mark" vl-effect="reveal-3d" vl-timeline="view" vl-range="entry-short" vl-speed="cinema">V</div>
-            <blockquote class="showcase-cinema-editorial-quote">
-              <p vl-effect="text-word-rise" vl-timeline="view" vl-range="scene-soft" vl-speed="cinema">
-                "Velora rejects generic app-shell neutrality. It treats layout, type and pacing as editorial material,
-                so the interface carries a point of view before any screenshot or product shot appears."
-              </p>
-              <footer vl-children="sequence" vl-stagger="120ms">
-                <strong>Architectural Team</strong>
-                <span>Voice system / issue 04</span>
-              </footer>
-            </blockquote>
-            <div class="showcase-cinema-editorial-aside" vl-children="orchestrate" vl-stagger="180ms" vl-speed="cinema">
-              <p class="showcase-ref-kicker" vl-effect="shimmer-text">Act III // Editorial frame</p>
-              <p class="showcase-ref-lead">
-                Motion is paced like a publication opening. Typography lands first, supporting evidence follows, and the
-                surface language holds the story together.
-              </p>
-              <div class="showcase-cinema-chip-row" vl-children="wave">
-                <a class="showcase-ref-chip" href="/pages/tools/brand-voice.html" vl-effect="hover-glow">Brand Voice</a>
-                <a class="showcase-ref-chip" href="/pages/typography/typography.html" vl-effect="hover-glow">Typography</a>
-                <a class="showcase-ref-chip" href="/pages/typography/typography-spec.html" vl-effect="hover-glow">Type Spec</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="lnd-payoff" class="showcase-cinema-scene showcase-cinema-scene--landing-payoff" vl-effect="zoom-blur" vl-timeline="view" vl-range="entry-long" vl-speed="cinema">
-          <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="200ms" vl-speed="cinema" vl-effect="glow-breathe">
-            <p class="showcase-ref-kicker"><span vl-effect="shimmer-text">Act IV // Payoff</span></p>
-            <h2 class="showcase-cinema-heading">
-              Build the whole system in the same cinematic grammar.
-            </h2>
-            <p class="showcase-ref-lead">
-              Move from manifesto to implementation with the same tokens, motion rules and compositional primitives used
-              in these scenes.
+    <main id="content" class="vl-main showcase-landing">
+      <section id="lnd-hero" class="showcase-landing-hero" aria-label="Framework introduction" vl-effect="fade-up" vl-timeline="view" vl-range="entry 4% cover 54%" vl-speed="cinema">
+        <div class="vl-container showcase-landing-hero__inner">
+          <div class="showcase-landing-hero__copy" vl-children="orchestrate" vl-stagger="140ms" vl-speed="cinema">
+            <p class="vl-kicker" vl-effect="fade-in" vl-speed="cinema">Framework core // Browser-first precision</p>
+            <h1 class="showcase-landing-title" vl-effect="clip-rise" vl-timeline="view" vl-range="entry 4% cover 45%" vl-speed="cinema">
+              <span>Velora stages</span>
+              <span>interfaces as</span>
+              <span>architecture.</span>
+            </h1>
+            <p class="showcase-landing-lead">
+              Compose pages from perceptual tokens, semantic surfaces, scroll-timed motion and components that read like
+              scenes. The framework stays HTML/CSS-first; the showcase controls remain outside the core.
             </p>
-            <div class="showcase-cinema-payoff-links" vl-children="zoom-stagger" vl-stagger="100ms">
-              <a class="showcase-ref-landing-button showcase-ref-landing-button--primary" href="/pages/color/design-tokens.html" vl-effect="icon-shift">Open Design Tokens <span aria-hidden="true">→</span></a>
-              <a class="showcase-ref-landing-button showcase-ref-landing-button--secondary" href="/pages/library/gallery.html" vl-effect="hover-depth-press">Browse Components</a>
-              <a class="showcase-ref-landing-button showcase-ref-landing-button--secondary" href="/pages/tools/accessibility.html" vl-effect="border-beam">Audit Accessibility</a>
+            <div class="showcase-landing-actions">
+              <a class="vl-cta" href="/pages/tools/architecture.html" vl-effect="hover-depth-press">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M4 5.75A2.75 2.75 0 0 1 6.75 3h10.5A2.75 2.75 0 0 1 20 5.75v12.5A2.75 2.75 0 0 1 17.25 21H6.75A2.75 2.75 0 0 1 4 18.25V5.75Zm2.75-1A1.25 1.25 0 0 0 5.5 6v12a1.25 1.25 0 0 0 1.25 1.25h10.5A1.25 1.25 0 0 0 18.5 18V6a1.25 1.25 0 0 0-1.25-1.25H6.75ZM8 8h8v1.5H8V8Zm0 3.25h8v1.5H8v-1.5Zm0 3.25h5.5V16H8v-1.5Z"/>
+                </svg>
+                <span>Architecture</span>
+              </a>
+              <a class="vl-cta vl-cta--ghost" href="/pages/scenes/scene-hero.html" vl-effect="underline-expand">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M12 3.25 20.75 8v8L12 20.75 3.25 16V8L12 3.25Zm0 1.7L5.05 8.72 12 12.5l6.95-3.78L12 4.95ZM4.75 10.01v5.1l6.5 3.53v-5.1l-6.5-3.53Zm8 8.63 6.5-3.53v-5.1l-6.5 3.53v5.1Z"/>
+                </svg>
+                <span>Hero Scene</span>
+              </a>
+              <a class="vl-cta vl-cta--ghost" href="/pages/motion/zero-js-motion.html" vl-effect="underline-expand">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M13.3 2.6 4.75 13.15h6.02L9.95 21.4l8.92-10.8h-6.18l.61-8Zm-5.4 9.05 3.25-4-.34 4.45h4.86l-3.55 4.3.43-4.75H7.9Z"/>
+                </svg>
+                <span>Zero-JS Motion</span>
+              </a>
             </div>
           </div>
-        </section>
-      </div>
+          <div class="showcase-landing-hero__stage" aria-label="Layered Velora framework diagram">
+            <div class="showcase-landing-orbit" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <svg class="showcase-landing-reel" viewBox="0 0 760 620" role="img" aria-label="Tokens, surfaces, motion, components and scenes forming one Velora stack">
+              <defs>
+                <linearGradient id="landingPlaneA" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="currentColor" stop-opacity=".18"/>
+                  <stop offset="1" stop-color="currentColor" stop-opacity=".04"/>
+                </linearGradient>
+              </defs>
+              <ellipse class="showcase-landing-reel__floor" cx="380" cy="500" rx="265" ry="70"/>
+              <g class="showcase-landing-reel__stack">
+                <g class="showcase-landing-reel__plane showcase-landing-reel__plane--tokens">
+                  <path d="M174 340 420 225l170 72-248 118-168-75Z"/>
+                  <text x="306" y="324">tokens</text>
+                </g>
+                <g class="showcase-landing-reel__plane showcase-landing-reel__plane--surface">
+                  <path d="M196 285 442 170l170 72-248 118-168-75Z"/>
+                  <text x="315" y="268">surfaces</text>
+                </g>
+                <g class="showcase-landing-reel__plane showcase-landing-reel__plane--motion">
+                  <path d="M218 230 464 115l170 72-248 118-168-75Z"/>
+                  <path class="showcase-landing-reel__dash" d="M292 229c44-38 96-52 154-42 46 8 83 30 116 66"/>
+                  <text x="336" y="211">motion</text>
+                </g>
+                <g class="showcase-landing-reel__plane showcase-landing-reel__plane--components">
+                  <path d="M240 175 486 60l170 72-248 118-168-75Z"/>
+                  <rect x="398" y="122" width="76" height="34" rx="5"/>
+                  <rect x="492" y="102" width="58" height="58" rx="7"/>
+                  <text x="348" y="153">components</text>
+                </g>
+              </g>
+              <g class="showcase-landing-reel__mark" transform="translate(334 206) scale(.22)">
+                <polygon points="358.26 .36 370.52 .11 249.36 370.73 256.25 392.45 387.89 .3 399.65 .22 261.79 413.82 268.24 434.44 417.44 .45 429.23 .34 274.14 455.62 136.82 455.73 0 .04 139.74 0 216.1 258.17 297.92 .21 310.09 .24 222.23 279.23 230.6 306.52 328.75 .17 340.9 .21 236.6 327.81 243.12 348.41 358.26 .36"/>
+              </g>
+            </svg>
+            <div class="showcase-landing-hero__metrics" vl-children="wave" vl-speed="slow">
+              <span>OKLCH depth</span>
+              <span>View timelines</span>
+              <span>Semantic CSS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lnd-layering" class="showcase-landing-spatial" aria-label="Layering system">
+        <div class="showcase-landing-spatial__pin">
+          <div class="showcase-landing-spatial__stage" aria-hidden="true">
+            <svg class="showcase-landing-spatial__field" viewBox="0 0 900 520">
+              <path d="M72 410C194 260 295 330 424 210S658 94 826 160"/>
+              <path d="M126 202c148 32 206-102 346-74 126 24 148 146 296 116"/>
+              <circle cx="198" cy="334" r="7"/><circle cx="424" cy="210" r="7"/><circle cx="668" cy="120" r="7"/><circle cx="764" cy="244" r="7"/>
+            </svg>
+            <div class="showcase-landing-spatial__floor"></div>
+            <div class="showcase-landing-spatial__planes">
+              <span>canvas</span><span>surface</span><span>raised</span><span>accent</span>
+            </div>
+          </div>
+          <div class="vl-container showcase-landing-spatial__content">
+            <div class="showcase-landing-section-head" vl-children="orchestrate" vl-stagger="140ms" vl-speed="cinema">
+              <p class="vl-kicker">Act I // Layering</p>
+              <h2>Hierarchy without chrome.</h2>
+              <p>
+                Velora replaces generic card stacking with recession, offsets and tonal states. The eye understands
+                canvas, surface, elevated and accent as depth cues before it reads labels.
+              </p>
+              <div class="showcase-landing-chip-row">
+                <a href="/pages/color/tonal-tiers.html" vl-effect="hover-spotlight">Tonal Tiers</a>
+                <a href="/pages/color/ambient-shadows.html" vl-effect="hover-spotlight">Ambient Shadows</a>
+                <a href="/pages/color/tonal-stacking.html" vl-effect="hover-spotlight">Tonal Stacking</a>
+              </div>
+            </div>
+            <div class="showcase-landing-spatial__readout" vl-children="cinema-stagger" vl-stagger="120ms">
+              <article><span>01</span><strong>Canvas</strong><p>Quiet page fields, section bands and editorial contrast.</p></article>
+              <article><span>02</span><strong>Surface</strong><p>Readable modules with tonal separation instead of heavy borders.</p></article>
+              <article><span>03</span><strong>Accent</strong><p>Action and focus states derived from semantic tokens.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lnd-system" class="showcase-landing-system" aria-label="System modules">
+        <div class="vl-container showcase-landing-system__inner">
+          <div class="showcase-landing-section-head showcase-landing-section-head--wide">
+            <p class="vl-kicker"><span vl-effect="shimmer-text">Act II // Motion + system</span></p>
+            <h2 vl-effect="clip-rise" vl-timeline="view" vl-range="entry 8% cover 48%" vl-speed="cinema">Scroll proves the system.</h2>
+            <p>Timelines, stagger, modules and scene grammar are part of the same composition language. The page becomes proof of the primitives.</p>
+          </div>
+          <div class="showcase-landing-bento" vl-children="cinema-stagger" vl-stagger="140ms" vl-speed="cinema">
+            <a class="showcase-landing-bento__card showcase-landing-bento__card--wide" href="/pages/motion/zero-js-motion.html" vl-effect="hover-prism">
+              <span class="showcase-landing-glyph showcase-landing-glyph--motion"><i></i><i></i><i></i></span>
+              <span>Zero JS Motion</span>
+              <strong>Native actuators.</strong>
+              <small>Entry, emphasis and state interpolation ride browser timelines with no scroll listeners in the framework core.</small>
+            </a>
+            <a class="showcase-landing-bento__card" href="/pages/scenes/scroll-reveal.html" vl-effect="hover-tilt-3d">
+              <span class="showcase-landing-glyph showcase-landing-glyph--scroll"><i></i><i></i><i></i></span>
+              <span>Scroll Reveal</span>
+              <strong>Scene interpolation.</strong>
+              <small>Copy, layers and rails phase together so each frame feels authored instead of triggered.</small>
+            </a>
+            <a class="showcase-landing-bento__card" href="/pages/tools/system-modules.html" vl-effect="spotlight">
+              <span class="showcase-landing-glyph showcase-landing-glyph--modules"><i></i><i></i><i></i><i></i></span>
+              <span>System Modules</span>
+              <strong>Composable page grammar.</strong>
+              <small>Cards, bands, metrics and shells scale from marketing surfaces to technical docs.</small>
+            </a>
+            <a class="showcase-landing-bento__card showcase-landing-bento__card--tall" href="/pages/color/design-tokens.html" vl-effect="border-beam">
+              <span class="showcase-landing-glyph showcase-landing-glyph--tokens"><i></i><i></i><i></i><i></i></span>
+              <span>Design Tokens</span>
+              <strong>Perceptual values.</strong>
+              <small>OKLCH scales keep tone, contrast and interaction states coherent across themes.</small>
+            </a>
+            <a class="showcase-landing-bento__card" href="/pages/tools/accessibility.html" vl-effect="hover-depth-press">
+              <span class="showcase-landing-glyph showcase-landing-glyph--access"><i></i><i></i><i></i></span>
+              <span>Accessibility</span>
+              <strong>Motion with exits.</strong>
+              <small>Reduced-motion guards and semantic focus states are part of the system contract.</small>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="lnd-editorial" class="showcase-landing-editorial" aria-label="Editorial voice">
+        <div class="vl-container showcase-landing-editorial__inner">
+          <div class="showcase-landing-marquee" aria-hidden="true">
+            <span>layout as pacing</span><span>type as structure</span><span>motion as editorial rhythm</span><span>tokens as atmosphere</span>
+          </div>
+          <blockquote class="showcase-landing-quote">
+            <p vl-effect="text-word-rise" vl-timeline="view" vl-range="entry 10% cover 60%" vl-speed="cinema">
+              Layout, type and pacing carry the point of view before any screenshot appears.
+            </p>
+          </blockquote>
+          <div class="showcase-landing-editorial__side" vl-children="orchestrate" vl-stagger="140ms" vl-speed="cinema">
+            <p class="vl-kicker">Act III // Editorial frame</p>
+            <p>Publication rhythm, technical clarity and compositor-safe motion sit in one vocabulary.</p>
+            <div class="showcase-landing-type-orbit" aria-hidden="true">
+              <span>voice</span><span>pace</span><span>proof</span>
+            </div>
+            <div class="showcase-landing-chip-row">
+              <a href="/pages/tools/brand-voice.html" vl-effect="hover-glow">Brand Voice</a>
+              <a href="/pages/typography/typography.html" vl-effect="hover-glow">Typography</a>
+              <a href="/pages/typography/typography-spec.html" vl-effect="hover-glow">Type Spec</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lnd-payoff" class="showcase-landing-map" aria-label="Framework map">
+        <div class="vl-container showcase-landing-map__inner">
+          <div class="showcase-landing-section-head showcase-landing-section-head--wide">
+            <p class="vl-kicker"><span vl-effect="shimmer-text">Act IV // Apply</span></p>
+            <h2>Apply the whole system.</h2>
+            <p>Move from manifesto to implementation with the same tokens, motion rules and composition primitives used in these scenes.</p>
+          </div>
+          <div class="showcase-landing-atlas">
+            <svg class="showcase-landing-atlas__route" viewBox="0 0 900 520" aria-hidden="true">
+              <path class="showcase-landing-atlas__route-base" d="M84 100C214 72 260 206 364 176s132-122 252-82 118 236 244 282"/>
+              <path class="showcase-landing-atlas__route-flow" d="M84 100C214 72 260 206 364 176s132-122 252-82 118 236 244 282"/>
+              <circle cx="84" cy="100" r="8"/><circle cx="364" cy="176" r="8"/><circle cx="616" cy="94" r="8"/><circle cx="860" cy="376" r="8"/>
+            </svg>
+            <div class="showcase-landing-atlas__links" vl-children="zoom-stagger" vl-stagger="100ms">
+              <a href="/pages/color/design-tokens.html"><span class="showcase-landing-glyph showcase-landing-glyph--tokens"><i></i><i></i><i></i><i></i></span><strong>Tokens</strong><small>Start with tone, contrast and theme packs.</small></a>
+              <a href="/pages/scenes/scene-hero.html"><span class="showcase-landing-glyph showcase-landing-glyph--scenes"><i></i><i></i><i></i></span><strong>Scenes</strong><small>Compose hero, reveal and story moments.</small></a>
+              <a href="/pages/library/gallery.html"><span class="showcase-landing-glyph showcase-landing-glyph--modules"><i></i><i></i><i></i><i></i></span><strong>Components</strong><small>Browse production-shaped interface pieces.</small></a>
+              <a href="/pages/tools/architecture.html"><span class="showcase-landing-glyph showcase-landing-glyph--architecture"><i></i><i></i><i></i></span><strong>Architecture</strong><small>Read how layers, contracts and packages fit.</small></a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="vl-footer" aria-label="Site footer">
@@ -421,6 +443,3 @@
     <script src="/js/showcase-controls.js"></script>
   </body>
 </html>
-
-
-

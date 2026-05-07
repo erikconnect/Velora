@@ -57,7 +57,7 @@
 .showcase-home-shell {
   --showcase-home-container-max: 100rem;
   --showcase-home-container-gutter: clamp(1.25rem, 5vw, 6rem);
-  --showcase-home-header-max: 112rem;
+  --vl-layout-container-max: var(--showcase-home-container-max);
 }
 
 .showcase-home__scene:not(#idx-horiz) {
@@ -89,12 +89,6 @@
   max-width: none;
   padding-left: var(--showcase-home-container-gutter);
   padding-right: var(--showcase-home-container-gutter);
-}
-
-.showcase-home-shell .showcase-cinema-rail + .vl-header .vl-header__inner {
-  width: min(calc(100% - (var(--showcase-home-container-gutter) * 2)), var(--showcase-home-header-max));
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .showcase-home-shell .vl-footer {
@@ -196,14 +190,6 @@
   padding: clamp(1rem, 2vw, 1.35rem);
   border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 78%, transparent);
   background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
-}
-
-@media (max-width: 64rem) {
-  .showcase-home-shell .showcase-cinema-rail + .vl-header .vl-header__inner {
-    width: min(100%, var(--showcase-home-container-max));
-    padding-left: var(--showcase-home-container-gutter);
-    padding-right: var(--showcase-home-container-gutter);
-  }
 }
 
 .showcase-home .vl-section-header {
