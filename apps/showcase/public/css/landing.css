@@ -44,9 +44,12 @@
 }
 
 .showcase-landing-shell {
+  --showcase-home-container-max: 100rem;
+  --showcase-home-container-gutter: clamp(1.25rem, 5vw, 6rem);
+  --vl-layout-container-max: var(--showcase-home-container-max);
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(ellipse at 16% 0%, color-mix(in oklch, var(--vl-color-primary) 13%, transparent), transparent 48%),
     radial-gradient(ellipse at 86% 6%, color-mix(in oklch, var(--vl-color-secondary) 10%, transparent), transparent 46%),
@@ -55,6 +58,8 @@
 }
 
 .showcase-landing {
+  --showcase-home-container-max: 100rem;
+  --showcase-home-container-gutter: clamp(1.25rem, 5vw, 6rem);
   --landing-border: color-mix(in oklch, var(--vl-text-primary) 11%, transparent);
   --landing-border-strong: color-mix(in oklch, var(--vl-text-primary) 18%, transparent);
   --landing-panel: color-mix(in oklch, var(--vl-bg-surface-elevated) 78%, var(--vl-bg-main));
@@ -65,24 +70,41 @@
   overflow-x: clip;
 }
 
-.showcase-landing section {
+.showcase-landing,
+.showcase-landing * {
+  box-sizing: border-box;
+}
+
+.showcase-landing__scene {
   position: relative;
   overflow: clip;
 }
 
-.showcase-landing > section > .vl-container,
-.showcase-landing .showcase-landing-spatial__content {
-  inline-size: min(calc(100% - clamp(3rem, 8vw, 8rem)), 78rem);
-  margin-inline: auto;
+.showcase-landing__scene:not(.showcase-landing-spatial) {
+  padding-block: clamp(4.5rem, 8vw, 7rem);
 }
 
-@media (min-width: 80rem) {
-  .showcase-landing > section > .vl-container,
-  .showcase-landing .showcase-landing-spatial__content {
-    inline-size: min(calc(100% - 24rem), 72rem);
-    margin-inline-start: clamp(7rem, 10vw, 10rem);
-    margin-inline-end: auto;
-  }
+.showcase-landing > .showcase-landing__scene,
+.showcase-landing-spatial {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+.showcase-landing .vl-container {
+  width: min(100%, var(--showcase-home-container-max));
+  max-width: none;
+  padding-inline: var(--showcase-home-container-gutter);
+}
+
+.showcase-landing-shell .vl-header .vl-header__inner,
+.showcase-landing-shell .vl-footer .vl-footer__inner {
+  width: min(100%, var(--showcase-home-container-max));
+  max-width: none;
+  box-sizing: border-box;
+  margin-inline: auto;
+  padding-left: var(--showcase-home-container-gutter);
+  padding-right: var(--showcase-home-container-gutter);
 }
 
 .showcase-landing-title,
@@ -118,10 +140,13 @@
 
 .showcase-landing-hero {
   min-block-size: 100svh;
-  padding-block: clamp(6rem, 11svh, 9rem) clamp(3rem, 8svh, 6rem);
   background:
     linear-gradient(180deg, color-mix(in oklch, var(--vl-text-primary) 4%, transparent), transparent 28%),
     radial-gradient(circle at 56% 54%, color-mix(in oklch, var(--vl-color-secondary) 13%, transparent), transparent 34%);
+}
+
+#lnd-hero.showcase-landing__scene {
+  padding-block-start: clamp(var(--vl-space-md), 3vw, var(--vl-space-xl));
 }
 
 .showcase-landing-hero::before,
@@ -518,7 +543,6 @@
 }
 
 .showcase-landing-system {
-  padding-block: clamp(4rem, 7vw, 6.5rem);
   background:
     repeating-linear-gradient(0deg, color-mix(in oklch, var(--vl-text-primary) 4%, transparent) 0 1px, transparent 1px 6rem),
     linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface) 90%, black), var(--vl-bg-main));
@@ -680,7 +704,6 @@
 }
 
 .showcase-landing-editorial {
-  padding-block: clamp(4rem, 7vw, 6.5rem);
   background:
     radial-gradient(ellipse at 14% 42%, var(--landing-glow-secondary), transparent 42%),
     linear-gradient(180deg, var(--vl-bg-main), color-mix(in oklch, var(--vl-bg-surface) 86%, black));
@@ -759,7 +782,6 @@
 .showcase-landing-type-orbit span:nth-child(3) { inset-block-end: 14%; }
 
 .showcase-landing-map {
-  padding-block: clamp(4rem, 7vw, 6.5rem);
   background:
     repeating-linear-gradient(0deg, color-mix(in oklch, var(--vl-text-primary) 4%, transparent) 0 1px, transparent 1px 6rem),
     linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface) 88%, black), var(--vl-bg-main));
@@ -1023,9 +1045,8 @@
 }
 
 @media (max-width: 48rem) {
-  .showcase-landing > section > .vl-container,
-  .showcase-landing .showcase-landing-spatial__content {
-    inline-size: calc(100% - 2rem);
+  .showcase-landing .vl-container {
+    padding-inline: clamp(1rem, 6vw, 1.5rem);
   }
 
   .showcase-landing-hero {
