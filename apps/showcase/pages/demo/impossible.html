@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Impossible Demo | Velora</title>
+    <meta name="description" content="A cinematic web experience built entirely with CSS. No JavaScript. No animation libraries. Just the browser." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/impossible-demo.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      @view-transition { navigation: auto; }
+    </style>
+  </head>
+  <body class="impossible-demo">
+
+    <!-- ═══ Progress bar ═══ -->
+    <div class="demo-progress" aria-hidden="true">
+      <div class="demo-progress__bar"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCENE 1 — HERO: Cinematic Reveal
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="demo-scene demo-hero" vl-scene="cinematic-hero" data-vl-scene-mode="full-bleed">
+      <div class="demo-hero__atmosphere" aria-hidden="true"></div>
+
+      <p class="demo-hero__kicker">Velora presents</p>
+
+      <h1 class="demo-hero__title">
+        <span>Motion</span>
+        <span>without</span>
+        <span>limits.</span>
+      </h1>
+
+      <p class="demo-hero__subtitle">
+        A cinematic experience crafted entirely with CSS.
+        No frameworks. No runtime. No JavaScript.
+      </p>
+
+      <span class="demo-hero__scroll-hint" aria-hidden="true">Scroll to experience ↓</span>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCENE 2 — SCROLL ORCHESTRATION
+         Timelines, layer choreography, stagger groups, velocity illusion
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="demo-scene demo-scroll" vl-scene="product-reveal">
+      <div class="demo-scene__inner">
+
+        <h2 class="demo-scroll__heading">
+          Scroll-driven choreography.
+        </h2>
+
+        <div class="demo-scroll__grid">
+          <article class="demo-scroll__card">
+            <span class="demo-scroll__card-number">01</span>
+            <h3 class="demo-scroll__card-title">View Timelines</h3>
+            <p class="demo-scroll__card-desc">
+              Elements animate based on their position in the viewport.
+              No intersection observers. No scroll listeners.
+              Pure CSS scroll-driven animations.
+            </p>
+          </article>
+
+          <article class="demo-scroll__card">
+            <span class="demo-scroll__card-number">02</span>
+            <h3 class="demo-scroll__card-title">Stagger Groups</h3>
+            <p class="demo-scroll__card-desc">
+              Cascading reveals with orchestrated delay patterns.
+              Each element enters at its own pace, creating rhythm
+              and visual hierarchy through motion alone.
+            </p>
+          </article>
+
+          <article class="demo-scroll__card">
+            <span class="demo-scroll__card-number">03</span>
+            <h3 class="demo-scroll__card-title">Velocity Illusion</h3>
+            <p class="demo-scroll__card-desc">
+              Depth, blur, and scale combined create the illusion
+              of physical momentum. The browser's compositor handles
+              everything at 120fps on the GPU.
+            </p>
+          </article>
+
+          <article class="demo-scroll__card">
+            <span class="demo-scroll__card-number">04</span>
+            <h3 class="demo-scroll__card-title">Layer Choreography</h3>
+            <p class="demo-scroll__card-desc">
+              Multiple layers of motion at different speeds
+              create parallax depth without a single line of
+              JavaScript parallax code.
+            </p>
+          </article>
+
+          <article class="demo-scroll__card">
+            <span class="demo-scroll__card-number">05</span>
+            <h3 class="demo-scroll__card-title">Range Control</h3>
+            <p class="demo-scroll__card-desc">
+              Animation ranges define exactly when motion starts
+              and ends relative to the scroll position.
+              Surgical precision, declarative syntax.
+            </p>
+          </article>
+
+          <article class="demo-scroll__card">
+            <span class="demo-scroll__card-number">06</span>
+            <h3 class="demo-scroll__card-title">Native Performance</h3>
+            <p class="demo-scroll__card-desc">
+              Zero main-thread cost. The browser's rendering engine
+              handles all calculations off-thread.
+              60fps is the floor, not the ceiling.
+            </p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCENE 3 — TYPOGRAPHY SYSTEM
+         Kinetic typography, split text, masks, clip-path orchestration
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="demo-scene demo-type" vl-scene="editorial-cinema">
+      <div class="demo-scene__inner">
+
+        <div class="demo-type__mega">
+          <span>Declare</span>
+          <span>intent.</span>
+          <span>Watch it move.</span>
+        </div>
+
+        <div class="demo-type__lines">
+          <p class="demo-type__line">Clip-path masks reveal text with surgical precision.</p>
+          <p class="demo-type__line">Each line enters on its own timeline, driven by scroll.</p>
+          <p class="demo-type__line">No JavaScript text splitting. No DOM manipulation.</p>
+          <p class="demo-type__line">The browser is the animation engine.</p>
+        </div>
+
+        <div class="demo-type__clip-section">
+          <span class="demo-type__clip-word">clip.</span>
+          <span class="demo-type__clip-word">mask.</span>
+          <span class="demo-type__clip-word">reveal.</span>
+          <span class="demo-type__clip-word">repeat.</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCENE 4 — SCENE TRANSITIONS & DEPTH
+         Element-scoped transitions, state changes, depth simulation
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="demo-scene demo-depth" vl-scene="sticky-story">
+      <div class="demo-scene__inner">
+
+        <h2 class="demo-depth__heading">
+          Depth without dimensions.
+        </h2>
+
+        <div class="demo-depth__layers">
+          <article class="demo-depth__layer">
+            <span class="demo-depth__layer-tag">Layer 1</span>
+            <h3 class="demo-depth__layer-title">Perspective transforms</h3>
+            <p class="demo-depth__layer-desc">
+              3D perspective creates physical depth. Elements emerge from behind the screen,
+              rotating into view as you scroll. The <code>transform-style: preserve-3d</code>
+              property maintains spatial relationships between layers.
+            </p>
+          </article>
+
+          <article class="demo-depth__layer">
+            <span class="demo-depth__layer-tag">Layer 2</span>
+            <h3 class="demo-depth__layer-title">Atmospheric blur</h3>
+            <p class="demo-depth__layer-desc">
+              Depth-of-field simulation through animated <code>filter: blur()</code>.
+              Distant elements start blurred and sharpen as they approach the focal plane.
+              A technique borrowed from cinematography, now native to the browser.
+            </p>
+          </article>
+
+          <article class="demo-depth__layer">
+            <span class="demo-depth__layer-tag">Layer 3</span>
+            <h3 class="demo-depth__layer-title">Scale transitions</h3>
+            <p class="demo-depth__layer-desc">
+              Elements scale from 0.85 to 1.0 as they enter the viewport, simulating
+              physical approach. Combined with opacity and perspective, this creates
+              the illusion of objects moving through three-dimensional space.
+            </p>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SCENE 5 — FINAL REVEAL: "No JavaScript."
+         The viral moment. Show the markup. Deliver the punchline.
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="demo-scene demo-finale" vl-scene="cinematic-hero" data-vl-scene-mode="full-bleed">
+      <div class="demo-finale__atmosphere" aria-hidden="true"></div>
+
+      <div class="demo-finale__code">
+        <span class="tag">&lt;section</span> <span class="attr">vl-scene</span>=<span class="val">"cinematic-reveal"</span><span class="tag">&gt;</span>
+      </div>
+
+      <h2 class="demo-finale__statement">
+        No JavaScript.
+      </h2>
+
+      <p class="demo-finale__sub">
+        Every animation on this page is powered by CSS alone.
+        Scroll timelines. View transitions. Clip-path masks. Perspective transforms.
+        The modern browser is the runtime.
+      </p>
+
+      <div class="demo-finale__cta">
+        <a href="https://github.com/erikconnect/Velora" class="demo-finale__btn demo-finale__btn--primary">
+          View Source
+        </a>
+        <a href="/pages/core/landing.html" class="demo-finale__btn demo-finale__btn--ghost">
+          Explore Velora
+        </a>
+      </div>
+    </section>
+
+  </body>
+</html>

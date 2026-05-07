@@ -1,0 +1,555 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE IMPOSSIBLE DEMO — Cinematic CSS Experience
+   Zero JavaScript. Pure browser-native motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --demo-bg-void: oklch(8% 0.01 250);
+    --demo-bg-scene: oklch(12% 0.015 250);
+    --demo-text-hero: oklch(97% 0.005 90);
+    --demo-text-dim: oklch(65% 0.01 250);
+    --demo-text-accent: oklch(78% 0.06 140);
+    --demo-glow: oklch(65% 0.12 140 / 0.3);
+    --demo-border: oklch(25% 0.02 250);
+}
+
+/* ── Global reset for the demo ── */
+.impossible-demo {
+    background: var(--demo-bg-void);
+    color: var(--demo-text-hero);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: var(--vl-font-family-display, "Space Grotesk", system-ui, sans-serif);
+}
+
+.impossible-demo *::selection {
+    background: var(--demo-glow);
+    color: var(--demo-text-hero);
+}
+
+/* ── Scene shared ── */
+.demo-scene {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    padding: clamp(2rem, 6vw, 6rem);
+    overflow: hidden;
+}
+
+.demo-scene__inner {
+    max-width: 72rem;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 1 — HERO: Cinematic Reveal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    position: relative;
+}
+
+.demo-hero__atmosphere {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 50%, oklch(20% 0.04 140 / 0.15), transparent),
+        radial-gradient(ellipse 60% 80% at 30% 80%, oklch(15% 0.03 250 / 0.2), transparent);
+    animation: demo-atmosphere-drift 20s var(--vl-ease-in-out-smooth) infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes demo-atmosphere-drift {
+    from { opacity: 0.6; transform: scale(1) translate(0, 0); }
+    to   { opacity: 1; transform: scale(1.1) translate(2%, -3%); }
+}
+
+.demo-hero__kicker {
+    font-size: clamp(0.75rem, 1.2vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--demo-text-accent);
+    animation: vl-blur-lift 1s var(--vl-ease-silk) both;
+}
+
+.demo-hero__title {
+    font-size: clamp(3.5rem, 12vw, 10rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    animation: vl-cinematic-mask 1.2s var(--vl-ease-cinematic) 0.3s both;
+}
+
+.demo-hero__title span {
+    display: block;
+}
+
+.demo-hero__subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--demo-text-dim);
+    max-width: 36ch;
+    line-height: 1.5;
+    animation: vl-opacity-reveal 1.4s var(--vl-ease-fluid) 0.8s both;
+}
+
+.demo-hero__scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--demo-text-dim);
+    animation: demo-hint-pulse 3s var(--vl-ease-in-out-smooth) infinite;
+}
+
+@keyframes demo-hint-pulse {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50%      { opacity: 1; transform: translateY(4px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 2 — SCROLL ORCHESTRATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-scroll {
+    background: var(--demo-bg-scene);
+    border-block: 1px solid var(--demo-border);
+}
+
+.demo-scroll__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 2rem;
+}
+
+.demo-scroll__card {
+    background: oklch(15% 0.015 250);
+    border: 1px solid var(--demo-border);
+    border-radius: var(--vl-radius-xl, 1rem);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    view-timeline-name: --card-tl;
+    view-timeline-axis: block;
+    animation: demo-card-enter linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+}
+
+@keyframes demo-card-enter {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 3rem, -60px) scale(0.92);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.demo-scroll__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, oklch(30% 0.04 140 / 0.1), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s var(--vl-ease-cinematic);
+}
+
+.demo-scroll__card:hover::before {
+    opacity: 1;
+}
+
+.demo-scroll__card-number {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    color: var(--demo-text-accent);
+    line-height: 1;
+    opacity: 0.3;
+}
+
+.demo-scroll__card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.demo-scroll__card-desc {
+    color: var(--demo-text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+/* Stagger via nth-child animation-delay with scroll */
+.demo-scroll__card:nth-child(2) { animation-range: entry 5% entry 75%; }
+.demo-scroll__card:nth-child(3) { animation-range: entry 10% entry 80%; }
+.demo-scroll__card:nth-child(4) { animation-range: entry 15% entry 85%; }
+.demo-scroll__card:nth-child(5) { animation-range: entry 10% entry 80%; }
+.demo-scroll__card:nth-child(6) { animation-range: entry 15% entry 85%; }
+
+.demo-scroll__heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+    text-align: center;
+    animation: vl-blur-lift linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 3 — TYPOGRAPHY SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-type {
+    text-align: center;
+}
+
+.demo-type__mega {
+    font-size: clamp(4rem, 15vw, 14rem);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    overflow: hidden;
+}
+
+.demo-type__mega span {
+    display: block;
+    animation: vl-text-mask-up linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 55%;
+}
+
+.demo-type__mega span:nth-child(2) {
+    animation-range: entry 20% entry 65%;
+    color: var(--demo-text-accent);
+}
+
+.demo-type__mega span:nth-child(3) {
+    animation-range: entry 30% entry 75%;
+}
+
+.demo-type__lines {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.demo-type__line {
+    font-size: clamp(1rem, 2.5vw, 1.75rem);
+    color: var(--demo-text-dim);
+    overflow: hidden;
+    animation: vl-text-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 20% entry 70%;
+}
+
+.demo-type__line:nth-child(2) { animation-range: entry 25% entry 75%; }
+.demo-type__line:nth-child(3) { animation-range: entry 30% entry 80%; }
+.demo-type__line:nth-child(4) { animation-range: entry 35% entry 85%; }
+
+.demo-type__clip-section {
+    margin-top: 6rem;
+    perspective: 800px;
+}
+
+.demo-type__clip-word {
+    font-size: clamp(2.5rem, 8vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    animation: demo-clip-stagger linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 60%;
+    display: inline-block;
+    margin-inline: 0.2em;
+}
+
+.demo-type__clip-word:nth-child(2) { animation-range: entry 15% entry 65%; }
+.demo-type__clip-word:nth-child(3) { animation-range: entry 20% entry 70%; }
+.demo-type__clip-word:nth-child(4) { animation-range: entry 25% entry 75%; }
+
+@keyframes demo-clip-stagger {
+    from {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+        transform: rotateY(-8deg) translate3d(-1rem, 0, -40px);
+    }
+    to {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: rotateY(0) translate3d(0, 0, 0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 4 — SCENE TRANSITIONS & DEPTH
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-depth {
+    perspective: 1200px;
+    background:
+        radial-gradient(ellipse at 50% 0%, oklch(18% 0.03 140 / 0.2), transparent 70%),
+        var(--demo-bg-void);
+}
+
+.demo-depth__layers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 56rem;
+    margin: 0 auto;
+}
+
+.demo-depth__layer {
+    background: oklch(14% 0.015 250);
+    border: 1px solid var(--demo-border);
+    border-radius: var(--vl-radius-xl, 1rem);
+    padding: 3rem;
+    position: relative;
+    animation: demo-layer-depth linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+    transform-style: preserve-3d;
+}
+
+@keyframes demo-layer-depth {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 4rem, -200px) rotateX(8deg);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotateX(0deg);
+        filter: blur(0);
+    }
+}
+
+.demo-depth__layer:nth-child(2) { animation-range: entry 10% entry 85%; }
+.demo-depth__layer:nth-child(3) { animation-range: entry 20% entry 90%; }
+
+.demo-depth__layer-tag {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--demo-text-accent);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid oklch(30% 0.04 140 / 0.3);
+    border-radius: var(--vl-radius-sm, 0.375rem);
+}
+
+.demo-depth__layer-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.demo-depth__layer-desc {
+    color: var(--demo-text-dim);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.demo-depth__heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: vl-cinematic-mask linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 5 — FINAL REVEAL: "No JavaScript."
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-finale {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 3rem;
+    position: relative;
+}
+
+.demo-finale__atmosphere {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, oklch(18% 0.06 140 / 0.25), transparent);
+    animation: demo-finale-glow 8s var(--vl-ease-in-out-smooth) infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes demo-finale-glow {
+    from { opacity: 0.5; transform: scale(1); }
+    to   { opacity: 1; transform: scale(1.15); }
+}
+
+.demo-finale__code {
+    font-family: var(--vl-font-family-mono, "JetBrains Mono", monospace);
+    font-size: clamp(0.8rem, 1.8vw, 1.2rem);
+    background: oklch(14% 0.015 250);
+    border: 1px solid var(--demo-border);
+    border-radius: var(--vl-radius-lg, 0.75rem);
+    padding: 1.5rem 2.5rem;
+    color: var(--demo-text-dim);
+    animation: vl-blur-lift linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 40%;
+}
+
+.demo-finale__code .tag { color: oklch(70% 0.1 200); }
+.demo-finale__code .attr { color: oklch(75% 0.08 140); }
+.demo-finale__code .val { color: oklch(80% 0.12 80); }
+
+.demo-finale__statement {
+    font-size: clamp(4rem, 14vw, 12rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    animation: vl-cinematic-mask linear both;
+    animation-timeline: view();
+    animation-range: entry 15% entry 55%;
+}
+
+.demo-finale__sub {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--demo-text-dim);
+    max-width: 40ch;
+    line-height: 1.6;
+    animation: vl-opacity-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 30% entry 65%;
+}
+
+.demo-finale__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: vl-blur-lift linear both;
+    animation-timeline: view();
+    animation-range: entry 40% entry 75%;
+}
+
+.demo-finale__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border-radius: var(--vl-radius-lg, 0.75rem);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition:
+        transform 0.3s var(--vl-ease-cinematic),
+        box-shadow 0.3s var(--vl-ease-cinematic);
+}
+
+.demo-finale__btn:hover {
+    transform: translateY(-2px);
+}
+
+.demo-finale__btn--primary {
+    background: oklch(80% 0.08 140);
+    color: oklch(10% 0.01 250);
+    box-shadow: 0 4px 24px oklch(65% 0.12 140 / 0.3);
+}
+
+.demo-finale__btn--primary:hover {
+    box-shadow: 0 8px 32px oklch(65% 0.12 140 / 0.4);
+}
+
+.demo-finale__btn--ghost {
+    border: 1px solid var(--demo-border);
+    color: var(--demo-text-hero);
+}
+
+.demo-finale__btn--ghost:hover {
+    border-color: var(--demo-text-accent);
+    box-shadow: 0 4px 16px oklch(65% 0.08 140 / 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROGRESS INDICATOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    z-index: 100;
+    background: oklch(15% 0.01 250);
+}
+
+.demo-progress__bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--demo-text-accent), oklch(85% 0.1 80));
+    transform-origin: left;
+    animation: demo-progress-fill linear;
+    animation-timeline: scroll(root);
+}
+
+@keyframes demo-progress-fill {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 48rem) {
+    .demo-hero__title {
+        font-size: clamp(2.5rem, 14vw, 5rem);
+    }
+    .demo-type__mega {
+        font-size: clamp(3rem, 14vw, 8rem);
+    }
+    .demo-finale__statement {
+        font-size: clamp(3rem, 14vw, 6rem);
+    }
+    .demo-scroll__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
