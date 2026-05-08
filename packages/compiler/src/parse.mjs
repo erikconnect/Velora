@@ -1,6 +1,11 @@
 const EFFECT_RE = /^(?<name>[a-z0-9][a-z0-9-]*)(?:@(?<duration>\d*\.?\d+m?s|var\(--[a-z0-9-]+\)))?(?:\/(?<ease>[a-z0-9-]+|cubic-bezier\([^)]*\)))?$/i;
 const FUNCTION_RE = /(?<name>[a-z][a-z0-9-]*)\((?<args>[^)]*)\)/gi;
-const DECL_RE = /(?<key>[a-z][a-z0-9-]*):(?<value>[^\s]+)/gi;
+const DECL_RE = /(?:^|\s)(?<key>[a-z][a-z0-9-]*):(?<value>[^\s]+)/gi;
+
+function parseFunctionScopedPreset(token) {
+  const scopedMatch = /^(?<preset>[a-z0-9][a-z0-9-]*):(?<fn>[a-z][a-z0-9-]*\([^)]*\))$/i.exec(token);
+  return scopedMatch?.groups ?? null;
+}
 
 export function parseMotionValue(value = "") {
   const trimmed = value.trim();
@@ -17,9 +22,12 @@ export function parseMotionValue(value = "") {
   if (!trimmed) return result;
 
   const [firstToken, ...restTokens] = trimmed.split(/\s+/);
-  const effectMatch = EFFECT_RE.exec(firstToken);
+  const scopedPreset = parseFunctionScopedPreset(firstToken);
+  const effectMatch = scopedPreset ? null : EFFECT_RE.exec(firstToken);
 
-  if (effectMatch?.groups) {
+  if (scopedPreset) {
+    result.preset = scopedPreset.preset;
+  } else if (effectMatch?.groups) {
     result.preset = effectMatch.groups.name ?? "";
     result.duration = effectMatch.groups.duration ?? "";
     result.ease = effectMatch.groups.ease ?? "";
@@ -35,8 +43,9 @@ export function parseMotionValue(value = "") {
     });
   }
 
+  const declarationSource = restTokens.join(" ");
   let declarationMatch;
-  while ((declarationMatch = DECL_RE.exec(trimmed))) {
+  while ((declarationMatch = DECL_RE.exec(declarationSource))) {
     result.declarations[declarationMatch.groups.key] = declarationMatch.groups.value;
   }
 
