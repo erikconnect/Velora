@@ -33,3 +33,7 @@ output/backups/
 
 # Legacy emergency snapshots (local only)
 packages/pages/legacy-backup/
+
+# Legacy pages backup archives and screenshots (local only)
+experiments/legacy-pages/backup/
+experiments/legacy-pages/screens/
