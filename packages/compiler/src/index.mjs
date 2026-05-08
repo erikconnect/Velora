@@ -13,7 +13,7 @@ const PACKAGE_DIR = path.resolve(SCRIPT_DIR, "..");
 const DEFAULT_ROOT = path.resolve(PACKAGE_DIR, "..", "..");
 const DEFAULT_REPORT_PATH = path.join(PACKAGE_DIR, "output", "motion-compiler-report.md");
 const DEFAULT_CSS_PATH = path.join(PACKAGE_DIR, "output", "velora.generated.css");
-const NON_BLOCKING_ISSUES_IN_STRICT = new Set([
+const NON_BLOCKING_ISSUES_IN_STRICT_MIGRATION = new Set([
   "legacy-channel-conflict",
 ]);
 
@@ -30,9 +30,17 @@ async function main() {
   const root = path.resolve(getArgValue("--root", DEFAULT_ROOT));
   const reportPath = path.resolve(getArgValue("--out", DEFAULT_REPORT_PATH));
   const cssPath = path.resolve(getArgValue("--css-out", DEFAULT_CSS_PATH));
+  const strictMode = getArgValue("--strict-mode", "migration");
   const shouldWriteReport = process.argv.includes("--report") || process.argv.includes("--strict");
   const shouldGenerateCss = process.argv.includes("--generate-css");
   const strict = process.argv.includes("--strict");
+  const nonBlockingIssues = strictMode === "hard"
+    ? new Set()
+    : NON_BLOCKING_ISSUES_IN_STRICT_MIGRATION;
+
+  if (!["hard", "migration"].includes(strictMode)) {
+    throw new Error(`Invalid --strict-mode: ${strictMode}. Use \"hard\" or \"migration\".`);
+  }
 
   const files = await scanFiles(root);
   const results = [];
@@ -61,7 +69,7 @@ async function main() {
       ...detectChannelConflicts(attrs),
       ...brokenAnchors,
     ];
-    const fileBlockingIssues = issues.filter((issue) => !NON_BLOCKING_ISSUES_IN_STRICT.has(issue.type));
+    const fileBlockingIssues = issues.filter((issue) => !nonBlockingIssues.has(issue.type));
 
     totals.attrs += attrs.length;
     totals.issues += issues.length;

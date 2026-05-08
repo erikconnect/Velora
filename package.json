@@ -18,6 +18,8 @@
     "report:template": "pnpm --filter showcase report:template",
     "report:motion": "pnpm --filter @velora/compiler scan",
     "check:motion": "pnpm --filter @velora/compiler validate",
+    "check:motion:hard": "pnpm --filter @velora/compiler validate:hard",
+    "check:motion:migration": "pnpm --filter @velora/compiler validate:migration",
     "generate:motion-css": "pnpm --filter @velora/compiler generate:css -- --root ../../apps/showcase/pages --css-out ../../apps/showcase/public/css/velora.generated.css",
     "migrate:motion": "pnpm --filter @velora/compiler migrate",
     "migrate:motion:dry": "pnpm --filter @velora/compiler migrate:dry",
