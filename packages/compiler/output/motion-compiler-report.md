@@ -1,10 +1,184 @@
 # Velora Motion Compiler Report
 
-- Files scanned: **48**
-- Velora attributes found: **2511**
-- Issues found: **3**
+- Files scanned: **49**
+- Velora attributes found: **2678**
+- Issues found: **0**
 
-## OK — `color/ambient-shadows.html`
+## OK — `index.html`
+
+### Attributes
+- `vl-page-transition="cinema"`
+- `vl-enter="flow-in"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="hover-depth-press"`
+- `vl-children="orchestrate"`
+- `vl-stagger="140ms"`
+- `vl-speed="cinema"`
+- `vl-enter="fade-in"`
+- `vl-enter="clip-rise"`
+- `vl-speed="cinema"`
+- `vl-enter="clip-rise"`
+- `vl-speed="cinema"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-loop="-1"`
+- `vl-loop-effect="orbit"`
+- `vl-speed="slow"`
+- `vl-hover="hover-tilt-3d"`
+- `vl-speed="slow"`
+- `vl-effect="border-beam"`
+- `vl-children="stagger"`
+- `vl-stagger="80ms"`
+- `vl-speed="fast"`
+- `vl-enter="scale-in"`
+- `vl-timeline="view"`
+- `vl-enter="scale-in"`
+- `vl-timeline="view"`
+- `vl-enter="scale-in"`
+- `vl-timeline="view"`
+- `vl-hover="hover-orb-grid"`
+- `vl-children="stagger"`
+- `vl-stagger="110ms"`
+- `vl-speed="normal"`
+- `vl-enter="reveal-3d"`
+- `vl-timeline="view"`
+- `vl-speed="cinema"`
+- `vl-hover="hover-prism"`
+- `vl-loop="-1"`
+- `vl-loop-effect="float"`
+- `vl-hover="hover-lift"`
+- `vl-loop="-1"`
+- `vl-loop-effect="float"`
+- `vl-hover="hover-glow"`
+- `vl-enter="flow-in"`
+- `vl-timeline="view"`
+- `vl-hover="gradient-sweep"`
+- `vl-enter="flow-in"`
+- `vl-timeline="view"`
+- `vl-hover="border-trace"`
+- `vl-enter="flow-in"`
+- `vl-timeline="view"`
+- `vl-hover="hover-lift"`
+- `vl-hover="hover-glow"`
+- `vl-hover="hover-lift"`
+- `vl-hover="hover-prism"`
+- `vl-children="stagger"`
+- `vl-stagger="120ms"`
+- `vl-speed="normal"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-scroll="parallax"`
+- `vl-range="scene-soft"`
+- `vl-speed="cinema"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+- `vl-range="entry 12% cover 48%"`
+- `vl-speed="slow"`
+- `vl-effect="shimmer-text"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-enter="clip-rise"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-speed="cinema"`
+- `vl-enter="text-reveal-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-speed="slow"`
+- `vl-scroll="parallax"`
+- `vl-range="scene-soft"`
+- `vl-speed="cinema"`
+- `vl-enter="clip-rise"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-speed="cinema"`
+- `vl-effect="gradient-text-color"`
+- `vl-effect="typewriter-loop"`
+- `vl-scroll="scroll-marquee"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-speed="normal"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-effect="circle-text-scroll"`
+- `vl-exit="fade-out-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-effect="shimmer-text"`
+- `vl-enter="clip-rise"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-enter="text-reveal-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-hover="hover-tilt-3d"`
+- `vl-speed="slow"`
+- `vl-hover="hover-prism"`
+- `vl-speed="slow"`
+- `vl-effect="border-beam"`
+- `vl-speed="slow"`
+- `vl-scroll="depth-push"`
+- `vl-range="custom"`
+- `vl-speed="cinema"`
+- `vl-effect="spin-slow"`
+- `vl-speed="slow"`
+- `vl-effect="spin-slow"`
+- `vl-speed="slow"`
+- `vl-children="orchestrate"`
+- `vl-stagger="120ms"`
+- `vl-speed="slow"`
+- `vl-enter="fade-in"`
+- `vl-enter="clip-rise"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-enter="text-reveal-up"`
+- `vl-timeline="view"`
+- `vl-range="custom"`
+- `vl-children="cinema-stagger"`
+- `vl-stagger="150ms"`
+- `vl-speed="cinema"`
+- `vl-scroll="depth-push"`
+- `vl-range="scene-soft"`
+- `vl-hover="hover-prism"`
+- `vl-speed="slow"`
+- `vl-effect="scene-hero-reveal"`
+- `vl-effect="border-beam"`
+- `vl-speed="slow"`
+- `vl-scene="glass-bento"`
+- `vl-effect="scene-feature-flow"`
+- `vl-timeline="view"`
+- `vl-hover="hover-tilt-3d"`
+- `vl-speed="slow"`
+- `vl-effect="scene-layer-stack"`
+- `vl-hover="spotlight"`
+- `vl-speed="slow"`
+- `vl-scroll="scroll-marquee"`
+- `vl-pin="top"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+
+## OK — `pages/color/ambient-shadows.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -105,7 +279,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `color/color-palette.html`
+## OK — `pages/color/color-palette.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -164,7 +338,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `color/color-system.html`
+## OK — `pages/color/color-system.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -224,7 +398,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `color/design-tokens.html`
+## OK — `pages/color/design-tokens.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -288,7 +462,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `color/token-spotlight.html`
+## OK — `pages/color/token-spotlight.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -345,7 +519,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `color/tonal-stacking.html`
+## OK — `pages/color/tonal-stacking.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -404,7 +578,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `color/tonal-tiers.html`
+## OK — `pages/color/tonal-tiers.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -465,7 +639,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `components/api-design-catalog.html`
+## OK — `pages/components/api-design-catalog.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -487,7 +661,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `components/buttons.html`
+## OK — `pages/components/buttons.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -551,7 +725,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `components/component-lab.html`
+## OK — `pages/components/component-lab.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -609,7 +783,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `components/component-wizard.html`
+## OK — `pages/components/component-wizard.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -668,7 +842,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## FAIL — `components/design-playground.html`
+## OK — `pages/components/design-playground.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -688,10 +862,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-### Issues
-- **legacy-channel-conflict**: Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.
-
-## OK — `components/forms.html`
+## OK — `pages/components/forms.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -753,7 +924,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `components/icons.html`
+## OK — `pages/components/icons.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -817,7 +988,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `core/about.html`
+## OK — `pages/core/about.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -909,7 +1080,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `core/landing.html`
+## OK — `pages/core/landing.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -976,20 +1147,18 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `demo/impossible.html`
+## OK — `pages/demo/impossible.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
 - `vl-scene="cinematic-hero"`
 - `vl-effect="aurora"`
-- `vl-loop="-1"`
 - `vl-speed="slower"`
 - `vl-effect="blur-lift"`
 - `vl-speed="slow"`
 - `vl-effect="flow-in"`
 - `vl-speed="slow"`
 - `vl-effect="breathe"`
-- `vl-loop="-1"`
 - `vl-effect="cinematic-mask"`
 - `vl-timeline="view"`
 - `vl-range="entry-short"`
@@ -1023,7 +1192,6 @@
 - `vl-range="entry-long"`
 - `vl-scene="cinematic-hero"`
 - `vl-effect="breathe"`
-- `vl-loop="-1"`
 - `vl-speed="slower"`
 - `vl-effect="blur-lift"`
 - `vl-effect="flow-in"`
@@ -1031,7 +1199,7 @@
 - `vl-effect="fade-up"`
 - `vl-speed="slow"`
 
-## OK — `integrations/gsap-anime.html`
+## OK — `pages/integrations/gsap-anime.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1093,7 +1261,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `library/gallery.html`
+## OK — `pages/library/gallery.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1108,7 +1276,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `library/index.html`
+## OK — `pages/library/index.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1198,7 +1366,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/3d-explorer.html`
+## OK — `pages/motion/3d-explorer.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1213,7 +1381,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/3d-rotation.html`
+## OK — `pages/motion/3d-rotation.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1228,7 +1396,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## FAIL — `motion/api-motion-catalog.html`
+## OK — `pages/motion/api-motion-catalog.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1513,11 +1681,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-### Issues
-- **legacy-channel-conflict**: Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.
-- **legacy-channel-conflict**: Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.
-
-## OK — `motion/interactions.html`
+## OK — `pages/motion/interactions.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1574,7 +1738,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/kinetic-cards.html`
+## OK — `pages/motion/kinetic-cards.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1589,7 +1753,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/kinetic-motion.html`
+## OK — `pages/motion/kinetic-motion.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1648,7 +1812,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/motion-compiler-demo.html`
+## OK — `pages/motion/motion-compiler-demo.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1660,7 +1824,7 @@
 - `vl-loop-effect="float@3s/ease-in-out"`
 - `vl-scroll="parallax:y(-12%,18%) range:entry"`
 
-## OK — `motion/motion-extended.html`
+## OK — `pages/motion/motion-extended.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1675,7 +1839,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/motion-playground.html`
+## OK — `pages/motion/motion-playground.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1693,7 +1857,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/motion-principles.html`
+## OK — `pages/motion/motion-principles.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1752,7 +1916,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/scale-shift.html`
+## OK — `pages/motion/scale-shift.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1811,7 +1975,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/scroll-driven-demos.html`
+## OK — `pages/motion/scroll-driven-demos.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1841,7 +2005,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `motion/zero-js-motion.html`
+## OK — `pages/motion/zero-js-motion.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1856,12 +2020,12 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `scenes/scene-creator.html`
+## OK — `pages/scenes/scene-creator.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
 
-## OK — `scenes/scene-features.html`
+## OK — `pages/scenes/scene-features.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -1954,7 +2118,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `scenes/scene-hero.html`
+## OK — `pages/scenes/scene-hero.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2021,7 +2185,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `scenes/scene-story.html`
+## OK — `pages/scenes/scene-story.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2090,7 +2254,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `scenes/scroll-reveal.html`
+## OK — `pages/scenes/scroll-reveal.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2105,7 +2269,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `tools/accessibility.html`
+## OK — `pages/tools/accessibility.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2175,7 +2339,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `tools/architecture.html`
+## OK — `pages/tools/architecture.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2232,7 +2396,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `tools/brand-voice.html`
+## OK — `pages/tools/brand-voice.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2303,71 +2467,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `tools/contrast-tool.html`
-
-### Attributes
-- `vl-page-transition="cinema"`
-- `vl-effect="flow-in"`
-- `vl-effect="underline-expand"`
-- `vl-effect="underline-expand"`
-- `vl-effect="underline-expand"`
-- `vl-effect="underline-expand"`
-- `vl-effect="underline-expand"`
-- `vl-effect="underline-expand"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="fade-up"`
-- `vl-timeline="view"`
-- `vl-once`
-- `vl-children="orchestrate"`
-- `vl-stagger="120ms"`
-- `vl-effect="rise-3d"`
-- `vl-once`
-- `vl-children="stagger"`
-- `vl-stagger="80ms"`
-- `vl-effect="hover-prism"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="fade-up"`
-- `vl-timeline="view"`
-- `vl-once`
-- `vl-children="orchestrate"`
-- `vl-stagger="100ms"`
-- `vl-children="stagger"`
-- `vl-stagger="80ms"`
-- `vl-effect="hover-prism"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="hover-card-stack"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="fade-up"`
-- `vl-timeline="view"`
-- `vl-once`
-- `vl-children="orchestrate"`
-- `vl-stagger="100ms"`
-- `vl-effect="depth-push"`
-- `vl-timeline="view"`
-- `vl-once`
-- `vl-effect="hover-prism"`
-- `vl-effect="fade-up"`
-- `vl-timeline="view"`
-- `vl-once`
-- `vl-children="orchestrate"`
-- `vl-stagger="100ms"`
-- `vl-effect="spring-3d"`
-- `vl-once`
-- `vl-children="stagger"`
-- `vl-stagger="120ms"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="hover-depth-press"`
-- `vl-effect="fade-up"`
-- `vl-timeline="view"`
-- `vl-once`
-- `vl-children="orchestrate"`
-- `vl-stagger="120ms"`
-- `vl-effect="fade-up"`
-- `vl-timeline="view"`
-
-## OK — `tools/converter.html`
+## OK — `pages/tools/contrast-tool.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2431,7 +2531,71 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `tools/index.html`
+## OK — `pages/tools/converter.html`
+
+### Attributes
+- `vl-page-transition="cinema"`
+- `vl-effect="flow-in"`
+- `vl-effect="underline-expand"`
+- `vl-effect="underline-expand"`
+- `vl-effect="underline-expand"`
+- `vl-effect="underline-expand"`
+- `vl-effect="underline-expand"`
+- `vl-effect="underline-expand"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="fade-up"`
+- `vl-timeline="view"`
+- `vl-once`
+- `vl-children="orchestrate"`
+- `vl-stagger="120ms"`
+- `vl-effect="rise-3d"`
+- `vl-once`
+- `vl-children="stagger"`
+- `vl-stagger="80ms"`
+- `vl-effect="hover-prism"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="fade-up"`
+- `vl-timeline="view"`
+- `vl-once`
+- `vl-children="orchestrate"`
+- `vl-stagger="100ms"`
+- `vl-children="stagger"`
+- `vl-stagger="80ms"`
+- `vl-effect="hover-prism"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="hover-card-stack"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="fade-up"`
+- `vl-timeline="view"`
+- `vl-once`
+- `vl-children="orchestrate"`
+- `vl-stagger="100ms"`
+- `vl-effect="depth-push"`
+- `vl-timeline="view"`
+- `vl-once`
+- `vl-effect="hover-prism"`
+- `vl-effect="fade-up"`
+- `vl-timeline="view"`
+- `vl-once`
+- `vl-children="orchestrate"`
+- `vl-stagger="100ms"`
+- `vl-effect="spring-3d"`
+- `vl-once`
+- `vl-children="stagger"`
+- `vl-stagger="120ms"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="hover-depth-press"`
+- `vl-effect="fade-up"`
+- `vl-timeline="view"`
+- `vl-once`
+- `vl-children="orchestrate"`
+- `vl-stagger="120ms"`
+- `vl-effect="fade-up"`
+- `vl-timeline="view"`
+
+## OK — `pages/tools/index.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2455,7 +2619,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `tools/system-modules.html`
+## OK — `pages/tools/system-modules.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2525,7 +2689,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `typography/typography-composition.html`
+## OK — `pages/typography/typography-composition.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2584,7 +2748,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `typography/typography-spec.html`
+## OK — `pages/typography/typography-spec.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`
@@ -2649,7 +2813,7 @@
 - `vl-effect="fade-up"`
 - `vl-timeline="view"`
 
-## OK — `typography/typography.html`
+## OK — `pages/typography/typography.html`
 
 ### Attributes
 - `vl-page-transition="cinema"`

@@ -21,6 +21,8 @@ const IGNORED_DIRS = new Set([
   ".astro",
   ".next",
   "coverage",
+  "output",
+  "templates",
 ]);
 
 export async function scanFiles(rootDir, extensions = DEFAULT_EXTENSIONS) {

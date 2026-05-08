@@ -1,11 +1,16 @@
 # Showcase Contract Checklist
 
-- Pages scanned: **47**
-- Unknown vl-* attrs: **1**
+- Pages scanned: **49**
+- Unknown vl-* attrs: **0**
 - Deprecated vl-* attrs: **0**
 - Broken #anchors: **0**
 
 ## Per-page status
+
+### OK - `index.html`
+- Unknown vl-* attrs: none
+- Deprecated vl-* attrs: none
+- Broken #anchors: none
 
 ### OK - `pages/color/ambient-shadows.html`
 - Unknown vl-* attrs: none
@@ -87,8 +92,8 @@
 - Deprecated vl-* attrs: none
 - Broken #anchors: none
 
-### FAIL - `pages/demo/impossible.html`
-- Unknown vl-* attrs: `vl-reveal-cinematic`
+### OK - `pages/demo/impossible.html`
+- Unknown vl-* attrs: none
 - Deprecated vl-* attrs: none
 - Broken #anchors: none
 
@@ -133,6 +138,11 @@
 - Broken #anchors: none
 
 ### OK - `pages/motion/kinetic-motion.html`
+- Unknown vl-* attrs: none
+- Deprecated vl-* attrs: none
+- Broken #anchors: none
+
+### OK - `pages/motion/motion-compiler-demo.html`
 - Unknown vl-* attrs: none
 - Deprecated vl-* attrs: none
 - Broken #anchors: none

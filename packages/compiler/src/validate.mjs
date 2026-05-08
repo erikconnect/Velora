@@ -68,31 +68,26 @@ export function validateAttributes(attrs) {
 export function detectChannelConflicts(attrs) {
   const issues = [];
 
-  // Group attrs by their approximate tag position (within 2000 chars of each other)
-  // to avoid false positives on pages that legitimately use both vl-effect and
-  // channel attrs on different elements.
-  const sorted = [...attrs].sort((a, b) => a.index - b.index);
-  const TAG_WINDOW = 2000; // max distance between attrs on the same element
-  let windowStart = 0;
+  const attrsByTag = new Map();
 
-  for (let i = 0; i < sorted.length; i++) {
-    // Advance window start so attrs are within TAG_WINDOW chars
-    while (sorted[i].index - sorted[windowStart].index > TAG_WINDOW) windowStart++;
+  for (const attr of attrs) {
+    const tagKey = attr.tagIndex ?? attr.index;
+    const group = attrsByTag.get(tagKey) ?? [];
+    group.push(attr);
+    attrsByTag.set(tagKey, group);
+  }
 
-    const window = sorted.slice(windowStart, i + 1);
-    const names = new Set(window.map((a) => a.name));
-
-    if (names.has("vl-effect") && [...CHANNEL_ATTRS].some((ch) => names.has(ch))) {
-      const effectAttr = window.find((a) => a.name === "vl-effect");
-      // Only report once per vl-effect occurrence
-      if (effectAttr && effectAttr.index === sorted[i].index) {
-        issues.push({
-          type: "legacy-channel-conflict",
-          attr: "vl-effect",
-          message: "Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.",
-        });
-      }
+  for (const tagAttrs of attrsByTag.values()) {
+    const names = new Set(tagAttrs.map((a) => a.name));
+    if (!names.has("vl-effect") || ![...CHANNEL_ATTRS].some((ch) => names.has(ch))) {
+      continue;
     }
+
+    issues.push({
+      type: "legacy-channel-conflict",
+      attr: "vl-effect",
+      message: "Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.",
+    });
   }
 
   return issues;

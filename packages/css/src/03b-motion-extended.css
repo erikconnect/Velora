@@ -557,6 +557,12 @@
         animation: vl-spring-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-bounce) both;
     }
 
+    [vl-enter~="glide-in"] {
+        --vl-enter-name: vl-glide-in;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-expo-out);
+    }
+
     [vl-effect="glide-in"] {
         --vl-motion-duration: var(--vl-duration-slower);
         animation: vl-glide-in var(--vl-motion-duration) var(--vl-ease-expo-out) both;
@@ -569,6 +575,12 @@
 
     [vl-effect="slice-in"] {
         animation: vl-slice-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-enter~="unfold"] {
+        --vl-enter-name: vl-unfold;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-cinematic);
     }
 
     [vl-effect="unfold"] {
@@ -1401,10 +1413,11 @@
         animation-range: entry 0% cover 50%;
     }
 
-    [vl-effect="depth-push"] {
+    :is([vl-scroll~="depth-push"], [vl-effect="depth-push"]) {
+        --vl-scroll-name: vl-depth-push;
         animation: vl-depth-push linear both;
         animation-timeline: view(block);
-        animation-range: entry 0% entry 100%;
+        animation-range: var(--vl-range, entry 0% entry 100%);
     }
 
     /* Parallax — element moves at a different rate to scroll */
@@ -1663,7 +1676,7 @@
        ========================================================================= */
 
     /* Wave: children animate in a wave pattern (stagger + wave-char keyframe) */
-    [vl-children="wave"] > * {
+    [vl-children="wave"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-wave-char 1.8s var(--vl-ease-in-out-smooth) infinite;
     }
 
@@ -1677,7 +1690,7 @@
     [vl-children="wave"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 80ms)); }
 
     /* Blur cascade: children blur-in with stagger */
-    [vl-children="blur-cascade"] > * {
+    [vl-children="blur-cascade"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-blur-cascade var(--vl-duration-slower) var(--vl-ease-out-soft) both;
     }
 
@@ -1691,7 +1704,7 @@
     [vl-children="blur-cascade"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 80ms)); }
 
     /* Zoom stagger: children zoom-scale-in with stagger */
-    [vl-children="zoom-stagger"] > * {
+    [vl-children="zoom-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-zoom-stagger var(--vl-duration-slow) var(--vl-ease-spring) both;
     }
 
@@ -1704,11 +1717,11 @@
     [vl-children="zoom-stagger"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 70ms)); }
     [vl-children="zoom-stagger"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 70ms)); }
 
-    [vl-children="cinema-stagger"] > * {
+    [vl-children="cinema-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-glide-in var(--vl-duration-slow) var(--vl-ease-expo-out) both;
     }
 
-    [vl-children="cinema-stagger"] > *:nth-child(odd) {
+    [vl-children="cinema-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]):nth-child(odd) {
         animation-name: vl-spring-up;
     }
 
@@ -1721,7 +1734,7 @@
     [vl-children="cinema-stagger"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 90ms)); }
     [vl-children="cinema-stagger"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 90ms)); }
 
-    [vl-children="grid-wave"] > * {
+    [vl-children="grid-wave"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-grid-wave 1.6s var(--vl-ease-in-out-smooth) infinite;
     }
 
@@ -1734,7 +1747,7 @@
     [vl-children="grid-wave"] > *:nth-child(7)  { animation-delay: 480ms; }
     [vl-children="grid-wave"] > *:nth-child(8)  { animation-delay: 560ms; }
 
-    [vl-children="spiral-stagger"] > * {
+    [vl-children="spiral-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-spiral-stagger var(--vl-duration-slow) var(--vl-ease-back-out) both;
     }
 
@@ -1914,13 +1927,13 @@
     }
 
     /* --- List enter (scroll-driven stagger) ----------------------------------- */
-    [vl-children="list-enter"] > * {
+    [vl-children="list-enter"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-list-enter var(--vl-duration-slow) var(--vl-ease-expo-out) both;
         animation-timeline: view(block);
         animation-range: entry 0% entry 60%;
     }
 
-    [vl-children="list-enter-right"] > * {
+    [vl-children="list-enter-right"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         --vl-list-enter-x: 1.5rem;
         animation: vl-list-enter var(--vl-duration-slow) var(--vl-ease-expo-out) both;
         animation-timeline: view(block);

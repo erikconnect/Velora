@@ -46,7 +46,12 @@ function extractAttrsFromTag(tag, tagOffset) {
     }
 
     if (/^vl-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(attrName)) {
-      attrs.push({ name: attrName, value: attrValue, index: tagOffset + nameStart });
+      attrs.push({
+        name: attrName,
+        value: attrValue,
+        index: tagOffset + nameStart,
+        tagIndex: tagOffset,
+      });
     }
   }
 

@@ -584,6 +584,15 @@
         --vl-enter-name: vl-clip-rise;
         --vl-enter-duration: var(--vl-duration-slower);
     }
+    :is([vl-enter~="text-reveal"], [vl-effect~="text-reveal"]) {
+        --vl-enter-name: vl-clip-reveal-ltr;
+    }
+    :is([vl-enter~="text-reveal-up"], [vl-effect~="text-reveal-up"]) {
+        --vl-enter-name: vl-clip-reveal-up;
+    }
+    :is([vl-enter~="text-reveal-down"], [vl-effect~="text-reveal-down"]) {
+        --vl-enter-name: vl-clip-reveal-down;
+    }
     :is([vl-enter~="tilt-in"], [vl-effect~="tilt-in"]) {
         --vl-enter-name: vl-tilt-in;
         --vl-enter-duration: var(--vl-duration-slower);
@@ -1665,7 +1674,7 @@
     /* =========================================================================
        CHILD CHOREOGRAPHY  [vl-children="<mode>"]
        ========================================================================= */
-    [vl-children="stagger"] > * {
+    [vl-children="stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-fade-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
     }
 
@@ -1682,7 +1691,7 @@
     [vl-children="stagger"] > *:nth-child(11) { animation-delay: calc(10 * var(--vl-stagger-step)); }
     [vl-children="stagger"] > *:nth-child(12) { animation-delay: calc(11 * var(--vl-stagger-step)); }
 
-    [vl-children="cascade"] > * {
+    [vl-children="cascade"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-flow-in var(--vl-duration-slower) var(--vl-ease-out-soft) both;
     }
 
@@ -1695,7 +1704,7 @@
     [vl-children="cascade"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step)); }
     [vl-children="cascade"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step)); }
 
-    [vl-children="sequence"] > * {
+    [vl-children="sequence"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         --vl-seq-duration: var(--vl-motion-duration, var(--vl-duration-slow));
         animation: vl-fade-up var(--vl-seq-duration) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
     }
@@ -1707,11 +1716,11 @@
     [vl-children="sequence"] > *:nth-child(5)  { animation-delay: calc(4 * var(--vl-seq-duration)); }
     [vl-children="sequence"] > *:nth-child(6)  { animation-delay: calc(5 * var(--vl-seq-duration)); }
 
-    [vl-children="orchestrate"] > * {
+    [vl-children="orchestrate"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-flow-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
     }
 
-    [vl-children="orchestrate"] > *:nth-child(odd) {
+    [vl-children="orchestrate"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]):nth-child(odd) {
         animation-name: vl-fade-up;
     }
 
