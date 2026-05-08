@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-editorial-theme="noir" data-theme="dark" vl-page-transition="cinema">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Velora Motion Compiler Demo</title>
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/velora.css" />
+    <link rel="stylesheet" href="/css/showcase.css" />
+    <link rel="stylesheet" href="/css/velora.generated.css" />
+    <style>
+      body {
+        margin: 0;
+        background: #0d0f0c;
+        color: #e1e7dc;
+        font-family: Manrope, system-ui, sans-serif;
+      }
+
+      .compiler-demo {
+        min-height: 100vh;
+        overflow-x: clip;
+      }
+
+      .compiler-demo__section {
+        width: min(1120px, calc(100% - 2rem));
+        margin-inline: auto;
+        padding-block: clamp(5rem, 12vw, 10rem);
+      }
+
+      .compiler-demo__eyebrow {
+        color: #bbcbb1;
+        font-family: monospace;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .compiler-demo__title {
+        max-width: 12ch;
+        margin-block: 1rem;
+        font-size: clamp(3.5rem, 11vw, 9rem);
+        line-height: 0.86;
+        letter-spacing: -0.08em;
+      }
+
+      .compiler-demo__lead {
+        max-width: 68ch;
+        color: rgba(225, 231, 220, 0.74);
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        line-height: 1.65;
+      }
+
+      .compiler-demo__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-block-start: 3rem;
+      }
+
+      .compiler-demo__card {
+        min-height: 17rem;
+        padding: clamp(1.2rem, 2vw, 1.8rem);
+        border: 1px solid rgba(225, 231, 220, 0.14);
+        border-radius: 1.4rem;
+        background: rgba(255, 255, 255, 0.04);
+        overflow: clip;
+      }
+
+      .compiler-demo__card strong {
+        display: block;
+        margin-block-end: 0.8rem;
+        color: #bbcbb1;
+        font-family: monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .compiler-demo__card h2 {
+        margin: 0;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        letter-spacing: -0.04em;
+      }
+
+      .compiler-demo__card p {
+        color: rgba(225, 231, 220, 0.68);
+        line-height: 1.6;
+      }
+
+      .compiler-demo__code {
+        display: block;
+        margin-block-start: 1rem;
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        background: rgba(0, 0, 0, 0.24);
+        color: #bbcbb1;
+        font-size: 0.78rem;
+        white-space: normal;
+      }
+
+      .compiler-demo__parallax-band {
+        min-height: 55vh;
+        display: grid;
+        place-items: center;
+        border-radius: 2rem;
+        background: linear-gradient(135deg, rgba(187, 203, 177, 0.18), rgba(255, 255, 255, 0.04));
+        overflow: clip;
+      }
+
+      .compiler-demo__orb {
+        width: clamp(12rem, 28vw, 24rem);
+        aspect-ratio: 1;
+        border-radius: 999rem;
+        background: radial-gradient(circle at 34% 28%, #fff, transparent 18%), radial-gradient(circle at 50% 50%, #bbcbb1, transparent 70%);
+        box-shadow: 0 0 6rem rgba(187, 203, 177, 0.35);
+      }
+
+      @media (max-width: 760px) {
+        .compiler-demo__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="compiler-demo" id="content">
+      <section class="compiler-demo__section" vl-enter="fade-up@900ms/ease-out delay:80ms">
+        <p class="compiler-demo__eyebrow">Velora Motion Compiler</p>
+        <h1 class="compiler-demo__title" vl-enter="clip-rise@1100ms/ease-out delay:140ms">HTML becomes motion grammar.</h1>
+        <p class="compiler-demo__lead" vl-enter="fade-up@800ms/ease-out delay:220ms">
+          This page uses compact Velora attributes that are scanned, parsed and converted into static CSS by the experimental compiler.
+        </p>
+      </section>
+
+      <section class="compiler-demo__section">
+        <div class="compiler-demo__grid">
+          <article class="compiler-demo__card" vl-enter="fade-up@700ms/ease-out delay:80ms">
+            <strong>Enter</strong>
+            <h2>Duration and easing from attributes.</h2>
+            <p>The compiler reads duration, easing and delay from the attribute value.</p>
+            <code class="compiler-demo__code">vl-enter="fade-up@700ms/ease-out delay:80ms"</code>
+          </article>
+
+          <article class="compiler-demo__card" vl-enter="flow-in@900ms/ease-out delay:160ms">
+            <strong>Flow</strong>
+            <h2>Named presets map to keyframes.</h2>
+            <p>Presets resolve to existing Velora CSS keyframes without a JS runtime.</p>
+            <code class="compiler-demo__code">vl-enter="flow-in@900ms/ease-out delay:160ms"</code>
+          </article>
+
+          <article class="compiler-demo__card" vl-loop-effect="float@3s/ease-in-out">
+            <strong>Loop</strong>
+            <h2>Ambient motion can be generated too.</h2>
+            <p>Loop effects are generated as static CSS declarations.</p>
+            <code class="compiler-demo__code">vl-loop-effect="float@3s/ease-in-out"</code>
+          </article>
+        </div>
+      </section>
+
+      <section class="compiler-demo__section">
+        <div class="compiler-demo__parallax-band">
+          <div class="compiler-demo__orb" vl-scroll="parallax:y(-12%,18%) range:entry"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

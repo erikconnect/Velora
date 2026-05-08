@@ -37,6 +37,7 @@ export const TEMPLATE_REGISTRY = {
       motion: [
         "pages/motion/zero-js-motion.html",
         "pages/motion/motion-extended.html",
+        "pages/motion/motion-compiler-demo.html",
         "pages/motion/motion-principles.html",
         "pages/motion/kinetic-motion.html",
         "pages/motion/kinetic-cards.html",
