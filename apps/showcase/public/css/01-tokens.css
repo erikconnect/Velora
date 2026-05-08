@@ -134,6 +134,9 @@
         --vl-ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
         --vl-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
         --vl-ease-in-out-smooth: cubic-bezier(0.45, 0, 0.55, 1);
+        --vl-ease-fluid: cubic-bezier(0.25, 0.8, 0.25, 1);
+        --vl-ease-impact: cubic-bezier(0.0, 0.0, 0.2, 1);
+        --vl-ease-silk: cubic-bezier(0.4, 0.0, 0.2, 1);
 
         --vl-duration-instant: 80ms;
         --vl-duration-fast: 150ms;

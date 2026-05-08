@@ -31,6 +31,57 @@
      */
 
     /* =========================================================================
+       KEYFRAMES — cinematic entrance grammar
+       ========================================================================= */
+
+    @keyframes vl-blur-lift {
+        from {
+            opacity: 0;
+            filter: blur(12px);
+            transform: translate3d(0, 1.5rem, 0);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-opacity-reveal {
+        from { opacity: 0; }
+        60%  { opacity: 0.7; }
+        to   { opacity: 1; }
+    }
+
+    @keyframes vl-cinematic-mask {
+        from {
+            clip-path: inset(100% 0 0 0);
+            opacity: 0;
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes vl-parallax-depth-enter {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 3rem, -100px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @keyframes vl-stagger-wave {
+        0%   { opacity: 0; transform: translate3d(0, 1rem, 0); }
+        50%  { opacity: 0.8; transform: translate3d(0, -0.15rem, 0); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* =========================================================================
        KEYFRAMES  entrance
        ========================================================================= */
     @keyframes vl-fade-in {
@@ -62,6 +113,56 @@
         to {
             opacity: 0;
             transform: translate3d(0, var(--vl-motion-distance, 1.25rem), 0);
+        }
+    }
+
+    /* =========================================================================
+       KEYFRAMES — cinematic exit grammar
+       ========================================================================= */
+
+    @keyframes vl-dissolve-out {
+        from {
+            opacity: 1;
+            filter: blur(0);
+        }
+        to {
+            opacity: 0;
+            filter: blur(8px);
+        }
+    }
+
+    @keyframes vl-depth-collapse {
+        from {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: translate3d(0, 0, -200px) scale(0.85);
+        }
+    }
+
+    @keyframes vl-fade-velocity {
+        from {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            opacity: 0;
+            transform: translate3d(0, -3rem, 0);
+        }
+    }
+
+    @keyframes vl-blur-exit {
+        from {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            filter: blur(16px);
+            transform: scale(1.05);
         }
     }
 
@@ -482,6 +583,15 @@
     :is([vl-enter~="clip-rise"], [vl-effect~="clip-rise"]) {
         --vl-enter-name: vl-clip-rise;
         --vl-enter-duration: var(--vl-duration-slower);
+    }
+    :is([vl-enter~="text-reveal"], [vl-effect~="text-reveal"]) {
+        --vl-enter-name: vl-clip-reveal-ltr;
+    }
+    :is([vl-enter~="text-reveal-up"], [vl-effect~="text-reveal-up"]) {
+        --vl-enter-name: vl-clip-reveal-up;
+    }
+    :is([vl-enter~="text-reveal-down"], [vl-effect~="text-reveal-down"]) {
+        --vl-enter-name: vl-clip-reveal-down;
     }
     :is([vl-enter~="tilt-in"], [vl-effect~="tilt-in"]) {
         --vl-enter-name: vl-tilt-in;
@@ -1564,7 +1674,7 @@
     /* =========================================================================
        CHILD CHOREOGRAPHY  [vl-children="<mode>"]
        ========================================================================= */
-    [vl-children="stagger"] > * {
+    [vl-children="stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-fade-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
     }
 
@@ -1581,7 +1691,7 @@
     [vl-children="stagger"] > *:nth-child(11) { animation-delay: calc(10 * var(--vl-stagger-step)); }
     [vl-children="stagger"] > *:nth-child(12) { animation-delay: calc(11 * var(--vl-stagger-step)); }
 
-    [vl-children="cascade"] > * {
+    [vl-children="cascade"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-flow-in var(--vl-duration-slower) var(--vl-ease-out-soft) both;
     }
 
@@ -1594,7 +1704,7 @@
     [vl-children="cascade"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step)); }
     [vl-children="cascade"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step)); }
 
-    [vl-children="sequence"] > * {
+    [vl-children="sequence"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         --vl-seq-duration: var(--vl-motion-duration, var(--vl-duration-slow));
         animation: vl-fade-up var(--vl-seq-duration) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
     }
@@ -1606,11 +1716,11 @@
     [vl-children="sequence"] > *:nth-child(5)  { animation-delay: calc(4 * var(--vl-seq-duration)); }
     [vl-children="sequence"] > *:nth-child(6)  { animation-delay: calc(5 * var(--vl-seq-duration)); }
 
-    [vl-children="orchestrate"] > * {
+    [vl-children="orchestrate"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-flow-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
     }
 
-    [vl-children="orchestrate"] > *:nth-child(odd) {
+    [vl-children="orchestrate"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]):nth-child(odd) {
         animation-name: vl-fade-up;
     }
 
@@ -2004,6 +2114,37 @@
         animation: vl-mask-sweep var(--vl-enter-duration, var(--vl-duration-slow)) var(--vl-enter-ease, var(--vl-ease-cinematic)) both;
     }
 
+    /* --- Cinematic entrance grammar --- */
+    [vl-effect="blur-lift"] {
+        animation: vl-blur-lift var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-silk)) both;
+    }
+    [vl-effect="opacity-reveal"] {
+        animation: vl-opacity-reveal var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-fluid)) both;
+    }
+    [vl-effect="cinematic-mask"] {
+        animation: vl-cinematic-mask var(--vl-motion-duration, var(--vl-duration-slower)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
+    }
+    [vl-effect="parallax-depth"] {
+        animation: vl-parallax-depth-enter var(--vl-motion-duration, var(--vl-duration-slower)) var(--vl-motion-ease, var(--vl-ease-impact)) both;
+    }
+    [vl-effect="stagger-wave"] {
+        animation: vl-stagger-wave var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-fluid)) both;
+    }
+
+    /* --- Cinematic exit grammar --- */
+    [vl-effect="dissolve-out"] {
+        animation: vl-dissolve-out var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-silk)) both;
+    }
+    [vl-effect="depth-collapse"] {
+        animation: vl-depth-collapse var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-impact)) both;
+    }
+    [vl-effect="fade-velocity"] {
+        animation: vl-fade-velocity var(--vl-motion-duration, var(--vl-duration-fast)) var(--vl-motion-ease, var(--vl-ease-cinematic)) both;
+    }
+    [vl-effect="blur-exit"] {
+        animation: vl-blur-exit var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-motion-ease, var(--vl-ease-silk)) both;
+    }
+
     /* =========================================================================
        SCROLL PRESETS  extended (reveal, media-zoom)
        ========================================================================= */
@@ -2094,7 +2235,7 @@
         display: grid;
         place-items: center;
         min-height: 100svh;
-        overflow: hidden;
+        overflow: clip;
         isolation: isolate;
     }
 
@@ -2112,7 +2253,7 @@
         position: sticky;
         top: 0;
         min-height: 100svh;
-        overflow: hidden;
+        overflow: clip;
         display: grid;
         align-content: start;
     }

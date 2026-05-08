@@ -1,0 +1,485 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE IMPOSSIBLE DEMO — Layout & Atmosphere Only
+   All motion comes from Velora's declarative attribute system (vl-*).
+   ZERO custom keyframes. The design system IS the animation engine.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Dark cinema palette (uses Velora brand tokens) ── */
+:root {
+    --demo-void: oklch(7% 0.008 110);
+    --demo-deep: oklch(11% 0.012 110);
+    --demo-surface: oklch(15% 0.015 110);
+    --demo-border: oklch(24% 0.02 110);
+    --demo-border-glow: oklch(55% 0.08 128 / 0.4);
+    --demo-text: oklch(92% 0.01 90);
+    --demo-text-soft: oklch(72% 0.015 110);
+    --demo-text-muted: oklch(55% 0.01 110);
+    --demo-moss: oklch(58% 0.07 128);
+    --demo-olive: oklch(68% 0.08 128);
+    --demo-stone: oklch(80% 0.04 95);
+    --demo-gold: oklch(78% 0.1 85);
+    --demo-glow-moss: oklch(50% 0.12 128 / 0.2);
+    --demo-glow-gold: oklch(70% 0.12 85 / 0.15);
+}
+
+/* ── Body ── */
+.impossible-demo {
+    background: var(--demo-void);
+    color: var(--demo-text);
+    font-family: var(--vl-font-family-display, "Space Grotesk", system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
+}
+
+.impossible-demo *::selection {
+    background: var(--demo-moss);
+    color: var(--demo-void);
+}
+
+/* ── Scene shared layout ── */
+.demo-scene {
+    position: relative;
+    padding: clamp(3rem, 8vw, 8rem) clamp(1.5rem, 4vw, 4rem);
+}
+
+.demo-scene__inner {
+    max-width: 72rem;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Dividers ── */
+.demo-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--demo-border-glow), transparent);
+    position: relative;
+}
+
+.demo-divider::after {
+    content: "";
+    position: absolute;
+    inset: -40px 20%;
+    height: 80px;
+    background: radial-gradient(ellipse at 50% 50%, var(--demo-glow-moss), transparent 70%);
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 1 — HERO
+   Atmosphere + brand mark. Motion via vl-scene="cinematic-hero" preset.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-hero {
+    text-align: center;
+    min-height: 100dvh;
+}
+
+.demo-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 90% 60% at 50% 40%, var(--demo-glow-moss), transparent 70%),
+        radial-gradient(ellipse 50% 70% at 75% 70%, var(--demo-glow-gold), transparent 60%);
+    opacity: 0.7;
+}
+
+.demo-hero__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 30%, var(--demo-void) 80%);
+}
+
+.demo-hero__mark {
+    width: clamp(2.5rem, 5vw, 4rem);
+    height: auto;
+    color: var(--demo-moss);
+    opacity: 0.8;
+}
+
+.demo-hero__kicker {
+    font-size: clamp(0.7rem, 1vw, 0.85rem);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--demo-olive);
+    font-weight: 500;
+}
+
+.demo-hero__title {
+    color: var(--demo-text);
+}
+
+.demo-hero__title .hl {
+    color: var(--demo-moss);
+}
+
+.demo-hero__sub {
+    font-size: clamp(0.95rem, 2vw, 1.35rem);
+    color: var(--demo-text-soft);
+    max-width: 32ch;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.demo-hero__scroll-cue {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--demo-text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 2 — SCROLL ORCHESTRATION
+   Layout only. Motion via vl-scene="glass-bento" + vl-children + vl-effect.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-scroll {
+    background: var(--demo-deep);
+}
+
+.demo-scroll__header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.demo-scroll__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--demo-olive);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.demo-scroll__heading {
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
+}
+
+.demo-scroll__card {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    position: relative;
+    transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.demo-scroll__card:hover {
+    border-color: var(--demo-border-glow);
+    box-shadow: 0 8px 32px var(--demo-glow-moss);
+}
+
+.demo-scroll__card-num {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--demo-moss);
+    opacity: 0.35;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.demo-scroll__card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    color: var(--demo-text);
+}
+
+.demo-scroll__card-desc {
+    color: var(--demo-text-soft);
+    font-size: 0.85rem;
+    line-height: 1.65;
+    margin-top: 0.4rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 3 — TYPOGRAPHY
+   Layout only. Motion via vl-scene="editorial-cinema" + typography classes.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-type {
+    text-align: center;
+}
+
+.demo-type__title {
+    color: var(--demo-text);
+}
+
+.demo-type__title .hl {
+    color: var(--demo-moss);
+}
+
+.demo-type__lines {
+    margin-top: clamp(2rem, 4vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.demo-type__line {
+    font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+    color: var(--demo-text-soft);
+    font-weight: 300;
+}
+
+.demo-type__words {
+    margin-top: clamp(3rem, 5vw, 5rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3em;
+    font-size: clamp(2.5rem, 8vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.demo-type__words span:nth-child(1) { color: var(--demo-stone); }
+.demo-type__words span:nth-child(2) { color: var(--demo-olive); }
+.demo-type__words span:nth-child(3) { color: var(--demo-moss); }
+.demo-type__words span:nth-child(4) { color: var(--demo-gold); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 4 — DEPTH
+   Layout only. Motion via vl-effect="depth-enter/rise-3d/parallax-depth".
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-depth {
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, var(--demo-glow-moss), transparent 60%),
+        var(--demo-void);
+}
+
+.demo-depth__header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.demo-depth__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--demo-olive);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.demo-depth__heading {
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
+}
+
+.demo-depth__stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 56rem;
+    margin: 0 auto;
+}
+
+.demo-depth__panel {
+    background: var(--demo-surface);
+    border: 1px solid var(--demo-border);
+    border-radius: clamp(0.75rem, 1.5vw, 1.25rem);
+    padding: clamp(2rem, 4vw, 3rem);
+    position: relative;
+    transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.demo-depth__panel:hover {
+    border-color: var(--demo-border-glow);
+    box-shadow: 0 12px 40px var(--demo-glow-moss);
+}
+
+.demo-depth__panel-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--demo-moss);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid oklch(50% 0.06 128 / 0.3);
+    border-radius: 0.25rem;
+    font-weight: 500;
+}
+
+.demo-depth__panel-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.demo-depth__panel-desc {
+    color: var(--demo-text-soft);
+    line-height: 1.65;
+    font-size: 0.9rem;
+}
+
+.demo-depth__panel-desc code {
+    font-family: var(--vl-font-family-mono, "JetBrains Mono", monospace);
+    font-size: 0.8em;
+    padding: 0.15em 0.4em;
+    background: oklch(20% 0.015 110);
+    border-radius: 0.25rem;
+    color: var(--demo-olive);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SCENE 5 — FINALE
+   Layout only. Motion via vl-scene="cinematic-hero" preset.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-finale {
+    text-align: center;
+    min-height: 100dvh;
+}
+
+.demo-finale__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 80% 70% at 50% 50%, var(--demo-glow-moss), transparent 60%),
+        radial-gradient(ellipse 40% 50% at 65% 60%, var(--demo-glow-gold), transparent 55%);
+    opacity: 0.6;
+}
+
+.demo-finale__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 20%, var(--demo-void) 75%);
+}
+
+.demo-finale__code {
+    font-family: var(--vl-font-family-mono, "JetBrains Mono", monospace);
+    font-size: clamp(0.75rem, 1.5vw, 1.05rem);
+    background: var(--demo-surface);
+    border: 1px solid var(--demo-border);
+    border-radius: 0.6rem;
+    padding: 1.25rem 2rem;
+    color: var(--demo-text-soft);
+    display: inline-block;
+}
+
+.demo-finale__code .hl-tag { color: var(--demo-stone); }
+.demo-finale__code .hl-attr { color: var(--demo-olive); }
+.demo-finale__code .hl-val { color: var(--demo-gold); }
+
+.demo-finale__punchline {
+    color: var(--demo-text);
+}
+
+.demo-finale__desc {
+    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+    color: var(--demo-text-soft);
+    max-width: 38ch;
+    margin: 0 auto;
+    line-height: 1.65;
+    font-weight: 300;
+}
+
+.demo-finale__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.demo-finale__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.demo-finale__btn:hover {
+    transform: translateY(-2px);
+}
+
+.demo-finale__btn--primary {
+    background: var(--demo-moss);
+    color: var(--demo-void);
+    box-shadow: 0 4px 20px var(--demo-glow-moss);
+}
+
+.demo-finale__btn--primary:hover {
+    box-shadow: 0 8px 32px oklch(50% 0.12 128 / 0.4);
+}
+
+.demo-finale__btn--ghost {
+    border: 1px solid var(--demo-border);
+    color: var(--demo-text);
+}
+
+.demo-finale__btn--ghost:hover {
+    border-color: var(--demo-moss);
+    box-shadow: 0 4px 16px var(--demo-glow-moss);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROGRESS BAR (only custom animation — scroll-linked via design system)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.demo-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 200;
+    background: var(--demo-void);
+}
+
+.demo-progress__bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--demo-moss), var(--demo-gold));
+    transform-origin: left;
+    transform: scaleX(var(--scroll-pct, 0));
+    animation: demo-progress-scroll linear;
+    animation-timeline: scroll(root);
+}
+
+@keyframes demo-progress-scroll {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 48rem) {
+    .demo-type__words {
+        font-size: clamp(2rem, 10vw, 4rem);
+    }
+    .demo-scroll__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

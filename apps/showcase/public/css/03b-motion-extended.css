@@ -557,6 +557,12 @@
         animation: vl-spring-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-bounce) both;
     }
 
+    [vl-enter~="glide-in"] {
+        --vl-enter-name: vl-glide-in;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-expo-out);
+    }
+
     [vl-effect="glide-in"] {
         --vl-motion-duration: var(--vl-duration-slower);
         animation: vl-glide-in var(--vl-motion-duration) var(--vl-ease-expo-out) both;
@@ -569,6 +575,12 @@
 
     [vl-effect="slice-in"] {
         animation: vl-slice-in var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    [vl-enter~="unfold"] {
+        --vl-enter-name: vl-unfold;
+        --vl-enter-duration: var(--vl-duration-slower);
+        --vl-enter-ease: var(--vl-ease-cinematic);
     }
 
     [vl-effect="unfold"] {
@@ -1401,10 +1413,11 @@
         animation-range: entry 0% cover 50%;
     }
 
-    [vl-effect="depth-push"] {
+    :is([vl-scroll~="depth-push"], [vl-effect="depth-push"]) {
+        --vl-scroll-name: vl-depth-push;
         animation: vl-depth-push linear both;
         animation-timeline: view(block);
-        animation-range: entry 0% entry 100%;
+        animation-range: var(--vl-range, entry 0% entry 100%);
     }
 
     /* Parallax — element moves at a different rate to scroll */
@@ -1663,7 +1676,7 @@
        ========================================================================= */
 
     /* Wave: children animate in a wave pattern (stagger + wave-char keyframe) */
-    [vl-children="wave"] > * {
+    [vl-children="wave"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-wave-char 1.8s var(--vl-ease-in-out-smooth) infinite;
     }
 
@@ -1677,7 +1690,7 @@
     [vl-children="wave"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 80ms)); }
 
     /* Blur cascade: children blur-in with stagger */
-    [vl-children="blur-cascade"] > * {
+    [vl-children="blur-cascade"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-blur-cascade var(--vl-duration-slower) var(--vl-ease-out-soft) both;
     }
 
@@ -1691,7 +1704,7 @@
     [vl-children="blur-cascade"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 80ms)); }
 
     /* Zoom stagger: children zoom-scale-in with stagger */
-    [vl-children="zoom-stagger"] > * {
+    [vl-children="zoom-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-zoom-stagger var(--vl-duration-slow) var(--vl-ease-spring) both;
     }
 
@@ -1704,11 +1717,11 @@
     [vl-children="zoom-stagger"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 70ms)); }
     [vl-children="zoom-stagger"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 70ms)); }
 
-    [vl-children="cinema-stagger"] > * {
+    [vl-children="cinema-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-glide-in var(--vl-duration-slow) var(--vl-ease-expo-out) both;
     }
 
-    [vl-children="cinema-stagger"] > *:nth-child(odd) {
+    [vl-children="cinema-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]):nth-child(odd) {
         animation-name: vl-spring-up;
     }
 
@@ -1721,7 +1734,7 @@
     [vl-children="cinema-stagger"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step, 90ms)); }
     [vl-children="cinema-stagger"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step, 90ms)); }
 
-    [vl-children="grid-wave"] > * {
+    [vl-children="grid-wave"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-grid-wave 1.6s var(--vl-ease-in-out-smooth) infinite;
     }
 
@@ -1734,7 +1747,7 @@
     [vl-children="grid-wave"] > *:nth-child(7)  { animation-delay: 480ms; }
     [vl-children="grid-wave"] > *:nth-child(8)  { animation-delay: 560ms; }
 
-    [vl-children="spiral-stagger"] > * {
+    [vl-children="spiral-stagger"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-spiral-stagger var(--vl-duration-slow) var(--vl-ease-back-out) both;
     }
 
@@ -1914,13 +1927,13 @@
     }
 
     /* --- List enter (scroll-driven stagger) ----------------------------------- */
-    [vl-children="list-enter"] > * {
+    [vl-children="list-enter"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         animation: vl-list-enter var(--vl-duration-slow) var(--vl-ease-expo-out) both;
         animation-timeline: view(block);
         animation-range: entry 0% entry 60%;
     }
 
-    [vl-children="list-enter-right"] > * {
+    [vl-children="list-enter-right"] > :not([vl-effect]):not([vl-enter]):not([vl-exit]) {
         --vl-list-enter-x: 1.5rem;
         animation: vl-list-enter var(--vl-duration-slow) var(--vl-ease-expo-out) both;
         animation-timeline: view(block);
@@ -2140,4 +2153,188 @@
             display: none;
         }
     } 
+
+    /* =========================================================================
+       CINEMATIC TYPOGRAPHY SYSTEM
+       Reveal, stagger, masking, split-line, and oversized type motion.
+       ========================================================================= */
+
+    /* --- Keyframes: typography-specific --- */
+
+    @keyframes vl-text-rise {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 110%, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes vl-text-mask-up {
+        from {
+            clip-path: inset(100% 0 0 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-text-mask-down {
+        from {
+            clip-path: inset(0 0 100% 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-text-blur-reveal {
+        from {
+            opacity: 0;
+            filter: blur(20px);
+            transform: scale(1.1);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+    }
+
+    @keyframes vl-text-slide-mask {
+        from {
+            clip-path: inset(0 100% 0 0);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes vl-text-oversized-drift {
+        from {
+            opacity: 0;
+            transform: translate3d(-2%, 0, 0) scale(1.02);
+            filter: blur(4px);
+        }
+        50% {
+            opacity: 1;
+            filter: blur(0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes vl-char-cascade {
+        0%   { opacity: 0; transform: translate3d(0, 0.5em, 0); filter: blur(4px); }
+        60%  { opacity: 1; filter: blur(0); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+    }
+
+    /* --- Reveal systems --- */
+
+    .vl-text-reveal {
+        overflow: hidden;
+    }
+
+    .vl-text-reveal > * {
+        animation: vl-text-rise var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-reveal[vl-children="stagger"] > * {
+        --_i: var(--vl-child-index, 0);
+        animation-delay: calc(var(--_i) * var(--vl-stagger-step, 80ms));
+    }
+
+    /* --- Mask systems --- */
+
+    .vl-text-mask-up {
+        animation: vl-text-mask-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-mask-down {
+        animation: vl-text-mask-down var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-text-slide-mask {
+        animation: vl-text-slide-mask var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-silk, var(--vl-ease-cinematic)) both;
+    }
+
+    /* --- Blur reveal --- */
+
+    .vl-text-blur-reveal {
+        animation: vl-text-blur-reveal var(--vl-motion-duration, var(--vl-duration-slower)) var(--vl-ease-fluid, var(--vl-ease-out-soft)) both;
+    }
+
+    /* --- Split-line systems: per-line stagger --- */
+
+    .vl-split-lines {
+        overflow: hidden;
+    }
+
+    .vl-split-lines > * {
+        display: block;
+        overflow: hidden;
+        animation: vl-text-mask-up var(--vl-motion-duration, var(--vl-duration-slow)) var(--vl-ease-cinematic) both;
+        --_i: var(--vl-child-index, 0);
+        animation-delay: calc(var(--_i) * var(--vl-stagger-step, 120ms));
+    }
+
+    /* --- Oversized cinematic typography --- */
+
+    .vl-type-cinematic {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(3rem, 10vw, 8rem);
+        font-weight: var(--vl-font-weight-bold, 700);
+        line-height: var(--vl-leading-tight, 1.1);
+        letter-spacing: var(--vl-tracking-tight, -0.03em);
+        animation: vl-text-oversized-drift var(--vl-duration-slower, 800ms) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-type-cinematic-hero {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(4rem, 14vw, 12rem);
+        font-weight: var(--vl-font-weight-bold, 700);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        animation: vl-text-blur-reveal var(--vl-duration-slower, 800ms) var(--vl-ease-cinematic) both;
+    }
+
+    /* --- Character cascade (with CSS counter/nth-child stagger) --- */
+
+    .vl-char-cascade > span {
+        display: inline-block;
+        animation: vl-char-cascade var(--vl-duration-slow, 500ms) var(--vl-ease-cinematic) both;
+    }
+
+    .vl-char-cascade > span:nth-child(1)  { animation-delay: 0ms; }
+    .vl-char-cascade > span:nth-child(2)  { animation-delay: 30ms; }
+    .vl-char-cascade > span:nth-child(3)  { animation-delay: 60ms; }
+    .vl-char-cascade > span:nth-child(4)  { animation-delay: 90ms; }
+    .vl-char-cascade > span:nth-child(5)  { animation-delay: 120ms; }
+    .vl-char-cascade > span:nth-child(6)  { animation-delay: 150ms; }
+    .vl-char-cascade > span:nth-child(7)  { animation-delay: 180ms; }
+    .vl-char-cascade > span:nth-child(8)  { animation-delay: 210ms; }
+    .vl-char-cascade > span:nth-child(9)  { animation-delay: 240ms; }
+    .vl-char-cascade > span:nth-child(10) { animation-delay: 270ms; }
+    .vl-char-cascade > span:nth-child(n+11) {
+        animation-delay: calc((var(--vl-child-index, 10) - 1) * 30ms);
+    }
+
+    /* --- Scroll-triggered text reveals --- */
+
+    .vl-text-reveal[vl-timeline="view"],
+    .vl-text-mask-up[vl-timeline="view"],
+    .vl-text-mask-down[vl-timeline="view"],
+    .vl-text-blur-reveal[vl-timeline="view"],
+    .vl-text-slide-mask[vl-timeline="view"],
+    .vl-type-cinematic[vl-timeline="view"],
+    .vl-type-cinematic-hero[vl-timeline="view"] {
+        animation-timeline: view();
+        animation-range: entry 10% entry 60%;
+    }
 }

@@ -9,9 +9,13 @@
     "velora-compiler": "src/index.mjs"
   },
   "scripts": {
-    "scan": "node src/index.mjs --report",
-    "validate": "node src/index.mjs --strict",
+    "scan": "node src/index.mjs --report --root ../../apps/showcase",
+    "validate": "node src/index.mjs --strict --strict-mode migration --root ../../apps/showcase",
+    "validate:hard": "node src/index.mjs --strict --strict-mode hard --root ../../apps/showcase",
+    "validate:migration": "node src/index.mjs --strict --strict-mode migration --root ../../apps/showcase",
     "generate:css": "node src/index.mjs --generate-css",
+    "migrate": "node src/migrate.mjs --root ../../apps/showcase/pages --write",
+    "migrate:dry": "node src/migrate.mjs --root ../../apps/showcase/pages",
     "test": "node --test tests/*.test.mjs"
   }
 }

@@ -13,6 +13,9 @@ const PACKAGE_DIR = path.resolve(SCRIPT_DIR, "..");
 const DEFAULT_ROOT = path.resolve(PACKAGE_DIR, "..", "..");
 const DEFAULT_REPORT_PATH = path.join(PACKAGE_DIR, "output", "motion-compiler-report.md");
 const DEFAULT_CSS_PATH = path.join(PACKAGE_DIR, "output", "velora.generated.css");
+const NON_BLOCKING_ISSUES_IN_STRICT_MIGRATION = new Set([
+  "legacy-channel-conflict",
+]);
 
 function getArgValue(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -27,9 +30,17 @@ async function main() {
   const root = path.resolve(getArgValue("--root", DEFAULT_ROOT));
   const reportPath = path.resolve(getArgValue("--out", DEFAULT_REPORT_PATH));
   const cssPath = path.resolve(getArgValue("--css-out", DEFAULT_CSS_PATH));
+  const strictMode = getArgValue("--strict-mode", "migration");
   const shouldWriteReport = process.argv.includes("--report") || process.argv.includes("--strict");
   const shouldGenerateCss = process.argv.includes("--generate-css");
   const strict = process.argv.includes("--strict");
+  const nonBlockingIssues = strictMode === "hard"
+    ? new Set()
+    : NON_BLOCKING_ISSUES_IN_STRICT_MIGRATION;
+
+  if (!["hard", "migration"].includes(strictMode)) {
+    throw new Error(`Invalid --strict-mode: ${strictMode}. Use \"hard\" or \"migration\".`);
+  }
 
   const files = await scanFiles(root);
   const results = [];
@@ -39,6 +50,7 @@ async function main() {
     attrs: 0,
     issues: 0,
   };
+  let blockingIssues = 0;
 
   for (const file of files) {
     const content = await fs.readFile(file, "utf8");
@@ -57,9 +69,11 @@ async function main() {
       ...detectChannelConflicts(attrs),
       ...brokenAnchors,
     ];
+    const fileBlockingIssues = issues.filter((issue) => !nonBlockingIssues.has(issue.type));
 
     totals.attrs += attrs.length;
     totals.issues += issues.length;
+    blockingIssues += fileBlockingIssues.length;
     allAttrs.push(...attrs);
 
     if (attrs.length || issues.length) {
@@ -86,8 +100,8 @@ async function main() {
 
   const summary = `Velora Motion Compiler scanned ${totals.files} file(s), found ${totals.attrs} vl-* attribute(s), and reported ${totals.issues} issue(s).`;
 
-  if (strict && totals.issues) {
-    console.error(summary);
+  if (strict && blockingIssues) {
+    console.error(`${summary} Blocking issue(s): ${blockingIssues}.`);
     process.exitCode = 1;
     return;
   }

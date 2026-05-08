@@ -42,6 +42,9 @@ export function validateAttribute(attr) {
   }
 
   if (CHANNEL_ATTRS.has(name) || name === "vl-effect" || name === "vl-loop-effect") {
+    // Skip preset check for attributes that have their own VALUE_RULES (e.g. vl-loop)
+    if (VALUE_RULES[name]) return issues;
+
     const parsed = parseMotionValue(value);
     const preset = parsed.preset;
 
@@ -64,9 +67,22 @@ export function validateAttributes(attrs) {
 
 export function detectChannelConflicts(attrs) {
   const issues = [];
-  const names = new Set(attrs.map((attr) => attr.name));
 
-  if (names.has("vl-effect") && [...CHANNEL_ATTRS].some((channel) => names.has(channel))) {
+  const attrsByTag = new Map();
+
+  for (const attr of attrs) {
+    const tagKey = attr.tagIndex ?? attr.index;
+    const group = attrsByTag.get(tagKey) ?? [];
+    group.push(attr);
+    attrsByTag.set(tagKey, group);
+  }
+
+  for (const tagAttrs of attrsByTag.values()) {
+    const names = new Set(tagAttrs.map((a) => a.name));
+    if (!names.has("vl-effect") || ![...CHANNEL_ATTRS].some((ch) => names.has(ch))) {
+      continue;
+    }
+
     issues.push({
       type: "legacy-channel-conflict",
       attr: "vl-effect",

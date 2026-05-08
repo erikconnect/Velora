@@ -2,8 +2,10 @@
  * Temas editoriais alinhados a:
  * - packages/pages/velora_noir/DESIGN.md (Surface Noir, kinetic green)
  * - packages/pages/velora_earth_tech/DESIGN.md (Human Laboratory, warm cream)
+ * - design-system/velora_aethel_concepts.md (Architectural Concepts)
+ * - design-system/velora_meridian_geo.md (Terrain Intelligence)
  *
- * Controlado por html[data-editorial-theme="noir"|"earth"] (ver showcase-controls.js).
+ * Controlado por html[data-editorial-theme="noir"|"earth"|"aethel"|"meridian"].
  */
 
 /* ── Noir: dark kinetic base (#0d0f0c) + primary #bbcbb1 ───────────── */
@@ -27,6 +29,43 @@ html[data-editorial-theme="noir"]:not([data-theme="light"]) {
     --vl-border-subtle: color-mix(in oklch, var(--lib-noir-accent) 22%, transparent);
     --vl-color-primary: var(--lib-noir-accent);
     --vl-color-primary-soft: color-mix(in oklch, var(--lib-noir-accent) 20%, transparent);
+    --vl-color-secondary: #a8b79d;
+    --vl-color-accent: #9dd08c;
+    --vl-font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --vl-font-family-display: "Space Grotesk", "Manrope", system-ui, sans-serif;
+    --vl-font-family-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+    --vl-font-weight-normal: 400;
+    --vl-font-weight-semibold: 600;
+    --vl-font-weight-bold: 700;
+    --vl-leading-normal: 1.5;
+    --vl-leading-relaxed: 1.65;
+    --vl-tracking-wide: 0.05em;
+    --vl-space-sm: 0.5rem;
+    --vl-space-md: 1rem;
+    --vl-space-lg: 1.5rem;
+    --vl-space-xl: 2.5rem;
+    --vl-space-2xl: 4rem;
+    --vl-space-3xl: 6rem;
+    --vl-radius-sm: 0.125rem;
+    --vl-radius-md: 0.375rem;
+    --vl-radius-lg: 0.75rem;
+    --vl-radius-xl: 0.75rem;
+    --vl-radius-2xl: 0.75rem;
+    --vl-shadow-md: 0 20px 50px -14px rgba(0, 0, 0, 0.45);
+    --vl-shadow-lg: 0 24px 64px -18px rgba(0, 0, 0, 0.5);
+    --vl-shadow-glow:
+        0 0 0 1px color-mix(in oklch, var(--lib-noir-accent) 12%, transparent),
+        0 18px 54px -24px color-mix(in oklch, var(--lib-noir-accent) 36%, transparent);
+    --vl-backdrop-blur: 18px;
+    --vl-glass-bg: color-mix(in oklch, var(--vl-bg-surface) 82%, transparent);
+    --vl-duration-fast: 180ms;
+    --vl-duration-normal: 260ms;
+    --vl-duration-slow: 420ms;
+    --vl-duration-slower: 900ms;
+    --vl-ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+    --vl-ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    --showcase-home-container-gutter: clamp(1.5rem, 5vw, 6rem);
+    color-scheme: dark;
 }
 
 /* ── Earth tech: warm light (#fbf9f4) + deep green primary ───────── */
@@ -51,54 +90,171 @@ html[data-editorial-theme="earth"] {
     --vl-border-subtle: color-mix(in oklch, #747871 25%, transparent);
     --vl-color-primary: var(--lib-earth-primary);
     --vl-color-primary-soft: color-mix(in oklch, var(--lib-earth-primary) 18%, transparent);
+    --vl-color-secondary: #cfc9b8;
+    --vl-color-accent: #6a7d57;
+    --vl-font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --vl-font-family-display: "Space Grotesk", "Manrope", system-ui, sans-serif;
+    --vl-font-family-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+    --vl-font-weight-normal: 400;
+    --vl-font-weight-semibold: 600;
+    --vl-font-weight-bold: 700;
+    --vl-leading-normal: 1.5;
+    --vl-leading-relaxed: 1.65;
+    --vl-tracking-wide: 0.04em;
+    --vl-space-sm: 0.5rem;
+    --vl-space-md: 1rem;
+    --vl-space-lg: 1.5rem;
+    --vl-space-xl: 2.5rem;
+    --vl-space-2xl: 4rem;
+    --vl-space-3xl: 6rem;
+    --vl-radius-sm: 0.25rem;
+    --vl-radius-md: 0.5rem;
+    --vl-radius-lg: 0.875rem;
+    --vl-radius-xl: 0.875rem;
+    --vl-radius-2xl: 0.875rem;
+    --vl-shadow-sm: 0 8px 20px rgba(27, 28, 25, 0.04);
+    --vl-shadow-md: 0 20px 40px rgba(27, 28, 25, 0.06);
+    --vl-shadow-lg: 0 26px 56px rgba(27, 28, 25, 0.08);
+    --vl-shadow-glow:
+        0 0 0 1px color-mix(in oklch, var(--lib-earth-primary) 14%, transparent),
+        0 18px 42px -28px color-mix(in oklch, var(--lib-earth-primary) 32%, transparent);
+    --vl-backdrop-blur: 14px;
+    --vl-glass-bg: color-mix(in oklch, #ffffff 78%, transparent);
+    --vl-duration-fast: 160ms;
+    --vl-duration-normal: 240ms;
+    --vl-duration-slow: 320ms;
+    --vl-duration-slower: 700ms;
+    --vl-ease-cinematic: cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-ease-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    --showcase-home-container-gutter: clamp(1.5rem, 4vw, 5rem);
+    color-scheme: light;
 }
 
-/* ── Aethel: copper/stone dark (#000000) + accent #9B6E49 ──────────── */
+/* ── Aethel: architectural black + copper massing ───────────────── */
 html[data-editorial-theme="aethel"] {
-    --lib-aethel-base: #000000;
+    --lib-aethel-canvas: #000000;
     --lib-aethel-surface: #1c1917;
     --lib-aethel-elevated: #292524;
-    --lib-aethel-text: #a8a29e;
-    --lib-aethel-text-hi: #e7e5e4;
-    --lib-aethel-accent: #9B6E49;
-    --lib-aethel-tertiary: #9aa945;
+    --lib-aethel-stone: #a8a29e;
+    --lib-aethel-copper: #9b6e49;
+    --lib-aethel-acid: #9aa945;
 }
 
 html[data-editorial-theme="aethel"][data-theme="dark"],
 html[data-editorial-theme="aethel"]:not([data-theme="light"]) {
-    --vl-bg-main: var(--lib-aethel-base);
+    --vl-bg-main: var(--lib-aethel-canvas);
     --vl-bg-surface: var(--lib-aethel-surface);
     --vl-bg-surface-elevated: var(--lib-aethel-elevated);
-    --vl-bg-inset: #0a0908;
-    --vl-text-primary: var(--lib-aethel-text-hi);
-    --vl-text-secondary: var(--lib-aethel-text);
+    --vl-bg-inset: #0c0a09;
+    --vl-text-primary: #e7e5e4;
+    --vl-text-secondary: var(--lib-aethel-stone);
     --vl-text-muted: #78716c;
-    --vl-border-subtle: color-mix(in oklch, var(--lib-aethel-accent) 20%, transparent);
-    --vl-color-primary: var(--lib-aethel-accent);
-    --vl-color-primary-soft: color-mix(in oklch, var(--lib-aethel-accent) 18%, transparent);
+    --vl-border-subtle: color-mix(in oklch, var(--lib-aethel-stone) 20%, transparent);
+    --vl-color-primary: var(--lib-aethel-copper);
+    --vl-color-primary-soft: color-mix(in oklch, var(--lib-aethel-copper) 22%, transparent);
+    --vl-color-secondary: var(--lib-aethel-stone);
+    --vl-color-accent: var(--lib-aethel-acid);
+    --vl-font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --vl-font-family-display: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --vl-font-family-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+    --vl-font-weight-normal: 400;
+    --vl-font-weight-semibold: 500;
+    --vl-font-weight-bold: 600;
+    --vl-leading-normal: 1.42;
+    --vl-leading-relaxed: 1.5;
+    --vl-tracking-wide: 0.02em;
+    --vl-space-2xs: 0.0625rem;
+    --vl-space-xs: 0.25rem;
+    --vl-space-sm: 0.25rem;
+    --vl-space-md: 0.75rem;
+    --vl-space-lg: 1rem;
+    --vl-space-xl: 1.5rem;
+    --vl-space-2xl: 3rem;
+    --vl-space-3xl: 4rem;
+    --vl-radius-sm: 0;
+    --vl-radius-md: 0;
+    --vl-radius-lg: 1rem;
+    --vl-radius-xl: 1.9375rem;
+    --vl-radius-2xl: 2rem;
+    --vl-shadow-sm: 0 14px 28px -18px rgba(0, 0, 0, 0.42);
+    --vl-shadow-md: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --vl-shadow-lg: 0 34px 74px -24px rgba(0, 0, 0, 0.56);
+    --vl-shadow-glow:
+        0 0 0 1px color-mix(in oklch, var(--lib-aethel-copper) 22%, transparent),
+        0 22px 58px -30px color-mix(in oklch, var(--lib-aethel-copper) 42%, transparent);
+    --vl-backdrop-blur: 10px;
+    --vl-glass-bg: color-mix(in oklch, var(--lib-aethel-surface) 86%, transparent);
+    --vl-duration-fast: 140ms;
+    --vl-duration-normal: 300ms;
+    --vl-duration-slow: 300ms;
+    --vl-duration-slower: 520ms;
+    --vl-ease-cinematic: cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-ease-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    --showcase-home-container-gutter: clamp(1rem, 4vw, 4rem);
+    color-scheme: dark;
 }
 
-/* ── Meridian Geo: deep forest dark (#0d100a) + muted green #7A9A6E ── */
+/* ── Meridian: terrain intelligence glass field ──────────────────── */
 html[data-editorial-theme="meridian"] {
-    --lib-meridian-base: #0d100a;
-    --lib-meridian-surface: #131710;
-    --lib-meridian-elevated: #1a1f17;
+    --lib-meridian-green: #7a9a6e;
     --lib-meridian-sand: #c4b99a;
-    --lib-meridian-cream: #e8efe2;
-    --lib-meridian-accent: #7a9a6e;
-    --lib-meridian-accent-hi: #a8c89a;
+    --lib-meridian-mint: #e8efe2;
+    --lib-meridian-surface: #0d100a;
+    --lib-meridian-terrain: #6da585;
 }
 
 html[data-editorial-theme="meridian"][data-theme="dark"],
 html[data-editorial-theme="meridian"]:not([data-theme="light"]) {
-    --vl-bg-main: var(--lib-meridian-base);
-    --vl-bg-surface: var(--lib-meridian-surface);
-    --vl-bg-surface-elevated: var(--lib-meridian-elevated);
-    --vl-bg-inset: #080b07;
-    --vl-text-primary: var(--lib-meridian-cream);
+    --vl-bg-main: #0d100a;
+    --vl-bg-surface: #11160e;
+    --vl-bg-surface-elevated: #151b11;
+    --vl-bg-inset: #090c07;
+    --vl-text-primary: var(--lib-meridian-mint);
     --vl-text-secondary: var(--lib-meridian-sand);
-    --vl-text-muted: #7a8070;
-    --vl-border-subtle: color-mix(in oklch, var(--lib-meridian-accent) 22%, transparent);
-    --vl-color-primary: var(--lib-meridian-accent);
-    --vl-color-primary-soft: color-mix(in oklch, var(--lib-meridian-accent) 18%, transparent);
+    --vl-text-muted: color-mix(in oklch, var(--lib-meridian-mint) 66%, transparent);
+    --vl-border-subtle: color-mix(in oklch, var(--lib-meridian-green) 30%, transparent);
+    --vl-color-primary: var(--lib-meridian-green);
+    --vl-color-primary-soft: color-mix(in oklch, var(--lib-meridian-green) 22%, transparent);
+    --vl-color-secondary: var(--lib-meridian-sand);
+    --vl-color-accent: var(--lib-meridian-terrain);
+    --vl-font-family:
+        system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --vl-font-family-display:
+        system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --vl-font-family-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+    --vl-font-weight-normal: 300;
+    --vl-font-weight-semibold: 400;
+    --vl-font-weight-bold: 500;
+    --vl-leading-normal: 1.5;
+    --vl-leading-relaxed: 1.55;
+    --vl-tracking-wide: 0.025em;
+    --vl-space-2xs: 0.0625rem;
+    --vl-space-xs: 0.125rem;
+    --vl-space-sm: 0.375rem;
+    --vl-space-md: 0.5rem;
+    --vl-space-lg: 0.875rem;
+    --vl-space-xl: 1.25rem;
+    --vl-space-2xl: 2rem;
+    --vl-space-3xl: 2.5rem;
+    --vl-radius-sm: 0;
+    --vl-radius-md: 0;
+    --vl-radius-lg: 1.0625rem;
+    --vl-radius-xl: 1.125rem;
+    --vl-radius-2xl: 1.125rem;
+    --vl-shadow-sm: inset 0 0 20px rgba(122, 154, 110, 0.05);
+    --vl-shadow-md: 0 20px 60px -10px rgba(0, 0, 0, 0.6);
+    --vl-shadow-lg: 0 28px 78px -18px rgba(0, 0, 0, 0.66);
+    --vl-shadow-glow:
+        0 0 0 1px color-mix(in oklch, var(--lib-meridian-green) 30%, transparent),
+        0 0 18px color-mix(in oklch, var(--lib-meridian-green) 28%, transparent);
+    --vl-backdrop-blur: 24px;
+    --vl-glass-bg: color-mix(in oklch, var(--lib-meridian-surface) 78%, transparent);
+    --vl-duration-fast: 150ms;
+    --vl-duration-normal: 300ms;
+    --vl-duration-slow: 500ms;
+    --vl-duration-slower: 700ms;
+    --vl-ease-cinematic: cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-ease-out-soft: ease;
+    --showcase-home-container-gutter: clamp(1rem, 2.5vw, 2rem);
+    color-scheme: dark;
 }

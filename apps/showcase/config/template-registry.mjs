@@ -17,7 +17,9 @@ export const TEMPLATE_REGISTRY = {
         "index.html",
         "pages/core/about.html",
         "pages/core/landing.html",
-        "pages/core/page-template.html",
+      ],
+      demo: [
+        "pages/demo/impossible.html",
       ],
       scenes: [
         "pages/scenes/scene-hero.html",
@@ -29,7 +31,6 @@ export const TEMPLATE_REGISTRY = {
       components: [
         "pages/components/buttons.html",
         "pages/components/forms.html",
-        "pages/components/testing.html",
         "pages/components/component-lab.html",
         "pages/components/component-wizard.html",
         "pages/components/icons.html",
