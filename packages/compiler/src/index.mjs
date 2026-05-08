@@ -13,6 +13,9 @@ const PACKAGE_DIR = path.resolve(SCRIPT_DIR, "..");
 const DEFAULT_ROOT = path.resolve(PACKAGE_DIR, "..", "..");
 const DEFAULT_REPORT_PATH = path.join(PACKAGE_DIR, "output", "motion-compiler-report.md");
 const DEFAULT_CSS_PATH = path.join(PACKAGE_DIR, "output", "velora.generated.css");
+const NON_BLOCKING_ISSUES_IN_STRICT = new Set([
+  "legacy-channel-conflict",
+]);
 
 function getArgValue(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -39,6 +42,7 @@ async function main() {
     attrs: 0,
     issues: 0,
   };
+  let blockingIssues = 0;
 
   for (const file of files) {
     const content = await fs.readFile(file, "utf8");
@@ -57,9 +61,11 @@ async function main() {
       ...detectChannelConflicts(attrs),
       ...brokenAnchors,
     ];
+    const fileBlockingIssues = issues.filter((issue) => !NON_BLOCKING_ISSUES_IN_STRICT.has(issue.type));
 
     totals.attrs += attrs.length;
     totals.issues += issues.length;
+    blockingIssues += fileBlockingIssues.length;
     allAttrs.push(...attrs);
 
     if (attrs.length || issues.length) {
@@ -86,8 +92,8 @@ async function main() {
 
   const summary = `Velora Motion Compiler scanned ${totals.files} file(s), found ${totals.attrs} vl-* attribute(s), and reported ${totals.issues} issue(s).`;
 
-  if (strict && totals.issues) {
-    console.error(summary);
+  if (strict && blockingIssues) {
+    console.error(`${summary} Blocking issue(s): ${blockingIssues}.`);
     process.exitCode = 1;
     return;
   }

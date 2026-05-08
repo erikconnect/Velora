@@ -73,14 +73,6 @@
     animation-timeline: view();
   }
 
-  [vl-scroll="parallax"] {
-    animation-name: vl-parallax-shift;
-    animation-duration: var(--vl-motion-duration, 700ms);
-    animation-timing-function: var(--vl-motion-ease, ease-out);
-    animation-fill-mode: both;
-    animation-timeline: view();
-  }
-
   [vl-loop-effect="wobble"] {
     animation-name: vl-tilt-wobble;
     animation-duration: var(--vl-motion-duration, 700ms);
@@ -97,6 +89,15 @@
     animation-iteration-count: infinite;
   }
 
+  [vl-loop-effect="glow-breathe@1200ms"] {
+    animation-name: vl-glow-breathe;
+    --vl-motion-duration: 1200ms;
+    animation-duration: var(--vl-motion-duration, 700ms);
+    animation-timing-function: var(--vl-motion-ease, ease-out);
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+  }
+
   [vl-exit="fade-out-up"] {
     animation-name: vl-fade-out-up;
     animation-duration: var(--vl-motion-duration, 700ms);
@@ -104,6 +105,14 @@
     animation-fill-mode: both;
     animation-timeline: view();
     animation-range: exit 0% exit 100%;
+  }
+
+  [vl-scroll="parallax"] {
+    animation-name: vl-parallax-shift;
+    animation-duration: var(--vl-motion-duration, 700ms);
+    animation-timing-function: var(--vl-motion-ease, ease-out);
+    animation-fill-mode: both;
+    animation-timeline: view();
   }
 
   [vl-enter="clip-rise"] {

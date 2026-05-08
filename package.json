@@ -19,6 +19,8 @@
     "report:motion": "pnpm --filter @velora/compiler scan",
     "check:motion": "pnpm --filter @velora/compiler validate",
     "generate:motion-css": "pnpm --filter @velora/compiler generate:css -- --root ../../apps/showcase/pages --css-out ../../apps/showcase/public/css/velora.generated.css",
+    "migrate:motion": "pnpm --filter @velora/compiler migrate",
+    "migrate:motion:dry": "pnpm --filter @velora/compiler migrate:dry",
     "sync:showcase-css": "pnpm --filter showcase sync:framework-css",
     "check:showcase-css": "pnpm --filter showcase check:framework-css-sync",
     "verify:contract": "pnpm sync:showcase-css && pnpm check:showcase-css && pnpm --filter showcase report:vl-contract && pnpm --filter showcase verify:contract && pnpm check:motion"

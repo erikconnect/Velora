@@ -12,6 +12,8 @@
     "scan": "node src/index.mjs --report --root ../../apps/showcase/pages",
     "validate": "node src/index.mjs --strict --root ../../apps/showcase/pages",
     "generate:css": "node src/index.mjs --generate-css",
+    "migrate": "node src/migrate.mjs --root ../../apps/showcase/pages --write",
+    "migrate:dry": "node src/migrate.mjs --root ../../apps/showcase/pages",
     "test": "node --test tests/*.test.mjs"
   }
 }

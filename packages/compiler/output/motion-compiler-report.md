@@ -1273,7 +1273,7 @@
 - `vl-loop="3"`
 - `vl-loop-effect="wobble"`
 - `vl-loop="-1"`
-- `vl-loop-effect="glow-breathe"`
+- `vl-loop-effect="glow-breathe@1200ms"`
 - `vl-duration="1200ms"`
 - `vl-hover="hover-glow"`
 - `vl-state="smooth"`
