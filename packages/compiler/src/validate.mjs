@@ -42,6 +42,9 @@ export function validateAttribute(attr) {
   }
 
   if (CHANNEL_ATTRS.has(name) || name === "vl-effect" || name === "vl-loop-effect") {
+    // Skip preset check for attributes that have their own VALUE_RULES (e.g. vl-loop)
+    if (VALUE_RULES[name]) return issues;
+
     const parsed = parseMotionValue(value);
     const preset = parsed.preset;
 
@@ -64,14 +67,32 @@ export function validateAttributes(attrs) {
 
 export function detectChannelConflicts(attrs) {
   const issues = [];
-  const names = new Set(attrs.map((attr) => attr.name));
 
-  if (names.has("vl-effect") && [...CHANNEL_ATTRS].some((channel) => names.has(channel))) {
-    issues.push({
-      type: "legacy-channel-conflict",
-      attr: "vl-effect",
-      message: "Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.",
-    });
+  // Group attrs by their approximate tag position (within 2000 chars of each other)
+  // to avoid false positives on pages that legitimately use both vl-effect and
+  // channel attrs on different elements.
+  const sorted = [...attrs].sort((a, b) => a.index - b.index);
+  const TAG_WINDOW = 2000; // max distance between attrs on the same element
+  let windowStart = 0;
+
+  for (let i = 0; i < sorted.length; i++) {
+    // Advance window start so attrs are within TAG_WINDOW chars
+    while (sorted[i].index - sorted[windowStart].index > TAG_WINDOW) windowStart++;
+
+    const window = sorted.slice(windowStart, i + 1);
+    const names = new Set(window.map((a) => a.name));
+
+    if (names.has("vl-effect") && [...CHANNEL_ATTRS].some((ch) => names.has(ch))) {
+      const effectAttr = window.find((a) => a.name === "vl-effect");
+      // Only report once per vl-effect occurrence
+      if (effectAttr && effectAttr.index === sorted[i].index) {
+        issues.push({
+          type: "legacy-channel-conflict",
+          attr: "vl-effect",
+          message: "Avoid mixing legacy vl-effect with channel attributes. Prefer vl-enter, vl-scroll, vl-loop, vl-hover, vl-state, and vl-exit.",
+        });
+      }
+    }
   }
 
   return issues;

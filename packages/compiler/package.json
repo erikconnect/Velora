@@ -9,8 +9,8 @@
     "velora-compiler": "src/index.mjs"
   },
   "scripts": {
-    "scan": "node src/index.mjs --report",
-    "validate": "node src/index.mjs --strict",
+    "scan": "node src/index.mjs --report --root ../../apps/showcase/pages",
+    "validate": "node src/index.mjs --strict --root ../../apps/showcase/pages",
     "generate:css": "node src/index.mjs --generate-css",
     "test": "node --test tests/*.test.mjs"
   }
