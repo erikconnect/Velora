@@ -13,7 +13,6 @@
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <link rel="stylesheet" href="/css/showcase-home.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
@@ -178,19 +177,19 @@
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
                   <path fill="currentColor" d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v13A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-13Zm2.5-.75a.75.75 0 0 0-.75.75v13c0 .414.336.75.75.75h11a.75.75 0 0 0 .75-.75v-13a.75.75 0 0 0-.75-.75h-11Zm1.5 3h8v1.5H8v-1.5Zm0 3.25h8v1.5H8V11Zm0 3.25h5.5v1.5H8v-1.5Z"/>
                 </svg>
-                <span>Explore the system</span>
+                <span>Explore</span>
               </a>
               <a class="vl-cta vl-cta--ghost" href="/pages/scenes/scroll-reveal.html" vl-hover="underline-expand">
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
                   <path fill="currentColor" d="M12 3.25a8.75 8.75 0 1 0 0 17.5 8.75 8.75 0 0 0 0-17.5ZM1.75 12C1.75 6.34 6.34 1.75 12 1.75S22.25 6.34 22.25 12 17.66 22.25 12 22.25 1.75 17.66 1.75 12Zm9.5-5h1.5v7.19l3.22-3.22 1.06 1.06L12 17.06l-5.03-5.03 1.06-1.06 3.22 3.22V7Z"/>
                 </svg>
-                <span>View scene patterns</span>
+                <span>Scenes</span>
               </a>
               <a class="vl-cta vl-cta--ghost" href="/pages/motion/api-motion-catalog.html" vl-hover="underline-expand">
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
                   <path fill="currentColor" d="M5.25 5.5A2.25 2.25 0 0 1 7.5 3.25h9A2.25 2.25 0 0 1 18.75 5.5v13a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-13Zm2.25-.75a.75.75 0 0 0-.75.75v13c0 .414.336.75.75.75h9a.75.75 0 0 0 .75-.75v-13a.75.75 0 0 0-.75-.75h-9ZM9 8h6v1.5H9V8Zm0 3.25h6v1.5H9v-1.5Zm0 3.25h3.75V16H9v-1.5Z"/>
                 </svg>
-                <span>Browse motion API</span>
+                <span>Motion</span>
               </a>
             </div>
           </div>
@@ -288,9 +287,9 @@
 
           <div class="showcase-home-reel">
             <div class="showcase-home-reel__backdrop" aria-hidden="true">
-              <img class="showcase-home-reel__backdrop-frame showcase-home-reel__backdrop-frame--one" src="/img/cinema/cinema-auditorium.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="" />
-              <img class="showcase-home-reel__backdrop-frame showcase-home-reel__backdrop-frame--two" src="/img/cinema/vintage-projector.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="" />
-              <img class="showcase-home-reel__backdrop-frame showcase-home-reel__backdrop-frame--three" src="/img/cinema/film-set-lights.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="" />
+              <img class="showcase-home-reel__backdrop-frame showcase-home-reel__backdrop-frame--one" src="/img/cinema/cinema-auditorium.jpg" width="1600" height="1200" loading="lazy" decoding="async" fetchpriority="low" alt="" />
+              <img class="showcase-home-reel__backdrop-frame showcase-home-reel__backdrop-frame--two" src="/img/cinema/vintage-projector.jpg" width="1600" height="1066" loading="lazy" decoding="async" fetchpriority="low" alt="" />
+              <img class="showcase-home-reel__backdrop-frame showcase-home-reel__backdrop-frame--three" src="/img/cinema/film-set-lights.jpg" width="1600" height="1066" loading="lazy" decoding="async" fetchpriority="low" alt="" />
             </div>
             <div class="showcase-home-reel__grid">
               <figure class="showcase-home-reel__figure">
@@ -830,7 +829,7 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 poster="/video/cinema/spatial-enter-scene-poster.jpg"
               >
                 <source src="/video/cinema/spatial-enter-scene.mp4" type="video/mp4" />
