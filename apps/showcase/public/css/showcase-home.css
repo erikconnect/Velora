@@ -110,9 +110,7 @@ html[data-editorial-theme="meridian"] .showcase-home :is(.showcase-home-reel__vi
   background-color: var(--vl-glass-bg);
 }
 
-.showcase-home__scene:not(#idx-horiz) {
-  padding-block: clamp(4.5rem, 8vw, 7rem);
-}
+
 
 .showcase-home > .showcase-home__scene,
 .showcase-home-display,
