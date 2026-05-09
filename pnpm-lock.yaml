@@ -30,6 +30,8 @@ importers:
         specifier: ^8.0.7
         version: 8.0.8(esbuild@0.27.7)(jiti@1.21.7)(yaml@2.8.3)
 
+  packages/compiler: {}
+
   packages/css: {}
 
 packages:
