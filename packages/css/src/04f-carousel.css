@@ -1,0 +1,214 @@
+@layer velora.components {
+    /*
+     * CSS-Native Carousel — vl-carousel
+     * Zero JavaScript. Powered by scroll-snap + CSS Scroll Markers API (Chrome 135+)
+     * and ::scroll-button() pseudo-elements (Chrome 135+).
+     *
+     * Public API:
+     *   .vl-carousel                      Scroll carousel container
+     *   .vl-carousel--center              Center-snap variant
+     *   .vl-carousel--peek                Peek at adjacent slides
+     *   .vl-carousel > *                  Any direct children become slides
+     *   vl-scroll-buttons                 Attribute — adds ::scroll-button() nav
+     *   --vl-carousel-item-width          Per-slide width (default: min(80vw, 20rem))
+     *   --vl-carousel-gap                 Gap between slides
+     *   --vl-carousel-marker-size         Scroll marker dot size
+     *   --vl-carousel-marker-color        Inactive marker color
+     *   --vl-carousel-marker-active       Active marker color
+     *
+     * Markup pattern:
+     *   <div class="vl-carousel" vl-scroll-buttons>
+     *     <article>…</article>
+     *     <article>…</article>
+     *     <article>…</article>
+     *   </div>
+     *
+     * Browser support:
+     *   Scroll-snap: all modern browsers (Chrome 124+, Safari 18+, Firefox 128+)
+     *   ::scroll-marker: Chrome 135+ (progressive enhancement, @supports-guarded)
+     *   ::scroll-button(): Chrome 135+ (progressive enhancement, @supports-guarded)
+     */
+
+    /* -------------------------------------------------------------------------
+       Base carousel — scroll-snap, hidden scrollbar, touch-friendly
+       ------------------------------------------------------------------------- */
+    .vl-carousel {
+        --vl-carousel-item-width: min(80vw, 20rem);
+        --vl-carousel-gap: var(--vl-space-md);
+
+        display: flex;
+        gap: var(--vl-carousel-gap);
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-block: var(--vl-space-xs); /* preserve box-shadow on children */
+    }
+
+    .vl-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Slides — snap to start by default */
+    .vl-carousel > * {
+        flex: 0 0 var(--vl-carousel-item-width);
+        scroll-snap-align: start;
+        min-width: 0;
+    }
+
+    /* Center-snap variant */
+    .vl-carousel--center > * {
+        scroll-snap-align: center;
+    }
+
+    /* Peek variant — show edge of next slide */
+    .vl-carousel--peek {
+        --vl-carousel-item-width: min(75vw, 18rem);
+        padding-inline-end: calc(var(--vl-carousel-gap) * 2);
+    }
+
+    /* Full-width slides */
+    .vl-carousel--full > * {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+    }
+
+    /* -------------------------------------------------------------------------
+       CSS Scroll Markers (Chrome 135+)
+       Renders a navigation dot group after the carousel with zero JS.
+       @see https://developer.chrome.com/blog/css-scroll-markers
+       ------------------------------------------------------------------------- */
+    @supports selector(.x::scroll-marker) {
+        .vl-carousel {
+            scroll-marker-group: after;
+        }
+
+        /* Each slide contributes a dot to the marker group */
+        .vl-carousel > *::scroll-marker {
+            content: "";
+            display: block;
+            width: var(--vl-carousel-marker-size, 0.5rem);
+            height: var(--vl-carousel-marker-size, 0.5rem);
+            border-radius: var(--vl-radius-full);
+            background: var(--vl-carousel-marker-color, var(--vl-border-strong));
+            transition:
+                background var(--vl-duration-fast) var(--vl-ease-out-soft),
+                transform var(--vl-duration-fast) var(--vl-ease-spring),
+                opacity var(--vl-duration-fast) var(--vl-ease-out-soft);
+        }
+
+        /* Active (current) dot */
+        .vl-carousel > *::scroll-marker:target-current {
+            background: var(--vl-carousel-marker-active, var(--vl-color-primary));
+            transform: scale(1.5);
+        }
+
+        /* Marker group container */
+        .vl-carousel::scroll-marker-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--vl-carousel-marker-gap, 0.375rem);
+            padding-block: var(--vl-space-md) var(--vl-space-xs);
+            /* Inherit layout width so it aligns with the carousel */
+            width: 100%;
+        }
+
+        /* Elongated active marker variant */
+        .vl-carousel--pill > *::scroll-marker:target-current {
+            width: 1.5rem;
+            border-radius: var(--vl-radius-full);
+            transform: none;
+        }
+    }
+
+    /* -------------------------------------------------------------------------
+       CSS Scroll Buttons (Chrome 135+)
+       Prev / next controls rendered as ::pseudo-elements — no HTML needed.
+       Apply the [vl-scroll-buttons] attribute to opt in.
+       ------------------------------------------------------------------------- */
+    @supports selector(.x::scroll-button(inline-start)) {
+        .vl-carousel[vl-scroll-buttons] {
+            position: relative;
+        }
+
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-start),
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-end) {
+            /* Layout */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: var(--vl-carousel-btn-size, 2.5rem);
+            height: var(--vl-carousel-btn-size, 2.5rem);
+
+            /* Appearance */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--vl-radius-full);
+            background: var(--vl-bg-surface);
+            border: 1px solid var(--vl-border-subtle);
+            color: var(--vl-text-primary);
+            font-size: var(--vl-font-size-md);
+            cursor: pointer;
+            box-shadow: var(--vl-shadow-md);
+            z-index: var(--vl-z-base);
+
+            transition:
+                opacity var(--vl-duration-fast) var(--vl-ease-out-soft),
+                background var(--vl-duration-fast) var(--vl-ease-out-soft),
+                box-shadow var(--vl-duration-fast) var(--vl-ease-out-soft),
+                transform var(--vl-duration-fast) var(--vl-ease-spring);
+        }
+
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-start) {
+            content: "‹";
+            inset-inline-start: calc(var(--vl-carousel-btn-size, 2.5rem) * -0.5);
+        }
+
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-end) {
+            content: "›";
+            inset-inline-end: calc(var(--vl-carousel-btn-size, 2.5rem) * -0.5);
+        }
+
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-start):hover,
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-end):hover {
+            background: var(--vl-bg-surface-elevated);
+            box-shadow: var(--vl-shadow-lg);
+            transform: translateY(calc(-50% - 1px));
+        }
+
+        /* Disabled state when no more content to scroll */
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-start):disabled,
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-end):disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+        }
+
+        /* Focus-visible ring */
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-start):focus-visible,
+        .vl-carousel[vl-scroll-buttons]::scroll-button(inline-end):focus-visible {
+            outline: var(--vl-focus-ring-width) solid var(--vl-focus-ring-color);
+            outline-offset: var(--vl-focus-ring-offset);
+        }
+    }
+
+    /* -------------------------------------------------------------------------
+       Accessibility
+       ------------------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+        .vl-carousel {
+            scroll-behavior: auto;
+        }
+
+        @supports selector(.x::scroll-marker) {
+            .vl-carousel > *::scroll-marker {
+                transition: none;
+            }
+        }
+    }
+}

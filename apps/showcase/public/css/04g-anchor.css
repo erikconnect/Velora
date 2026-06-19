@@ -1,0 +1,266 @@
+@layer velora.components {
+    /*
+     * CSS Anchor Positioning — vl-anchor-group / vl-tooltip / vl-float
+     * Zero JavaScript floating UI using the CSS Anchor Positioning API.
+     *
+     * Browser support:
+     *   Chrome 125+, Safari 18.2+. Firefox: pending (graceful degradation via
+     *   @supports guard — elements remain visible, just not anchor-positioned).
+     *
+     * Architecture: container-based pattern
+     *   The [vl-anchor-group] wrapper establishes a relative context as a fallback.
+     *   Inside it, the first [vl-anchor-trigger] element is the anchor source.
+     *   Positioned elements ([vl-tooltip], [vl-float]) are auto-positioned via CSS.
+     *
+     * Public API:
+     *   [vl-anchor-group]              Container that scopes the anchor relationship
+     *   [vl-anchor-trigger]            The element that acts as the anchor point
+     *   [vl-tooltip]                   Small inline label above the anchor
+     *   [vl-tooltip][vl-position="*"]  Override position: top|bottom|left|right
+     *   [vl-float]                     Dropdown/panel below the anchor
+     *   [vl-float][vl-position="*"]    Override position: top|bottom|left|right
+     *   popover + popovertarget        Add popover API for toggle behavior (no JS)
+     *
+     * Markup — tooltip (hover + focus, using popover="hint"):
+     *   <div vl-anchor-group>
+     *     <button vl-anchor-trigger popovertarget="tt1">Label</button>
+     *     <div id="tt1" popover="hint" vl-tooltip>Tooltip text</div>
+     *   </div>
+     *
+     * Markup — floating dropdown:
+     *   <div vl-anchor-group>
+     *     <button vl-anchor-trigger popovertarget="menu1">Open menu</button>
+     *     <div id="menu1" popover vl-float>
+     *       <ul class="vl-stack vl-stack--sm">…</ul>
+     *     </div>
+     *   </div>
+     *
+     * Markup — without Popover API (always visible, CSS-positioned):
+     *   <div vl-anchor-group style="position: relative;">
+     *     <button vl-anchor-trigger>Label</button>
+     *     <div vl-tooltip>Always visible label</div>
+     *   </div>
+     */
+
+    /* -------------------------------------------------------------------------
+       Fallback: relative container (all browsers)
+       Tooltip/float positioned absolutely within the group when anchor API
+       is not available.
+       ------------------------------------------------------------------------- */
+    [vl-anchor-group] {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Fallback positioning for tooltip (top-center above trigger) */
+    [vl-tooltip]:not(:popover-open) {
+        position: absolute;
+        inset-block-end: calc(100% + var(--vl-anchor-gap, 0.375rem));
+        inset-inline-start: 50%;
+        transform: translateX(-50%);
+        z-index: var(--vl-z-dropdown);
+    }
+
+    /* Fallback positioning for float (bottom-start below trigger) */
+    [vl-float]:not(:popover-open) {
+        position: absolute;
+        inset-block-start: calc(100% + var(--vl-anchor-gap, 0.375rem));
+        inset-inline-start: 0;
+        z-index: var(--vl-z-dropdown);
+    }
+
+    /* -------------------------------------------------------------------------
+       Tooltip styles (all browsers)
+       ------------------------------------------------------------------------- */
+    [vl-tooltip] {
+        /* Reset popover UA styles */
+        border: 1px solid var(--vl-border-subtle);
+        background: var(--vl-bg-inset);
+        color: var(--vl-text-primary);
+        font-family: var(--vl-font-family);
+        font-size: var(--vl-font-size-xs);
+        font-weight: var(--vl-font-weight-medium);
+        line-height: var(--vl-leading-normal);
+        padding: var(--vl-space-xs) var(--vl-space-sm);
+        border-radius: var(--vl-radius-sm);
+        max-width: var(--vl-tooltip-max-width, 16rem);
+        white-space: normal;
+        box-shadow: var(--vl-shadow-md);
+        pointer-events: none;
+    }
+
+    /* -------------------------------------------------------------------------
+       Float / dropdown panel styles (all browsers)
+       ------------------------------------------------------------------------- */
+    [vl-float] {
+        /* Reset popover UA styles */
+        border: 1px solid var(--vl-border-subtle);
+        background: var(--vl-bg-surface);
+        color: var(--vl-text-primary);
+        font-family: var(--vl-font-family);
+        font-size: var(--vl-font-size-sm);
+        border-radius: var(--vl-radius-md);
+        padding: var(--vl-space-xs);
+        min-width: var(--vl-float-min-width, 10rem);
+        box-shadow: var(--vl-shadow-lg);
+        overflow: clip;
+    }
+
+    /* -------------------------------------------------------------------------
+       @starting-style transitions — smooth open/close (Chrome 117+, Safari 17.5+)
+       Pairs naturally with popover="hint" and popover="" toggle behavior.
+       ------------------------------------------------------------------------- */
+    @supports (transition-behavior: allow-discrete) {
+        [vl-tooltip],
+        [vl-float] {
+            transition:
+                opacity var(--vl-duration-fast) var(--vl-ease-out-soft),
+                transform var(--vl-duration-fast) var(--vl-ease-spring),
+                display var(--vl-duration-fast) allow-discrete,
+                overlay var(--vl-duration-fast) allow-discrete;
+            opacity: 1;
+        }
+
+        [vl-tooltip]:not(:popover-open),
+        [vl-float]:not(:popover-open) {
+            opacity: 0;
+        }
+
+        @starting-style {
+            [vl-tooltip]:popover-open {
+                opacity: 0;
+                transform: translateX(-50%) translateY(0.25rem) scale(0.95);
+            }
+
+            [vl-float]:popover-open {
+                opacity: 0;
+                transform: translateY(-0.375rem) scale(0.97);
+            }
+        }
+    }
+
+    /* -------------------------------------------------------------------------
+       CSS Anchor Positioning (Chrome 125+ / Safari 18.2+)
+       When available, the fallback position: absolute is replaced by true
+       anchor positioning with auto-flip and inset-area.
+       ------------------------------------------------------------------------- */
+    @supports (anchor-name: --x) {
+        /* The trigger element becomes the anchor */
+        [vl-anchor-trigger] {
+            anchor-name: --vl-anchor-local;
+        }
+
+        /* Tooltip — top-center of anchor, auto-flips to bottom if needed */
+        [vl-tooltip] {
+            position: absolute;
+            position: fixed; /* top-layer: works inside popover */
+            position-anchor: --vl-anchor-local;
+            inset-area: top span-all;
+            margin-block-end: var(--vl-anchor-gap, 0.375rem);
+            justify-self: anchor-center;
+            /* Auto-flip: try bottom if no room above */
+            position-try-options: flip-block;
+            position-try-order: most-height;
+            inset: auto;
+
+            /* Reset fallback transform for anchor-positioned context */
+            transform: none;
+        }
+
+        /* Tooltip position overrides */
+        [vl-tooltip][vl-position="bottom"] {
+            inset-area: bottom span-all;
+            margin-block: var(--vl-anchor-gap, 0.375rem) 0;
+        }
+
+        [vl-tooltip][vl-position="left"] {
+            inset-area: left span-all;
+            margin-inline-end: var(--vl-anchor-gap, 0.375rem);
+            position-try-options: flip-inline;
+        }
+
+        [vl-tooltip][vl-position="right"] {
+            inset-area: right span-all;
+            margin-inline-start: var(--vl-anchor-gap, 0.375rem);
+            position-try-options: flip-inline;
+        }
+
+        /* @starting-style for anchor-positioned tooltip */
+        @supports (transition-behavior: allow-discrete) {
+            @starting-style {
+                [vl-tooltip]:popover-open {
+                    opacity: 0;
+                    transform: scale(0.94);
+                }
+            }
+        }
+
+        /* Float — bottom-start of anchor, auto-flips to top if needed */
+        [vl-float] {
+            position: absolute;
+            position: fixed; /* top-layer: works inside popover */
+            position-anchor: --vl-anchor-local;
+            inset-area: bottom span-all;
+            margin-block-start: var(--vl-anchor-gap, 0.375rem);
+            /* Minimum width tracks the anchor width */
+            min-width: anchor-size(width);
+            /* Auto-flip to top when clipped */
+            position-try-options: flip-block;
+            position-try-order: most-height;
+            inset: auto;
+
+            transform: none;
+        }
+
+        /* Float position overrides */
+        [vl-float][vl-position="top"] {
+            inset-area: top span-all;
+            margin-block-end: var(--vl-anchor-gap, 0.375rem);
+        }
+
+        @supports (transition-behavior: allow-discrete) {
+            @starting-style {
+                [vl-float]:popover-open {
+                    opacity: 0;
+                    transform: scale(0.97);
+                }
+            }
+        }
+
+        /* Position visibility: hide when anchor scrolls out of view */
+        [vl-tooltip],
+        [vl-float] {
+            position-visibility: anchors-visible;
+        }
+
+        /* Multi-anchor support: use vl-anchor-name CSS property override
+           Example: style="--vl-anchor-name: --my-custom-anchor" on trigger + float */
+        [vl-anchor-trigger][style*="--vl-anchor-name"] {
+            anchor-name: var(--vl-anchor-name);
+        }
+
+        [vl-tooltip][style*="--vl-anchor-name"],
+        [vl-float][style*="--vl-anchor-name"] {
+            position-anchor: var(--vl-anchor-name);
+        }
+    }
+
+    /* -------------------------------------------------------------------------
+       Focus ring — keyboard accessibility
+       ------------------------------------------------------------------------- */
+    [vl-anchor-trigger]:focus-visible {
+        outline: var(--vl-focus-ring-width) solid var(--vl-focus-ring-color);
+        outline-offset: var(--vl-focus-ring-offset);
+    }
+
+    /* -------------------------------------------------------------------------
+       Reduced motion — disable transform transitions, keep opacity fade
+       ------------------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+        [vl-tooltip],
+        [vl-float] {
+            transition: opacity var(--vl-duration-instant) linear,
+                        display var(--vl-duration-instant) allow-discrete;
+        }
+    }
+}

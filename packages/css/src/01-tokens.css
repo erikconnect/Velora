@@ -256,6 +256,61 @@
         --vl-ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
         --vl-ease-smooth-out: cubic-bezier(0, 0.55, 0.45, 1);
 
+        /* --- 2026 Platform easing (Material 3 Expressive / Google I/O 2026) --- */
+        --vl-ease-spring-expressive: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --vl-ease-spring-snappy: cubic-bezier(0.34, 1.8, 0.64, 1);
+        --vl-ease-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+        --vl-ease-accelerate: cubic-bezier(0.4, 0.0, 1.0, 1.0);
+        --vl-ease-emphasized: cubic-bezier(0.2, 0.0, 0, 1.0);
+        --vl-duration-express: 200ms;
+        --vl-duration-emphasized: 500ms;
+
+        /* --- Wide-gamut accent (display-p3 for P3-capable displays) --- */
+        --vl-color-p3-primary: color(display-p3 0.498 0.525 0.407);
+        --vl-color-p3-accent: color(display-p3 0.361 0.376 0.298);
+        --vl-color-p3-vivid: color(display-p3 0.55 0.62 0.38);
+
+        /* --- Liquid glass (Apple 2026 — enhanced backdrop layer) --- */
+        --vl-liquid-glass-bg: color-mix(in oklch, var(--vl-bg-surface) 58%, transparent);
+        --vl-liquid-glass-blur: 28px;
+        --vl-liquid-glass-saturate: 1.6;
+        --vl-liquid-glass-border: color-mix(in oklch, white 38%, transparent);
+        --vl-liquid-glass-shadow:
+            0 8px 32px color-mix(in oklch, var(--vl-color-primary) 12%, transparent),
+            inset 0 1px 0 color-mix(in oklch, white 28%, transparent);
+
+        /* --- AI state tokens (streaming / generation patterns) --- */
+        --vl-ai-shimmer-start: color-mix(in oklch, var(--vl-bg-surface) 96%, transparent);
+        --vl-ai-shimmer-mid: color-mix(in oklch, var(--vl-color-primary) 9%, var(--vl-bg-surface));
+        --vl-ai-shimmer-end: color-mix(in oklch, var(--vl-bg-surface) 96%, transparent);
+        --vl-ai-stream-color: color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+        --vl-ai-glow: 0 0 0 1px color-mix(in oklch, var(--vl-color-primary) 22%, transparent),
+            0 0 20px color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
+        --vl-ai-duration: 1.8s;
+
+        /* --- CSS Carousel (::scroll-marker / ::scroll-button — Chrome 135+) --- */
+        --vl-carousel-marker-size: 0.5rem;
+        --vl-carousel-marker-gap: 0.375rem;
+        --vl-carousel-marker-color: var(--vl-border-strong);
+        --vl-carousel-marker-active: var(--vl-color-primary);
+        --vl-carousel-btn-size: 2.5rem;
+        --vl-carousel-item-width: min(80vw, 20rem);
+        --vl-carousel-gap: var(--vl-space-md);
+
+        /* --- CSS Anchor Positioning (Chrome 125+ / Safari 18.2+) --- */
+        --vl-anchor-gap: 0.375rem;
+        --vl-tooltip-max-width: 16rem;
+        --vl-float-min-width: 10rem;
+
+        /* --- Edge-to-edge (safe-area-max-inset — Chrome 135+) --- */
+        --vl-safe-top: env(safe-area-inset-top, 0px);
+        --vl-safe-bottom: env(safe-area-inset-bottom, 0px);
+        --vl-safe-left: env(safe-area-inset-left, 0px);
+        --vl-safe-right: env(safe-area-inset-right, 0px);
+
+        /* --- Dynamic range (HDR) --- */
+        --vl-dynamic-range: standard;
+
         color-scheme: light;
     }
 

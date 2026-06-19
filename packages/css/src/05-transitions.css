@@ -429,6 +429,87 @@
     }
 
     /* -------------------------------------------------------------------------
+       VIEW TRANSITION LEVEL 2 — match-element (Chrome 137+)
+       Generates a stable, unique view-transition-name from the element's identity.
+       Ideal for SPA list → detail morphing without manual name management.
+
+       Usage:
+         <li vl-vt-match>…</li>   ← each item gets a unique stable VT name
+         <article vl-vt-match>…</article>
+
+       The browser handles uniqueness; no need for inline style or IDs.
+       @see https://developer.chrome.com/blog/chrome-137-beta#view-transition-name-match-element
+       ------------------------------------------------------------------------- */
+    @supports (view-transition-name: match-element) {
+        [vl-vt-match] {
+            view-transition-name: match-element;
+        }
+
+        /* Sub-elements that should morph independently within a matched item */
+        [vl-vt-match-inner] {
+            view-transition-name: match-element;
+        }
+    }
+
+    /* -------------------------------------------------------------------------
+       MORPH — Preset (vl-page-transition="morph")
+       Shape-clip morph transition that looks great for card → detail pages.
+       Uses clip-path with CSS shape() (Chrome 135+), gracefully degrades to
+       the default velora preset on older browsers.
+       ------------------------------------------------------------------------- */
+    @keyframes vl-vt-morph-old {
+        from {
+            opacity: 1;
+            clip-path: inset(0 0 0 0 round var(--vl-radius-lg));
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            clip-path: inset(4% 3% 4% 3% round var(--vl-radius-xl));
+            transform: scale(0.94);
+            filter: blur(6px);
+        }
+    }
+
+    @keyframes vl-vt-morph-new {
+        from {
+            opacity: 0;
+            clip-path: inset(5% 4% 5% 4% round var(--vl-radius-2xl));
+            transform: scale(1.06);
+            filter: blur(8px);
+        }
+
+        to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0 round 0px);
+            transform: scale(1);
+            filter: blur(0);
+        }
+    }
+
+    :root[vl-page-transition="morph"]::view-transition-old(root) {
+        animation-name: vl-vt-morph-old;
+        animation-duration: var(--vl-vt-root-duration, 0.6s);
+        animation-timing-function: var(--vl-ease-emphasized, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    :root[vl-page-transition="morph"]::view-transition-new(root) {
+        animation-name: vl-vt-morph-new;
+        animation-duration: var(--vl-vt-root-duration, 0.65s);
+        animation-timing-function: var(--vl-ease-emphasized, cubic-bezier(0.2, 0, 0, 1));
+    }
+
+    /* morph: shared card uses matching clip-path animation */
+    :root[vl-page-transition="morph"]::view-transition-old(shared-card) {
+        animation-name: vl-vt-morph-old;
+    }
+
+    :root[vl-page-transition="morph"]::view-transition-new(shared-card) {
+        animation-name: vl-vt-morph-new;
+    }
+
+    /* -------------------------------------------------------------------------
        Acessibilidade
        ------------------------------------------------------------------------- */
     @media (prefers-reduced-motion: reduce) {
