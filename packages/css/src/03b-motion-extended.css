@@ -2337,4 +2337,238 @@
         animation-timeline: view();
         animation-range: entry 10% entry 60%;
     }
+
+    /* =========================================================================
+       2026 PLATFORM MOTION — Google I/O 2026 · Apple · Material 3 Expressive
+       New presets leveraging CSS shape(), spring-expressive easing,
+       liquid glass entrance, and AI streaming states.
+       ========================================================================= */
+
+    /* --- Material 3 Expressive spring (vl-effect="spring-express") ---
+       Asymmetric overshoot + settle. The "express" spring is snappier than
+       the existing spring-up, designed for UI confirmations and taps.
+    ------------------------------------------------------------------- */
+    @keyframes vl-spring-express {
+        0%   { opacity: 0; transform: scale(0.82) translateY(1rem); }
+        45%  { opacity: 1; transform: scale(1.04) translateY(-0.18rem); }
+        65%  { transform: scale(0.98) translateY(0.05rem); }
+        82%  { transform: scale(1.01); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    [vl-effect="spring-express"] {
+        animation: vl-spring-express var(--vl-duration-express, 200ms) var(--vl-ease-spring-expressive, cubic-bezier(0.175, 0.885, 0.32, 1.275)) both;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    /* --- Liquid glass entrance (Apple 2026 — vl-effect="liquid-in") ---
+       Saturate + blur dissolve with a slight scale. Pairs with .vl-glass--liquid.
+    ------------------------------------------------------------------- */
+    @keyframes vl-liquid-in {
+        0% {
+            opacity: 0;
+            filter: blur(14px) saturate(0.4);
+            transform: scale(0.94);
+        }
+
+        55% {
+            filter: blur(3px) saturate(0.9);
+        }
+
+        100% {
+            opacity: 1;
+            filter: blur(0) saturate(1);
+            transform: scale(1);
+        }
+    }
+
+    [vl-effect="liquid-in"] {
+        animation: vl-liquid-in var(--vl-duration-slow, 500ms) var(--vl-ease-emphasized, cubic-bezier(0.2, 0, 0, 1)) both;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+            opacity: 1;
+            filter: none;
+            transform: none;
+        }
+    }
+
+    /* --- CSS shape() clip reveal (Chrome 135+ — vl-effect="shape-reveal") ---
+       Organic left-to-right clip wipe using the responsive shape() function.
+       Falls back silently; content remains visible without the clip animation.
+    ------------------------------------------------------------------- */
+    @supports (clip-path: shape(from 0% 0%, line to 100% 0%, line to 100% 100%, line to 0% 100%)) {
+        @keyframes vl-shape-reveal {
+            from {
+                clip-path: shape(from 0% 0%, line to 0% 0%, line to 0% 100%, line to 0% 100%);
+                opacity: 0.7;
+            }
+
+            to {
+                clip-path: shape(from 0% 0%, line to 100% 0%, line to 100% 100%, line to 0% 100%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes vl-shape-reveal-organic {
+            from {
+                clip-path: shape(
+                    from 0% 0%,
+                    line to 0% 0%,
+                    curve to 0% 60% via 2% 30%, 1% 45%,
+                    line to 0% 100%,
+                    line to 0% 100%
+                );
+            }
+
+            50% {
+                clip-path: shape(
+                    from 0% 0%,
+                    line to 60% 0%,
+                    curve to 55% 55% via 65% 10%, 62% 35%,
+                    curve to 60% 100% via 58% 75%, 62% 90%,
+                    line to 0% 100%
+                );
+            }
+
+            to {
+                clip-path: shape(
+                    from 0% 0%,
+                    line to 100% 0%,
+                    line to 100% 100%,
+                    line to 0% 100%
+                );
+            }
+        }
+
+        [vl-effect="shape-reveal"] {
+            animation: vl-shape-reveal var(--vl-motion-duration, 300ms) var(--vl-ease-cinematic) both;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+                opacity: 1;
+                clip-path: none;
+            }
+        }
+
+        [vl-effect="shape-reveal"][vl-variant="organic"] {
+            animation-name: vl-shape-reveal-organic;
+            animation-duration: var(--vl-duration-slow, 500ms);
+        }
+    }
+
+    /* --- AI shimmer / streaming state (vl-effect="ai-shimmer") ---
+       CSS-only shimmer for skeleton loading and AI content generation states.
+    ------------------------------------------------------------------- */
+    @keyframes vl-ai-shimmer {
+        0%   { background-position: -200% center; }
+        100% { background-position:  200% center; }
+    }
+
+    @keyframes vl-ai-pulse-glow {
+        0%, 100% { box-shadow: var(--vl-ai-glow, 0 0 0 1px currentColor); opacity: 0.85; }
+        50%       { box-shadow: 0 0 0 3px color-mix(in oklch, var(--vl-color-primary) 28%, transparent); opacity: 1; }
+    }
+
+    [vl-effect="ai-shimmer"] {
+        background: linear-gradient(
+            90deg,
+            var(--vl-ai-shimmer-start, color-mix(in oklch, var(--vl-bg-surface) 96%, transparent)),
+            var(--vl-ai-shimmer-mid,   color-mix(in oklch, var(--vl-color-primary) 9%, var(--vl-bg-surface))),
+            var(--vl-ai-shimmer-end,   color-mix(in oklch, var(--vl-bg-surface) 96%, transparent))
+        );
+        background-size: 200% 100%;
+        animation: vl-ai-shimmer var(--vl-ai-duration, 1.8s) linear infinite;
+        border-radius: inherit;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+            background: var(--vl-bg-surface);
+        }
+    }
+
+    [vl-effect="ai-glow"] {
+        animation: vl-ai-pulse-glow var(--vl-ai-duration, 1.8s) var(--vl-ease-in-out-smooth) infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+
+    /* Skeleton block: zero-markup content placeholder */
+    .vl-skeleton {
+        --vl-skeleton-radius: var(--vl-radius-sm);
+        display: block;
+        border-radius: var(--vl-skeleton-radius);
+        min-height: 1em;
+    }
+
+    .vl-skeleton[vl-effect="ai-shimmer"] {
+        min-height: var(--vl-skeleton-height, 1em);
+        width: var(--vl-skeleton-width, 100%);
+    }
+
+    .vl-skeleton--text {
+        --vl-skeleton-height: 1rem;
+        --vl-skeleton-radius: var(--vl-radius-sm);
+    }
+
+    .vl-skeleton--heading {
+        --vl-skeleton-height: 1.75rem;
+        --vl-skeleton-radius: var(--vl-radius-sm);
+    }
+
+    .vl-skeleton--avatar {
+        --vl-skeleton-height: 2.5rem;
+        --vl-skeleton-width: 2.5rem;
+        --vl-skeleton-radius: var(--vl-radius-full);
+        aspect-ratio: 1;
+    }
+
+    /* --- offset-path: shape() motion path (Chrome 137+) ---
+       Animate an element along a responsive free-form path.
+    ------------------------------------------------------------------- */
+    @supports (offset-path: shape(from 0% 0%, line to 100% 100%)) {
+        [vl-effect="path-arc"] {
+            offset-path: shape(from 50% 100%, curve to 100% 0% via 100% 100%, 100% 0%);
+            animation: vl-path-travel var(--vl-duration-slow, 500ms) var(--vl-ease-cinematic) both;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+                offset-path: none;
+            }
+        }
+
+        @keyframes vl-path-travel {
+            from { offset-distance: 0%; opacity: 0; }
+            to   { offset-distance: 100%; opacity: 1; }
+        }
+    }
+
+    /* --- CSS if() conditional style hook (Chrome 137+) ---
+       Token-level conditional utility — component examples use this for
+       smart variant switching without extra class proliferation.
+    ------------------------------------------------------------------- */
+    @supports (color: if(style(--vl-variant: ghost): transparent; else: red)) {
+        .vl-cta {
+            /* Ghost variant switches background + border via if() */
+            background-color: if(
+                style(--vl-variant: ghost): transparent;
+                else: var(--vl-color-primary)
+            );
+            border-color: if(
+                style(--vl-variant: ghost): currentColor;
+                else: transparent
+            );
+            color: if(
+                style(--vl-variant: ghost): var(--vl-color-primary);
+                else: var(--vl-text-inverse)
+            );
+        }
+    }
 }

@@ -457,4 +457,93 @@
         align-self: start;
         z-index: var(--vl-z-base);
     }
+
+    /* =========================================================================
+       READING FLOW (Chrome 137+ — CSS reading-flow)
+       Ensures keyboard tab order follows the visual reading order in flex/grid
+       layouts, not the DOM source order. Critical for accessibility in
+       visually-reordered layouts.
+       @see https://developer.chrome.com/blog/reading-flow
+       ========================================================================= */
+    @supports (reading-flow: normal) {
+        .vl-grid[vl-reading="rows"],
+        [vl-reading="rows"] {
+            reading-flow: grid-rows;
+        }
+
+        .vl-grid[vl-reading="columns"],
+        [vl-reading="columns"] {
+            reading-flow: grid-columns;
+        }
+
+        .vl-stack[vl-reading="visual"],
+        .vl-flex[vl-reading="visual"],
+        [vl-reading="visual"] {
+            reading-flow: flex-visual;
+        }
+
+        .vl-stack[vl-reading="flow"],
+        .vl-flex[vl-reading="flow"],
+        [vl-reading="flow"] {
+            reading-flow: flex-flow;
+        }
+
+        /* Source-order override (useful for decorative reordering) */
+        [vl-reading="source"] {
+            reading-flow: source-order;
+        }
+    }
+
+    /* =========================================================================
+       EDGE-TO-EDGE (safe-area-max-inset — Chrome 135+)
+       Performant edge-to-edge layouts that never move during scroll.
+       ========================================================================= */
+
+    /**
+     * Full-bleed section that respects both safe-area dynamic insets AND the
+     * maximum possible safe-area for performant, non-reflowing layouts.
+     */
+    .vl-edge-to-edge {
+        padding-inline: max(var(--vl-container-gutter), var(--vl-safe-left, env(safe-area-inset-left, 0px)));
+        padding-inline-end: max(var(--vl-container-gutter), var(--vl-safe-right, env(safe-area-inset-right, 0px)));
+    }
+
+    .vl-edge-to-edge--block {
+        padding-block-start: max(var(--vl-space-md), var(--vl-safe-top, env(safe-area-inset-top, 0px)));
+        padding-block-end: max(var(--vl-space-md), var(--vl-safe-bottom, env(safe-area-inset-bottom, 0px)));
+    }
+
+    /* =========================================================================
+       LIQUID GLASS SURFACE (Apple 2026 design direction)
+       A backdrop-filter surface with depth and luminance. Pairs with vl-scene.
+       ========================================================================= */
+    .vl-glass--liquid {
+        background: var(--vl-liquid-glass-bg);
+        backdrop-filter:
+            blur(var(--vl-liquid-glass-blur))
+            saturate(var(--vl-liquid-glass-saturate));
+        -webkit-backdrop-filter:
+            blur(var(--vl-liquid-glass-blur))
+            saturate(var(--vl-liquid-glass-saturate));
+        border: 1px solid var(--vl-liquid-glass-border);
+        box-shadow: var(--vl-liquid-glass-shadow);
+    }
+
+    /* =========================================================================
+       HDR CONTENT CONTROL (Chrome 135+ — dynamic-range-limit)
+       Prevent overbright HDR content from dominating the composition.
+       ========================================================================= */
+    @supports (dynamic-range-limit: standard) {
+        [vl-hdr="constrained"] {
+            dynamic-range-limit: constrained-high;
+        }
+
+        [vl-hdr="standard"] {
+            dynamic-range-limit: standard;
+        }
+
+        [vl-hdr="auto"] {
+            dynamic-range-limit: no-limit;
+        }
+    }
 }
