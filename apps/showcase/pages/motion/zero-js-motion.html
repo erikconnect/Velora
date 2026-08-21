@@ -349,23 +349,23 @@
 <!-- Cinematic -->
 <article vl-motion="cinematic" vl-scene class="vl-card space-y-4 p-6 border border-outline-variant/15 rounded-xl bg-surface-container-low">
 <span class="inline-block font-mono text-[11px] text-primary uppercase tracking-[0.2em]">vl-motion="cinematic"</span>
-<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="reveal-cinematic" vl-timeline="view">Grand &amp; deep</h3>
-<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view">Slower timing, longer travel, an entrance blur and deeper parallax. Ideal for hero moments and full-bleed storytelling.</p>
-<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view">Replay reveal</a>
+<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="reveal-cinematic" vl-timeline="view" vl-range="entry">Grand &amp; deep</h3>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view" vl-range="entry">Slower timing, longer travel, an entrance blur and deeper parallax. Ideal for hero moments and full-bleed storytelling.</p>
+<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view" vl-range="entry">Replay reveal</a>
 </article>
 <!-- Subtle -->
 <article vl-motion="subtle" vl-scene class="vl-card space-y-4 p-6 border border-outline-variant/15 rounded-xl bg-surface-container-low">
 <span class="inline-block font-mono text-[11px] text-primary uppercase tracking-[0.2em]">vl-motion="subtle"</span>
-<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="flow-in" vl-timeline="view">Quiet &amp; quick</h3>
-<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view">Faster timing, short travel and soft easing. Ideal for dense dashboards and content-heavy interfaces where restraint matters.</p>
-<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view">Replay reveal</a>
+<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="flow-in" vl-timeline="view" vl-range="entry">Quiet &amp; quick</h3>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view" vl-range="entry">Faster timing, short travel and soft easing. Ideal for dense dashboards and content-heavy interfaces where restraint matters.</p>
+<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view" vl-range="entry">Replay reveal</a>
 </article>
 <!-- Still / reduced-motion-safe -->
 <article vl-motion="still" vl-scene class="vl-card space-y-4 p-6 border border-outline-variant/15 rounded-xl bg-surface-container-low">
 <span class="inline-block font-mono text-[11px] text-primary uppercase tracking-[0.2em]">vl-motion="still"</span>
-<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="reveal-cinematic" vl-timeline="view">Calm &amp; static</h3>
-<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view">Author-driven reduced motion: the composed resting state renders with no movement, independent of the OS setting. The engine also honors <code class="bg-surface-container-high px-1 py-0.5 rounded text-primary text-xs">prefers-reduced-motion</code> automatically for every mode.</p>
-<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view">No motion</a>
+<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="reveal-cinematic" vl-timeline="view" vl-range="entry">Calm &amp; static</h3>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view" vl-range="entry">Author-driven reduced motion: the composed resting state renders with no movement, independent of the OS setting. The engine also honors <code class="bg-surface-container-high px-1 py-0.5 rounded text-primary text-xs">prefers-reduced-motion</code> automatically for every mode.</p>
+<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view" vl-range="entry">No motion</a>
 </article>
 </div>
 <pre class="vl-code-block">&lt;!-- Zero-JS conditional motion. One attribute governs the whole subtree. --&gt;
