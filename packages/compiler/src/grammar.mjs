@@ -7,6 +7,7 @@ export const ALLOWED_VL_ATTRS = new Set([
   "vl-range",
   "vl-duration",
   "vl-speed",
+  "vl-motion",
   "vl-direction",
   "vl-loop",
   "vl-loop-effect",
@@ -181,6 +182,7 @@ export const VALUE_RULES = {
   "vl-duration": /^(?:\d*\.?\d+m?s|var\(--[a-z0-9-]+\))$/i,
   "vl-stagger": /^(?:\d*\.?\d+m?s|var\(--[a-z0-9-]+\))$/i,
   "vl-speed": /^(slow|normal|fast|cinema|slower|fastest|turbo|ultra-slow)$/,
+  "vl-motion": /^(standard|subtle|cinematic|still)$/,
   "vl-direction": /^(normal|reverse|alternate|alternate-reverse)$/,
   "vl-loop": /^(?:-1|infinite|\d+)$/,
 };

@@ -23,6 +23,7 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-range`
 - `vl-duration`
 - `vl-speed`
+- `vl-motion`
 - `vl-direction`
 - `vl-loop`
 - `vl-loop-effect`
@@ -61,6 +62,32 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-loop` / `vl-loop-effect`: `aurora-drift`
 - `vl-hover`: `gradient-sweep`, `border-trace`
 - `vl-scene`: `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema`
+- `vl-motion`: `standard`, `subtle`, `cinematic`, `still`
+
+### 2.3.1 Conditional Motion Engine — `vl-motion`
+
+`vl-motion` selects a motion *mode* for an element and its subtree. It does not
+name a preset; instead it re-scales the central engine knobs (defined in
+`01-tokens.css`) that existing presets already consume, so one attribute adapts
+timing, travel distance, depth, blur and easing without per-selector overrides.
+Implemented in `packages/css/src/03a-motion-conditions.css`.
+
+| Value | Intent | Engine effect |
+| ----- | ------ | ------------- |
+| `standard` | Default balanced feel | Neutral scale (1×), cinematic easing |
+| `subtle` | Quiet, fast, short travel | Faster duration, reduced travel/depth, soft easing |
+| `cinematic` | Grand, slow, deep, blurred entrances | Slower duration, larger travel/depth, entrance blur |
+| `still` | Author-driven reduced motion | Resting/composed state, no movement (regardless of OS setting) |
+
+Progressive enhancement contract:
+
+- Baseline behavior uses plain `[vl-motion="…"]` attribute selectors and works in
+  every browser.
+- Advanced conditional refinement uses CSS `if()` with `media()`, `style()` and
+  `supports()`, wrapped in `@supports (width: if(...))`. Browsers without `if()`
+  ignore that block and keep the baseline values.
+- `prefers-reduced-motion: reduce` is always honored (engine knobs collapse here
+  and animations are disabled globally in `03-motion.css`).
 
 ### 2.4 Authoring profile (v2 target: practical and flexible)
 

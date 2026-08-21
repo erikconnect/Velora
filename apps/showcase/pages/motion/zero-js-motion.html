@@ -332,6 +332,52 @@
 </div>
 </article>
 </section>
+<!-- Conditional Motion Engine -->
+<section id="conditional-motion-engine" class="space-y-10">
+<div class="space-y-4 max-w-2xl" vl-effect="fade-up" vl-timeline="view">
+<div class="inline-flex items-center px-3 py-1 rounded-sm bg-primary-container/20 border border-primary/20">
+<span class="text-[11px] font-label font-bold uppercase tracking-[0.2em] text-primary">Conditional Motion Engine</span>
+</div>
+<h2 class="text-4xl xl:text-5xl font-headline font-bold leading-[0.95] tracking-[-0.03em] text-on-surface">
+                    One attribute. <span class="text-primary-dim">Adaptive motion.</span>
+</h2>
+<p class="text-on-surface-variant font-body text-lg leading-relaxed">
+                    The <code class="bg-surface-container-high px-1.5 py-0.5 rounded text-primary text-sm">vl-motion</code> attribute selects a motion <em>mode</em> that centrally re-scales Velora's shared engine tokens — timing, travel, depth, blur and easing — without touching a single line of JavaScript. Baseline modes work everywhere; CSS <code class="bg-surface-container-high px-1.5 py-0.5 rounded text-primary text-sm">if()</code> is layered on only as progressive enhancement. Scroll each panel into view to compare the same reveal under different modes.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Cinematic -->
+<article vl-motion="cinematic" vl-scene class="vl-card space-y-4 p-6 border border-outline-variant/15 rounded-xl bg-surface-container-low">
+<span class="inline-block font-mono text-[11px] text-primary uppercase tracking-[0.2em]">vl-motion="cinematic"</span>
+<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="reveal-cinematic" vl-timeline="view">Grand &amp; deep</h3>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view">Slower timing, longer travel, an entrance blur and deeper parallax. Ideal for hero moments and full-bleed storytelling.</p>
+<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view">Replay reveal</a>
+</article>
+<!-- Subtle -->
+<article vl-motion="subtle" vl-scene class="vl-card space-y-4 p-6 border border-outline-variant/15 rounded-xl bg-surface-container-low">
+<span class="inline-block font-mono text-[11px] text-primary uppercase tracking-[0.2em]">vl-motion="subtle"</span>
+<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="flow-in" vl-timeline="view">Quiet &amp; quick</h3>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view">Faster timing, short travel and soft easing. Ideal for dense dashboards and content-heavy interfaces where restraint matters.</p>
+<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view">Replay reveal</a>
+</article>
+<!-- Still / reduced-motion-safe -->
+<article vl-motion="still" vl-scene class="vl-card space-y-4 p-6 border border-outline-variant/15 rounded-xl bg-surface-container-low">
+<span class="inline-block font-mono text-[11px] text-primary uppercase tracking-[0.2em]">vl-motion="still"</span>
+<h3 class="text-xl font-headline font-bold text-on-surface" vl-enter="reveal-cinematic" vl-timeline="view">Calm &amp; static</h3>
+<p class="text-sm font-body text-on-surface-variant leading-relaxed" vl-effect="fade-up" vl-timeline="view">Author-driven reduced motion: the composed resting state renders with no movement, independent of the OS setting. The engine also honors <code class="bg-surface-container-high px-1 py-0.5 rounded text-primary text-xs">prefers-reduced-motion</code> automatically for every mode.</p>
+<a class="vl-cta" href="#conditional-motion-engine" vl-effect="fade-up" vl-timeline="view">No motion</a>
+</article>
+</div>
+<pre class="vl-code-block">&lt;!-- Zero-JS conditional motion. One attribute governs the whole subtree. --&gt;
+&lt;section vl-motion="cinematic"&gt;
+  &lt;h2 vl-enter="reveal-cinematic" vl-timeline="view"&gt;Grand &amp; deep&lt;/h2&gt;
+  &lt;p vl-effect="fade-up" vl-timeline="view"&gt;Slower, deeper, blurred entrance.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section vl-motion="subtle"&gt;...quieter, faster motion...&lt;/section&gt;
+&lt;section vl-motion="still"&gt;...reduced-motion-safe resting state...&lt;/section&gt;</pre>
+<p class="vl-code-note">Modes re-scale central <code>--vl-motion-*</code> tokens. CSS <code>if()</code> adds live media/pointer/support adaptation as progressive enhancement — never required.</p>
+</section>
 </main>
 <!-- Footer - Desktop Optimized -->
     <footer class="vl-footer" aria-label="Site footer">

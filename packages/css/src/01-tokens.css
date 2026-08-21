@@ -151,6 +151,21 @@
         --vl-motion-distance: 1.25rem;
         --vl-motion-ease: var(--vl-ease-cinematic);
 
+        /* --- Conditional Motion Engine (see 03a-motion-conditions.css) ---
+         * Central knobs consumed by the vl-motion="standard|subtle|cinematic|still"
+         * grammar. Presets read these instead of hardcoding per-selector values, so
+         * a single mode declaration adapts timing, travel, depth and blur globally.
+         * Defaults below are the neutral "standard" baseline (scale 1 / offset 0),
+         * so motion behaves identically when no vl-motion mode is applied.
+         */
+        --vl-motion-mode: standard;         /* active engine mode (queried via if(style())) */
+        --vl-motion-preference: auto;       /* auto | reduce — reflects reduced-motion intent */
+        --vl-motion-speed-scale: 1;         /* duration multiplier */
+        --vl-motion-intensity: 1;           /* travel-distance / displacement multiplier */
+        --vl-motion-depth: 1;               /* parallax / z-depth multiplier */
+        --vl-motion-blur: 0px;              /* additive entrance blur for cinematic mode */
+        --vl-motion-mode-ease: var(--vl-ease-cinematic); /* easing selected by mode */
+
         /* View Transitions (MPA) — 05-transitions.css */
         --vl-vt-root-duration: 0.55s;
         --vl-vt-shared-duration: 0.58s;
