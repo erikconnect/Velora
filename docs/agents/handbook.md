@@ -28,20 +28,17 @@ Velora is a **declarative motion system for HTML**, powered by modern CSS.
 The core idea is:
 
 1. Developers write semantic HTML.
-2. They add Velora classes and `vl-*` attributes.
-3. Velora maps those contracts to CSS-based layout, motion, scenes, and transitions.
+2. They add `vl-*` attributes for motion (and optional host classes for look).
+3. Velora maps those contracts to CSS-based motion, scenes, and transitions. Theme/components are opt-in.
 
 Example direction:
 
 ```html
-<section
-  vl-scene="hero"
-  vl-timeline="view"
-  vl-effect="scene-hero-reveal"
-  vl-range="entry 0% cover 70%"
-  vl-pin>
-  <h1>Build motion-rich interfaces with HTML and CSS</h1>
-  <p>No animation libraries. No framework runtime.</p>
+<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>
+    <h1 vl-enter="clip-rise" vl-act="1">Build motion-rich interfaces with HTML and CSS</h1>
+    <p vl-enter="fade-up" vl-act="1">No animation libraries. No framework runtime.</p>
+  </div>
 </section>
 ```
 

@@ -30,6 +30,9 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-children`
 - `vl-stagger`
 - `vl-scene`
+- `vl-stage`
+- `vl-act`
+- `vl-span`
 - `vl-pin`
 - `vl-scrub`
 - `vl-once`
@@ -61,14 +64,16 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-scroll`: `reveal`, `media-zoom`, `crossfade`, `text-highlight`
 - `vl-loop` / `vl-loop-effect`: `aurora-drift`
 - `vl-hover`: `gradient-sweep`, `border-trace`
-- `vl-scene`: `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema`
+- `vl-scene`: `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema` (**Velora-look recipes** in `scene-recipes.css` / theme — not required for host-agnostic scenes)
 - `vl-motion`: `standard`, `subtle`, `cinematic`, `still`
+- `vl-pin`: numeric viewport heights (`1`–`6`, or typed `attr` enhancement)
+- `vl-act` / `vl-span`: beat index and span on `[vl-stage]` children (scene engine)
 
 ### 2.3.1 Conditional Motion Engine — `vl-motion`
 
 `vl-motion` selects a motion *mode* for an element and its subtree. It does not
 name a preset; instead it re-scales the central engine knobs (defined in
-`01-tokens.css`) that existing presets already consume, so one attribute adapts
+`01-motion-tokens.css` / aggregated via `01-tokens.css`) that existing presets already consume, so one attribute adapts
 timing, travel distance, depth, blur and easing without per-selector overrides.
 Implemented in `packages/css/src/03a-motion-conditions.css`.
 
@@ -91,31 +96,44 @@ Progressive enhancement contract:
 
 ### 2.4 Authoring profile (v2 target: practical and flexible)
 
-This profile defines the preferred authoring model for new scenes. Goal: build fast with predictable defaults using native HTML/CSS first.
+Preferred model for **new** scenes: host-agnostic track / stage / acts (see `03c-scene-engine.css`).
 
-- **Entry/Exit:** `vl-enter`, `vl-exit`
-- **Timing:** `vl-duration`, `vl-speed`
-- **Range/Direction:** `vl-range`, `vl-direction`
-- **Scroll/Timeline:** `vl-scroll`, `vl-timeline`, `vl-scrub`, `vl-once`
-- **Scene composition:** `vl-scene`, `vl-children`, `vl-stagger`
-- **Easing:** use canonical easing tokens via effect contracts (do not introduce ad-hoc easing values in pages)
+- **Scene clock:** `vl-scene` + `vl-timeline="view"|auto"` + optional `vl-pin` + `vl-scrub`
+- **Stage:** `vl-stage` (sticky child of the track)
+- **Acts:** `vl-act` + optional `vl-span` on stage children (same act = overlap; omit act → DOM order / `sibling-index()`)
+- **Channels:** `vl-enter`, `vl-scroll`, `vl-exit`, …
+- **Escape hatch:** `vl-range` overrides act-derived ranges
+- **Look:** host classes (Tailwind, etc.) or optional `@velora/css/theme` / named scene recipes
 
 Authoring rule for new demos/pages:
 
-1. Start with a `vl-scene` preset.
-2. Add one entry behavior (`vl-enter`) and one progression behavior (`vl-scroll` or `vl-timeline`).
-3. Tune timing with `vl-duration` + `vl-speed` only when needed.
-4. Tune choreography with `vl-stagger` only on grouped children.
+1. Start with `vl-scene` + `vl-stage` (pin/scrub when scroll-story).
+2. Place channel attrs + `vl-act` on stage children.
+3. Style with host UI — do not require `.vl-*` component classes for motion to work.
+4. Named `vl-scene="cinematic-hero"` etc. remain as **Velora skin recipes** (compat).
 
 ### 2.5 Baseline scene recipe (recommended)
 
-Use this minimum recipe as default for new section-level scenes:
-
-- section: `vl-scene` + (`vl-enter` or `vl-scroll`)
-- media block: optional `vl-range` + `vl-direction`
-- child cluster: optional `vl-children` + `vl-stagger`
+```html
+<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>
+    <h1 vl-enter="fade-up" vl-act="1">Title</h1>
+    <p vl-enter="fade-up" vl-act="1">Sub</p>
+    <img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt="">
+  </div>
+</section>
+```
 
 This keeps the API compact while preserving flexibility for advanced timelines.
+
+### 2.6 Package surfaces
+
+| Export | Role |
+| --- | --- |
+| `@velora/css/motion-core` | Host-agnostic motion + scene engine |
+| `@velora/css/theme` | Visual tokens + editorial + scene recipes |
+| `@velora/css` / `full` | Convenience: theme + components + motion |
+| Showcase-only CSS | `04e-*`, `08-showcase-home` — not in npm consumer path |
 
 ## 3) Design Catalog Matrix (scope)
 

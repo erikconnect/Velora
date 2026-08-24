@@ -16,7 +16,10 @@ The motion system is driven by HTML attributes prefixed with `vl-`. Each attribu
 | `vl-state` | State transition | `smooth` |
 | `vl-exit` | Exit animation | `fade-out`, `fade-out-up`, `fade-out-down`, `shrink-out` |
 | `vl-timeline` | Progress model | `view`, `scroll`, `auto`, `state`, `hover` |
-| `vl-scene` | Scene container preset | `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema` |
+| `vl-scene` | Scene track (clock). Named values are Velora-look recipes | (bare), `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema` |
+| `vl-stage` | Sticky viewport stage inside a track | (boolean) |
+| `vl-act` | Beat index on a stage child (1-based) | `1`, `2`, `3` |
+| `vl-span` | How many beats an act occupies | `1`, `2` |
 | `vl-children` | Child choreography | `stagger`, `cascade`, `sequence`, `orchestrate` |
 | `vl-base` | Base motion intensity | `subtle`, `balanced`, `dramatic` |
 
@@ -30,7 +33,7 @@ Supporting attributes control timing, range, and behavior:
 | `vl-range` | Scroll animation range | `entry`, `entry-short`, `entry-long`, `cover`, `contain`, `scene-soft`, `scene-focus` |
 | `vl-depth` | Parallax depth multiplier | `1`, `2`, `3`, `4` |
 | `vl-direction` | Playback direction | `normal`, `reverse`, `alternate`, `alternate-reverse` |
-| `vl-pin` | Sticky scene behavior | Boolean attribute |
+| `vl-pin` | Track height in viewport units (pin + scrub) | `1`–`6` (typed `attr` enhancement) |
 | `vl-scrub` | Continuous scroll-linked motion | Boolean attribute |
 | `vl-once` | One-shot reveal | Boolean attribute |
 
@@ -284,6 +287,25 @@ Velora includes specialized text animation presets:
 | `typewriter-soft` | Softer typing variant with fading caret |
 | `typewriter-loop` | Typing that reverses and repeats |
 | `clip-rise` | Clip-path + vertical shift, ideal for headlines |
+
+## Scene engine (track / stage / acts)
+
+Host-agnostic authorship lives in `03c-scene-engine.css` (`@velora/css/motion-core`). One scene owns one clock; children occupy beats.
+
+```html
+<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>
+    <h1 vl-enter="clip-rise" vl-act="1">Headline</h1>
+    <img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt="">
+  </div>
+</section>
+```
+
+- **Track** (`vl-scene`): named `--vl-scene` view timeline, optional pin height
+- **Stage** (`vl-stage`): sticky `100svh` while the track scrolls
+- **Acts** (`vl-act` / `vl-span`): relative timing on the shared clock (`vl-range` remains an escape hatch)
+
+Named presets (`vl-scene="cinematic-hero"`, etc.) are **theme recipes** in `scene-recipes.css` / `@velora/css/theme`, kept for compatibility. They are not required to use the engine.
 
 ## Backward compatibility
 

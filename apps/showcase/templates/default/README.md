@@ -18,7 +18,7 @@ HTML starter for new showcase pages (shell + bussola + blocos Velora):
 
 - `apps/showcase/pages/core/page-template.html`
 
-It defines sections and owned pages for the `default` template.
+It defines the **lean live set** (Home, Timeline, Skins, Catalog, Hosts, Archive). Historical pages live in `archive/showcase-2026-08/`.
 
 ## Audit flow
 

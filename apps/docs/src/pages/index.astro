@@ -2,12 +2,16 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Getting Started" description="Velora CSS — a motion-native design system. Zero JavaScript animations. Modern CSS only.">
+<Base title="Getting Started" description="Velora — declarative CSS motion engine. Host-agnostic. Zero JavaScript animations.">
   <span class="vl-kicker">Documentation</span>
 
   <h1 class="docs-page-title">Getting Started</h1>
   <p class="docs-page-lead docs-page-lead--narrow">
-    A motion-native design system. Declarative HTML attributes. Zero JavaScript for animation. Modern CSS only.
+    A declarative motion language for HTML. Attributes describe intent; CSS executes it.
+    Works with Tailwind, Relume, or any UI. Showcase is the optional Velora look
+    (<strong>Skins</strong> — named models via <code>data-editorial-theme</code>).
+    The public Showcase is six pages; the previous demos live in
+    <code>archive/showcase-2026-08/</code>.
   </p>
 
   <h2>Installation</h2>
@@ -16,133 +20,53 @@ import Base from "../layouts/Base.astro";
 # or
 npm install @velora/css</code></pre>
 
-  <p>Then import it once at the root of your app:</p>
-  <pre><code>@import "@velora/css";</code></pre>
-
-  <p>Or in a bundler entrypoint:</p>
-  <pre><code>import "@velora/css";</code></pre>
-
-  <h2>Quick Start</h2>
-  <p>Add motion to any element with two attributes:</p>
-  <pre><code>&lt;!-- Fade up when scrolled into view --&gt;
-&lt;div vl-effect="fade-up" vl-timeline="view"&gt;
-  Reveals on scroll
-&lt;/div&gt;
-
-&lt;!-- Staggered children entrance --&gt;
-&lt;section vl-children="stagger" vl-stagger="100ms"&gt;
-  &lt;div&gt;Child 1&lt;/div&gt;
-  &lt;div&gt;Child 2&lt;/div&gt;
-  &lt;div&gt;Child 3&lt;/div&gt;
-&lt;/section&gt;
-
-&lt;!-- Full scene orchestration --&gt;
-&lt;section
-  vl-scene="hero"
-  vl-effect="scene-hero-reveal"
-  vl-timeline="view"
-  vl-range="entry 0% cover 70%"
-  vl-pin&gt;
-  &lt;h1&gt;Heading fades up&lt;/h1&gt;
-  &lt;img src="hero.jpg" alt="" /&gt;
-  &lt;p&gt;Copy blurs in&lt;/p&gt;
-  &lt;a href="#" class="vl-cta"&gt;Get started&lt;/a&gt;
-&lt;/section&gt;</code></pre>
-
-  <h2>Page Transitions</h2>
-  <p>Enable MPA cross-document view transitions with one attribute:</p>
-  <pre><code>&lt;!-- In your root layout --&gt;
-&lt;html vl-page-transition="cinema"&gt;</code></pre>
-  <p>
-    Requires <code>@view-transition &#123; navigation: auto; &#125;</code> in your CSS (already included with Velora).
-    Supported in Chrome 111+, Edge 111+.
-  </p>
-
-  <h2>Philosophy</h2>
-  <p>
-    Velora is a <strong>declarative motion system for HTML</strong> — not a UI kit, not a JavaScript animation library.
-  </p>
-  <p>The core idea is a three-step contract:</p>
-  <ol>
-    <li>Write <strong>semantic HTML</strong></li>
-    <li>Add <strong><code>vl-*</code> attributes</strong> to declare intent</li>
-    <li>Velora maps those to <strong>CSS-based motion, layout, and transitions</strong></li>
-  </ol>
-  <p>
-    The framework proves that modern HTML and CSS are sufficient to build premium motion systems when the
-    architecture is designed correctly.
-  </p>
-
-  <h2>CSS Layer Stack</h2>
-  <p>Velora organizes CSS into 8 cascade layers, making it safe to override at any point:</p>
-  <pre><code>@layer velora.reset,
-       velora.tokens,
-       velora.layout,
-       velora.motion,
-       velora.components,
-       velora.transitions,
-       velora.utilities,
-       velora.overrides;</code></pre>
-
+  <h2>Choose an import</h2>
   <table>
     <thead>
-      <tr>
-        <th>Layer</th>
-        <th>Contents</th>
-      </tr>
+      <tr><th>Import</th><th>Use when</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>velora.reset</code></td><td>Browser normalization and base adjustments</td></tr>
-      <tr><td><code>velora.tokens</code></td><td>Colors, spacing, typography, motion tokens</td></tr>
-      <tr><td><code>velora.layout</code></td><td>Container, stack, grid, and scene wrappers</td></tr>
-      <tr><td><code>velora.motion</code></td><td>Effect presets, timelines, stagger, reveals</td></tr>
-      <tr><td><code>velora.components</code></td><td>Cards, buttons, navbars, accordions, badges</td></tr>
-      <tr><td><code>velora.transitions</code></td><td>Page transitions and shared element rules</td></tr>
-      <tr><td><code>velora.utilities</code></td><td>Low-level opt-in utility classes</td></tr>
-      <tr><td><code>velora.overrides</code></td><td>Last-mile overrides; highest specificity</td></tr>
+      <tr>
+        <td><code>@velora/css/motion-core</code></td>
+        <td>Host UI already provides look (Tailwind, custom DS). Motion + scene engine only.</td>
+      </tr>
+      <tr>
+        <td><code>@velora/css/theme</code></td>
+        <td>Optional Velora visual tokens + named scene recipes.</td>
+      </tr>
+      <tr>
+        <td><code>@velora/css</code> / <code>full</code></td>
+        <td>Convenience: theme + components + motion (Showcase / docs style).</td>
+      </tr>
     </tbody>
   </table>
 
-  <h2>Accessibility</h2>
-  <p>
-    All Velora motion is <code>prefers-reduced-motion</code> aware. Users who have requested reduced motion
-    see instant transitions with no animation.
-  </p>
-  <pre><code>/* Built into every Velora effect */
-@media (prefers-reduced-motion: reduce) &#123;
-  [vl-effect],
-  [vl-scene],
-  [vl-page-transition] &#123;
-    animation: none !important;
-    transition-duration: 0ms !important;
-  &#125;
-&#125;</code></pre>
+  <pre><code>/* Host-agnostic (recommended for Tailwind projects) */
+@import "@velora/css/motion-core";
+@import "@velora/css/transitions"; /* optional */
 
-  <h2>Explore the Docs</h2>
-  <div class="docs-grid-cards">
-    <a href="/tokens/" class="vl-card docs-card-link" vl-effect="hover-lift">
-      <div class="vl-card__title">Design Tokens</div>
-      <p class="vl-card__body">CSS custom properties for color, typography, spacing, and motion.</p>
-    </a>
-    <a href="/effects/" class="vl-card docs-card-link" vl-effect="hover-lift">
-      <div class="vl-card__title">Motion Effects</div>
-      <p class="vl-card__body">All <code>vl-effect</code> values — entrance, interaction, continuous, text, cinema.</p>
-    </a>
-    <a href="/scenes/" class="vl-card docs-card-link" vl-effect="hover-lift">
-      <div class="vl-card__title">Scenes</div>
-      <p class="vl-card__body">Multi-element orchestrations with <code>vl-scene</code> and <code>vl-children</code>.</p>
-    </a>
-    <a href="/transitions/" class="vl-card docs-card-link" vl-effect="hover-lift">
-      <div class="vl-card__title">Page Transitions</div>
-      <p class="vl-card__body">MPA view transitions with shared element morphing.</p>
-    </a>
-    <a href="/attributes/" class="vl-card docs-card-link" vl-effect="hover-lift">
-      <div class="vl-card__title">Attribute Reference</div>
-      <p class="vl-card__body">Complete reference for every <code>vl-*</code> attribute.</p>
-    </a>
-    <a href="/agents/" class="vl-card docs-card-link" vl-effect="hover-lift">
-      <div class="vl-card__title">Agent Handbook</div>
-      <p class="vl-card__body">Rules, patterns, and safe prompts for AI coding agents.</p>
-    </a>
-  </div>
+/* Or full Velora skin */
+@import "@velora/css";</code></pre>
+
+  <h2>Quick Start — scene engine</h2>
+  <p>Track + stage + acts: one shared clock, pin, scrub — no JavaScript.</p>
+  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
+  &lt;div vl-stage&gt;
+    &lt;p vl-enter="fade-up" vl-act="1"&gt;Kicker&lt;/p&gt;
+    &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Title&lt;/h1&gt;
+    &lt;img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt="" /&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+  <p>
+    Style with your own classes. Motion does not require <code>.vl-card</code> or brand tokens.
+    See <a href="/hosts/">Hosts (Tailwind)</a> and <a href="/scenes/">Scenes</a>.
+  </p>
+
+  <h2>What Velora is</h2>
+  <ul>
+    <li><strong>Motion language</strong> — not a utility framework requirement</li>
+    <li><strong>Zero JS for animation</strong> — scroll timelines, view transitions, CSS only</li>
+    <li><strong>Showcase</strong> — cinematic reference UI / design system skin</li>
+  </ul>
 </Base>

@@ -1,6 +1,7 @@
 /**
- * Substitui o placeholder das páginas hub do showcase por conteúdo editorial
- * alinhado ao fluxo Velora e links para documentação em pages/library (packages/pages).
+ * Hub stub filler for archived Showcase pages.
+ * Live public registry is the six-page lean set in config/template-registry.mjs.
+ * Do not regenerate the ~50-page hub map against the live tree.
  */
 import fs from "fs";
 import path from "path";

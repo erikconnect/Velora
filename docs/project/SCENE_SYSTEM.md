@@ -1,8 +1,25 @@
 # Scene System
 
-A scene in Velora is a self-contained unit of cinematic composition. It is not a component. It is not a section wrapper. It is a container that defines layout, choreography, and scroll behavior for its children as a single coordinated experience.
+A scene is a **shared clock** for choreography — not a look. Host UI (Tailwind, custom DS, or optional Velora theme) owns layout and chrome.
 
-Scenes are Velora's answer to a fundamental question in interface motion: how do you orchestrate multiple elements moving together with rhythm, without writing imperative animation code?
+Preferred authorship (host-agnostic):
+
+```html
+<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>
+    <h1 vl-enter="clip-rise" vl-act="1">Headline</h1>
+    <img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt="">
+  </div>
+</section>
+```
+
+- **Track** (`vl-scene`): named `--vl-scene` view-timeline + optional pin height
+- **Stage** (`vl-stage`): sticky 100svh while the track scrolls
+- **Acts** (`vl-act` / `vl-span`): beats on the shared clock (same act = overlap)
+
+Named presets (`vl-scene="cinematic-hero"`, etc.) are **Velora skin recipes** in `scene-recipes.css` / `@velora/css/theme`. They remain for compatibility.
+
+The `vl-scene` attribute (bare) still establishes container query scope, containment, and the scene clock.
 
 ## The `vl-scene` attribute
 
@@ -11,18 +28,19 @@ Any element with the `vl-scene` attribute becomes a scene container. The attribu
 - **Container query scope** — the element becomes a `container-type: inline-size` context named `vl-scene`, enabling responsive behavior based on the scene's own width rather than the viewport.
 - **Layout containment** — `contain: layout style` isolates the scene's layout and style from the rest of the document.
 - **Relative positioning** — provides a positioning context for absolute or sticky children.
+- **Named view timeline** — `--vl-scene` for stage children (see `03c-scene-engine.css`)
 
 ```html
-<section vl-scene="cinematic-hero">
-  <h1>Headline</h1>
-  <p>Subhead</p>
-  <img src="hero.jpg" alt="">
+<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>…</div>
 </section>
 ```
 
-When `vl-scene` carries a named preset value, Velora applies a complete layout and motion choreography. When used without a value (just the bare attribute), it provides the container scaffolding for custom composition.
+When `vl-scene` carries a named preset value, the **theme recipes** apply layout + motion. When used without a value, it provides the engine scaffolding for custom composition.
 
-## Scene presets
+## Scene presets (skin recipes)
+
+Named values below require `@velora/css/theme` (or the full bundle). They are not the host-agnostic API.
 
 ### cinematic-hero
 

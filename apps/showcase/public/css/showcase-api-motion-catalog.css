@@ -8,7 +8,7 @@
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-bottom: clamp(10.5rem, 18vh, 13.5rem);
+        padding-bottom: clamp(8.5rem, 14vh, 11rem);
       }
 
       .api-shell {
@@ -267,13 +267,13 @@
       .api-controls {
         position: fixed;
         left: 50%;
-        bottom: clamp(0.65rem, 1.6vh, 1.2rem);
+        bottom: clamp(0.55rem, 1.4vh, 1rem);
         transform: translateX(-50%);
         z-index: 42;
-        width: min(920px, calc(100vw - 1rem));
-        padding: 0.5rem 0.56rem;
+        width: min(960px, calc(100vw - 0.85rem));
+        padding: 0.38rem 0.42rem;
         border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent);
-        border-radius: 12px;
+        border-radius: 11px;
         background:
           linear-gradient(
             180deg,
@@ -282,16 +282,67 @@
           );
         backdrop-filter: blur(14px) saturate(120%);
         box-shadow:
-          0 18px 54px color-mix(in oklch, black 34%, transparent),
+          0 14px 42px color-mix(in oklch, black 34%, transparent),
           inset 0 1px 0 color-mix(in oklch, white 10%, transparent);
       }
 
       .api-controls-row {
         display: flex;
         align-items: center;
-        gap: 0.46rem;
-        flex-wrap: wrap;
-        overflow: visible;
+        gap: 0.38rem;
+        flex-wrap: nowrap;
+        overflow: hidden;
+      }
+
+      .api-controls-readout {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: grid;
+        gap: 0.12rem;
+      }
+
+      .api-live-hint {
+        margin: 0;
+        font-size: 0.68rem;
+        line-height: 1.35;
+        color: var(--vl-text-secondary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .api-live-readout {
+        display: block;
+        margin: 0;
+        padding: 0;
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.58rem;
+        line-height: 1.35;
+        color: color-mix(in oklch, var(--vl-color-primary) 78%, var(--vl-text-primary));
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: none;
+        border: 0;
+      }
+
+      .api-controls-sliders {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.28rem;
+        flex: 0 0 auto;
+      }
+
+      .api-controls-drawer {
+        margin-top: 0.38rem;
+        padding-top: 0.38rem;
+        border-top: 1px solid color-mix(in oklch, var(--vl-border-subtle) 55%, transparent);
+        display: grid;
+        gap: 0.38rem;
+      }
+
+      .api-controls-drawer[hidden] {
+        display: none !important;
       }
 
       .api-controls-head {
@@ -302,14 +353,14 @@
         position: absolute;
         top: 0;
         left: 0;
-        transform: translate(-0.28rem, calc(-100% + 0.42rem));
+        transform: translate(-0.22rem, calc(-100% + 0.38rem));
         z-index: 2;
         font-family: var(--vl-font-family-mono);
-        font-size: 0.62rem;
-        color: var(--vl-text-secondary);
-        letter-spacing: 0.08em;
+        font-size: 0.58rem;
+        color: var(--vl-text-primary);
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
+        border: 1px solid color-mix(in oklch, var(--vl-color-primary) 42%, transparent);
         border-radius: 999px;
         background:
           linear-gradient(
@@ -318,10 +369,13 @@
             color-mix(in oklch, var(--vl-bg-main) 86%, transparent)
           );
         box-shadow:
-          0 10px 22px color-mix(in oklch, black 22%, transparent),
+          0 8px 18px color-mix(in oklch, black 22%, transparent),
           inset 0 1px 0 color-mix(in oklch, white 10%, transparent);
-        padding: 0.28rem 0.62rem;
+        padding: 0.22rem 0.52rem;
         white-space: nowrap;
+        max-width: min(18rem, calc(100vw - 2rem));
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .api-controls-grid { display: contents; }
@@ -329,22 +383,21 @@
       .api-runtime-commands {
         display: flex;
         align-items: center;
-        gap: 0.32rem;
+        gap: 0.28rem;
         flex-wrap: wrap;
       }
 
       .api-runtime-command-chip {
         display: inline-flex;
         align-items: center;
-        min-height: 1.5rem;
-        padding: 0.22rem 0.46rem;
+        min-height: 1.35rem;
+        padding: 0.16rem 0.4rem;
         border-radius: 999px;
         border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
         background: color-mix(in oklch, var(--vl-bg-main) 82%, transparent);
         font-family: var(--vl-font-family-mono);
-        font-size: 0.58rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        font-size: 0.56rem;
+        letter-spacing: 0.04em;
         color: var(--vl-text-secondary);
         white-space: nowrap;
       }
@@ -355,23 +408,25 @@
         color: var(--vl-text-primary);
       }
 
-      .api-runtime-command-chip.is-unavailable {
-        opacity: 0.58;
+      .api-runtime-command-chip.is-empty {
+        opacity: 0.72;
+        font-style: italic;
       }
 
       .api-runtime-actions {
         display: flex;
         flex-wrap: nowrap;
-        gap: 0.34rem;
+        gap: 0.28rem;
+        flex: 0 0 auto;
       }
 
       .api-runtime-btn {
-        width: 2rem;
-        min-width: 2rem;
-        height: 2rem;
-        min-height: 2rem;
+        width: 1.75rem;
+        min-width: 1.75rem;
+        height: 1.75rem;
+        min-height: 1.75rem;
         padding: 0;
-        border-radius: 10px;
+        border-radius: 8px;
         border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 66%, transparent);
         background: color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
         color: var(--vl-text-primary);
@@ -382,8 +437,8 @@
       }
 
       .api-runtime-btn svg {
-        width: 0.9rem;
-        height: 0.9rem;
+        width: 0.82rem;
+        height: 0.82rem;
       }
 
       .api-runtime-btn.is-active {
@@ -394,9 +449,9 @@
       .api-control {
         display: inline-flex;
         align-items: center;
-        gap: 0.3rem;
-        padding: 0.18rem 0.28rem;
-        border-radius: 10px;
+        gap: 0.24rem;
+        padding: 0.14rem 0.22rem;
+        border-radius: 8px;
         border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 58%, transparent);
         background: color-mix(in oklch, var(--vl-bg-main) 82%, transparent);
       }
@@ -405,27 +460,27 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 1.05rem;
+        height: 1.05rem;
         border-radius: 999px;
         border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 62%, transparent);
         background: color-mix(in oklch, var(--vl-bg-surface-elevated) 70%, transparent);
-        font-size: 0.58rem;
+        font-size: 0.54rem;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         color: var(--vl-text-muted);
         white-space: nowrap;
       }
 
       .api-control .vl-range {
-        width: clamp(74px, 14vw, 132px);
-        max-width: 132px;
+        width: clamp(56px, 10vw, 96px);
+        max-width: 96px;
       }
 
       .api-control-value {
-        min-width: 3.7rem;
+        min-width: 2.85rem;
         font-family: var(--vl-font-family-mono);
-        font-size: 0.62rem;
+        font-size: 0.58rem;
         color: var(--vl-text-primary);
         text-align: right;
         white-space: nowrap;
@@ -693,6 +748,8 @@
       }
 
       .api-target {
+        position: relative;
+        isolation: isolate;
         min-height: 84px;
         border-radius: 10px;
         background: color-mix(in oklch, var(--vl-bg-main) 80%, transparent);
@@ -702,6 +759,178 @@
         text-align: center;
         padding: 0.65rem;
         font-size: 0.84rem;
+        overflow: hidden;
+      }
+
+      .api-target::after {
+        content: "";
+        position: absolute;
+        pointer-events: none;
+        opacity: 0.22;
+        z-index: 0;
+      }
+
+      .api-target > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Channel / driver visual dialects (generic demo targets only) */
+      .api-target[vl-enter]:not([class*="api-"]) {
+        font-family: var(--vl-font-family-display);
+        letter-spacing: 0.03em;
+        border-left: 2px solid color-mix(in oklch, var(--vl-color-primary) 62%, transparent);
+        background:
+          linear-gradient(145deg, color-mix(in oklch, var(--vl-color-primary) 10%, transparent), transparent 55%),
+          color-mix(in oklch, var(--vl-bg-main) 82%, transparent);
+      }
+
+      .api-target[vl-enter]:not([class*="api-"])::after {
+        top: 0.55rem;
+        right: 0.55rem;
+        width: 2.1rem;
+        height: 2.1rem;
+        border: 1px solid color-mix(in oklch, var(--vl-color-primary) 40%, transparent);
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+        background: color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+      }
+
+      .api-target[vl-scroll]:not([class*="api-"]) {
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            color-mix(in oklch, var(--vl-color-secondary) 8%, transparent) 0 1px,
+            transparent 1px 14px
+          ),
+          linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface) 70%, transparent), color-mix(in oklch, var(--vl-bg-main) 88%, transparent));
+      }
+
+      .api-target[vl-scroll]:not([class*="api-"])::after {
+        inset: auto 0.65rem 0.55rem auto;
+        width: 1.6rem;
+        height: 2.4rem;
+        border: 1px solid color-mix(in oklch, var(--vl-color-secondary) 45%, transparent);
+        border-radius: 0.35rem;
+        background: color-mix(in oklch, var(--vl-color-secondary) 18%, transparent);
+      }
+
+      .api-target[vl-loop]:not([class*="api-"]) {
+        border-radius: 999px;
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.76rem;
+        background:
+          radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent 62%),
+          color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+      }
+
+      .api-target[vl-loop]:not([class*="api-"])::after {
+        inset: 0.45rem;
+        border-radius: 999px;
+        border: 1px dashed color-mix(in oklch, var(--vl-color-primary) 42%, transparent);
+        background: transparent;
+        opacity: 0.35;
+      }
+
+      .api-target[vl-hover]:not([class*="api-"]) {
+        border-style: dashed;
+        border-color: color-mix(in oklch, var(--vl-color-secondary) 48%, transparent);
+        font-family: var(--vl-font-family-display);
+        background:
+          radial-gradient(circle at 18% 22%, color-mix(in oklch, var(--vl-color-secondary) 12%, transparent), transparent 48%),
+          color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+      }
+
+      .api-target[vl-hover]:not([class*="api-"])::after {
+        top: 50%;
+        left: 50%;
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 999px;
+        transform: translate(-50%, -50%);
+        background: color-mix(in oklch, var(--vl-color-secondary) 70%, transparent);
+        box-shadow: 0 0 0 6px color-mix(in oklch, var(--vl-color-secondary) 16%, transparent);
+      }
+
+      .api-target[vl-exit]:not([class*="api-"]) {
+        font-family: var(--vl-font-family-display);
+        background:
+          linear-gradient(225deg, color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 12%, transparent), transparent 58%),
+          color-mix(in oklch, var(--vl-bg-main) 80%, transparent);
+        border-right: 2px solid color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 50%, transparent);
+      }
+
+      .api-target[vl-exit]:not([class*="api-"])::after {
+        bottom: 0.55rem;
+        left: 0.55rem;
+        width: 2rem;
+        height: 0.35rem;
+        border-radius: 999px;
+        background: color-mix(in oklch, var(--vl-color-accent, var(--vl-color-primary)) 55%, transparent);
+      }
+
+      .api-target[vl-state]:not([class*="api-"]) {
+        background:
+          conic-gradient(from 210deg at 50% 50%, color-mix(in oklch, var(--vl-color-primary) 8%, transparent), transparent 55%, color-mix(in oklch, var(--vl-color-secondary) 8%, transparent)),
+          color-mix(in oklch, var(--vl-bg-main) 86%, transparent);
+      }
+
+      .api-target[vl-effect]:not([class*="api-"]) {
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.76rem;
+        background:
+          linear-gradient(0deg, color-mix(in oklch, var(--vl-border-subtle) 18%, transparent) 1px, transparent 1px),
+          linear-gradient(90deg, color-mix(in oklch, var(--vl-border-subtle) 18%, transparent) 1px, transparent 1px),
+          color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+        background-size: 12px 12px, 12px 12px, auto;
+      }
+
+      .api-card[data-api-kind="scene"] .api-target:not([class*="api-"]),
+      .api-card[data-api-kind="3d"] .api-target:not([class*="api-"]) {
+        min-height: 96px;
+        background:
+          radial-gradient(circle at 50% 120%, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent 58%),
+          linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 70%, transparent), color-mix(in oklch, var(--vl-bg-main) 88%, transparent));
+        perspective: 720px;
+      }
+
+      .api-card[data-api-kind="text"] .api-target:not([class*="api-"]) {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+        letter-spacing: -0.02em;
+        background:
+          linear-gradient(180deg, transparent 68%, color-mix(in oklch, var(--vl-color-primary) 16%, transparent) 68%, color-mix(in oklch, var(--vl-color-primary) 16%, transparent) 72%, transparent 72%),
+          color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+      }
+
+      .api-card[data-api-kind="ambient"] .api-target:not([class*="api-"]) {
+        border: 0;
+        background:
+          radial-gradient(circle at 30% 30%, color-mix(in oklch, var(--vl-color-primary) 18%, transparent), transparent 52%),
+          radial-gradient(circle at 72% 68%, color-mix(in oklch, var(--vl-color-secondary) 14%, transparent), transparent 48%),
+          color-mix(in oklch, var(--vl-bg-main) 86%, transparent);
+      }
+
+      .api-card[data-api-kind="interaction"] .api-target:not([class*="api-"]) {
+        background:
+          radial-gradient(circle at 100% 0%, color-mix(in oklch, var(--vl-color-secondary) 12%, transparent), transparent 42%),
+          color-mix(in oklch, var(--vl-bg-main) 84%, transparent);
+      }
+
+      .api-grid .api-card:nth-child(6n + 2) .api-target:not([class*="api-"]) {
+        border-radius: 1.1rem 0.55rem 1.1rem 0.55rem;
+      }
+
+      .api-grid .api-card:nth-child(6n + 4) .api-target:not([class*="api-"]) {
+        border-radius: 0.55rem 1.1rem 0.55rem 1.1rem;
+      }
+
+      .api-grid .api-card:nth-child(6n + 5) .api-target:not([class*="api-"]) {
+        outline: 1px solid color-mix(in oklch, var(--vl-border-subtle) 35%, transparent);
+        outline-offset: 3px;
       }
 
       #ambient .api-target {
@@ -1063,66 +1292,109 @@
       }
 
       .api-target[vl-effect="hover-card-fan"].api-hover-fan-demo {
-        min-height: 525px;
-        padding: 0.7rem;
+        --vl-hover-fan-card-width: 7.25rem;
+        --vl-hover-fan-card-height: 10.5rem;
+        --vl-hover-fan-gap: 0.55rem;
+        --vl-hover-fan-angle: 22deg;
+        --vl-hover-fan-perspective: 920px;
+        min-height: 13.5rem;
+        padding: 1rem 0.75rem;
         display: flex;
         flex-wrap: nowrap;
-        align-items: stretch;
+        align-items: center;
         justify-content: center;
+        gap: var(--vl-hover-fan-gap);
+        overflow: visible;
         text-align: initial;
+        place-items: unset;
         background:
           radial-gradient(circle at 50% 0%, color-mix(in oklch, var(--vl-color-primary) 12%, transparent), transparent 62%),
           color-mix(in oklch, var(--vl-bg-main) 88%, transparent);
-        transition: all ease 0.3s;
       }
 
-      .api-target[vl-effect="hover-card-fan"].api-hover-fan-demo {
-        --vl-hover-fan-card-width: clamp(5.4rem, 30%, 16.8rem);
-        --vl-hover-fan-card-height: 11.2rem;
-        --vl-hover-fan-gap: 0.58rem;
-        --vl-hover-fan-angle: 26deg;
-      }
-
-      .api-hover-fan-demo > button {
+      .api-target[vl-effect="hover-card-fan"].api-hover-fan-demo > button {
         appearance: none;
         -webkit-appearance: none;
         font: inherit;
-        padding: 0.92rem;
+        margin: 0;
+        padding: 0.75rem;
+        flex: 0 0 var(--vl-hover-fan-card-width);
+        width: var(--vl-hover-fan-card-width);
+        min-width: var(--vl-hover-fan-card-width);
+        max-width: var(--vl-hover-fan-card-width);
+        border: none;
+        background: transparent;
+        cursor: pointer;
       }
 
       .api-hover-fan-demo .vl-hover-fan-index {
-        width: 5.4rem;
-        min-width: 5.4rem;
-        font-size: 2.45rem;
+        width: 4.25rem;
+        min-width: 4.25rem;
+        font-size: 2rem;
       }
 
       .api-hover-fan-demo .vl-hover-fan-label {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
+      }
+
+      .api-target.api-hover-stack-demo {
+        position: relative;
+        display: block;
+        min-height: 12.5rem;
+        padding: 1.5rem 1rem;
+        overflow: visible;
+        text-align: initial;
+        place-items: unset;
+        cursor: pointer;
+        background:
+          radial-gradient(circle at 50% 100%, color-mix(in oklch, var(--vl-color-primary) 10%, transparent), transparent 55%),
+          color-mix(in oklch, var(--vl-bg-main) 86%, transparent);
+      }
+
+      .api-hover-stack-demo .api-hover-stack-layer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-inline: auto;
+        width: min(88%, 11rem);
+        min-height: 3.4rem;
+        display: grid;
+        place-content: center;
+        border-radius: 0.7rem;
+        border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 68%, transparent);
+        background: color-mix(in oklch, var(--vl-bg-surface-elevated) 88%, transparent);
+        box-shadow: 0 8px 20px color-mix(in oklch, black 18%, transparent);
+        font-family: var(--vl-font-family-display);
+        font-size: 0.92rem;
+        letter-spacing: 0.04em;
+        color: var(--vl-text-primary);
+        z-index: 1;
+      }
+
+      .api-hover-stack-demo .api-hover-stack-layer:nth-child(1) {
+        top: 1.1rem;
+        z-index: 1;
+      }
+
+      .api-hover-stack-demo .api-hover-stack-layer:nth-child(2) {
+        top: 2.35rem;
+        z-index: 2;
+      }
+
+      .api-hover-stack-demo .api-hover-stack-layer:nth-child(3) {
+        top: 3.6rem;
+        z-index: 3;
       }
 
       .api-grid.api-grid--hover-cards {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(220px, 0.95fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: stretch;
+        gap: clamp(0.75rem, 1.8vw, 1rem);
       }
 
-      .api-grid--hover-cards .api-card--hover-fan {
-        grid-column: 1 / span 2;
-        grid-row: 1 / span 2;
-      }
-
-      .api-grid--hover-cards .api-card--hover-stack {
-        grid-column: 3;
-        grid-row: 1;
-      }
-
-      .api-grid--hover-cards .api-card--hover-cross {
-        grid-column: 3;
-        grid-row: 2;
-      }
-
+      .api-grid--hover-cards .api-card--hover-fan,
       .api-grid--hover-cards .api-card--hover-duotone {
         grid-column: 1 / -1;
-        grid-row: 3;
       }
 
       .api-target[vl-effect="duotone"].api-duotone-demo {
@@ -1835,29 +2107,42 @@
           grid-row: auto;
         }
         .api-controls {
-          width: calc(100vw - 1rem);
-          border-radius: 12px;
-          padding: 0.45rem;
+          width: calc(100vw - 0.75rem);
+          border-radius: 10px;
+          padding: 0.34rem;
         }
         .api-controls-row {
-          gap: 0.36rem;
+          flex-wrap: wrap;
+          gap: 0.32rem;
+        }
+        .api-controls-readout {
+          flex: 1 1 100%;
+          order: -1;
+        }
+        .api-live-hint {
+          white-space: normal;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+        .api-controls-sliders {
+          flex: 1 1 100%;
+          flex-wrap: wrap;
         }
         .api-selected {
-          transform: translate(-0.12rem, calc(-100% + 0.34rem));
-          max-width: calc(100vw - 3rem);
-          overflow: hidden;
-          text-overflow: ellipsis;
+          transform: translate(-0.1rem, calc(-100% + 0.3rem));
+          max-width: calc(100vw - 2.5rem);
         }
         .api-runtime-commands {
           width: 100%;
         }
         .api-control {
           min-width: max-content;
-          padding: 0.16rem 0.22rem;
+          padding: 0.12rem 0.18rem;
         }
         .api-control .vl-range {
-          width: 84px;
-          max-width: 84px;
+          width: 72px;
+          max-width: 72px;
         }
         .api-hero-inner { grid-template-columns: minmax(0, 1fr); }
         .api-hero-title { max-width: 100%; }
@@ -2231,5 +2516,158 @@
 
   .vl-footer__meta {
     justify-content: flex-start;
+  }
+}
+
+/* Catalog hardening — Engine/Skins lanes + scene-engine demo */
+.api-runtime-disclaimer {
+  margin: 0;
+  color: var(--vl-text-secondary);
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.api-lanes {
+  margin: 0 0 1.25rem;
+}
+
+.api-lanes__inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.api-lane {
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 65%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in oklch, var(--vl-bg-surface) 88%, transparent);
+  padding: 1rem 1.1rem;
+}
+
+.api-lane--engine {
+  border-color: color-mix(in oklch, var(--vl-color-primary) 35%, transparent);
+}
+
+.api-lane--skins {
+  border-color: color-mix(in oklch, var(--vl-color-secondary) 30%, transparent);
+}
+
+.api-lane__kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vl-text-muted);
+}
+
+.api-lane__title {
+  margin: 0 0 0.45rem;
+  font-family: var(--vl-font-family-display);
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+.api-lane__body {
+  margin: 0;
+  color: var(--vl-text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.api-scene-engine-demo {
+  grid-column: 1 / -1;
+}
+
+.api-scene-engine-track {
+  margin-top: 0.75rem;
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 70%, transparent);
+  background:
+    radial-gradient(circle at 20% 20%, color-mix(in oklch, var(--vl-color-primary) 16%, transparent), transparent 45%),
+    color-mix(in oklch, var(--vl-bg-main) 92%, transparent);
+  overflow: clip;
+}
+
+.api-scene-engine-stage {
+  display: grid;
+  place-content: center;
+  gap: 0.75rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.api-scene-engine-kicker {
+  margin: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--vl-text-muted);
+}
+
+.api-scene-engine-title {
+  margin: 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  line-height: 1;
+}
+
+.api-scene-engine-card {
+  margin: 0 auto;
+  max-width: 28rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 78%, transparent);
+  color: var(--vl-text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.api-scene-engine-track--compact {
+  min-block-size: auto;
+}
+
+.api-scene-engine-track--compact[vl-pin="2"] {
+  min-block-size: calc(2 * 100svh);
+}
+
+.api-scene-engine-track--auto {
+  min-block-size: auto;
+  padding-block: 0.5rem;
+}
+
+.api-scene-engine-track--auto [vl-stage] {
+  position: static;
+  min-block-size: auto;
+  inset-block-start: auto;
+}
+
+.api-scene-engine-track--auto .api-scene-engine-stage {
+  padding: 1rem;
+}
+
+.api-scene-engine-overlap,
+.api-scene-engine-auto {
+  grid-column: 1 / -1;
+}
+
+.api-scroll-media {
+  min-height: 5.5rem;
+  display: grid;
+  place-content: center;
+  background:
+    linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 22%, transparent), color-mix(in oklch, var(--vl-bg-surface-elevated) 80%, transparent));
+  border-radius: inherit;
+}
+
+.api-scroll-highlight {
+  font-family: var(--vl-font-family-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 820px) {
+  .api-lanes__inner {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

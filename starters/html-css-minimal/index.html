@@ -18,19 +18,22 @@
     </header>
 
     <main id="content" class="starter-main">
-      <section class="starter-hero" vl-scene="cinematic-hero" vl-effect="fade-up" vl-timeline="view" vl-once>
-        <p class="starter-kicker">Zero-JS Motion</p>
-        <h1>Start with HTML + CSS only.</h1>
-        <p>
-          This section uses canonical Velora attributes and works without any
-          JavaScript animation runtime.
-        </p>
-        <p class="starter-note">
-          Motion-safe by default: users with reduced-motion preferences see non-animated content states.
-        </p>
-        <div class="starter-actions" vl-children="orchestrate" vl-stagger="120ms">
-          <a class="vl-btn vl-btn--primary" href="#">Primary action</a>
-          <a class="vl-btn vl-btn--ghost" href="#">Secondary action</a>
+      <section class="starter-hero" vl-scene vl-timeline="view" vl-once>
+        <div vl-stage class="starter-stage">
+          <p class="starter-kicker" vl-enter="fade-up" vl-act="1">Zero-JS Motion</p>
+          <h1 vl-enter="clip-rise" vl-act="1">Start with HTML + CSS only.</h1>
+          <p vl-enter="fade-up" vl-act="2">
+            Track / stage / acts work without a JavaScript animation runtime.
+            This starter uses the full Velora convenience import (theme + motion).
+            For Tailwind hosts, import <code>@velora/css/motion-core</code> instead.
+          </p>
+          <p class="starter-note">
+            Motion-safe by default: users with reduced-motion preferences see non-animated content states.
+          </p>
+          <div class="starter-actions">
+            <a class="vl-btn vl-btn--primary" href="#" vl-enter="fade-up" vl-act="3">Primary action</a>
+            <a class="vl-btn vl-btn--ghost" href="#" vl-enter="fade-up" vl-act="3">Secondary action</a>
+          </div>
         </div>
       </section>
 

@@ -1,0 +1,1114 @@
+/**
+ * showcase-hub.css
+ * Hub pages: discipline overviews, tool indexes, playgrounds.
+ * Merged from showcase-hub-pages.css + showcase-tools-hub.css
+ */
+
+/**
+ * Framework-facing hub pages in apps/showcase/pages/*
+ * These pages summarize a discipline area and point into Library pages
+ * while demonstrating Velora layout, surfaces and motion primitives.
+ */
+
+.hub-page {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hub-hero {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    min-height: clamp(24rem, 55vw, 34rem);
+    padding: clamp(2rem, 5vw, 3rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 75%, transparent);
+    background:
+        radial-gradient(circle at top right, color-mix(in oklch, var(--vl-color-primary) 14%, transparent), transparent 36%),
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--vl-bg-surface-elevated) 84%, transparent),
+            color-mix(in oklch, var(--vl-bg-surface) 96%, transparent)
+        );
+    overflow: clip;
+}
+
+.hub-hero__copy {
+    display: grid;
+    align-content: end;
+    gap: 1rem;
+}
+
+.hub-hero__title {
+    max-width: 10ch;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+}
+
+.hub-hero__lead {
+    max-width: 44rem;
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.hub-chip-link,
+.hub-hero__meta,
+.hub-step-card,
+.hub-reference-card,
+.hub-note {
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 75%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+.hub-chip-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    color: var(--vl-text-secondary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    transition:
+        transform var(--vl-transition-fast, 0.18s ease),
+        border-color var(--vl-transition-fast, 0.18s ease),
+        color var(--vl-transition-fast, 0.18s ease);
+}
+
+.hub-chip-link:hover {
+    transform: translateY(-1px);
+    color: var(--vl-text-primary);
+    border-color: color-mix(in oklch, var(--vl-color-primary) 46%, var(--vl-border-subtle));
+}
+
+.hub-hero__meta {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1rem 1.1rem;
+    align-content: start;
+}
+
+.hub-hero__meta-label,
+.hub-step-card__eyebrow,
+.hub-section__eyebrow {
+    margin: 0;
+    color: var(--vl-text-muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.hub-hero__meta-list {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--vl-text-secondary);
+    line-height: 1.55;
+}
+
+.hub-hero__meta-list li + li {
+    margin-top: 0.7rem;
+}
+
+.hub-grid,
+.hub-reference-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.hub-step-card,
+.hub-reference-card,
+.hub-note {
+    padding: 1.1rem 1.2rem;
+}
+
+.hub-step-card {
+    display: grid;
+    gap: 0.75rem;
+    min-height: 13rem;
+}
+
+.hub-step-card__title {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.hub-step-card__body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-reference-section {
+    display: grid;
+    gap: 1rem;
+    padding-top: 0.5rem;
+}
+
+.hub-reference-card {
+    display: grid;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.hub-reference-card:hover {
+    transform: translateY(-2px);
+}
+
+.hub-reference-card__title {
+    margin: 0;
+    color: var(--vl-text-primary);
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.hub-reference-card__body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-note {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.hub-note p {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+}
+
+.hub-page--motion .hub-hero {
+    background:
+        radial-gradient(circle at top right, color-mix(in oklch, var(--vl-color-primary) 20%, transparent), transparent 34%),
+        radial-gradient(circle at bottom left, color-mix(in oklch, var(--vl-color-info, var(--vl-color-primary)) 16%, transparent), transparent 40%),
+        linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 84%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+}
+
+.hub-page--color .hub-hero {
+    background:
+        linear-gradient(135deg, color-mix(in oklch, var(--vl-color-primary) 18%, transparent), transparent 42%),
+        radial-gradient(circle at right center, color-mix(in oklch, var(--vl-color-success, var(--vl-color-primary)) 18%, transparent), transparent 36%),
+        linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 82%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+}
+
+.hub-page--components .hub-hero,
+.hub-page--tools .hub-hero {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.hub-page--components .hub-grid {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.hub-page--components .hub-step-card,
+.hub-page--tools .hub-note {
+    background:
+        linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface-elevated) 86%, transparent), color-mix(in oklch, var(--vl-bg-surface) 96%, transparent));
+}
+
+.hub-page--scenes .hub-hero {
+    min-height: clamp(26rem, 58vw, 38rem);
+}
+
+.hub-page--scenes .hub-hero__title,
+.hub-page--core .hub-hero__title {
+    max-width: 12ch;
+}
+
+.hub-page--typography .hub-hero__title {
+    max-width: 14ch;
+    letter-spacing: -0.06em;
+}
+
+.hub-page--typography .hub-step-card__title {
+    font-size: clamp(1.35rem, 2.2vw, 1.95rem);
+}
+
+/* ── Rich content sections ─────────────────────────────── */
+
+.hub-split {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.hub-split__copy { display: grid; gap: 1rem; align-content: start; }
+.hub-split__stage { display: grid; gap: 1rem; }
+
+.hub-section-title {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.hub-section-body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.65;
+    max-width: 52rem;
+}
+
+.hub-section-body + .hub-section-body { margin-top: 0.5rem; }
+
+/* Spec table */
+.hub-spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.hub-spec-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.hub-spec-table th {
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    color: var(--vl-text-muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 75%, transparent);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 88%, transparent);
+}
+
+.hub-spec-table td {
+    padding: 0.55rem 0.8rem;
+    color: var(--vl-text-secondary);
+    border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+}
+
+.hub-spec-table tbody tr:hover td {
+    background: color-mix(in oklch, var(--vl-color-primary) 4%, transparent);
+}
+
+.hub-spec-table code {
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.8rem;
+    color: var(--vl-text-primary);
+}
+
+/* Code block */
+.hub-code-block {
+    padding: 1rem 1.2rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+    border-radius: var(--vl-radius-lg, 0.75rem);
+    background: color-mix(in oklch, var(--vl-bg-inset) 80%, var(--vl-bg-main));
+    overflow-x: auto;
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--vl-text-secondary);
+    tab-size: 2;
+}
+
+.hub-code-block pre { margin: 0; }
+
+.hub-code-block .hl-kw   { color: var(--vl-color-primary); }
+.hub-code-block .hl-fn   { color: color-mix(in oklch, var(--vl-color-secondary) 80%, white); }
+.hub-code-block .hl-str  { color: color-mix(in oklch, var(--vl-color-accent, var(--vl-color-secondary)) 80%, white); }
+.hub-code-block .hl-num  { color: color-mix(in oklch, var(--vl-color-primary) 70%, white); }
+.hub-code-block .hl-cmt  { color: var(--vl-text-muted); font-style: italic; }
+
+/* Live demo stage */
+.hub-demo-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: clamp(14rem, 28vw, 22rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 55%, transparent);
+    border-radius: var(--vl-radius-xl, 1rem);
+    background:
+        radial-gradient(circle at 50% 50%, color-mix(in oklch, var(--vl-color-primary) 5%, transparent), transparent 60%),
+        color-mix(in oklch, var(--vl-bg-surface-elevated) 70%, transparent);
+    overflow: hidden;
+}
+
+.hub-demo-stage__label {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.9rem;
+    color: var(--vl-text-muted);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+/* Swatch row */
+.hub-swatch-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.hub-swatch {
+    flex: 1 1 6rem;
+    min-width: 5rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.hub-swatch__color {
+    height: clamp(4rem, 8vw, 6rem);
+    border-radius: var(--vl-radius-md, 0.5rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+}
+
+.hub-swatch__name {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: 0.82rem;
+    color: var(--vl-text-primary);
+    letter-spacing: -0.01em;
+}
+
+.hub-swatch__meta {
+    margin: 0;
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.7rem;
+    color: var(--vl-text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* Elevation card stack */
+.hub-elevation-stack {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.hub-elevation-tier {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--vl-radius-md, 0.5rem);
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+    transition: transform var(--vl-transition-fast, 0.18s ease);
+}
+
+.hub-elevation-tier:hover {
+    transform: translateY(-2px);
+}
+
+.hub-elevation-tier__label {
+    margin: 0;
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.72rem;
+    color: var(--vl-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    min-width: 2.5rem;
+}
+
+.hub-elevation-tier__name {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: 0.9rem;
+    color: var(--vl-text-primary);
+    flex: 1;
+}
+
+.hub-elevation-tier__value {
+    margin: 0;
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.75rem;
+    color: var(--vl-text-secondary);
+}
+
+/* Bento grid — 2×2/3×2 mixed cells */
+.hub-bento {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hub-bento__cell {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 65%, transparent);
+    border-radius: var(--vl-radius-lg, 0.75rem);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+.hub-bento__cell--wide { grid-column: 1 / -1; }
+.hub-bento__cell--tall { grid-row: span 2; }
+
+.hub-bento__cell-eyebrow {
+    margin: 0;
+    color: var(--vl-text-muted);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.hub-bento__cell-title {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.hub-bento__cell-body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+/* Blockquote */
+.hub-blockquote {
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--vl-color-primary);
+    background: color-mix(in oklch, var(--vl-color-primary) 4%, transparent);
+    border-radius: 0 var(--vl-radius-md, 0.5rem) var(--vl-radius-md, 0.5rem) 0;
+}
+
+.hub-blockquote p {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--vl-text-primary);
+    letter-spacing: -0.01em;
+}
+
+.hub-blockquote cite {
+    display: block;
+    margin-top: 0.6rem;
+    font-style: normal;
+    font-size: 0.78rem;
+    color: var(--vl-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Metric row */
+.hub-metric-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.hub-metric {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.hub-metric__value {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--vl-text-primary);
+}
+
+.hub-metric__label {
+    margin: 0;
+    font-size: 0.72rem;
+    color: var(--vl-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* Pillar card (personality traits, principles) */
+.hub-pillar {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.25rem 1.3rem;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 65%, transparent);
+    border-radius: var(--vl-radius-lg, 0.75rem);
+    background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+    transition:
+        transform var(--vl-transition-fast, 0.18s ease),
+        border-color var(--vl-transition-fast, 0.18s ease);
+}
+
+.hub-pillar:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklch, var(--vl-color-primary) 40%, var(--vl-border-subtle));
+}
+
+.hub-pillar__number {
+    margin: 0;
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.68rem;
+    color: var(--vl-color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.hub-pillar__title {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.hub-pillar__body {
+    margin: 0;
+    color: var(--vl-text-secondary);
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+@media (min-width: 860px) {
+    .hub-hero {
+        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+        align-items: end;
+    }
+
+    .hub-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .hub-reference-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    }
+
+    .hub-split {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        align-items: start;
+    }
+
+    .hub-bento {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* ── Tools-hub (merged from showcase-tools-hub.css) ─────────────────────── */
+
+/* =========================================================================
+   Velora — Creation Suite CSS
+   Hub page styles (.tsh-*) + shared tools dock (.vl-tools-dock) injected
+   on every tool page.
+   ========================================================================= */
+
+/* ── Hub page shell ─────────────────────────────────────────────────────── */
+body {
+  background:
+    radial-gradient(1100px 500px at 70% -5%, color-mix(in oklch, var(--vl-color-primary) 13%, transparent), transparent),
+    radial-gradient(800px 600px at -5% 70%, color-mix(in oklch, var(--vl-color-accent) 11%, transparent), transparent),
+    var(--vl-bg-main);
+  background-attachment: fixed;
+  padding-bottom: clamp(6rem, 10vh, 9rem);
+}
+
+.tsh-shell {
+  max-width: min(1480px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 6.5rem 0 3rem;
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+.tsh-hero {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 4rem;
+  max-width: 72ch;
+}
+
+.tsh-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.tsh-kicker-line {
+  width: 2.4rem;
+  height: 1px;
+  background: linear-gradient(90deg, color-mix(in oklch, var(--vl-color-primary) 70%, transparent), transparent);
+}
+
+.tsh-kicker-text {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--vl-text-muted);
+}
+
+.tsh-title {
+  margin: 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.tsh-title em {
+  font-style: normal;
+  color: color-mix(in oklch, var(--vl-color-secondary) 78%, var(--vl-text-primary));
+}
+
+.tsh-lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--vl-text-secondary);
+  font-size: 1rem;
+  line-height: 1.68;
+}
+
+.tsh-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.tsh-count {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--vl-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tsh-count strong {
+  font-size: 1.4rem;
+  font-family: var(--vl-font-family-display);
+  letter-spacing: -0.04em;
+  color: var(--vl-color-primary);
+  font-weight: 700;
+}
+
+/* ── Section label ──────────────────────────────────────────────────────── */
+.tsh-section-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.tsh-section-label::before,
+.tsh-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
+}
+
+.tsh-section-label span {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--vl-text-muted);
+  white-space: nowrap;
+}
+
+/* ── Tool cards grid ────────────────────────────────────────────────────── */
+.tsh-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 68rem) {
+  .tsh-tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 44rem) {
+  .tsh-tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Featured first card */
+.tsh-tool-card--featured {
+  grid-column: span 2;
+}
+
+@media (max-width: 44rem) {
+  .tsh-tool-card--featured {
+    grid-column: span 1;
+  }
+}
+
+/* ── Single tool card ───────────────────────────────────────────────────── */
+.tsh-tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.6rem;
+  border-radius: 20px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+}
+
+.tsh-tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px 300px at var(--tsh-grad-x, 50%) var(--tsh-grad-y, -10%),
+    color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 12%, transparent),
+    transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.tsh-tool-card:hover {
+  border-color: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 46%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 18%, transparent),
+    0 12px 40px color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 14%, transparent);
+  transform: translateY(-2px);
+}
+
+.tsh-tool-card:hover::before {
+  opacity: 1;
+}
+
+.tsh-tool-card:focus-visible {
+  outline: 2px solid color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 70%, transparent);
+  outline-offset: 3px;
+}
+
+/* ── Card header ────────────────────────────────────────────────────────── */
+.tsh-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.tsh-card-num {
+  font-family: var(--vl-font-family-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 18%, transparent);
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.tsh-tool-card:hover .tsh-card-num {
+  color: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 36%, transparent);
+}
+
+.tsh-card-badges {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tsh-badge {
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 38%, transparent);
+  background: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 12%, transparent);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.54rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 80%, var(--vl-text-primary));
+}
+
+/* ── Card body ──────────────────────────────────────────────────────────── */
+.tsh-card-title {
+  margin: 0;
+  font-family: var(--vl-font-family-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--vl-text-primary);
+}
+
+.tsh-tool-card--featured .tsh-card-title {
+  font-size: 2rem;
+}
+
+.tsh-card-desc {
+  margin: 0;
+  color: var(--vl-text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.62;
+  flex: 1;
+}
+
+.tsh-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.32rem;
+}
+
+.tsh-card-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.6rem;
+  color: var(--vl-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.tsh-card-features li::before {
+  content: '—';
+  color: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 60%, transparent);
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+
+/* ── Card CTA ───────────────────────────────────────────────────────────── */
+.tsh-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: color-mix(in oklch, var(--tsh-accent, var(--vl-color-primary)) 80%, var(--vl-text-primary));
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+  transition: gap 0.18s;
+}
+
+.tsh-tool-card:hover .tsh-card-cta {
+  gap: 0.7rem;
+}
+
+/* ── About section ──────────────────────────────────────────────────────── */
+.tsh-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 50rem) {
+  .tsh-about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tsh-about-card {
+  padding: 1.4rem;
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 56%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 68%, transparent);
+}
+
+.tsh-about-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.tsh-about-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--vl-font-family-display);
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.tsh-about-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--vl-text-secondary);
+  line-height: 1.6;
+}
+
+/* =========================================================================
+   TOOLS DOCK — shared across all 5 tool pages
+   Fixed floating launcher in the bottom-right corner.
+   ========================================================================= */
+
+.vl-tools-dock {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/* Panel (hidden by default) */
+.vl-tools-dock__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.7rem;
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 60%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 92%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 40px color-mix(in oklch, black 28%, transparent);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.6rem) scale(0.97);
+  transform-origin: bottom right;
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+  min-width: 180px;
+}
+
+.vl-tools-dock:hover .vl-tools-dock__panel,
+.vl-tools-dock:focus-within .vl-tools-dock__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Panel header */
+.vl-tools-dock__heading {
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--vl-text-muted);
+  padding: 0 0.4rem 0.3rem;
+  border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+  margin-bottom: 0.2rem;
+}
+
+/* Tool links in panel */
+.vl-tools-dock__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.38rem 0.55rem;
+  border-radius: 9px;
+  text-decoration: none;
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: background 0.13s, color 0.13s;
+  white-space: nowrap;
+}
+
+.vl-tools-dock__item:hover {
+  background: color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
+  color: var(--vl-text-primary);
+}
+
+.vl-tools-dock__item.is-active {
+  color: var(--vl-text-primary);
+  background: color-mix(in oklch, var(--vl-color-primary) 18%, transparent);
+}
+
+.vl-tools-dock__item-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+  flex-shrink: 0;
+  transition: background 0.13s;
+}
+
+.vl-tools-dock__item.is-active .vl-tools-dock__item-dot {
+  background: var(--vl-color-primary);
+}
+
+/* Hub link */
+.vl-tools-dock__hub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 0.55rem;
+  margin-top: 0.2rem;
+  border-top: 1px solid color-mix(in oklch, var(--vl-border-subtle) 40%, transparent);
+  border-radius: 9px;
+  text-decoration: none;
+  color: color-mix(in oklch, var(--vl-color-secondary) 80%, var(--vl-text-primary));
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  gap: 0.4rem;
+  transition: color 0.13s, background 0.13s;
+}
+
+.vl-tools-dock__hub:hover {
+  background: color-mix(in oklch, var(--vl-color-secondary) 14%, transparent);
+  color: var(--vl-text-primary);
+}
+
+/* ── Trigger button ─────────────────────────────────────────────────────── */
+.vl-tools-dock__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.52rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--vl-color-primary) 44%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface-elevated) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--vl-text-primary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 0 4px 16px color-mix(in oklch, black 20%, transparent);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.vl-tools-dock__trigger:hover {
+  border-color: color-mix(in oklch, var(--vl-color-primary) 70%, transparent);
+  box-shadow: 0 6px 24px color-mix(in oklch, var(--vl-color-primary) 16%, transparent);
+  transform: translateY(-1px);
+}
+
+.vl-tools-dock__icon {
+  font-size: 0.8rem;
+  color: var(--vl-color-primary);
+}
+
+/* ── Hub page — Tools nav link highlight ─────────────────────────────────── */
+.vl-nav__link--tools {
+  color: color-mix(in oklch, var(--vl-color-primary) 90%, var(--vl-text-primary));
+}

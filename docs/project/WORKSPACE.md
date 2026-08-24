@@ -9,12 +9,15 @@ This file is the practical map of the current project structure and what is cons
 - `docs/` (repo root): **Markdown source of truth** — workspace map, contract matrix, playbooks, agent handbook. Authoritative for governance text and cross-links to catalogs.
 - `apps/docs/`: **Astro documentation site** — published guides; must stay aligned with `docs/project/CONTRACT.md` and the showcase catalogs.
 
-### Surface intent (product boundary)
+## Product surfaces (host-agnostic)
 
-- `packages/css` = framework product (kit CSS oficial).
-- `apps/showcase` = site de demonstração e storytelling técnico + catálogos vivos do contrato.
+- `packages/css` motion-core = framework product (kit CSS oficial / motion language).
+- `@velora/css/theme` = optional Velora visual skin + scene look recipes.
+- `apps/showcase` = site de demonstração e storytelling técnico + catálogos vivos do contrato (reference UI).
 - `docs/` (Markdown) = contrato escrito, governança e instruções para agentes.
 - `apps/docs` = documentação navegável (Astro); consome o mesmo contrato, não o substitui.
+
+Showcase-only CSS (`04e-showcase-elevation-patterns`, `08-showcase-home`) must not ship in the default `@velora/css` consumer path.
 
 See also: `PRODUCT_SURFACES_PLAN.md` and `SHOWCASE_PAGE_PLAYBOOK.md`.
 

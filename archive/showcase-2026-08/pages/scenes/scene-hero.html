@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scene Story | Velora</title>
+    <title>Scene Hero | Velora</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="stylesheet" href="/css/velora.css" />
     <link rel="stylesheet" href="/css/showcase.css" />
     <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
-    <meta name="description" content="Story scenes use scroll-driven narrative: pinning sections, progressive disclosure, and typography rhythm for long reads." />
+    <meta name="description" content="Hero scenes establish brand and value proposition with large type, media, and entry motion within the first viewport." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <style>
       @view-transition { navigation: auto; }
@@ -20,11 +20,11 @@
       .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
       .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
       /* ── Page section view-timelines (consumed by the shared bussola) ── */
-      #story-hero   { view-timeline-name: --tl-1; view-timeline-axis: block; }
-      #story-scroll { view-timeline-name: --tl-2; view-timeline-axis: block; }
-      #story-persist { view-timeline-name: --tl-3; view-timeline-axis: block; }
-      #story-ref    { view-timeline-name: --tl-4; view-timeline-axis: block; }
-      #story-payoff { view-timeline-name: --tl-5; view-timeline-axis: block; }
+      #hero-hero      { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #hero-structure { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #hero-motion    { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      #hero-reference { view-timeline-name: --tl-4; view-timeline-axis: block; }
+      #hero-payoff    { view-timeline-name: --tl-5; view-timeline-axis: block; }
     </style>
 
   <script src="/js/showcase-state.js"></script>
@@ -32,24 +32,24 @@
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
     <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
-      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;story</span>
-      <a class="vl-bussola__stop" href="#story-hero">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;scenes</span>
+      <a class="vl-bussola__stop" href="#hero-hero">
         <span class="vl-bussola__label">Intro</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
-      <a class="vl-bussola__stop" href="#story-scroll">
-        <span class="vl-bussola__label">Scroll</span>
+      <a class="vl-bussola__stop" href="#hero-structure">
+        <span class="vl-bussola__label">Structure</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
-      <a class="vl-bussola__stop" href="#story-persist">
-        <span class="vl-bussola__label">Persist</span>
+      <a class="vl-bussola__stop" href="#hero-motion">
+        <span class="vl-bussola__label">Motion</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
-      <a class="vl-bussola__stop" href="#story-ref">
+      <a class="vl-bussola__stop" href="#hero-reference">
         <span class="vl-bussola__label">Reference</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
-      <a class="vl-bussola__stop" href="#story-payoff">
+      <a class="vl-bussola__stop" href="#hero-payoff">
         <span class="vl-bussola__label">Apply</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
@@ -152,188 +152,202 @@
       </div>
     </header>
     <main id="content" class="vl-main">
-      <div class="showcase-ref-page showcase-ref-page--scene-story showcase-ref-page--cinema">
+      <div class="showcase-ref-page showcase-ref-page--scene-hero showcase-ref-page--cinema">
 
         <!-- ═══ Scene 01 · Hero ═══════════════════════════════════════════ -->
-        <section id="story-hero" class="showcase-cinema-scene showcase-cinema-scene--story-hero" vl-scene="cinematic-hero" data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive" vl-effect="reveal-cinematic" vl-timeline="view" vl-once>
+        <section id="hero-hero" class="showcase-cinema-scene showcase-cinema-scene--hero-hero" vl-scene="cinematic-hero" data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive" vl-effect="reveal-cinematic" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="120ms">
               <div class="showcase-ref-tokens-kicker">
                 <span class="showcase-ref-tokens-kicker__line"></span>
-                <p class="showcase-ref-kicker">Scene demo // Story</p>
+                <p class="showcase-ref-kicker">Scene demo // Hero</p>
               </div>
-              <h1 class="showcase-ref-title">Scroll-driven narrative with <em>progressive disclosure</em>.</h1>
+              <h1 class="showcase-ref-title">Brand and value in the <em>first viewport</em>.</h1>
               <p class="showcase-ref-lead">
-                Story scenes tie reveals to scroll position instead of timeouts, using
-                pinning sections and typography rhythm for immersive long-form reads.
+                Hero scenes establish identity with large type, media, and entry motion &mdash;
+                all within the first fold so visitors get the message immediately.
+                Named presets here are Velora-look recipes; the host-agnostic engine is
+                track / stage / acts on <a href="/pages/scenes/scene-timeline.html">Scene Timeline</a>.
               </p>
               <div class="showcase-ref-tokens-actions">
-                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/scroll-driven-demos.html">Scroll Reveal Showcase</a>
-                <a class="showcase-ref-tokens-button" href="/pages/scenes/scroll-reveal.html">Scroll Reveal Demo</a>
+                <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/core/landing.html">Landing Reference</a>
+                <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-timeline.html">Scene Timeline</a>
               </div>
             </div>
 
-            <div class="showcase-cinema-stage showcase-cinema-stage--story-hero" aria-label="Story scene overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="80ms">
+            <div class="showcase-cinema-stage showcase-cinema-stage--hero-hero vl-frame-cinematic" aria-label="Hero scene overview" vl-effect="rise-3d" vl-once vl-children="stagger" vl-stagger="80ms">
               <div class="showcase-cinema-material-stack">
-                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent vl-surface-premium" vl-effect="gradient-sweep">
-                  <span>Scroll</span>
-                  <strong>Ranges, not timeouts</strong>
+                <article class="showcase-cinema-material-card showcase-cinema-material-card--accent vl-depth-card" vl-effect="gradient-sweep">
+                  <span>Structure</span>
+                  <strong>Kicker, headline, lead, CTA</strong>
                 </article>
                 <article class="showcase-cinema-material-card showcase-cinema-material-card--base vl-depth-card" vl-effect="border-trace">
-                  <span>Persist</span>
-                  <strong>Nav + progress visible</strong>
+                  <span>Motion</span>
+                  <strong>Entry reveals via vl-effect</strong>
                 </article>
                 <article class="showcase-cinema-material-card showcase-cinema-material-card--ink" vl-effect="hover-depth-press">
                   <span>Reference</span>
-                  <strong>Scroll-driven reveal spec</strong>
+                  <strong>Editorial landing spec alignment</strong>
                 </article>
               </div>
               <div class="showcase-cinema-status">
-                <span>Scroll-driven</span>
-                <span>Pinned sections</span>
-                <span>Progressive</span>
+                <span>First fold</span>
+                <span>Large type</span>
+                <span>Entry motion</span>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══ Scene 02 · Scroll ═════════════════════════════════════════ -->
-        <section id="story-scroll" class="showcase-cinema-scene showcase-cinema-scene--story-scroll" vl-scene="sticky-story" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <!-- ═══ Scene 02 · Structure ══════════════════════════════════════ -->
+        <section id="hero-structure" class="showcase-cinema-scene showcase-cinema-scene--hero-structure" vl-scene="glass-bento" data-vl-scene-density="balanced" vl-effect="fade-up" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-scene__header" vl-children="orchestrate" vl-stagger="100ms">
               <div>
-                <p class="showcase-ref-kicker">Act I // Scroll</p>
-                <h2 class="showcase-cinema-heading">Tie reveals to scroll ranges, not timeouts.</h2>
+                <p class="showcase-ref-kicker">Act I // Structure</p>
+                <h2 class="showcase-cinema-heading">Kicker, headline, lead and primary CTA row define the hero anatomy.</h2>
               </div>
               <p class="showcase-ref-lead">
-                Story scenes use <code>vl-timeline="view"</code> so content appears as
-                the reader scrolls into range &mdash; no intersection observer JavaScript required.
+                Every hero follows the same four-part structure so the visual hierarchy
+                is predictable across editorial themes.
               </p>
             </div>
 
             <div class="showcase-cinema-swatch-wall" vl-children="stagger" vl-stagger="80ms">
               <article class="showcase-cinema-swatch showcase-cinema-swatch--accent" vl-effect="hover-prism">
-                <span>Technique</span>
-                <strong>View timeline</strong>
-                <small>CSS scroll-driven animation</small>
+                <span>Element</span>
+                <strong>Kicker</strong>
+                <small>Context line above headline</small>
               </article>
               <article class="showcase-cinema-swatch showcase-cinema-swatch--surface" vl-effect="hover-depth-press">
-                <span>Technique</span>
-                <strong>Scroll range</strong>
-                <small>Enter 0 % &ndash; cover 50 %</small>
+                <span>Element</span>
+                <strong>Headline</strong>
+                <small>Display-scale type for impact</small>
               </article>
               <article class="showcase-cinema-swatch showcase-cinema-swatch--panel" vl-effect="hover-card-stack">
-                <span>Technique</span>
-                <strong>Pin section</strong>
-                <small>Sticky header while scrolling</small>
+                <span>Element</span>
+                <strong>Lead</strong>
+                <small>Supporting paragraph at body scale</small>
               </article>
               <article class="showcase-cinema-swatch showcase-cinema-swatch--ink" vl-effect="hover-depth-press">
-                <span>Technique</span>
-                <strong>Progressive</strong>
-                <small>Fallback to static on no support</small>
+                <span>Element</span>
+                <strong>CTA row</strong>
+                <small>Primary + secondary actions</small>
               </article>
             </div>
-            <pre class="vl-code-block">&lt;section vl-effect="fade-up"
-         vl-timeline="view"
-         vl-range="entry 0% cover 50%"&gt;
-  &lt;!-- content reveals as reader scrolls into range --&gt;
-&lt;/section&gt;</pre>
-            <p class="vl-code-note">No intersection observer required &mdash; <code>vl-timeline="view"</code> maps to a native CSS <code>animation-timeline: view()</code> declaration.</p>
+            <pre class="vl-code-block">&lt;div vl-effect="fade-up" vl-timeline="view" vl-once&gt;
+  &lt;p class="vl-kicker"&gt;Context label&lt;/p&gt;
+  &lt;h1 class="vl-display"&gt;Primary headline&lt;/h1&gt;
+  &lt;p class="vl-lead"&gt;Supporting paragraph.&lt;/p&gt;
+  &lt;div class="vl-cta-row"&gt;
+    &lt;a class="vl-btn vl-btn--primary" href="#"&gt;Primary&lt;/a&gt;
+    &lt;a class="vl-btn vl-btn--ghost" href="#"&gt;Secondary&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+            <p class="vl-code-note"><code>vl-once</code> fires the reveal exactly one time &mdash; ideal for hero sections so it never replays on back-navigation.</p>
           </div>
         </section>
 
-        <!-- ═══ Scene 03 · Persist ════════════════════════════════════════ -->
-        <section id="story-persist" class="showcase-cinema-scene showcase-cinema-scene--story-persist" vl-scene="sticky-story" data-vl-scene-density="balanced" vl-effect="depth-enter" vl-timeline="view" vl-once>
+        <!-- ═══ Scene 03 · Motion ═════════════════════════════════════════ -->
+        <section id="hero-motion" class="showcase-cinema-scene showcase-cinema-scene--hero-motion" vl-scene="product-reveal" data-vl-scene-density="balanced" vl-effect="depth-enter" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
-              <p class="showcase-ref-kicker">Act II // Persistence</p>
-              <h2 class="showcase-cinema-heading">Keep nav and progress visible where appropriate.</h2>
+              <p class="showcase-ref-kicker">Act II // Motion</p>
+              <h2 class="showcase-cinema-heading">Entry reveals with <code>vl-effect</code> and view timelines.</h2>
               <p class="showcase-ref-lead">
-                Long story scenes benefit from persistent navigation rails and scroll progress indicators
-                so readers always know their position in the narrative.
+                Heroes use <code>fade-up</code> on the copy block and <code>rise-3d</code>
+                on the stage to create a sense of depth on first paint.
               </p>
             </div>
 
-            <div class="showcase-cinema-stage showcase-cinema-stage--story-persist" vl-effect="depth-push" vl-timeline="view" vl-once>
+            <div class="showcase-cinema-stage showcase-cinema-stage--hero-motion" vl-effect="depth-push" vl-timeline="view" vl-once>
               <div class="showcase-cinema-code">
-                <span>persistent rail</span>
-                <code>&lt;nav class="showcase-cinema-rail"&gt;</code>
-                <code>  &lt;a href="#story-scroll"&gt;Act I&lt;/a&gt;</code>
-                <code>  &lt;a href="#story-persist"&gt;Act II&lt;/a&gt;</code>
-                <code>&lt;/nav&gt;</code>
+                <span>hero entry</span>
+                <code>&lt;div vl-effect="fade-up" vl-timeline="view" vl-once&gt;</code>
+                <code>  &lt;!-- copy block --&gt;</code>
+                <code>&lt;/div&gt;</code>
+                <code>&lt;div vl-effect="rise-3d" vl-once&gt;</code>
+                <code>  &lt;!-- visual stage --&gt;</code>
+                <code>&lt;/div&gt;</code>
               </div>
               <div class="showcase-cinema-sidecard" vl-effect="hover-prism">
-                <span>Guideline</span>
-                <h3>Orientation beats decoration.</h3>
-                <p>A visible rail gives readers a progress map; decorative chrome can wait.</p>
+                <span>Tip</span>
+                <h3>vl-once ensures one play.</h3>
+                <p>Hero reveals should fire exactly once so they don&rsquo;t replay on back-navigation.</p>
               </div>
             </div>
           </div>
         </section>
 
         <!-- ═══ Scene 04 · Reference ══════════════════════════════════════ -->
-        <section id="story-ref" class="showcase-cinema-scene showcase-cinema-scene--story-ref" vl-scene="editorial-cinema" data-vl-scene-density="balanced" vl-effect="mask-sweep" vl-timeline="view" vl-once>
+        <section id="hero-reference" class="showcase-cinema-scene showcase-cinema-scene--hero-reference" vl-scene="editorial-cinema" data-vl-scene-density="balanced" vl-effect="mask-sweep" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--split">
             <div class="showcase-cinema-copy" vl-children="orchestrate" vl-stagger="100ms">
               <p class="showcase-ref-kicker">Act III // Reference</p>
-              <h2 class="showcase-cinema-heading">Align with scroll-driven reveal documentation.</h2>
+              <h2 class="showcase-cinema-heading">Match spacing and token use to the editorial landing spec.</h2>
               <p class="showcase-ref-lead">
-                The Library&rsquo;s scroll-driven reveal showcase defines exact range values,
-                easing curves, and fallback behaviour. Story scenes should match these specs.
+                The canonical landing page defines exact spacing tokens, type scales and media breakpoints.
+                Hero scenes should mirror those values for visual consistency.
               </p>
               <div class="showcase-cinema-chip-row">
-                <a class="showcase-ref-chip" href="/pages/motion/scroll-driven-demos.html">Scroll Reveal</a>
-                <a class="showcase-ref-chip" href="/pages/scenes/scroll-reveal.html">Demo</a>
+                <a class="showcase-ref-chip" href="/pages/core/landing.html">Landing</a>
+                <a class="showcase-ref-chip" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a>
               </div>
             </div>
 
-            <div class="showcase-cinema-stage showcase-cinema-stage--story-ref" vl-effect="spring-3d" vl-once>
-              <div class="showcase-cinema-architecture-stack-visual" vl-children="stagger" vl-stagger="120ms">
-                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--base" vl-effect="hover-depth-press">
-                  <span>Scroll range</span>
-                </div>
-                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--mid" vl-effect="hover-depth-press">
-                  <span>Easing curves</span>
-                </div>
-                <div class="showcase-cinema-architecture-stack-visual__plane showcase-cinema-architecture-stack-visual__plane--top" vl-effect="hover-prism">
-                  <span>Fallback behaviour</span>
-                </div>
-              </div>
+            <div class="showcase-cinema-stage showcase-cinema-stage--hero-reference" vl-effect="spring-3d" vl-once>
+              <ul class="showcase-cinema-easing-list">
+                <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press">
+                  <span>Spacing</span>
+                  <strong>--vl-space-hero · 5rem</strong>
+                  <div class="showcase-cinema-meter"><span class="showcase-cinema-meter__track" style="--fill:70%"></span></div>
+                </li>
+                <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press">
+                  <span>Type</span>
+                  <strong>display-xl · clamp()</strong>
+                  <div class="showcase-cinema-meter"><span class="showcase-cinema-meter__track" style="--fill:85%"></span></div>
+                </li>
+                <li class="showcase-cinema-easing-list-item" vl-effect="hover-depth-press">
+                  <span>Media</span>
+                  <strong>min-width: 48rem</strong>
+                  <div class="showcase-cinema-meter"><span class="showcase-cinema-meter__track" style="--fill:50%"></span></div>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
 
         <!-- ═══ Scene 05 · Payoff ═════════════════════════════════════════ -->
-        <section id="story-payoff" class="showcase-cinema-scene showcase-cinema-scene--story-payoff" vl-scene="product-reveal" data-vl-scene-density="editorial" vl-effect="fade-up" vl-timeline="view" vl-once>
+        <section id="hero-payoff" class="showcase-cinema-scene showcase-cinema-scene--hero-payoff" vl-scene="sticky-story" data-vl-scene-density="editorial" vl-effect="fade-up" vl-timeline="view" vl-once>
           <div class="showcase-cinema-scene__inner showcase-cinema-scene__inner--payoff" vl-children="orchestrate" vl-stagger="120ms">
-            <p class="showcase-ref-kicker">Act IV // Applied story</p>
-            <h2 class="showcase-cinema-heading">Scroll, persistence and reference: immersive long-form storytelling.</h2>
+            <p class="showcase-ref-kicker">Act IV // Applied hero</p>
+            <h2 class="showcase-cinema-heading">Structure, motion and reference: every hero scene follows one blueprint.</h2>
             <p class="showcase-ref-lead">
-              Tie reveals to scroll position, keep navigation visible,
-              and align to the Library&rsquo;s scroll-driven reveal specs.
+              Build the four-part anatomy, add entry reveals, and align to the
+              editorial landing spec for a consistent first impression.
             </p>
             <div class="showcase-cinema-layout-blueprint">
               <article class="showcase-cinema-layout-blueprint__canvas">
-                <span>Scroll</span>
-                <strong>View timelines drive reveals, not timeouts.</strong>
+                <span>Structure</span>
+                <strong>Kicker, headline, lead, CTA row.</strong>
               </article>
               <article class="showcase-cinema-layout-blueprint__cell">
-                <span>Persistence</span>
-                <strong>Nav rail and progress indicator stay visible.</strong>
+                <span>Motion</span>
+                <strong>fade-up on copy, rise-3d on stage.</strong>
               </article>
               <article class="showcase-cinema-layout-blueprint__cell showcase-cinema-layout-blueprint__cell--accent">
                 <span>Reference</span>
-                <strong>Match Library scroll-driven reveal specs exactly.</strong>
+                <strong>Landing spec spacing, type and media tokens.</strong>
               </article>
               <article class="showcase-cinema-layout-blueprint__cell">
-                <span>Fallback</span>
-                <strong>Static content on unsupported browsers.</strong>
+                <span>Consistency</span>
+                <strong>Identical anatomy across editorial themes.</strong>
               </article>
             </div>
             <div class="showcase-cinema-payoff-links">
-              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/scroll-driven-demos.html">Scroll Reveal</a>
-              <a class="showcase-ref-tokens-button" href="/pages/scenes/scroll-reveal.html">Demo</a>
-              <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-hero.html">Hero Scene</a>
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/core/landing.html">Landing Reference</a>
+              <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-creator.html">Scene Creator</a>
+              <a class="showcase-ref-tokens-button" href="/pages/motion/zero-js-motion.html">Zero-JS Motion</a>
             </div>
           </div>
         </section>
@@ -381,6 +395,7 @@
           <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Scenes &amp; Motion</h3>
             <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Scene Timeline</a></li>
               <li><a class="vl-footer__link" href="/pages/scenes/scene-hero.html">Hero Reveal</a></li>
               <li><a class="vl-footer__link" href="/pages/scenes/scene-features.html">Feature Flow</a></li>
               <li><a class="vl-footer__link" href="/pages/scenes/scene-story.html">Story Pin</a></li>

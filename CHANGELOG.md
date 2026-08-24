@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Public Showcase reduced to six routes (Home, Timeline, Skins, Catalog, Hosts, Archive). Pre-lean pages snapshotted in `archive/showcase-2026-08/` (not Vite/CI).
+- **Skins** is the product name for named editorial models (`data-editorial-theme`). Home is didactic: engine vs Skins.
+- Motion Catalog: `#pin` teaching replaced by `#scene-engine` (numeric pin + stage/acts live demo); Engine vs Skins lanes; DX toolbar framed as optional CSS-only helper.
+- Catalog Phase C (P1): channel-first cards for CONTRACT `vl-enter` / `vl-scroll` / `vl-hover` extensions; scene-engine overlap + auto-clock demos.
+- Catalog DX runtime: toolbar covers full CONTRACT attr set, scene-engine targets, CSS var duration/speed, stagger-aware replay.
+
 ---
 
 ## [1.0.0] — 2025-01-01

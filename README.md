@@ -4,9 +4,9 @@
 
 ![License: ISC](https://img.shields.io/badge/license-ISC-blue.svg)
 
-Velora is a CSS-first design system for building premium, cinematic web interfaces using nothing but modern browser APIs. No JavaScript frameworks. No runtime animation libraries. Just HTML and CSS that move.
+Velora is a **declarative CSS motion engine**. HTML attributes describe intent; the browser executes it. No JavaScript animation runtime. Works with Tailwind, Relume, or any UI.
 
-Built for developers and agencies who want production-ready motion without the weight.
+The cinematic **Showcase** is the optional Velora design-system skin — not a requirement to turn motion on.
 
 ## Features
 
@@ -32,26 +32,28 @@ pnpm add @velora/css
 
 ### 2. Import
 
+Host-agnostic (any UI — Tailwind, etc.):
+
 ```css
-@import "@velora/css";
+@import "@velora/css/motion-core";
+@import "@velora/css/transitions"; /* optional */
 ```
 
-Or consume only the bundles you need:
+Full Velora look (theme + components + motion):
 
 ```css
-@import "@velora/css/base";
-@import "@velora/css/motion-core";
-@import "@velora/css/components-core";
-@import "@velora/css/transitions";
+@import "@velora/css";
 ```
 
 ### 3. Use
 
 ```html
-<div vl-effect="fade-up" vl-timeline="view">
-  <h2>Zero-JS motion</h2>
-  <p>Pure CSS. Pure performance.</p>
-</div>
+<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>
+    <h1 vl-enter="clip-rise" vl-act="1">Zero-JS motion</h1>
+    <p vl-enter="fade-up" vl-act="1">Same attributes on Tailwind or Velora UI.</p>
+  </div>
+</section>
 ```
 
 That's it. No build config. No framework bindings. Works with any stack.
@@ -71,18 +73,19 @@ It includes:
 
 ## Modular Entry Points
 
-Velora now ships stable modular entry points in addition to the full bundle:
-
-- `@velora/css` or `@velora/css/full` — full framework bundle (default)
-- `@velora/css/base` — reset, tokens, layout, utilities
-- `@velora/css/motion-core` — core declarative motion grammar
-- `@velora/css/motion-extended` — extended motion effects
-- `@velora/css/components-core` — components, forms, dialogs, structures
+- `@velora/css` or `@velora/css/full` — convenience bundle (theme + components + motion)
+- `@velora/css/motion-core` — host-agnostic motion grammar + scene engine
+- `@velora/css/motion-extended` — extra effect presets
+- `@velora/css/theme` — visual tokens + editorial + scene look recipes
+- `@velora/css/base` — reset, motion tokens, structural layout, utilities
+- `@velora/css/components-core` — optional UI primitives
 - `@velora/css/transitions` — view transition presets
 - `@velora/css/premium` — premium components
 - `@velora/css/overrides` — last-mile override layer
 
-All bundles keep the same `@layer` contract to avoid cascade drift between pages.
+Proofs: `examples/tailwind-host/` (motion-core + Tailwind) · `apps/showcase` (six-page reference UI: Home, Timeline, Skins, Catalog, Hosts, Archive). Older Showcase pages: `archive/showcase-2026-08/`.
+
+**Skins** are named design-system models (`html[data-editorial-theme]`). They are optional; motion works without them.
 
 ## Motion Channels (v2)
 

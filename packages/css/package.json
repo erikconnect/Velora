@@ -1,7 +1,7 @@
 {
   "name": "@velora/css",
   "version": "1.0.0",
-  "description": "Core CSS design system for Velora",
+  "description": "Declarative CSS motion engine (host-agnostic) with optional Velora theme skin",
   "license": "ISC",
   "sideEffects": ["**/*.css"],
   "main": "./src/velora.css",
@@ -10,6 +10,7 @@
     "./base": "./src/base.css",
     "./motion-core": "./src/motion-core.css",
     "./motion-extended": "./src/motion-extended.css",
+    "./theme": "./src/theme.css",
     "./components-core": "./src/components-core.css",
     "./transitions": "./src/transitions.css",
     "./premium": "./src/premium.css",
