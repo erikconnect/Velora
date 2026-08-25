@@ -1,0 +1,94 @@
+name: Deploy Showcase to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate motion CSS
+        run: pnpm generate:motion-css
+
+      - name: Build showcase
+        run: pnpm --filter showcase build
+
+      - name: Rewrite absolute paths for GitHub Pages project URL
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const dist = path.resolve('apps/showcase/dist');
+          const base = '/Velora/';
+
+          function walk(dir) {
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              const full = path.join(dir, entry.name);
+              if (entry.isDirectory()) walk(full);
+              else if (/\.(html|css|js)$/i.test(entry.name)) rewrite(full);
+            }
+          }
+
+          function rewrite(file) {
+            let content = fs.readFileSync(file, 'utf8');
+            content = content
+              .replace(/(href|src)="\/(?!Velora\/|\/|https?:|mailto:|tel:|#)/g, `$1="${base}`)
+              .replace(/url\(\/(?!Velora\/|\/|https?:|data:)/g, `url(${base}`)
+              .replace(/href="\/(?!Velora\/|\/|https?:|mailto:|tel:|#)/g, `href="${base}`);
+            fs.writeFileSync(file, content);
+          }
+
+          walk(dist);
+          fs.writeFileSync(path.join(dist, '.nojekyll'), '');
+          NODE
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/showcase/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
