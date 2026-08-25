@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,68 +9,16 @@ export const DEFAULT_TEMPLATE_NAME = "default";
 export const TEMPLATE_REGISTRY = {
   [DEFAULT_TEMPLATE_NAME]: {
     name: "Velora Default Template",
-    description: "Baseline multi-page template for Velora showcase surfaces.",
+    description: "Lean public Showcase: Home, Timeline, Skins, Catalog, Hosts, Archive.",
     rootFile: "index.html",
     sections: {
-      core: [
+      live: [
         "index.html",
-        "pages/core/about.html",
-        "pages/core/landing.html",
-      ],
-      demo: [
-        "pages/demo/impossible.html",
-      ],
-      scenes: [
-        "pages/scenes/scene-hero.html",
-        "pages/scenes/scene-features.html",
-        "pages/scenes/scene-story.html",
-        "pages/scenes/scene-creator.html",
-        "pages/scenes/scroll-reveal.html",
-      ],
-      components: [
-        "pages/components/buttons.html",
-        "pages/components/forms.html",
-        "pages/components/component-lab.html",
-        "pages/components/component-wizard.html",
-        "pages/components/icons.html",
-      ],
-      motion: [
-        "pages/motion/zero-js-motion.html",
-        "pages/motion/motion-extended.html",
-        "pages/motion/motion-compiler-demo.html",
-        "pages/motion/motion-principles.html",
-        "pages/motion/kinetic-motion.html",
-        "pages/motion/kinetic-cards.html",
-        "pages/motion/scale-shift.html",
-        "pages/motion/interactions.html",
+        "pages/scenes/scene-timeline.html",
+        "pages/core/skins.html",
         "pages/motion/api-motion-catalog.html",
-        "pages/motion/3d-explorer.html",
-        "pages/motion/3d-rotation.html",
-      ],
-      color: [
-        "pages/color/design-tokens.html",
-        "pages/color/color-system.html",
-        "pages/color/color-palette.html",
-        "pages/color/tonal-stacking.html",
-        "pages/color/tonal-tiers.html",
-        "pages/color/token-spotlight.html",
-        "pages/color/ambient-shadows.html",
-      ],
-      typography: [
-        "pages/typography/typography.html",
-        "pages/typography/typography-composition.html",
-        "pages/typography/typography-spec.html",
-      ],
-      tools: [
-        "pages/tools/system-modules.html",
-        "pages/tools/architecture.html",
-        "pages/tools/brand-voice.html",
-        "pages/tools/accessibility.html",
-        "pages/tools/contrast-tool.html",
-        "pages/tools/converter.html",
-      ],
-      integrations: [
-        "pages/integrations/gsap-anime.html",
+        "pages/core/hosts.html",
+        "pages/core/archive.html",
       ],
     },
   },
@@ -92,15 +39,6 @@ export function resolveTemplateInputs(templateName = DEFAULT_TEMPLATE_NAME) {
 
   for (const relPath of files) {
     inputs[toRollupKey(relPath)] = path.resolve(APP_ROOT, relPath);
-  }
-
-  const libraryDir = path.join(APP_ROOT, "pages", "library");
-  if (fs.existsSync(libraryDir)) {
-    for (const fileName of fs.readdirSync(libraryDir)) {
-      if (!fileName.endsWith(".html")) continue;
-      const key = `lib-${fileName.replace(/\.html$/i, "").replace(/[^a-z0-9]+/gi, "-")}`;
-      inputs[key] = path.resolve(libraryDir, fileName);
-    }
   }
 
   return inputs;

@@ -1,0 +1,149 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Conditional Motion Engine"
+  description="vl-motion selects a motion mode that centrally adapts Velora's engine tokens. CSS if() is used only as progressive enhancement, with a baseline that works everywhere."
+>
+  <span class="vl-kicker">Motion</span>
+
+  <h1 class="docs-page-title">Conditional Motion Engine</h1>
+  <p class="docs-page-lead">
+    A single declarative attribute — <code>vl-motion</code> — selects a motion <em>mode</em> for an
+    element and its subtree. It does not name a preset; instead it re-scales the shared engine tokens
+    that every preset already reads, so one attribute adapts timing, travel, depth, blur and easing
+    across the whole subtree. Zero JavaScript.
+  </p>
+
+  <h2>The Modes</h2>
+  <p>
+    Add <code>vl-motion</code> to any element. Descendant <code>vl-effect</code> / <code>vl-enter</code>
+    reveals inherit the mode automatically.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Intent</th><th>Engine effect</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>standard</code></td>
+        <td>Balanced default feel</td>
+        <td>Neutral scale (1×), cinematic easing</td>
+      </tr>
+      <tr>
+        <td><code>subtle</code></td>
+        <td>Quiet, fast, short travel</td>
+        <td>Faster duration, reduced travel &amp; depth, soft easing</td>
+      </tr>
+      <tr>
+        <td><code>cinematic</code></td>
+        <td>Grand, slow, deep, blurred entrances</td>
+        <td>Slower duration, larger travel &amp; depth, entrance blur</td>
+      </tr>
+      <tr>
+        <td><code>still</code></td>
+        <td>Author-driven reduced motion</td>
+        <td>Resting/composed state, no movement (independent of OS setting)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre><code>&lt;!-- One attribute governs the whole subtree --&gt;
+&lt;section vl-motion="cinematic"&gt;
+  &lt;h2 vl-enter="reveal-cinematic" vl-timeline="view"&gt;Grand &amp; deep&lt;/h2&gt;
+  &lt;p vl-effect="fade-up" vl-timeline="view"&gt;Slower, deeper, blurred entrance.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section vl-motion="subtle"&gt;...quieter, faster motion...&lt;/section&gt;
+&lt;section vl-motion="still"&gt;...reduced-motion-safe resting state...&lt;/section&gt;</code></pre>
+
+  <h2>Engine Tokens</h2>
+  <p>
+    Modes work by assigning central <code>--vl-*</code> knobs (declared in <code>01-tokens.css</code>).
+    Presets consume these instead of hardcoding per-selector values, which keeps adaptation in one place.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Token</th><th>Role</th><th>Neutral default</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>--vl-motion-mode</code></td><td>Active mode (queried by <code>if(style())</code>)</td><td><code>standard</code></td></tr>
+      <tr><td><code>--vl-motion-speed-scale</code></td><td>Duration multiplier</td><td><code>1</code></td></tr>
+      <tr><td><code>--vl-motion-intensity</code></td><td>Travel-distance multiplier</td><td><code>1</code></td></tr>
+      <tr><td><code>--vl-motion-depth</code></td><td>Parallax / z-depth multiplier</td><td><code>1</code></td></tr>
+      <tr><td><code>--vl-motion-blur</code></td><td>Additive entrance blur</td><td><code>0px</code></td></tr>
+      <tr><td><code>--vl-motion-preference</code></td><td>Reflects reduced-motion intent</td><td><code>auto</code></td></tr>
+      <tr><td><code>--vl-motion-mode-ease</code></td><td>Easing selected by the mode</td><td><code>--vl-ease-cinematic</code></td></tr>
+    </tbody>
+  </table>
+  <p>
+    Because the defaults are neutral (scale <code>1</code>, offset <code>0</code>), motion behaves exactly
+    as before when no <code>vl-motion</code> mode is present. Explicit per-element modifiers such as
+    <code>vl-speed</code> and <code>vl-depth</code> still win over the mode.
+  </p>
+
+  <h2>Progressive Enhancement with CSS <code>if()</code></h2>
+  <p>
+    The engine is <strong>CSS-first progressive enhancement</strong>. There are two layers:
+  </p>
+  <ul>
+    <li>
+      <strong>Baseline (works everywhere):</strong> plain <code>[vl-motion="…"]</code> attribute
+      selectors assign the engine knobs. No <code>if()</code> required.
+    </li>
+    <li>
+      <strong>Enhancement (<code>@supports</code> + <code>if()</code>):</strong> a single
+      <code>[vl-motion]</code> rule re-derives the same knobs using CSS <code>if()</code> with
+      <code>media()</code>, <code>style()</code> and <code>supports()</code>, folding in live
+      conditions — <code>prefers-reduced-motion</code>, <code>pointer: coarse</code>, and
+      scroll-timeline availability.
+    </li>
+  </ul>
+  <pre><code>@supports (width: if(style(--vl-probe: 1): 1px; else: 2px)) &#123;
+  [vl-motion] &#123;
+    --vl-motion-intensity: if(
+      media(prefers-reduced-motion: reduce): 0;
+      style(--vl-motion-mode: cinematic): if(media(pointer: coarse): 1.2; else: 1.6);
+      style(--vl-motion-mode: subtle): 0.45;
+      else: 1
+    );
+    --vl-motion-depth: if(
+      supports(animation-timeline: view()): 1.8;   /* only where scroll timelines exist */
+      else: 0
+    );
+  &#125;
+&#125;</code></pre>
+
+  <h3>Fallback for browsers without <code>if()</code></h3>
+  <p>
+    If a browser does not support CSS <code>if()</code>, the entire <code>@supports</code> block is
+    ignored and the baseline <code>[vl-motion="…"]</code> values remain in effect. Modes still work —
+    they simply do not receive the extra live pointer/support-aware refinements. Nothing breaks, and no
+    JavaScript fallback is introduced.
+  </p>
+
+  <h2>Accessibility</h2>
+  <p>
+    Reduced motion is always respected:
+  </p>
+  <ul>
+    <li>
+      Under <code>@media (prefers-reduced-motion: reduce)</code> the engine knobs collapse
+      (travel, depth and blur go to zero), and — as with every Velora effect — animations are disabled
+      globally in <code>03-motion.css</code>.
+    </li>
+    <li>
+      <code>vl-motion="still"</code> lets an author opt any subtree into a motionless resting state
+      regardless of the OS setting.
+    </li>
+  </ul>
+
+  <h2>Browser Support</h2>
+  <p>
+    The <code>vl-motion</code> modes themselves work in all modern browsers. The <code>if()</code>-based
+    refinement requires a browser with CSS <code>if()</code> support; everywhere else the baseline modes
+    are used. See the live comparison on the
+    <a href="https://www.veloracss.io" class="docs-link-primary">Zero-JS Motion</a> showcase page.
+  </p>
+</Base>

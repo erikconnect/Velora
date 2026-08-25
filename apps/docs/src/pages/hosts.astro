@@ -1,0 +1,43 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="Hosts" description="Use Velora motion-core with Tailwind or any UI — no Velora skin required.">
+  <span class="vl-kicker">Interoperability</span>
+
+  <h1 class="docs-page-title">Hosts (Tailwind &amp; others)</h1>
+  <p class="docs-page-lead">
+    Velora is a motion engine. Your host owns layout and visual styling.
+  </p>
+
+  <h2>Minimal import</h2>
+  <pre><code>@import "@velora/css/motion-core";
+/* optional page transitions */
+@import "@velora/css/transitions";</code></pre>
+
+  <p>Do <strong>not</strong> require <code>@velora/css/theme</code> or component classes for scenes to work.</p>
+
+  <h2>Tailwind example</h2>
+  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
+  &lt;div vl-stage class="min-h-svh grid place-items-center gap-6 px-6"&gt;
+    &lt;p class="text-sm uppercase tracking-widest" vl-enter="fade-up" vl-act="1"&gt;Kicker&lt;/p&gt;
+    &lt;h1 class="text-5xl font-semibold" vl-enter="clip-rise" vl-act="1"&gt;Title&lt;/h1&gt;
+    &lt;img class="w-full max-w-3xl rounded-2xl" vl-scroll="media-zoom" vl-act="2" vl-span="2" alt="" /&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+  <p>
+    Repo proof: <code>examples/tailwind-host/</code>. Showcase proves the Velora cinematic UI;
+    examples prove the host-agnostic path.
+  </p>
+
+  <h2>Layers</h2>
+  <p>
+    Velora uses <code>@layer velora.*</code>. Keep host utilities outside or after those layers so
+    Tailwind wins on appearance while <code>vl-*</code> attributes still drive animation.
+  </p>
+
+  <h2>Optional skin</h2>
+  <pre><code>@import "@velora/css/motion-core";
+@import "@velora/css/theme"; /* brand tokens + scene recipes */</code></pre>
+</Base>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora + Tailwind host</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./velora-motion.css" />
+  </head>
+  <body class="bg-zinc-950 text-zinc-100 antialiased">
+    <main>
+      <section class="px-6 py-24 max-w-3xl mx-auto">
+        <p class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4">examples / tailwind-host</p>
+        <h1 class="text-4xl font-semibold tracking-tight mb-4">Motion without the Velora skin</h1>
+        <p class="text-zinc-400 mb-8 max-w-prose">
+          This page imports <code class="text-zinc-200">@velora/css/motion-core</code> only.
+          Layout and color come from Tailwind. Scroll the pinned scene below.
+        </p>
+      </section>
+
+      <section vl-scene vl-timeline="view" vl-pin="3" vl-scrub aria-label="Pinned scene demo">
+        <div vl-stage class="min-h-svh grid place-items-center gap-6 px-6 text-center">
+          <p class="text-sm uppercase tracking-widest text-emerald-400/80" vl-enter="fade-up" vl-act="1">
+            Act 1 · overlap
+          </p>
+          <h2 class="text-5xl font-semibold max-w-xl" vl-enter="clip-rise" vl-act="1">
+            Shared beat
+          </h2>
+          <p
+            class="rounded-2xl border border-zinc-800 bg-zinc-900/80 px-6 py-4 max-w-md text-zinc-300"
+            vl-enter="fade-up"
+            vl-act="2"
+          >
+            Act 2 — later on the same scene clock.
+          </p>
+          <div
+            class="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-900 px-8 py-10 max-w-lg text-zinc-200"
+            vl-scroll="media-zoom"
+            vl-act="3"
+            vl-span="2"
+          >
+            Acts 3–4 span while the stage stays pinned.
+          </div>
+          <a
+            class="inline-flex rounded-full bg-emerald-500 px-5 py-2 text-sm font-medium text-zinc-950"
+            href="../../apps/showcase/pages/scenes/scene-timeline.html"
+            vl-enter="fade-up"
+            vl-act="5"
+          >
+            See Showcase skin
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

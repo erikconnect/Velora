@@ -17,12 +17,13 @@ Garantir que:
 ### 1.1 Responsabilidades por superfície
 
 - `packages/css`
-  - Produto principal do framework.
-  - Única fonte de verdade de tokens, estruturas, motion e transições.
+  - Produto principal: **motion engine** (`motion-core`) + optional **theme** skin.
+  - Única fonte de verdade de motion/tokens de engine; visual tokens vivem em theme.
 - `apps/showcase`
-  - Site de demonstração.
+  - Site de demonstração (reference UI / DS).
   - Exemplos editoriais, catálogos vivos e páginas narrativas.
   - Não define API oficial; apenas consome e demonstra.
+  - CSS showcase-only (`04e`, `08-showcase-home`) não entra no path npm.
 - `docs/` (raiz do monorepo, Markdown)
   - Fonte narrativa versionada: `project/CONTRACT.md`, playbooks, `WORKSPACE.md`, handbook de agentes.
 - `apps/docs` (Astro)

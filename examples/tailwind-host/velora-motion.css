@@ -1,0 +1,6 @@
+/**
+ * Host-agnostic motion only — no Velora brand theme / components.
+ * In a real app: @import "@velora/css/motion-core";
+ * This file mirrors the package entry for static file serving without a bundler.
+ */
+@import "../../packages/css/src/motion-core.css";
