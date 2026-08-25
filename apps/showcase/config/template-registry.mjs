@@ -9,16 +9,21 @@ export const DEFAULT_TEMPLATE_NAME = "default";
 export const TEMPLATE_REGISTRY = {
   [DEFAULT_TEMPLATE_NAME]: {
     name: "Velora Default Template",
-    description: "Lean public Showcase: Home, Timeline, Skins, Catalog, Hosts, Archive.",
+    description: "Lean public Showcase: Home, Core, Elements, Scenes, Skins, Catalog; Hosts and Archive are secondary references.",
     rootFile: "index.html",
     sections: {
       live: [
         "index.html",
+        "pages/core/core.html",
+        "pages/core/elements.html",
         "pages/scenes/scene-timeline.html",
         "pages/core/skins.html",
         "pages/motion/api-motion-catalog.html",
+      ],
+      secondary: [
         "pages/core/hosts.html",
         "pages/core/archive.html",
+        "pages/motion/motion-lab.html",
       ],
     },
   },

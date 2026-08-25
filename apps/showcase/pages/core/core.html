@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Velora Skins are complete design-system models: typography, grid, density, geometry, materials, media and motion voice." />
-    <title>Skins | Velora</title>
+    <meta name="description" content="Velora Core: the zero-JavaScript CSS motion engine, its public contract, packages, accessibility and host integration." />
+    <title>Core | Velora</title>
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,10 +18,11 @@
     <a class="vl-sr-only" href="#content">Skip to content</a>
     <nav class="showcase-cinema-rail vl-bussola" data-velora-signature="bussola" aria-label="Velora page compass">
       <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
-      <a class="vl-bussola__stop" href="#skins-intro"><span class="vl-bussola__label">Skins</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-      <a class="vl-bussola__stop" href="#skins-contract"><span class="vl-bussola__label">Contract</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-      <a class="vl-bussola__stop" href="#skins-models"><span class="vl-bussola__label">Models</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-      <a class="vl-bussola__stop" href="#skins-authoring"><span class="vl-bussola__label">Authoring</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#core-intro"><span class="vl-bussola__label">Core</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#core-architecture"><span class="vl-bussola__label">Architecture</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#core-drivers"><span class="vl-bussola__label">Drivers</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#core-channels"><span class="vl-bussola__label">Channels</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#core-policy"><span class="vl-bussola__label">Policy</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
     </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
@@ -122,46 +123,101 @@
     </header>
 
     <main id="content" class="vl-main showcase-product-page">
-      <section id="skins-intro" class="showcase-product-section showcase-product-hero" vl-scene>
-        <div vl-children="stagger" vl-stagger="100ms"><p class="showcase-ref-kicker" vl-enter="fade-in">Skins // complete design-system models</p><h1 class="showcase-product-title" vl-enter="clip-rise">Not a palette. <em>A product DNA.</em></h1><p class="showcase-product-lead" vl-enter="fade-up">A Skin coordinates typography, grid, density, geometry, elevation, media treatment, components and motion voice. Change the model; retain the semantic interface and Core behavior.</p></div>
-        <aside class="showcase-product-aside" vl-enter="depth-enter"><span class="showcase-layer-label">The boundary</span><strong>Core decides what happens. Skin decides how it feels.</strong><p>Showcase combines both layers to prove a real product language—not a themed component list.</p></aside>
+      <section id="core-intro" class="showcase-product-section showcase-product-hero" vl-scene>
+        <div vl-children="stagger" vl-stagger="100ms">
+          <p class="showcase-ref-kicker" vl-enter="fade-in">Core // the behavior layer</p>
+          <h1 class="showcase-product-title" vl-enter="clip-rise">HTML states intent. <em>CSS directs it.</em></h1>
+          <p class="showcase-product-lead" vl-enter="fade-up">Velora Core is a host-agnostic motion engine. Attributes describe entrances, states, scroll progress and scene beats; the platform executes them with no animation runtime.</p>
+        </div>
+        <aside class="showcase-product-aside" vl-enter="depth-enter">
+          <span class="showcase-layer-label">Zero-runtime promise</span>
+          <strong>Core owns behavior—not the look.</strong>
+          <p>Use it with plain CSS, Tailwind or any component system. Add a Velora Skin only when you want a complete visual model.</p>
+          <pre class="showcase-code-block">@import "@velora/css/motion-core";
+
+&lt;h1 vl-enter="clip-rise"&gt;
+  Browser-native motion
+&lt;/h1&gt;</pre>
+        </aside>
       </section>
 
-      <section id="skins-contract" class="showcase-product-section">
-        <header><p class="showcase-ref-kicker">Act 02 // Skin Contract</p><h2 class="showcase-cinema-heading">Every model must make the same nine decisions.</h2></header>
-        <div class="showcase-product-grid">
-          <article class="showcase-product-card"><span class="showcase-layer-label">Foundation</span><h3>Type + color</h3><p>Body, display and mono families; weights, leading, tracking, schemes and contrast.</p></article>
-          <article class="showcase-product-card"><span class="showcase-layer-label">Composition</span><h3>Grid + density</h3><p>Columns, gaps, content width, spatial rhythm and information density.</p></article>
-          <article class="showcase-product-card"><span class="showcase-layer-label">Language</span><h3>Geometry + material</h3><p>Radii, border weight, elevation, blur, surface opacity and component anatomy.</p></article>
-          <article class="showcase-product-card"><span class="showcase-layer-label">Media</span><h3>Crop + treatment</h3><p>Aspect ratios, contrast, saturation and the relationship between image and copy.</p></article>
-          <article class="showcase-product-card"><span class="showcase-layer-label">Motion</span><h3>Distance + timing</h3><p>Duration, travel and easing voice—always inside Core and reduced-motion rules.</p></article>
-          <article class="showcase-product-card"><span class="showcase-layer-label">Modes</span><h3>Light + dark</h3><p>Intentional schemes rather than automated inversion or isolated color swaps.</p></article>
+      <section id="core-architecture" class="showcase-product-section">
+        <header>
+          <p class="showcase-ref-kicker">Act 02 // architecture</p>
+          <h2 class="showcase-cinema-heading">One interface. Three accountable layers.</h2>
+          <p class="showcase-product-lead">A Velora page becomes easier to author when every decision has an owner. The engine never chooses typography; the Skin never changes semantic intent; the Showcase never becomes a hidden dependency.</p>
+        </header>
+        <div class="showcase-core-stack" vl-children="stagger" vl-stagger="90ms">
+          <article class="showcase-core-stack__layer" data-owner="core" vl-enter="fade-up" vl-timeline="view">
+            <span class="showcase-core-stack__index">01</span><div><span class="showcase-layer-label">Core owns</span><h3>Behavior and time</h3><p>Attributes, timelines, state lifecycles, fallbacks, accessibility and reduced motion.</p></div><code>@velora/css/motion-core</code>
+          </article>
+          <article class="showcase-core-stack__layer" data-owner="skin" vl-enter="fade-up" vl-timeline="view">
+            <span class="showcase-core-stack__index">02</span><div><span class="showcase-layer-label">Skin owns</span><h3>Product voice</h3><p>Typography, grid, density, geometry, material, media treatment and motion personality.</p></div><code>@velora/css/theme</code>
+          </article>
+          <article class="showcase-core-stack__layer" data-owner="showcase" vl-enter="fade-up" vl-timeline="view">
+            <span class="showcase-core-stack__index">03</span><div><span class="showcase-layer-label">Showcase owns</span><h3>Narrative proof</h3><p>Real compositions that combine the public engine and a Skin without inventing a private API.</p></div><code>apps/showcase</code>
+          </article>
         </div>
       </section>
 
-      <section id="skins-models" class="showcase-product-section">
-        <header><p class="showcase-ref-kicker">Act 03 // one semantic product · four models</p><h2 class="showcase-cinema-heading">The content stays. The editorial system changes.</h2><p class="showcase-product-lead">Each frame below contains the same headings, status, metric, metadata, action and media role. Only documented Skin decisions change composition and personality.</p></header>
-        <p class="showcase-section-ownership"><span><b>Core</b> enter + hover + state</span><span><b>Skin</b> every visual decision</span><span><b>Showcase</b> release brief content</span></p>
-        <div class="showcase-skin-gallery">
-          <div class="showcase-skin-case"><header><span>01</span><div><h3>Noir</h3><p>Cinematic · dark · kinetic</p></div></header><article class="showcase-skin-preview" data-skin-preview="noir" vl-enter="fade-up" vl-timeline="view" vl-hover="hover-lift" vl-state="smooth"><div class="showcase-skin-preview__copy"><div><p class="showcase-skin-preview__name">Release brief / 07</p><span class="showcase-skin-preview__status"><i aria-hidden="true"></i>Release signal live</span><h3>A living brief for the next release.</h3></div><div><div class="showcase-skin-preview__metric"><strong>72%</strong><span>Team alignment</span></div><div class="showcase-skin-preview__meta"><span>Editorial</span><span>Live</span><span>Accessible</span></div><a class="showcase-skin-preview__action" href="#skins-authoring">Open brief <span aria-hidden="true">→</span></a></div></div><div class="showcase-skin-preview__media" role="img" aria-label="Release intelligence field"><span class="showcase-skin-preview__pulse" vl-loop="-1" vl-loop-effect="glow-breathe" aria-hidden="true"></span></div></article></div>
-          <div class="showcase-skin-case"><header><span>02</span><div><h3>Earth</h3><p>Organic · light · editorial</p></div></header><article class="showcase-skin-preview" data-skin-preview="earth" vl-enter="fade-up" vl-timeline="view" vl-hover="hover-lift" vl-state="smooth"><div class="showcase-skin-preview__copy"><div><p class="showcase-skin-preview__name">Release brief / 07</p><span class="showcase-skin-preview__status"><i aria-hidden="true"></i>Release signal live</span><h3>A living brief for the next release.</h3></div><div><div class="showcase-skin-preview__metric"><strong>72%</strong><span>Team alignment</span></div><div class="showcase-skin-preview__meta"><span>Editorial</span><span>Live</span><span>Accessible</span></div><a class="showcase-skin-preview__action" href="#skins-authoring">Open brief <span aria-hidden="true">→</span></a></div></div><div class="showcase-skin-preview__media" role="img" aria-label="Release intelligence field"><span class="showcase-skin-preview__pulse" vl-loop="-1" vl-loop-effect="glow-breathe" aria-hidden="true"></span></div></article></div>
-          <div class="showcase-skin-case"><header><span>03</span><div><h3>Aethel</h3><p>Geometric · metallic · decisive</p></div></header><article class="showcase-skin-preview" data-skin-preview="aethel" vl-enter="fade-up" vl-timeline="view" vl-hover="hover-lift" vl-state="smooth"><div class="showcase-skin-preview__copy"><div><p class="showcase-skin-preview__name">Release brief / 07</p><span class="showcase-skin-preview__status"><i aria-hidden="true"></i>Release signal live</span><h3>A living brief for the next release.</h3></div><div><div class="showcase-skin-preview__metric"><strong>72%</strong><span>Team alignment</span></div><div class="showcase-skin-preview__meta"><span>Editorial</span><span>Live</span><span>Accessible</span></div><a class="showcase-skin-preview__action" href="#skins-authoring">Open brief <span aria-hidden="true">→</span></a></div></div><div class="showcase-skin-preview__media" role="img" aria-label="Release intelligence field"><span class="showcase-skin-preview__pulse" vl-loop="-1" vl-loop-effect="glow-breathe" aria-hidden="true"></span></div></article></div>
-          <div class="showcase-skin-case"><header><span>04</span><div><h3>Meridian</h3><p>Cartographic · translucent · spatial</p></div></header><article class="showcase-skin-preview" data-skin-preview="meridian" vl-enter="fade-up" vl-timeline="view" vl-hover="hover-lift" vl-state="smooth"><div class="showcase-skin-preview__copy"><div><p class="showcase-skin-preview__name">Release brief / 07</p><span class="showcase-skin-preview__status"><i aria-hidden="true"></i>Release signal live</span><h3>A living brief for the next release.</h3></div><div><div class="showcase-skin-preview__metric"><strong>72%</strong><span>Team alignment</span></div><div class="showcase-skin-preview__meta"><span>Editorial</span><span>Live</span><span>Accessible</span></div><a class="showcase-skin-preview__action" href="#skins-authoring">Open brief <span aria-hidden="true">→</span></a></div></div><div class="showcase-skin-preview__media" role="img" aria-label="Release intelligence field"><span class="showcase-skin-preview__pulse" vl-loop="-1" vl-loop-effect="glow-breathe" aria-hidden="true"></span></div></article></div>
+      <section id="core-drivers" class="showcase-product-section">
+        <header><p class="showcase-ref-kicker">Act 03 // choose the clock</p><h2 class="showcase-cinema-heading">The effect says what. The timeline says when.</h2><p class="showcase-product-lead">The same entrance can play on load, follow the viewport, respond to document progress or wait for an interface state. Authors change the driver, not the component.</p></header>
+        <div class="showcase-core-driver-board" aria-label="Timeline driver comparison">
+          <div class="showcase-core-driver-stage" aria-hidden="true">
+            <span class="showcase-core-driver-stage__rail"></span>
+            <article class="showcase-core-driver-object" vl-enter="fade-up" vl-timeline="view" vl-range="entry 10% cover 45%">
+              <small>Signal 07</small><strong>One effect.<br />Four clocks.</strong><span>fade-up</span>
+            </article>
+          </div>
+          <div class="showcase-core-driver-list">
+            <article><span class="showcase-layer-label">Auto</span><h3>Opening beat</h3><p>Runs from elapsed time when the page or component arrives.</p><code>vl-timeline="auto"</code></article>
+            <article><span class="showcase-layer-label">View</span><h3>Reading beat</h3><p>Maps progress to the element crossing the viewport.</p><code>vl-timeline="view"</code></article>
+            <article><span class="showcase-layer-label">Scroll</span><h3>Document beat</h3><p>Uses the root scroll position as the shared progress source.</p><code>vl-timeline="scroll"</code></article>
+            <article><span class="showcase-layer-label">State</span><h3>Interface beat</h3><p>Native open, closed, hover and focus states drive the lifecycle.</p><code>vl-state="enter-exit"</code></article>
+          </div>
         </div>
+        <aside class="showcase-core-language-strip" aria-label="Five motion categories">
+          <span><b>01</b> Page</span><span><b>02</b> Enter / exit</span><span><b>03</b> State</span><span><b>04</b> Scroll</span><span><b>05</b> Scene</span>
+        </aside>
       </section>
 
-      <section id="skins-authoring" class="showcase-product-section">
-        <header><p class="showcase-ref-kicker">Act 04 // authoring boundary</p><h2 class="showcase-cinema-heading">Switch the model. Keep the grammar.</h2></header>
-        <div class="showcase-skin-token-ledger" aria-label="Required Skin token families"><span>Typography</span><span>Spacing</span><span>Grid</span><span>Geometry</span><span>Material</span><span>Media</span><span>Components</span><span>Motion</span><span>Modes</span></div>
-        <pre class="showcase-code-block">&lt;html data-editorial-theme="meridian" data-theme="dark"&gt;
+      <section id="core-channels" class="showcase-product-section">
+        <header><p class="showcase-ref-kicker">Act 04 // compose the channels</p><h2 class="showcase-cinema-heading">One semantic card. Five independent jobs.</h2><p class="showcase-product-lead">Each channel contributes one part of the final transform without overwriting its neighbours. This is the composition model behind simple elements and complete scenes.</p></header>
+        <div class="showcase-core-channel-map" aria-label="Core motion channel examples">
+          <article class="showcase-core-channel" vl-enter="fade-up" vl-timeline="view"><span class="showcase-layer-label">Enter</span><div class="showcase-core-sample"><small>Release 07</small><strong>Arrive with hierarchy</strong><span>Appears once as it enters the reading flow.</span></div><code>vl-enter="fade-up"</code></article>
+          <article class="showcase-core-channel"><span class="showcase-layer-label">State</span><div class="showcase-core-sample" vl-state="smooth"><small>Release 07</small><strong>Change without a jump</strong><span>Visual state uses the component's shared timing voice.</span></div><code>vl-state="smooth"</code></article>
+          <article class="showcase-core-channel"><span class="showcase-layer-label">Scroll</span><div class="showcase-core-sample" vl-scroll="depth-drift" vl-range="cover"><small>Release 07</small><strong>Follow reading progress</strong><span>Progress comes from the viewport, not an animation loop.</span></div><code>vl-scroll="depth-drift"</code></article>
+          <article class="showcase-core-channel"><span class="showcase-layer-label">Hover</span><div class="showcase-core-sample" vl-hover="hover-lift"><small>Release 07</small><strong>Respond to intent</strong><span>Interaction contributes its own transform channel.</span></div><code>vl-hover="hover-lift"</code></article>
+          <article class="showcase-core-channel"><span class="showcase-layer-label">Exit</span><div class="showcase-core-sample" vl-exit="fade-out-up" vl-timeline="view"><small>Release 07</small><strong>Leave with context</strong><span>Exit behavior remains separate from entry and state.</span></div><code>vl-exit="fade-out-up"</code></article>
+        </div>
+        <div class="showcase-core-order"><span>base</span><span>enter</span><span>scroll</span><span>loop</span><span>hover</span><span>state</span><span>exit</span></div>
+      </section>
 
-@import "@velora/css/motion-core";
-@import "@velora/css/theme";
+      <section id="core-policy" class="showcase-product-section">
+        <header><p class="showcase-ref-kicker">Act 05 // direct responsibly</p><h2 class="showcase-cinema-heading">Motion is a policy, not a pile of durations.</h2><p class="showcase-product-lead">Start with a narrative voice, then let accessibility and platform support resolve the final expression. The readable state is always the baseline.</p></header>
+        <div class="showcase-core-policy-grid" aria-label="Motion policy comparison">
+          <article class="showcase-core-policy" data-policy="standard"><span class="showcase-layer-label">Standard</span><div class="showcase-core-policy__visual" vl-enter="fade-up" vl-timeline="view"><i></i><i></i><i></i></div><h3>Clear and useful</h3><p>Balanced distance, duration and depth for product interfaces.</p></article>
+          <article class="showcase-core-policy" data-policy="subtle"><span class="showcase-layer-label">Subtle</span><div class="showcase-core-policy__visual" vl-enter="fade-in" vl-timeline="view"><i></i><i></i><i></i></div><h3>Quiet continuity</h3><p>Opacity and small offsets preserve context without becoming the subject.</p></article>
+          <article class="showcase-core-policy" data-policy="cinematic"><span class="showcase-layer-label">Cinematic</span><div class="showcase-core-policy__visual" vl-enter="depth-enter" vl-timeline="view"><i></i><i></i><i></i></div><h3>Directed emphasis</h3><p>Layered depth and rhythm reserved for launches, stories and hero moments.</p></article>
+          <article class="showcase-core-policy" data-policy="still"><span class="showcase-layer-label">Still</span><div class="showcase-core-policy__visual"><i></i><i></i><i></i></div><h3>Readable by default</h3><p>Reduced motion removes travel while keeping order, content and state intact.</p></article>
+        </div>
+        <div class="showcase-core-fallback-proof">
+          <div><span class="showcase-layer-label">Fallback proof</span><h3>Unsupported features remove spectacle—not meaning.</h3><p>No scroll timeline? Content renders in its final state. No intrinsic interpolation? The disclosure still opens. Reduced motion? Every element stays visible and ordered.</p></div>
+          <pre class="showcase-code-block">@supports (animation-timeline: view()) {
+  /* progressive direction */
+}
 
-&lt;article vl-enter="fade-up" vl-state="smooth"&gt;
-  Same semantic product
-&lt;/article&gt;</pre>
-        <div class="showcase-core-next"><span>Next proof</span><p>Inspect every public attribute, support level and fallback in the exhaustive reference.</p><a href="/pages/motion/api-motion-catalog.html">Open Catalog <span aria-hidden="true">→</span></a></div>
+@media (prefers-reduced-motion: reduce) {
+  /* readable final state */
+}</pre>
+        </div>
+        <header class="showcase-core-support-heading"><p class="showcase-ref-kicker">Public support contract</p><h3>Progressive by construction.</h3></header>
+        <div class="showcase-support-matrix">
+          <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Stable</span><p>Semantic content, public attributes, page and state transitions, scroll-driven motion, popover/dialog and reduced-motion behavior.</p></div>
+          <div class="showcase-support-row"><span class="showcase-support-badge" data-level="progressive">Progressive</span><p><code>calc-size()</code>, customizable select, anchor positioning, scroll markers, <code>sibling-index()</code> and motion paths enhance a working baseline.</p></div>
+          <div class="showcase-support-row"><span class="showcase-support-badge" data-level="experimental">Experimental</span><p>CSS functions, scroll triggers, shape syntax and element-scoped View Transitions stay in the Catalog lab and never gate Core.</p></div>
+        </div>
+        <div class="showcase-core-next"><span>Next proof</span><p>See native elements use these drivers and policies without a component runtime.</p><a href="/pages/core/elements.html">Open Elements <span aria-hidden="true">→</span></a></div>
       </section>
     </main>
 

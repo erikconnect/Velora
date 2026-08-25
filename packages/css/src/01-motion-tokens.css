@@ -13,6 +13,19 @@
         --vl-ease-silk: cubic-bezier(0.4, 0.0, 0.2, 1);
         --vl-ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
         --vl-ease-smooth-out: cubic-bezier(0, 0.55, 0.45, 1);
+        /* A natural, hand-tuned decay expressed with the native linear() syntax. */
+        --vl-ease-natural: linear(
+            0,
+            0.012 1.1%,
+            0.052 2.4%,
+            0.18 5%,
+            0.41 9.2%,
+            0.68 15%,
+            0.86 22%,
+            0.95 31%,
+            0.99 45%,
+            1
+        );
 
         --vl-duration-instant: 80ms;
         --vl-duration-fast: 150ms;
@@ -27,6 +40,14 @@
         --vl-motion-duration: var(--vl-duration-normal);
         --vl-motion-distance: 1.25rem;
         --vl-motion-ease: var(--vl-ease-cinematic);
+
+        --vl-state-duration: var(--vl-duration-normal);
+        --vl-state-distance: 0.75rem;
+        --vl-state-ease: var(--vl-ease-natural, var(--vl-ease-cinematic));
+        --vl-state-exit-scale: 0.975;
+        --vl-path: none;
+        --vl-path-distance: 100%;
+        --vl-path-rotate: auto;
 
         --vl-motion-mode: standard;
         --vl-motion-preference: auto;

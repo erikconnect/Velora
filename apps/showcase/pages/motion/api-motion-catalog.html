@@ -3,8 +3,8 @@
  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Catalogo vivo da Motion API com grupos por categoria, demos ampliadas e playground declarativo da Velora." />
-  <title>Motion API Catalog | Velora</title>
+  <meta name="description" content="Velora Motion Catalog: a concise public guide to channels, scenes, timelines, support and fallbacks." />
+  <title>Motion Catalog | Velora</title>
   <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
   <link rel="stylesheet" href="/css/velora.css" />
   <link rel="stylesheet" href="/css/showcase.css" />
@@ -14,24 +14,22 @@
 
  <script src="/js/showcase-state.js"></script>
  </head>
- <body>
+ <body class="showcase-page-shell">
   <a class="vl-sr-only" href="#content">Skip to content</a>
-  <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
+  <nav class="showcase-cinema-rail vl-bussola" data-velora-signature="bussola" aria-label="Velora page compass">
    <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
+   <a class="vl-bussola__stop" href="#intent-map"><span class="vl-bussola__label">Intent</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#channels"><span class="vl-bussola__label">Channels</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#timeline-modes"><span class="vl-bussola__label">Timeline</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#stage-3d"><span class="vl-bussola__label">Stage 3D</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#hover"><span class="vl-bussola__label">Interaction</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#lifecycle"><span class="vl-bussola__label">Lifecycle</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#scroll"><span class="vl-bussola__label">Scroll</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#scene-engine"><span class="vl-bussola__label">Scene</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#transitions"><span class="vl-bussola__label">Transitions</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#params"><span class="vl-bussola__label">Runtime</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#scene-engine"><span class="vl-bussola__label">Scenes</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#support"><span class="vl-bussola__label">Support</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
   </nav>
   <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
   <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
-        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-enter="flow-in">
           <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
             <g class="vl-logo-mark__group">
               <g class="vl-logo-mark__full">
@@ -51,13 +49,13 @@
             </g>
           </svg>
         </a>
-                <nav class="vl-header__nav" aria-label="Primary navigation">
+                        <nav class="vl-header__nav" aria-label="Primary navigation">
           <a class="vl-nav__link" href="/index.html" vl-hover="underline-expand">Home</a>
-          <a class="vl-nav__link" href="/pages/scenes/scene-timeline.html" vl-hover="underline-expand">Timeline</a>
+          <a class="vl-nav__link" href="/pages/core/core.html" vl-hover="underline-expand">Core</a>
+          <a class="vl-nav__link" href="/pages/core/elements.html" vl-hover="underline-expand">Elements</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-timeline.html" vl-hover="underline-expand">Scenes</a>
           <a class="vl-nav__link" href="/pages/core/skins.html" vl-hover="underline-expand">Skins</a>
           <a class="vl-nav__link" href="/pages/motion/api-motion-catalog.html" vl-hover="underline-expand">Catalog</a>
-          <a class="vl-nav__link" href="/pages/core/hosts.html" vl-hover="underline-expand">Hosts</a>
-          <a class="vl-nav__link" href="/pages/core/archive.html" vl-hover="underline-expand">Archive</a>
         </nav>
         <div class="vl-header__actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -83,9 +81,9 @@
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
-          <a class="vl-header-get-started" href="/pages/scenes/scene-timeline.html" vl-effect="hover-depth-press">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/core/core.html" vl-hover="hover-depth-press">Get Started</a>
         </div>
-        <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Abrir menu de navegacao" type="button">
+        <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Open navigation menu" type="button">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
             <rect x="1" y="4" width="16" height="1.8" rx="0.9"/>
             <rect x="1" y="8.1" width="16" height="1.8" rx="0.9"/>
@@ -94,13 +92,13 @@
         </button>
       </div>
       <div class="vl-header__drawer" id="vl-mobile-nav" aria-hidden="true">
-                <nav class="vl-header__mobile-nav" aria-label="Mobile navigation">
+                        <nav class="vl-header__mobile-nav" aria-label="Mobile navigation">
           <a class="vl-header__mobile-link" href="/index.html">Home</a>
-          <a class="vl-header__mobile-link" href="/pages/scenes/scene-timeline.html">Timeline</a>
+          <a class="vl-header__mobile-link" href="/pages/core/core.html">Core</a>
+          <a class="vl-header__mobile-link" href="/pages/core/elements.html">Elements</a>
+          <a class="vl-header__mobile-link" href="/pages/scenes/scene-timeline.html">Scenes</a>
           <a class="vl-header__mobile-link" href="/pages/core/skins.html">Skins</a>
           <a class="vl-header__mobile-link" href="/pages/motion/api-motion-catalog.html">Catalog</a>
-          <a class="vl-header__mobile-link" href="/pages/core/hosts.html">Hosts</a>
-          <a class="vl-header__mobile-link" href="/pages/core/archive.html">Archive</a>
         </nav>
         <div class="vl-header__mobile-actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -121,779 +119,141 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-get-started" href="/pages/scenes/scene-timeline.html">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/core/core.html">Get Started</a>
         </div>
       </div>
     </header>
   <main id="content" class="vl-main">
    <div class="api-shell hub-page hub-page--motion">
-   <section class="api-hero" vl-effect="fade-up" vl-timeline="view">
-    <div class="api-hero-wash" aria-hidden="true"></div>
-    <div class="api-hero-inner">
-     <div class="api-hero-copy" vl-children="orchestrate" vl-stagger="180ms" vl-speed="cinema">
-      <p class="api-hero-kicker">
-       <span class="api-hero-kicker-line"></span>
-       <span class="api-kicker" vl-effect="typewriter-soft" vl-speed="cinema">Manifesto // Motion Runtime</span>
-      </p>
-      <h1 class="api-hero-title">Motion API as <em vl-effect="shimmer-text">composed architecture.</em></h1>
-      <p class="api-hero-lead">
-       Live contract surface for channels, scene engine, and params. Engine (<code>motion-core</code>) is host-agnostic; Skins/recipes are optional look.
-      </p>
-      <div class="api-hero-actions">
-       <a class="api-hero-btn api-hero-btn--primary" href="/pages/motion/motion-playground.html" vl-effect="icon-shift">Open Playground <span aria-hidden="true">→</span></a>
-       <a class="api-hero-btn" href="#channels" vl-effect="icon-shift">Open Channels</a>
-       <a class="api-hero-btn" href="#transitions" vl-effect="hover-tilt-3d">Transition Cards</a>
-      </div>
-      <nav class="api-hero-chip-row" aria-label="Sections">
-       <a href="#channels">Channels</a>
-       <a href="#timeline-modes">Timeline modes</a>
-      <a href="#entrances">Entrances</a>
-      <a href="#stage-3d">Stage 3D</a>
-       <a href="#hover">Hover</a>
-       <a href="#hover-cards">Hover Cards</a>
-       <a href="#editor-illustration">Editor</a>
-       <a href="#text">Text</a>
-       <a href="#ambient">Ambient</a>
-       <a href="#cube-triad">Cube Triad</a>
-       <a href="#scroll">Scroll</a>
-       <a href="#scene-engine">Scene engine</a>
-       <a href="#timeline">Timeline</a>
-       <a href="#transitions">Transitions</a>
-       <a href="#children">Children</a>
-       <a href="#params">Params</a>
-      </nav>
-     </div>
-     <div class="api-hero-stage" aria-label="Layered motion preview" vl-effect="parallax" vl-timeline="view" vl-range="scene-soft" vl-speed="cinema">
-      <div class="api-hero-orbit" vl-effect="orbit">
-       <span></span>
-       <span></span>
-       <span></span>
-      </div>
-      <article class="api-hero-panel api-hero-panel--primary" vl-effect="hover-prism">
-       <p class="api-kicker">Scene Engine</p>
-       <strong>Channel / Layer / Reveal</strong>
-       <span>Predictable channel composition for enter, loop, scroll and state.</span>
-      </article>
-      <article class="api-hero-panel api-hero-panel--secondary" vl-effect="border-beam">
-       <p class="api-kicker">Runtime State</p>
-       <strong>entry 0% -> cover 65%</strong>
-       <span>Range, speed and replay per card with instant readout.</span>
-      </article>
-      <div class="api-hero-status" vl-children="wave">
-       <span>120fps pipeline</span>
-       <span>timeline armed</span>
-       <span>view + scroll ready</span>
-      </div>
-     </div>
-    </div>
-   </section>
-
-   <section class="api-controls" aria-label="Controles DX do catálogo">
-    <span class="api-selected" id="api-selected-card">Nenhum card</span>
-    <div class="api-controls-row">
-     <div class="api-controls-readout" aria-live="polite">
-      <p class="api-live-hint" id="api-live-hint">Clique num card para ver o que está em motion.</p>
-      <code class="api-live-readout" id="api-live-readout" hidden></code>
-     </div>
-     <div class="api-runtime-actions" aria-label="Transporte">
-      <button class="api-runtime-btn" id="api-play-btn" type="button" aria-label="Play" title="Play">
-       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 6.5v11l9-5.5z"/></svg>
-      </button>
-      <button class="api-runtime-btn" id="api-pause-btn" type="button" aria-label="Pause" title="Pause">
-       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 6h4v12H7zm6 0h4v12h-4z"/></svg>
-      </button>
-      <button class="api-runtime-btn" id="api-replay-btn" type="button" aria-label="Replay" title="Replay">
-       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 5a7 7 0 1 1-6.93 8H3l3.2 3.2.08.08L9.5 13H7.1A4.9 4.9 0 1 0 12 7c-1.14 0-2.2.39-3.03 1.04L7.5 6.6A7 7 0 0 1 12 5z"/></svg>
-      </button>
-     </div>
-     <div class="api-controls-sliders">
-      <div class="api-control" title="Delay antes do replay">
-       <label for="api-delay-range">D</label>
-       <input class="vl-range" id="api-delay-range" type="range" min="0" max="2000" step="50" value="0" />
-       <span class="api-control-value" id="api-delay-value">0ms</span>
-      </div>
-      <div class="api-control" title="Duração (--vl-motion-duration)">
-       <label for="api-duration-range">T</label>
-       <input class="vl-range" id="api-duration-range" type="range" min="300" max="4000" step="50" value="1400" />
-       <span class="api-control-value" id="api-duration-value">1400ms</span>
-      </div>
-      <div class="api-control" title="Velocidade (playbackRate)">
-       <label for="api-speed-range">S</label>
-       <input class="vl-range" id="api-speed-range" type="range" min="0.25" max="3" step="0.05" value="1" />
-       <span class="api-control-value" id="api-speed-value">1.00x</span>
-      </div>
-     </div>
-     <button class="api-runtime-btn api-runtime-btn--drawer" id="api-controls-drawer-btn" type="button" aria-expanded="false" aria-controls="api-controls-drawer" title="Atributos ativos">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4 7h16v2H4zm0 4h16v2H4zm0 4h16v2H4z"/></svg>
-     </button>
-    </div>
-    <div class="api-controls-drawer" id="api-controls-drawer" hidden>
-     <div class="api-runtime-commands" id="api-command-list" aria-label="Atributos ativos no card"></div>
-     <p class="api-runtime-disclaimer">Controles DX opcionais — motion entregue é só CSS. D/T/S ajustam duration, delay e playbackRate. Replay em <code>vl-scene</code> reposiciona scroll.</p>
-    </div>
-   </section>
-
-  <section class="api-contract-legend" aria-label="Motion API scope legend">
-   <div class="api-contract-legend__inner">
-    <span class="api-scope-pill api-scope-pill--core">Core</span>
-    <span class="api-scope-pill api-scope-pill--extended">Extended</span>
-    <span class="api-scope-pill api-scope-pill--experimental">Experimental</span>
-    <p>Catalog sections are grouped by API stability level to improve review and maintenance without removing any functional demos.</p>
-   </div>
-   <div class="api-kind-filter" role="toolbar" aria-label="Filter cards by semantic kind">
-    <button class="api-kind-filter__btn is-active" type="button" data-filter-kind="all">all</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="channel">channel</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="timeline">timeline</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="interaction">interaction</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="scene">scene</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="3d">3d</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="transition">transition</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="text">text</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="ambient">ambient</button>
-    <button class="api-kind-filter__btn" type="button" data-filter-kind="reference">reference</button>
-   </div>
-  </section>
-
-  <section class="api-lanes" aria-label="Engine versus Skins">
-   <div class="api-lanes__inner">
-    <article class="api-lane api-lane--engine">
-     <p class="api-lane__kicker">Engine</p>
-     <h2 class="api-lane__title">motion-core</h2>
-     <p class="api-lane__body">Host-agnostic scene + channel motion: <code>vl-scene</code>, <code>vl-stage</code>, <code>vl-act</code>, <code>vl-enter</code> / <code>vl-scroll</code> / <code>vl-hover</code>. Works with any UI host.</p>
-    </article>
-    <article class="api-lane api-lane--skins">
-     <p class="api-lane__kicker">Skins</p>
-     <h2 class="api-lane__title">theme + recipes</h2>
-     <p class="api-lane__body">Named look via <code>data-editorial-theme</code> and optional <code>vl-scene="…"</code> recipes. Not required for motion. See <a href="/pages/core/skins.html">Skins</a>.</p>
-    </article>
-   </div>
-  </section>
-
-   <section id="channels" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Channel Architecture</h2>
-     <p>Demonstrates the main v2 API channels and the recommended composition order.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Canonical Order</strong>
-      <pre class="api-code">base -> enter -> scroll -> loop -> hover -> state -> exit</pre>
-      <p class="api-note">Channel composition reduces conflicts and maintains predictability across pages.</p>
-     </article>
-     <article class="api-card api-card--lead">
-      <strong>Channel-First Markup</strong>
-      <pre class="api-code">&lt;article
- vl-enter="fade-up"
- vl-scroll="parallax"
- vl-loop="-1"
- vl-loop-effect="glow-breathe"
- vl-duration="1200ms"
- vl-direction="reverse"
- vl-hover="hover-lift"
- vl-state="smooth"
- vl-range="scene-focus"
- vl-speed="normal"&gt;
-&lt;/article&gt;</pre>
-     </article>
-     <article class="api-card"><strong>vl-enter</strong><div class="api-target" vl-enter="fade-up" vl-timeline="view">Enter Channel</div></article>
-     <article class="api-card"><strong>vl-scroll</strong><div class="api-target" vl-scroll="depth-drift">Scroll Channel</div></article>
-     <article class="api-card"><strong>vl-loop</strong><div class="api-target" vl-loop="-1" vl-loop-effect="wobble">Loop -1</div></article>
-     <article class="api-card"><strong>vl-direction reverse</strong><div class="api-target" vl-loop="-1" vl-loop-effect="orbit" vl-direction="reverse" style="--vl-loop-direction: reverse; --vl-orbit-radius: 1.1rem;">Reverse Loop</div></article>
-     <article class="api-card"><strong>vl-direction alternate</strong><div class="api-target" vl-loop="-1" vl-loop-effect="float" vl-direction="alternate">Alternate Loop</div></article>
-     <article class="api-card"><strong>vl-loop 3x</strong><div class="api-target" vl-loop="3" vl-loop-effect="wobble">3 Repetitions</div></article>
-     <article class="api-card"><strong>vl-duration 1200ms</strong><div class="api-target" vl-loop="-1" vl-loop-effect="glow-breathe@1200ms" vl-duration="1200ms">Direct Duration</div></article>
-     <article class="api-card"><strong>vl-hover</strong><div class="api-target" vl-hover="hover-glow">Hover Channel</div></article>
-     <article class="api-card"><strong>vl-state</strong><div class="api-target api-state-demo" vl-state="smooth">State Channel</div></article>
-     <article class="api-card"><strong>vl-exit</strong><div class="api-target" vl-exit="fade-out-up" style="--vl-exit-duration: 2200ms;">Exit Channel</div></article>
-     <article class="api-card"><strong>vl-exit slide-out-left</strong><div class="api-target" vl-exit="slide-out-left" vl-timeline="view">Slide Out Left</div></article>
-     <article class="api-card"><strong>vl-exit slide-out-right</strong><div class="api-target" vl-exit="slide-out-right" vl-timeline="view">Slide Out Right</div></article>
-     <article class="api-card"><strong>vl-exit blur-out</strong><div class="api-target" vl-exit="blur-out" vl-timeline="view">Blur Out</div></article>
-     <article class="api-card"><strong>vl-exit clip-drop</strong><div class="api-target" vl-exit="clip-drop" vl-timeline="view">Clip Drop</div></article>
-     <article class="api-card"><strong>combined</strong><div class="api-target api-v2-stack" vl-enter="fade-up" vl-scroll="parallax" vl-loop="-1" vl-loop-effect="glow-breathe" vl-hover="hover-lift" vl-state="smooth"><span>enter: fade-up</span><span>scroll: parallax</span><span>loop: glow-breathe</span></div></article>
-    </div>
-   </section>
-
-   <section id="timeline-modes" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Timeline Modes</h2>
-     <p>Use canonical timeline contracts to define what drives each motion channel: view, scroll, hover, or auto.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Canonical timeline patterns</strong>
-      <pre class="api-code">&lt;!-- recommended pattern --&gt;
-&lt;div vl-enter="fade-up" vl-timeline="view"&gt;...&lt;/div&gt;
-
-&lt;!-- scrubbed parallax --&gt;
-&lt;img vl-effect="parallax" vl-timeline="scroll"&gt;
-
-&lt;!-- ambient loop --&gt;
-&lt;div vl-loop="-1" vl-loop-effect="float"&gt;...&lt;/div&gt;
-
-&lt;!-- no timeline (time-based) --&gt;
-&lt;div vl-enter="fade-up"&gt;...&lt;/div&gt;</pre>
-      <p class="api-note"><code>vl-timeline</code> controls <em>what drives</em> the animation — viewport, page scroll, hover gate, or default time-based playback.</p>
-     </article>
-     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-enter="fade-up" vl-timeline="view">Single entrance<br><small>scroll-triggered, holds state</small></div></article>
-     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-enter="clip-rise" vl-timeline="view">Reveal<br><small>alias for single</small></div></article>
-     <article class="api-card"><strong>vl-timeline="scroll"</strong><div class="api-target" vl-effect="parallax" vl-timeline="scroll">Timeline<br><small>scroll-scrubbed</small></div></article>
-     <article class="api-card"><strong>loop-only channel</strong><div class="api-target" vl-loop="-1" vl-loop-effect="glow-breathe">Loop<br><small>infinite ambient</small></div></article>
-     <article class="api-card"><strong>vl-timeline="hover"</strong><div class="api-target" vl-loop="-1" vl-loop-effect="shimmer" vl-timeline="hover">Hover to play<br><small>paused until hovered</small></div></article>
-     <article class="api-card"><strong>time-based (no timeline)</strong><div class="api-target" vl-enter="fade-up">Time-based<br><small>no explicit timeline binding</small></div></article>
-     <article class="api-card"><strong>stagger delay (canonical)</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>preset easing (canonical)</strong><div class="api-target" vl-enter="scale-in" vl-base="dramatic">Scale with spring-like base profile</div></article>
-    </div>
-   </section>
-
-   <section id="entrances" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Entrances and 3D</h2>
-     <p>View-timeline entry effects — prefer <code>vl-enter</code> for channel-first authorship; <code>vl-effect</code> remains a supported alias.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Channel-first · vl-enter</strong>
-      <p class="api-note">Stable CONTRACT extensions — same presets as <code>vl-effect</code>, bound to the enter channel.</p>
-      <div class="api-chip-row"><span class="api-chip">reveal-cinematic</span><span class="api-chip">depth-enter</span><span class="api-chip">mask-sweep</span></div>
-     </article>
-     <article class="api-card"><strong>vl-enter · reveal-cinematic</strong><div class="api-target" vl-enter="reveal-cinematic" vl-timeline="view">Reveal Cinematic</div></article>
-     <article class="api-card"><strong>vl-enter · depth-enter</strong><div class="api-target" vl-enter="depth-enter" vl-timeline="view">Depth Enter</div></article>
-     <article class="api-card"><strong>vl-enter · mask-sweep</strong><div class="api-target" vl-enter="mask-sweep" vl-timeline="view">Mask Sweep</div></article>
-     <article class="api-card"><strong>fade-in</strong><div class="api-target" vl-effect="fade-in" vl-timeline="view">Fade In</div></article>
-     <article class="api-card"><strong>fade-up</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view">Fade Up</div></article>
-     <article class="api-card"><strong>slide-left</strong><div class="api-target" vl-effect="slide-left" vl-timeline="view">Slide Left</div></article>
-     <article class="api-card"><strong>scale-in</strong><div class="api-target" vl-effect="scale-in" vl-timeline="view">Scale In</div></article>
-     <article class="api-card"><strong>blur-in</strong><div class="api-target" vl-effect="blur-in" vl-timeline="view">Blur In</div></article>
-     <article class="api-card"><strong>clip-rise</strong><div class="api-target" vl-effect="clip-rise" vl-timeline="view">Clip Rise</div></article>
-     <article class="api-card"><strong>spring-up</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view">Spring Up</div></article>
-     <article class="api-card"><strong>glide-in</strong><div class="api-target" vl-effect="glide-in" vl-timeline="view">Glide In</div></article>
-     <article class="api-card"><strong>zoom-blur</strong><div class="api-target" vl-effect="zoom-blur" vl-timeline="view">Zoom Blur</div></article>
-     <article class="api-card"><strong>flip-in</strong><div class="api-target" vl-effect="flip-in" vl-timeline="view">Flip In</div></article>
-     <article class="api-card"><strong>spring-3d</strong><div class="api-target" vl-effect="spring-3d" vl-timeline="view">Spring 3D</div></article>
-     <article class="api-card"><strong>hinge-down</strong><div class="api-target" vl-effect="hinge-down" vl-timeline="view">Hinge Down</div></article>
-    </div>
-   </section>
-
-  <section id="stage-3d" class="api-group api-scope-experimental">
-   <div class="api-group-head">
-    <h2>Stage 3D</h2>
-    <p>Contrato reutilizável de palco 3D (perspective, preserve-3d, triggers). Demos de cubos ficam em <a href="#cube-triad">Cube Triad</a> (experimental).</p>
-   </div>
-   <div class="api-grid">
-    <article class="api-card api-card--lead">
-     <strong>Stage 3D baseline</strong>
-     <pre class="api-code">&lt;!-- canonical 3D stage baseline --&gt;
-&lt;section vl-scene vl-scene-trigger="zone"&gt;
-  &lt;div vl-scene-trigger-zone tabindex="0"&gt;&lt;/div&gt;
-  &lt;article vl-effect="spring-3d" vl-timeline="view"&gt;...&lt;/article&gt;
-&lt;/section&gt;</pre>
-     <p class="api-note">Positional stage contract — not tied to cube-triad choreography.</p>
-    </article>
-    <article class="api-card"><strong>spring-3d</strong><div class="api-target" vl-effect="spring-3d" vl-timeline="view">Entrada 3D com timeline view</div></article>
-    <article class="api-card"><strong>hover-tilt-3d</strong><div class="api-target" vl-effect="hover-tilt-3d">Interação 3D por hover/focus</div></article>
-   </div>
-  </section>
-
-   <section id="hover" class="api-group api-scope-extended">
-    <div class="api-group-head">
-     <h2>Hover and Interaction</h2>
-     <p>Pointer feedback — prefer <code>vl-hover</code> for channel-first presets. Extended interaction cards below may still use <code>vl-effect</code>.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Channel-first · vl-hover</strong>
-      <p class="api-note">Stable hover channel extensions — gradient sweep and border trace.</p>
-     </article>
-     <article class="api-card"><strong>vl-hover · gradient-sweep</strong><div class="api-target" vl-hover="gradient-sweep" tabindex="0">Gradient Sweep</div></article>
-     <article class="api-card"><strong>vl-hover · border-trace</strong><div class="api-target" vl-hover="border-trace" tabindex="0">Border Trace</div></article>
-     <article class="api-card"><strong>vl-hover · icon-shift</strong><a class="api-target api-target-inline" href="#" vl-hover="icon-shift">Icon Shift <span>→</span></a></article>
-     <article class="api-card"><strong>hover-lift</strong><div class="api-target" vl-effect="hover-lift">Hover me</div></article>
-     <article class="api-card"><strong>hover-glow</strong><div class="api-target" vl-effect="hover-glow">Hover me</div></article>
-     <article class="api-card"><strong>underline-expand</strong><a class="api-target api-target-inline" href="#" vl-effect="underline-expand">Underline Expand</a></article>
-     <article class="api-card"><strong>icon-shift</strong><a class="api-target api-target-inline" href="#" vl-effect="icon-shift">Icon Shift <span>-></span></a></article>
-     <article class="api-card"><strong>hover-tilt-3d</strong><div class="api-target" vl-effect="hover-tilt-3d">Tilt 3D</div></article>
-     <article class="api-card"><strong>hover-depth-stack</strong><div class="api-target" vl-effect="hover-depth-stack">Depth Stack</div></article>
-     <article class="api-card"><strong>hover-spotlight</strong><div class="api-target" vl-effect="hover-spotlight">Spotlight</div></article>
-     <article class="api-card"><strong>hover-shell-lift</strong><div class="api-target" vl-effect="hover-shell-lift">Shell Lift</div></article>
-     <article class="api-card"><strong>spotlight</strong><div class="api-target" vl-effect="spotlight">Extended Spotlight</div></article>
-     <article class="api-card"><strong>press</strong><button class="api-target api-target-inline" type="button" vl-effect="press">Press</button></article>
-     <article class="api-card"><strong>hover-prism</strong><div class="api-target" vl-effect="hover-prism">Hover Prism</div></article>
-     <article class="api-card"><strong>hover-depth-press</strong><button class="api-target api-target-inline" type="button" vl-effect="hover-depth-press">Hover Depth Press</button></article>
-     <article class="api-card"><strong>border-beam</strong><div class="api-target" vl-effect="border-beam">Border Beam</div></article>
-    </div>
-
-    <div class="api-orb-stage" style="margin-top: 1rem;">
-     <nav class="api-target" vl-effect="hover-orb-grid" aria-label="Orb grid demo">
-      <ul style="height: 100%; margin: 0; padding: 0; list-style: none;">
-       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Motion Tokens</span><small class="api-orb-meta">timing + easing</small></button></li>
-       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Spatial Depth</span><small class="api-orb-meta">layers + parallax</small></button></li>
-       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Adaptive Range</span><small class="api-orb-meta">entry to cover</small></button></li>
-       <li><button class="api-orb-grid-link" type="button"><span class="api-orb-title">Runtime Control</span><small class="api-orb-meta">speed + replay</small></button></li>
-      </ul>
-     </nav>
-    </div>
-   </section>
-
-   <section id="hover-cards" class="api-group api-scope-extended">
-    <div class="api-group-head">
-     <h2>Hover Card Components</h2>
-     <p>Card-first interaction components grouped in their own section for API and component testing.</p>
-    </div>
-    <div class="api-grid api-grid--hover-cards">
-     <article class="api-card api-card--hover-fan"><strong>hover-card-fan</strong><div class="api-target api-hover-fan-demo" vl-effect="hover-card-fan"><button type="button"><span class="vl-hover-fan-index">1</span><p class="vl-hover-fan-label">signal</p></button><button type="button"><span class="vl-hover-fan-index">2</span><p class="vl-hover-fan-label">motion</p></button><button type="button"><span class="vl-hover-fan-index">3</span><p class="vl-hover-fan-label">control</p></button></div><p class="api-note">Hover a card — siblings fan on the Y axis. Group container uses preserve-3d.</p></article>
-     <article class="api-card api-card--hover-stack"><strong>hover-card-stack</strong><div class="api-target api-hover-stack-demo" vl-effect="hover-card-stack" tabindex="0"><span class="api-hover-stack-layer">Layer A</span><span class="api-hover-stack-layer">Layer B</span><span class="api-hover-stack-layer">Layer C</span></div><p class="api-note">Hover the stack — parent tilts in 3D and layers lift with staggered depth.</p></article>
-     <article class="api-card api-card--hover-cross"><strong>hover-cross-swap</strong><div class="api-target api-cross-demo" vl-effect="hover-cross-swap"><button type="button" data-vl-panel="top"><strong>Signal</strong><small>top panel</small></button><button type="button" data-vl-panel="right"><strong>Motion</strong><small>right panel</small></button><button type="button" data-vl-panel="bottom"><strong>Control</strong><small>bottom panel</small></button><button type="button" data-vl-panel="left"><strong>Layer</strong><small>left panel</small></button><div data-vl-panel="center"><strong>Core</strong><small>hover any edge</small></div></div></article>
-     <article class="api-card api-card--hover-duotone"><strong>duotone</strong><div class="api-target api-duotone-demo" vl-effect="duotone"><img src="/img/logo.svg" alt="Velora logo duotone test" /></div><p class="api-note">Token-driven duotone blend for image-based components.</p></article>
-    </div>
-   </section>
-
-   <section id="editor-illustration" class="api-group api-scope-extended">
-    <div class="api-group-head">
-     <h2>Illustration Editor Component</h2>
-     <p>Visual editor component with HTML, CSS and JS panels over a technical block — animated purely with CSS.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--illustration-editor">
-      <strong>illustration-editor</strong>
-      <div class="api-target api-target--illustration-editor" aria-label="Editor illustration component preview">
-       <div class="api-illustration-editor">
-        <div class="api-editor-panels" aria-hidden="true">
-         <article class="api-editor-code api-editor-code--html">
-          <header>
-           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14.9999 6.675L13.1999 6.075C12.9999 5.975 12.8999 5.775 12.9999 5.675L13.8999 3.975C14.4999 2.775 13.1999 1.475 11.9999 2.075L10.2999 2.975C10.1999 3.075 9.9999 2.975 9.8999 2.775L9.2999 0.975C8.8999 -0.325 7.0999 -0.325 6.6999 0.975L6.0999 2.775C5.9999 2.975 5.7999 3.075 5.6999 2.975L3.9999 2.075C2.7999 1.475 1.4999 2.775 2.0999 3.975L2.9999 5.675C3.0999 5.775 2.9999 5.975 2.7999 6.075L0.999902 6.675C-0.300098 7.075 -0.300098 8.975 0.999902 9.375L2.7999 9.975C2.9999 9.975 3.0999 10.175 2.9999 10.275L2.0999 11.975C1.4999 13.175 2.7999 14.475 3.9999 13.875L5.6999 12.975C5.8999 12.875 6.0999 12.975 6.0999 13.175L6.6999 14.975C7.0999 16.275 8.9999 16.275 9.3999 14.975L9.9999 13.175C10.0999 12.975 10.2999 12.875 10.3999 12.975L12.0999 13.875C13.2999 14.475 14.5999 13.175 13.9999 11.975L12.9999 10.275C12.8999 10.075 12.9999 9.875 13.1999 9.875L14.9999 9.275C16.2999 8.875 16.2999 7.075 14.9999 6.675ZM7.9999 10.375C6.6999 10.375 5.5999 9.275 5.5999 7.975C5.5999 6.675 6.6999 5.575 7.9999 5.575C9.2999 5.575 10.3999 6.675 10.3999 7.975C10.3999 9.275 9.2999 10.375 7.9999 10.375Z" fill="currentColor" /></svg>
-           <h3>HTML</h3>
-           <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true" focusable="false"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="currentColor" /></svg>
-          </header>
-          <div class="api-editor-code__content">
-           <code><span class="c-r">&lt;div</span> <span class="c-y">class</span><span class="c-w">=</span><span class="c-g">"rect"</span><span class="c-r">&gt;&lt;/div&gt;</span></code>
-          </div>
-         </article>
-
-         <article class="api-editor-code api-editor-code--css">
-          <header>
-           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14.9999 6.675L13.1999 6.075C12.9999 5.975 12.8999 5.775 12.9999 5.675L13.8999 3.975C14.4999 2.775 13.1999 1.475 11.9999 2.075L10.2999 2.975C10.1999 3.075 9.9999 2.975 9.8999 2.775L9.2999 0.975C8.8999 -0.325 7.0999 -0.325 6.6999 0.975L6.0999 2.775C5.9999 2.975 5.7999 3.075 5.6999 2.975L3.9999 2.075C2.7999 1.475 1.4999 2.775 2.0999 3.975L2.9999 5.675C3.0999 5.775 2.9999 5.975 2.7999 6.075L0.999902 6.675C-0.300098 7.075 -0.300098 8.975 0.999902 9.375L2.7999 9.975C2.9999 9.975 3.0999 10.175 2.9999 10.275L2.0999 11.975C1.4999 13.175 2.7999 14.475 3.9999 13.875L5.6999 12.975C5.8999 12.875 6.0999 12.975 6.0999 13.175L6.6999 14.975C7.0999 16.275 8.9999 16.275 9.3999 14.975L9.9999 13.175C10.0999 12.975 10.2999 12.875 10.3999 12.975L12.0999 13.875C13.2999 14.475 14.5999 13.175 13.9999 11.975L12.9999 10.275C12.8999 10.075 12.9999 9.875 13.1999 9.875L14.9999 9.275C16.2999 8.875 16.2999 7.075 14.9999 6.675ZM7.9999 10.375C6.6999 10.375 5.5999 9.275 5.5999 7.975C5.5999 6.675 6.6999 5.575 7.9999 5.575C9.2999 5.575 10.3999 6.675 10.3999 7.975C10.3999 9.275 9.2999 10.375 7.9999 10.375Z" fill="currentColor" /></svg>
-           <h3>CSS</h3>
-           <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true" focusable="false"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="currentColor" /></svg>
-          </header>
-          <div class="api-editor-code__content">
-           <code>
-            <span class="api-editor-line api-editor-line--1"><span class="c-y">.rect</span> <span class="c-w">{</span></span>
-            <span class="api-editor-line api-editor-line--2"><span class="c-p">background</span><span class="c-w">:</span> <span class="c-y">linear-gradient</span>(</span>
-            <span class="api-editor-line api-editor-line--3"><span class="c-o">-119deg</span>,</span>
-            <span class="api-editor-line api-editor-line--4"><span class="c-y">$gray</span> <span class="c-o">0%</span>,</span>
-            <span class="api-editor-line api-editor-line--5"><span class="c-y">$dark-gray</span> <span class="c-o">100%</span>); <span class="c-w">}</span></span>
-           </code>
-          </div>
-         </article>
-
-         <article class="api-editor-code api-editor-code--js">
-          <header>
-           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M14.9999 6.675L13.1999 6.075C12.9999 5.975 12.8999 5.775 12.9999 5.675L13.8999 3.975C14.4999 2.775 13.1999 1.475 11.9999 2.075L10.2999 2.975C10.1999 3.075 9.9999 2.975 9.8999 2.775L9.2999 0.975C8.8999 -0.325 7.0999 -0.325 6.6999 0.975L6.0999 2.775C5.9999 2.975 5.7999 3.075 5.6999 2.975L3.9999 2.075C2.7999 1.475 1.4999 2.775 2.0999 3.975L2.9999 5.675C3.0999 5.775 2.9999 5.975 2.7999 6.075L0.999902 6.675C-0.300098 7.075 -0.300098 8.975 0.999902 9.375L2.7999 9.975C2.9999 9.975 3.0999 10.175 2.9999 10.275L2.0999 11.975C1.4999 13.175 2.7999 14.475 3.9999 13.875L5.6999 12.975C5.8999 12.875 6.0999 12.975 6.0999 13.175L6.6999 14.975C7.0999 16.275 8.9999 16.275 9.3999 14.975L9.9999 13.175C10.0999 12.975 10.2999 12.875 10.3999 12.975L12.0999 13.875C13.2999 14.475 14.5999 13.175 13.9999 11.975L12.9999 10.275C12.8999 10.075 12.9999 9.875 13.1999 9.875L14.9999 9.275C16.2999 8.875 16.2999 7.075 14.9999 6.675ZM7.9999 10.375C6.6999 10.375 5.5999 9.275 5.5999 7.975C5.5999 6.675 6.6999 5.575 7.9999 5.575C9.2999 5.575 10.3999 6.675 10.3999 7.975C10.3999 9.275 9.2999 10.375 7.9999 10.375Z" fill="currentColor" /></svg>
-           <h3>JS</h3>
-           <svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true" focusable="false"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="currentColor" /></svg>
-          </header>
-          <div class="api-editor-code__content">
-           <code>
-            <span class="api-editor-empty-face"><span class="c-b">&lt;/&gt;</span> <span class="c-g">^-^</span></span>
-           </code>
-          </div>
-         </article>
-        </div>
-        <div class="api-editor-block" aria-hidden="true"></div>
+    <section class="api-hero" vl-enter="fade-up" vl-timeline="view">
+     <div class="api-hero-wash" aria-hidden="true"></div>
+     <div class="api-hero-inner">
+      <div class="api-hero-copy" vl-children="orchestrate" vl-stagger="180ms" vl-speed="cinema">
+       <p class="api-hero-kicker"><span class="api-kicker-index">01</span><span>Public reference // decision first</span></p>
+       <h1 class="api-hero-title">Choose the intent. <em vl-effect="shimmer-text">Compose the scene.</em></h1>
+       <p class="api-hero-lede">A concise guide to the stable Velora grammar. Start with what the interface must communicate, choose a channel, then add its timeline and fallback.</p>
+       <div class="api-hero-actions">
+        <a class="vl-cta" href="#intent-map" vl-hover="icon-shift">Find a recipe <span aria-hidden="true">→</span></a>
+        <a class="vl-cta vl-cta--ghost" href="/pages/motion/motion-lab.html">Open Motion Lab</a>
        </div>
       </div>
-      <p class="api-note">Editor-inspired composition converted to a declarative, tokenized, no-JS component.</p>
-     </article>
-    </div>
-   </section>
-
-   <section id="text" class="api-group api-scope-extended">
-    <div class="api-group-head">
-     <h2>Text Effects</h2>
-     <p>Animated reveals and typographic effects for headings and editorial excerpts.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card"><strong>text-reveal</strong><div class="api-target" vl-effect="text-reveal" vl-timeline="view">Text Reveal</div></article>
-     <article class="api-card"><strong>text-reveal-up</strong><div class="api-target" vl-effect="text-reveal-up" vl-timeline="view">Text Reveal Up</div></article>
-     <article class="api-card"><strong>text-reveal-down</strong><div class="api-target" vl-effect="text-reveal-down" vl-timeline="view">Text Reveal Down</div></article>
-     <article class="api-card"><strong>text-line-reveal</strong><div class="api-target" vl-effect="text-line-reveal" vl-timeline="view">Line Reveal</div></article>
-     <article class="api-card"><strong>text-word-rise</strong><div class="api-target" vl-effect="text-word-rise" vl-timeline="view">Word Rise</div></article>
-     <article class="api-card"><strong>typewriter</strong><div class="api-target api-typewriter" vl-effect="typewriter">Typewriter full</div></article>
-     <article class="api-card"><strong>typewriter-soft</strong><div class="api-target api-typewriter" vl-effect="typewriter-soft">Typewriter soft</div></article>
-     <article class="api-card"><strong>gradient-text-color</strong><div class="api-target api-gradient-text-demo"><span vl-effect="gradient-text-color">Gradient Text Colour</span></div></article>
-     <article class="api-card"><strong>shimmer-text</strong><div class="api-target"><span vl-effect="shimmer-text">Shimmer Text</span></div></article>
-     <article class="api-card api-card--text-ring">
-      <strong>text-ring-orbit</strong>
-      <div class="api-target api-text-ring-demo" vl-effect="text-ring-orbit" aria-label="CSS is awesome text ring orbit animation">
-       <div class="vl-text-ring-stage" aria-hidden="true">
-        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
-        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
-        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
-        <div class="vl-text-ring-track"><span>C</span><span>S</span><span>S</span><span>i</span><span>s</span><span>a</span><span>w</span><span>e</span><span>s</span><span>o</span><span>m</span><span>e</span></div>
-       </div>
+      <div class="api-hero-stage" aria-label="Layered motion preview" vl-scroll="parallax" vl-range="scene-soft" vl-speed="cinema">
+       <article class="api-hero-panel api-hero-panel--front" vl-enter="reveal-cinematic" vl-timeline="view"><span>01</span><strong>Intent</strong><small>What should change?</small></article>
+       <article class="api-hero-panel api-hero-panel--middle" vl-enter="depth-enter" vl-timeline="view"><span>02</span><strong>Channel</strong><small>Who owns the motion?</small></article>
+       <article class="api-hero-panel api-hero-panel--back" vl-enter="mask-sweep" vl-timeline="view"><span>03</span><strong>Fallback</strong><small>What remains readable?</small></article>
       </div>
-     </article>
-     <article class="api-card api-card--code-greeting">
-      <strong>code-greeting-stack</strong>
-      <div class="api-target api-code-greeting-demo" vl-effect="code-greeting-stack" tabindex="0" aria-label="Code greeting animation with alternate words on hover or focus">
-       <p class="vl-code-line">
-        <span class="vl-code-token-plain">System</span><span class="vl-code-token-plain">.</span><span class="vl-code-token-warm">out</span><span class="vl-code-token-plain">.</span><span class="vl-code-token-accent">println</span><span class="vl-code-token-plain">(</span><span class="vl-code-token-secondary">&quot;</span>
-       </p>
-       <div class="vl-code-greetings" aria-live="polite">
-        <div class="vl-code-greetings-track vl-code-greetings-track--base">
-         <span>Hello Velora!</span>
-         <span>Hola Velora!</span>
-         <span>Hallo Velora!</span>
-         <span>Ciao Velora!</span>
-        </div>
-        <div class="vl-code-greetings-track vl-code-greetings-track--hover" aria-hidden="true">
-         <span>Design Tokens</span>
-         <span>Motion Grammar</span>
-         <span>Component Library</span>
-         <span>System Narrative</span>
-        </div>
-       </div>
-       <p class="vl-code-line vl-code-line--closure"><span class="vl-code-token-secondary">&quot;</span><span class="vl-code-token-plain">);</span></p>
-      </div>
-      <p class="api-note">Hover or focus this card to swap the greeting set.</p>
-     </article>
-     <article class="api-card api-card--circle-scroll">
-      <strong>circle-text-scroll</strong>
-      <div class="api-target api-circle-text-scroll-demo" vl-effect="circle-text-scroll" aria-label="Velora circular text animation linked to page scroll">
-       <ul aria-hidden="true">
-        <li><span>V</span><span>e</span><span>l</span><span>o</span><span>r</span><span>a</span></li>
-        <li><span>M</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span></li>
-        <li><span>T</span><span>o</span><span>k</span><span>e</span><span>n</span><span>s</span></li>
-        <li><span>S</span><span>y</span><span>s</span><span>t</span><span>e</span><span>m</span></li>
-        <li><span>R</span><span>h</span><span>y</span><span>t</span><span>h</span><span>m</span></li>
-        <li><span>C</span><span>o</span><span>n</span><span>t</span><span>r</span><span>a</span><span>s</span><span>t</span></li>
-        <li><span>S</span><span>u</span><span>r</span><span>f</span><span>a</span><span>c</span><span>e</span></li>
-        <li><span>K</span><span>i</span><span>n</span><span>e</span><span>t</span><span>i</span><span>c</span></li>
-        <li><span>L</span><span>a</span><span>t</span><span>t</span><span>i</span><span>c</span><span>e</span></li>
-        <li><span>C</span><span>a</span><span>d</span><span>e</span><span>n</span><span>c</span><span>e</span></li>
-        <li><span>P</span><span>r</span><span>i</span><span>m</span><span>a</span><span>r</span><span>y</span></li>
-        <li><span>A</span><span>c</span><span>c</span><span>e</span><span>n</span><span>t</span></li>
-        <li><span>B</span><span>a</span><span>l</span><span>a</span><span>n</span><span>c</span><span>e</span></li>
-        <li><span>S</span><span>p</span><span>a</span><span>c</span><span>i</span><span>n</span><span>g</span></li>
-        <li><span>H</span><span>a</span><span>r</span><span>m</span><span>o</span><span>n</span><span>y</span></li>
-        <li><span>V</span><span>i</span><span>e</span><span>w</span><span>p</span><span>o</span><span>r</span><span>t</span></li>
-        <li><span>T</span><span>i</span><span>m</span><span>e</span><span>l</span><span>i</span><span>n</span><span>e</span></li>
-        <li><span>O</span><span>r</span><span>b</span><span>i</span><span>t</span><span>a</span><span>l</span><span>s</span></li>
-        <li><span>L</span><span>a</span><span>y</span><span>e</span><span>r</span><span>s</span></li>
-        <li><span>N</span><span>a</span><span>r</span><span>r</span><span>a</span><span>t</span><span>i</span><span>v</span><span>e</span></li>
-       </ul>
-       <em>Your browser does not support the latest scroll features.</em>
-      </div>
-     </article>
-    </div>
-   </section>
+     </div>
+    </section>
 
-   <section id="ambient" class="api-group api-scope-extended">
-    <div class="api-group-head">
-     <h2>Ambient and Continuous</h2>
-     <p>Loop animations for live surfaces, status indicators and cinematic backgrounds.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card"><strong>shimmer</strong><div class="api-target" vl-effect="shimmer">Shimmer</div></article>
-     <article class="api-card"><strong>float</strong><div class="api-target" vl-effect="float">Float</div></article>
-     <article class="api-card"><strong>glow-breathe</strong><div class="api-target" vl-effect="glow-breathe">Glow Breathe</div></article>
-     <article class="api-card"><strong>wobble</strong><div class="api-target" vl-effect="wobble">Wobble</div></article>
-     <article class="api-card"><strong>orbit</strong><div class="api-target" vl-effect="orbit">Orbit</div></article>
-     <article class="api-card"><strong>rock</strong><div class="api-target" vl-effect="rock">Rock</div></article>
-     <article class="api-card"><strong>morph</strong><div class="api-target" vl-effect="morph">Morph</div></article>
-     <article class="api-card"><strong>pulse-ring</strong><div class="api-target" vl-effect="pulse-ring">Pulse Ring</div></article>
-     <article class="api-card"><strong>spin-slow</strong><div class="api-target" vl-effect="spin-slow">Spin Slow</div></article>
-     <article class="api-card"><strong>pendulum</strong><div class="api-target" vl-effect="pendulum">Pendulum</div></article>
-     <article class="api-card"><strong>breathe</strong><div class="api-target" vl-effect="breathe">Breathe</div></article>
-     <article class="api-card"><strong>drift</strong><div class="api-target" vl-effect="drift">Drift</div></article>
-     <article class="api-card"><strong>bounce</strong><div class="api-target" vl-effect="bounce">Bounce</div></article>
-     <article class="api-card"><strong>aurora</strong><div class="api-target" vl-effect="aurora">Aurora</div></article>
-     <article class="api-card"><strong>gradient-slide</strong><div class="api-target" vl-effect="gradient-slide">Gradient Slide</div></article>
-     <article class="api-card"><strong>mesh-pan</strong><div class="api-target" vl-effect="mesh-pan">Mesh Pan</div></article>
-     <article class="api-card"><strong>glitch-lite</strong><div class="api-target" vl-effect="glitch-lite">Glitch Lite</div></article>
-     <article class="api-card"><strong>scanline</strong><div class="api-target" vl-effect="scanline">Scanline</div></article>
-     <article class="api-card"><strong>ripple</strong><div class="api-target" vl-effect="ripple">Ripple</div></article>
-     <article class="api-card"><strong>levitate-x</strong><div class="api-target" vl-effect="levitate-x">Levitate X</div></article>
-     <article class="api-card"><strong>halo-breathe</strong><div class="api-target" vl-effect="halo-breathe">Halo Breathe</div></article>
-     <article class="api-card"><strong>sweep-border</strong><div class="api-target" vl-effect="sweep-border">Sweep Border</div></article>
-    </div>
-   </section>
+    <section class="api-lanes" aria-label="Engine versus Skins">
+     <div class="api-lanes__inner">
+      <article class="api-lane api-lane--engine"><p class="api-lane__kicker">Core</p><h2 class="api-lane__title">Behavior</h2><p class="api-lane__body">Channels, timelines, state, scene clocks, accessibility and fallbacks. Host-agnostic and CSS-only.</p></article>
+      <article class="api-lane api-lane--skins"><p class="api-lane__kicker">Skin</p><h2 class="api-lane__title">Voice</h2><p class="api-lane__body">Color, type, material, geometry and motion personality. The semantic product remains unchanged.</p></article>
+     </div>
+    </section>
 
-   <section id="cube-triad" class="api-group api-scope-experimental">
-    <div class="api-group-head">
-     <h2>Cube Triad</h2>
-     <p>Experimental extended effect — not the reusable stage-3d contract. Prefer positional stage-3d vars for production stages.</p>
-    </div>
-    <div class="api-grid api-grid--cube-triad">
-     <article class="api-card api-card--cube-triad">
-      <strong>cube-triad-stage</strong>
-      <div class="api-target api-cube-triad-demo" vl-effect="cube-triad-stage" aria-label="Cascading 3D cube choreography scene">
-       <div class="scene">
-        <div class="floor">
-         <div class="stage">
-          <div></div><div></div><div></div><div></div>
-         </div>
-        </div>
-        <div class="bottomCube">
-         <i>
-          <div class="midCube">
-           <i></i><i></i><i></i><i></i><i>
-            <div class="topCube">
-             <i></i><i></i><i></i><i></i><i></i>
-            </div>
-           </i>
-          </div>
-         </i><i></i><i></i><i></i><i></i>
-        </div>
-       </div>
-      </div>
-      <p class="api-note">Tokenized 3D cube scene with layered fold choreography, no JavaScript.</p>
-     </article>
-    </div>
-   </section>
+    <section id="intent-map" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Start here</p><h2>What does the interface need to communicate?</h2><p>Six jobs cover the public motion grammar. Each route below points to one canonical family instead of a wall of presets.</p></div>
+     <div class="api-intent-grid">
+      <article class="api-card api-intent-card"><strong>Arrive or leave</strong><p>Introduce content, remove it or change visibility.</p><div class="api-intent-links"><a href="#lifecycle">Lifecycle</a></div><footer><span class="showcase-support-badge" data-level="stable">Stable</span><span>enter + exit</span></footer></article>
+      <article class="api-card api-intent-card"><strong>Respond</strong><p>Make hover, focus, press and native state feel intentional.</p><div class="api-intent-links"><a href="#lifecycle">Interaction</a></div><footer><span class="showcase-support-badge" data-level="stable">Stable</span><span>hover + state</span></footer></article>
+      <article class="api-card api-intent-card"><strong>Show progress</strong><p>Connect type, media or geometry to reading progress.</p><div class="api-intent-links"><a href="#scroll">Scroll</a></div><footer><span class="showcase-support-badge" data-level="progressive">Progressive</span><span>view + scroll</span></footer></article>
+      <article class="api-card api-intent-card"><strong>Orchestrate</strong><p>Coordinate children, beats and narrative handoffs.</p><div class="api-intent-links"><a href="#scene-engine">Scene engine</a></div><footer><span class="showcase-support-badge" data-level="stable">Stable</span><span>stage + acts</span></footer></article>
+      <article class="api-card api-intent-card"><strong>Navigate</strong><p>Direct movement between documents with semantic links.</p><div class="api-intent-links"><a href="#transitions">Page transitions</a></div><footer><span class="showcase-support-badge" data-level="stable">Stable</span><span>view transitions</span></footer></article>
+      <article class="api-card api-intent-card"><strong>Experiment</strong><p>Inspect every preset and emerging platform feature separately.</p><div class="api-intent-links"><a href="/pages/motion/motion-lab.html">Motion Lab</a></div><footer><span class="showcase-support-badge" data-level="experimental">Lab</span><span>no public dependency</span></footer></article>
+     </div>
+    </section>
 
-   <section id="scroll" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Scroll and Timeline</h2>
-     <p>Scroll-linked motion — use <code>vl-scroll</code> for channel-first presets; legacy cards below still use <code>vl-effect</code>.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Channel-first · vl-scroll</strong>
-      <p class="api-note">Stable scroll channel values from CONTRACT — scrub ranges are preset-defined on the channel.</p>
-     </article>
-     <article class="api-card"><strong>vl-scroll · reveal</strong><div class="api-target" vl-scroll="reveal">Scroll Reveal</div></article>
-     <article class="api-card"><strong>vl-scroll · media-zoom</strong><div class="api-target api-scroll-media" vl-scroll="media-zoom">Media Zoom</div></article>
-     <article class="api-card"><strong>vl-scroll · crossfade</strong><div class="api-target" vl-scroll="crossfade">Crossfade Scrub</div></article>
-     <article class="api-card"><strong>vl-scroll · text-highlight</strong><div class="api-target api-scroll-highlight" vl-scroll="text-highlight">Highlight sweeps as you scroll</div></article>
-     <article class="api-card"><strong>cinema-zoom</strong><div class="api-target" vl-effect="cinema-zoom" vl-timeline="view">Cinema Zoom</div></article>
-     <article class="api-card"><strong>parallax</strong><div class="api-target" vl-effect="parallax" vl-timeline="view">Parallax</div></article>
-     <article class="api-card"><strong>scroll-marquee</strong><div class="api-target"><div class="api-scroll-track" vl-effect="scroll-marquee" vl-timeline="scroll"><span class="api-chip">API</span><span class="api-chip">MOTION</span><span class="api-chip">SCROLL</span><span class="api-chip">MARQUEE</span></div></div></article>
-     <article class="api-card"><strong>depth-drift</strong><div class="api-target" vl-effect="depth-drift" vl-timeline="view">Depth Drift</div></article>
-     <article class="api-card"><strong>rotate-scroll</strong><div class="api-target" vl-effect="rotate-scroll" vl-timeline="scroll">Rotate Scroll</div></article>
-     <article class="api-card"><strong>wipe-reveal</strong><div class="api-target" vl-effect="wipe-reveal" vl-timeline="view">Wipe Reveal</div></article>
-     <article class="api-card"><strong>depth-push</strong><div class="api-target" vl-effect="depth-push" vl-timeline="view">Depth Push</div></article>
-     <article class="api-card"><strong>pass-fade</strong><div class="api-target" vl-effect="pass-fade">Pass Fade<br><small>enter &amp; exit in one scroll arc</small></div></article>
-     <article class="api-card"><strong>pass-rise</strong><div class="api-target" vl-effect="pass-rise">Pass Rise<br><small>rises in, holds, fades out</small></div></article>
-    </div>
-   </section>
+    <section id="channels" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">The grammar</p><h2>Six channels. One element can compose several.</h2><p>Channels keep behaviors independent. A card may enter once, react on hover, move with scroll and preserve native state without those responsibilities colliding.</p></div>
+     <div class="api-grid">
+      <article class="api-card api-card--lead"><strong>Canonical composition</strong><pre class="api-code">&lt;article
+  vl-enter="reveal-cinematic"
+  vl-scroll="media-zoom"
+  vl-hover="hover-lift"
+  vl-timeline="view"&gt;
+  ...
+&lt;/article&gt;</pre><p class="api-note">Use channel attributes for new work. <code>vl-effect</code> remains a compatibility surface for named extended recipes.</p></article>
+      <article class="api-card"><strong>vl-enter</strong><div class="api-target" vl-enter="reveal-cinematic" vl-timeline="view">Arrive with hierarchy</div><p class="api-note">Initial or view-linked entrance.</p></article>
+      <article class="api-card"><strong>vl-exit</strong><div class="api-target" vl-exit="fade-out-up" vl-timeline="view">Leave with continuity</div><p class="api-note">Readable resting state without animation.</p></article>
+      <article class="api-card"><strong>vl-scroll</strong><div class="api-target" vl-scroll="crossfade">Follow progress</div><p class="api-note">Animation range follows viewport progress.</p></article>
+      <article class="api-card"><strong>vl-hover</strong><div class="api-target" vl-hover="gradient-sweep" tabindex="0">Respond to intent</div><p class="api-note">Hover and keyboard focus share feedback.</p></article>
+      <article class="api-card"><strong>vl-loop-effect</strong><div class="api-target" vl-loop="-1" vl-loop-effect="aurora-drift">Maintain presence</div><p class="api-note">Ambient only; disabled by reduced motion.</p></article>
+      <article class="api-card"><strong>vl-state</strong><div class="api-target" vl-state="smooth">Preserve state</div><p class="api-note">Persistent interface lifecycle.</p></article>
+     </div>
+    </section>
 
-   <section id="scene-engine" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Scene engine</h2>
-     <p>Host-agnostic track / stage / acts — shared clock, numeric pin, scrub. Canonical authorship for scroll stories. Full page: <a href="/pages/scenes/scene-timeline.html">Scene Timeline</a>.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Baseline recipe</strong>
-      <pre class="api-code">&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
+    <section id="lifecycle" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Lifecycle + interaction</p><h2>Use the smallest behavior that communicates the change.</h2><p>These are the representative public recipes. The exhaustive variants remain available in Motion Lab.</p></div>
+     <div class="api-grid">
+      <article class="api-card"><strong>reveal-cinematic</strong><div class="api-target" vl-enter="reveal-cinematic" vl-timeline="view">Editorial arrival</div><p class="api-note">Stable enter channel · still state is fully visible.</p></article>
+      <article class="api-card"><strong>mask-sweep</strong><div class="api-target" vl-enter="mask-sweep" vl-timeline="view">Masked reveal</div><p class="api-note">Progressive clip enhancement · content remains visible.</p></article>
+      <article class="api-card"><strong>enter-exit</strong><div class="api-target" vl-state="enter-exit">Discrete visibility</div><p class="api-note">Uses modern discrete transitions with a visible fallback.</p></article>
+      <article class="api-card"><strong>expand</strong><details class="vl-accordion" vl-state="expand"><summary>Intrinsic dimensions</summary><div class="vl-accordion__content"><p>Animate toward intrinsic size without measuring it.</p></div></details></article>
+      <article class="api-card"><strong>top-layer</strong><button class="vl-btn vl-btn--primary" popovertarget="catalog-popover">Open popover</button><div id="catalog-popover" class="showcase-popover" popover vl-state="top-layer">Native top layer, focus behavior and CSS transition.</div></article>
+      <article class="api-card"><strong>border-trace</strong><div class="api-target" vl-hover="border-trace" tabindex="0">Hover or focus</div><p class="api-note">Same affordance for pointer and keyboard.</p></article>
+     </div>
+    </section>
+
+    <section id="scroll" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Reading progress</p><h2>Choose the driver before choosing the effect.</h2><p><code>view</code> follows an element crossing the viewport. <code>scroll</code> follows a scroll container. <code>auto</code> maps scene acts to elapsed time.</p></div>
+     <div class="api-grid">
+      <article class="api-card api-card--lead"><strong>Timeline decision</strong><div class="api-chip-row"><span class="api-chip">view · element progress</span><span class="api-chip">scroll · container progress</span><span class="api-chip">hover · intent gate</span><span class="api-chip">auto · elapsed time</span></div><p class="api-note">No timeline means ordinary time-based CSS animation.</p></article>
+      <article class="api-card"><strong>reveal</strong><div class="api-target" vl-scroll="reveal">Reveal on progress</div><p class="api-note">Stable baseline · composed final state on fallback.</p></article>
+      <article class="api-card"><strong>media-zoom</strong><div class="api-target api-scroll-media" vl-scroll="media-zoom">Media zoom</div><p class="api-note">Scroll-linked scale without layout movement.</p></article>
+      <article class="api-card"><strong>text-highlight</strong><div class="api-target api-scroll-highlight" vl-scroll="text-highlight">Meaning appears as reading advances</div></article>
+      <article class="api-card"><strong>path</strong><div class="showcase-element-stage"><span class="showcase-path-object" vl-scroll="path" aria-hidden="true"></span></div><p class="api-note"><code>offset-path</code> enhancement · static endpoint fallback.</p></article>
+      <article class="api-card"><strong>range</strong><div class="api-target" vl-enter="depth-enter" vl-timeline="view" vl-range="scene-focus">Focused view window</div><p class="api-note">Override only when the preset range does not match the story.</p></article>
+     </div>
+    </section>
+
+    <section id="scene-engine" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Orchestration</p><h2>Track. Stage. Acts. One shared CSS clock.</h2><p>The canonical authoring model separates narrative time from visual styling, so the same HTML can live inside any host or Skin.</p></div>
+     <div class="api-grid">
+      <article class="api-card api-card--lead"><strong>Baseline recipe</strong><pre class="api-code">&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
   &lt;div vl-stage&gt;
-    &lt;h1 vl-enter="fade-up" vl-act="1"&gt;Title&lt;/h1&gt;
-    &lt;p vl-enter="fade-up" vl-act="2"&gt;Later act&lt;/p&gt;
+    &lt;h2 vl-enter="clip-rise" vl-act="1"&gt;Context&lt;/h2&gt;
+    &lt;p vl-enter="fade-up" vl-act="2"&gt;Evidence&lt;/p&gt;
+    &lt;img vl-scroll="media-zoom" vl-act="3" vl-span="2"&gt;
   &lt;/div&gt;
-&lt;/section&gt;</pre>
-      <p class="api-note"><code>vl-pin</code> is numeric viewport heights on the <strong>track</strong> (<code>vl-scene</code>). Sticky subject is <code>vl-stage</code>. Values like <code>top</code>/<code>center</code> are not the scene-engine API (boolean <code>vl-pin</code> alone remains a legacy sticky helper).</p>
-     </article>
+&lt;/section&gt;</pre><p class="api-note">Behavior belongs to Core. Layout and material belong to the host or Skin.</p></article>
+      <article class="api-card api-scene-engine-demo"><strong>Live · pin + scrub</strong><div class="api-scene-engine-track" vl-scene vl-timeline="view" vl-pin="3" vl-scrub aria-label="Public scene engine demo"><div class="api-scene-engine-stage" vl-stage><p class="api-scene-engine-kicker" vl-enter="fade-up" vl-act="1">Act 1 · context</p><h3 class="api-scene-engine-title" vl-enter="clip-rise" vl-act="1">One shared clock</h3><p class="api-scene-engine-card" vl-enter="fade-up" vl-act="2">Act 2 · evidence enters.</p><p class="api-scene-engine-card" vl-enter="fade-up" vl-act="3" vl-span="2">Acts 3–4 · evidence holds.</p><p class="api-scene-engine-card" vl-enter="fade-up" vl-act="5">Act 5 · handoff.</p></div></div></article>
+      <article class="api-card"><strong>stagger</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div><p class="api-note">Simple ordered arrival.</p></article>
+      <article class="api-card"><strong>orchestrate</strong><div class="api-target api-children" vl-children="orchestrate" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div><p class="api-note">Mixed editorial children.</p></article>
+      <article class="api-card"><strong>grid-wave</strong><div class="api-target api-children" vl-children="grid-wave"><span>A</span><span>B</span><span>C</span></div><p class="api-note">Spatial grid progression.</p></article>
+      <article class="api-card"><strong>sequence</strong><div class="api-target api-children" vl-children="sequence"><span>A</span><span>B</span><span>C</span></div><p class="api-note">Discrete timed sequence.</p></article>
+     </div>
+    </section>
 
-     <article class="api-card api-scene-engine-demo">
-      <strong>Live · pin + scrub + acts</strong>
-      <div class="api-scene-engine-track" vl-scene vl-timeline="view" vl-pin="3" vl-scrub aria-label="Catalog scene-engine demo">
-       <div class="api-scene-engine-stage" vl-stage>
-        <p class="api-scene-engine-kicker" vl-enter="fade-up" vl-act="1">Act 1 · shared clock</p>
-        <h3 class="api-scene-engine-title" vl-enter="fade-up" vl-act="1">Track · Stage · Acts</h3>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="2">Act 2 enters on the same scene timeline.</p>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="3" vl-span="2">Act 3–4 span · holds while the track scrubs.</p>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="5">Act 5 · hand-off</p>
-       </div>
-      </div>
-      <p class="api-note">Scroll this card’s track. Motion is CSS-only (<code>03c-scene-engine.css</code> + channels). Kicker + title share <code>vl-act="1"</code> — same beat, overlapping range.</p>
-     </article>
+    <section id="transitions" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Navigation</p><h2>Page transitions belong to document movement.</h2><p>Choose the voice globally and keep links semantic. Element lifecycle stays on enter, exit and state channels.</p></div>
+     <div class="api-grid">
+      <article class="api-card api-card--lead"><strong>Shared elements</strong><pre class="api-code">&lt;html vl-page-transition="cinema"&gt;
+  &lt;header class="vl-vt-shared-nav"&gt;...&lt;/header&gt;
+  &lt;a class="vl-vt-shared-brand"&gt;...&lt;/a&gt;
+&lt;/html&gt;</pre></article>
+      <article class="api-card"><strong>cinema</strong><div class="api-target">Editorial depth and continuity.</div></article>
+      <article class="api-card"><strong>wipe</strong><div class="api-target">Directional document change.</div></article>
+      <article class="api-card"><strong>glide</strong><div class="api-target">Quiet spatial handoff.</div></article>
+      <article class="api-card"><strong>iris / snap</strong><div class="api-target">Expressive and immediate voices.</div></article>
+     </div>
+    </section>
 
-     <article class="api-card api-scene-engine-overlap">
-      <strong>Act overlap · same beat</strong>
-      <div class="api-scene-engine-track api-scene-engine-track--compact" vl-scene vl-timeline="view" vl-pin="2" vl-scrub aria-label="Act overlap demo">
-       <div class="api-scene-engine-stage" vl-stage>
-        <p class="api-scene-engine-kicker" vl-enter="fade-up" vl-act="1">Shared act 1</p>
-        <h3 class="api-scene-engine-title" vl-enter="clip-rise" vl-act="1">Title + kicker overlap</h3>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="2">Act 2 only after act 1 window</p>
-       </div>
-      </div>
-      <p class="api-note">Assign the same <code>vl-act</code> to stage children to choreograph overlap on one beat.</p>
-     </article>
-
-     <article class="api-card api-scene-engine-auto">
-      <strong>Auto clock · beat delays</strong>
-      <div class="api-scene-engine-track api-scene-engine-track--auto" vl-scene vl-timeline="auto" aria-label="Auto clock demo">
-       <div class="api-scene-engine-stage" vl-stage>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="1">Beat 1 · immediate</p>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="2">Beat 2 · +1 beat delay</p>
-        <p class="api-scene-engine-card" vl-enter="fade-up" vl-act="3">Beat 3 · +2 beat delay</p>
-       </div>
-      </div>
-      <p class="api-note"><code>vl-timeline="auto"</code> maps acts to time delays (no scroll pin). Use for load-in sequences outside scroll stories.</p>
-     </article>
-
-     <article class="api-card">
-      <strong>Engine attrs</strong>
-      <div class="api-chip-row">
-       <span class="api-chip">vl-scene</span>
-       <span class="api-chip">vl-stage</span>
-       <span class="api-chip">vl-act</span>
-       <span class="api-chip">vl-span</span>
-       <span class="api-chip">vl-pin=1…6</span>
-       <span class="api-chip">vl-scrub</span>
-       <span class="api-chip">overlap acts</span>
-       <span class="api-chip">auto clock</span>
-      </div>
-      <p class="api-note"><code>vl-span</code> extends an act across multiple beats (see live demo act 3–4).</p>
-     </article>
-
-     <article class="api-card">
-      <strong>Skin recipes (optional)</strong>
-      <div class="api-chip-row">
-       <span class="api-chip">cinematic-hero</span>
-       <span class="api-chip">sticky-story</span>
-       <span class="api-chip">glass-bento</span>
-       <span class="api-chip">product-reveal</span>
-       <span class="api-chip">editorial-cinema</span>
-      </div>
-      <p class="api-note">Named <code>vl-scene="…"</code> values need theme / full bundle. Prefer track/stage/acts for host-agnostic work. <a href="/pages/core/skins.html">Skins</a></p>
-     </article>
-    </div>
-   </section>
-
-   <section id="timeline" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Timeline Breakdown</h2>
-     <p>Direct comparison of <code>view</code> vs <code>scroll</code> timelines, focusing on <code>vl-range</code>, <code>vl-once</code> and <code>vl-scrub</code>.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-card--lead">
-      <strong>Timeline mental model</strong>
-      <div class="api-timeline-board">
-       <div class="api-timeline-lane">
-        <strong>view timeline</strong>
-        <div class="api-timeline-axis"><span class="is-active"></span><span class="is-active"></span><span></span><span></span></div>
-        <p class="api-timeline-note">Fires when the element enters the viewport. Supports <code>vl-once</code> for single-play.</p>
-       </div>
-       <div class="api-timeline-lane">
-        <strong>scroll timeline</strong>
-        <div class="api-timeline-axis"><span class="is-active"></span><span class="is-active"></span><span class="is-active"></span><span class="is-active"></span></div>
-        <p class="api-timeline-note">Progresses with the scroll position. Pairs best with <code>vl-scrub</code> for timeline scrubbing.</p>
-       </div>
-      </div>
-     </article>
-     <article class="api-card"><strong>view + once</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view" vl-once>One-shot entrance</div></article>
-     <article class="api-card"><strong>view + entry-short</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view" vl-range="entry-short">Short Window</div></article>
-     <article class="api-card"><strong>scroll + scrub</strong><div class="api-target" vl-effect="depth-drift" vl-timeline="scroll" vl-scrub>Scroll Scrub</div></article>
-     <article class="api-card"><strong>scroll + cover</strong><div class="api-target" vl-effect="wipe-reveal" vl-timeline="scroll" vl-range="cover">Cover Phase</div></article>
-     <article class="api-card"><strong>timeline + speed</strong><div class="api-target" vl-effect="parallax" vl-timeline="view" vl-speed="slow">Slow View Timeline</div></article>
-     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-effect="fade-up" vl-timeline="view">Single (cinematic entry, not scrubbed)</div></article>
-     <article class="api-card"><strong>vl-timeline="view"</strong><div class="api-target" vl-enter="slide-left" vl-timeline="view">Canonical entrance binding</div></article>
-    </div>
-   </section>
-
-   <section id="transitions" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Page Transitions</h2>
-     <p>Card previews of every page-transition style used in the framework — hover, focus or click to replay.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card api-transition-card" data-api-transition="cinema" tabindex="0">
-      <strong>cinema</strong>
-      <div class="api-transition-stage" aria-hidden="true">
-       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
-       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Cinema Reveal</span></div>
-      </div>
-      <p class="api-transition-hint">Hover, focus or click to replay.</p>
-     </article>
-     <article class="api-card api-transition-card" data-api-transition="wipe" tabindex="0">
-      <strong>wipe</strong>
-      <div class="api-transition-stage" aria-hidden="true">
-       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
-       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Wipe Reveal</span></div>
-      </div>
-      <p class="api-transition-hint">Directional cover transition.</p>
-     </article>
-     <article class="api-card api-transition-card" data-api-transition="glide" tabindex="0">
-      <strong>glide</strong>
-      <div class="api-transition-stage" aria-hidden="true">
-       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
-       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Glide In</span></div>
-      </div>
-      <p class="api-transition-hint">Lateral movement with easing.</p>
-     </article>
-     <article class="api-card api-transition-card" data-api-transition="iris" tabindex="0">
-      <strong>iris</strong>
-      <div class="api-transition-stage" aria-hidden="true">
-       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
-       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Iris Open</span></div>
-      </div>
-      <p class="api-transition-hint">Radial expansion reveal.</p>
-     </article>
-     <article class="api-card api-transition-card" data-api-transition="snap" tabindex="0">
-      <strong>snap</strong>
-      <div class="api-transition-stage" aria-hidden="true">
-       <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
-       <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Snap Switch</span></div>
-      </div>
-      <p class="api-transition-hint">Instant cut with micro accent.</p>
-     </article>
-    </div>
-   </section>
-
-   <section id="children" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Children Modes</h2>
-     <p>Choreography modes for collections of child elements — stagger, cascade, wave and more.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card"><strong>stagger</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>cascade</strong><div class="api-target api-children" vl-children="cascade" vl-stagger="100ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>sequence</strong><div class="api-target api-children" vl-children="sequence"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>orchestrate</strong><div class="api-target api-children" vl-children="orchestrate" vl-stagger="120ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>wave</strong><div class="api-target api-children" vl-children="wave"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>blur-cascade</strong><div class="api-target api-children" vl-children="blur-cascade"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>zoom-stagger</strong><div class="api-target api-children" vl-children="zoom-stagger"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>cinema-stagger</strong><div class="api-target api-children" vl-children="cinema-stagger"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>grid-wave</strong><div class="api-target api-children" vl-children="grid-wave"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>spiral-stagger</strong><div class="api-target api-children" vl-children="spiral-stagger"><span>A</span><span>B</span><span>C</span></div></article>
-    </div>
-   </section>
-
-   <section id="params" class="api-group api-scope-core">
-    <div class="api-group-head">
-     <h2>Ranges, Speed and Runtime Params</h2>
-     <p>Visual reference for all range presets, speed profiles and utility attributes for fine-tuning motion behaviour.</p>
-    </div>
-    <div class="api-grid">
-     <article class="api-card"><strong>vl-range presets</strong><div class="api-chip-row"><span class="api-chip">entry</span><span class="api-chip">entry-short</span><span class="api-chip">entry-long</span><span class="api-chip">cover</span><span class="api-chip">contain</span><span class="api-chip">scene-focus</span><span class="api-chip">exit</span><span class="api-chip">center</span><span class="api-chip">full</span></div></article>
-     <article class="api-card"><strong>vl-speed presets</strong><div class="api-chip-row"><span class="api-chip">fast</span><span class="api-chip">normal</span><span class="api-chip">slow</span><span class="api-chip">cinema</span></div></article>
-     <article class="api-card"><strong>canonical ease families</strong><div class="api-chip-row"><span class="api-chip">--vl-ease-cinematic</span><span class="api-chip">--vl-ease-out-soft</span><span class="api-chip">--vl-ease-spring</span><span class="api-chip">--vl-ease-in-out-smooth</span></div></article>
-     <article class="api-card"><strong>stagger step presets</strong><div class="api-chip-row"><span class="api-chip">60ms</span><span class="api-chip">100ms</span><span class="api-chip">120ms</span><span class="api-chip">180ms</span><span class="api-chip">240ms</span><span class="api-chip">320ms</span></div></article>
-     <article class="api-card"><strong>base subtle</strong><div class="api-target" vl-enter="fade-up" vl-base="subtle" vl-timeline="view">Faster and softer motion profile</div></article>
-     <article class="api-card"><strong>base balanced</strong><div class="api-target" vl-enter="fade-up" vl-base="balanced" vl-timeline="view">Default cinematic profile</div></article>
-     <article class="api-card"><strong>base dramatic</strong><div class="api-target" vl-enter="scale-in" vl-base="dramatic" vl-timeline="view">Longer spring-style profile</div></article>
-     <article class="api-card"><strong>children stagger 60ms</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="60ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>children stagger 180ms</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="180ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>children stagger 320ms</strong><div class="api-target api-children" vl-children="stagger" vl-stagger="320ms"><span>A</span><span>B</span><span>C</span></div></article>
-     <article class="api-card"><strong>vl-loop values</strong><div class="api-chip-row"><span class="api-chip">-1 = infinite</span><span class="api-chip">0</span><span class="api-chip">1</span><span class="api-chip">2</span><span class="api-chip">3...</span></div></article>
-    <article class="api-card"><strong>new vl-enter values</strong><div class="api-chip-row"><span class="api-chip">reveal-cinematic</span><span class="api-chip">depth-enter</span><span class="api-chip">mask-sweep</span></div></article>
-    <article class="api-card"><strong>new vl-scroll values</strong><div class="api-chip-row"><span class="api-chip">reveal</span><span class="api-chip">media-zoom</span><span class="api-chip">crossfade</span><span class="api-chip">text-highlight</span></div></article>
-    <article class="api-card"><strong>new vl-hover values</strong><div class="api-chip-row"><span class="api-chip">gradient-sweep</span><span class="api-chip">border-trace</span></div></article>
-    <article class="api-card"><strong>new vl-scene values</strong><div class="api-chip-row"><span class="api-chip">cinematic-hero</span><span class="api-chip">sticky-story</span><span class="api-chip">glass-bento</span><span class="api-chip">product-reveal</span><span class="api-chip">editorial-cinema</span></div><p class="api-note" style="margin:.5rem 0 0;font-size:.8rem;color:var(--vl-text-muted)">Skin recipes (theme). Prefer track/stage/acts for host-agnostic scenes — see <a href="/pages/scenes/scene-timeline.html">Scene Timeline</a>.</p></article>
-    <article class="api-card"><strong>scene engine</strong><div class="api-chip-row"><span class="api-chip">vl-stage</span><span class="api-chip">vl-act</span><span class="api-chip">vl-span</span><span class="api-chip">vl-pin=N</span><span class="api-chip">vl-scrub</span></div></article>
-    <article class="api-card"><strong>loop aurora-drift</strong><div class="api-target" vl-loop="-1" vl-loop-effect="aurora-drift" style="background: linear-gradient(120deg, color-mix(in oklch, var(--vl-color-primary) 56%, var(--vl-bg-surface)), color-mix(in oklch, var(--vl-color-accent, var(--vl-color-secondary)) 52%, var(--vl-bg-main)));">Aurora Drift Loop</div></article>
-     <article class="api-card"><strong>vl-duration examples</strong><div class="api-chip-row"><span class="api-chip">120ms</span><span class="api-chip">300ms</span><span class="api-chip">800ms</span><span class="api-chip">1200ms</span><span class="api-chip">2s</span><span class="api-chip">3.6s</span></div></article>
-     <article class="api-card"><strong>vl-direction values</strong><div class="api-chip-row"><span class="api-chip">normal</span><span class="api-chip">reverse</span><span class="api-chip">alternate</span><span class="api-chip">alternate-reverse</span></div></article>
-     <article class="api-card"><strong>vl-once + view</strong><div class="api-target" vl-effect="spring-up" vl-timeline="view" vl-once>One-shot Entry</div></article>
-     <article class="api-card"><strong>vl-speed fast</strong><div class="api-target" vl-effect="fade-up" vl-speed="fast" vl-timeline="view">Fast Profile</div></article>
-     <article class="api-card"><strong>vl-speed cinema</strong><div class="api-target" vl-effect="fade-up" vl-speed="cinema" vl-timeline="view">Cinema Profile</div></article>
-     <article class="api-card"><strong>vl-speed normal</strong><div class="api-target" vl-effect="fade-up" vl-speed="normal" vl-timeline="view">Normal Profile</div></article>
-     <article class="api-card"><strong>vl-range entry-short</strong><div class="api-target" vl-effect="fade-up" vl-range="entry-short" vl-timeline="view">Micro Window</div></article>
-    </div>
-   </section>
-
+    <section id="support" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Support + parameters</p><h2>Modern CSS is progressive by contract.</h2><p>Experimental syntax never gates content, navigation or native state. Reduced motion always resolves to a readable composed state.</p></div>
+     <div class="showcase-support-matrix">
+      <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Stable</span><p><code>@starting-style</code>, discrete transitions, intrinsic-size interpolation, scroll-driven animation, dialog and popover state.</p></div>
+      <div class="showcase-support-row"><span class="showcase-support-badge" data-level="progressive">Progressive</span><p><code>calc-size()</code>, anchor positioning, customizable select, scroll markers, <code>sibling-index()</code> and motion paths.</p></div>
+      <div class="showcase-support-row"><span class="showcase-support-badge" data-level="experimental">Motion Lab</span><p>CSS functions, scroll triggers, emerging shapes and element-scoped View Transitions.</p></div>
+     </div>
+     <div class="api-grid">
+      <article class="api-card"><strong>Motion mode</strong><div class="api-chip-row"><span class="api-chip">standard</span><span class="api-chip">subtle</span><span class="api-chip">cinematic</span><span class="api-chip">still</span></div></article>
+      <article class="api-card"><strong>Speed</strong><div class="api-chip-row"><span class="api-chip">fast</span><span class="api-chip">normal</span><span class="api-chip">slow</span><span class="api-chip">cinema</span></div></article>
+      <article class="api-card"><strong>Range</strong><div class="api-chip-row"><span class="api-chip">entry-short</span><span class="api-chip">cover</span><span class="api-chip">scene-focus</span><span class="api-chip">full</span></div></article>
+      <article class="api-card"><strong>Direction</strong><div class="api-chip-row"><span class="api-chip">normal</span><span class="api-chip">reverse</span><span class="api-chip">alternate</span></div></article>
+      <article class="api-card api-card--lead"><strong>Need every variant?</strong><p>The Motion Lab preserves exhaustive preset proofs, aliases, experimental components and QA controls without making them part of the public learning path.</p><div class="api-intent-links"><a href="/pages/motion/motion-lab.html">Open Motion Lab</a><a href="/pages/scenes/scene-timeline.html">See complete scenes</a></div></article>
+     </div>
+    </section>
    </div>
   </main>
 
@@ -901,7 +261,7 @@
       <div class="vl-footer__inner vl-container">
         <div class="vl-footer__grid vl-footer__grid--5">
           <div class="vl-footer__col vl-footer__brand">
-            <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-effect="fade-up" vl-timeline="view">
+            <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-enter="fade-up" vl-timeline="view">
               <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
                 <g class="vl-logo-mark__group">
                   <g class="vl-logo-mark__full">
@@ -927,11 +287,11 @@
             <h3 class="vl-footer__heading">Showcase</h3>
             <ul class="vl-footer__links">
               <li><a class="vl-footer__link" href="/index.html">Home</a></li>
-              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Timeline</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/core.html">Core</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/elements.html">Elements</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Scenes</a></li>
               <li><a class="vl-footer__link" href="/pages/core/skins.html">Skins</a></li>
               <li><a class="vl-footer__link" href="/pages/motion/api-motion-catalog.html">Catalog</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/archive.html">Archive</a></li>
             </ul>
           </div>
         </div>
@@ -958,24 +318,6 @@
       </div>
     </footer>
 
-  <script src="/js/showcase-api-motion-catalog.js"></script>
-  <script>
-   const transitionCards = document.querySelectorAll(".api-transition-card");
-   transitionCards.forEach((card) => {
-    let replayTimer;
-    const replay = () => {
-     card.classList.remove("is-playing");
-     void card.offsetWidth;
-     card.classList.add("is-playing");
-     window.clearTimeout(replayTimer);
-     replayTimer = window.setTimeout(() => card.classList.remove("is-playing"), 980);
-    };
-
-    card.addEventListener("mouseenter", replay);
-    card.addEventListener("focusin", replay);
-    card.addEventListener("click", replay);
-   });
-  </script>
-    <script src="/js/showcase-ui.js"></script>
+  <script src="/js/showcase-ui.js"></script>
  </body>
 </html>

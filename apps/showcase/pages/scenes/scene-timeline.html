@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scene Timeline | Velora</title>
+    <title>Scenes | Velora</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
@@ -12,75 +12,37 @@
     <link rel="stylesheet" href="/css/showcase-reference-pages.css" />
     <meta name="description" content="Host-agnostic scene engine: shared clock, vl-stage, vl-act / vl-span, pin + scrub — GSAP-like authorship in HTML/CSS." />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
-    <style>
-      @view-transition { navigation: auto; }
-      body { background: var(--vl-bg-main); overflow-x: hidden; }
-      .page-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1rem 4rem; }
-      .page-card { border: 1px solid var(--vl-border-subtle); border-radius: var(--vl-radius-xl); background: var(--vl-bg-surface); padding: 2rem; }
-      .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-      .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
-      /* ── Page section view-timelines (consumed by the shared bussola) ── */
-      #tl-intro   { view-timeline-name: --tl-1; view-timeline-axis: block; }
-      #tl-demo    { view-timeline-name: --tl-2; view-timeline-axis: block; }
-      #tl-host    { view-timeline-name: --tl-3; view-timeline-axis: block; }
-      #tl-recipes { view-timeline-name: --tl-4; view-timeline-axis: block; }
-      .scene-tl-stage {
-        display: grid;
-        place-content: center;
-        gap: var(--vl-space-md);
-        padding: var(--vl-space-xl);
-        text-align: center;
-      }
-      .scene-tl-kicker { letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; color: var(--vl-text-muted); }
-      .scene-tl-title { font-family: var(--vl-font-family-display); font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 0; }
-      .scene-tl-card {
-        border: 1px solid var(--vl-border-subtle);
-        border-radius: var(--vl-radius-xl);
-        background: var(--vl-bg-surface);
-        padding: 1.25rem 1.5rem;
-        max-width: 28rem;
-        margin-inline: auto;
-      }
-      .scene-tl-code {
-        font-family: var(--vl-font-family-mono);
-        font-size: 0.8rem;
-        text-align: left;
-        overflow-x: auto;
-        white-space: pre;
-        padding: 1rem;
-        border-radius: var(--vl-radius-lg);
-        background: var(--vl-bg-inset);
-        border: 1px solid var(--vl-border-subtle);
-      }
-    </style>
-
   <script src="/js/showcase-state.js"></script>
   </head>
   <body class="showcase-page-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
-      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;timeline</span>
+    <nav class="showcase-cinema-rail vl-bussola" data-velora-signature="bussola" aria-label="Velora page compass">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
       <a class="vl-bussola__stop" href="#tl-intro">
-        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__label">Direction</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
       <a class="vl-bussola__stop" href="#tl-demo">
-        <span class="vl-bussola__label">Demo</span>
+        <span class="vl-bussola__label">Clock</span>
+        <span class="vl-bussola__dot" aria-hidden="true"></span>
+      </a>
+      <a class="vl-bussola__stop" href="#tl-stories">
+        <span class="vl-bussola__label">Stories</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
       <a class="vl-bussola__stop" href="#tl-host">
-        <span class="vl-bussola__label">Hosts</span>
+        <span class="vl-bussola__label">Portable</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
       <a class="vl-bussola__stop" href="#tl-recipes">
-        <span class="vl-bussola__label">Recipes</span>
+        <span class="vl-bussola__label">Boundary</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
     </nav>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
-        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-effect="flow-in">
+        <a class="vl-header__brand vl-vt-shared-brand vl-logo-lockup vl-logo-lockup--header" href="/index.html" aria-label="Velora home" vl-enter="flow-in">
           <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
             <g class="vl-logo-mark__group">
               <g class="vl-logo-mark__full">
@@ -102,11 +64,11 @@
         </a>
                         <nav class="vl-header__nav" aria-label="Primary navigation">
           <a class="vl-nav__link" href="/index.html" vl-hover="underline-expand">Home</a>
-          <a class="vl-nav__link" href="/pages/scenes/scene-timeline.html" vl-hover="underline-expand">Timeline</a>
+          <a class="vl-nav__link" href="/pages/core/core.html" vl-hover="underline-expand">Core</a>
+          <a class="vl-nav__link" href="/pages/core/elements.html" vl-hover="underline-expand">Elements</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-timeline.html" vl-hover="underline-expand">Scenes</a>
           <a class="vl-nav__link" href="/pages/core/skins.html" vl-hover="underline-expand">Skins</a>
           <a class="vl-nav__link" href="/pages/motion/api-motion-catalog.html" vl-hover="underline-expand">Catalog</a>
-          <a class="vl-nav__link" href="/pages/core/hosts.html" vl-hover="underline-expand">Hosts</a>
-          <a class="vl-nav__link" href="/pages/core/archive.html" vl-hover="underline-expand">Archive</a>
         </nav>
         <div class="vl-header__actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -132,9 +94,9 @@
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
-          <a class="vl-header-get-started" href="/pages/scenes/scene-timeline.html" vl-effect="hover-depth-press">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/core/core.html" vl-hover="hover-depth-press">Get Started</a>
         </div>
-        <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Abrir menu de navegacao" type="button">
+        <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Open navigation menu" type="button">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
             <rect x="1" y="4" width="16" height="1.8" rx="0.9"/>
             <rect x="1" y="8.1" width="16" height="1.8" rx="0.9"/>
@@ -145,11 +107,11 @@
       <div class="vl-header__drawer" id="vl-mobile-nav" aria-hidden="true">
                         <nav class="vl-header__mobile-nav" aria-label="Mobile navigation">
           <a class="vl-header__mobile-link" href="/index.html">Home</a>
-          <a class="vl-header__mobile-link" href="/pages/scenes/scene-timeline.html">Timeline</a>
+          <a class="vl-header__mobile-link" href="/pages/core/core.html">Core</a>
+          <a class="vl-header__mobile-link" href="/pages/core/elements.html">Elements</a>
+          <a class="vl-header__mobile-link" href="/pages/scenes/scene-timeline.html">Scenes</a>
           <a class="vl-header__mobile-link" href="/pages/core/skins.html">Skins</a>
           <a class="vl-header__mobile-link" href="/pages/motion/api-motion-catalog.html">Catalog</a>
-          <a class="vl-header__mobile-link" href="/pages/core/hosts.html">Hosts</a>
-          <a class="vl-header__mobile-link" href="/pages/core/archive.html">Archive</a>
         </nav>
         <div class="vl-header__mobile-actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -170,7 +132,7 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-get-started" href="/pages/scenes/scene-timeline.html">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/core/core.html">Get Started</a>
         </div>
       </div>
     </header>
@@ -180,11 +142,11 @@
         <section id="tl-intro" class="showcase-cinema-scene" vl-scene data-vl-scene-mode="full-bleed" data-vl-scene-density="immersive">
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-copy" vl-enter="fade-up" vl-timeline="view" vl-once>
-              <p class="showcase-ref-kicker">Scene engine // Track · Stage · Acts</p>
-              <h1 class="showcase-ref-title">One clock. Many acts. <em>Zero JS.</em></h1>
+              <p class="showcase-ref-kicker">Act 01 // direct the sequence</p>
+              <h1 class="showcase-ref-title">A scene is meaning <em>placed in time.</em></h1>
               <p class="showcase-ref-lead">
-                Write pin + scrub timelines like GSAP — with <code>vl-scene</code>, <code>vl-stage</code>, and <code>vl-act</code>.
-                Look comes from the host UI (Showcase skin here; Tailwind in examples).
+                Velora gives semantic HTML a shared clock through <code>vl-scene</code>, <code>vl-stage</code> and <code>vl-act</code>.
+                The Core conducts behavior; the Skin gives the sequence a voice; the Showcase chooses what the audience should understand next.
               </p>
               <div class="showcase-ref-tokens-actions">
                 <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="#tl-demo">Scroll the demo</a>
@@ -194,22 +156,64 @@
           </div>
         </section>
 
-        <section id="tl-demo" vl-scene vl-timeline="view" vl-pin="3" vl-scrub aria-label="Pinned multi-act demo">
+        <section id="tl-demo" vl-scene vl-timeline="view" vl-pin="3" vl-scrub aria-label="Pinned release direction sequence">
           <div vl-stage class="scene-tl-stage">
-            <p class="scene-tl-kicker" vl-enter="fade-up" vl-act="1">Act 1 · overlap</p>
-            <h2 class="scene-tl-title" vl-enter="clip-rise" vl-act="1">Shared beat</h2>
-            <p class="scene-tl-card" vl-enter="fade-up" vl-act="2">Act 2 — same track clock, later range.</p>
-            <div class="scene-tl-card" vl-scroll="media-zoom" vl-act="3" vl-span="2">
-              Acts 3–4 span — media scrub while the stage stays pinned.
+            <div class="scene-tl-stage__grid" aria-hidden="true"></div>
+            <p class="scene-tl-kicker" vl-enter="fade-up" vl-act="1">Act 02 // shared clock</p>
+            <h2 class="scene-tl-title" vl-enter="clip-rise" vl-exit="fade-out-up" vl-act="1">A release<br />finds its signal.</h2>
+            <article class="scene-tl-signal" vl-enter="depth-enter" vl-scroll="media-zoom" vl-act="2" vl-span="2">
+              <span>Signal 07</span><strong>72%</strong><small>team alignment</small>
+            </article>
+            <div class="scene-tl-evidence" vl-enter="fade-up" vl-act="3"><span>Evidence</span><p>Hierarchy is clear. Motion remains measured. The readable state survives every fallback.</p></div>
+            <div class="scene-tl-decision" vl-enter="fade-up" vl-act="4"><span>Decision</span><strong>Ship the cinematic voice.</strong></div>
+            <a class="scene-tl-action" href="#tl-stories" vl-enter="clip-rise" vl-act="5" vl-hover="hover-lift">Read the sequence <span aria-hidden="true">→</span></a>
+            <ol class="scene-tl-score" aria-label="Scene score"><li>Context</li><li>Signal</li><li>Evidence</li><li>Decision</li><li>Action</li></ol>
+          </div>
+        </section>
+
+        <section id="tl-stories" class="showcase-cinema-scene showcase-cinema-scene--story-library" aria-labelledby="tl-stories-title">
+          <div class="showcase-cinema-scene__inner">
+            <div class="showcase-cinema-copy">
+              <p class="showcase-ref-kicker">Act 03 // three products · one grammar</p>
+              <h2 id="tl-stories-title" class="showcase-ref-title">A scene is a <em>decision sequence.</em></h2>
+              <p class="showcase-ref-lead">Each composition uses the same track, stage and act contract. The product story—not the effect name—decides the choreography.</p>
             </div>
-            <p class="scene-tl-card" vl-enter="fade-up" vl-act="5">Act 5 · CTA lands last</p>
+            <div class="scene-story-grid">
+              <article class="scene-story" vl-scene vl-timeline="view" aria-label="Release signal scene">
+                <div class="scene-story__stage" vl-stage>
+                  <p class="scene-story__eyebrow" vl-enter="fade-up" vl-act="1">Release signal / 07</p>
+                  <h3 vl-enter="clip-rise" vl-act="1">Turn alignment into momentum.</h3>
+                  <div class="scene-story__metric" vl-enter="fade-up" vl-act="2"><strong>72%</strong><span>team alignment</span></div>
+                  <a href="#tl-host" class="scene-story__action" vl-enter="fade-up" vl-act="3" vl-hover="hover-lift">Open the brief <span aria-hidden="true">→</span></a>
+                </div>
+                <footer><span>Core · acts 1–3</span><span>Skin · kinetic landing</span><span>Showcase · release signal</span></footer>
+              </article>
+              <article class="scene-story" vl-scene vl-timeline="view" aria-label="Interface decision scene">
+                <div class="scene-story__stage" vl-stage>
+                  <p class="scene-story__eyebrow" vl-enter="fade-up" vl-act="1">Decision room</p>
+                  <h3 vl-enter="clip-rise" vl-act="1">Choose the motion voice.</h3>
+                  <div class="scene-story__choices" vl-enter="fade-up" vl-act="2"><span>Subtle</span><span>Cinematic</span><span>Still</span></div>
+                  <p class="scene-story__confirmation" vl-enter="fade-up" vl-act="3">Cinematic profile connected.</p>
+                </div>
+                <footer><span>Core · shared clock</span><span>Skin · control anatomy</span><span>Showcase · policy choice</span></footer>
+              </article>
+              <article class="scene-story" vl-scene vl-timeline="view" aria-label="Editorial handoff scene">
+                <div class="scene-story__stage" vl-stage>
+                  <p class="scene-story__eyebrow" vl-enter="fade-up" vl-act="1">Editorial handoff</p>
+                  <h3 vl-enter="clip-rise" vl-act="1">The system becomes a point of view.</h3>
+                  <blockquote vl-enter="fade-up" vl-act="2">“Hierarchy arrives before spectacle.”</blockquote>
+                  <div class="scene-story__media" vl-scroll="media-zoom" vl-act="3" aria-hidden="true"><span vl-loop="-1" vl-loop-effect="glow-breathe"></span></div>
+                </div>
+                <footer><span>Core · enter + scroll</span><span>Skin · media treatment</span><span>Showcase · editorial handoff</span></footer>
+              </article>
+            </div>
           </div>
         </section>
 
         <section id="tl-host" class="showcase-cinema-scene" vl-scene>
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-copy" vl-enter="fade-up" vl-timeline="view">
-              <p class="showcase-ref-kicker">Host-agnostic</p>
+              <p class="showcase-ref-kicker">Act 04 // portable direction</p>
               <h2 class="showcase-ref-title">Same <code>vl-*</code>. Any UI.</h2>
               <p class="showcase-ref-lead">
                 Import <code>@velora/css/motion-core</code> only. Style with Tailwind (or anything).
@@ -230,12 +234,13 @@
         <section id="tl-recipes" class="showcase-cinema-scene" vl-scene>
           <div class="showcase-cinema-scene__inner">
             <div class="showcase-cinema-copy" vl-enter="fade-up" vl-timeline="view">
-              <p class="showcase-ref-kicker">Recipes vs engine</p>
+              <p class="showcase-ref-kicker">Act 05 // engine boundary</p>
               <h2 class="showcase-ref-title">Named presets stay as <em>skin recipes</em>.</h2>
               <p class="showcase-ref-lead">
                 <code>vl-scene="cinematic-hero"</code> and friends still work via <code>scene-recipes.css</code> (theme).
                 New work should prefer track / stage / acts for host portability.
               </p>
+              <div class="showcase-core-next"><span>Next proof</span><p>Apply four complete product voices to the same semantic interface.</p><a href="/pages/core/skins.html">Open Skins <span aria-hidden="true">→</span></a></div>
             </div>
           </div>
         </section>
@@ -247,7 +252,7 @@
       <div class="vl-footer__inner vl-container">
         <div class="vl-footer__grid vl-footer__grid--5">
           <div class="vl-footer__col vl-footer__brand">
-            <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-effect="fade-up" vl-timeline="view">
+            <a class="vl-logo-lockup vl-logo-lockup--footer" href="/index.html" aria-label="Velora home" vl-enter="fade-up" vl-timeline="view">
               <svg class="vl-logo-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 218.79 54.05" fill="currentColor" aria-hidden="true" focusable="false">
                 <g class="vl-logo-mark__group">
                   <g class="vl-logo-mark__full">
@@ -273,11 +278,11 @@
             <h3 class="vl-footer__heading">Showcase</h3>
             <ul class="vl-footer__links">
               <li><a class="vl-footer__link" href="/index.html">Home</a></li>
-              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Timeline</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/core.html">Core</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/elements.html">Elements</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Scenes</a></li>
               <li><a class="vl-footer__link" href="/pages/core/skins.html">Skins</a></li>
               <li><a class="vl-footer__link" href="/pages/motion/api-motion-catalog.html">Catalog</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/archive.html">Archive</a></li>
             </ul>
           </div>
         </div>
@@ -306,6 +311,3 @@
     <script src="/js/showcase-ui.js"></script>
   </body>
 </html>
-
-
-

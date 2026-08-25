@@ -580,7 +580,7 @@
         --vl-enter-duration: var(--vl-duration-slower);
         --vl-enter-ease: var(--vl-ease-out-soft);
     }
-    :is([vl-enter~="reveal-3d"], [vl-effect~="reveal-3d"]) { --vl-enter-name: vl-3d-entry; }
+    :is([vl-enter~="reveal-3d"], [vl-effect~="reveal-3d"], [vl-enter~="3d-entry"], [vl-effect~="3d-entry"]) { --vl-enter-name: vl-3d-entry; }
     :is([vl-enter~="flow-in"], [vl-effect~="flow-in"]) {
         --vl-enter-name: vl-flow-in;
         --vl-enter-duration: var(--vl-duration-slower);
@@ -631,11 +631,17 @@
         --vl-scroll-range: var(--vl-range, entry 0% cover 85%);
     }
 
-    :is([vl-scroll~="scroll-marquee"], [vl-effect~="scroll-marquee"]) {
+    :is([vl-scroll~="scroll-marquee"], [vl-effect~="scroll-marquee"], [vl-scroll~="scroll-horizontal"], [vl-effect~="scroll-horizontal"]) {
         --vl-scroll-name: vl-scroll-horizontal;
         --vl-scroll-timeline: scroll(root);
         --vl-scroll-range: var(--vl-marquee-range, cover 0% cover 100%);
         --vl-scroll-x-distance: var(--vl-marquee-distance, -36%);
+    }
+
+    :is([vl-scroll~="scroll-scale"], [vl-effect~="scroll-scale"]) {
+        --vl-scroll-name: vl-scroll-scale;
+        --vl-scroll-timeline: view(block);
+        --vl-scroll-range: entry 0% cover 70%;
     }
 
     :is([vl-scroll~="rotate-scroll"], [vl-effect~="rotate-scroll"]) {
@@ -701,7 +707,7 @@
         --vl-loop-ease: linear;
     }
 
-    :is([vl-loop~="orbit"], [vl-loop-effect~="orbit"], [vl-effect~="orbit"]) {
+    :is([vl-loop~="orbit"], [vl-loop-effect~="orbit"], [vl-effect~="orbit"], [vl-loop~="orbit-spin"], [vl-loop-effect~="orbit-spin"], [vl-effect~="orbit-spin"]) {
         --vl-loop-name: vl-orbit-spin;
         --vl-loop-duration: 14s;
         --vl-loop-ease: linear;
@@ -787,16 +793,6 @@
 
     :is([vl-hover~="icon-shift"], [vl-effect~="icon-shift"]) > :last-child {
         transition: transform var(--vl-transition-fast);
-    }
-
-    :is([vl-state~="smooth"], [vl-state="smooth"]) {
-        transition:
-            transform var(--vl-duration-normal) var(--vl-ease-cinematic),
-            opacity var(--vl-duration-normal) var(--vl-ease-cinematic),
-            background-color var(--vl-duration-normal) var(--vl-ease-cinematic),
-            color var(--vl-duration-normal) var(--vl-ease-cinematic),
-            box-shadow var(--vl-duration-normal) var(--vl-ease-cinematic),
-            border-color var(--vl-duration-normal) var(--vl-ease-cinematic);
     }
 
     [vl-exit] {
@@ -1805,16 +1801,6 @@
      [vl-direction="reverse"] { --vl-motion-direction: reverse; }
      [vl-direction="alternate"] { --vl-motion-direction: alternate; }
      [vl-direction="alternate-reverse"] { --vl-motion-direction: alternate-reverse; }
-
-    [vl-state="smooth"] {
-        transition:
-            transform var(--vl-duration-normal) var(--vl-ease-cinematic),
-            opacity var(--vl-duration-normal) var(--vl-ease-cinematic),
-            background-color var(--vl-duration-normal) var(--vl-ease-cinematic),
-            color var(--vl-duration-normal) var(--vl-ease-cinematic),
-            box-shadow var(--vl-duration-normal) var(--vl-ease-cinematic),
-            border-color var(--vl-duration-normal) var(--vl-ease-cinematic);
-    }
 
     /* =========================================================================
        SCENE SYSTEM  [vl-scene="<name>"]

@@ -10,10 +10,10 @@ The motion system is driven by HTML attributes prefixed with `vl-`. Each attribu
 |---|---|---|
 | `vl-effect` | Named motion preset (legacy, still supported) | `fade-up`, `blur-in`, `parallax` |
 | `vl-enter` | Entrance animation | `fade-up`, `flow-in`, `clip-rise`, `reveal-cinematic`, `depth-enter`, `mask-sweep` |
-| `vl-scroll` | Scroll-driven animation | `parallax`, `cinema-zoom`, `depth-drift`, `crossfade`, `reveal`, `media-zoom` |
+| `vl-scroll` | Scroll-driven animation | `parallax`, `cinema-zoom`, `depth-drift`, `crossfade`, `reveal`, `media-zoom`, `path` |
 | `vl-loop` | Continuous/ambient animation | `float`, `glow-breathe`, `wobble`, `morph`, `spin`, `orbit`, `aurora-drift` |
 | `vl-hover` | Hover interaction | `hover-lift`, `hover-glow`, `underline-expand`, `icon-shift`, `gradient-sweep`, `border-trace` |
-| `vl-state` | State transition | `smooth` |
+| `vl-state` | State transition | `smooth`, `enter-exit`, `expand`, `top-layer` |
 | `vl-exit` | Exit animation | `fade-out`, `fade-out-up`, `fade-out-down`, `shrink-out` |
 | `vl-timeline` | Progress model | `view`, `scroll`, `auto`, `state`, `hover` |
 | `vl-scene` | Scene track (clock). Named values are Velora-look recipes | (bare), `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema` |
@@ -108,6 +108,7 @@ Drives animation progress from scroll position. Automatically binds to `animatio
 | `text-highlight` | Background sweep on inline scroll | `view(inline)` |
 | `reveal` | Fade-up on viewport entry | `view(block)` |
 | `media-zoom` | Scale + opacity on viewport entry | `view(block)` |
+| `path` | Move along `--vl-path` using native `offset-path` | `view(block)` |
 
 ### loop
 
@@ -154,13 +155,26 @@ Interaction effects triggered by `:hover` and `:focus-visible`.
 
 ### state
 
-Transition properties for smooth state changes (class toggling, attribute changes, theme switches).
+Native transitions for visual state, visibility, intrinsic dimensions, and top-layer UI.
 
 ```html
 <div vl-state="smooth">
 ```
 
 `smooth` applies cinematic transitions to `transform`, `opacity`, `background-color`, `color`, `box-shadow`, and `border-color`.
+
+| Value | Purpose | Native primitives |
+|---|---|---|
+| `smooth` | Visual property interpolation | transitions + Velora state tokens |
+| `enter-exit` | Visibility changes, including `[hidden]` | `@starting-style`, discrete `display`, `content-visibility` |
+| `expand` | Intrinsic block-size changes | `interpolate-size`, optional `calc-size()` |
+| `top-layer` | Dialog and popover lifecycle | `overlay`, discrete `display`, `::backdrop` |
+
+```html
+<div vl-state="enter-exit" hidden>Native entry and exit</div>
+<div vl-state="expand">Intrinsic content</div>
+<div popover vl-state="top-layer">Top-layer content</div>
+```
 
 ### exit
 
@@ -189,6 +203,7 @@ Velora provides four core easing curves, available as CSS custom properties:
 | `--vl-ease-out-soft` | `cubic-bezier(0.16, 1, 0.3, 1)` | Fast exit from rest, long deceleration. Natural for entrances and reveals. |
 | `--vl-ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Overshoots target slightly, then settles. Physical, elastic quality. |
 | `--vl-ease-in-out-smooth` | `cubic-bezier(0.45, 0, 0.55, 1)` | Symmetric acceleration and deceleration. Clean for loops and ambient motion. |
+| `--vl-ease-natural` | native `linear()` point sequence | Fast physical decay without a JavaScript spring runtime. |
 
 Additional premium easing tokens:
 

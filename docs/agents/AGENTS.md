@@ -13,6 +13,8 @@ pnpm build            # full Turborepo build (packages + apps)
 pnpm verify:contract  # validate CSS sync + Motion API contract
 ```
 
+Requires Node.js 22.12 or newer and pnpm 10.
+
 ## Workspace Structure
 
 
@@ -122,4 +124,3 @@ pnpm test:library          # component library unit tests
 - Adding animation without `prefers-reduced-motion` guard — accessibility violation
 - Using deprecated motion attributes (`vl-type`, `vl-delay`, `vl-easing`)
 - Forgetting `pnpm sync:showcase-css` after core CSS changes
-

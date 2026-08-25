@@ -6,7 +6,7 @@
 
 Velora is a **declarative CSS motion engine**. HTML attributes describe intent; the browser executes it. No JavaScript animation runtime. Works with Tailwind, Relume, or any UI.
 
-The cinematic **Showcase** is the optional Velora design-system skin — not a requirement to turn motion on.
+The optional **Skins** layer provides complete design-system models. The cinematic **Showcase** proves how Core behavior and Skin DNA combine; neither is required to turn motion on.
 
 ## Features
 
@@ -16,7 +16,7 @@ The cinematic **Showcase** is the optional Velora design-system skin — not a r
 
 📐 **8-Layer Cascade Architecture** — Structured specificity via CSS `@layer` (reset → tokens → layout → motion → components → transitions → utilities → overrides)
 
-🔄 **Scroll-Driven Animations** — Parallax reveals and scroll-triggered motion using native CSS scroll timelines
+🔄 **Element + Scroll Motion** — Native entry/exit, intrinsic-size, top-layer, path and scroll-driven motion
 
 📦 **Declarative Attribute Grammar** — Motion via HTML attributes (`vl-effect`, `vl-timeline`, `vl-children`, `vl-scene`) instead of CSS classes
 
@@ -83,9 +83,9 @@ It includes:
 - `@velora/css/premium` — premium components
 - `@velora/css/overrides` — last-mile override layer
 
-Proofs: `examples/tailwind-host/` (motion-core + Tailwind) · `apps/showcase` (six-page reference UI: Home, Timeline, Skins, Catalog, Hosts, Archive). Older Showcase pages: `archive/showcase-2026-08/`.
+Proofs: `examples/tailwind-host/` (motion-core + Tailwind) · `apps/showcase` (six primary areas: Home, Core, Elements, Scenes, Skins, Catalog). Hosts and Archive remain secondary references. Older Showcase pages: `archive/showcase-2026-08/`.
 
-**Skins** are named design-system models (`html[data-editorial-theme]`). They are optional; motion works without them.
+**Skins** are named design-system models (`html[data-editorial-theme]`) covering typography, grid, density, geometry, materials, media and motion voice—not only color. They are optional; motion works without them.
 
 ## Motion Channels (v2)
 

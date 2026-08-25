@@ -9,6 +9,25 @@
     /* =========================================================================
        1. Modal Dialog  —  <dialog class="vl-dialog">
        ========================================================================= */
+
+    /* Optional native anchor contract for popovers. Positional enhancement only. */
+    .vl-anchor-scope {
+        anchor-scope: --vl-anchor;
+    }
+
+    .vl-anchor {
+        anchor-name: --vl-anchor;
+    }
+
+    @supports (position-anchor: --vl-anchor) {
+        .vl-popover--anchored {
+            position: fixed;
+            position-anchor: --vl-anchor;
+            position-area: bottom span-right;
+            position-try-fallbacks: flip-block, flip-inline;
+            margin: var(--vl-space-xs) 0;
+        }
+    }
     .vl-dialog {
         display: block;
         max-width: 32rem;

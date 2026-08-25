@@ -2452,6 +2452,117 @@
 /* ---- lead card full width override for sections ---- */
 .api-card--full { grid-column: 1 / -1; }
 
+.api-intent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--vl-space-md);
+}
+
+.api-intent-card {
+  align-content: start;
+  min-height: 18rem;
+}
+
+.api-intent-card > strong {
+  font-family: var(--vl-font-family-display);
+  font-size: var(--vl-font-size-xl);
+}
+
+.api-intent-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vl-space-xs);
+  margin-block-start: auto;
+}
+
+.api-intent-links a {
+  padding: var(--vl-space-2xs) var(--vl-space-xs);
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-full);
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: var(--vl-font-size-xs);
+  text-decoration: none;
+}
+
+.api-intent-card footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--vl-space-sm);
+  padding-block-start: var(--vl-space-sm);
+  border-block-start: 1px solid var(--vl-border-subtle);
+  color: var(--vl-text-muted);
+  font-size: var(--vl-font-size-xs);
+}
+
+.api-coverage-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 0.32fr)) minmax(18rem, 1fr);
+  gap: var(--vl-space-sm);
+  margin-block-start: var(--vl-space-lg);
+  padding: var(--vl-space-lg);
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-xl);
+  background: var(--vl-bg-inset);
+}
+
+.api-coverage-ledger > div {
+  display: grid;
+  gap: var(--vl-space-2xs);
+}
+
+.api-coverage-ledger strong {
+  color: var(--vl-color-primary);
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.api-coverage-ledger span,
+.api-coverage-ledger p {
+  color: var(--vl-text-muted);
+  font-size: var(--vl-font-size-xs);
+}
+
+.api-grid--coverage {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.api-compact-targets,
+.api-compact-scenes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--vl-space-xs);
+}
+
+.api-compact-targets > span,
+.api-compact-scenes > div {
+  display: grid;
+  place-items: center;
+  min-height: 5rem;
+  padding: var(--vl-space-sm);
+  overflow: clip;
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-md);
+  background: var(--vl-bg-inset);
+  color: var(--vl-text-secondary);
+  font-family: var(--vl-font-family-mono);
+  font-size: var(--vl-font-size-xs);
+  text-align: center;
+}
+
+.api-compact-scenes > div {
+  grid-template-columns: 1fr;
+  gap: var(--vl-space-2xs);
+}
+
+.api-compact-scenes > div > span {
+  inline-size: 100%;
+  padding: var(--vl-space-2xs);
+  border: 1px solid var(--vl-border-subtle);
+  border-radius: var(--vl-radius-sm);
+}
+
 /* ---- Scrollable catalog hero status chips ---- */
 .api-hero-status > span {
   white-space: nowrap;
@@ -2506,6 +2617,12 @@
 }
 
 @media (max-width: 980px) {
+  .api-intent-grid,
+  .api-coverage-ledger,
+  .api-grid--coverage {
+    grid-template-columns: 1fr;
+  }
+
   .api-hero-panels {
     min-height: 16rem;
   }
@@ -2572,6 +2689,101 @@
   color: var(--vl-text-secondary);
   font-size: 0.84rem;
   line-height: 1.5;
+}
+
+.api-reference-protocol {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.34fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  margin: 0 0 1.25rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid color-mix(in oklch, var(--vl-color-primary) 38%, var(--vl-border-subtle));
+  border-radius: 0.95rem;
+  background:
+    linear-gradient(120deg, color-mix(in oklch, var(--vl-color-primary) 10%, transparent), transparent 48%),
+    color-mix(in oklch, var(--vl-bg-surface) 88%, transparent);
+}
+
+.api-reference-protocol header {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+}
+
+.api-reference-protocol h2 {
+  margin: 0;
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(1.65rem, 3vw, 2.7rem);
+  line-height: 0.96;
+}
+
+.api-reference-protocol ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.api-reference-protocol li {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-height: 9rem;
+  padding: 0.85rem;
+  border-block-start: 1px solid var(--vl-border-subtle);
+}
+
+.api-reference-protocol li > span {
+  color: var(--vl-color-primary);
+  font-family: var(--vl-font-family-mono);
+  font-size: 0.68rem;
+}
+
+.api-reference-protocol li > strong {
+  font-family: var(--vl-font-family-display);
+}
+
+.api-reference-protocol li > p {
+  margin: 0;
+  color: var(--vl-text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.api-target--reverse-orbit {
+  --vl-loop-direction: reverse;
+  --vl-orbit-radius: 1.1rem;
+}
+
+.api-target--slow-exit {
+  --vl-exit-duration: 2200ms;
+}
+
+.api-orb-stage--spaced {
+  margin-top: 1rem;
+}
+
+.api-orb-list {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.api-note--recipe {
+  margin: 0.5rem 0 0;
+  color: var(--vl-text-muted);
+  font-size: 0.8rem;
+}
+
+.api-target--aurora {
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklch, var(--vl-color-primary) 56%, var(--vl-bg-surface)),
+    color-mix(in oklch, var(--vl-color-accent, var(--vl-color-secondary)) 52%, var(--vl-bg-main))
+  );
 }
 
 .api-scene-engine-demo {
@@ -2667,7 +2879,26 @@
 }
 
 @media (max-width: 820px) {
-  .api-lanes__inner {
+  .api-lanes__inner,
+  .api-reference-protocol {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .api-reference-protocol ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .api-reference-protocol li:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .api-reference-protocol ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .api-reference-protocol li:last-child {
+    grid-column: auto;
   }
 }

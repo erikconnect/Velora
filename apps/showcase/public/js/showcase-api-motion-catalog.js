@@ -50,9 +50,12 @@
   ].join(", ");
 
   const SECTION_KIND_MAP = {
+    "intent-map": "reference",
+    "modern-platform": "reference",
     channels: "channel",
     "timeline-modes": "timeline",
     entrances: "timeline",
+    "coverage-completion": "reference",
     "stage-3d": "3d",
     hover: "interaction",
     "hover-cards": "interaction",
@@ -124,28 +127,28 @@
   ];
 
   const MOTION_HINTS = {
-    "vl-enter": "Entrada quando o alvo cruza o viewport (ou timeline view).",
-    "vl-exit": "Saída ao sair do viewport ou fim de cena.",
-    "vl-scroll": "Motion acoplada ao scroll — scrub no eixo da página.",
-    "vl-loop": "Loop CSS contínuo ou N repetições via keyframes.",
-    "vl-loop-effect": "Preset de loop (orbit, wobble, glow…).",
-    "vl-hover": "Canal de pointer — hover/focus disparam transições.",
-    "vl-effect": "Efeito legacy/interaction no atributo vl-effect.",
-    "vl-state": "Estado suave persistente no elemento.",
-    "vl-timeline": "Driver: view, scroll, hover ou tempo.",
-    "vl-range": "Janela de scroll/viewport onde a motion é ativa.",
-    "vl-scene": "Relógio de cena — acts com timing relativo.",
-    "vl-stage": "Palco 3D/2D — filhos posicionados por vars.",
-    "vl-pin": "Pin numérico durante scrub de cena.",
-    "vl-scrub": "Liga progresso de scroll ao relógio da cena.",
-    "vl-children": "Orquestra filhos (stagger / orchestrate).",
-    "vl-stagger": "Atraso entre filhos em ms.",
+    "vl-enter": "Entry as the target crosses the viewport or joins a view timeline.",
+    "vl-exit": "Exit as the target leaves the viewport or reaches the end of a scene.",
+    "vl-scroll": "Motion coupled to scroll progress on the selected axis.",
+    "vl-loop": "Continuous CSS loop or a declared number of repetitions.",
+    "vl-loop-effect": "Named loop recipe such as orbit, wobble or glow.",
+    "vl-hover": "Pointer channel triggered through hover and focus.",
+    "vl-effect": "Supported effect alias for legacy and interaction recipes.",
+    "vl-state": "Persistent native interface lifecycle on the element.",
+    "vl-timeline": "Driver: view, scroll, hover, state or elapsed time.",
+    "vl-range": "The scroll or viewport window where motion is active.",
+    "vl-scene": "Shared scene clock with relative acts.",
+    "vl-stage": "Two- or three-dimensional stage whose children share the clock.",
+    "vl-pin": "Numeric pin duration during scene scrub.",
+    "vl-scrub": "Connects scroll progress to the scene clock.",
+    "vl-children": "Coordinates children through stagger or orchestration.",
+    "vl-stagger": "Time offset between children.",
   };
 
   const TIMELINE_HINTS = {
-    view: "Timeline view — dispara ao entrar no viewport.",
-    scroll: "Timeline scroll — progresso ligado ao scroll.",
-    hover: "Timeline hover — gate por pointer/focus.",
+    view: "View timeline — progress follows viewport entry.",
+    scroll: "Scroll timeline — progress follows the scroll container.",
+    hover: "Hover timeline — gated by pointer and focus intent.",
   };
 
   let selectedCard = null;
@@ -323,7 +326,7 @@
 
   function deriveMotionHint(card, active) {
     if (!active.length) {
-      return "Card de referência — sem attrs de motion no alvo.";
+      return "Reference card—no motion attributes on its target.";
     }
 
     const primary =
@@ -353,7 +356,7 @@
 
   function renderLiveReadout(card) {
     if (!card) {
-      if (liveHint) liveHint.textContent = "Clique num card para ver o que está em motion.";
+      if (liveHint) liveHint.textContent = "Select a card to inspect its active motion attributes.";
       if (liveReadout) {
         liveReadout.hidden = true;
         liveReadout.textContent = "";
@@ -440,7 +443,7 @@
     if (!selectedCard || selectedCard.classList.contains("is-filter-hidden")) {
       const firstVisible = getVisibleCards()[0];
       if (firstVisible) selectCard(firstVisible);
-      else if (selectedLabel) selectedLabel.textContent = "Nenhum";
+      else if (selectedLabel) selectedLabel.textContent = "No selection";
     }
   }
 

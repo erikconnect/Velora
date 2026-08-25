@@ -29,7 +29,14 @@ function hasShell(content) {
   );
 }
 
-async function auditPage(pagePath) {
+function extractBlock(content, start, end) {
+  const from = content.indexOf(start);
+  const to = content.indexOf(end, from);
+  if (from < 0 || to < 0) return "";
+  return content.slice(from, to + end.length);
+}
+
+async function auditPage(pagePath, canonicalShell) {
   const abs = path.join(ROOT, pagePath);
   try {
     const content = await fs.readFile(abs, "utf8");
@@ -37,6 +44,14 @@ async function auditPage(pagePath) {
     const description = pick(content, /<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i);
     const h1 = pick(content, /<h1[^>]*>([\s\S]*?)<\/h1>/i).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
     const shell = hasShell(content);
+    const header = extractBlock(content, '<header class="vl-header', "</header>");
+    const footer = extractBlock(content, '<footer class="vl-footer', "</footer>");
+    const bussola = extractBlock(content, '<nav class="showcase-cinema-rail', "</nav>");
+    const bussolaStops = bussola.match(/class="vl-bussola__stop"/g)?.length ?? 0;
+    const canonicalBussola =
+      bussola.includes('data-velora-signature="bussola"') &&
+      bussola.includes('aria-label="Velora page compass"') &&
+      bussola.includes('>&#x2726;&nbsp;velora</span>');
 
     return {
       pagePath,
@@ -50,6 +65,10 @@ async function auditPage(pagePath) {
         ...(title ? [] : ["missing-title"]),
         ...(description ? [] : ["missing-meta-description"]),
         ...(h1 ? [] : ["missing-h1"]),
+        ...(header === canonicalShell.header ? [] : ["noncanonical-header"]),
+        ...(footer === canonicalShell.footer ? [] : ["noncanonical-footer"]),
+        ...(canonicalBussola ? [] : ["noncanonical-bussola-signature"]),
+        ...(bussolaStops >= 1 && bussolaStops <= 6 ? [] : ["invalid-bussola-stop-count"]),
       ],
     };
   } catch {
@@ -121,9 +140,14 @@ async function main() {
 
   const pages = listTemplatePages(templateName);
   const results = [];
+  const home = await fs.readFile(path.join(ROOT, "index.html"), "utf8");
+  const canonicalShell = {
+    header: extractBlock(home, '<header class="vl-header', "</header>"),
+    footer: extractBlock(home, '<footer class="vl-footer', "</footer>"),
+  };
 
   for (const page of pages) {
-    results.push(await auditPage(page));
+    results.push(await auditPage(page, canonicalShell));
   }
 
   const totals = summarize(results);

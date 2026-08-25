@@ -14,6 +14,7 @@ Guia rápido para criar/editar páginas sem quebrar contrato no Velora.
 Use sempre a estrutura canônica:
 
 - `nav.showcase-cinema-rail.vl-bussola`
+- `data-velora-signature="bussola"`
 - `vl-bussola__cap`
 - `vl-bussola__stop`
 - `vl-bussola__label`
@@ -22,6 +23,8 @@ Use sempre a estrutura canônica:
 Regras:
 
 - Cada `href="#..."` da bussola deve apontar para um `id` real da página.
+- A assinatura visível é sempre `✦ velora`; apenas os stops mudam por página.
+- Use de 1 a 6 stops por página.
 - Evite `#content` como stop da bussola quando houver seção específica.
 - IDs devem ser `kebab-case` e estáveis (ex.: `about-hero`, `forms-validation`).
 
@@ -53,7 +56,8 @@ Nunca usar aliases deprecados:
 ## 5) Catálogos oficiais (fonte viva)
 
 - Motion: `apps/showcase/pages/motion/api-motion-catalog.html`
-- Design: `apps/showcase/pages/components/api-design-catalog.html`
+- Components and native UI: `apps/showcase/pages/core/elements.html`
+- Coverage manifest: `apps/showcase/config/showcase-coverage.mjs`
 
 Tudo que for “oficial” precisa aparecer neles.
 
@@ -70,8 +74,9 @@ Na raiz do repositório:
 1. Ajuste conteúdo e estrutura da página.
 2. Garanta IDs finais das seções.
 3. Ajuste bussola para esses IDs.
-4. Rode `pnpm verify:contract`.
-5. Só então parta para refinos visuais finos.
+4. Rode `pnpm --filter showcase sync:shell` para aplicar Header e Footer canônicos.
+5. Rode `pnpm verify:contract`.
+6. Só então parta para refinos visuais finos.
 
 ## 8) Convenções para cenas narrativas
 

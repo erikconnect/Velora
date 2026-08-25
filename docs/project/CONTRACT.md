@@ -62,10 +62,12 @@ This is the operational contract for Motion API, Design API, and showcase page s
 
 - `vl-enter`: `reveal-cinematic`, `depth-enter`, `mask-sweep`
 - `vl-scroll`: `reveal`, `media-zoom`, `crossfade`, `text-highlight`
+- `vl-scroll`: `path` (requires a tokenized `--vl-path`; scroll-linked `offset-distance`)
 - `vl-loop` / `vl-loop-effect`: `aurora-drift`
 - `vl-hover`: `gradient-sweep`, `border-trace`
 - `vl-scene`: `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema` (**Velora-look recipes** in `scene-recipes.css` / theme — not required for host-agnostic scenes)
 - `vl-motion`: `standard`, `subtle`, `cinematic`, `still`
+- `vl-state`: `smooth`, `enter-exit`, `expand`, `top-layer`
 - `vl-pin`: numeric viewport heights (`1`–`6`, or typed `attr` enhancement)
 - `vl-act` / `vl-span`: beat index and span on `[vl-stage]` children (scene engine)
 
@@ -135,11 +137,44 @@ This keeps the API compact while preserving flexibility for advanced timelines.
 | `@velora/css` / `full` | Convenience: theme + components + motion |
 | Showcase-only CSS | `04e-*`, `08-showcase-home` — not in npm consumer path |
 
+### 2.7 Motion taxonomy
+
+Velora keeps five behaviors separate so “transition” never becomes an ambiguous API:
+
+1. **Page transitions** — `vl-page-transition` in `@velora/css/transitions`.
+2. **Element entry/exit** — `vl-enter`, `vl-exit`, and `vl-state="enter-exit"`.
+3. **Native state transitions** — `vl-state="smooth|expand|top-layer"`.
+4. **Scroll motion** — progress-linked `vl-scroll`; scroll-triggered CSS remains experimental.
+5. **Scene orchestration** — `vl-scene` + `vl-stage` + acts/channels.
+
+Element-scoped View Transitions require `Element.startViewTransition()` and are not part of
+the zero-runtime Core contract.
+
+### 2.8 Support levels
+
+| Level | Contract |
+| --- | --- |
+| Stable | Required for the declared behavior; covered by contract and cross-browser checks. |
+| Progressive enhancement | Guarded by feature detection; the semantic content and baseline interaction remain usable. |
+| Experimental | Catalog/lab only; never required by a stable recipe. |
+
+- **Stable:** `@starting-style`, discrete transitions, intrinsic-size interpolation, scroll-driven animations, popover/dialog state.
+- **Progressive enhancement:** `calc-size()`, customizable select, anchor positioning, `sibling-index()`, scroll markers, `offset-path` refinements.
+- **Experimental:** CSS `@function`, scroll-triggered animations, element-scoped View Transitions, emerging shape/border syntax.
+
 ## 3) Design Catalog Matrix (scope)
+
+The live Showcase coverage is declared in `apps/showcase/config/showcase-coverage.mjs`.
+`Elements` is the canonical component and native-UI proof; `Catalog` is the exhaustive
+motion reference organized by interface intent. Run `pnpm --filter showcase audit:coverage`
+to detect missing component groups, intent routes, or motion presets.
 
 - **Core:** `#color-tokens`, `#typography`, `#spacing`, `#primitives`
 - **Extended:** `#forms`, `#components`, `#pages`
 - **Reference:** `#motion-ref`
+
+The visual layer follows `docs/project/SKIN_CONTRACT.md`. A Skin may retoken appearance
+and motion voice, but it must not redefine Core behavior.
 
 ## 4) Structural Naming Contract
 
@@ -161,8 +196,17 @@ This keeps the API compact while preserving flexibility for advanced timelines.
 ## 5) Bussola Contract
 
 - `nav.showcase-cinema-rail.vl-bussola` is canonical.
+- The navigation carries `data-velora-signature="bussola"` and the visible cap `✦ velora`; this is a distinctive Showcase signature rather than generic page chrome.
+- Every registered page uses the same Bussola structure and exposes between one and six page-specific stops.
 - Every `vl-bussola__stop[href="#..."]` must map to an existing `id`.
 - Avoid generic anchors like `#content` when a specific scene/section exists.
+
+## 5.1) Canonical Showcase shell
+
+- `apps/showcase/index.html` is the source of truth for the exact Header and Footer markup.
+- All live and secondary registered pages must use byte-identical Header and Footer blocks.
+- Run `pnpm --filter showcase sync:shell` after changing the canonical shell.
+- The page audit fails on Header, Footer or Bussola signature drift.
 
 ## 6) Validation Gates
 

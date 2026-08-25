@@ -1941,9 +1941,9 @@
     }
 
     /* --- Scroll markers (CSS-native, Chrome 135+) ----------------------------- */
-    .vl-scroll-markers { scroll-marker-group: after; }
+    :is(.vl-scroll-markers, [vl-scroll-markers]) { scroll-marker-group: after; }
 
-    .vl-scroll-markers::scroll-marker-group {
+    :is(.vl-scroll-markers, [vl-scroll-markers])::scroll-marker-group {
         display: flex;
         gap: var(--vl-marker-gap, var(--vl-space-xs));
         justify-content: center;
@@ -1952,7 +1952,7 @@
         height: calc(var(--vl-marker-h, 0.5rem) + var(--vl-space-sm) * 2);
     }
 
-    .vl-scroll-markers > *::scroll-marker {
+    :is(.vl-scroll-markers, [vl-scroll-markers]) > *::scroll-marker {
         content: "";
         width: var(--vl-marker-w, 0.5rem);
         height: var(--vl-marker-h, 0.5rem);
@@ -1964,7 +1964,7 @@
             background var(--vl-duration-normal) var(--vl-ease-out-soft);
     }
 
-    .vl-scroll-markers > *::scroll-marker:target-current {
+    :is(.vl-scroll-markers, [vl-scroll-markers]) > *::scroll-marker:target-current {
         width: var(--vl-marker-w-active, 1.75rem);
         background: var(--vl-color-primary);
         border-color: transparent;

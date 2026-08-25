@@ -110,6 +110,7 @@ export const KNOWN_PRESETS = new Set([
   "reveal",
   "crossfade",
   "text-highlight",
+  "path",
   // Hover / interactive
   "hover-depth-press",
   "hover-prism",
@@ -178,6 +179,9 @@ export const KNOWN_PRESETS = new Set([
   "morph",
   "icon-shift",
   "smooth",
+  "enter-exit",
+  "expand",
+  "top-layer",
   // vl-base intensity presets
   "subtle",
   "balanced",

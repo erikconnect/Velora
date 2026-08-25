@@ -1966,6 +1966,11 @@ body {
 }
 
 /* ── Demo extras (absorbed from showcase-demo-extras.css) ─────────────────── */
+
+@media (max-width: 768px) {
+    :is(.showcase-page-shell, body) :is(input, textarea, select) {
+        font-size: 16px;
+    }
 }
 
 .glass-panel {

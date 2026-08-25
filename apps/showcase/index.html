@@ -23,10 +23,10 @@
   </head>
   <body class="showcase-page-shell showcase-home-shell">
     <a class="vl-sr-only" href="#content">Skip to content</a>
-    <nav class="showcase-cinema-rail vl-bussola" aria-label="Page sections">
-      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;playground</span>
+    <nav class="showcase-cinema-rail vl-bussola" data-velora-signature="bussola" aria-label="Velora page compass">
+      <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
       <a class="vl-bussola__stop" href="#idx-hero">
-        <span class="vl-bussola__label">Intro</span>
+        <span class="vl-bussola__label">Manifesto</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
       <a class="vl-bussola__stop" href="#idx-display">
@@ -34,7 +34,7 @@
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
       <a class="vl-bussola__stop" href="#idx-horiz">
-        <span class="vl-bussola__label">Lanes</span>
+        <span class="vl-bussola__label">System</span>
         <span class="vl-bussola__dot" aria-hidden="true"></span>
       </a>
       <a class="vl-bussola__stop" href="#idx-scenes">
@@ -76,11 +76,11 @@
         </a>
                         <nav class="vl-header__nav" aria-label="Primary navigation">
           <a class="vl-nav__link" href="/index.html" vl-hover="underline-expand">Home</a>
-          <a class="vl-nav__link" href="/pages/scenes/scene-timeline.html" vl-hover="underline-expand">Timeline</a>
+          <a class="vl-nav__link" href="/pages/core/core.html" vl-hover="underline-expand">Core</a>
+          <a class="vl-nav__link" href="/pages/core/elements.html" vl-hover="underline-expand">Elements</a>
+          <a class="vl-nav__link" href="/pages/scenes/scene-timeline.html" vl-hover="underline-expand">Scenes</a>
           <a class="vl-nav__link" href="/pages/core/skins.html" vl-hover="underline-expand">Skins</a>
           <a class="vl-nav__link" href="/pages/motion/api-motion-catalog.html" vl-hover="underline-expand">Catalog</a>
-          <a class="vl-nav__link" href="/pages/core/hosts.html" vl-hover="underline-expand">Hosts</a>
-          <a class="vl-nav__link" href="/pages/core/archive.html" vl-hover="underline-expand">Archive</a>
         </nav>
         <div class="vl-header__actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -106,7 +106,7 @@
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
           </a>
-          <a class="vl-header-get-started" href="/pages/scenes/scene-timeline.html" vl-hover="hover-depth-press">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/core/core.html" vl-hover="hover-depth-press">Get Started</a>
         </div>
         <button class="vl-header__menu-btn" aria-expanded="false" aria-controls="vl-mobile-nav" aria-label="Open navigation menu" type="button">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
@@ -119,11 +119,11 @@
       <div class="vl-header__drawer" id="vl-mobile-nav" aria-hidden="true">
                         <nav class="vl-header__mobile-nav" aria-label="Mobile navigation">
           <a class="vl-header__mobile-link" href="/index.html">Home</a>
-          <a class="vl-header__mobile-link" href="/pages/scenes/scene-timeline.html">Timeline</a>
+          <a class="vl-header__mobile-link" href="/pages/core/core.html">Core</a>
+          <a class="vl-header__mobile-link" href="/pages/core/elements.html">Elements</a>
+          <a class="vl-header__mobile-link" href="/pages/scenes/scene-timeline.html">Scenes</a>
           <a class="vl-header__mobile-link" href="/pages/core/skins.html">Skins</a>
           <a class="vl-header__mobile-link" href="/pages/motion/api-motion-catalog.html">Catalog</a>
-          <a class="vl-header__mobile-link" href="/pages/core/hosts.html">Hosts</a>
-          <a class="vl-header__mobile-link" href="/pages/core/archive.html">Archive</a>
         </nav>
         <div class="vl-header__mobile-actions">
           <select class="ds-vt-select" title="Page transition effect" aria-label="Page transition effect">
@@ -144,7 +144,7 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-get-started" href="/pages/scenes/scene-timeline.html">Get Started</a>
+          <a class="vl-header-get-started" href="/pages/core/core.html">Get Started</a>
         </div>
       </div>
     </header>
@@ -159,17 +159,17 @@
         <div class="vl-container vl-stack vl-stack--xl showcase-home-hero-root">
           <div class="showcase-home-hero">
           <div class="showcase-home-hero__content vl-stack vl-stack--xl showcase-home-hero-text-stack" vl-children="orchestrate" vl-stagger="140ms" vl-speed="cinema">
-            <p class="vl-kicker" vl-enter="fade-in">Engine = attributes · Skins = named models</p>
+            <p class="vl-kicker" vl-enter="fade-in">Act 01 · Core directs · Skins give voice · Showcase proves</p>
             <h1
               class="showcase-home-hero__title"
               vl-enter="clip-rise"
               vl-speed="cinema"
             >
-              Direct the page like a sequence, not a stack of effects.
+              Build the scenes modern products are remembered for.
             </h1>
             <p class="showcase-home-lead" vl-enter="clip-rise" vl-speed="cinema">
-              <strong>Motion engine:</strong> <code>vl-*</code> describes intent; CSS runs it (zero JS runtime).
-              <strong>Skins:</strong> replicable design-system models — switch <code>data-editorial-theme</code> and the whole UI retokens.
+              Declare intent in semantic HTML. Modern CSS orchestrates depth, type, scroll, state and handoffs.
+              Change the Skin — not the product structure — to create an entirely new visual world.
             </p>
             <div class="vl-cluster showcase-home-hero-actions">
               <a class="vl-cta" href="/pages/scenes/scene-timeline.html" vl-hover="hover-depth-press">
@@ -425,14 +425,16 @@
         aria-label="Shared scene clock"
       >
         <div class="vl-container">
-          <p class="vl-kicker">Lesson · vl-scene + vl-stage + vl-act</p>
-          <p>One track, one clock, pin + scrub. Copy this markup; look is a Skin (cards below).</p>
+          <p class="vl-kicker">Act 02 · one shared clock</p>
+          <p>Five beats, one release decision. The Core controls time; the Skin controls atmosphere.</p>
         </div>
         <section vl-scene vl-timeline="view" vl-pin="2" vl-scrub aria-label="Home teaching clock">
           <div vl-stage class="vl-container vl-stack vl-stack--md" style="padding-block: 2rem; text-align: center;">
-            <p class="vl-kicker" vl-enter="fade-up" vl-act="1">Act 1</p>
-            <h2 vl-enter="clip-rise" vl-act="1">Shared beat</h2>
-            <p class="vl-card" vl-enter="fade-up" vl-act="2">Act 2 — Skin look on a card, engine on attributes. <a href="/pages/scenes/scene-timeline.html">Timeline</a></p>
+            <p class="vl-kicker" vl-enter="fade-up" vl-act="1">Context · Release 07</p>
+            <h2 vl-enter="clip-rise" vl-act="1">A signal enters the room.</h2>
+            <p class="vl-card" vl-enter="fade-up" vl-act="2">Evidence arrives second: <strong>72% team alignment</strong>.</p>
+            <p class="vl-card" vl-enter="clip-rise" vl-act="3" vl-span="2">The evidence holds while the stage stays pinned and the story advances.</p>
+            <p class="vl-card" vl-enter="fade-up" vl-act="5">The decision lands last: <a href="/pages/scenes/scene-timeline.html">ship the cinematic voice</a>.</p>
           </div>
         </section>
       </section>
@@ -673,6 +675,100 @@
               <a class="showcase-home-lane-link" href="/pages/scenes/scene-timeline.html">Read architecture</a>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section
+        id="idx-grammar"
+        class="vl-section showcase-home__scene showcase-home-grammar"
+        data-layout="full-width"
+        aria-labelledby="idx-grammar-title"
+      >
+        <div class="vl-container showcase-home-grammar__shell">
+          <header class="showcase-home-grammar__header" vl-children="orchestrate" vl-stagger="120ms" vl-speed="cinema">
+            <p class="vl-kicker" vl-enter="reveal-cinematic" vl-timeline="view">Act 05 · the Catalog becomes direction</p>
+            <h2 id="idx-grammar-title" vl-enter="mask-sweep" vl-timeline="view">
+              One motion grammar. <span vl-scroll="text-highlight">Four moments users can feel.</span>
+            </h2>
+            <p vl-enter="text-reveal-up" vl-timeline="view">
+              The attributes below are not decorative samples. Together they stage discovery, evidence, interaction and atmosphere — directly in semantic HTML.
+            </p>
+          </header>
+
+          <div class="showcase-home-grammar__grid">
+            <article class="showcase-home-grammar__card showcase-home-grammar__card--path" vl-enter="depth-enter" vl-timeline="view">
+              <div class="showcase-home-grammar__meta">
+                <span>01 · Discovery</span>
+                <code>vl-scroll="path"</code>
+              </div>
+              <div class="showcase-home-path" aria-label="A signal travelling through a product journey">
+                <svg viewBox="0 0 640 260" aria-hidden="true" focusable="false">
+                  <path d="M28 210C112 32 210 38 284 144S452 250 612 52" />
+                </svg>
+                <span class="showcase-home-path__signal" vl-scroll="path" aria-hidden="true"><i></i></span>
+                <span class="showcase-home-path__label showcase-home-path__label--start">intent</span>
+                <span class="showcase-home-path__label showcase-home-path__label--end">impact</span>
+              </div>
+              <h3>Motion follows the story’s route.</h3>
+              <p><code>offset-path</code> turns progression into a visible journey, with a static endpoint as fallback.</p>
+            </article>
+
+            <article class="showcase-home-grammar__card showcase-home-grammar__card--fan" vl-enter="tilt-in" vl-timeline="view">
+              <div class="showcase-home-grammar__meta">
+                <span>02 · Interaction</span>
+                <code>vl-effect="hover-card-fan"</code>
+              </div>
+              <div class="showcase-home-fan" vl-effect="hover-card-fan" aria-label="Three interactive product layers">
+                <button type="button">
+                  <span class="vl-hover-fan-index">C</span>
+                  <span class="vl-hover-fan-label">Core</span>
+                </button>
+                <button type="button">
+                  <span class="vl-hover-fan-index">S</span>
+                  <span class="vl-hover-fan-label">Skin</span>
+                </button>
+                <button type="button">
+                  <span class="vl-hover-fan-index">↗</span>
+                  <span class="vl-hover-fan-label">Scene</span>
+                </button>
+              </div>
+              <h3>Depth appears exactly when it matters.</h3>
+              <p>Hover or focus a layer. The component choreographs its siblings without a JavaScript animation runtime.</p>
+            </article>
+
+            <article class="showcase-home-grammar__card showcase-home-grammar__card--wave" vl-enter="unfold" vl-timeline="view">
+              <div class="showcase-home-grammar__meta">
+                <span>03 · Orchestration</span>
+                <code>vl-children="grid-wave"</code>
+              </div>
+              <div class="showcase-home-wave" vl-children="grid-wave" vl-stagger="100ms" aria-label="Orchestrated interface signals">
+                <span>enter</span><span>exit</span><span>hover</span><span>scroll</span>
+                <span>state</span><span>range</span><span>pin</span><span>scrub</span>
+              </div>
+              <h3>One parent conducts the whole ensemble.</h3>
+              <p>Children inherit rhythm and sequencing, keeping expressive compositions readable in the markup.</p>
+            </article>
+
+            <article class="showcase-home-grammar__card showcase-home-grammar__card--ambient" vl-enter="zoom-blur" vl-timeline="view">
+              <div class="showcase-home-grammar__meta">
+                <span>04 · Atmosphere</span>
+                <code>vl-loop-effect="aurora-drift"</code>
+              </div>
+              <div class="showcase-home-ambient" aria-hidden="true">
+                <span vl-loop="-1" vl-loop-effect="aurora-drift"></span>
+                <span vl-loop="-1" vl-loop-effect="orbit-spin"></span>
+                <span vl-loop="-1" vl-loop-effect="glow-breathe"></span>
+                <strong vl-effect="shimmer-text">alive</strong>
+              </div>
+              <h3>Ambient motion makes the system feel alive.</h3>
+              <p>Independent loop channels create presence while reduced-motion keeps the same visual hierarchy still.</p>
+            </article>
+          </div>
+
+          <footer class="showcase-home-grammar__footer" vl-enter="fade-up" vl-timeline="view">
+            <p><strong>Core</strong> supplies behavior. <strong>Skin</strong> supplies material. <strong>Showcase</strong> supplies the story.</p>
+            <a class="vl-cta" href="/pages/motion/api-motion-catalog.html" vl-hover="icon-shift">Explore every recipe <span aria-hidden="true">→</span></a>
+          </footer>
         </div>
       </section>
 
@@ -943,10 +1039,10 @@
       >
         <div class="vl-container showcase-home-map__inner">
           <header class="vl-section-header showcase-home-map__head">
-            <p class="vl-kicker">Lesson · where to go next</p>
-            <h2 class="vl-section-header__title">Six live pages. Everything else is archived.</h2>
+            <p class="vl-kicker">Final act · choose your starting point</p>
+            <h2 class="vl-section-header__title">Six focused areas. One engine for the whole journey.</h2>
             <p class="vl-section-header__desc">
-              Trailer below; mechanics on Timeline, Skins, Catalog, Hosts. Older demos: Archive.
+              Start with the promise, inspect the mechanics, then remix the same semantic product through a new Skin.
             </p>
           </header>
 
@@ -975,11 +1071,11 @@
                 <strong>Type</strong>
                 <small>Editorial rhythm and expressive type motion.</small>
               </a>
-              <a href="#idx-horiz">
+              <a href="#idx-grammar">
                 <span class="showcase-home-map__glyph showcase-home-map__glyph--lanes" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span>03</span>
-                <strong>Lanes</strong>
-                <small>Core pillars across motion, color, type, and architecture.</small>
+                <strong>Grammar</strong>
+                <small>Path, orchestration, interaction and atmosphere in one composition.</small>
               </a>
               <a href="#idx-scenes">
                 <span class="showcase-home-map__glyph showcase-home-map__glyph--scenes" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -993,11 +1089,11 @@
                 <strong>Depth</strong>
                 <small>Spatial staging, pinning, and handoffs.</small>
               </a>
-              <a href="/pages/core/archive.html">
+              <a href="/pages/motion/api-motion-catalog.html">
                 <span class="showcase-home-map__glyph showcase-home-map__glyph--library" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
                 <span>06</span>
-                <strong>Archive</strong>
-                <small>Pre-lean pages kept in the repo, not in Vite.</small>
+                <strong>Catalog</strong>
+                <small>Every public attribute, recipe, support level and fallback.</small>
               </a>
             </nav>
 
@@ -1084,11 +1180,11 @@
             <h3 class="vl-footer__heading">Showcase</h3>
             <ul class="vl-footer__links">
               <li><a class="vl-footer__link" href="/index.html">Home</a></li>
-              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Timeline</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/core.html">Core</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/elements.html">Elements</a></li>
+              <li><a class="vl-footer__link" href="/pages/scenes/scene-timeline.html">Scenes</a></li>
               <li><a class="vl-footer__link" href="/pages/core/skins.html">Skins</a></li>
               <li><a class="vl-footer__link" href="/pages/motion/api-motion-catalog.html">Catalog</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
-              <li><a class="vl-footer__link" href="/pages/core/archive.html">Archive</a></li>
             </ul>
           </div>
         </div>

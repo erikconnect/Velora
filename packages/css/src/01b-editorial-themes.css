@@ -64,6 +64,16 @@ html[data-editorial-theme="noir"]:not([data-theme="light"]) {
     --vl-duration-slower: 900ms;
     --vl-ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
     --vl-ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    --vl-motion-distance: 1.5rem;
+    --vl-state-distance: 0.85rem;
+    --vl-skin-content-max: 82rem;
+    --vl-skin-grid-columns: 12;
+    --vl-skin-grid-gap: 1.5rem;
+    --vl-skin-density: 1;
+    --vl-skin-border-width: 1px;
+    --vl-skin-media-ratio: 16 / 10;
+    --vl-skin-media-filter: contrast(1.08) saturate(0.72);
+    --vl-skin-surface-alpha: 82%;
     --showcase-home-container-gutter: clamp(1.5rem, 5vw, 6rem);
     color-scheme: dark;
 }
@@ -126,6 +136,16 @@ html[data-editorial-theme="earth"] {
     --vl-duration-slower: 700ms;
     --vl-ease-cinematic: cubic-bezier(0.4, 0, 0.2, 1);
     --vl-ease-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-motion-distance: 0.75rem;
+    --vl-state-distance: 0.5rem;
+    --vl-skin-content-max: 76rem;
+    --vl-skin-grid-columns: 10;
+    --vl-skin-grid-gap: 2rem;
+    --vl-skin-density: 1.12;
+    --vl-skin-border-width: 1px;
+    --vl-skin-media-ratio: 4 / 3;
+    --vl-skin-media-filter: saturate(0.82) sepia(0.08);
+    --vl-skin-surface-alpha: 94%;
     --showcase-home-container-gutter: clamp(1.5rem, 4vw, 5rem);
     color-scheme: light;
 }
@@ -190,6 +210,16 @@ html[data-editorial-theme="aethel"]:not([data-theme="light"]) {
     --vl-duration-slower: 520ms;
     --vl-ease-cinematic: cubic-bezier(0.4, 0, 0.2, 1);
     --vl-ease-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-motion-distance: 1rem;
+    --vl-state-distance: 0.625rem;
+    --vl-skin-content-max: 88rem;
+    --vl-skin-grid-columns: 16;
+    --vl-skin-grid-gap: 0.75rem;
+    --vl-skin-density: 0.82;
+    --vl-skin-border-width: 2px;
+    --vl-skin-media-ratio: 3 / 4;
+    --vl-skin-media-filter: grayscale(0.68) contrast(1.18);
+    --vl-skin-surface-alpha: 88%;
     --showcase-home-container-gutter: clamp(1rem, 4vw, 4rem);
     color-scheme: dark;
 }
@@ -255,6 +285,16 @@ html[data-editorial-theme="meridian"]:not([data-theme="light"]) {
     --vl-duration-slower: 700ms;
     --vl-ease-cinematic: cubic-bezier(0.4, 0, 0.2, 1);
     --vl-ease-out-soft: ease;
+    --vl-motion-distance: 1.25rem;
+    --vl-state-distance: 0.7rem;
+    --vl-skin-content-max: 92rem;
+    --vl-skin-grid-columns: 12;
+    --vl-skin-grid-gap: 0.875rem;
+    --vl-skin-density: 0.9;
+    --vl-skin-border-width: 1px;
+    --vl-skin-media-ratio: 2 / 1;
+    --vl-skin-media-filter: hue-rotate(-8deg) saturate(0.78) contrast(1.06);
+    --vl-skin-surface-alpha: 78%;
     --showcase-home-container-gutter: clamp(1rem, 2.5vw, 2rem);
     color-scheme: dark;
 }
