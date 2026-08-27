@@ -1,0 +1,19 @@
+{
+  "name": "@velora/latinoware-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Velora CSS launch talk for Latinoware 2026",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@velora/css": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}
