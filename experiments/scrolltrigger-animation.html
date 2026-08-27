@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-editorial-theme="noir" data-theme="dark" vl-page-transition="cinema">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Velora CSS example: a portfolio grid composed with semantic HTML and zero-JavaScript motion.">
+  <title>Portfolio // Velora CSS example</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../packages/css/src/velora.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="vl-demo-page">
+  <a class="vl-sr-only" href="#content">Skip to content</a>
+
+  <header class="vl-header vl-header--glass vl-demo-header" aria-label="Main navigation">
+    <div class="vl-header__inner">
+      <a class="vl-header__brand" href="#content" aria-label="Portfolio home" vl-enter="flow-in">PORTFOLIO<span class="vl-demo-mark">/26</span></a>
+      <nav class="vl-header__nav" aria-label="Primary navigation">
+        <a class="vl-nav__link" href="#work" vl-hover="underline-expand">Work</a>
+        <a class="vl-nav__link" href="#studio" vl-hover="underline-expand">Studio</a>
+        <a class="vl-nav__link" href="#contact" vl-hover="underline-expand">Contact</a>
+      </nav>
+      <a class="vl-header-get-started vl-demo-header-cta" href="#contact" vl-hover="hover-depth-press">Start a project</a>
+    </div>
+  </header>
+
+  <main id="content" class="vl-main">
+    <section class="vl-demo-hero" vl-scene data-vl-scene-density="immersive">
+      <div class="vl-container" vl-children="stagger" vl-stagger="100ms">
+        <p class="vl-kicker" vl-enter="fade-in">Independent digital studio // Velora example</p>
+        <h1 class="vl-demo-title" vl-enter="clip-rise">Interfaces that <em>hold up</em> outside the design file.</h1>
+        <p class="vl-demo-lead" vl-enter="fade-up">Nine years of shipping web work for teams that care about accessibility, performance, and the small details everybody notices.</p>
+        <div class="vl-demo-actions" vl-enter="fade-up">
+          <a class="vl-cta" href="#work">See recent work</a>
+          <a class="vl-cta vl-cta--ghost" href="#contact">Start a project</a>
+        </div>
+      </div>
+      <div class="vl-demo-hero-note" vl-enter="depth-enter"><span>01</span><strong>Designed in the open.</strong><small>Semantic HTML<br>+ CSS-native motion</small></div>
+    </section>
+
+    <section class="vl-demo-work" id="work" vl-scene data-vl-scene-density="editorial">
+      <div class="vl-container">
+        <header class="vl-demo-section-header" vl-enter="fade-up" vl-timeline="view">
+          <p class="vl-kicker">Selected work // 2021—2026</p>
+          <h2>Useful things,<br><em>beautifully resolved.</em></h2>
+          <p>Client projects, product work, and a few things built because nobody else was going to.</p>
+        </header>
+
+        <ul class="vl-demo-grid" role="list" vl-children="stagger" vl-stagger="80ms">
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/tidewater/800/500" alt="Abstract blue water texture" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Client work // 01</p><h3><a href="#contact">Tidewater Ferries</a></h3><p>Rebuilt a seasonal booking flow that was losing people at passenger details.</p><ul class="vl-demo-tags" role="list"><li>Forms</li><li>Astro</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/meridian/800/500" alt="Abstract orange and blue architectural forms" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Product system // 02</p><h3><a href="#contact">Meridian</a></h3><p>A token layer and component set shared across four product teams and two brands.</p><ul class="vl-demo-tags" role="list"><li>Tokens</li><li>Docs</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/harbour/800/500" alt="Abstract warm architectural texture" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Editorial // 03</p><h3><a href="#contact">Harbour Table</a></h3><p>A restaurant site where the menu is editable by staff and still loads in under a second.</p><ul class="vl-demo-tags" role="list"><li>CMS</li><li>Performance</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/cadence/800/500" alt="Abstract green and cream geometric pattern" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Data interface // 04</p><h3><a href="#contact">Cadence</a></h3><p>Dashboard work for a scheduling tool, focused on dense tables that stay readable on a phone.</p><ul class="vl-demo-tags" role="list"><li>Data tables</li><li>Container queries</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/fieldnotes/800/500" alt="Abstract paper and ink texture" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Publishing // 05</p><h3><a href="#contact">Field Notes</a></h3><p>A tiny publishing tool for people who want a blog and not a build pipeline.</p><ul class="vl-demo-tags" role="list"><li>Node</li><li>Markdown</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/lantern/800/500" alt="Abstract amber light and shadow" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Accessibility // 06</p><h3><a href="#contact">Lantern Audit</a></h3><p>An accessibility review and remediation plan for a provincial government service.</p><ul class="vl-demo-tags" role="list"><li>WCAG</li><li>Testing</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/slate/800/500" alt="Abstract slate ceramic texture" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Commerce // 07</p><h3><a href="#contact">Slate and Salt</a></h3><p>Storefront templates for a small ceramics studio, built to survive a holiday traffic spike.</p><ul class="vl-demo-tags" role="list"><li>Shopify</li><li>Liquid</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/novadocs/800/500" alt="Abstract blue documentation grid" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Knowledge // 08</p><h3><a href="#contact">Nova Docs</a></h3><p>Documentation site with versioned API references and a search that people actually use.</p><ul class="vl-demo-tags" role="list"><li>Search</li><li>Information architecture</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/rivet/800/500" alt="Abstract riveted metal detail" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Components // 09</p><h3><a href="#contact">Rivet</a></h3><p>A set of unstyled components I keep reaching for, finally written down properly.</p><ul class="vl-demo-tags" role="list"><li>Web components</li><li>ARIA</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/atlas/800/500" alt="Abstract atlas map lines" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Strategy // 10</p><h3><a href="#contact">Atlas Office</a></h3><p>A flexible planning surface that gives distributed teams a shared sense of place.</p><ul class="vl-demo-tags" role="list"><li>Research</li><li>Prototyping</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/signal/800/500" alt="Abstract red signal pattern" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Brand system // 11</p><h3><a href="#contact">Signal House</a></h3><p>A visual language for a small team building tools for public infrastructure.</p><ul class="vl-demo-tags" role="list"><li>Identity</li><li>Systems</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/terrazzo/800/500" alt="Abstract terrazzo surface" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Hospitality // 12</p><h3><a href="#contact">Common Ground</a></h3><p>A neighborhood space translated into a calm, useful digital front door.</p><ul class="vl-demo-tags" role="list"><li>Content</li><li>Responsive</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/monument/800/500" alt="Abstract monumental concrete form" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Culture // 13</p><h3><a href="#contact">Monument</a></h3><p>An archive that helps visitors find the story behind every object in the collection.</p><ul class="vl-demo-tags" role="list"><li>Archive</li><li>Editorial</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/orbit/800/500" alt="Abstract circular orbital forms" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Research // 14</p><h3><a href="#contact">Orbit Lab</a></h3><p>A public-facing research hub that makes complex work easier to navigate.</p><ul class="vl-demo-tags" role="list"><li>Data viz</li><li>Prototyping</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/kinetic/800/500" alt="Abstract kinetic orange shapes" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Motion // 15</p><h3><a href="#contact">Kinetic Type</a></h3><p>A typographic playground for testing expressive transitions without a runtime.</p><ul class="vl-demo-tags" role="list"><li>CSS</li><li>Motion</li></ul></div></article></li>
+          <li class="vl-demo-scroll-item"><article class="vl-card vl-card--glass vl-demo-card"><img src="https://picsum.photos/seed/waypoint/800/500" alt="Abstract green waypoint marker" width="800" height="500" loading="lazy"><div class="vl-demo-card-body"><p class="vl-kicker">Wayfinding // 16</p><h3><a href="#contact">Waypoint</a></h3><p>A practical navigation system for a campus with more stories than signs.</p><ul class="vl-demo-tags" role="list"><li>Maps</li><li>Wayfinding</li></ul></div></article></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="vl-demo-inview-lab" id="inview-lab" vl-scene data-vl-scene-density="editorial">
+      <div class="vl-container">
+        <header class="vl-demo-lab-header">
+          <p class="vl-kicker" vl-enter="fade-in" vl-timeline="view" vl-range="entry-short">In-view field test // elements beyond cards</p>
+          <h2 vl-enter="clip-rise" vl-timeline="view" vl-range="entry-long">The viewport<br><em>sets the rhythm.</em></h2>
+          <p vl-enter="fade-up" vl-timeline="view" vl-range="scene-focus" vl-delay="120ms">Each element owns its motion. Enter when it becomes visible, hold when it leaves, or reverse when the viewport takes it away.</p>
+        </header>
+
+        <div class="vl-demo-inview-grid" vl-in-view>
+          <blockquote class="vl-demo-inview-quote" vl-enter="clip-rise" vl-range="entry-long" vl-delay="80ms">
+            <p>“A viewport is not a button. It is a continuous invitation to change state.”</p>
+            <cite>Velora motion notes // 01</cite>
+          </blockquote>
+          <div class="vl-demo-inview-stat" vl-enter="scale-in" vl-range="scene-focus" vl-delay="160ms">
+            <strong>16</strong><span>cards tested<br>one viewport at a time</span>
+          </div>
+          <figure class="vl-demo-inview-media" vl-enter="blur-in" vl-range="entry-short" vl-delay="240ms">
+            <img src="https://picsum.photos/seed/inview-lab/1000/620" alt="Abstract layered orange and green paper forms" width="1000" height="620" loading="lazy">
+            <figcaption>Media // blur-in + fade-out</figcaption>
+          </figure>
+          <div class="vl-demo-inview-rule" vl-enter="fade-in" vl-delay="300ms"><span>entry</span><i></i><span>exit</span></div>
+          <p class="vl-demo-inview-copy" vl-enter="fade-up" vl-range="entry-long" vl-delay="160ms">The same grammar works on editorial copy, data, media and structural details. Delay is local to the element; stagger remains a collection behavior.</p>
+          <a class="vl-cta vl-cta--ghost vl-demo-inview-cta" href="#contact" vl-enter="fade-up" vl-delay="240ms">Test another scene</a>
+        </div>
+
+        <div class="vl-demo-soft-entries" aria-label="Soft entry timing samples" vl-in-view>
+          <p class="vl-kicker" vl-enter="fade-in">Soft entry sequence // same card cadence</p>
+          <p class="vl-demo-soft-entry" vl-enter="fade-up" vl-delay="0ms"><span>01</span>Quiet typography</p>
+          <p class="vl-demo-soft-entry" vl-enter="fade-up" vl-delay="80ms"><span>02</span>Measured spacing</p>
+          <p class="vl-demo-soft-entry" vl-enter="fade-up" vl-delay="160ms"><span>03</span>Readable structure</p>
+          <p class="vl-demo-soft-entry" vl-enter="fade-up" vl-delay="240ms"><span>04</span>Useful motion</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vl-demo-studio" id="studio" vl-scene data-vl-scene-density="compact">
+      <div class="vl-container vl-demo-studio-grid"><p class="vl-kicker">The studio // built for the long view</p><h2>Make the next<br><em>right decision.</em></h2><p>Velora turns intent into a shared visual rhythm: composable surfaces, meaningful motion, and no runtime to get in the way.</p><a class="vl-cta vl-cta--ghost" href="#contact">Talk through a brief</a></div>
+    </section>
+  </main>
+
+  <footer class="vl-demo-footer" id="contact"><div class="vl-container"><p class="vl-kicker">Currently taking on work for late 2026.</p><a class="vl-demo-email" href="mailto:hello@example.com">hello@example.com</a><span>Velora CSS // zero-JS motion example</span></div></footer>
+</body>
+</html>

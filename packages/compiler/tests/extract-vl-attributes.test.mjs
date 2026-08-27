@@ -4,7 +4,7 @@ import { extractVlAttributes, extractIds, extractInPageAnchors } from "../src/ex
 
 test("extracts quoted, single-quoted, unquoted, and boolean vl-* attributes", () => {
   const html = `
-    <section vl-enter="fade-up@800ms/ease-out" vl-scroll='parallax:y(-12%,18%)' vl-pin>
+    <section vl-enter="fade-up@800ms/ease-out" vl-scroll='parallax:y(-12%,18%)' vl-delay="120ms" vl-in-view vl-pin>
       <div vl-stagger=80ms></div>
     </section>
   `;
@@ -12,6 +12,8 @@ test("extracts quoted, single-quoted, unquoted, and boolean vl-* attributes", ()
   assert.deepEqual(extractVlAttributes(html).map(({ name, value }) => [name, value]), [
     ["vl-enter", "fade-up@800ms/ease-out"],
     ["vl-scroll", "parallax:y(-12%,18%)"],
+    ["vl-delay", "120ms"],
+    ["vl-in-view", ""],
     ["vl-pin", ""],
     ["vl-stagger", "80ms"],
   ]);

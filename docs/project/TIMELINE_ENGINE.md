@@ -164,6 +164,31 @@ The `sticky-story` scene preset uses pin mode implicitly.
 
 ## One-shot reveals
 
+## Entry and exit delay
+
+`vl-delay` offsets the start of an element's `vl-enter` and `vl-exit` animations. It is distinct from `vl-stagger`, which distributes delays across children.
+
+```html
+<article vl-enter="fade-up" vl-exit="fade-out-up" vl-timeline="view" vl-delay="120ms">
+  Delayed in and out
+</article>
+```
+
+The value accepts a CSS time such as `120ms`, `0.3s`, or a `var(--vl-*)` token.
+
+## Viewport gate
+
+Use `vl-in-view` on a wrapper when viewport entry should trigger temporal motion on its descendants. The wrapper owns the `view()` timeline; descendants keep their normal presets, durations, delays, and easing.
+
+```html
+<div vl-in-view>
+  <h2 vl-enter="clip-rise" vl-delay="80ms">A soft reveal</h2>
+  <p vl-enter="fade-up" vl-delay="160ms">The same gate works for any Velora motion.</p>
+</div>
+```
+
+This is different from putting `vl-timeline="view"` on every child: `vl-in-view` uses viewport entry as a gate, so temporal animations finish without remaining scrubbed to scroll progress.
+
 The `vl-once` attribute ensures an animation plays only once and holds its final state.
 
 ```html

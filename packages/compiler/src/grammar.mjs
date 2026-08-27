@@ -6,6 +6,7 @@ export const ALLOWED_VL_ATTRS = new Set([
   "vl-timeline",
   "vl-range",
   "vl-duration",
+  "vl-delay",
   "vl-speed",
   "vl-motion",
   "vl-direction",
@@ -20,6 +21,7 @@ export const ALLOWED_VL_ATTRS = new Set([
   "vl-pin",
   "vl-scrub",
   "vl-once",
+  "vl-in-view",
   "vl-state",
   "vl-page-transition",
   "vl-vt-shared-nav",
@@ -38,7 +40,6 @@ export const ALLOWED_VL_ATTRS = new Set([
 
 export const DEPRECATED_VL_ATTRS = new Map([
   ["vl-type", "Use vl-timeline + channel attributes."],
-  ["vl-delay", "Use vl-stagger + vl-children."],
   ["vl-easing", "Use easing tokens/effect contracts."],
   ["vl-transition", "Use vl-page-transition + shared View Transition attributes."],
 ]);
@@ -191,6 +192,7 @@ export const KNOWN_PRESETS = new Set([
 export const VALUE_RULES = {
   "vl-timeline": /^(view|scroll|auto|state|hover)$/,
   "vl-duration": /^(?:\d*\.?\d+m?s|var\(--[a-z0-9-]+\))$/i,
+  "vl-delay": /^(?:\d*\.?\d+m?s|var\(--[a-z0-9-]+\))$/i,
   "vl-stagger": /^(?:\d*\.?\d+m?s|var\(--[a-z0-9-]+\))$/i,
   "vl-speed": /^(slow|normal|fast|cinema|slower|fastest|turbo|ultra-slow)$/,
   "vl-motion": /^(standard|subtle|cinematic|still)$/,

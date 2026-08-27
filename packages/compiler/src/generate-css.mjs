@@ -60,6 +60,10 @@ function getFunction(name, parsed) {
 }
 
 function declarationsForAttribute(attr) {
+  if (attr.name === "vl-delay" && attr.value) {
+    return [declaration("--vl-motion-delay", attr.value)];
+  }
+
   const contract = ATTRIBUTE_TO_ANIMATION.get(attr.name);
   if (!contract || !attr.value) return [];
 

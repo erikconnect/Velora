@@ -6,10 +6,12 @@
      *   vl-effect    Named motion preset (primitive, interaction, state, scene)
      *   vl-timeline  Progress model: view | scroll | auto | state | hover
      *   vl-range     Animation range for scroll-driven motion
-     *   vl-duration  Direct duration override (e.g. "1200ms")
+        *   vl-duration  Direct duration override (e.g. "1200ms")
+        *   vl-delay     Entry/exit delay override (e.g. "120ms")
      *   vl-pin       Boolean  sticky scene behavior
      *   vl-scrub     Boolean  continuous scroll-linked motion
      *   vl-once      Boolean  one-shot reveal
+    *   vl-in-view   Viewport gate for descendant motion
      *   vl-children  Child choreography: stagger | cascade | sequence
      *   vl-stagger   Stagger interval override (e.g. "120ms")
      *   vl-depth     Parallax depth multiplier: 1 | 2 | 3 | 4
@@ -533,6 +535,7 @@
     [vl-enter] {
         animation-name: var(--vl-enter-name, none);
         animation-duration: var(--vl-enter-duration, var(--vl-motion-duration));
+        animation-delay: var(--vl-enter-delay, var(--vl-motion-delay, 0s));
         animation-timing-function: var(--vl-enter-ease, var(--vl-motion-ease));
         animation-direction: var(--vl-enter-direction, var(--vl-motion-direction, normal));
         animation-fill-mode: both;
@@ -798,6 +801,7 @@
     [vl-exit] {
         animation-name: var(--vl-exit-name, none);
         animation-duration: var(--vl-exit-duration, var(--vl-duration-fast));
+        animation-delay: var(--vl-exit-delay, var(--vl-motion-delay, 0s));
         animation-timing-function: var(--vl-exit-ease, var(--vl-ease-out-soft));
         animation-direction: var(--vl-exit-direction, var(--vl-motion-direction, normal));
         animation-fill-mode: forwards;
@@ -1664,6 +1668,47 @@
         animation-range: entry 10% cover 36%;
     }
 
+    /* =====================================================================
+       IN-VIEW GATE  [vl-in-view]
+       The wrapper owns viewport detection; descendants own their presets.
+       This keeps view() as a trigger for temporal motion instead of making
+       every preset itself progress continuously with scroll.
+       ===================================================================== */
+    @property --vl-in-view-state {
+        syntax: "<integer>";
+        inherits: false;
+        initial-value: 0;
+    }
+
+    @keyframes vl-in-view-gate {
+        from { --vl-in-view-state: 0; }
+        to { --vl-in-view-state: 1; }
+    }
+
+    [vl-in-view] {
+        container-type: style;
+        animation: vl-in-view-gate 1ms both;
+        animation-timeline: view(block);
+        animation-range: entry 0% cover 40%;
+    }
+
+    [vl-in-view] :is([vl-effect], [vl-enter], [vl-scroll], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state], [vl-exit]) {
+        animation-play-state: paused;
+    }
+
+    @container style(--vl-in-view-state: 1) {
+        [vl-in-view] :is([vl-effect], [vl-enter], [vl-scroll], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state], [vl-exit]) {
+            animation-play-state: running;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [vl-in-view] { animation: none; }
+        [vl-in-view] :is([vl-effect], [vl-enter], [vl-scroll], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state], [vl-exit]) {
+            animation-play-state: running;
+        }
+    }
+
     [vl-enter="focus"] {
         animation-fill-mode: both;
     }
@@ -1770,6 +1815,21 @@
         --vl-enter-duration: attr(vl-duration type(<time>), var(--vl-duration-slow));
         --vl-exit-duration: attr(vl-duration type(<time>), var(--vl-duration-fast));
         --vl-loop-duration: attr(vl-duration type(<time>), 4s);
+    }
+
+    /* Element-level delay shared by entry and exit channels. */
+    [vl-delay] {
+        --vl-motion-delay: attr(vl-delay type(<time>), 0s);
+    }
+
+    @supports not (--x: attr(x type(<time>))) {
+        [vl-delay="80ms"] { --vl-motion-delay: 80ms; }
+        [vl-delay="120ms"] { --vl-motion-delay: 120ms; }
+        [vl-delay="160ms"] { --vl-motion-delay: 160ms; }
+        [vl-delay="240ms"] { --vl-motion-delay: 240ms; }
+        [vl-delay="300ms"] { --vl-motion-delay: 300ms; }
+        [vl-delay="500ms"] { --vl-motion-delay: 500ms; }
+        [vl-delay="0s"] { --vl-motion-delay: 0s; }
     }
     /* Fallback for browsers without attr() type support */
     @supports not (--x: attr(x type(<time>))) {

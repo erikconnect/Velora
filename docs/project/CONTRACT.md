@@ -22,6 +22,7 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-timeline`
 - `vl-range`
 - `vl-duration`
+- `vl-delay`
 - `vl-speed`
 - `vl-motion`
 - `vl-direction`
@@ -36,6 +37,7 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-pin`
 - `vl-scrub`
 - `vl-once`
+- `vl-in-view`
 - `vl-state`
 - `vl-page-transition`
 - `vl-vt-shared-nav`
@@ -54,13 +56,14 @@ This is the operational contract for Motion API, Design API, and showcase page s
 ### 2.2 Deprecated attributes (forbidden in examples/pages)
 
 - `vl-type` -> replace with `vl-timeline` + channel attributes
-- `vl-delay` -> replace with `vl-stagger` + `vl-children`
 - `vl-easing` -> replace with canonical easing tokens / effect contracts
 - `vl-transition` -> replace with `vl-page-transition` + shared VT classes
 
 ### 2.3 Stable value extensions (current)
 
 - `vl-enter`: `reveal-cinematic`, `depth-enter`, `mask-sweep`
+- `vl-delay`: element-level entry/exit delay, e.g. `vl-delay="120ms"`; use `vl-stagger` for child collection choreography
+- `vl-in-view`: viewport gate for descendant motion; the wrapper detects entry and releases child animations while each child keeps its own preset and delay
 - `vl-scroll`: `reveal`, `media-zoom`, `crossfade`, `text-highlight`
 - `vl-scroll`: `path` (requires a tokenized `--vl-path`; scroll-linked `offset-distance`)
 - `vl-loop` / `vl-loop-effect`: `aurora-drift`
@@ -104,6 +107,7 @@ Preferred model for **new** scenes: host-agnostic track / stage / acts (see `03c
 - **Stage:** `vl-stage` (sticky child of the track)
 - **Acts:** `vl-act` + optional `vl-span` on stage children (same act = overlap; omit act → DOM order / `sibling-index()`)
 - **Channels:** `vl-enter`, `vl-scroll`, `vl-exit`, …
+- **Viewport gate:** `vl-in-view` wraps temporal channel motion when viewport entry is the trigger; use `vl-timeline="view"` directly only when the effect should scrub with viewport progress.
 - **Escape hatch:** `vl-range` overrides act-derived ranges
 - **Look:** host classes (Tailwind, etc.) or optional `@velora/css/theme` / named scene recipes
 
@@ -142,9 +146,9 @@ This keeps the API compact while preserving flexibility for advanced timelines.
 Velora keeps five behaviors separate so “transition” never becomes an ambiguous API:
 
 1. **Page transitions** — `vl-page-transition` in `@velora/css/transitions`.
-2. **Element entry/exit** — `vl-enter`, `vl-exit`, and `vl-state="enter-exit"`.
+2. **Element entry/exit** — `vl-enter`, `vl-exit`, `vl-state="enter-exit"`, gated by `vl-in-view` when viewport entry is the trigger.
 3. **Native state transitions** — `vl-state="smooth|expand|top-layer"`.
-4. **Scroll motion** — progress-linked `vl-scroll`; scroll-triggered CSS remains experimental.
+4. **Scroll motion** — progress-linked `vl-scroll` or `vl-timeline="view"`; use `vl-in-view` for a temporal reveal triggered by entry.
 5. **Scene orchestration** — `vl-scene` + `vl-stage` + acts/channels.
 
 Element-scoped View Transitions require `Element.startViewTransition()` and are not part of

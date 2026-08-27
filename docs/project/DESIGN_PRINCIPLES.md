@@ -46,7 +46,7 @@ This model scales to teams. Ten developers can compose motion on ten different s
 
 ## 4. Native over abstracted
 
-Every Velora feature maps to a shipping browser capability. `vl-timeline="view"` sets `animation-timeline: view()`. `vl-pin` sets `position: sticky`. `vl-page-transition="cinema"` styles `::view-transition-old(root)` and `::view-transition-new(root)`.
+Every Velora feature maps to a shipping browser capability. `vl-in-view` uses a CSS `view()` timeline as a gate for descendant motion, while `vl-timeline="view"` maps directly to continuous `animation-timeline: view()`. `vl-pin` sets `position: sticky`. `vl-page-transition="cinema"` styles `::view-transition-old(root)` and `::view-transition-new(root)`.
 
 There is no Velora-specific runtime. No virtual scroll observer. No custom intersection detection. No animation scheduler. The browser already has all of these — and they run on the compositor thread where JavaScript cannot reach.
 
@@ -70,16 +70,20 @@ A developer using Velora's default effects cannot accidentally create a janky an
 
 Velora's API surface has three tiers of complexity:
 
-**Basic.** A single attribute produces a complete, production-ready effect.
+**Basic.** A viewport gate plus one channel produces a complete, production-ready effect.
 
 ```html
-<div vl-enter="fade-up">
+<div vl-in-view>
+  <div vl-enter="fade-up">Content</div>
+</div>
 ```
 
 **Intermediate.** Multiple attributes compose richer behavior.
 
 ```html
-<div vl-enter="fade-up" vl-timeline="view" vl-range="entry-long">
+<div vl-in-view>
+  <div vl-enter="fade-up" vl-delay="80ms">Content</div>
+</div>
 ```
 
 **Advanced.** Custom properties, scene composition, and range tuning provide full control.

@@ -165,7 +165,7 @@
     </section>
 
     <section id="channels" class="api-group api-scope-core">
-     <div class="api-group-head"><p class="api-kicker">The grammar</p><h2>Six channels. One element can compose several.</h2><p>Channels keep behaviors independent. A card may enter once, react on hover, move with scroll and preserve native state without those responsibilities colliding.</p></div>
+    <div class="api-group-head"><p class="api-kicker">The grammar</p><h2>Channels, gates and one shared intent.</h2><p>Channels keep behaviors independent. A component may enter through the viewport, react on hover, move with scroll and preserve native state without those responsibilities colliding.</p></div>
      <div class="api-grid">
       <article class="api-card api-card--lead"><strong>Canonical composition</strong><pre class="api-code">&lt;article
   vl-enter="reveal-cinematic"
@@ -175,6 +175,7 @@
   ...
 &lt;/article&gt;</pre><p class="api-note">Use channel attributes for new work. <code>vl-effect</code> remains a compatibility surface for named extended recipes.</p></article>
       <article class="api-card"><strong>vl-enter</strong><div class="api-target" vl-enter="reveal-cinematic" vl-timeline="view">Arrive with hierarchy</div><p class="api-note">Initial or view-linked entrance.</p></article>
+      <article class="api-card"><strong>vl-in-view</strong><div class="api-target" vl-in-view><span vl-enter="fade-up" vl-delay="120ms">Viewport gate</span></div><p class="api-note">Gate temporal descendant motion on viewport entry.</p></article>
       <article class="api-card"><strong>vl-exit</strong><div class="api-target" vl-exit="fade-out-up" vl-timeline="view">Leave with continuity</div><p class="api-note">Readable resting state without animation.</p></article>
       <article class="api-card"><strong>vl-scroll</strong><div class="api-target" vl-scroll="crossfade">Follow progress</div><p class="api-note">Animation range follows viewport progress.</p></article>
       <article class="api-card"><strong>vl-hover</strong><div class="api-target" vl-hover="gradient-sweep" tabindex="0">Respond to intent</div><p class="api-note">Hover and keyboard focus share feedback.</p></article>

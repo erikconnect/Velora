@@ -26,3 +26,12 @@ test("generates CSS vars for parallax function-scoped syntax", () => {
   assert.match(css, /--vl-parallax-from: -12%;/);
   assert.match(css, /--vl-parallax-to: 18%;/);
 });
+
+test("generates an element delay variable", () => {
+  const css = generateCssFromAttributes([
+    { name: "vl-delay", value: "120ms" },
+  ]);
+
+  assert.match(css, /\[vl-delay="120ms"\]/);
+  assert.match(css, /--vl-motion-delay: 120ms;/);
+});
