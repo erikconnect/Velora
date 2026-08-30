@@ -28,7 +28,22 @@ export const SHOWCASE_COVERAGE = {
     "pages/motion/api-motion-catalog.html": {
       name: "Catalog",
       role: "Provide a concise public decision guide for channels, scenes, timelines, support and fallbacks.",
-      signature: "Intent-first reference with canonical recipes and a separate exhaustive Motion Lab",
+      signature: "Intent-first reference with canonical recipes, generated preset registry and a separate exhaustive Motion Lab",
+    },
+    "pages/core/compatibility.html": {
+      name: "Compatibility",
+      role: "Document primitive support tiers, browser matrix, fallbacks and reduced-motion policy.",
+      signature: "Generated compatibility matrix linked to packages/catalog",
+    },
+    "pages/core/benchmarks.html": {
+      name: "Benchmarks",
+      role: "Publish reproducible integration evidence — not unverified FPS marketing.",
+      signature: "Objective metrics table, methodology draft and automated bench roadmap",
+    },
+    "pages/motion/playground.html": {
+      name: "Playground",
+      role: "Compose public vl-* attributes from the registry, preview CSS-only motion, copy markup.",
+      signature: "Playground UI uses JavaScript; preview motion uses Velora/CSS",
     },
   },
   componentGroups: {

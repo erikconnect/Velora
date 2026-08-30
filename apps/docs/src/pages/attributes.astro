@@ -2,13 +2,14 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Attribute Reference" description="Complete reference for every vl-* HTML attribute in the Velora CSS system.">
+<Base title="Attribute Reference" description="Velora motion attribute grammar — channels v2, scene engine and timing controls.">
   <span class="vl-kicker">Reference</span>
 
   <h1 class="docs-page-title">Attribute Reference</h1>
   <p class="docs-page-lead">
-    Complete reference for every <code>vl-*</code> HTML attribute. Attributes are Velora's
-    declarative grammar — they express <em>intent</em>, not implementation.
+    Velora motion is declared with <code>vl-*</code> HTML attributes. Prefer <strong>channels</strong>
+    (<code>vl-enter</code>, <code>vl-scroll</code>, …) for new work. Canonical spec:
+    <a href="https://github.com/velora-css/velora/blob/main/docs/spec/attribute-grammar.md" class="docs-link-primary">attribute-grammar.md</a>.
   </p>
 
   <h2>Quick Reference</h2>
@@ -17,328 +18,94 @@ import Base from "../layouts/Base.astro";
       <tr><th>Attribute</th><th>Type</th><th>Brief</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>vl-effect</code></td><td>enum</td><td>Named motion preset</td></tr>
-      <tr><td><code>vl-timeline</code></td><td>enum</td><td>Animation progress model</td></tr>
-      <tr><td><code>vl-range</code></td><td>enum</td><td>Scroll-driven animation range</td></tr>
-      <tr><td><code>vl-scene</code></td><td>string</td><td>Scene container marker</td></tr>
-      <tr><td><code>vl-children</code></td><td>enum</td><td>Child choreography mode</td></tr>
-      <tr><td><code>vl-stagger</code></td><td>duration</td><td>Stagger interval override</td></tr>
-      <tr><td><code>vl-depth</code></td><td>number</td><td>Motion distance multiplier</td></tr>
-      <tr><td><code>vl-speed</code></td><td>enum</td><td>Duration category override</td></tr>
-      <tr><td><code>vl-pin</code></td><td>boolean</td><td>Sticky positioning</td></tr>
-      <tr><td><code>vl-scrub</code></td><td>boolean</td><td>Linear scroll-linked timing</td></tr>
-      <tr><td><code>vl-once</code></td><td>boolean</td><td>One-shot animation</td></tr>
-      <tr><td><code>vl-targets</code></td><td>selector</td><td>Descendant target hint</td></tr>
-      <tr><td><code>vl-page-transition</code></td><td>enum</td><td>Cross-document page transition preset</td></tr>
-      <tr><td><code>vl-transition</code></td><td>string</td><td>Shared element / local transition</td></tr>
+      <tr><td><code>vl-enter</code></td><td>tokens</td><td>Entrance preset (preferred)</td></tr>
+      <tr><td><code>vl-exit</code></td><td>tokens</td><td>Exit preset</td></tr>
+      <tr><td><code>vl-scroll</code></td><td>tokens</td><td>Scroll-linked motion</td></tr>
+      <tr><td><code>vl-hover</code></td><td>tokens</td><td>Hover / focus interaction</td></tr>
+      <tr><td><code>vl-loop</code> / <code>vl-loop-effect</code></td><td>count + tokens</td><td>Ambient loops</td></tr>
+      <tr><td><code>vl-state</code></td><td>enum</td><td>Native state transitions</td></tr>
+      <tr><td><code>vl-effect</code></td><td>tokens</td><td>Legacy / composite preset escape hatch</td></tr>
+      <tr><td><code>vl-timeline</code></td><td>enum</td><td>Progress model: view, scroll, auto, hover, state</td></tr>
+      <tr><td><code>vl-in-view</code></td><td>boolean</td><td>Viewport gate for temporal descendant motion</td></tr>
+      <tr><td><code>vl-scene</code> / <code>vl-stage</code></td><td>track + stage</td><td>Scene engine container</td></tr>
+      <tr><td><code>vl-act</code> / <code>vl-span</code></td><td>number</td><td>Scene beat index and span</td></tr>
+      <tr><td><code>vl-pin</code> / <code>vl-scrub</code></td><td>number / boolean</td><td>Pin+scrub track (view clock)</td></tr>
+      <tr><td><code>vl-children</code> / <code>vl-stagger</code></td><td>enum / time</td><td>Child choreography</td></tr>
+      <tr><td><code>vl-range</code> / <code>vl-speed</code> / <code>vl-duration</code></td><td>enum / enum / time</td><td>Timing overrides</td></tr>
+      <tr><td><code>vl-motion</code></td><td>enum</td><td>Subtree motion mode (standard, subtle, cinematic, still)</td></tr>
+      <tr><td><code>vl-page-transition</code></td><td>enum</td><td>MPA view transition preset on <code>&lt;html&gt;</code></td></tr>
     </tbody>
   </table>
+
+  <p><strong>Deprecated:</strong> <code>vl-type</code> → <code>vl-timeline</code>; <code>vl-easing</code> → tokens; <code>vl-transition</code> → <code>vl-page-transition</code>.</p>
 
   <hr />
 
-  <h2>vl-effect</h2>
+  <h2>Channels (preferred)</h2>
+  <pre><code>&lt;article
+  vl-enter="fade-up"
+  vl-scroll="parallax"
+  vl-hover="underline-expand"
+  vl-timeline="view"&gt;
+  ...
+&lt;/article&gt;</code></pre>
   <p>
-    Declares the named motion preset to apply to this element. See the
-    <a href="/effects/" class="docs-link-primary">Effects reference</a> for full
-    descriptions of each value.
+    Each channel owns one behavior. See the
+    <a href="https://veloracss.io/pages/motion/api-motion-catalog.html" class="docs-link-primary">Motion Catalog</a>
+    and generated registry (<code>pnpm generate:catalog</code>) for the full preset list.
   </p>
-  <table>
-    <thead>
-      <tr><th>Category</th><th>Values</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Entrance</td><td><code>fade-in</code> <code>fade-up</code> <code>fade-down</code> <code>slide-left</code> <code>slide-right</code> <code>scale-in</code> <code>blur-in</code> <code>reveal-3d</code> <code>flow-in</code> <code>clip-rise</code> <code>tilt-in</code></td></tr>
-      <tr><td>Interaction</td><td><code>hover-lift</code> <code>hover-glow</code> <code>underline-expand</code> <code>icon-shift</code></td></tr>
-      <tr><td>State</td><td><code>accordion</code> <code>drawer</code> <code>panel-swap</code></td></tr>
-      <tr><td>Continuous</td><td><code>shimmer</code> <code>float</code> <code>glow-breathe</code> <code>wobble</code> <code>orbit</code> <code>rock</code> <code>morph</code> <code>elastic-in</code></td></tr>
-      <tr><td>Text</td><td><code>text-reveal</code> <code>text-reveal-up</code> <code>text-reveal-down</code></td></tr>
-      <tr><td>Cinema</td><td><code>cinema-zoom</code> <code>parallax</code> <code>typewriter</code></td></tr>
-      <tr><td>Scene presets</td><td><code>scene-hero-reveal</code> <code>scene-feature-flow</code> <code>scene-story-pin</code> <code>scene-layer-stack</code></td></tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;div vl-effect="fade-up"&gt;...&lt;/div&gt;
-&lt;a href="/page" vl-effect="underline-expand"&gt;Link&lt;/a&gt;
-&lt;section vl-scene="hero" vl-effect="scene-hero-reveal"&gt;...&lt;/section&gt;</code></pre>
+
+  <hr />
+
+  <h2>Scene engine</h2>
+  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
+  &lt;div vl-stage&gt;
+    &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Title&lt;/h1&gt;
+    &lt;img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt=""&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+  <p>
+    Place channel attributes on <strong>direct</strong> <code>[vl-stage]</code> children.
+    Do not nest <code>vl-in-view</code> inside a pin+scrub stage — use <code>vl-act</code> / <code>vl-span</code> instead.
+  </p>
 
   <hr />
 
   <h2>vl-timeline</h2>
-  <p>
-    Controls <em>when</em> the animation defined by <code>vl-effect</code> plays. Without a timeline,
-    effects play immediately on page load.
-  </p>
   <table>
     <thead>
-      <tr><th>Value</th><th>Mechanism</th><th>Use case</th></tr>
+      <tr><th>Value</th><th>Use case</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td><code>view</code></td>
-        <td><code>animation-timeline: view(block)</code></td>
-        <td>Reveal as element scrolls into viewport. Most common scroll-driven pattern.</td>
-      </tr>
-      <tr>
-        <td><code>scroll</code></td>
-        <td><code>animation-timeline: scroll(root)</code></td>
-        <td>Progress tied to root scroll position (0% = top, 100% = bottom).</td>
-      </tr>
-      <tr>
-        <td><code>auto</code></td>
-        <td><code>animation-timeline: auto</code></td>
-        <td>Browser default (time-based). Lets you use a custom timeline via CSS.</td>
-      </tr>
-      <tr>
-        <td><code>hover</code></td>
-        <td>Pauses animation, runs on <code>:hover</code></td>
-        <td>Play animation on hover — good for preview effects.</td>
-      </tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;!-- Scroll-driven reveal --&gt;
-&lt;div vl-effect="blur-in" vl-timeline="view"&gt;...&lt;/div&gt;
-
-&lt;!-- Plays on hover --&gt;
-&lt;div vl-effect="scale-in" vl-timeline="hover"&gt;...&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-range</h2>
-  <p>
-    Sets the <code>animation-range</code> for scroll-driven effects. Only effective when used with
-    <code>vl-timeline="view"</code> or <code>vl-timeline="scroll"</code>.
-  </p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th><code>animation-range</code></th><th>Feel</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>entry</code></td><td><code>entry 0% entry 100%</code></td><td>Plays only while entering the viewport</td></tr>
-      <tr><td><code>entry-short</code></td><td><code>entry 15% cover 35%</code></td><td>Quick reveal in the upper viewport zone</td></tr>
-      <tr><td><code>entry-long</code></td><td><code>entry 0% cover 70%</code></td><td>Extended reveal range — default for scenes</td></tr>
-      <tr><td><code>cover</code></td><td><code>cover 0% cover 100%</code></td><td>Plays the full time element covers the viewport</td></tr>
-      <tr><td><code>contain</code></td><td><code>contain 0% contain 100%</code></td><td>Plays while element is fully contained in viewport</td></tr>
-      <tr><td><code>custom</code></td><td><code>var(--vl-range)</code></td><td>Use <code>--vl-range</code> inline for full control</td></tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;!-- Slow reveal across the full scroll zone --&gt;
-&lt;div vl-effect="flow-in" vl-timeline="view" vl-range="entry-long"&gt;...&lt;/div&gt;
-
-&lt;!-- Fully custom range --&gt;
-&lt;div
-  vl-effect="fade-up"
-  vl-timeline="view"
-  vl-range="custom"
-  style="--vl-range: entry 10% cover 60%;"&gt;
-  Custom range
-&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-scene</h2>
-  <p>
-    Marks a container as a <em>scene host</em>. Applies CSS containment and enables scene-specific
-    child choreography. Value is a semantic label.
-  </p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th>Intent</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>hero</code></td><td>Full-width hero section with primary CTA</td></tr>
-      <tr><td><code>story</code></td><td>Narrative / storytelling pin section</td></tr>
-      <tr><td><code>features</code></td><td>Feature grid or card collection</td></tr>
-      <tr><td><em>any string</em></td><td>Custom scene label for your own patterns</td></tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;section vl-scene="hero" vl-effect="scene-hero-reveal"&gt;...&lt;/section&gt;
-&lt;section vl-scene="features" vl-effect="scene-feature-flow" vl-timeline="view"&gt;...&lt;/section&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-children</h2>
-  <p>
-    Applies staggered animations to all direct children. Do not combine with a scene preset — use one
-    or the other.
-  </p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th>Effect</th><th>Max children</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>stagger</code></td><td><code>fade-up</code> with incremental delays</td><td>12</td></tr>
-      <tr><td><code>cascade</code></td><td><code>flow-in</code> with incremental delays</td><td>8</td></tr>
-      <tr><td><code>sequence</code></td><td><code>fade-up</code> one-after-another (full duration gaps)</td><td>6</td></tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;ul vl-children="stagger" vl-stagger="80ms" vl-timeline="view"&gt;
-  &lt;li&gt;Item 1&lt;/li&gt;
-  &lt;li&gt;Item 2&lt;/li&gt;
-  &lt;li&gt;Item 3&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-stagger</h2>
-  <p>
-    Overrides the default stagger step (<code>--vl-stagger-step: 45ms</code>) for <code>vl-children</code>.
-  </p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th>Delay per child</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>60ms</code></td><td>60ms</td></tr>
-      <tr><td><code>80ms</code></td><td>80ms</td></tr>
-      <tr><td><code>100ms</code></td><td>100ms</td></tr>
-      <tr><td><code>120ms</code></td><td>120ms</td></tr>
-      <tr><td><code>150ms</code></td><td>150ms</td></tr>
-      <tr><td><code>200ms</code></td><td>200ms</td></tr>
+      <tr><td><code>view</code></td><td>Element or scene scroll progress (most common)</td></tr>
+      <tr><td><code>scroll</code></td><td>Root/container scroll timeline</td></tr>
+      <tr><td><code>auto</code></td><td>Time-based (scene acts without pin height)</td></tr>
+      <tr><td><code>hover</code></td><td>Intent-gated playback</td></tr>
+      <tr><td><code>state</code></td><td>Native state transition clock</td></tr>
     </tbody>
   </table>
 
   <hr />
 
-  <h2>vl-depth</h2>
+  <h2>vl-in-view</h2>
   <p>
-    Multiplies the translation distance (<code>--vl-motion-distance</code>) for entrance effects.
-    Affects <code>fade-up</code>, <code>fade-down</code>, <code>slide-left</code>, <code>slide-right</code>,
-    <code>flow-in</code>, and other translate-based effects.
+    Temporal viewport gate: descendant enter/exit/loop/hover/state motion replays on re-entry.
+    Does <em>not</em> pause <code>vl-scroll</code>. Use outside pin+scrub scenes.
   </p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th><code>--vl-motion-distance</code></th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>1</code></td><td>0.75rem — subtle</td></tr>
-      <tr><td><code>2</code></td><td>1.5rem — moderate</td></tr>
-      <tr><td><code>3</code></td><td>2.5rem — pronounced</td></tr>
-      <tr><td><code>4</code></td><td>4rem — dramatic</td></tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;div vl-effect="fade-up" vl-depth="4"&gt;Deep dramatic reveal&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-speed</h2>
-  <p>Overrides the animation duration category:</p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th>Duration</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>fast</code></td><td>150ms</td></tr>
-      <tr><td><code>normal</code></td><td>300ms</td></tr>
-      <tr><td><code>slow</code></td><td>500ms</td></tr>
-    </tbody>
-  </table>
-  <pre><code>&lt;div vl-effect="scale-in" vl-speed="fast"&gt;Quick snap in&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-pin</h2>
-  <p>
-    Boolean attribute. Makes the element sticky (<code>position: sticky; top: 0</code>) at
-    <code>z-index: 200</code>. Use on scene sections that should remain fixed during scroll.
-  </p>
-  <pre><code>&lt;section vl-scene="hero" vl-pin&gt;
-  &lt;!-- Stays at top of viewport while parent scrolls --&gt;
-&lt;/section&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-scrub</h2>
-  <p>
-    Boolean attribute. Switches timing to linear (<code>animation-timing-function: linear</code>) and
-    sets <code>animation-fill-mode: both</code>. Use with scroll-driven effects where you want
-    direct scroll-to-animation scrubbing without easing curves.
-  </p>
-  <pre><code>&lt;div vl-effect="parallax" vl-scrub&gt;Directly scrubbed parallax&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-once</h2>
-  <p>
-    Boolean attribute. Sets <code>animation-iteration-count: 1</code> and
-    <code>animation-fill-mode: forwards</code>. The element animates once and stays in its final state.
-  </p>
-  <pre><code>&lt;div vl-effect="clip-rise" vl-timeline="view" vl-once&gt;
-  Reveals once, stays visible
-&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>vl-targets</h2>
-  <p>
-    A CSS selector string that hints which descendants should be targeted by the scene or children
-    system. CSS-only support is limited — primary use is for documentation and future runtime hooks.
-  </p>
-  <pre><code>&lt;section vl-scene="features" vl-targets=".vl-card"&gt;
-  &lt;div&gt;Non-card child (not targeted)&lt;/div&gt;
-  &lt;div class="vl-card"&gt;Card (targeted)&lt;/div&gt;
-  &lt;div class="vl-card"&gt;Card (targeted)&lt;/div&gt;
-&lt;/section&gt;</code></pre>
 
   <hr />
 
   <h2>vl-page-transition</h2>
-  <p>
-    Set on <code>&lt;html&gt;</code> to select the cross-document page transition preset.
-    See <a href="/transitions/" class="docs-link-primary">Page Transitions</a> for full details.
-  </p>
-  <table>
-    <thead>
-      <tr><th>Value</th><th>Effect</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><em>(omitted)</em></td><td>Default Velora signature: blur + scale</td></tr>
-      <tr><td><code>wipe</code></td><td>Clip-path curtain wipe</td></tr>
-      <tr><td><code>glide</code></td><td>Horizontal slide</td></tr>
-      <tr><td><code>iris</code></td><td>Circular iris open/close</td></tr>
-      <tr><td><code>cinema</code></td><td>Dramatic blur + brightness + clip</td></tr>
-      <tr><td><code>snap</code></td><td>Quick spring-based snap</td></tr>
-    </tbody>
-  </table>
+  <p>Set on <code>&lt;html&gt;</code> for cross-document MPA transitions. See <a href="/transitions/" class="docs-link-primary">Page Transitions</a>.</p>
   <pre><code>&lt;html lang="en" vl-page-transition="cinema"&gt;</code></pre>
 
   <hr />
 
-  <h2>vl-transition</h2>
-  <p>
-    Reserved for shared element and local element transition hints. Intended for future
-    Velora runtime integration and CSS-level patterns.
-  </p>
-  <pre><code>&lt;!-- Future: cover transition pattern --&gt;
-&lt;div vl-transition="cover"&gt;...&lt;/div&gt;</code></pre>
-
-  <hr />
-
-  <h2>Attribute Composition</h2>
-  <p>Attributes compose cleanly — combine them to express complex motion intent:</p>
-  <pre><code>&lt;!-- Cinematic feature section --&gt;
-&lt;section
-  vl-scene="features"
-  vl-effect="scene-feature-flow"
-  vl-timeline="view"
-  vl-range="entry-long"&gt;
-  ...
-&lt;/section&gt;
-
-&lt;!-- Staggered grid with custom pacing --&gt;
-&lt;div
-  vl-children="stagger"
-  vl-stagger="120ms"
-  vl-timeline="view"
-  vl-once&gt;
-  ...
-&lt;/div&gt;
-
-&lt;!-- Deep, slow hero heading --&gt;
-&lt;h1
-  vl-effect="clip-rise"
-  vl-timeline="view"
-  vl-depth="3"
-  vl-speed="slow"
-  vl-once&gt;
-  Premium motion starts here
-&lt;/h1&gt;</code></pre>
+  <h2>Further reading</h2>
+  <ul>
+    <li><a href="/effects/" class="docs-link-primary">Effects</a></li>
+    <li><a href="/scenes/" class="docs-link-primary">Scenes</a></li>
+    <li><a href="/timelines/" class="docs-link-primary">Timelines</a></li>
+    <li><a href="https://veloracss.io/pages/core/compatibility.html" class="docs-link-primary">Compatibility matrix</a></li>
+  </ul>
 </Base>

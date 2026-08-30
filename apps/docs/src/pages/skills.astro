@@ -18,7 +18,7 @@ import Base from "../layouts/Base.astro";
   <ul>
     <li>Semantic HTML first</li>
     <li>Modern CSS as the primary rendering engine</li>
-    <li>Zero JavaScript for animation logic</li>
+    <li>Zero animation runtime JavaScript for motion logic</li>
     <li>Minimal JavaScript only for progressive enhancement or accessibility where strictly needed</li>
     <li>No React, Vue, GSAP, Framer Motion, Locomotive Scroll, Swup, or equivalent runtime in core</li>
     <li>Strict namespace: <code>.vl-*</code>, <code>--vl-*</code>, <code>vl-*</code></li>
@@ -63,11 +63,11 @@ import Base from "../layouts/Base.astro";
   <section id="motion-systems-engineer">
     <h2>Motion Systems Engineer</h2>
     <p><em>Builds and refines Velora's motion primitives and choreography system.</em></p>
-    <p><strong>Scope:</strong> <code>vl-effect</code>, <code>vl-timeline</code>, <code>vl-range</code>, <code>vl-scrub</code>, motion tokens, reveal systems, hover systems, stagger systems.</p>
+    <p><strong>Scope:</strong> <code>vl-enter</code>, <code>vl-scroll</code>, <code>vl-hover</code>, legacy <code>vl-effect</code>, <code>vl-timeline</code>, <code>vl-range</code>, <code>vl-scrub</code>, motion tokens, reveal systems, hover systems, stagger systems.</p>
     <p><strong>Allowed:</strong> add new motion presets, refactor motion declarations into variables/tokens, create scroll-linked CSS patterns, define primitive vs scene motion distinctions.</p>
     <p><strong>Forbidden:</strong> using JS to drive animations that modern CSS can handle, mixing scene orchestration into primitive effect definitions without need, introducing unregistered effect names casually.</p>
     <h4>Ideal prompt</h4>
-    <blockquote>Implement <code>vl-effect="flow-in"</code> and <code>vl-timeline="view"</code> using layered CSS only. No JS. Use tokenized values and reduced-motion support.</blockquote>
+    <blockquote>Implement <code>vl-enter="flow-in"</code> and <code>vl-timeline="view"</code> using layered CSS only. No animation runtime JS. Use tokenized values and reduced-motion support.</blockquote>
   </section>
 
   <hr />

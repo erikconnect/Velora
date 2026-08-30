@@ -81,7 +81,9 @@
   });
 
   const filterButtons = Array.from(document.querySelectorAll(".api-kind-filter__btn"));
-  const groups = Array.from(document.querySelectorAll(".api-group"));
+  const groups = Array.from(document.querySelectorAll(".api-group")).filter((group) =>
+    group.querySelector(".api-card"),
+  );
   const delayRange = document.getElementById("api-delay-range");
   const durationRange = document.getElementById("api-duration-range");
   const speedRange = document.getElementById("api-speed-range");

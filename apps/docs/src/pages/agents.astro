@@ -28,11 +28,10 @@ import Base from "../layouts/Base.astro";
   <pre><code>&lt;section
   vl-scene="hero"
   vl-timeline="view"
-  vl-effect="scene-hero-reveal"
   vl-range="entry 0% cover 70%"
   vl-pin&gt;
-  &lt;h1&gt;Build motion-rich interfaces with HTML and CSS&lt;/h1&gt;
-  &lt;p&gt;No animation libraries. No framework runtime.&lt;/p&gt;
+  &lt;h1 vl-enter="fade-up"&gt;Build motion-rich interfaces with HTML and CSS&lt;/h1&gt;
+  &lt;p vl-enter="fade-up" vl-delay="120ms"&gt;No animation libraries. No animation runtime JS.&lt;/p&gt;
 &lt;/section&gt;</code></pre>
 
   <hr />

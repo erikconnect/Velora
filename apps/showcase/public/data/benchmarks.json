@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-08-30T16:13:18.332Z",
+  "package": "@velora/css",
+  "version": "1.0.0",
+  "publishStatus": "ready-not-published",
+  "catalog": {
+    "presetCount": 134
+  },
+  "claims": [
+    {
+      "id": "animation-runtime-js",
+      "metric": "Animation runtime JavaScript",
+      "velora": "0 KB",
+      "baseline": "Varies (often 40–120+ KB gzipped)",
+      "evidence": "CSS-only attributes; no scroll/RAF driver on product pages",
+      "verifiedBy": [
+        "contract",
+        "e2e"
+      ]
+    },
+    {
+      "id": "motion-core-transfer",
+      "metric": "motion-core.css transfer (raw / gzip)",
+      "velora": "524 B / 288 B gzip",
+      "baseline": "N/A (CSS bundle, not JS runtime)",
+      "evidence": "packages/css/dist/manifest.json",
+      "verifiedBy": [
+        "build-dist"
+      ]
+    },
+    {
+      "id": "full-bundle-transfer",
+      "metric": "velora.css full bundle (raw / gzip)",
+      "velora": "1.2 KB / 565 B gzip",
+      "baseline": "Theme + components optional",
+      "evidence": "packages/css/dist/manifest.json",
+      "verifiedBy": [
+        "build-dist"
+      ]
+    },
+    {
+      "id": "scroll-driver",
+      "metric": "Scroll timeline driver",
+      "velora": "Native scroll-timeline / view-timeline",
+      "baseline": "JS scroll listeners + interpolation",
+      "evidence": "Core scene recipes",
+      "verifiedBy": [
+        "showcase"
+      ]
+    },
+    {
+      "id": "reduced-motion",
+      "metric": "Reduced motion",
+      "velora": "@media (prefers-reduced-motion) + vl-motion=\"still\"",
+      "baseline": "Often optional plugin",
+      "evidence": "Policy + E2E",
+      "verifiedBy": [
+        "e2e"
+      ]
+    },
+    {
+      "id": "preset-registry",
+      "metric": "Public preset registry",
+      "velora": "134 presets",
+      "baseline": "N/A",
+      "evidence": "packages/catalog/",
+      "verifiedBy": [
+        "generate:catalog",
+        "e2e"
+      ]
+    }
+  ],
+  "methodology": {
+    "fpsClaims": "not-published",
+    "harnessVersion": 1,
+    "note": "Frame-time benchmarks require fixture pages + trace export; not headline FPS."
+  },
+  "cdn": {
+    "unpkg": {
+      "motionCore": "https://unpkg.com/@velora/css@1.0.0/dist/motion-core.css",
+      "full": "https://unpkg.com/@velora/css@1.0.0/dist/velora.css"
+    },
+    "jsdelivr": {
+      "motionCore": "https://cdn.jsdelivr.net/npm/@velora/css@1.0.0/dist/motion-core.css",
+      "full": "https://cdn.jsdelivr.net/npm/@velora/css@1.0.0/dist/velora.css"
+    }
+  }
+}

@@ -19,7 +19,7 @@
   <a class="vl-sr-only" href="#content">Skip to content</a>
   <nav class="showcase-cinema-rail vl-bussola" data-velora-signature="bussola" aria-label="Velora page compass">
    <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
-   <a class="vl-bussola__stop" href="#intent-map"><span class="vl-bussola__label">Intent</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#preset-inspector"><span class="vl-bussola__label">Inspector</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#channels"><span class="vl-bussola__label">Channels</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#timeline-modes"><span class="vl-bussola__label">Timeline</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#modern-platform"><span class="vl-bussola__label">Platform</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
@@ -179,9 +179,9 @@
        <span>Range, speed and replay per card with instant readout.</span>
       </article>
       <div class="api-hero-status" vl-children="wave">
-       <span>120fps pipeline</span>
-       <span>timeline armed</span>
+       <span>registry-driven presets</span>
        <span>view + scroll ready</span>
+       <span>zero animation runtime</span>
       </div>
      </div>
     </div>
@@ -229,6 +229,30 @@
     <div class="api-controls-drawer" id="api-controls-drawer" hidden>
      <div class="api-runtime-commands" id="api-command-list" aria-label="Active attributes on selected card"></div>
      <p class="api-runtime-disclaimer">Optional Showcase inspection only—the shipped motion remains CSS. D/T/S adjust delay, duration and playback rate; scene replay repositions scroll.</p>
+    </div>
+   </section>
+
+   <section id="preset-inspector" class="api-group api-scope-core motion-lab-inspector" aria-label="Registry preset inspector">
+    <div class="api-group-head">
+     <p class="api-kicker">Registry inspector</p>
+     <h2>Every public preset — metadata from <code>packages/catalog/</code></h2>
+     <p>Channel, status, HTML usage, primitives, fallback, reduced motion and source. Click a demo card or browse the list.</p>
+    </div>
+    <div class="motion-lab-inspector__layout">
+     <aside class="motion-lab-inspector__browse" aria-label="Preset browser">
+      <label class="catalog-registry-filter-label" for="lab-preset-filter">Filter</label>
+      <input id="lab-preset-filter" class="catalog-registry-filter" type="search" placeholder="preset or channel…" autocomplete="off" />
+      <label class="catalog-registry-filter-label" for="lab-preset-channel">Channel</label>
+      <select id="lab-preset-channel" class="catalog-registry-filter motion-lab-inspector__channel"></select>
+      <ul id="lab-preset-list" class="motion-lab-inspector__list"></ul>
+     </aside>
+     <div class="motion-lab-inspector__main">
+      <div id="lab-preset-detail" class="motion-lab-inspector__detail"></div>
+      <div id="lab-preset-preview" class="motion-lab-inspector__preview" aria-label="Live preview">
+       <p class="api-note">Preview uses the public Velora API only.</p>
+       <div id="lab-preset-preview-target"></div>
+      </div>
+     </div>
     </div>
    </section>
 
@@ -294,7 +318,7 @@
      <article class="api-card api-intent-card"><strong>Experiment</strong><p>Inspect emerging platform features without making them a dependency.</p><div class="api-intent-links"><a href="#modern-platform">Support matrix</a><a href="#stage-3d">3D lab</a></div><footer><span class="showcase-support-badge" data-level="experimental">Experimental</span><span>Catalog only</span></footer></article>
     </div>
     <div class="api-coverage-ledger" aria-label="Catalog coverage summary">
-     <div><strong>123</strong><span>known presets</span></div><div><strong>123</strong><span>demonstrated here</span></div><div><strong>0</strong><span>untracked gaps</span></div><p>Every card should state intent, channel, support level, reduced-motion behavior and where the recipe is proven in the Showcase.</p>
+     <div><strong id="lab-coverage-known">—</strong><span>registry presets</span></div><div><strong id="lab-coverage-demo">—</strong><span>demonstrated on page</span></div><div><strong id="lab-coverage-gaps">—</strong><span>not yet demo'd</span></div><p>Counts are generated from <code>presets-full.json</code> — never hardcoded. <a href="/pages/core/compatibility.html">Compatibility matrix</a> · <a href="/pages/motion/api-motion-catalog.html#preset-registry">Public registry</a></p>
     </div>
    </section>
 
@@ -992,7 +1016,7 @@
                 </g>
               </svg>
             </a>
-            <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+            <p class="vl-footer__desc">Motion-native CSS. Browser-first. Zero animation runtime JavaScript.</p>
           </div>
                     <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Showcase</h3>
@@ -1007,7 +1031,7 @@
           </div>
         </div>
         <div class="vl-footer__bottom">
-          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS &middot; Zero animation runtime JS</p>
           <div class="vl-footer__social" aria-label="Velora social links">
             <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
@@ -1030,6 +1054,7 @@
     </footer>
 
   <script src="/js/showcase-api-motion-catalog.js"></script>
+  <script src="/js/showcase-motion-lab-inspector.js"></script>
   <script>
    const transitionCards = document.querySelectorAll(".api-transition-card");
    transitionCards.forEach((card) => {
@@ -1047,6 +1072,5 @@
     card.addEventListener("click", replay);
    });
   </script>
-    <script src="/js/showcase-ui.js"></script>
  </body>
 </html>

@@ -12,6 +12,8 @@ packages/css/dist/
 **/.turbo/
 **/.playwright-cli/
 **/output/playwright/
+test-results/
+playwright-report/
 pnpm-debug.log*
 
 # Astro

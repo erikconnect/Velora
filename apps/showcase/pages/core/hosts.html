@@ -173,7 +173,12 @@
               <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/core/skins.html">Velora Skins</a>
               <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-timeline.html">Scene timeline</a>
             </div>
-            <p class="page-meta">Repo example: <code>examples/tailwind-host/</code> (serve from repo root). Vite Showcase does not mount that folder.</p>
+            <div class="showcase-support-matrix" style="margin-top: 1.5rem;">
+              <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Tailwind</span><p><code>examples/tailwind-host/</code> — motion-core + utility classes. <a href="https://github.com/velora-css/velora/tree/main/examples/tailwind-host">GitHub →</a></p></div>
+              <div class="showcase-support-row"><span class="showcase-support-badge" data-level="progressive">WordPress</span><p><code>examples/wordpress/</code> — PHP enqueue, Gutenberg pattern, Elementor notes. <a href="https://github.com/velora-css/velora/tree/main/examples/wordpress">GitHub →</a></p></div>
+              <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Index</span><p><code>examples/README.md</code> lists all host integration paths in the monorepo.</p></div>
+            </div>
+            <p class="page-meta">Serve static examples from the repo root; the Vite Showcase does not mount <code>examples/</code>.</p>
             <pre class="scene-tl-code">&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
   &lt;div vl-stage class="min-h-svh grid place-items-center"&gt;
     &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Host classes + Velora clock&lt;/h1&gt;
@@ -208,7 +213,7 @@
                 </g>
               </svg>
             </a>
-            <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+            <p class="vl-footer__desc">Motion-native CSS. Browser-first. Zero animation runtime JavaScript.</p>
           </div>
                     <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Showcase</h3>
@@ -223,7 +228,7 @@
           </div>
         </div>
         <div class="vl-footer__bottom">
-          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS &middot; Zero animation runtime JS</p>
           <div class="vl-footer__social" aria-label="Velora social links">
             <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">

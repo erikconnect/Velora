@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Declarative CSS motion engine (host-agnostic) with optional Velora theme skin",
   "license": "ISC",
-  "sideEffects": ["**/*.css"],
+  "unpkg": "./dist/motion-core.css",
+  "jsdelivr": "./dist/motion-core.css",
   "main": "./src/velora.css",
   "exports": {
     ".": "./src/velora.css",
@@ -27,6 +28,11 @@
     "url": "https://github.com/velora-css/velora.git"
   },
   "scripts": {
-    "build": "node ./scripts/stamp-build.mjs"
+    "check:dist": "node ./scripts/check-dist.mjs",
+    "build": "node ./scripts/build-dist.mjs",
+    "prepack": "pnpm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

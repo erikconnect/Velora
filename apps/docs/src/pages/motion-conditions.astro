@@ -13,12 +13,12 @@ import Base from "../layouts/Base.astro";
     A single declarative attribute — <code>vl-motion</code> — selects a motion <em>mode</em> for an
     element and its subtree. It does not name a preset; instead it re-scales the shared engine tokens
     that every preset already reads, so one attribute adapts timing, travel, depth, blur and easing
-    across the whole subtree. Zero JavaScript.
+    across the whole subtree. Zero animation runtime JavaScript.
   </p>
 
   <h2>The Modes</h2>
   <p>
-    Add <code>vl-motion</code> to any element. Descendant <code>vl-effect</code> / <code>vl-enter</code>
+    Add <code>vl-motion</code> to any element. Descendant <code>vl-enter</code> / <code>vl-scroll</code>
     reveals inherit the mode automatically.
   </p>
   <table>
@@ -52,7 +52,7 @@ import Base from "../layouts/Base.astro";
   <pre><code>&lt;!-- One attribute governs the whole subtree --&gt;
 &lt;section vl-motion="cinematic"&gt;
   &lt;h2 vl-enter="reveal-cinematic" vl-timeline="view"&gt;Grand &amp; deep&lt;/h2&gt;
-  &lt;p vl-effect="fade-up" vl-timeline="view"&gt;Slower, deeper, blurred entrance.&lt;/p&gt;
+  &lt;p vl-enter="fade-up" vl-timeline="view"&gt;Slower, deeper, blurred entrance.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;section vl-motion="subtle"&gt;...quieter, faster motion...&lt;/section&gt;

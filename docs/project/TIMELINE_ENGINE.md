@@ -178,7 +178,7 @@ The value accepts a CSS time such as `120ms`, `0.3s`, or a `var(--vl-*)` token.
 
 ## Viewport gate
 
-Use `vl-in-view` on a wrapper when viewport entry should trigger temporal motion on its descendants. The wrapper owns the `view()` timeline; descendants keep their normal presets, durations, delays, and easing.
+Use `vl-in-view` on a wrapper when viewport entry should trigger **temporal** motion on its descendants (`vl-enter`, `vl-exit`, loops, hovers, time-based effects). The wrapper owns the `view()` timeline as a gate; descendants keep their normal presets, durations, delays, and easing. Scroll-linked channels (`vl-scroll`) are not paused by the gate. When the subject leaves the gate range, descendant temporal animations reset so the next entry **replays** (including stagger).
 
 ```html
 <div vl-in-view>
@@ -188,6 +188,8 @@ Use `vl-in-view` on a wrapper when viewport entry should trigger temporal motion
 ```
 
 This is different from putting `vl-timeline="view"` on every child: `vl-in-view` uses viewport entry as a gate, so temporal animations finish without remaining scrubbed to scroll progress.
+
+Do **not** nest `vl-in-view` inside `[vl-scene][vl-timeline="view"] [vl-stage]` — the named `--vl-scene` clock already drives stage children; the gate would fight scrub semantics.
 
 The `vl-once` attribute ensures an animation plays only once and holds its final state.
 

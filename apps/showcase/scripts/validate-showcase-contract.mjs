@@ -49,6 +49,7 @@ const ALLOWED_VL_ATTRS = new Set([
   "vl-timeline",
   "vl-range",
   "vl-duration",
+  "vl-delay",
   "vl-speed",
   "vl-motion",
   "vl-direction",
@@ -63,6 +64,7 @@ const ALLOWED_VL_ATTRS = new Set([
   "vl-pin",
   "vl-scrub",
   "vl-once",
+  "vl-in-view",
   "vl-state",
   "vl-page-transition",
   "vl-vt-shared-nav",
@@ -81,7 +83,6 @@ const ALLOWED_VL_ATTRS = new Set([
 
 const DEPRECATED_VL_ATTRS = new Map([
   ["vl-type", "Use vl-timeline + channel attributes"],
-  ["vl-delay", "Use vl-stagger + vl-children"],
   ["vl-easing", "Use easing tokens/effect contracts"],
   ["vl-transition", "Use vl-page-transition + shared VT classes"],
 ]);

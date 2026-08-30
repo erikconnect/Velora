@@ -1,7 +1,7 @@
 # Velora Motion Compiler Report
 
-- Files scanned: **9**
-- Velora attributes found: **849**
+- Files scanned: **12**
+- Velora attributes found: **992**
 - Issues found: **0**
 
 ## OK — `index.html`
@@ -242,6 +242,56 @@
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
 
+## OK — `pages/core/benchmarks.html`
+
+### Attributes
+- `vl-page-transition="cinema"`
+- `vl-enter="flow-in"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="hover-depth-press"`
+- `vl-scene`
+- `vl-in-view`
+- `vl-enter="fade-up"`
+- `vl-in-view`
+- `vl-in-view`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+
+## OK — `pages/core/compatibility.html`
+
+### Attributes
+- `vl-page-transition="cinema"`
+- `vl-enter="flow-in"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="hover-depth-press"`
+- `vl-scene`
+- `vl-in-view`
+- `vl-enter="fade-up"`
+- `vl-in-view`
+- `vl-in-view`
+- `vl-scene`
+- `vl-timeline="view"`
+- `vl-motion="still"`
+- `vl-stage`
+- `vl-enter="fade-in"`
+- `vl-act="1"`
+- `vl-enter="fade-in"`
+- `vl-act="1"`
+- `vl-enter="fade-in"`
+- `vl-act="2"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+
 ## OK — `pages/core/core.html`
 
 ### Attributes
@@ -255,37 +305,118 @@
 - `vl-hover="underline-expand"`
 - `vl-hover="hover-depth-press"`
 - `vl-scene`
-- `vl-children="stagger"`
-- `vl-stagger="100ms"`
+- `vl-timeline="view"`
+- `vl-pin="12"`
+- `vl-scrub`
+- `vl-stage`
+- `vl-act="1"`
+- `vl-span="3"`
 - `vl-enter="fade-in"`
-- `vl-enter="clip-rise"`
-- `vl-enter="fade-up"`
-- `vl-enter="depth-enter"`
-- `vl-children="stagger"`
-- `vl-stagger="90ms"`
-- `vl-enter="fade-up"`
-- `vl-timeline="view"`
-- `vl-enter="fade-up"`
-- `vl-timeline="view"`
-- `vl-enter="fade-up"`
-- `vl-timeline="view"`
-- `vl-enter="fade-up"`
-- `vl-timeline="view"`
-- `vl-range="entry 10% cover 45%"`
-- `vl-enter="fade-up"`
-- `vl-timeline="view"`
-- `vl-state="smooth"`
-- `vl-scroll="depth-drift"`
-- `vl-range="cover"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-scroll="media-zoom"`
+- `vl-exit="fade-out"`
 - `vl-hover="hover-lift"`
-- `vl-exit="fade-out-up"`
-- `vl-timeline="view"`
+- `vl-state="smooth"`
+- `vl-act="5"`
+- `vl-span="3"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-scroll="depth-drift"`
+- `vl-exit="fade-out"`
+- `vl-hover="hover-lift"`
+- `vl-enter="fade-in"`
+- `vl-scroll="depth-drift"`
+- `vl-exit="fade-out"`
+- `vl-hover="hover-lift"`
+- `vl-enter="fade-in"`
+- `vl-scroll="depth-drift"`
+- `vl-exit="fade-out"`
+- `vl-hover="hover-lift"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-act="9"`
+- `vl-span="3"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-scroll="media-zoom"`
+- `vl-exit="fade-out"`
+- `vl-scroll="depth-drift"`
+- `vl-exit="fade-out"`
+- `vl-scroll="parallax"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-act="11"`
+- `vl-span="2"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-hover="hover-lift"`
+- `vl-state="smooth"`
+- `vl-state="expand"`
+- `vl-scroll="depth-drift"`
+- `vl-exit="fade-out"`
+- `vl-scroll="parallax"`
+- `vl-exit="fade-out"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
+- `vl-hover="hover-lift"`
+- `vl-state="top-layer enter-exit"`
+- `vl-scene`
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
-- `vl-enter="fade-in"`
+- `vl-once`
+- `vl-scene`
 - `vl-timeline="view"`
+- `vl-stage`
+- `vl-enter="fade-up"`
+- `vl-act="1"`
+- `vl-enter="clip-rise"`
+- `vl-act="1"`
+- `vl-enter="fade-up"`
+- `vl-act="2"`
+- `vl-enter="fade-up"`
+- `vl-act="3"`
+- `vl-scene`
+- `vl-timeline="view"`
+- `vl-motion="cinematic"`
+- `vl-stage`
+- `vl-enter="fade-up"`
+- `vl-act="1"`
 - `vl-enter="depth-enter"`
+- `vl-act="1"`
+- `vl-enter="fade-up"`
+- `vl-act="2"`
+- `vl-scroll="media-zoom"`
+- `vl-act="3"`
+- `vl-loop="-1"`
+- `vl-loop-effect="glow-breathe"`
+- `vl-scene`
 - `vl-timeline="view"`
+- `vl-motion="still"`
+- `vl-stage`
+- `vl-enter="fade-in"`
+- `vl-act="1"`
+- `vl-enter="fade-in"`
+- `vl-act="1"`
+- `vl-enter="fade-in"`
+- `vl-act="2"`
+- `vl-enter="fade-in"`
+- `vl-act="3"`
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
 
@@ -414,6 +545,9 @@
 - `vl-timeline="view"`
 - `vl-enter="reveal-cinematic"`
 - `vl-timeline="view"`
+- `vl-in-view`
+- `vl-enter="fade-up"`
+- `vl-delay="120ms"`
 - `vl-exit="fade-out-up"`
 - `vl-timeline="view"`
 - `vl-scroll="crossfade"`
@@ -804,6 +938,27 @@
 - `vl-effect="fade-up"`
 - `vl-range="entry-short"`
 - `vl-timeline="view"`
+- `vl-enter="fade-up"`
+- `vl-timeline="view"`
+
+## OK — `pages/motion/playground.html`
+
+### Attributes
+- `vl-page-transition="cinema"`
+- `vl-enter="flow-in"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="underline-expand"`
+- `vl-hover="hover-depth-press"`
+- `vl-scene`
+- `vl-in-view`
+- `vl-enter="fade-up"`
+- `vl-in-view`
+- `vl-enter="fade-up"`
+- `vl-in-view`
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
 

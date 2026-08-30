@@ -15,10 +15,21 @@ import Base from "../layouts/Base.astro";
   </p>
 
   <h2>Installation</h2>
-  <p>Install the package from the npm registry:</p>
+  <p>
+    <code>@velora/css</code> is developed in this monorepo. It is <strong>not yet published to npm</strong>.
+    Use <code>workspace:*</code>, a path import, or <code>pnpm pack</code> from <code>packages/css</code> after <code>pnpm build</code>.
+  </p>
   <pre><code>pnpm add @velora/css
 # or
 npm install @velora/css</code></pre>
+  <p>
+    Public spec: <a href="https://github.com/velora-css/velora/blob/main/docs/spec/attribute-grammar.md">Attribute grammar</a>
+    · Live playground: <a href="https://www.veloracss.io/pages/motion/playground.html">Motion Playground</a>
+    · Publish: <a href="https://github.com/velora-css/velora/blob/main/docs/project/PUBLISH.md">PUBLISH.md</a>
+  </p>
+
+  <h2>CDN (after npm publish)</h2>
+  <pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/@velora/css@1.0.0/dist/motion-core.css" /&gt;</code></pre>
 
   <h2>Choose an import</h2>
   <table>
@@ -66,7 +77,7 @@ npm install @velora/css</code></pre>
   <h2>What Velora is</h2>
   <ul>
     <li><strong>Motion language</strong> — not a utility framework requirement</li>
-    <li><strong>Zero JS for animation</strong> — scroll timelines, view transitions, CSS only</li>
+    <li><strong>Zero animation runtime JavaScript</strong> — scroll timelines, view transitions, CSS only (Showcase tooling JS is separate)</li>
     <li><strong>Showcase</strong> — cinematic reference UI / design system skin</li>
   </ul>
 </Base>

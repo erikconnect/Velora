@@ -2,38 +2,35 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Motion Effects" description="Complete reference for all vl-effect values — entrance, interaction, continuous, text, and cinema effects.">
+<Base title="Motion Effects" description="Velora motion channels — entrance, scroll, hover and legacy vl-effect presets.">
   <span class="vl-kicker">Motion</span>
 
   <h1 class="docs-page-title">Motion Effects</h1>
   <p class="docs-page-lead">
-    Named motion presets applied via the <code>vl-effect</code> attribute. All effects are pure CSS —
-    no JavaScript involved.
+    Prefer <strong>channels v2</strong>: <code>vl-enter</code>, <code>vl-scroll</code>, <code>vl-hover</code>, etc.
+    <code>vl-effect</code> remains a legacy/composite escape hatch. All motion is CSS-only — zero animation runtime JavaScript.
+    See <a href="/attributes/" class="docs-link-primary">Attribute Reference</a>.
   </p>
 
-  <h2>How Effects Work</h2>
+  <h2>How channels work</h2>
   <p>
-    Add <code>vl-effect</code> to any element to apply a preset. Combine with
-    <code>vl-timeline</code> to control <em>when</em> the animation plays:
+    Pick the channel that owns the behavior, then add <code>vl-timeline</code> when you need a progress model:
   </p>
-  <pre><code>&lt;!-- Plays immediately on page load --&gt;
-&lt;h1 vl-effect="fade-up"&gt;Heading&lt;/h1&gt;
+  <pre><code>&lt;!-- Entrance (preferred) --&gt;
+&lt;h1 vl-enter="fade-up"&gt;Heading&lt;/h1&gt;
 
-&lt;!-- Plays when element enters the viewport --&gt;
-&lt;div vl-effect="blur-in" vl-timeline="view"&gt;Content&lt;/div&gt;
+&lt;!-- Viewport-gated enter --&gt;
+&lt;div vl-in-view&gt;
+  &lt;p vl-enter="fade-up" vl-timeline="view"&gt;Content&lt;/p&gt;
+&lt;/div&gt;
 
-&lt;!-- Plays once, stays visible after --&gt;
-&lt;div vl-effect="clip-rise" vl-timeline="view" vl-once&gt;One-shot reveal&lt;/div&gt;
+&lt;!-- Scroll-linked --&gt;
+&lt;img vl-scroll="media-zoom" vl-timeline="view" alt="" /&gt;
 
-&lt;!-- Custom depth and speed --&gt;
-&lt;div
-  vl-effect="fade-up"
-  vl-timeline="view"
-  style="--vl-motion-distance: 2.5rem; --vl-motion-duration: 700ms;"&gt;
-  Deep, slow reveal
-&lt;/div&gt;</code></pre>
+&lt;!-- Legacy composite (avoid for new work) --&gt;
+&lt;div vl-effect="blur-in" vl-timeline="view"&gt;…&lt;/div&gt;</code></pre>
 
-  <h2>Entrance Primitives</h2>
+  <h2>Entrance presets (<code>vl-enter</code>)</h2>
   <p>
     Affect the element itself. Best combined with <code>vl-timeline="view"</code> for scroll-driven reveals.
   </p>

@@ -1,25 +1,27 @@
 ## Learned User Preferences
 
 - Prefer communication in Portuguese.
-- Zero-JS motion is non-negotiable: never introduce JS animation runtimes; keep the CSS-only / HTML+CSS path.
+- Zero animation runtime JavaScript is non-negotiable (not absolute “Zero JavaScript”); never introduce JS animation runtimes; keep the CSS-only / HTML+CSS path.
 - Treat Velora as a declarative CSS motion runtime and modern reference—not a utility framework; prioritize positioning, consistency, technical demos, and perceived value over feature volume.
-- Prefer evaluate-then-plan against the execution roadmap before large changes; often wants page-by-page reformulation using Velora CSS and the Showcase template.
+- Prefer evaluate-then-plan against `docs/AGENTS-VELORA.md` (P0/P1 public-readiness roadmap) and the showcase-readiness audit before large feature work; often wants page-by-page reformulation using Velora CSS and the Showcase template.
 - Showcase pages should feel cinematic and exercise the design system plus motion catalog resources, not generic or simplistic layouts.
-- Prefer complex, coordinated scenes (3D stages, large type, enter/exit choreography, horizontal/stacked sections) over sparse section layouts.
-- Keep showcase UI patterns consistent across pages; avoid exaggerated glow and one-off chrome that breaks the shared look.
+- Prefer complex, coordinated scenes (3D stages, large type, enter/exit choreography, continuous pin+scrub opera tracks, horizontal/stacked sections) over sparse section layouts or product-form “release desk” teaching UIs.
+- Keep showcase UI patterns consistent across pages; avoid exaggerated glow and one-off chrome that breaks the shared look; motion catalog should use compact DX controls covering the full contract and varied demo visuals (not repetitive chrome).
 - Stage 3D should be a reusable CSS-only stage contract (perspective/preserve-3d on the container; positional transforms via CSS vars on items; motion on inner content), not cube-triad-specific demos; preserve text-ring-orbit and circle-text-scroll.
-- Aim for GSAP-like scene authorship in HTML/CSS (shared scene clock, relative timing, pin+scrub)—preferred product direction for the scene engine.
+- Aim for GSAP-like scene authorship in HTML/CSS (shared scene clock, relative timing, pin+scrub); use `vl-in-view` for temporal viewport-gated enters and `vl-timeline="view"` (+ `vl-range`) for scrub—often hybrid on teaching pages; inside pinned scenes use chapter gates on the scene clock (`vl-act`/`vl-span`), not nested `vl-in-view` on `[vl-stage]`.
 - Core motion must stay host-agnostic and work with any UI (Tailwind and others); **Skins** is the product name for the Velora design-system layer (named themes via `data-editorial-theme`); Showcase is the cinematic reference UI, not the motion contract.
 - Prefer modern CSS capabilities (e.g. `if()`, typed `attr()`, `sibling-index()`) as progressive enhancement for scene choreography.
-- Prefer fixing contract/consistency before expanding demos; prefer a lean public Showcase that archives surplus pages in-repo rather than deleting Skins/DS work; reuse existing motion examples rather than inventing parallel systems.
+- Prefer hardening Scene Engine + `vl-in-view` contract/consistency before expanding demos; expand motion inventory before freezing core/catalog; prefer a lean public Showcase that archives surplus pages in-repo rather than deleting Skins/DS work; reuse existing motion examples rather than inventing parallel systems.
 
 ## Learned Workspace Facts
 
 - Monorepo layout: canonical CSS in `packages/css/src/`; Vite playground in `apps/showcase/`; Astro docs app in `apps/docs/`; markdown source of truth in repo-root `docs/`; plus `design-system/`, `examples/`, `experiments/`, and `starters/html-css-minimal/`.
 - Always edit CSS in `packages/css/src/` and sync to showcase (`pnpm sync:showcase-css`); `apps/showcase/public/css/` is derived and must not be edited as source.
-- Motion is attribute-driven (`vl-effect`, `vl-timeline`, `vl-range`, `vl-scene`, related `vl-*`); rules live in ordered `@layer velora.*` (reset → tokens → layout → motion → components → transitions → utilities → overrides).
+- Motion is attribute-driven (`vl-effect`, `vl-timeline`, `vl-range`, `vl-scene`, `vl-in-view`, related `vl-*`); `vl-in-view` is a temporal viewport gate (not scrub) that replays descendant motion on re-entry and must not pause scroll-driven timelines; do not nest `vl-in-view` on `[vl-scene][vl-timeline="view"] [vl-stage]`—use chapter gates on the scene clock for in-view-like enter/replay/exit inside pin; view-clock stages compose via named `--vl-scene` / `--vl-scroll-timeline`; rules live in ordered `@layer velora.*` (reset → tokens → layout → motion → components → transitions → utilities → overrides).
 - Product surfaces split: Velora core = scene/motion engine; Showcase = cinematic reference UI/DS; docs site documents the framework once the API is stable.
-- `@velora/css` ships separable entrypoints: `motion-core` (host-agnostic engine) vs `theme` / full bundle (visual Skins); editorial skins use `html[data-editorial-theme]` (e.g. noir, earth, aethel, meridian).
+- `@velora/css` ships separable entrypoints: `motion-core` (host-agnostic engine) vs `theme` / full bundle (visual Skins); editorial skins use `html[data-editorial-theme]` (e.g. noir, earth, aethel, meridian); cube-triad demos live in `scene-recipes.css`, not the core 3D stage contract; package is monorepo-local—not yet published to npm (document honestly until P1.4).
 - Lean Showcase restarts should snapshot retired pages under a dated in-repo `archive/` (outside live Vite registry and contract checks), not delete recoverable DS/skin work.
-- Workspace tooling is pnpm + Turborepo; common checks include `pnpm verify:contract` and showcase CSS drift checks.
-- Root `AGENTS.md` holds learned memory only; agent operating instructions live under `docs/agents/AGENTS.md` and must not be mixed into the learned-memory file.
+- Workspace tooling is pnpm + Turborepo; local Showcase via `pnpm dev` (or `pnpm --filter showcase dev`); common checks include `pnpm verify:contract`, showcase CSS drift checks, and `pnpm generate:catalog` / `pnpm check:catalog`.
+- Root `AGENTS.md` holds learned memory only; agent operating instructions live under `docs/agents/AGENTS.md`; `docs/AGENTS-VELORA.md` is the product/public-readiness roadmap (P0/P1)—keep all three distinct.
+- Canonical public spec chain: `docs/spec/attribute-grammar.md` + generated `packages/catalog/` (`pnpm generate:catalog`) + operational matrix in `docs/project/CONTRACT.md`.
+- Showcase motion authorship (gate vs scrub vs scene, anti-patterns) lives in `docs/project/SHOWCASE_PAGE_PLAYBOOK.md` §4; bussola section IDs must compose `view-timeline-name` with `--vl-scene` (e.g. `--vl-scene, --tl-N`), and unlayered `.scene-tl-stage { position: relative }` breaks sticky pin on `[vl-stage]`.

@@ -19,6 +19,10 @@ This folder (`docs/` at the **repository root**) is the **canonical Markdown lay
 
 - [Workspace guide](project/WORKSPACE.md) — folder ownership, scripts, sync flow
 - [Contract matrix](project/CONTRACT.md) — Motion/Design API and catalog paths
+- [Publishing @velora/css](project/PUBLISH.md) — npm pack, CDN, pre-publish checklist
+- [Attribute grammar](spec/attribute-grammar.md) — formal public API spec
+- [Showcase readiness audit](audits/showcase-readiness-2026.md)
+- [Reduced motion checklist](validation/reduced-motion-checklist.md)
 - [Showcase page playbook](project/SHOWCASE_PAGE_PLAYBOOK.md)
 - [Product surfaces plan](project/PRODUCT_SURFACES_PLAN.md)
 - [Agent instructions](agents/AGENTS.md)
