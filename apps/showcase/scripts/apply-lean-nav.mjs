@@ -1,4 +1,5 @@
 /**
+ * @deprecated Use scripts/sync-shell-from-index.mjs — canonical shell is index.html + showcase-shell.css.
  * Apply lean Showcase primary nav + footer to live HTML files.
  * Live IA is six routes only.
  */

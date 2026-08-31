@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Scenes" description="Host-agnostic scene engine: vl-scene track, vl-stage, vl-act / vl-span, pin and scrub.">
@@ -7,52 +8,60 @@ import Base from "../layouts/Base.astro";
 
   <h1 class="docs-page-title">Scenes</h1>
   <p class="docs-page-lead">
-    A scene is a shared clock for children — not a look. Layout and chrome come from the host UI
-    (or optional Velora theme recipes).
+    A scene is a shared clock for children — not a look. Scroll the frame to scrub acts on the track.
   </p>
 
-  <h2>Track + stage + acts</h2>
-  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
-  &lt;div vl-stage&gt;
-    &lt;p vl-enter="fade-up" vl-act="1"&gt;Kicker&lt;/p&gt;
-    &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Title&lt;/h1&gt;
-    &lt;img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt="" /&gt;
-    &lt;a vl-enter="fade-up" vl-act="5"&gt;CTA&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
+  <DocsLive
+    scroll="scene"
+    hint="Pin + scrub: stage stays fixed while the scene clock advances."
+    code={`<section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+  <div vl-stage>
+    <p vl-enter="fade-up" vl-act="1">Kicker</p>
+    <h1 vl-enter="clip-rise" vl-act="1">Title</h1>
+  </div>
+</section>`}
+  >
+    <section class="docs-live__scene-track" vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
+      <div vl-stage>
+        <p class="docs-live__demo-chip" vl-enter="fade-up" vl-act="1">Kicker · act 1</p>
+        <h3 class="docs-live__demo-title" vl-enter="clip-rise" vl-act="1">Title · act 1</h3>
+        <p class="docs-live__demo-copy" vl-enter="fade-up" vl-act="3" vl-span="2">CTA · act 3–4</p>
+        <span class="docs-live__demo-chip" vl-enter="scale-in" vl-act="5">Finale · act 5</span>
+      </div>
+    </section>
+  </DocsLive>
 
+  <h2>Track + stage + acts</h2>
   <table>
     <thead>
       <tr><th>Attribute</th><th>Role</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>vl-scene</code></td><td>Track — owns <code>--vl-scene</code> view-timeline and optional pin height</td></tr>
+      <tr><td><code>vl-scene</code></td><td>Track — owns <code>--vl-scene</code> and pin height</td></tr>
       <tr><td><code>vl-stage</code></td><td>Sticky viewport stage (required for pin+scrub)</td></tr>
-      <tr><td><code>vl-timeline</code></td><td><code>view</code> (scroll film) or <code>auto</code> (time film)</td></tr>
-      <tr><td><code>vl-pin</code></td><td>Track height in viewport multiples (e.g. <code>3</code>)</td></tr>
+      <tr><td><code>vl-pin</code></td><td>Track height in viewport multiples</td></tr>
       <tr><td><code>vl-scrub</code></td><td>Linear fill — progress glued to scroll</td></tr>
-      <tr><td><code>vl-act</code></td><td>Beat index (same act = overlap / GSAP <code>&lt;</code>)</td></tr>
-      <tr><td><code>vl-span</code></td><td>How many beats the tween spans</td></tr>
-      <tr><td><code>vl-range</code></td><td>Escape hatch — overrides act-derived ranges</td></tr>
+      <tr><td><code>vl-act</code> / <code>vl-span</code></td><td>Beat index and duration on the clock</td></tr>
     </tbody>
   </table>
 
   <h2>Why track ≠ stage</h2>
   <p>
-    A sticky element freezes its own anonymous <code>view()</code> progress. Children bind to the
-    <strong>named</strong> track timeline (<code>--vl-scene</code>) while the stage stays pinned.
-  </p>
-
-  <h2>Named presets (skin recipes)</h2>
-  <p>
-    Values like <code>vl-scene="cinematic-hero"</code> remain for compatibility. They ship in
-    <code>scene-recipes.css</code> via <code>@velora/css/theme</code> / full — they mix look + motion.
-    Prefer track/stage/acts for portable hosts.
+    Children bind to the <strong>named</strong> track timeline (<code>--vl-scene</code>) while
+    <code>[vl-stage]</code> stays pinned in the scrollport.
   </p>
 
   <h2>Channels on children</h2>
-  <p>
-    Use existing channels on stage children: <code>vl-enter</code>, <code>vl-scroll</code>,
-    <code>vl-exit</code>, etc. The scene clock drives when they play.
-  </p>
+  <DocsLive scroll="short" code={'vl-enter + vl-scroll on [vl-stage] children'}>
+    <div class="docs-live__row">
+      <article class="vl-card" vl-enter="tilt-in" vl-timeline="view">
+        <h3 class="vl-card__title">vl-enter</h3>
+        <p class="vl-card__body">On stage child</p>
+      </article>
+      <article class="vl-card" vl-scroll="media-zoom" vl-timeline="view">
+        <h3 class="vl-card__title">vl-scroll</h3>
+        <p class="vl-card__body">Scroll channel</p>
+      </article>
+    </div>
+  </DocsLive>
 </Base>

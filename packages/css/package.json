@@ -22,10 +22,11 @@
     "src",
     "dist"
   ],
-  "homepage": "https://www.veloracss.io",
+  "homepage": "https://veloracss.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/velora-css/velora.git"
+    "url": "https://github.com/erikconnect/Velora.git",
+    "directory": "packages/css"
   },
   "scripts": {
     "check:dist": "node ./scripts/check-dist.mjs",

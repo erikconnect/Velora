@@ -1,0 +1,173 @@
+/**
+ * Canonical Showcase shell — header, footer, bussola offset, mobile drawer.
+ * Loaded via showcase.css on every live page so markup synced from index.html
+ * renders identically (see scripts/sync-shell-from-index.mjs).
+ */
+
+.showcase-page-shell {
+  --showcase-shell-gutter: clamp(1rem, 3vw, 2.4rem);
+  --showcase-shell-max: min(112rem, calc(100vw - (var(--showcase-shell-gutter) * 2)));
+  --ref-gutter-inline: var(--showcase-shell-gutter);
+  --showcase-content-max: var(--showcase-shell-max);
+  timeline-scope: --tl-1, --tl-2, --tl-3, --tl-4, --tl-5, --tl-6;
+  scroll-padding-top: 5rem;
+  overflow-x: clip;
+}
+
+/* Header inner: shared width + bussola rail offset (scroll-progress sits between rail and header). */
+.showcase-page-shell .vl-header .vl-header__inner {
+  width: 100%;
+  max-width: var(--showcase-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--showcase-shell-gutter);
+  padding-right: max(calc(var(--showcase-shell-gutter) + 3.75rem), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+}
+
+.showcase-page-shell .vl-footer .vl-footer__inner {
+  width: 100%;
+  max-width: var(--showcase-shell-max);
+  margin-inline: auto;
+  padding-inline: var(--showcase-shell-gutter);
+  box-sizing: border-box;
+}
+
+@media (max-width: 64rem) {
+  .showcase-page-shell .vl-header .vl-header__inner {
+    overflow: visible;
+  }
+
+  .showcase-page-shell .vl-header .vl-header__nav,
+  .showcase-page-shell .vl-header .vl-header__actions {
+    display: none;
+  }
+
+  .showcase-page-shell .vl-header__menu-btn {
+    display: flex !important;
+    margin-inline-start: auto;
+  }
+
+  .showcase-page-shell .vl-header[data-menu-open] .vl-header__drawer {
+    display: block !important;
+    animation: vl-fade-down var(--vl-duration-normal) var(--vl-ease-cinematic) forwards;
+  }
+
+  .showcase-page-shell .vl-header__mobile-actions .ds-vt-select,
+  .showcase-page-shell .vl-header__mobile-actions .ds-editorial-select {
+    display: inline-flex;
+  }
+
+  .showcase-page-shell .vl-header__mobile-actions .ds-theme-toggle {
+    display: flex;
+  }
+}
+
+.showcase-page-shell .vl-footer {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-main) 88%, transparent), var(--vl-bg-inset)),
+    radial-gradient(circle at 18% 8%, color-mix(in oklch, var(--vl-color-primary) 17%, transparent), transparent 34%),
+    radial-gradient(circle at 84% 22%, color-mix(in oklch, var(--vl-color-secondary) 11%, transparent), transparent 38%);
+}
+
+.showcase-page-shell .vl-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--vl-border-subtle) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--vl-border-subtle) 34%, transparent) 1px, transparent 1px);
+  background-size: clamp(5rem, 9vw, 9rem) clamp(5rem, 9vw, 9rem);
+  mask-image: linear-gradient(180deg, transparent, black 20%, black 78%, transparent);
+  opacity: 0.34;
+}
+
+.showcase-page-shell .vl-footer::after {
+  content: "Velora";
+  position: absolute;
+  right: max(-0.12em, -3vw);
+  bottom: -0.34em;
+  z-index: -1;
+  color: color-mix(in oklch, var(--vl-text-primary) 7%, transparent);
+  font-family: var(--vl-font-family-display);
+  font-size: clamp(8rem, 22vw, 23rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+.showcase-page-shell .vl-footer__inner {
+  position: relative;
+}
+
+.showcase-page-shell .vl-footer__grid {
+  align-items: stretch;
+}
+
+.showcase-page-shell .vl-footer__brand,
+.showcase-page-shell .vl-footer__grid > .vl-footer__col:not(.vl-footer__brand) {
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 82%, transparent);
+  background:
+    linear-gradient(145deg, color-mix(in oklch, var(--vl-bg-surface) 78%, transparent), color-mix(in oklch, var(--vl-bg-inset) 86%, transparent)),
+    color-mix(in oklch, var(--vl-bg-surface) 42%, transparent);
+  box-shadow: var(--vl-shadow-sm);
+}
+
+.showcase-page-shell .vl-footer__brand {
+  min-block-size: 100%;
+  padding: clamp(1.1rem, 2vw, 1.6rem);
+  justify-content: space-between;
+}
+
+.showcase-page-shell .vl-footer__grid > .vl-footer__col:not(.vl-footer__brand) {
+  padding: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.showcase-page-shell .vl-footer__heading {
+  color: var(--vl-text-primary);
+}
+
+.showcase-page-shell .vl-footer__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+}
+
+.showcase-page-shell .vl-footer__link::before {
+  content: "";
+  inline-size: 0.35rem;
+  block-size: 0.35rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--vl-color-primary) 72%, var(--vl-text-primary));
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity var(--vl-transition-fast) var(--vl-ease-out-soft),
+    transform var(--vl-transition-fast) var(--vl-ease-out-soft);
+}
+
+.showcase-page-shell .vl-footer__link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.showcase-page-shell .vl-footer__bottom {
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 78%, transparent);
+  background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
+}
+
+.showcase-page-shell--brand .ds-editorial-select,
+.showcase-page-shell--brand .ds-theme-toggle {
+  display: none;
+}
+
+.vl-footer__social a[href="#"] {
+  display: none;
+}

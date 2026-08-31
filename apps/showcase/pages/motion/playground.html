@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" vl-page-transition="cinema">
+<html lang="en" data-editorial-theme="noir" data-theme="dark" vl-page-transition="cinema">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,6 +64,7 @@
       <a class="vl-bussola__stop" href="#play-compose"><span class="vl-bussola__label">Compose</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
       <a class="vl-bussola__stop" href="#play-policy"><span class="vl-bussola__label">Policy</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
     </nav>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -114,7 +115,7 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+          <a class="vl-header-icon-btn" href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
@@ -170,6 +171,7 @@
             <p class="showcase-ref-lead">
               Pick a registry preset, tune timing, copy markup. <strong>Playground UI uses JavaScript.</strong> Preview motion uses Velora/CSS only — zero animation runtime JavaScript.
             </p>
+            <p class="showcase-practical-hint">Choose channel + preset, hit Replay enter, then Copy markup — the preview gate uses <code>vl-in-view</code> like production demos.</p>
             <div class="showcase-ref-tokens-actions">
               <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/motion/api-motion-catalog.html">Motion catalog</a>
               <a class="showcase-ref-tokens-button" href="/pages/motion/motion-lab.html#preset-inspector">Motion Lab inspector</a>
@@ -181,6 +183,7 @@
           <div class="showcase-cinema-scene__inner showcase-playground">
             <p class="showcase-ref-kicker">Composer</p>
             <h2 class="showcase-ref-title">Registry-driven workspace</h2>
+            <p class="showcase-practical-hint">Live workspace below — generated markup mirrors the preview target attributes.</p>
             <div class="showcase-playground__workspace" vl-enter="fade-up">
               <aside class="showcase-playground__controls" aria-label="Playground controls">
                 <div class="showcase-playground__field">
@@ -263,6 +266,17 @@
             <p class="vl-footer__desc">Motion-native CSS. Browser-first. Zero animation runtime JavaScript.</p>
           </div>
                     <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Resources</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/core/compatibility.html">Compatibility</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/benchmarks.html">Benchmarks</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/playground.html">Playground</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
+              <li><a class="vl-footer__link" href="https://docs.veloracss.io">Documentation</a></li>
+              <li><a class="vl-footer__link" href="https://github.com/erikconnect/Velora/tree/main/docs/spec">Spec (GitHub)</a></li>
+            </ul>
+          </div>
+                    <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Showcase</h3>
             <ul class="vl-footer__links">
               <li><a class="vl-footer__link" href="/index.html">Home</a></li>
@@ -277,7 +291,7 @@
         <div class="vl-footer__bottom">
           <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS &middot; Zero animation runtime JS</p>
           <div class="vl-footer__social" aria-label="Velora social links">
-            <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+            <a href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
                 <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
               </svg>

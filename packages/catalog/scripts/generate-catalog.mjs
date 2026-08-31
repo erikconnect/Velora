@@ -167,7 +167,7 @@ const COMPATIBILITY_MATRIX = {
     chrome: "124+",
     safari: "18+",
     firefox: "128+",
-    note: "Documented targets; automated cross-browser verification is planned (P0.8).",
+    note: "Documented targets; verified by Playwright E2E (Chromium, Firefox, WebKit) in CI.",
   },
   levels: {
     stable: "Required behavior with fallback where noted",
@@ -290,6 +290,14 @@ const COMPATIBILITY_MATRIX = {
   ],
 };
 
+function buildCompatMatrix(summary) {
+  return {
+    ...COMPATIBILITY_MATRIX,
+    generatedAt: summary.generatedAt,
+    presetCount: summary.presetCount,
+  };
+}
+
 function writeShowcaseData(catalog, summary) {
   const presetsIndex = catalog.presets.map((p) => ({
     name: p.name,
@@ -299,11 +307,7 @@ function writeShowcaseData(catalog, summary) {
     reducedMotion: p.reducedMotion,
   }));
 
-  const compat = {
-    ...COMPATIBILITY_MATRIX,
-    generatedAt: summary.generatedAt,
-    presetCount: summary.presetCount,
-  };
+  const compat = buildCompatMatrix(summary);
 
   mkdirSync(SHOWCASE_DATA_DIR, { recursive: true });
   writeFileSync(
@@ -409,6 +413,10 @@ function generate() {
   writeFileSync(
     join(ROOT, "attributes.json"),
     `${JSON.stringify(buildAttributesJson(), null, 2)}\n`,
+  );
+  writeFileSync(
+    join(ROOT, "compatibility-matrix.json"),
+    `${JSON.stringify(buildCompatMatrix(summary), null, 2)}\n`,
   );
 
   writeShowcaseData(catalog, summary);

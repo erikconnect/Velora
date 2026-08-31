@@ -26,3 +26,5 @@ packages/css/dist/motion-core.css
 Copy to your theme `assets/css/velora-motion-core.css` or symlink during development.
 
 See also: [`examples/tailwind-host/`](../tailwind-host/) for a non-WordPress host.
+
+**Live demo (planned):** `https://examples.veloracss.io` on Hostinger VPS — [DEPLOY.md](../../docs/project/DEPLOY.md).

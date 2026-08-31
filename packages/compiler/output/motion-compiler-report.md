@@ -1,7 +1,7 @@
 # Velora Motion Compiler Report
 
 - Files scanned: **12**
-- Velora attributes found: **992**
+- Velora attributes found: **1021**
 - Issues found: **0**
 
 ## OK — `index.html`
@@ -24,6 +24,7 @@
 - `vl-speed="cinema"`
 - `vl-enter="clip-rise"`
 - `vl-speed="cinema"`
+- `vl-enter="fade-up"`
 - `vl-hover="hover-depth-press"`
 - `vl-hover="underline-expand"`
 - `vl-hover="underline-expand"`
@@ -223,6 +224,8 @@
 - `vl-hover="hover-depth-press"`
 - `vl-hover="hover-depth-press"`
 - `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
+- `vl-hover="hover-depth-press"`
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
 
@@ -311,6 +314,8 @@
 - `vl-stage`
 - `vl-act="1"`
 - `vl-span="3"`
+- `vl-enter="fade-in"`
+- `vl-exit="fade-out"`
 - `vl-enter="fade-in"`
 - `vl-exit="fade-out"`
 - `vl-enter="fade-in"`
@@ -438,6 +443,7 @@
 - `vl-enter="fade-in"`
 - `vl-enter="clip-rise"`
 - `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
 - `vl-enter="depth-enter"`
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
@@ -466,6 +472,29 @@
 - `vl-hover="underline-expand"`
 - `vl-hover="hover-depth-press"`
 - `vl-scene`
+- `vl-scene`
+- `vl-timeline="view"`
+- `vl-pin="3"`
+- `vl-scrub`
+- `vl-stage`
+- `vl-enter="fade-up"`
+- `vl-act="1"`
+- `vl-enter="clip-rise"`
+- `vl-act="1"`
+- `vl-children="stagger"`
+- `vl-stagger="120ms"`
+- `vl-act="2"`
+- `vl-span="2"`
+- `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
+- `vl-enter="fade-up"`
+- `vl-act="3"`
+- `vl-scene`
+- `vl-in-view`
 - `vl-enter="fade-up"`
 - `vl-timeline="view"`
 

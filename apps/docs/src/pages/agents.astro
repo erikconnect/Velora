@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Agent Handbook" description="Operational guide for AI coding agents working on Velora.">
@@ -7,10 +8,15 @@ import Base from "../layouts/Base.astro";
 
   <h1 class="docs-page-title">Agent Handbook</h1>
   <p>
-    This is the operational guide for AI coding agents working on Velora — including GitHub Copilot,
-    Cursor, and similar tools. It defines the product thesis, non-negotiable rules, attribute system
-    contract, and safe prompting patterns that all agents must follow.
+    Operational guide for AI agents on Velora. Demos on other pages use the same public
+    <code>vl-*</code> API — test there, do not invent showcase-only motion.
   </p>
+
+  <DocsLive scroll="short" code={'vl-enter="fade-up" vl-timeline="view"'}>
+    <p class="docs-live__demo-copy" vl-enter="fade-up" vl-timeline="view">
+      If the docs frame can replay it, it is a public Velora feature.
+    </p>
+  </DocsLive>
 
   <hr />
 
@@ -115,33 +121,40 @@ import Base from "../layouts/Base.astro";
       <tr><th>Attribute</th><th>Purpose</th><th>Example values</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>vl-scene</code></td><td>Marks a motion-aware scene container</td><td><code>"hero"</code>, <code>"story"</code>, <code>"features"</code></td></tr>
-      <tr><td><code>vl-effect</code></td><td>Declares the named effect preset</td><td><code>"fade-up"</code>, <code>"flow-in"</code>, <code>"scene-hero-reveal"</code></td></tr>
-      <tr><td><code>vl-timeline</code></td><td>Declares the progress model</td><td><code>"view"</code>, <code>"scroll"</code>, <code>"auto"</code>, <code>"hover"</code></td></tr>
+      <tr><td><code>vl-enter</code></td><td>Entrance preset (preferred channel)</td><td><code>"fade-up"</code>, <code>"clip-rise"</code>, <code>"blur-in"</code></td></tr>
+      <tr><td><code>vl-scroll</code></td><td>Scroll-linked preset</td><td><code>"media-zoom"</code>, <code>"parallax"</code></td></tr>
+      <tr><td><code>vl-hover</code></td><td>Hover / focus interaction preset</td><td><code>"hover-lift"</code>, <code>"underline-expand"</code></td></tr>
+      <tr><td><code>vl-effect</code></td><td>Legacy / composite preset escape hatch</td><td><code>"fade-up"</code>, <code>"flow-in"</code></td></tr>
+      <tr><td><code>vl-scene</code></td><td>Scene track — shared clock, optional pin height</td><td>presence or named recipe</td></tr>
+      <tr><td><code>vl-stage</code></td><td>Sticky viewport stage inside a scene</td><td>presence only</td></tr>
+      <tr><td><code>vl-act</code> / <code>vl-span</code></td><td>Beat index and duration on scene clock</td><td><code>vl-act="2"</code>, <code>vl-span="3"</code></td></tr>
+      <tr><td><code>vl-in-view</code></td><td>Temporal viewport gate (replay on re-entry)</td><td>presence only</td></tr>
+      <tr><td><code>vl-timeline</code></td><td>Progress model</td><td><code>"view"</code>, <code>"scroll"</code>, <code>"auto"</code>, <code>"hover"</code></td></tr>
       <tr><td><code>vl-range</code></td><td>Active progress range for timeline motion</td><td><code>"entry 0% cover 40%"</code></td></tr>
-      <tr><td><code>vl-pin</code></td><td>Boolean — pinned/sticky scene behavior</td><td>presence only</td></tr>
-      <tr><td><code>vl-scrub</code></td><td>Boolean — scroll-scrubbed animation</td><td>presence only</td></tr>
-      <tr><td><code>vl-once</code></td><td>Boolean — animate once only</td><td>presence only</td></tr>
+      <tr><td><code>vl-pin</code></td><td>Pinned scene track height (viewport multiples)</td><td><code>vl-pin="3"</code></td></tr>
+      <tr><td><code>vl-scrub</code></td><td>Scroll-scrubbed linear fill</td><td>presence only</td></tr>
+      <tr><td><code>vl-once</code></td><td>Animate once only</td><td>presence only</td></tr>
       <tr><td><code>vl-children</code></td><td>Child choreography mode</td><td><code>"stagger"</code>, <code>"cascade"</code></td></tr>
       <tr><td><code>vl-stagger</code></td><td>Stagger delay override</td><td><code>"fast"</code>, <code>"slow"</code>, numeric</td></tr>
-      <tr><td><code>vl-depth</code></td><td>Depth/parallax intensity modifier</td><td><code>"shallow"</code>, <code>"deep"</code></td></tr>
-      <tr><td><code>vl-speed</code></td><td>Duration/speed modifier</td><td><code>"slow"</code>, <code>"fast"</code></td></tr>
-      <tr><td><code>vl-targets</code></td><td>Selects specific descendant targets</td><td>CSS selector string</td></tr>
-      <tr><td><code>vl-page-transition</code></td><td>Page transition preset</td><td><code>"fade"</code>, <code>"slide"</code>, <code>"morph"</code></td></tr>
-      <tr><td><code>vl-transition</code></td><td>Shared element or local transition</td><td><code>"cover"</code></td></tr>
+      <tr><td><code>vl-motion</code></td><td>Subtree motion mode (engine token scale)</td><td><code>"standard"</code>, <code>"cinematic"</code>, <code>"still"</code></td></tr>
+      <tr><td><code>vl-page-transition</code></td><td>MPA page transition preset on <code>&lt;html&gt;</code></td><td><code>"cinema"</code>, <code>"wipe"</code>, <code>"glide"</code></td></tr>
     </tbody>
   </table>
 
   <h3>Primitive vs Scene Presets</h3>
   <p>This distinction is mandatory.</p>
   <p>
-    A <strong>primitive effect</strong> affects the element itself:
+    A <strong>channel preset</strong> affects the element itself:
   </p>
-  <pre><code>&lt;div vl-effect="fade-up"&gt;&lt;/div&gt;</code></pre>
+  <pre><code>&lt;div vl-enter="fade-up" vl-timeline="view"&gt;&lt;/div&gt;</code></pre>
   <p>
-    A <strong>scene preset</strong> coordinates the element and its descendants:
+    A <strong>scene</strong> coordinates children on a shared clock:
   </p>
-  <pre><code>&lt;section vl-scene="hero" vl-effect="scene-hero-reveal"&gt;&lt;/section&gt;</code></pre>
+  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
+  &lt;div vl-stage&gt;
+    &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Title&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
   <p>Agents must not blur these concepts.</p>
 
   <hr />

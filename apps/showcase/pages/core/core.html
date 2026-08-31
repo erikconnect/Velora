@@ -24,6 +24,7 @@
       <a class="vl-bussola__stop" href="#core-channels"><span class="vl-bussola__label">Channels</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
       <a class="vl-bussola__stop" href="#core-policy"><span class="vl-bussola__label">Policy</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
     </nav>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -74,7 +75,7 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+          <a class="vl-header-icon-btn" href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
@@ -153,16 +154,17 @@
               <div class="core-opera-hero-body">
                 <p class="core-opera-kicker" vl-enter="fade-in" vl-exit="fade-out">Act 01 // the behavior layer</p>
                 <p class="core-opera-lead" vl-enter="fade-in" vl-exit="fade-out">
-                  Velora Core is a host-agnostic motion engine. Attributes describe entrances, states, scroll progress and scene beats. No animation runtime—only the browser clock.
+                  Scroll this page — one pinned track, twelve beats. Attributes declare entrances, clocks, channels and policy. No animation runtime; only the browser.
                 </p>
+                <p class="showcase-practical-hint" vl-enter="fade-in" vl-exit="fade-out">Use the bussola (right) or keep scrolling. Each chapter holds copy while scroll scrubs the layer stack.</p>
                 <div class="core-opera-actions" vl-enter="fade-in" vl-exit="fade-out">
                   <a class="showcase-ref-tokens-button" href="#core-architecture">Enter the layers</a>
                   <a class="showcase-ref-tokens-button showcase-ref-tokens-button--ghost" href="/pages/scenes/scene-timeline.html">Scene grammar</a>
                 </div>
-                <article class="scene-tl-signal core-opera-hero-signal" vl-enter="fade-in" vl-scroll="media-zoom" vl-exit="fade-out" vl-hover="hover-lift" vl-state="smooth" aria-label="Release signal">
-                  <span>Release brief / 07</span>
-                  <strong>72%</strong>
-                  <small>team alignment · zero runtime</small>
+                <article class="scene-tl-signal core-opera-hero-signal" vl-enter="fade-in" vl-scroll="media-zoom" vl-exit="fade-out" vl-hover="hover-lift" vl-state="smooth" aria-label="Public grammar">
+                  <span>Public grammar · vl-*</span>
+                  <strong>134</strong>
+                  <small>presets · 8 channels · zero runtime</small>
                   <p class="core-opera-hero-signal__note">Core owns behavior—not the look. Skins voice it. Showcase proves it.</p>
                 </article>
               </div>
@@ -200,9 +202,9 @@
               <p class="core-opera-kicker" vl-enter="fade-in" vl-exit="fade-out">Act 03 // choose the clock</p>
               <h2 class="core-opera-title" vl-enter="fade-in" vl-exit="fade-out">The effect says what.<br />The timeline says when.</h2>
               <article class="scene-tl-signal" vl-enter="fade-in" vl-scroll="media-zoom" vl-exit="fade-out">
-                <span>Signal 07 · view clock</span>
+                <span>One effect · four clocks</span>
                 <strong>fade-up</strong>
-                <small>One effect. Four clocks.</small>
+                <small>auto · view · scroll · hover</small>
               </article>
               <div class="scene-tl-evidence" vl-scroll="depth-drift" vl-exit="fade-out">
                 <span>Auto</span>
@@ -222,12 +224,12 @@
               <p class="core-opera-kicker" vl-enter="fade-in" vl-exit="fade-out">Act 04 // compose the channels</p>
               <h2 class="core-opera-title" vl-enter="fade-in" vl-exit="fade-out">One card.<br />Five jobs.</h2>
               <article class="vl-card vl-card--glass core-opera-compose" vl-enter="fade-in" vl-exit="fade-out" vl-hover="hover-lift" vl-state="smooth">
-                <p class="showcase-core-brief__name">Release brief / 07</p>
+                <p class="showcase-core-brief__name">Channel stack · compose</p>
                 <span class="showcase-core-brief__status"><i aria-hidden="true"></i>Channels live</span>
                 <h3>Arrive with hierarchy</h3>
                 <div class="core-opera-compose__metric">
-                  <strong>72%</strong>
-                  <span>alignment · channels</span>
+                  <strong>5</strong>
+                  <span>channels · one card</span>
                 </div>
                 <div class="showcase-core-brief__meta"><span>Enter</span><span>Hover</span><span>State</span><span>Scroll</span></div>
                 <div class="core-opera-compose__actions">
@@ -273,7 +275,7 @@
                 <div class="scene-story__stage" vl-stage>
                   <p class="scene-story__eyebrow" vl-enter="fade-up" vl-act="1">vl-motion=&quot;standard&quot;</p>
                   <h3 vl-enter="clip-rise" vl-act="1">Clear and useful</h3>
-                  <div class="scene-story__metric" vl-enter="fade-up" vl-act="2"><strong>72%</strong><span>balanced travel</span></div>
+                  <div class="scene-story__metric" vl-enter="fade-up" vl-act="2"><strong>320ms</strong><span>balanced travel</span></div>
                   <p class="scene-story__confirmation" vl-enter="fade-up" vl-act="3">Product interfaces stay measured.</p>
                 </div>
                 <footer><span>Core · standard</span><span>Readable baseline</span></footer>
@@ -282,7 +284,7 @@
                 <div class="scene-story__stage" vl-stage>
                   <p class="scene-story__eyebrow" vl-enter="fade-up" vl-act="1">vl-motion=&quot;cinematic&quot;</p>
                   <h3 vl-enter="depth-enter" vl-act="1">Directed emphasis</h3>
-                  <div class="scene-story__metric" vl-enter="fade-up" vl-act="2"><strong>72%</strong><span>launch depth</span></div>
+                  <div class="scene-story__metric" vl-enter="fade-up" vl-act="2"><strong>2×</strong><span>launch depth</span></div>
                   <div class="scene-story__media" vl-scroll="media-zoom" vl-act="3" aria-hidden="true"><span vl-loop="-1" vl-loop-effect="glow-breathe"></span></div>
                 </div>
                 <footer><span>Core · cinematic</span><span>Hero / story</span></footer>
@@ -342,6 +344,17 @@
             <p class="vl-footer__desc">Motion-native CSS. Browser-first. Zero animation runtime JavaScript.</p>
           </div>
                     <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Resources</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/core/compatibility.html">Compatibility</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/benchmarks.html">Benchmarks</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/playground.html">Playground</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
+              <li><a class="vl-footer__link" href="https://docs.veloracss.io">Documentation</a></li>
+              <li><a class="vl-footer__link" href="https://github.com/erikconnect/Velora/tree/main/docs/spec">Spec (GitHub)</a></li>
+            </ul>
+          </div>
+                    <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Showcase</h3>
             <ul class="vl-footer__links">
               <li><a class="vl-footer__link" href="/index.html">Home</a></li>
@@ -356,7 +369,7 @@
         <div class="vl-footer__bottom">
           <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS &middot; Zero animation runtime JS</p>
           <div class="vl-footer__social" aria-label="Velora social links">
-            <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+            <a href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
                 <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
               </svg>

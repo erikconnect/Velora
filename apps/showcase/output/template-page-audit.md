@@ -1,7 +1,7 @@
 # Velora Template Page Audit
 
 - Template: **default**
-- Pages audited: **9**
+- Pages audited: **12**
 - Pages with issues: **0**
 - Missing files: **0**
 - Missing shell: **0**
@@ -67,6 +67,22 @@
 - H1: Same vl-* . Your UI.
 - Issues: none
 
+### OK - `pages/core/compatibility.html`
+- Exists: yes
+- Shell: yes
+- Title: Compatibility | Velora
+- Description: Velora CSS primitive compatibility: browser support tiers, fallbacks and reduced motion policy.
+- H1: Primitive support, not marketing.
+- Issues: none
+
+### OK - `pages/core/benchmarks.html`
+- Exists: yes
+- Shell: yes
+- Title: Benchmarks | Velora
+- Description: Velora CSS benchmarks: reproducible evidence for integration cost, animation runtime JavaScript and reduced-motion policy — not marketing FPS claims.
+- H1: Measure what we can prove.
+- Issues: none
+
 ### OK - `pages/core/archive.html`
 - Exists: yes
 - Shell: yes
@@ -81,5 +97,13 @@
 - Title: Motion Lab — Exhaustive QA | Velora
 - Description: Internal Velora Motion Lab with exhaustive preset coverage, experimental proofs and QA controls.
 - H1: Test every preset. Protect every fallback.
+- Issues: none
+
+### OK - `pages/motion/playground.html`
+- Exists: yes
+- Shell: yes
+- Title: Motion Playground | Velora
+- Description: Velora Motion Playground: compose public vl-* attributes, preview CSS-only motion, copy markup. Playground UI uses JavaScript; preview motion uses Velora/CSS.
+- H1: Public attributes, live preview.
 - Issues: none
 

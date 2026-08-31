@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Page Transitions" description="MPA cross-document view transitions with vl-page-transition presets and shared element morphing.">
@@ -7,9 +8,26 @@ import Base from "../layouts/Base.astro";
 
   <h1 class="docs-page-title">Page Transitions</h1>
   <p class="docs-page-lead">
-    Native cross-document View Transitions — no router, no JavaScript. Just CSS and the
-    <code>vl-page-transition</code> attribute.
+    Native cross-document View Transitions — no animation runtime JavaScript. CSS and the
+    <code>vl-page-transition</code> attribute only.
   </p>
+
+  <h2>Test here — page transitions</h2>
+  <DocsLive scroll="none" hint="Use the Cinema / Wipe / Glide selector in the header, then navigate to another docs page.">
+    <p class="docs-live__demo-title">Cross-document demo</p>
+    <p class="docs-live__demo-copy">
+      This site runs <code>vl-page-transition</code> on <code>&lt;html&gt;</code>.
+      Jump to <a href="/attributes/">Attributes</a> or <a href="/effects/">Effects</a> to see the preset.
+    </p>
+    <div class="docs-live__row">
+      <a class="vl-card docs-card-link" href="/scenes/" vl-hover="hover-lift">
+        <span class="vl-card__title">→ Scenes</span>
+      </a>
+      <a class="vl-card docs-card-link" href="/tokens/" vl-hover="hover-lift">
+        <span class="vl-card__title">→ Tokens</span>
+      </a>
+    </div>
+  </DocsLive>
 
   <h2>How to Enable</h2>
   <p>

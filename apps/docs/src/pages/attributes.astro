@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Attribute Reference" description="Velora motion attribute grammar — channels v2, scene engine and timing controls.">
@@ -8,9 +9,40 @@ import Base from "../layouts/Base.astro";
   <h1 class="docs-page-title">Attribute Reference</h1>
   <p class="docs-page-lead">
     Velora motion is declared with <code>vl-*</code> HTML attributes. Prefer <strong>channels</strong>
-    (<code>vl-enter</code>, <code>vl-scroll</code>, …) for new work. Canonical spec:
-    <a href="https://github.com/velora-css/velora/blob/main/docs/spec/attribute-grammar.md" class="docs-link-primary">attribute-grammar.md</a>.
+    for new work. Each section includes a live frame — <strong>Test here</strong>.
   </p>
+
+  <h2>Channels (preferred)</h2>
+  <DocsLive
+    scroll="short"
+    code={'vl-enter="fade-up" · vl-hover="hover-lift"'}
+  >
+    <div class="docs-live__row">
+      <article class="vl-card" vl-enter="fade-up" vl-timeline="view">
+        <h3 class="vl-card__title">vl-enter</h3>
+        <p class="vl-card__body">fade-up on view</p>
+      </article>
+      <article class="vl-card" vl-hover="hover-lift">
+        <h3 class="vl-card__title">vl-hover</h3>
+        <p class="vl-card__body">Hover this card</p>
+      </article>
+    </div>
+  </DocsLive>
+
+  <h2>vl-in-view gate</h2>
+  <p>
+    Temporal gate — descendant motion replays when the gate re-enters the scrollport.
+    Requires <code>container-type: style</code> (Chrome 128+, Safari 18+); otherwise
+    <code>vl-in-view</code> is inert and children animate on their own timelines.
+  </p>
+  <DocsLive scroll="short" code={'<div vl-in-view><p vl-enter="blur-in" vl-timeline="view">…</p></div>'}>
+    <div vl-in-view>
+      <p class="docs-live__demo-title" vl-enter="blur-in" vl-timeline="view">Replay on re-entry</p>
+      <p class="docs-live__demo-copy" vl-enter="fade-up" vl-timeline="view" vl-delay="100ms">
+        Scroll away, scroll back, or press Replay
+      </p>
+    </div>
+  </DocsLive>
 
   <h2>Quick Reference</h2>
   <table>
@@ -22,90 +54,32 @@ import Base from "../layouts/Base.astro";
       <tr><td><code>vl-exit</code></td><td>tokens</td><td>Exit preset</td></tr>
       <tr><td><code>vl-scroll</code></td><td>tokens</td><td>Scroll-linked motion</td></tr>
       <tr><td><code>vl-hover</code></td><td>tokens</td><td>Hover / focus interaction</td></tr>
-      <tr><td><code>vl-loop</code> / <code>vl-loop-effect</code></td><td>count + tokens</td><td>Ambient loops</td></tr>
-      <tr><td><code>vl-state</code></td><td>enum</td><td>Native state transitions</td></tr>
-      <tr><td><code>vl-effect</code></td><td>tokens</td><td>Legacy / composite preset escape hatch</td></tr>
-      <tr><td><code>vl-timeline</code></td><td>enum</td><td>Progress model: view, scroll, auto, hover, state</td></tr>
-      <tr><td><code>vl-in-view</code></td><td>boolean</td><td>Viewport gate for temporal descendant motion</td></tr>
-      <tr><td><code>vl-scene</code> / <code>vl-stage</code></td><td>track + stage</td><td>Scene engine container</td></tr>
+      <tr><td><code>vl-effect</code></td><td>tokens</td><td>Legacy / composite escape hatch</td></tr>
+      <tr><td><code>vl-timeline</code></td><td>enum</td><td>view, scroll, auto, hover, state</td></tr>
+      <tr><td><code>vl-in-view</code></td><td>boolean</td><td>Viewport gate for descendant motion</td></tr>
+      <tr><td><code>vl-scene</code> / <code>vl-stage</code></td><td>track + stage</td><td>Scene engine</td></tr>
       <tr><td><code>vl-act</code> / <code>vl-span</code></td><td>number</td><td>Scene beat index and span</td></tr>
-      <tr><td><code>vl-pin</code> / <code>vl-scrub</code></td><td>number / boolean</td><td>Pin+scrub track (view clock)</td></tr>
-      <tr><td><code>vl-children</code> / <code>vl-stagger</code></td><td>enum / time</td><td>Child choreography</td></tr>
-      <tr><td><code>vl-range</code> / <code>vl-speed</code> / <code>vl-duration</code></td><td>enum / enum / time</td><td>Timing overrides</td></tr>
-      <tr><td><code>vl-motion</code></td><td>enum</td><td>Subtree motion mode (standard, subtle, cinematic, still)</td></tr>
-      <tr><td><code>vl-page-transition</code></td><td>enum</td><td>MPA view transition preset on <code>&lt;html&gt;</code></td></tr>
+      <tr><td><code>vl-pin</code> / <code>vl-scrub</code></td><td>number / boolean</td><td>Pin+scrub track</td></tr>
+      <tr><td><code>vl-motion</code></td><td>enum</td><td>Subtree motion mode</td></tr>
+      <tr><td><code>vl-page-transition</code></td><td>enum</td><td>MPA transition on <code>&lt;html&gt;</code></td></tr>
     </tbody>
   </table>
-
-  <p><strong>Deprecated:</strong> <code>vl-type</code> → <code>vl-timeline</code>; <code>vl-easing</code> → tokens; <code>vl-transition</code> → <code>vl-page-transition</code>.</p>
-
-  <hr />
-
-  <h2>Channels (preferred)</h2>
-  <pre><code>&lt;article
-  vl-enter="fade-up"
-  vl-scroll="parallax"
-  vl-hover="underline-expand"
-  vl-timeline="view"&gt;
-  ...
-&lt;/article&gt;</code></pre>
-  <p>
-    Each channel owns one behavior. See the
-    <a href="https://veloracss.io/pages/motion/api-motion-catalog.html" class="docs-link-primary">Motion Catalog</a>
-    and generated registry (<code>pnpm generate:catalog</code>) for the full preset list.
-  </p>
-
-  <hr />
 
   <h2>Scene engine</h2>
-  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
-  &lt;div vl-stage&gt;
-    &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Title&lt;/h1&gt;
-    &lt;img vl-scroll="media-zoom" vl-act="2" vl-span="2" alt=""&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
-  <p>
-    Place channel attributes on <strong>direct</strong> <code>[vl-stage]</code> children.
-    Do not nest <code>vl-in-view</code> inside a pin+scrub stage — use <code>vl-act</code> / <code>vl-span</code> instead.
-  </p>
-
-  <hr />
-
-  <h2>vl-timeline</h2>
-  <table>
-    <thead>
-      <tr><th>Value</th><th>Use case</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><code>view</code></td><td>Element or scene scroll progress (most common)</td></tr>
-      <tr><td><code>scroll</code></td><td>Root/container scroll timeline</td></tr>
-      <tr><td><code>auto</code></td><td>Time-based (scene acts without pin height)</td></tr>
-      <tr><td><code>hover</code></td><td>Intent-gated playback</td></tr>
-      <tr><td><code>state</code></td><td>Native state transition clock</td></tr>
-    </tbody>
-  </table>
-
-  <hr />
-
-  <h2>vl-in-view</h2>
-  <p>
-    Temporal viewport gate: descendant enter/exit/loop/hover/state motion replays on re-entry.
-    Does <em>not</em> pause <code>vl-scroll</code>. Use outside pin+scrub scenes.
-  </p>
-
-  <hr />
-
-  <h2>vl-page-transition</h2>
-  <p>Set on <code>&lt;html&gt;</code> for cross-document MPA transitions. See <a href="/transitions/" class="docs-link-primary">Page Transitions</a>.</p>
-  <pre><code>&lt;html lang="en" vl-page-transition="cinema"&gt;</code></pre>
-
-  <hr />
+  <DocsLive scroll="scene" code={'vl-scene + vl-stage + vl-act'}>
+    <section class="docs-live__scene-track" vl-scene vl-timeline="view" vl-pin="2" vl-scrub>
+      <div vl-stage>
+        <h3 class="docs-live__demo-title" vl-enter="clip-rise" vl-act="1">Title act</h3>
+        <p class="docs-live__demo-copy" vl-scroll="parallax" vl-act="2" vl-span="2">Scroll-linked child</p>
+      </div>
+    </section>
+  </DocsLive>
 
   <h2>Further reading</h2>
   <ul>
     <li><a href="/effects/" class="docs-link-primary">Effects</a></li>
     <li><a href="/scenes/" class="docs-link-primary">Scenes</a></li>
     <li><a href="/timelines/" class="docs-link-primary">Timelines</a></li>
-    <li><a href="https://veloracss.io/pages/core/compatibility.html" class="docs-link-primary">Compatibility matrix</a></li>
+    <li><a href="/compatibility/" class="docs-link-primary">Compatibility</a></li>
   </ul>
 </Base>

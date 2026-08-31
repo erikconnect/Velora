@@ -4,10 +4,10 @@
   "description": "Motion-native CSS framework for premium web interfaces",
   "private": true,
   "license": "ISC",
-  "homepage": "https://www.veloracss.io",
+  "homepage": "https://veloracss.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/velora-css/velora.git"
+    "url": "https://github.com/erikconnect/Velora.git"
   },
   "scripts": {
     "build": "turbo run build",

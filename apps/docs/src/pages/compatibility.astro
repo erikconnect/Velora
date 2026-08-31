@@ -1,0 +1,81 @@
+---
+import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
+import {
+  formatGeneratedAt,
+  getCatalogSummary,
+  getCompatibilityMatrix,
+} from "../lib/catalog";
+import { showcaseUrl } from "../lib/site";
+
+const matrix = getCompatibilityMatrix();
+const summary = getCatalogSummary();
+const generatedLabel = formatGeneratedAt(matrix.generatedAt);
+---
+
+<Base title="Compatibility" description="Browser and feature support for Velora motion — stable, progressive enhancement, and experimental.">
+  <span class="vl-kicker">Truth layer</span>
+
+  <h1 class="docs-page-title">Compatibility</h1>
+  <p class="docs-page-lead">
+    Support levels come from <code>packages/catalog/compatibility-matrix.json</code> — generated with the preset registry ({generatedLabel}), not marketing copy.
+  </p>
+
+  <section class="docs-catalog-panel" aria-label="Catalog context">
+    <p class="docs-catalog-panel__kicker">Registry · {summary.presetCount} presets</p>
+    <p class="docs-catalog-panel__channels">
+      Baseline targets: Chrome {matrix.baseline.chrome}, Safari {matrix.baseline.safari}, Firefox {matrix.baseline.firefox}.
+      {matrix.baseline.note}
+    </p>
+  </section>
+
+  <DocsLive scroll="short" code={'vl-enter="fade-up" vl-timeline="view"'}>
+    <p class="docs-live__demo-title" vl-enter="fade-up" vl-timeline="view">Reduced motion safe</p>
+    <p class="docs-live__demo-copy" vl-enter="fade-up" vl-timeline="view" vl-delay="80ms">
+      Enable <strong>Reduce motion</strong> in OS settings — travel collapses, loops stop
+    </p>
+  </DocsLive>
+
+  <h2>Support levels</h2>
+  <table>
+    <thead>
+      <tr><th>Level</th><th>Meaning</th></tr>
+    </thead>
+    <tbody>
+      {Object.entries(matrix.levels).map(([level, meaning]) => (
+        <tr>
+          <td><strong>{level}</strong></td>
+          <td>{meaning}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>CSS primitives matrix</h2>
+  <p>Primitive × browser status from the generated matrix. Interactive version lives on the Showcase.</p>
+  <table>
+    <thead>
+      <tr><th>Primitive</th><th>Status</th><th>Chrome</th><th>Safari</th><th>Firefox</th><th>Fallback</th></tr>
+    </thead>
+    <tbody>
+      {matrix.primitives.map((row) => (
+        <tr>
+          <td>{row.name}</td>
+          <td>{row.status}</td>
+          <td>{row.chrome}</td>
+          <td>{row.safari}</td>
+          <td>{row.firefox}</td>
+          <td>{row.fallback}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Where to verify</h2>
+  <ul>
+    <li><a href={showcaseUrl("/pages/core/compatibility.html")}>Showcase — compatibility matrix</a></li>
+    <li><a href={showcaseUrl("/pages/core/benchmarks.html")}>Showcase — benchmarks</a></li>
+    <li><a href="https://github.com/erikconnect/Velora/blob/main/docs/validation/reduced-motion-checklist.md">Reduced motion checklist</a></li>
+    <li><a href={showcaseUrl("/pages/motion/api-motion-catalog.html#preset-registry")}>Showcase — preset registry</a></li>
+  </ul>
+</Base>

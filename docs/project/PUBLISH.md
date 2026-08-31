@@ -9,7 +9,36 @@ The package is **publish-ready in-repo** (`prepack` builds `dist/`). It is **not
 3. Build dist: `pnpm --filter @velora/css build`
 4. Dry-run tarball: `pnpm pack:css` (from repo root) — inspect `velora-css-*.tgz`
 5. Confirm `dist/manifest.json` bundle sizes and `publishStatus`
-6. Publish: `pnpm --filter @velora/css publish --access public` (requires npm login)
+6. Publish (choose one path below)
+
+### Path A — local CLI (first publish)
+
+Linking GitHub on [npmjs.com](https://www.npmjs.com) does **not** log in this machine. Run once:
+
+```bash
+npm login
+```
+
+Then from repo root:
+
+```bash
+pnpm --filter @velora/css build
+pnpm --filter @velora/css publish --access public --provenance
+```
+
+Confirm: `npm view @velora/css version`
+
+### Path B — GitHub Trusted Publishing (after first publish)
+
+1. On npm → package **@velora/css** → **Settings** → **Trusted Publisher** → link repo `erikconnect/Velora`, workflow `publish-npm.yml`, environment `npmjs`.
+2. Trigger manually: **Actions → Publish @velora/css → Run workflow**, or push a tag:
+
+```bash
+git tag css-v1.0.0
+git push origin css-v1.0.0
+```
+
+Uses OIDC (`id-token: write`) — no `NPM_TOKEN` secret required when trusted publisher is configured.
 
 ## Local install without npm
 

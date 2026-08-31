@@ -1698,27 +1698,36 @@
         100% { --vl-in-view-state: 0; }
     }
 
-    [vl-in-view] {
-        container-type: style;
-        animation: vl-in-view-gate 1ms both;
-        animation-timeline: view(block);
-        animation-range: entry 0% exit 100%;
-    }
-
     /*
-     * Out of gate: clear the running name (so re-entry restarts from frame 0,
-     * including stagger delays) and hold a hidden rest so content does not
-     * flash the finished state while off-screen. In-gate: no override.
+     * Style containers are required for the gate clock and @container style()
+     * descendant hold. Without support, vl-in-view is a no-op marker — children
+     * keep their own timelines (progressive enhancement).
      */
-    @supports (animation-timeline: view()) {
-        @container style(--vl-in-view-state: 0) {
-            [vl-in-view] :is([vl-enter], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]),
-            [vl-in-view] [vl-effect]:not([vl-scroll]):not([vl-scrub]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
-                animation-name: none;
-                opacity: 0;
-            }
+    @supports (container-type: style) {
+        [vl-in-view] {
+            container-type: style;
+            animation: vl-in-view-gate 1ms both;
+            animation-timeline: view(block);
+            animation-range: entry 0% exit 100%;
         }
 
+        /*
+         * Out of gate: clear the running name (so re-entry restarts from frame 0,
+         * including stagger delays) and hold a hidden rest so content does not
+         * flash the finished state while off-screen. In-gate: no override.
+         */
+        @supports (animation-timeline: view()) {
+            @container style(--vl-in-view-state: 0) {
+                [vl-in-view] :is([vl-enter], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]),
+                [vl-in-view] [vl-effect]:not([vl-scroll]):not([vl-scrub]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+                    animation-name: none;
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    @supports (animation-timeline: view()) {
         /* Scene view-clock replaces the gate — keep stage channels running */
         [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]),
         [vl-scene][vl-timeline="view"] [vl-stage] :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]) {
@@ -2077,28 +2086,36 @@
 
         [vl-timeline="view"][vl-effect="fade-up"],
         [vl-timeline="view"][vl-effect="fade-in"],
-        [vl-timeline="view"][vl-effect="fade-down"] {
+        [vl-timeline="view"][vl-effect="fade-down"],
+        [vl-timeline="view"][vl-enter~="fade-up"],
+        [vl-timeline="view"][vl-enter~="fade-in"],
+        [vl-timeline="view"][vl-enter~="fade-down"] {
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
-        [vl-timeline="view"][vl-effect="reveal-3d"] {
+        [vl-timeline="view"][vl-effect="reveal-3d"],
+        [vl-timeline="view"][vl-enter~="reveal-3d"],
+        [vl-timeline="view"][vl-enter~="3d-entry"] {
             animation-name: vl-3d-entry;
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
-        [vl-timeline="view"][vl-effect="blur-in"] {
+        [vl-timeline="view"][vl-effect="blur-in"],
+        [vl-timeline="view"][vl-enter~="blur-in"] {
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-out-soft);
         }
 
-        [vl-timeline="view"][vl-effect="flow-in"] {
+        [vl-timeline="view"][vl-effect="flow-in"],
+        [vl-timeline="view"][vl-enter~="flow-in"] {
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
-        [vl-timeline="view"][vl-effect="clip-rise"] {
+        [vl-timeline="view"][vl-effect="clip-rise"],
+        [vl-timeline="view"][vl-enter~="clip-rise"] {
             animation-name: vl-clip-rise;
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);

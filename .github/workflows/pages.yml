@@ -1,5 +1,8 @@
 name: Deploy Showcase to GitHub Pages
 
+# Fallback deploy for apps/showcase — primary production URL is https://veloracss.io (Vercel).
+# See docs/project/DEPLOY.md for DNS (GoDaddy) and docs.veloracss.io on a second Vercel project.
+
 on:
   push:
     branches:

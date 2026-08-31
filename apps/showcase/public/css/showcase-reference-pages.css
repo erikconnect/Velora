@@ -8,14 +8,33 @@
 
 /* --- Integration scaffold (Task 1): width, gutters, shell grids --- */
 .showcase-page-shell {
-    --ref-gutter-inline: clamp(1rem, 3vw, 2.4rem);
-    --showcase-content-max: min(112rem, calc(100vw - (var(--ref-gutter-inline) * 2)));
+    /* Gutters, header/footer shell: showcase-shell.css (via showcase.css) */
     --showcase-read-max: min(76rem, calc(100vw - (var(--ref-gutter-inline) * 2)));
     --showcase-copy-max: 62ch;
-    /* Bussola: expose generic scroll timelines for up to 6 nav stops */
-    timeline-scope: --tl-1, --tl-2, --tl-3, --tl-4, --tl-5, --tl-6;
+    /* Bussola: generic scroll timelines for up to 6 nav stops (also on body via showcase-shell.css) */
     /* Offset anchor-link scroll targets below the fixed header */
     scroll-padding-top: 5rem;
+}
+
+.showcase-practical-hint {
+    margin-block: 0.75rem 0;
+    padding: 0.65rem 0.9rem;
+    border-inline-start: 2px solid color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+    color: color-mix(in oklch, var(--vl-text-secondary) 92%, var(--vl-color-primary) 8%);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: var(--showcase-copy-max, 62ch);
+}
+
+.showcase-practical-hint code {
+    font-family: var(--vl-font-family-mono, ui-monospace, monospace);
+    font-size: 0.86em;
+}
+
+.showcase-element-demo .scene-tl-code {
+    margin-block-start: var(--vl-space-md);
+    font-size: 0.72rem;
+    line-height: 1.45;
 }
 
 /* ========================================================================== */
@@ -2560,11 +2579,6 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
 }
 
 @media (max-width: 768px) {
-    .showcase-page-shell .vl-header__nav,
-    .showcase-page-shell .vl-header__actions {
-        display: none;
-    }
-
     .showcase-page-shell :is(input, textarea, select) {
         font-size: 16px;
     }
@@ -2756,30 +2770,7 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
 .vl-bussola a:nth-of-type(5) .vl-bussola__label { animation: vl-bussola-label-in linear both; animation-range: entry 0% exit 100%; animation-timeline: --tl-5; }
 .vl-bussola a:nth-of-type(6) .vl-bussola__label { animation: vl-bussola-label-in linear both; animation-range: entry 0% exit 100%; animation-timeline: --tl-6; }
 
-/* Pages with the cinematic rail use a denser responsive header to avoid horizontal overflow. */
-.showcase-cinema-rail + .vl-header .vl-header__inner {
-    width: 100%;
-    max-width: var(--showcase-content-max);
-    margin-inline: auto;
-    padding-inline: var(--ref-gutter-inline);
-    padding-right: max(calc(var(--ref-gutter-inline) + 3.75rem), env(safe-area-inset-right, 0px));
-}
-
-.showcase-page-shell .vl-footer .vl-footer__inner {
-    width: 100%;
-    max-width: var(--showcase-content-max);
-    margin-inline: auto;
-    padding-inline: var(--ref-gutter-inline);
-}
-
-.showcase-page-shell--brand .ds-editorial-select,
-.showcase-page-shell--brand .ds-theme-toggle {
-    display: none;
-}
-
-.vl-footer__social a[href="#"] {
-    display: none;
-}
+/* Header/footer width + mobile drawer: showcase-shell.css */
 
 /* ── Bussola scroll-driven keyframes ── */
 @keyframes vl-bussola-dot-in {
@@ -8580,14 +8571,6 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
     color: var(--vl-text-secondary);
     background: var(--vl-bg-panel);
     border-color: var(--vl-border-subtle);
-}
-
-/* Final mobile shell guard: later legacy reference rules keep desktop nav scrollable. */
-@media (max-width: 768px) {
-    .showcase-page-shell .showcase-cinema-rail + .vl-header .vl-header__nav,
-    .showcase-page-shell .showcase-cinema-rail + .vl-header .vl-header__actions {
-        display: none;
-    }
 }
 
 /* Compatibility + catalog registry (P0.4) */

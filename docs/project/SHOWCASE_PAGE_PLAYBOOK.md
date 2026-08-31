@@ -2,6 +2,8 @@
 
 Guia rápido para criar/editar páginas sem quebrar contrato no Velora.
 
+**Copy e tom:** ver [SHOWCASE_COPY_GUIDE.md](./SHOWCASE_COPY_GUIDE.md) — show-don't-tell, uma job por página, hints práticos (`showcase-practical-hint`).
+
 ## 1) Estrutura mínima obrigatória
 
 - `body` deve usar `showcase-page-shell`.

@@ -55,6 +55,7 @@ docs                  specifications and contracts
 examples              portable examples
 apps/docs             public documentation
 apps/showcase         veloracss.io
+apps/docs             docs.veloracss.io
 experiments           experimental primitives
 tests                 compatibility and regression coverage
 ```
@@ -908,33 +909,11 @@ If the showcase needs to fake it, it is not a Velora feature yet.
 
 ## Immediate First Task
 
-**P0.1 complete (2026-08-30):** [Showcase Readiness Audit](../audits/showcase-readiness-2026.md)
+Start by auditing the current repository and producing:
 
-**P0.2 complete (2026-08-30):** [Attribute Grammar](../spec/attribute-grammar.md)
-
-**P0.3 complete (2026-08-30):** [Motion Catalog](../../packages/catalog/) — `pnpm generate:catalog`
-
-**P0.4 complete (2026-08-30):** Compatibility page + registry-driven catalog in showcase.
-
-**P0.5 complete (2026-08-30):** Motion Lab registry inspector (`#preset-inspector`).
-
-**P0.7 complete (2026-08-30):** [`docs/validation/reduced-motion-checklist.md`](../validation/reduced-motion-checklist.md)
-
-**P0.8 complete (2026-08-30):** Playwright E2E — `pnpm test:e2e` (Chromium / Firefox / WebKit + reduced motion).
-
-**P1.2 complete (2026-08-30):** [`pages/core/benchmarks.html`](../../apps/showcase/pages/core/benchmarks.html) — objective metrics stub + methodology.
-
-**P1.3 complete (2026-08-30):** [`examples/wordpress/`](../../examples/wordpress/) — PHP, Gutenberg, Elementor.
-
-**P1.4 complete (2026-08-30):** `@velora/css` `build-dist.mjs` + `prepack` + [`packages/css/README.md`](../../packages/css/README.md).
-
-**P1.5 complete (2026-08-30):** Docs index + Astro getting started aligned with catalog, playground and honest npm status.
-
-**P1.1 complete (2026-08-30):** [`pages/motion/playground.html`](../../apps/showcase/pages/motion/playground.html) — registry composer (UI JS; preview CSS-only).
-
-**P1.4+ complete (2026-08-30):** Dist manifest, CDN URLs, `benchmarks.json` harness, [`docs/project/PUBLISH.md`](../project/PUBLISH.md). npm registry publish still requires maintainer credentials.
-
-Next: **npm publish** (manual) + frame-time fixture pages when needed.
+```text
+docs/audits/showcase-readiness-2026.md
+```
 
 Do not begin by editing the Latinoware presentation.
 

@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Agent Skill Sets" description="Project-specific operating profiles for AI agents working on Velora.">
@@ -7,10 +8,16 @@ import Base from "../layouts/Base.astro";
 
   <h1 class="docs-page-title">Agent Skill Sets</h1>
   <p>
-    These are project-specific operating profiles for AI coding agents — Cursor, GitHub Copilot, and
-    similar tools. Each skill set defines a mission, scope, allowed and forbidden actions, and ideal
-    prompts. Use them individually or in sequence.
+    Operating profiles for AI agents. Validate motion against live <strong>Test here</strong> frames
+    on <a href="/attributes/">Attributes</a>, <a href="/effects/">Effects</a>, and <a href="/scenes/">Scenes</a>.
   </p>
+
+  <DocsLive scroll="none" hint="Hover — same vl-hover contract agents must preserve.">
+    <article class="vl-card" vl-hover="hover-lift">
+      <h3 class="vl-card__title">No animation runtime JS</h3>
+      <p class="vl-card__body">CSS-only motion in every public demo</p>
+    </article>
+  </DocsLive>
 
   <hr />
 

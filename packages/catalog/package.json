@@ -12,6 +12,7 @@
   "exports": {
     "./presets": "./presets.json",
     "./attributes": "./attributes.json",
-    "./summary": "./catalog-summary.json"
+    "./summary": "./catalog-summary.json",
+    "./compatibility-matrix": "./compatibility-matrix.json"
   }
 }

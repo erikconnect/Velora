@@ -1,0 +1,46 @@
+---
+interface Props {
+  label?: string;
+  hint?: string;
+  /** none = static (hover/auto); short | tall | scene = internal scroll to drive view timelines */
+  scroll?: "none" | "short" | "tall" | "scene";
+  code?: string;
+}
+
+const {
+  label = "Test here",
+  hint = "Scroll inside the frame to trigger view-linked motion. Use Replay to run again.",
+  scroll = "short",
+  code,
+} = Astro.props;
+---
+
+<figure class:list={["docs-live", scroll !== "none" && `docs-live--${scroll}`]}>
+  <figcaption class="docs-live__bar">
+    <span class="vl-kicker docs-live__kicker">{label}</span>
+    {scroll !== "none" && (
+      <button type="button" class="docs-live__replay vl-badge" data-docs-replay>
+        Replay
+      </button>
+    )}
+  </figcaption>
+  {scroll !== "none" && hint && <p class="docs-live__hint">{hint}</p>}
+  {
+    scroll === "none" ? (
+      <div class="docs-live__stage">
+        <slot />
+      </div>
+    ) : (
+      <div class="docs-live__scroll" data-docs-scroll tabindex="0" aria-label="Scrollable demo area">
+        <div class="docs-live__pad docs-live__pad--top" aria-hidden="true"></div>
+        <div class="docs-live__content">
+          <slot />
+        </div>
+        <div class="docs-live__pad docs-live__pad--bottom" aria-hidden="true"></div>
+      </div>
+    )
+  }
+  {code && (
+    <pre class="docs-live__code"><code>{code}</code></pre>
+  )}
+</figure>

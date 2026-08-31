@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Timelines" description="vl-timeline view vs auto, ranges, scrub, and the scene clock.">
@@ -7,44 +8,52 @@ import Base from "../layouts/Base.astro";
 
   <h1 class="docs-page-title">Timelines</h1>
   <p class="docs-page-lead">
-    Timelines decide <em>what drives progress</em>. Effects decide <em>what moves</em>.
-    The scene engine shares one clock across stage children.
+    Timelines decide <em>what drives progress</em>. Channels decide <em>what moves</em>.
+    Test each model in the frames below.
   </p>
 
-  <h2>vl-timeline values</h2>
+  <h2>vl-timeline="view"</h2>
+  <DocsLive scroll="short" code={'vl-enter="fade-up" vl-timeline="view"'}>
+    <p class="docs-live__demo-title" vl-enter="fade-up" vl-timeline="view">View progress</p>
+    <p class="docs-live__demo-copy" vl-enter="fade-up" vl-timeline="view" vl-delay="90ms">
+      Linked to visibility in the scrollport
+    </p>
+  </DocsLive>
+
+  <h2>vl-timeline="auto"</h2>
+  <DocsLive scroll="none" hint="Plays on load — refresh or navigate to replay." code={'vl-enter="scale-in" vl-timeline="auto"'}>
+    <p class="docs-live__demo-title" vl-enter="scale-in" vl-timeline="auto">Auto timeline</p>
+    <p class="docs-live__demo-copy" vl-enter="fade-up" vl-timeline="auto" vl-delay="120ms">Time-based, no scroll needed</p>
+  </DocsLive>
+
+  <h2>vl-timeline="hover"</h2>
+  <DocsLive scroll="none" hint="Hover or focus the card." code={'vl-timeline="hover"'}>
+    <article class="vl-card" vl-enter="fade-up" vl-timeline="hover" tabindex="0">
+      <h3 class="vl-card__title">Hover to play</h3>
+      <p class="vl-card__body">Progress gated by intent</p>
+    </article>
+  </DocsLive>
+
+  <h2>Scene clock + scrub</h2>
+  <DocsLive scroll="scene" code={'vl-scene vl-timeline="view" vl-pin="2" vl-scrub'}>
+    <section class="docs-live__scene-track" vl-scene vl-timeline="view" vl-pin="2" vl-scrub>
+      <div vl-stage>
+        <p class="docs-live__demo-chip" vl-enter="fade-up" vl-act="1">Shared clock</p>
+        <h3 class="docs-live__demo-title" vl-enter="clip-rise" vl-act="2">Scrub acts</h3>
+      </div>
+    </section>
+  </DocsLive>
+
+  <h2>Reference</h2>
   <table>
     <thead>
       <tr><th>Value</th><th>Behavior</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>view</code></td><td>Progress from element / scene visibility (<code>view()</code> or named <code>--vl-scene</code>)</td></tr>
-      <tr><td><code>scroll</code></td><td>Progress from root scroll</td></tr>
+      <tr><td><code>view</code></td><td>Element / scene visibility (<code>view()</code> or <code>--vl-scene</code>)</td></tr>
+      <tr><td><code>scroll</code></td><td>Root scroll progress</td></tr>
       <tr><td><code>auto</code></td><td>Time-based CSS animation</td></tr>
-      <tr><td><code>hover</code></td><td>Paused until hover</td></tr>
+      <tr><td><code>hover</code></td><td>Paused until hover / focus</td></tr>
     </tbody>
   </table>
-
-  <h2>Scene clock</h2>
-  <p>
-    On <code>[vl-scene][vl-timeline="view"]</code>, stage children use
-    <code>animation-timeline: --vl-scene</code> and ranges derived from
-    <code>vl-act</code> / <code>vl-span</code> / <code>--vl-beats</code> (default 8).
-  </p>
-  <p>
-    With <code>vl-timeline="auto"</code>, the same acts map to
-    <code>animation-delay: (act - 1) * --vl-beat</code>. Pin/scrub are no-ops.
-  </p>
-
-  <h2>Ranges</h2>
-  <p>
-    Presets via <code>vl-range</code> (<code>entry</code>, <code>entry-short</code>, <code>cover</code>, …)
-    still apply to standalone elements. Inside a pinned scene, prefer acts; use
-    <code>vl-range</code> only as an escape hatch.
-  </p>
-
-  <h2>Scrub</h2>
-  <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
-  …
-&lt;/section&gt;</code></pre>
-  <p><code>vl-scrub</code> forces linear timing and fill both on scene-driven children.</p>
 </Base>
