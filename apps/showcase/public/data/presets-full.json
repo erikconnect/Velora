@@ -1,0 +1,2396 @@
+{
+  "generatedAt": "2026-08-31T13:09:07.454Z",
+  "presets": [
+    {
+      "name": "3d-entry",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "3d-entry",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "aurora",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "aurora",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "aurora-drift",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "aurora-drift",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "balanced",
+      "channel": "base",
+      "channels": [
+        "base",
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-base",
+      "value": "balanced",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "blur-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "blur-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "blur-lift",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "blur-lift",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "blur-out",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "blur-out",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": null
+    },
+    {
+      "name": "border-beam",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "border-beam",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "border-trace",
+      "channel": "hover",
+      "channels": [
+        "effect",
+        "hover"
+      ],
+      "status": "stable",
+      "attribute": "vl-hover",
+      "value": "border-trace",
+      "requires": [
+        "animation",
+        "transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "bounce",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "bounce",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "breathe",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "breathe",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "cinema",
+      "channel": "pageTransition",
+      "channels": [
+        "pageTransition"
+      ],
+      "status": "stable",
+      "attribute": "vl-page-transition",
+      "value": "cinema",
+      "requires": [
+        "animation",
+        "view-transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "cinema-zoom",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "cinema-zoom",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "cinematic-hero",
+      "channel": "scene",
+      "channels": [
+        "scene"
+      ],
+      "status": "stable",
+      "attribute": "vl-scene",
+      "value": "cinematic-hero",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/scene-recipes.css"
+    },
+    {
+      "name": "cinematic-mask",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "cinematic-mask",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "circle-text-scroll",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "circle-text-scroll",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "scroll-timeline",
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "clip-drop",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "clip-drop",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": null
+    },
+    {
+      "name": "clip-rise",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "clip-rise",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "code-greeting-stack",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "code-greeting-stack",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "counter-scroll",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "counter-scroll",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "crossfade",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "crossfade",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "cube-triad-stage",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "experimental",
+      "attribute": "vl-effect",
+      "value": "cube-triad-stage",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "depth-drift",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "depth-drift",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "depth-enter",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "depth-enter",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "depth-push",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "depth-push",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "dramatic",
+      "channel": "base",
+      "channels": [
+        "base",
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-base",
+      "value": "dramatic",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "drift",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "drift",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "duotone",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "duotone",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "editorial-cinema",
+      "channel": "scene",
+      "channels": [
+        "scene"
+      ],
+      "status": "stable",
+      "attribute": "vl-scene",
+      "value": "editorial-cinema",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/scene-recipes.css"
+    },
+    {
+      "name": "enter-exit",
+      "channel": "state",
+      "channels": [
+        "effect",
+        "state"
+      ],
+      "status": "stable",
+      "attribute": "vl-state",
+      "value": "enter-exit",
+      "requires": [
+        "animation",
+        "@starting-style"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03d-state-transitions.css"
+    },
+    {
+      "name": "expand",
+      "channel": "state",
+      "channels": [
+        "effect",
+        "state"
+      ],
+      "status": "stable",
+      "attribute": "vl-state",
+      "value": "expand",
+      "requires": [
+        "animation",
+        "@starting-style"
+      ],
+      "enhancements": [
+        "calc-size()",
+        "@starting-style",
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03d-state-transitions.css"
+    },
+    {
+      "name": "fade-down",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "fade-down",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "fade-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "fade-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": "Fade into view.",
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "fade-out",
+      "channel": "exit",
+      "channels": [
+        "effect",
+        "exit"
+      ],
+      "status": "stable",
+      "attribute": "vl-exit",
+      "value": "fade-out",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "fade-out-down",
+      "channel": "exit",
+      "channels": [
+        "effect",
+        "exit"
+      ],
+      "status": "stable",
+      "attribute": "vl-exit",
+      "value": "fade-out-down",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "fade-out-up",
+      "channel": "exit",
+      "channels": [
+        "effect",
+        "exit"
+      ],
+      "status": "stable",
+      "attribute": "vl-exit",
+      "value": "fade-out-up",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "fade-up",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "fade-up",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": "Fade and translate upward into view.",
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "flip-in",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "flip-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "float",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "float",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "flow-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "flow-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "focus",
+      "channel": "enter",
+      "channels": [
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "focus",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "glass-bento",
+      "channel": "scene",
+      "channels": [
+        "scene"
+      ],
+      "status": "stable",
+      "attribute": "vl-scene",
+      "value": "glass-bento",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/scene-recipes.css"
+    },
+    {
+      "name": "glide",
+      "channel": "pageTransition",
+      "channels": [
+        "pageTransition"
+      ],
+      "status": "stable",
+      "attribute": "vl-page-transition",
+      "value": "glide",
+      "requires": [
+        "animation",
+        "view-transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/05-transitions.css"
+    },
+    {
+      "name": "glide-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "glide-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "glitch-lite",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "glitch-lite",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "glow-breathe",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "glow-breathe",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "gradient-slide",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "gradient-slide",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "gradient-sweep",
+      "channel": "hover",
+      "channels": [
+        "effect",
+        "hover"
+      ],
+      "status": "stable",
+      "attribute": "vl-hover",
+      "value": "gradient-sweep",
+      "requires": [
+        "animation",
+        "transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "gradient-text-color",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "gradient-text-color",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "halo-breathe",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "halo-breathe",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "hinge-down",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hinge-down",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "hover-card-fan",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-card-fan",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-card-stack",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-card-stack",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-cross-swap",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-cross-swap",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-depth-press",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-depth-press",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "hover-depth-stack",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-depth-stack",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-glow",
+      "channel": "hover",
+      "channels": [
+        "effect",
+        "hover"
+      ],
+      "status": "stable",
+      "attribute": "vl-hover",
+      "value": "hover-glow",
+      "requires": [
+        "animation",
+        "transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-lift",
+      "channel": "hover",
+      "channels": [
+        "effect",
+        "hover"
+      ],
+      "status": "stable",
+      "attribute": "vl-hover",
+      "value": "hover-lift",
+      "requires": [
+        "animation",
+        "transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-orb-grid",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-orb-grid",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-prism",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-prism",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "hover-shell-lift",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-shell-lift",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-spotlight",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-spotlight",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "hover-tilt-3d",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "hover-tilt-3d",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "icon-shift",
+      "channel": "hover",
+      "channels": [
+        "effect",
+        "hover"
+      ],
+      "status": "stable",
+      "attribute": "vl-hover",
+      "value": "icon-shift",
+      "requires": [
+        "animation",
+        "transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "img-reveal",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "img-reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "iris",
+      "channel": "pageTransition",
+      "channels": [
+        "pageTransition"
+      ],
+      "status": "stable",
+      "attribute": "vl-page-transition",
+      "value": "iris",
+      "requires": [
+        "animation",
+        "view-transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/05-transitions.css"
+    },
+    {
+      "name": "levitate-x",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "levitate-x",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "mask-sweep",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "mask-sweep",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "media-zoom",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "media-zoom",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": "Scroll-linked media scale reveal.",
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "mesh-pan",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "mesh-pan",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "morph",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "morph",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "orbit",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "orbit",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "orbit-spin",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "orbit-spin",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "parallax",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "parallax",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": "Scroll-linked vertical parallax drift.",
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "parallax-depth",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "parallax-depth",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "pass-fade",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "pass-fade",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": null
+    },
+    {
+      "name": "pass-rise",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "pass-rise",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": null
+    },
+    {
+      "name": "path",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "path",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "offset-path",
+        "animation-timeline:scroll()"
+      ],
+      "reducedMotion": "static",
+      "description": "Scroll-linked motion along a host-defined path.",
+      "source": "packages/css/src/03d-state-transitions.css"
+    },
+    {
+      "name": "pendulum",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "pendulum",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "pop-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "pop-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "press",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "press",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "product-reveal",
+      "channel": "scene",
+      "channels": [
+        "scene"
+      ],
+      "status": "stable",
+      "attribute": "vl-scene",
+      "value": "product-reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/scene-recipes.css"
+    },
+    {
+      "name": "pulse-ring",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "pulse-ring",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "reveal",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "reveal-3d",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "reveal-3d",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "reveal-cinematic",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "reveal-cinematic",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "ripple",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "ripple",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "rise-3d",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "rise-3d",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "rock",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "rock",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "rotate-scroll",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "rotate-scroll",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "scroll-timeline",
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scale-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "scale-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scanline",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "scanline",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "scene-feature-flow",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "scene-feature-flow",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scene-hero-reveal",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "scene-hero-reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scene-layer-stack",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "scene-layer-stack",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scene-story-pin",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "scene-story-pin",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scroll-horizontal",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "scroll-horizontal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "scroll-timeline",
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scroll-marquee",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "scroll-marquee",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "scroll-timeline",
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "scroll-scale",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "scroll-scale",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "shimmer",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "shimmer",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "shimmer-text",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "shimmer-text",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "shrink-out",
+      "channel": "exit",
+      "channels": [
+        "effect",
+        "exit"
+      ],
+      "status": "stable",
+      "attribute": "vl-exit",
+      "value": "shrink-out",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "slide-left",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "slide-left",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "slide-out-left",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "slide-out-left",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": null
+    },
+    {
+      "name": "slide-out-right",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "slide-out-right",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": null
+    },
+    {
+      "name": "slide-right",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "slide-right",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "smooth",
+      "channel": "state",
+      "channels": [
+        "effect",
+        "state"
+      ],
+      "status": "stable",
+      "attribute": "vl-state",
+      "value": "smooth",
+      "requires": [
+        "animation",
+        "@starting-style"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03d-state-transitions.css"
+    },
+    {
+      "name": "snap",
+      "channel": "pageTransition",
+      "channels": [
+        "pageTransition"
+      ],
+      "status": "stable",
+      "attribute": "vl-page-transition",
+      "value": "snap",
+      "requires": [
+        "animation",
+        "view-transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/05-transitions.css"
+    },
+    {
+      "name": "spin",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "spin",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "spin-slow",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "spin-slow",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "spotlight",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "spotlight",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "spring-3d",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "spring-3d",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "spring-up",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "spring-up",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "sticky-story",
+      "channel": "scene",
+      "channels": [
+        "scene"
+      ],
+      "status": "stable",
+      "attribute": "vl-scene",
+      "value": "sticky-story",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/scene-recipes.css"
+    },
+    {
+      "name": "subtle",
+      "channel": "base",
+      "channels": [
+        "base",
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-base",
+      "value": "subtle",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "sweep-border",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "sweep-border",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "text-highlight",
+      "channel": "scroll",
+      "channels": [
+        "effect",
+        "scroll"
+      ],
+      "status": "stable",
+      "attribute": "vl-scroll",
+      "value": "text-highlight",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [
+        "animation-timeline:view()"
+      ],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "text-line-reveal",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "text-line-reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "text-reveal",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "text-reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "text-reveal-down",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "text-reveal-down",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "text-reveal-up",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "text-reveal-up",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "text-ring-orbit",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "text-ring-orbit",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "text-word-rise",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "text-word-rise",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "tilt-in",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "tilt-in",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "top-layer",
+      "channel": "state",
+      "channels": [
+        "effect",
+        "state"
+      ],
+      "status": "stable",
+      "attribute": "vl-state",
+      "value": "top-layer",
+      "requires": [
+        "animation",
+        "@starting-style"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03d-state-transitions.css"
+    },
+    {
+      "name": "typewriter",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "typewriter",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "typewriter-loop",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "typewriter-loop",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "typewriter-soft",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "typewriter-soft",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "underline-expand",
+      "channel": "hover",
+      "channels": [
+        "effect",
+        "hover"
+      ],
+      "status": "stable",
+      "attribute": "vl-hover",
+      "value": "underline-expand",
+      "requires": [
+        "animation",
+        "transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "unfold",
+      "channel": "enter",
+      "channels": [
+        "effect",
+        "enter"
+      ],
+      "status": "stable",
+      "attribute": "vl-enter",
+      "value": "unfold",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "wipe",
+      "channel": "pageTransition",
+      "channels": [
+        "pageTransition"
+      ],
+      "status": "stable",
+      "attribute": "vl-page-transition",
+      "value": "wipe",
+      "requires": [
+        "animation",
+        "view-transition"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/05-transitions.css"
+    },
+    {
+      "name": "wipe-reveal",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "wipe-reveal",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    },
+    {
+      "name": "wobble",
+      "channel": "loop",
+      "channels": [
+        "effect",
+        "loop"
+      ],
+      "status": "stable",
+      "attribute": "vl-loop-effect",
+      "value": "wobble",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03-motion.css"
+    },
+    {
+      "name": "zoom-blur",
+      "channel": "effect",
+      "channels": [
+        "effect"
+      ],
+      "status": "stable",
+      "attribute": "vl-effect",
+      "value": "zoom-blur",
+      "requires": [
+        "animation"
+      ],
+      "enhancements": [],
+      "reducedMotion": "static",
+      "description": null,
+      "source": "packages/css/src/03b-motion-extended.css"
+    }
+  ]
+}

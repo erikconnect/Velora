@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-08-31T13:09:07.454Z",
+  "presetCount": 134,
+  "byChannel": {
+    "enter": 22,
+    "effect": 62,
+    "loop": 10,
+    "base": 3,
+    "hover": 6,
+    "pageTransition": 5,
+    "scroll": 13,
+    "scene": 5,
+    "state": 4,
+    "exit": 4
+  },
+  "byStatus": {
+    "stable": 133,
+    "experimental": 1
+  },
+  "grammarKnownCount": 123
+}

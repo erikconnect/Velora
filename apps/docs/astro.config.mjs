@@ -5,7 +5,7 @@ import path from "node:path";
 const root = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  site: "https://www.veloracss.io",
+  site: "https://docs.veloracss.io",
   vite: {
     resolve: {
       alias: {

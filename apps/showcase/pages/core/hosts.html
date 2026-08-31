@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" vl-page-transition="cinema">
+<html lang="en" data-editorial-theme="noir" data-theme="dark" vl-page-transition="cinema">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,37 +20,95 @@
       .page-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
       .page-meta { color: var(--vl-text-muted); font-size: .875rem; }
       /* ── Page section view-timelines (consumed by the shared bussola) ── */
-      #tl-intro   { view-timeline-name: --tl-1; view-timeline-axis: block; }
-      #tl-demo    { view-timeline-name: --tl-2; view-timeline-axis: block; }
-      #tl-host    { view-timeline-name: --tl-3; view-timeline-axis: block; }
-      #tl-recipes { view-timeline-name: --tl-4; view-timeline-axis: block; }
-      .scene-tl-stage {
+      #hosts-intro { view-timeline-name: --tl-1; view-timeline-axis: block; }
+      #hosts-demo  { view-timeline-name: --tl-2; view-timeline-axis: block; }
+      #hosts-paths { view-timeline-name: --tl-3; view-timeline-axis: block; }
+      .showcase-hosts-grid {
         display: grid;
-        place-content: center;
-        gap: var(--vl-space-md);
-        padding: var(--vl-space-xl);
-        text-align: center;
+        gap: var(--vl-space-lg);
+        margin-top: 2rem;
       }
-      .scene-tl-kicker { letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem; color: var(--vl-text-muted); }
-      .scene-tl-title { font-family: var(--vl-font-family-display); font-size: clamp(2.5rem, 6vw, 4.5rem); margin: 0; }
-      .scene-tl-card {
+      @media (min-width: 64rem) {
+        .showcase-hosts-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+      .showcase-host-panel {
+        display: grid;
+        gap: var(--vl-space-md);
         border: 1px solid var(--vl-border-subtle);
         border-radius: var(--vl-radius-xl);
         background: var(--vl-bg-surface);
-        padding: 1.25rem 1.5rem;
-        max-width: 28rem;
-        margin-inline: auto;
+        padding: 1.25rem;
+        min-height: 18rem;
       }
-      .scene-tl-code {
-        font-family: var(--vl-font-family-mono);
-        font-size: 0.8rem;
-        text-align: left;
-        overflow-x: auto;
-        white-space: pre;
+      .showcase-host-panel__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        width: fit-content;
+        padding: 0.25rem 0.65rem;
+        border-radius: 999px;
+        border: 1px solid var(--vl-border-subtle);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--vl-text-muted);
+      }
+      .showcase-host-panel__demo {
+        display: grid;
+        place-content: center;
+        gap: 0.5rem;
+        min-height: 7rem;
         padding: 1rem;
         border-radius: var(--vl-radius-lg);
+        border: 1px dashed color-mix(in oklch, var(--vl-border-subtle) 70%, var(--vl-color-primary));
+        background: color-mix(in oklch, var(--vl-bg-inset) 88%, transparent);
+        text-align: center;
+      }
+      .showcase-host-panel__demo h3 {
+        margin: 0;
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      }
+      .showcase-host-panel__demo p {
+        margin: 0;
+        color: var(--vl-text-muted);
+        font-size: 0.875rem;
+      }
+      .showcase-host-panel[data-host="tailwind"] .showcase-host-panel__demo {
+        font-family: ui-sans-serif, system-ui, sans-serif;
+      }
+      .showcase-host-panel[data-host="tailwind"] .showcase-host-panel__demo h3 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .showcase-host-panel[data-host="wordpress"] .showcase-host-panel__demo {
+        border-style: solid;
+        background: linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-surface) 92%, white), var(--vl-bg-inset));
+      }
+      .showcase-host-panel__code {
+        font-family: var(--vl-font-family-mono);
+        font-size: 0.72rem;
+        line-height: 1.45;
+        overflow-x: auto;
+        white-space: pre;
+        padding: 0.85rem;
+        border-radius: var(--vl-radius-md);
         background: var(--vl-bg-inset);
         border: 1px solid var(--vl-border-subtle);
+        margin: 0;
+      }
+      .showcase-hosts-stage {
+        display: grid;
+        place-content: center;
+        gap: var(--vl-space-md);
+        min-height: 100svh;
+        padding: var(--vl-space-xl);
+      }
+      .showcase-hosts-stage__title {
+        font-family: var(--vl-font-family-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        margin: 0;
+        text-align: center;
       }
     </style>
 
@@ -61,7 +119,10 @@
         <nav class="showcase-cinema-rail vl-bussola" data-velora-signature="bussola" aria-label="Velora page compass">
       <span class="vl-bussola__cap" aria-hidden="true">&#x2726;&nbsp;velora</span>
       <a class="vl-bussola__stop" href="#hosts-intro"><span class="vl-bussola__label">Intro</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#hosts-demo"><span class="vl-bussola__label">Demo</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+      <a class="vl-bussola__stop" href="#hosts-paths"><span class="vl-bussola__label">Paths</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
     </nav>
+    <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
     <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Main navigation">
       <div class="vl-header__inner">
@@ -112,7 +173,7 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+          <a class="vl-header-icon-btn" href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
@@ -166,19 +227,78 @@
             <p class="showcase-ref-kicker">Hosts // motion without Skins</p>
             <h1 class="showcase-ref-title">Same <code>vl-*</code>. <em>Your</em> UI.</h1>
             <p class="showcase-ref-lead">
-              Import <code>@velora/css/motion-core</code> (optional transitions). Style with Tailwind or any host.
-              Do not require <code>.vl-card</code> or Skins tokens for scenes to run.
+              Import <code>@velora/css/motion-core</code> (optional transitions). Style with Tailwind, WordPress blocks or plain HTML.
+              Velora never requires <code>.vl-card</code> or Skins tokens for motion to run.
             </p>
             <div class="showcase-ref-tokens-actions">
-              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/core/skins.html">Velora Skins</a>
-              <a class="showcase-ref-tokens-button" href="/pages/scenes/scene-timeline.html">Scene timeline</a>
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="#hosts-demo">See the demo</a>
+              <a class="showcase-ref-tokens-button" href="/pages/core/skins.html">Velora Skins</a>
             </div>
-            <p class="page-meta">Repo example: <code>examples/tailwind-host/</code> (serve from repo root). Vite Showcase does not mount that folder.</p>
-            <pre class="scene-tl-code">&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
+            <p class="showcase-practical-hint">Scroll the pinned demo — three hosts share <code>vl-enter="fade-up"</code> on the same clock; styling is independent.</p>
+          </div>
+        </section>
+
+        <section id="hosts-demo" vl-scene vl-timeline="view" vl-pin="3" vl-scrub aria-label="Host-agnostic motion comparison">
+          <div vl-stage class="showcase-hosts-stage">
+            <p class="showcase-ref-kicker" vl-enter="fade-up" vl-act="1">Act 02 // one preset · three hosts</p>
+            <h2 class="showcase-hosts-stage__title" vl-enter="clip-rise" vl-act="1">Host-agnostic<br />by contract.</h2>
+            <div class="showcase-hosts-grid" vl-children="stagger" vl-stagger="120ms" vl-act="2" vl-span="2">
+              <article class="showcase-host-panel" data-host="html">
+                <span class="showcase-host-panel__badge">HTML + CSS</span>
+                <div class="showcase-host-panel__demo">
+                  <h3 vl-enter="fade-up">Same fade-up</h3>
+                  <p vl-enter="fade-up">Semantic attrs only.</p>
+                </div>
+                <pre class="showcase-host-panel__code">&lt;h2 vl-enter="fade-up"&gt;
+  Host classes + Velora
+&lt;/h2&gt;</pre>
+              </article>
+              <article class="showcase-host-panel" data-host="tailwind">
+                <span class="showcase-host-panel__badge">Tailwind host</span>
+                <div class="showcase-host-panel__demo">
+                  <h3 vl-enter="fade-up">Same fade-up</h3>
+                  <p vl-enter="fade-up">Utilities + motion-core.</p>
+                </div>
+                <pre class="showcase-host-panel__code">&lt;h2 class="text-4xl font-bold"
+    vl-enter="fade-up"&gt;
+  Tailwind + Velora
+&lt;/h2&gt;</pre>
+              </article>
+              <article class="showcase-host-panel" data-host="wordpress">
+                <span class="showcase-host-panel__badge">WordPress</span>
+                <div class="showcase-host-panel__demo">
+                  <h3 vl-enter="fade-up">Same fade-up</h3>
+                  <p vl-enter="fade-up">Block pattern + enqueue.</p>
+                </div>
+                <pre class="showcase-host-panel__code">&lt;!-- block pattern --&gt;
+&lt;h2 vl-enter="fade-up"&gt;
+  WP + Velora motion-core
+&lt;/h2&gt;</pre>
+              </article>
+            </div>
+            <p class="page-meta" vl-enter="fade-up" vl-act="3">Every panel uses <code>vl-enter="fade-up"</code> on the same pin+scrub clock — host styling is independent.</p>
+          </div>
+        </section>
+
+        <section id="hosts-paths" class="showcase-cinema-scene" vl-scene vl-in-view>
+          <div class="showcase-cinema-scene__inner">
+            <p class="showcase-ref-kicker">Act 03 // integration paths</p>
+            <h2 class="showcase-ref-title">Portable examples in the monorepo.</h2>
+            <p class="showcase-ref-lead">Serve static examples from the repo root; the Vite Showcase does not mount <code>examples/</code>.</p>
+            <div class="showcase-support-matrix" style="margin-top: 1.5rem;">
+              <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Tailwind</span><p><code>examples/tailwind-host/</code> — motion-core + utility classes. <a href="https://github.com/erikconnect/Velora/tree/main/examples/tailwind-host">GitHub →</a></p></div>
+              <div class="showcase-support-row"><span class="showcase-support-badge" data-level="progressive">WordPress</span><p><code>examples/wordpress/</code> — PHP enqueue, Gutenberg pattern, Elementor notes. <a href="https://github.com/erikconnect/Velora/tree/main/examples/wordpress">GitHub →</a></p></div>
+              <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Index</span><p><code>examples/README.md</code> lists all host integration paths in the monorepo.</p></div>
+            </div>
+            <pre class="showcase-host-panel__code" style="margin-top: 1.5rem;">&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
   &lt;div vl-stage class="min-h-svh grid place-items-center"&gt;
     &lt;h1 vl-enter="clip-rise" vl-act="1"&gt;Host classes + Velora clock&lt;/h1&gt;
   &lt;/div&gt;
 &lt;/section&gt;</pre>
+            <div class="showcase-ref-tokens-actions">
+              <a class="showcase-ref-tokens-button showcase-ref-tokens-button--primary" href="/pages/scenes/scene-timeline.html">Scene timeline</a>
+              <a class="showcase-ref-tokens-button" href="/pages/motion/api-motion-catalog.html">Motion catalog</a>
+            </div>
           </div>
         </section>
       </div>
@@ -208,7 +328,18 @@
                 </g>
               </svg>
             </a>
-            <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+            <p class="vl-footer__desc">Motion-native CSS. Browser-first. Zero animation runtime JavaScript.</p>
+          </div>
+                    <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Resources</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/core/compatibility.html">Compatibility</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/benchmarks.html">Benchmarks</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/playground.html">Playground</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
+              <li><a class="vl-footer__link" href="https://docs.veloracss.io">Documentation</a></li>
+              <li><a class="vl-footer__link" href="https://github.com/erikconnect/Velora/tree/main/docs/spec">Spec (GitHub)</a></li>
+            </ul>
           </div>
                     <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Showcase</h3>
@@ -223,9 +354,9 @@
           </div>
         </div>
         <div class="vl-footer__bottom">
-          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS &middot; Zero animation runtime JS</p>
           <div class="vl-footer__social" aria-label="Velora social links">
-            <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+            <a href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
                 <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
               </svg>

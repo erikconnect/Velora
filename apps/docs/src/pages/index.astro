@@ -1,55 +1,87 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
+import { SITE, showcaseUrl } from "../lib/site";
 ---
 
-<Base title="Getting Started" description="Velora — declarative CSS motion engine. Host-agnostic. Zero JavaScript animations.">
+<Base title="Getting Started" description="Velora — declarative CSS motion engine. Host-agnostic. Zero animation runtime JavaScript.">
   <span class="vl-kicker">Documentation</span>
 
   <h1 class="docs-page-title">Getting Started</h1>
   <p class="docs-page-lead docs-page-lead--narrow">
     A declarative motion language for HTML. Attributes describe intent; CSS executes it.
-    Works with Tailwind, Relume, or any UI. Showcase is the optional Velora look
-    (<strong>Skins</strong> — named models via <code>data-editorial-theme</code>).
-    The public Showcase is six pages; the previous demos live in
-    <code>archive/showcase-2026-08/</code>.
+    Every section below includes a <strong>Test here</strong> frame — scroll or interact on the page.
   </p>
 
+  <DocsLive
+    scroll="short"
+    code={'<p vl-enter="fade-up" vl-timeline="view">Declarative motion</p>'}
+  >
+    <p class="docs-live__demo-title" vl-enter="fade-up" vl-timeline="view">Declarative motion</p>
+    <p class="docs-live__demo-copy" vl-enter="fade-up" vl-timeline="view" vl-delay="80ms">
+      Same public API as Showcase — test in the frame, copy into your project.
+    </p>
+  </DocsLive>
+
+  <h2>Explore</h2>
+  <div class="docs-grid-cards">
+    <a class="docs-card-link" href="/attributes/">
+      <article class="vl-card" vl-hover="hover-lift">
+        <h3 class="vl-card__title">Attributes</h3>
+        <p class="vl-card__body">Channels v2 grammar and scene engine controls.</p>
+      </article>
+    </a>
+    <a class="docs-card-link" href="/scenes/">
+      <article class="vl-card" vl-hover="hover-lift">
+        <h3 class="vl-card__title">Scenes</h3>
+        <p class="vl-card__body">Track, stage, acts — pin and scrub without JS.</p>
+      </article>
+    </a>
+    <a class="docs-card-link" href="/compatibility/">
+      <article class="vl-card" vl-hover="hover-lift">
+        <h3 class="vl-card__title">Compatibility</h3>
+        <p class="vl-card__body">Stable vs experimental — observable truth layer.</p>
+      </article>
+    </a>
+  </div>
+
   <h2>Installation</h2>
-  <p>Install the package from the npm registry:</p>
-  <pre><code>pnpm add @velora/css
-# or
-npm install @velora/css</code></pre>
+  <p>
+    <code>@velora/css</code> is developed in this monorepo. It is <strong>not published to npm yet</strong> —
+    we are finishing Showcase and documentation before release.
+  </p>
+  <pre><code># After npm publish (coming soon)
+pnpm add @velora/css
 
-  <h2>Choose an import</h2>
-  <table>
-    <thead>
-      <tr><th>Import</th><th>Use when</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>@velora/css/motion-core</code></td>
-        <td>Host UI already provides look (Tailwind, custom DS). Motion + scene engine only.</td>
-      </tr>
-      <tr>
-        <td><code>@velora/css/theme</code></td>
-        <td>Optional Velora visual tokens + named scene recipes.</td>
-      </tr>
-      <tr>
-        <td><code>@velora/css</code> / <code>full</code></td>
-        <td>Convenience: theme + components + motion (Showcase / docs style).</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <pre><code>/* Host-agnostic (recommended for Tailwind projects) */
-@import "@velora/css/motion-core";
-@import "@velora/css/transitions"; /* optional */
-
-/* Or full Velora skin */
-@import "@velora/css";</code></pre>
+# Today: monorepo workspace or local pack
+pnpm --filter @velora/css build
+pnpm pack:css</code></pre>
+  <p>
+    Canonical spec:
+    <a href={`${SITE.github}/blob/main/docs/spec/attribute-grammar.md`}>Attribute grammar</a>
+    · Live catalog:
+    <a href={showcaseUrl("/pages/motion/api-motion-catalog.html")}>Motion catalog</a>
+    · Playground:
+    <a href={showcaseUrl("/pages/motion/playground.html")}>Motion Playground</a>
+  </p>
 
   <h2>Quick Start — scene engine</h2>
-  <p>Track + stage + acts: one shared clock, pin, scrub — no JavaScript.</p>
+  <p>Track + stage + acts: one shared clock, pin, scrub — no animation runtime JavaScript.</p>
+
+  <DocsLive
+    scroll="scene"
+    hint="Scroll inside — the stage pins while acts scrub on the scene clock."
+    code={'<section vl-scene vl-timeline="view" vl-pin="2" vl-scrub>…</section>'}
+  >
+    <section class="docs-live__scene-track" vl-scene vl-timeline="view" vl-pin="2" vl-scrub>
+      <div vl-stage>
+        <p class="docs-live__demo-chip" vl-enter="fade-up" vl-act="1">Act 1</p>
+        <h3 class="docs-live__demo-title" vl-enter="clip-rise" vl-act="1">Scene clock</h3>
+        <p class="docs-live__demo-copy" vl-enter="fade-up" vl-act="2" vl-span="2">Scrub progress in the frame</p>
+      </div>
+    </section>
+  </DocsLive>
+
   <pre><code>&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
   &lt;div vl-stage&gt;
     &lt;p vl-enter="fade-up" vl-act="1"&gt;Kicker&lt;/p&gt;
@@ -58,15 +90,11 @@ npm install @velora/css</code></pre>
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
 
-  <p>
-    Style with your own classes. Motion does not require <code>.vl-card</code> or brand tokens.
-    See <a href="/hosts/">Hosts (Tailwind)</a> and <a href="/scenes/">Scenes</a>.
-  </p>
-
   <h2>What Velora is</h2>
   <ul>
     <li><strong>Motion language</strong> — not a utility framework requirement</li>
-    <li><strong>Zero JS for animation</strong> — scroll timelines, view transitions, CSS only</li>
-    <li><strong>Showcase</strong> — cinematic reference UI / design system skin</li>
+    <li><strong>Zero animation runtime JavaScript</strong> — scroll timelines, view transitions, CSS only</li>
+    <li><strong>Host-agnostic</strong> — <code>motion-core</code> without Skins</li>
+    <li><strong>Skins</strong> — switch editorial theme in the header (Noir, Earth, Aethel, Meridian)</li>
   </ul>
 </Base>

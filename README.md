@@ -1,6 +1,6 @@
 # Velora
 
-**Motion-native CSS. Zero JavaScript. Cinematic interfaces.**
+**Motion-native CSS. Zero animation runtime JavaScript. Cinematic interfaces.**
 
 ![License: ISC](https://img.shields.io/badge/license-ISC-blue.svg)
 
@@ -18,7 +18,7 @@ The optional **Skins** layer provides complete design-system models. The cinemat
 
 🔄 **Element + Scroll Motion** — Native entry/exit, intrinsic-size, top-layer, path and scroll-driven motion
 
-📦 **Declarative Attribute Grammar** — Motion via HTML attributes (`vl-effect`, `vl-timeline`, `vl-children`, `vl-scene`) instead of CSS classes
+📦 **Declarative Attribute Grammar** — Motion via HTML attributes (`vl-enter`, `vl-scroll`, `vl-scene`, `vl-timeline`, …) instead of CSS classes
 
 ⚡ **Container Queries & Density Modes** — Responsive components with default, compact, and presentation layout modes
 
@@ -28,6 +28,14 @@ The optional **Skins** layer provides complete design-system models. The cinemat
 
 ```bash
 pnpm add @velora/css
+```
+
+> **Note:** `@velora/css` is **publish-ready** (`dist/` + manifest) but **not yet on npm**. Use workspace, `pnpm pack:css`, or CDN URLs from [PUBLISH.md](docs/project/PUBLISH.md) after release.
+
+### CDN (after publish)
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@velora/css@1.0.0/dist/motion-core.css" />
 ```
 
 ### 2. Import
@@ -50,7 +58,7 @@ Full Velora look (theme + components + motion):
 ```html
 <section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>
   <div vl-stage>
-    <h1 vl-enter="clip-rise" vl-act="1">Zero-JS motion</h1>
+    <h1 vl-enter="clip-rise" vl-act="1">Declarative motion</h1>
     <p vl-enter="fade-up" vl-act="1">Same attributes on Tailwind or Velora UI.</p>
   </div>
 </section>
@@ -147,7 +155,9 @@ Apply a preset with a single attribute:
 <html vl-page-transition="cinema">
 ```
 
-No JavaScript required.
+No animation runtime JavaScript required for cross-document MPA transitions.
+
+**Spec:** [`docs/spec/attribute-grammar.md`](docs/spec/attribute-grammar.md) · **Preset registry:** `packages/catalog/` (136 presets, `pnpm generate:catalog`)
 
 ## Workspace Layout
 
@@ -158,8 +168,8 @@ velora/
 ├── docs/                   # Markdown source of truth (contract, workspace, agents)
 ├── packages/
 │   ├── css/                # @velora/css — canonical framework source
-│   ├── pages/              # legacy/reference HTML pages used by showcase tooling
-│   └── velora-components/  # component HTML catalog and source material
+│   ├── catalog/            # Generated preset registry (pnpm generate:catalog)
+│   └── compiler/           # Grammar validator and motion scanner
 ├── apps/
 │   ├── showcase/           # Vite showcase (primary interactive app + API catalogs)
 │   └── docs/               # Astro documentation site (published guides)

@@ -8,14 +8,33 @@
 
 /* --- Integration scaffold (Task 1): width, gutters, shell grids --- */
 .showcase-page-shell {
-    --ref-gutter-inline: clamp(1rem, 3vw, 2.4rem);
-    --showcase-content-max: min(112rem, calc(100vw - (var(--ref-gutter-inline) * 2)));
+    /* Gutters, header/footer shell: showcase-shell.css (via showcase.css) */
     --showcase-read-max: min(76rem, calc(100vw - (var(--ref-gutter-inline) * 2)));
     --showcase-copy-max: 62ch;
-    /* Bussola: expose generic scroll timelines for up to 6 nav stops */
-    timeline-scope: --tl-1, --tl-2, --tl-3, --tl-4, --tl-5, --tl-6;
+    /* Bussola: generic scroll timelines for up to 6 nav stops (also on body via showcase-shell.css) */
     /* Offset anchor-link scroll targets below the fixed header */
     scroll-padding-top: 5rem;
+}
+
+.showcase-practical-hint {
+    margin-block: 0.75rem 0;
+    padding: 0.65rem 0.9rem;
+    border-inline-start: 2px solid color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+    color: color-mix(in oklch, var(--vl-text-secondary) 92%, var(--vl-color-primary) 8%);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: var(--showcase-copy-max, 62ch);
+}
+
+.showcase-practical-hint code {
+    font-family: var(--vl-font-family-mono, ui-monospace, monospace);
+    font-size: 0.86em;
+}
+
+.showcase-element-demo .scene-tl-code {
+    margin-block-start: var(--vl-space-md);
+    font-size: 0.72rem;
+    line-height: 1.45;
 }
 
 /* ========================================================================== */
@@ -26,17 +45,734 @@
 
 .showcase-ref-page--scene-timeline {
     background: var(--vl-bg-main);
-    overflow-x: clip;
+    /* Do not set overflow-x: clip here — it forces overflow-y and breaks sticky [vl-stage]. */
 }
 
+/* Bussola uses --tl-*; scene engine scrub uses --vl-scene. Pin tracks must declare BOTH
+   or the unlayered #id rule wipes --vl-scene and stage acts stay frozen. */
 #tl-intro { view-timeline-name: --tl-1; view-timeline-axis: block; }
-#tl-demo { view-timeline-name: --tl-2; view-timeline-axis: block; }
+#tl-demo { view-timeline-name: --vl-scene, --tl-2; view-timeline-axis: block; }
 #tl-stories { view-timeline-name: --tl-3; view-timeline-axis: block; }
 #tl-host { view-timeline-name: --tl-4; view-timeline-axis: block; }
 #tl-recipes { view-timeline-name: --tl-5; view-timeline-axis: block; }
 
-.scene-tl-stage {
+/* Core opera — cinema shell + pin stages (reuses scene-tl-*) */
+.showcase-ref-page--core-opera {
+    background: var(--vl-bg-main);
+}
+
+/* Continuous film track: scene clock only (bussola uses chapter marks) */
+#core-opera {
+    view-timeline-name: --vl-scene;
+    view-timeline-axis: block;
+}
+
+/* Scroll marks: bussola targets + chapter view timelines along pin height */
+.core-opera-mark {
+    position: absolute;
+    inset-inline: 0;
+    block-size: 24%;
+    pointer-events: none;
+    visibility: hidden;
+    view-timeline-axis: block;
+}
+
+#core-intro.core-opera-mark {
+    inset-block-start: 0%;
+    view-timeline-name: --tl-1;
+}
+
+#core-architecture.core-opera-mark {
+    inset-block-start: 26%;
+    view-timeline-name: --tl-2;
+}
+
+#core-drivers.core-opera-mark {
+    inset-block-start: 50%;
+    view-timeline-name: --tl-3;
+}
+
+#core-channels.core-opera-mark {
+    inset-block-start: 72%;
+    view-timeline-name: --tl-4;
+}
+
+#core-policy { view-timeline-name: --tl-5; view-timeline-axis: block; }
+
+.core-opera-track {
+    display: grid;
+    padding: 0;
+    overflow: clip;
+}
+
+.core-opera-track[vl-stage],
+[vl-stage].core-opera-track {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    min-block-size: 100svh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.core-opera-track__grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(var(--vl-border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--vl-border-subtle) 1px, transparent 1px),
+        radial-gradient(circle at 72% 48%, color-mix(in oklch, var(--vl-color-primary) 16%, transparent), transparent 34%),
+        var(--vl-bg-main);
+    background-size: 4rem 4rem, 4rem 4rem, auto, auto;
+    mask-image: linear-gradient(to bottom, transparent, black 18% 82%, transparent);
+}
+
+/*
+ * Chapter gate: panel active for the act window; children enter + exit on --vl-scene
+ * sub-ranges (in-view feel inside pin — temporal replay when scrubbing back).
+ */
+@property --vl-chapter-state {
+    syntax: "<integer>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@keyframes core-opera-chapter-gate {
+    0% { --vl-chapter-state: 0; opacity: 0; pointer-events: none; }
+    2% { --vl-chapter-state: 1; opacity: 1; pointer-events: auto; }
+    98% { --vl-chapter-state: 1; opacity: 1; pointer-events: auto; }
+    100% { --vl-chapter-state: 0; opacity: 0; pointer-events: none; }
+}
+
+.core-opera-chapter {
+    --vl-ch-span: calc(var(--vl-act-end) - var(--vl-act-start));
+    /* Hold lane — soft enter, stay visible, replay on scrub back */
+    --vl-ch-enter-window: calc(var(--vl-ch-span) * 0.14);
+    --vl-ch-stagger: calc(var(--vl-ch-span) * 0.038);
+    /* Scrub lane — continuous progress mid-act */
+    --vl-ch-scrub-from: calc(var(--vl-act-start) + var(--vl-ch-span) * 0.26);
+    --vl-ch-scrub-to: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.15);
+    /* Exit lane — late act only (never overlaps enter) */
+    --vl-ch-exit-start: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.13);
+    --vl-ch-exit-window: calc(var(--vl-ch-span) * 0.11);
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
+    grid-template-rows: auto 1fr auto;
+    align-items: center;
+    gap: var(--vl-space-md);
+    padding: clamp(1.5rem, 5vw, 5rem);
+    box-sizing: border-box;
+    container-type: style;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.core-opera-track > .core-opera-chapter {
+    animation-name: core-opera-chapter-gate;
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --vl-scene;
+    animation-range: var(--vl-act-start) var(--vl-act-end);
+}
+
+/* Stagger index for enter/exit range offsets inside each chapter */
+.core-opera-chapter > *:nth-child(1) { --vl-ch-i: 0; }
+.core-opera-chapter > *:nth-child(2) { --vl-ch-i: 1; }
+.core-opera-chapter > *:nth-child(3) { --vl-ch-i: 2; }
+.core-opera-chapter > *:nth-child(4) { --vl-ch-i: 3; }
+.core-opera-chapter > *:nth-child(5) { --vl-ch-i: 4; }
+.core-opera-chapter > *:nth-child(6) { --vl-ch-i: 5; }
+.core-opera-chapter > *:nth-child(7) { --vl-ch-i: 6; }
+.core-opera-chapter > *:nth-child(8) { --vl-ch-i: 7; }
+
+/* Hold lane: enter → stay → exit (replay when scrubbing back via chapter gate) */
+.core-opera-chapter > [vl-enter]:not([vl-scroll]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+    --vl-ch-enter-from: calc(var(--vl-act-start) + var(--vl-ch-stagger) * var(--vl-ch-i, 0));
+    --vl-ch-enter-to: calc(var(--vl-ch-enter-from) + var(--vl-ch-enter-window));
+    --vl-ch-exit-from: calc(var(--vl-ch-exit-start) + var(--vl-ch-stagger) * var(--vl-ch-i, 0));
+    --vl-ch-exit-to: calc(var(--vl-ch-exit-from) + var(--vl-ch-exit-window));
+}
+
+.core-opera-chapter > [vl-enter][vl-exit]:not([vl-scroll]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+    animation: var(--vl-enter-name) 1ms var(--vl-enter-ease, var(--vl-ease-cinematic)) both,
+        var(--vl-exit-name) 1ms var(--vl-exit-ease, var(--vl-ease-out-soft)) both;
+    animation-timeline: --vl-scene, --vl-scene;
+    animation-range: var(--vl-ch-enter-from) var(--vl-ch-enter-to), var(--vl-ch-exit-from) var(--vl-ch-exit-to);
+}
+
+.core-opera-chapter > [vl-enter]:not([vl-exit]):not([vl-scroll]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+    animation: var(--vl-enter-name) 1ms var(--vl-enter-ease, var(--vl-ease-cinematic)) both;
+    animation-timeline: --vl-scene;
+    animation-range: var(--vl-ch-enter-from) var(--vl-ch-enter-to);
+}
+
+/* Scrub lane: progress-only across the act hold window */
+.core-opera-chapter > [vl-scroll]:not([vl-enter]):not([vl-exit]) {
+    --vl-ch-scroll-from: var(--vl-ch-scrub-from);
+    --vl-ch-scroll-to: var(--vl-ch-scrub-to);
+    animation: var(--vl-scroll-name) 1ms linear both;
+    animation-timeline: --vl-scene;
+    animation-range: var(--vl-ch-scroll-from) var(--vl-ch-scroll-to);
+}
+
+/* Hybrid lane: soft enter, then scrub, then optional exit — same act clock */
+.core-opera-chapter > [vl-enter][vl-scroll]:not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+    --vl-ch-enter-from: calc(var(--vl-act-start) + var(--vl-ch-stagger) * var(--vl-ch-i, 0));
+    --vl-ch-enter-to: calc(var(--vl-ch-enter-from) + var(--vl-ch-enter-window));
+    --vl-ch-scroll-from: calc(var(--vl-ch-enter-to) + var(--vl-ch-span) * 0.02);
+    --vl-ch-scroll-to: var(--vl-ch-scrub-to);
+    --vl-ch-exit-from: calc(var(--vl-ch-exit-start) + var(--vl-ch-stagger) * var(--vl-ch-i, 0));
+    --vl-ch-exit-to: calc(var(--vl-ch-exit-from) + var(--vl-ch-exit-window));
+}
+
+.core-opera-chapter > [vl-enter][vl-scroll]:not([vl-exit]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+    animation: var(--vl-enter-name) 1ms var(--vl-enter-ease, var(--vl-ease-cinematic)) both,
+        var(--vl-scroll-name) 1ms linear both;
+    animation-timeline: --vl-scene, --vl-scene;
+    animation-range: var(--vl-ch-enter-from) var(--vl-ch-enter-to), var(--vl-ch-scroll-from) var(--vl-ch-scroll-to);
+}
+
+.core-opera-chapter > [vl-enter][vl-scroll][vl-exit]:not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+    animation: var(--vl-enter-name) 1ms var(--vl-enter-ease, var(--vl-ease-cinematic)) both,
+        var(--vl-scroll-name) 1ms linear both,
+        var(--vl-exit-name) 1ms var(--vl-exit-ease, var(--vl-ease-out-soft)) both;
+    animation-timeline: --vl-scene, --vl-scene, --vl-scene;
+    animation-range: var(--vl-ch-enter-from) var(--vl-ch-enter-to), var(--vl-ch-scroll-from) var(--vl-ch-scroll-to), var(--vl-ch-exit-from) var(--vl-ch-exit-to);
+}
+
+/* Legacy scroll-only alias when exit also present without enter */
+.core-opera-chapter > [vl-scroll][vl-exit]:not([vl-enter]) {
+    --vl-ch-scroll-from: var(--vl-ch-scrub-from);
+    --vl-ch-scroll-to: var(--vl-ch-scrub-to);
+    --vl-ch-exit-from: var(--vl-ch-exit-start);
+    --vl-ch-exit-to: var(--vl-act-end);
+    animation: var(--vl-scroll-name) 1ms linear both,
+        var(--vl-exit-name) 1ms var(--vl-ease-out-soft) both;
+    animation-timeline: --vl-scene, --vl-scene;
+    animation-range: var(--vl-ch-scroll-from) var(--vl-ch-scroll-to), var(--vl-ch-exit-from) var(--vl-ch-exit-to);
+}
+
+/* Out of gate: rest hidden so re-entry replays from frame 0 */
+@supports (animation-timeline: view()) {
+    @container style(--vl-chapter-state: 0) {
+        .core-opera-chapter > :is([vl-enter], [vl-exit], [vl-scroll]),
+        .core-opera-chapter--intro .core-opera-hero-body > :is([vl-enter], [vl-exit], [vl-scroll]) {
+            animation-play-state: paused;
+        }
+
+        .core-opera-chapter--intro .core-opera-hero-title-shell,
+        .core-opera-chapter--intro .core-opera-hero-title-shell .core-opera-title,
+        .core-opera-chapter--intro .core-opera-hero-body {
+            animation-play-state: paused;
+        }
+    }
+
+    @container style(--vl-chapter-state: 1) {
+        .core-opera-chapter > :is([vl-enter], [vl-exit], [vl-scroll]),
+        .core-opera-chapter--intro .core-opera-hero-body > :is([vl-enter], [vl-exit], [vl-scroll]) {
+            animation-play-state: running;
+        }
+
+        .core-opera-chapter--intro .core-opera-hero-title-shell,
+        .core-opera-chapter--intro .core-opera-hero-title-shell .core-opera-title,
+        .core-opera-chapter--intro .core-opera-hero-body {
+            animation-play-state: running;
+        }
+    }
+}
+
+/* Act 01 — intro: large centered title → shrink + travel; body reveals after landing */
+@keyframes core-opera-hero-title-migrate {
+    0%,
+    44% {
+        transform: translate3d(
+            calc(50vw - var(--vl-hero-anchor-x) - 50% * var(--vl-hero-scale-start)),
+            calc(50svh - var(--vl-hero-anchor-y) - 50% * var(--vl-hero-scale-start)),
+            0
+        ) scale(var(--vl-hero-scale-start));
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes core-opera-hero-title-align {
+    0%,
+    82% {
+        text-align: center;
+    }
+    100% {
+        text-align: start;
+    }
+}
+
+.core-opera-chapter--intro {
+    display: block;
+    padding: 0;
+    --vl-hero-anchor-x: clamp(1.5rem, 5vw, 5rem);
+    --vl-hero-anchor-y: clamp(3.5rem, 10vw, 6.5rem);
+    --vl-hero-scale-start: 1.55;
+    --vl-hero-travel-end: calc(var(--vl-act-start) + var(--vl-ch-span) * 0.78);
+    --vl-hero-reveal-start: calc(var(--vl-hero-travel-end) + var(--vl-ch-span) * 0.02);
+    --vl-hero-reveal-span: calc(var(--vl-ch-span) * 0.1);
+    --vl-ch-exit-start: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.1);
+}
+
+@keyframes core-opera-hero-body-reveal {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    0.1%,
+    100% {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+.core-opera-chapter--intro .core-opera-hero-intro {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.core-opera-chapter--intro .core-opera-hero-title-shell {
+    position: absolute;
+    inset-block-start: var(--vl-hero-anchor-y);
+    inset-inline-start: var(--vl-hero-anchor-x);
+    transform-origin: top left;
+    transform: translate3d(
+        calc(50vw - var(--vl-hero-anchor-x) - 50% * var(--vl-hero-scale-start)),
+        calc(50svh - var(--vl-hero-anchor-y) - 50% * var(--vl-hero-scale-start)),
+        0
+    ) scale(var(--vl-hero-scale-start));
+    animation: core-opera-hero-title-migrate 1ms linear both;
+    animation-timeline: --vl-scene;
+    animation-range: var(--vl-act-start) var(--vl-hero-travel-end);
+}
+
+.core-opera-chapter--intro .core-opera-hero-title-shell .core-opera-title {
+    margin: 0;
+    max-width: 12ch;
+    text-align: center;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(2.75rem, 7vw, 7rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+    animation: core-opera-hero-title-align 1ms linear both;
+    animation-timeline: --vl-scene;
+    animation-range: var(--vl-act-start) var(--vl-hero-travel-end);
+}
+
+.core-opera-hero-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    gap: var(--vl-space-md);
+    min-height: 100%;
+    padding: clamp(1.5rem, 5vw, 5rem);
+    box-sizing: border-box;
+}
+
+.core-opera-chapter--intro .core-opera-hero-body {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    animation: core-opera-hero-body-reveal 1ms linear both;
+    animation-timeline: --vl-scene;
+    animation-range: var(--vl-hero-reveal-start) var(--vl-act-end);
+}
+
+.core-opera-chapter--intro .core-opera-hero-body > *:nth-child(1) { --vl-ch-i: 0; }
+.core-opera-chapter--intro .core-opera-hero-body > *:nth-child(2) { --vl-ch-i: 1; }
+.core-opera-chapter--intro .core-opera-hero-body > *:nth-child(3) { --vl-ch-i: 2; }
+.core-opera-chapter--intro .core-opera-hero-body > *:nth-child(4) { --vl-ch-i: 3; }
+
+.core-opera-chapter--intro .core-opera-hero-body > [vl-enter]:not([vl-scroll]) {
+    --vl-ch-enter-from: calc(var(--vl-hero-reveal-start) + var(--vl-ch-span) * 0.03 + var(--vl-ch-stagger) * var(--vl-ch-i, 0));
+    --vl-ch-enter-to: calc(var(--vl-ch-enter-from) + var(--vl-hero-reveal-span));
+    --vl-ch-exit-from: var(--vl-ch-exit-start);
+    --vl-ch-exit-to: var(--vl-act-end);
+}
+
+.core-opera-chapter--intro .core-opera-hero-body > [vl-enter][vl-exit]:not([vl-scroll]) {
+    animation: var(--vl-enter-name) 1ms var(--vl-enter-ease, var(--vl-ease-cinematic)) both,
+        var(--vl-exit-name) 1ms var(--vl-exit-ease, var(--vl-ease-out-soft)) both;
+    animation-timeline: --vl-scene, --vl-scene;
+    animation-range: var(--vl-ch-enter-from) var(--vl-ch-enter-to), var(--vl-ch-exit-from) var(--vl-ch-exit-to);
+}
+
+.core-opera-chapter--intro .core-opera-hero-body > [vl-enter][vl-scroll][vl-exit] {
+    --vl-ch-scroll-from: calc(var(--vl-ch-enter-to) + var(--vl-ch-span) * 0.02);
+    --vl-ch-scroll-to: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.12);
+    animation: var(--vl-enter-name) 1ms var(--vl-enter-ease, var(--vl-ease-cinematic)) both,
+        var(--vl-scroll-name) 1ms linear both,
+        var(--vl-exit-name) 1ms var(--vl-exit-ease, var(--vl-ease-out-soft)) both;
+    animation-timeline: --vl-scene, --vl-scene, --vl-scene;
+    animation-range: var(--vl-ch-enter-from) var(--vl-ch-enter-to), var(--vl-ch-scroll-from) var(--vl-ch-scroll-to), var(--vl-ch-exit-from) var(--vl-ch-exit-to);
+}
+
+/* Opera scrub rails — fade at range edges so scroll-only lanes rest hidden */
+@keyframes core-opera-rail-drift {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 1.1rem, 0) scale(0.98);
+    }
+    10%,
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.45;
+        transform: translate3d(0, -0.85rem, 0) scale(1.02);
+    }
+}
+
+@keyframes core-opera-rail-parallax {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 1.35rem, 0);
+    }
+    12%,
+    88% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+        transform: translate3d(0, -1.35rem, 0);
+    }
+}
+
+.core-opera-chapter > .scene-tl-evidence[vl-scroll]:not([vl-enter]) {
+    --vl-scroll-name: core-opera-rail-drift;
+}
+
+.core-opera-chapter > .scene-tl-decision[vl-scroll]:not([vl-enter]) {
+    --vl-scroll-name: core-opera-rail-parallax;
+}
+
+.core-opera-hero-body .core-opera-kicker {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    align-self: end;
+}
+
+.core-opera-hero-body .core-opera-lead {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+    margin: clamp(7rem, 20vh, 11rem) 0 0;
+    max-width: 36rem;
+}
+
+.core-opera-hero-body .core-opera-actions {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.core-opera-hero-body .core-opera-hero-signal {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    align-self: center;
+    min-height: min(28rem, 52svh);
+}
+
+.core-opera-kicker {
+    grid-column: 1 / -1;
+    align-self: end;
+    margin: 0;
+    color: var(--vl-text-muted);
+    font-size: var(--vl-font-size-xs);
+    letter-spacing: var(--vl-tracking-wide);
+    text-transform: uppercase;
+}
+
+.core-opera-title {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 11ch;
+    margin: 0;
+    align-self: start;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(2.75rem, 7vw, 7rem);
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+}
+
+.core-opera-lead {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    max-width: 36rem;
+    margin: 8rem 0 0;
+    color: var(--vl-text-secondary);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.55;
+}
+
+.core-opera-actions {
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vl-space-sm);
+    align-self: start;
+}
+
+.core-opera-chapter .scene-tl-signal,
+.core-opera-hero-signal {
+    grid-column: 2;
+    grid-row: 2;
     position: relative;
+    inset: auto;
+    width: auto;
+    min-height: min(28rem, 52svh);
+}
+
+.core-opera-hero-signal__note {
+    margin: 0;
+    max-width: 28ch;
+    color: var(--vl-text-secondary);
+    font-size: var(--vl-font-size-sm);
+    line-height: 1.45;
+}
+
+.core-opera-chapter--arch {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    --vl-ch-scrub-from: calc(var(--vl-act-start) + var(--vl-ch-span) * 0.3);
+    --vl-ch-scrub-to: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.12);
+}
+
+.core-opera-chapter--arch .core-opera-title {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    max-width: 14ch;
+}
+
+.core-opera-chapter .core-opera-layer {
+    position: relative;
+    inset: auto;
+    display: grid;
+    gap: var(--vl-space-sm);
+    width: auto;
+    max-width: 22rem;
+    padding: var(--vl-space-lg);
+    align-self: start;
+}
+
+.core-opera-chapter .core-opera-layer[data-owner="core"] { grid-column: 1; grid-row: 3; justify-self: start; }
+.core-opera-chapter .core-opera-layer[data-owner="skin"] { grid-column: 2; grid-row: 3; justify-self: center; margin-block-start: 2rem; }
+.core-opera-chapter .core-opera-layer[data-owner="showcase"] { grid-column: 1 / -1; grid-row: 3; justify-self: end; align-self: end; }
+
+.core-opera-chapter .core-opera-layer h3 {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1;
+}
+
+.core-opera-chapter .core-opera-layer p {
+    margin: 0;
+    color: var(--vl-text-secondary);
+}
+
+.core-opera-chapter .core-opera-layer code {
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    color: var(--vl-color-primary);
+}
+
+.core-opera-score {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    position: relative;
+    inset: auto;
+    width: auto;
+}
+
+.core-opera-chapter--drivers {
+    --vl-ch-scrub-from: calc(var(--vl-act-start) + var(--vl-ch-span) * 0.22);
+    --vl-ch-scrub-to: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.14);
+}
+
+.core-opera-chapter--channels {
+    --vl-ch-enter-window: calc(var(--vl-ch-span) * 0.12);
+    --vl-ch-scrub-from: calc(var(--vl-act-start) + var(--vl-ch-span) * 0.24);
+    --vl-ch-scrub-to: calc(var(--vl-act-end) - var(--vl-ch-span) * 0.1);
+}
+
+.core-opera-chapter--drivers .core-opera-score,
+.core-opera-chapter--channels .core-opera-score {
+    grid-row: 3;
+}
+
+.core-opera-chapter--drivers .scene-tl-evidence,
+.core-opera-chapter--channels .scene-tl-evidence {
+    position: absolute;
+    inset-block-end: 16%;
+    inset-inline-start: clamp(1.5rem, 5vw, 5rem);
+}
+
+.core-opera-chapter--drivers .scene-tl-decision,
+.core-opera-chapter--channels .scene-tl-decision {
+    position: absolute;
+    inset-block-end: 16%;
+    inset-inline-end: clamp(1.5rem, 5vw, 5rem);
+}
+
+.core-opera-chapter--channels .core-opera-compose {
+    grid-column: 2;
+    grid-row: 2;
+    position: relative;
+    inset: auto;
+    display: grid;
+    align-content: start;
+    gap: var(--vl-space-md);
+    width: auto;
+    min-height: min(28rem, 52svh);
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.core-opera-compose h3 {
+    margin: 0;
+    max-width: 10ch;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+}
+
+.core-opera-compose__metric {
+    display: grid;
+    gap: 0.2rem;
+    padding: var(--vl-space-md);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-md);
+    background: color-mix(in oklch, var(--vl-bg-inset) 80%, transparent);
+}
+
+.core-opera-compose__metric strong {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+}
+
+.core-opera-compose__metric span {
+    color: var(--vl-text-muted);
+    font-size: var(--vl-font-size-sm);
+}
+
+.core-opera-compose__actions {
+    display: grid;
+    gap: var(--vl-space-sm);
+}
+
+.core-opera-chapter--channels .scene-tl-action {
+    position: absolute;
+    inset: auto 50% 8% auto;
+    translate: 50% 0;
+}
+
+.core-opera-policy-grid {
+    margin-block: var(--vl-space-2xl);
+}
+
+.core-opera-support {
+    margin-block: var(--vl-space-xl);
+}
+
+.showcase-ref-tokens-button--ghost {
+    border-color: var(--vl-border-subtle);
+    background: transparent;
+    color: var(--vl-text-primary);
+}
+
+@media (max-width: 900px) {
+    .core-opera-chapter,
+    .core-opera-chapter--arch {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        align-content: start;
+        overflow: auto;
+    }
+
+    .core-opera-chapter--intro {
+        --vl-hero-scale-start: 1.35;
+    }
+
+    @keyframes core-opera-hero-title-migrate {
+        0%,
+        44% {
+            transform: translate3d(
+                calc(50vw - var(--vl-hero-anchor-x) - 50% * var(--vl-hero-scale-start)),
+                calc(46svh - var(--vl-hero-anchor-y) - 50% * var(--vl-hero-scale-start)),
+                0
+            ) scale(var(--vl-hero-scale-start));
+        }
+        100% {
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    .core-opera-chapter--intro .core-opera-hero-body {
+        grid-template-columns: 1fr;
+    }
+
+    .core-opera-chapter--intro .core-opera-hero-body .core-opera-hero-signal {
+        grid-column: 1;
+        grid-row: auto;
+        width: 100%;
+        min-height: 0;
+    }
+
+    .core-opera-title,
+    .core-opera-lead,
+    .core-opera-actions,
+    .core-opera-chapter .scene-tl-signal,
+    .core-opera-hero-signal,
+    .core-opera-chapter--channels .core-opera-compose,
+    .core-opera-chapter .core-opera-layer,
+    .core-opera-chapter .core-opera-layer[data-owner="core"],
+    .core-opera-chapter .core-opera-layer[data-owner="skin"],
+    .core-opera-chapter .core-opera-layer[data-owner="showcase"],
+    .core-opera-score {
+        grid-column: 1;
+        grid-row: auto;
+        max-width: none;
+        width: 100%;
+        min-height: 0;
+        margin: 0;
+        justify-self: stretch;
+        align-self: start;
+    }
+
+    .core-opera-chapter--drivers .scene-tl-evidence,
+    .core-opera-chapter--channels .scene-tl-evidence,
+    .core-opera-chapter--drivers .scene-tl-decision,
+    .core-opera-chapter--channels .scene-tl-decision,
+    .core-opera-chapter--channels .scene-tl-action {
+        position: relative;
+        inset: auto;
+        translate: none;
+        margin-block: var(--vl-space-sm);
+    }
+}
+
+.scene-tl-stage {
+    /* Do NOT set position here — unlayered `relative` beats layered [vl-stage] sticky. */
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
     grid-template-rows: auto 1fr auto;
@@ -45,6 +781,18 @@
     min-height: 100svh;
     padding: clamp(1.5rem, 5vw, 5rem);
     overflow: clip;
+}
+
+/* Re-assert sticky after any layout class on the stage */
+.scene-tl-stage[vl-stage],
+[vl-stage].scene-tl-stage,
+[vl-stage].core-opera-stage {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    min-block-size: 100svh;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .scene-tl-stage__grid {
@@ -475,12 +1223,6 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
 .showcase-support-badge[data-level="progressive"] { color: var(--vl-color-accent); }
 .showcase-support-badge[data-level="experimental"] { color: var(--vl-text-muted); }
 
-#core-intro { view-timeline-name: --tl-1; view-timeline-axis: block; }
-#core-architecture { view-timeline-name: --tl-2; view-timeline-axis: block; }
-#core-drivers { view-timeline-name: --tl-3; view-timeline-axis: block; }
-#core-channels { view-timeline-name: --tl-4; view-timeline-axis: block; }
-#core-policy { view-timeline-name: --tl-5; view-timeline-axis: block; }
-
 #elements-intro { view-timeline-name: --tl-1; view-timeline-axis: block; }
 #elements-content { view-timeline-name: --tl-2; view-timeline-axis: block; }
 #elements-forms { view-timeline-name: --tl-3; view-timeline-axis: block; }
@@ -868,6 +1610,298 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
 
 .showcase-core-next p { color: var(--vl-text-secondary); }
 .showcase-core-next a { color: var(--vl-text-primary); font-weight: var(--vl-font-weight-semibold); }
+
+/* —— Core Release desk (living brief) —— */
+.showcase-core-desk {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+    gap: var(--vl-space-xl);
+    align-items: start;
+}
+
+.showcase-core-desk--stack {
+    grid-template-columns: 1fr;
+}
+
+.showcase-core-brief {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(7rem, 0.55fr);
+    gap: var(--vl-space-lg);
+    min-height: 22rem;
+    padding: var(--vl-space-xl);
+    overflow: clip;
+    border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 80%, transparent);
+    border-radius: var(--vl-radius-xl);
+    background:
+        linear-gradient(160deg, color-mix(in oklch, var(--vl-bg-surface) 88%, transparent), var(--vl-bg-main)),
+        var(--vl-bg-main);
+    color: var(--vl-text-primary);
+    box-shadow: var(--vl-shadow-md);
+}
+
+.showcase-core-brief--compact {
+    min-height: 16rem;
+    padding: var(--vl-space-lg);
+}
+
+.showcase-core-brief--solo {
+    grid-template-columns: 1fr;
+    max-inline-size: 42rem;
+}
+
+.showcase-core-brief__copy {
+    display: grid;
+    align-content: space-between;
+    gap: var(--vl-space-lg);
+}
+
+.showcase-core-brief__name {
+    margin: 0;
+    color: var(--vl-text-muted);
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    letter-spacing: var(--vl-tracking-wide);
+    text-transform: uppercase;
+}
+
+.showcase-core-brief__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-block: 0.35rem 0.75rem;
+    color: var(--vl-text-secondary);
+    font-size: var(--vl-font-size-sm);
+    transition: opacity var(--vl-duration-normal) var(--vl-ease-out-soft);
+}
+
+.showcase-core-brief__status i {
+    display: inline-block;
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    border-radius: 999px;
+    background: var(--vl-color-primary);
+}
+
+.showcase-core-brief h3 {
+    margin: 0;
+    max-inline-size: 12ch;
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.85rem, 4vw, 3.4rem);
+    font-weight: var(--vl-font-weight-bold);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+}
+
+.showcase-core-brief__metric {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.showcase-core-brief__metric strong {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: var(--vl-font-weight-semibold);
+    line-height: 1;
+}
+
+.showcase-core-brief__metric span,
+.showcase-core-brief__meta {
+    color: var(--vl-text-muted);
+    font-size: var(--vl-font-size-sm);
+}
+
+.showcase-core-brief__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.85rem;
+}
+
+.showcase-core-brief__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vl-space-sm);
+    align-items: center;
+}
+
+.showcase-core-brief__action {
+    color: var(--vl-text-primary);
+    font-weight: var(--vl-font-weight-semibold);
+    text-decoration: none;
+}
+
+.showcase-core-brief__switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--vl-text-secondary);
+    font-size: var(--vl-font-size-sm);
+    cursor: pointer;
+}
+
+.showcase-core-brief:has(.showcase-core-brief__switch input:not(:checked)) .showcase-core-brief__status {
+    opacity: 0.4;
+}
+
+.showcase-core-brief__media {
+    position: relative;
+    align-self: stretch;
+    min-block-size: 12rem;
+    border-radius: var(--vl-radius-lg);
+    background:
+        linear-gradient(145deg, transparent 18%, color-mix(in oklch, var(--vl-color-primary) 42%, transparent)),
+        color-mix(in oklch, var(--vl-bg-surface) 70%, black);
+    overflow: clip;
+}
+
+.showcase-core-brief__pulse {
+    position: absolute;
+    inset: 18% 12%;
+    border-radius: inherit;
+    background: color-mix(in oklch, var(--vl-color-primary) 28%, transparent);
+    border: 1px solid color-mix(in oklch, var(--vl-color-primary) 45%, transparent);
+}
+
+.showcase-core-brief__scroll {
+    display: grid;
+    gap: 0.35rem;
+    padding: var(--vl-space-md);
+    border-radius: var(--vl-radius-md);
+    background: color-mix(in oklch, var(--vl-bg-surface) 65%, transparent);
+    border: 1px solid var(--vl-border-subtle);
+}
+
+.showcase-core-brief__scroll strong {
+    font-size: 1.5rem;
+}
+
+.showcase-core-brief__hint {
+    margin: 0;
+    color: var(--vl-text-muted);
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+}
+
+.showcase-core-ownership {
+    display: grid;
+    gap: var(--vl-space-md);
+}
+
+.showcase-core-ownership details.vl-accordion {
+    padding: var(--vl-space-md) var(--vl-space-lg);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-lg);
+    background: color-mix(in oklch, var(--vl-bg-surface) 55%, transparent);
+}
+
+.showcase-core-ownership summary {
+    cursor: pointer;
+    font-weight: var(--vl-font-weight-semibold);
+}
+
+.showcase-core-ownership .vl-accordion__content {
+    display: grid;
+    gap: var(--vl-space-sm);
+    padding-block-start: var(--vl-space-md);
+    color: var(--vl-text-secondary);
+}
+
+.showcase-core-ownership code {
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    color: var(--vl-color-primary);
+}
+
+.showcase-core-channel-desk {
+    display: grid;
+    gap: var(--vl-space-lg);
+}
+
+.showcase-core-channel-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vl-space-sm) var(--vl-space-lg);
+    color: var(--vl-text-muted);
+    font-size: var(--vl-font-size-sm);
+}
+
+.showcase-core-channel-legend b {
+    color: var(--vl-text-secondary);
+    font-family: var(--vl-font-family-mono);
+    font-weight: var(--vl-font-weight-medium);
+}
+
+.showcase-core-voice {
+    display: grid;
+    gap: var(--vl-space-lg);
+}
+
+.showcase-core-voice__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vl-space-sm);
+}
+
+.showcase-core-voice__controls label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-md);
+    color: var(--vl-text-secondary);
+    font-size: var(--vl-font-size-sm);
+    cursor: pointer;
+}
+
+.showcase-core-voice__stage {
+    display: grid;
+}
+
+.showcase-core-voice__stage > [data-voice-panel] {
+    grid-area: 1 / 1;
+}
+
+.showcase-core-voice__stage > [data-voice-panel]:not([data-voice-panel="standard"]) {
+    display: none;
+}
+
+@supports selector(:has(*)) {
+    .showcase-core-voice__stage > [data-voice-panel] {
+        display: none;
+    }
+
+    .showcase-core-voice:has(#core-voice-standard:checked) [data-voice-panel="standard"],
+    .showcase-core-voice:has(#core-voice-subtle:checked) [data-voice-panel="subtle"],
+    .showcase-core-voice:has(#core-voice-cinematic:checked) [data-voice-panel="cinematic"],
+    .showcase-core-voice:has(#core-voice-still:checked) [data-voice-panel="still"] {
+        display: grid;
+    }
+
+    .showcase-core-voice:has(#core-voice-standard:checked) label:has(#core-voice-standard),
+    .showcase-core-voice:has(#core-voice-subtle:checked) label:has(#core-voice-subtle),
+    .showcase-core-voice:has(#core-voice-cinematic:checked) label:has(#core-voice-cinematic),
+    .showcase-core-voice:has(#core-voice-still:checked) label:has(#core-voice-still) {
+        border-color: color-mix(in oklch, var(--vl-color-primary) 55%, transparent);
+        color: var(--vl-text-primary);
+        background: color-mix(in oklch, var(--vl-color-primary) 12%, transparent);
+    }
+}
+
+.showcase-core-driver-stage .showcase-core-brief {
+    position: relative;
+    z-index: 1;
+    margin-inline: auto;
+    max-inline-size: 22rem;
+}
+
+@media (max-width: 900px) {
+    .showcase-core-desk {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-core-brief {
+        grid-template-columns: 1fr;
+    }
+}
 
 .showcase-elements-grid {
     display: grid;
@@ -1545,11 +2579,6 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
 }
 
 @media (max-width: 768px) {
-    .showcase-page-shell .vl-header__nav,
-    .showcase-page-shell .vl-header__actions {
-        display: none;
-    }
-
     .showcase-page-shell :is(input, textarea, select) {
         font-size: 16px;
     }
@@ -1741,30 +2770,7 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
 .vl-bussola a:nth-of-type(5) .vl-bussola__label { animation: vl-bussola-label-in linear both; animation-range: entry 0% exit 100%; animation-timeline: --tl-5; }
 .vl-bussola a:nth-of-type(6) .vl-bussola__label { animation: vl-bussola-label-in linear both; animation-range: entry 0% exit 100%; animation-timeline: --tl-6; }
 
-/* Pages with the cinematic rail use a denser responsive header to avoid horizontal overflow. */
-.showcase-cinema-rail + .vl-header .vl-header__inner {
-    width: 100%;
-    max-width: var(--showcase-content-max);
-    margin-inline: auto;
-    padding-inline: var(--ref-gutter-inline);
-    padding-right: max(calc(var(--ref-gutter-inline) + 3.75rem), env(safe-area-inset-right, 0px));
-}
-
-.showcase-page-shell .vl-footer .vl-footer__inner {
-    width: 100%;
-    max-width: var(--showcase-content-max);
-    margin-inline: auto;
-    padding-inline: var(--ref-gutter-inline);
-}
-
-.showcase-page-shell--brand .ds-editorial-select,
-.showcase-page-shell--brand .ds-theme-toggle {
-    display: none;
-}
-
-.vl-footer__social a[href="#"] {
-    display: none;
-}
+/* Header/footer width + mobile drawer: showcase-shell.css */
 
 /* ── Bussola scroll-driven keyframes ── */
 @keyframes vl-bussola-dot-in {
@@ -7567,10 +8573,335 @@ html:not([data-theme="light"]) .showcase-page-shell .vl-header__brand > img {
     border-color: var(--vl-border-subtle);
 }
 
-/* Final mobile shell guard: later legacy reference rules keep desktop nav scrollable. */
+/* Compatibility + catalog registry (P0.4) */
+.showcase-compat-wrap {
+    overflow-x: auto;
+    border: var(--vl-skin-border-width, 1px) solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-xl);
+    background: var(--vl-bg-surface);
+}
+
+.showcase-compat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--vl-font-size-sm);
+}
+
+.showcase-compat-table th,
+.showcase-compat-table td {
+    padding: var(--vl-space-md) var(--vl-space-lg);
+    border-bottom: 1px solid var(--vl-border-subtle);
+    text-align: left;
+    vertical-align: top;
+}
+
+.showcase-compat-table thead th {
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    letter-spacing: var(--vl-tracking-wide);
+    text-transform: uppercase;
+    color: var(--vl-text-muted);
+}
+
+.showcase-compat-table tbody tr:last-child td,
+.showcase-compat-table tbody tr:last-child th {
+    border-bottom: none;
+}
+
+.showcase-compat-table td[data-level="stable"] { color: var(--vl-color-primary); }
+.showcase-compat-table td[data-level="progressive"] { color: var(--vl-color-accent); }
+.showcase-compat-table td[data-level="experimental"],
+.showcase-compat-table td[data-level="unsupported"] { color: var(--vl-text-muted); }
+
+.catalog-registry-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--vl-space-md);
+    margin-block: var(--vl-space-lg);
+}
+
+.catalog-registry-stat {
+    display: grid;
+    gap: var(--vl-space-xs);
+    padding: var(--vl-space-lg);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-lg);
+    background: var(--vl-bg-surface);
+}
+
+.catalog-registry-stat strong {
+    font-family: var(--vl-font-family-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1;
+}
+
+.catalog-registry-stat span {
+    color: var(--vl-text-muted);
+    font-size: var(--vl-font-size-sm);
+}
+
+.catalog-registry-channels {
+    margin-block: var(--vl-space-md);
+}
+
+.catalog-registry-filter-label {
+    display: block;
+    margin-block: var(--vl-space-md) var(--vl-space-xs);
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    letter-spacing: var(--vl-tracking-wide);
+    text-transform: uppercase;
+    color: var(--vl-text-muted);
+}
+
+.catalog-registry-filter {
+    width: min(100%, 28rem);
+    padding: var(--vl-space-sm) var(--vl-space-md);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-md);
+    background: var(--vl-bg-inset);
+    color: var(--vl-text-primary);
+}
+
+.catalog-registry-table-wrap {
+    overflow-x: auto;
+    margin-top: var(--vl-space-md);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-lg);
+}
+
+.catalog-registry-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--vl-font-size-sm);
+}
+
+.catalog-registry-table th,
+.catalog-registry-table td {
+    padding: var(--vl-space-sm) var(--vl-space-md);
+    border-bottom: 1px solid var(--vl-border-subtle);
+    text-align: left;
+}
+
+.catalog-registry-table thead th {
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    color: var(--vl-text-muted);
+    text-transform: uppercase;
+}
+
 @media (max-width: 768px) {
-    .showcase-page-shell .showcase-cinema-rail + .vl-header .vl-header__nav,
-    .showcase-page-shell .showcase-cinema-rail + .vl-header .vl-header__actions {
-        display: none;
+    .catalog-registry-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Motion Lab preset inspector (P0.5) */
+.motion-lab-inspector__layout {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.34fr) minmax(0, 1fr);
+    gap: var(--vl-space-lg);
+    align-items: start;
+}
+
+.motion-lab-inspector__browse {
+    display: grid;
+    gap: var(--vl-space-sm);
+    position: sticky;
+    top: 6rem;
+    max-height: calc(100svh - 8rem);
+}
+
+.motion-lab-inspector__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-lg);
+    max-height: 28rem;
+}
+
+.motion-lab-inspector__list-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--vl-space-sm);
+    width: 100%;
+    padding: var(--vl-space-sm) var(--vl-space-md);
+    border: 0;
+    border-bottom: 1px solid var(--vl-border-subtle);
+    background: transparent;
+    color: var(--vl-text-primary);
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    text-align: left;
+    cursor: pointer;
+}
+
+.motion-lab-inspector__list-btn span {
+    color: var(--vl-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.motion-lab-inspector__list-btn.is-active,
+.motion-lab-inspector__list-btn:hover {
+    background: color-mix(in oklch, var(--vl-color-primary) 12%, transparent);
+}
+
+.motion-lab-inspector__main {
+    display: grid;
+    gap: var(--vl-space-lg);
+}
+
+.motion-lab-inspector__detail {
+    padding: var(--vl-space-lg);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-xl);
+    background: var(--vl-bg-surface);
+}
+
+.motion-lab-inspector__detail-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--vl-space-md);
+    margin-bottom: var(--vl-space-md);
+}
+
+.motion-lab-inspector__detail-head h3 {
+    margin: 0;
+    font-family: var(--vl-font-family-display);
+}
+
+.motion-lab-inspector__meta {
+    display: grid;
+    gap: var(--vl-space-sm);
+    margin: 0;
+}
+
+.motion-lab-inspector__meta > div {
+    display: grid;
+    grid-template-columns: minmax(6rem, 0.28fr) minmax(0, 1fr);
+    gap: var(--vl-space-md);
+    padding-block: var(--vl-space-xs);
+    border-bottom: 1px solid var(--vl-border-subtle);
+}
+
+.motion-lab-inspector__meta dt {
+    margin: 0;
+    font-family: var(--vl-font-family-mono);
+    font-size: var(--vl-font-size-xs);
+    letter-spacing: var(--vl-tracking-wide);
+    text-transform: uppercase;
+    color: var(--vl-text-muted);
+}
+
+.motion-lab-inspector__meta dd {
+    margin: 0;
+    color: var(--vl-text-secondary);
+}
+
+.motion-lab-inspector__preview {
+    padding: var(--vl-space-lg);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-xl);
+    background: var(--vl-bg-inset);
+    min-height: 8rem;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: var(--vl-space-md);
+}
+
+.motion-lab-inspector__channel {
+    width: 100%;
+    padding: var(--vl-space-sm) var(--vl-space-md);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-md);
+    background: var(--vl-bg-inset);
+    color: var(--vl-text-primary);
+}
+
+@media (max-width: 900px) {
+    .motion-lab-inspector__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .motion-lab-inspector__browse {
+        position: static;
+        max-height: none;
+    }
+}
+
+/* ── Motion Playground (P1.1) ── */
+.showcase-playground__workspace {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    gap: var(--vl-space-lg);
+    margin-top: var(--vl-space-md);
+}
+
+.showcase-playground__controls {
+    display: grid;
+    gap: var(--vl-space-sm);
+    align-content: start;
+    padding: var(--vl-space-md);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-xl);
+    background: var(--vl-bg-surface);
+}
+
+.showcase-playground__field {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.showcase-playground__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.showcase-playground__stage {
+    display: grid;
+    gap: var(--vl-space-md);
+}
+
+.showcase-playground__gate {
+    min-height: 12rem;
+    display: grid;
+    place-items: center;
+    padding: var(--vl-space-xl);
+    border: 1px solid var(--vl-border-subtle);
+    border-radius: var(--vl-radius-xl);
+    background: var(--vl-bg-inset);
+}
+
+.showcase-playground__target {
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--vl-radius-lg);
+    border: 1px solid var(--vl-border-subtle);
+    background: var(--vl-bg-surface);
+    font-family: var(--vl-font-family-display);
+    font-size: 1.25rem;
+}
+
+.showcase-playground__markup {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border-radius: var(--vl-radius-lg);
+    border: 1px solid var(--vl-border-subtle);
+    background: var(--vl-bg-surface);
+    font-family: var(--vl-font-family-mono);
+    font-size: 0.8rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 900px) {
+    .showcase-playground__workspace {
+        grid-template-columns: 1fr;
     }
 }

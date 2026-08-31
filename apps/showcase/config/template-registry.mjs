@@ -22,8 +22,11 @@ export const TEMPLATE_REGISTRY = {
       ],
       secondary: [
         "pages/core/hosts.html",
+        "pages/core/compatibility.html",
+        "pages/core/benchmarks.html",
         "pages/core/archive.html",
         "pages/motion/motion-lab.html",
+        "pages/motion/playground.html",
       ],
     },
   },

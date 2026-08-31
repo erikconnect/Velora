@@ -13,22 +13,26 @@ Preferred authorship (host-agnostic):
 </section>
 ```
 
-- **Track** (`vl-scene`): named `--vl-scene` view-timeline + optional pin height
+- **Track** (`vl-scene`): named `--vl-scene` view-timeline + optional pin height on `vl-timeline="view"`
 - **Stage** (`vl-stage`): sticky 100svh while the track scrolls
-- **Acts** (`vl-act` / `vl-span`): beats on the shared clock (same act = overlap)
+- **Acts** (`vl-act` / `vl-span`): beats on the shared clock (same act = overlap). Channel attributes must sit on **direct** stage children — a host wrapper between `[vl-stage]` and the animated node skips act/clock binding.
+- **`vl-range`:** overrides the act-derived `animation-range` only; stage children stay on `--vl-scene`
+- **`vl-in-view`:** temporal viewport gate for content **outside** pin+scrub stages; do not nest it under a view-clock stage
 
 Named presets (`vl-scene="cinematic-hero"`, etc.) are **Velora skin recipes** in `scene-recipes.css` / `@velora/css/theme`. They remain for compatibility.
 
-The `vl-scene` attribute (bare) still establishes container query scope, containment, and the scene clock.
+The `vl-scene` attribute (bare) still establishes container query scope, style containment, and the scene clock.
 
 ## The `vl-scene` attribute
 
 Any element with the `vl-scene` attribute becomes a scene container. The attribute establishes:
 
 - **Container query scope** — the element becomes a `container-type: inline-size` context named `vl-scene`, enabling responsive behavior based on the scene's own width rather than the viewport.
-- **Layout containment** — `contain: layout style` isolates the scene's layout and style from the rest of the document.
+- **Style containment** — `contain: style` isolates custom properties without breaking sticky `[vl-stage]`.
 - **Relative positioning** — provides a positioning context for absolute or sticky children.
 - **Named view timeline** — `--vl-scene` for stage children (see `03c-scene-engine.css`)
+
+`vl-pin` on a view-clock track sets scroll height (`N × 100svh`). The same attribute outside `[vl-scene]` remains legacy sticky positioning.
 
 ```html
 <section vl-scene vl-timeline="view" vl-pin="3" vl-scrub>

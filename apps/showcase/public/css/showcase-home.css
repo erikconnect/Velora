@@ -54,6 +54,7 @@
 .showcase-home {
   --showcase-home-container-max: 100rem;
   --showcase-home-container-gutter: clamp(1.25rem, 5vw, 6rem);
+  --vl-layout-container-max: var(--showcase-home-container-max);
   background:
     radial-gradient(ellipse at 20% 0%, color-mix(in oklch, var(--vl-color-primary) 11%, transparent), transparent 50%),
     radial-gradient(ellipse at 82% 12%, color-mix(in oklch, var(--vl-color-secondary) 7%, transparent), transparent 46%),
@@ -65,18 +66,8 @@
   box-sizing: border-box;
 }
 
-.showcase-home-shell {
-  --showcase-home-container-max: 100rem;
-  --showcase-home-container-gutter: clamp(1.25rem, 5vw, 6rem);
-  --vl-layout-container-max: var(--showcase-home-container-max);
-  overflow-x: clip;
-}
-
-html[data-editorial-theme="aethel"] .showcase-home-shell {
-  --showcase-home-container-max: 108rem;
-}
-
 html[data-editorial-theme="aethel"] .showcase-home {
+  --showcase-home-container-max: 108rem;
   background:
     radial-gradient(ellipse at 84% 8%, color-mix(in oklch, var(--vl-color-primary) 15%, transparent), transparent 42%),
     linear-gradient(180deg, #000, color-mix(in oklch, var(--vl-bg-surface) 58%, #000));
@@ -91,11 +82,8 @@ html[data-editorial-theme="aethel"] .showcase-home :is(.showcase-home-reel, .sho
   box-shadow: var(--vl-shadow-md);
 }
 
-html[data-editorial-theme="meridian"] .showcase-home-shell {
-  --showcase-home-container-max: 104rem;
-}
-
 html[data-editorial-theme="meridian"] .showcase-home {
+  --showcase-home-container-max: 104rem;
   background:
     linear-gradient(90deg, color-mix(in oklch, var(--vl-color-primary) 8%, transparent) 1px, transparent 1px),
     linear-gradient(0deg, color-mix(in oklch, var(--vl-color-primary) 7%, transparent) 1px, transparent 1px),
@@ -129,147 +117,6 @@ html[data-editorial-theme="meridian"] .showcase-home :is(.showcase-home-reel__vi
   width: min(100%, var(--showcase-home-container-max));
   max-width: none;
   padding-inline: var(--showcase-home-container-gutter);
-}
-
-.showcase-home-shell .vl-header .vl-header__inner,
-.showcase-home-shell .vl-footer .vl-footer__inner {
-  width: min(100%, var(--showcase-home-container-max));
-  max-width: none;
-  box-sizing: border-box;
-  margin-inline: auto;
-  padding-left: var(--showcase-home-container-gutter);
-  padding-right: var(--showcase-home-container-gutter);
-}
-
-@media (max-width: 64rem) {
-  .showcase-home-shell .vl-header .vl-header__inner {
-    overflow: visible;
-  }
-
-  .showcase-home-shell .vl-header .vl-header__nav,
-  .showcase-home-shell .vl-header .vl-header__actions {
-    display: none;
-  }
-
-  .showcase-home-shell .vl-header__menu-btn {
-    display: flex !important;
-    margin-inline-start: auto;
-  }
-
-  .showcase-home-shell .vl-header[data-menu-open] .vl-header__drawer {
-    display: block !important;
-    animation: vl-fade-down var(--vl-duration-normal) var(--vl-ease-cinematic) forwards;
-  }
-
-  .showcase-home-shell .vl-header__mobile-actions .ds-vt-select,
-  .showcase-home-shell .vl-header__mobile-actions .ds-editorial-select {
-    display: inline-flex;
-  }
-
-  .showcase-home-shell .vl-header__mobile-actions .ds-theme-toggle {
-    display: flex;
-  }
-}
-
-.showcase-home-shell .vl-footer {
-  position: relative;
-  overflow: clip;
-  isolation: isolate;
-  background:
-    linear-gradient(180deg, color-mix(in oklch, var(--vl-bg-main) 88%, transparent), var(--vl-bg-inset)),
-    radial-gradient(circle at 18% 8%, color-mix(in oklch, var(--vl-color-primary) 17%, transparent), transparent 34%),
-    radial-gradient(circle at 84% 22%, color-mix(in oklch, var(--vl-color-secondary) 11%, transparent), transparent 38%);
-}
-
-.showcase-home-shell .vl-footer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-image:
-    linear-gradient(color-mix(in oklch, var(--vl-border-subtle) 38%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklch, var(--vl-border-subtle) 34%, transparent) 1px, transparent 1px);
-  background-size: clamp(5rem, 9vw, 9rem) clamp(5rem, 9vw, 9rem);
-  mask-image: linear-gradient(180deg, transparent, black 20%, black 78%, transparent);
-  opacity: 0.34;
-}
-
-.showcase-home-shell .vl-footer::after {
-  content: "Velora";
-  position: absolute;
-  right: max(-0.12em, -3vw);
-  bottom: -0.34em;
-  z-index: -1;
-  color: color-mix(in oklch, var(--vl-text-primary) 7%, transparent);
-  font-family: var(--vl-font-family-display);
-  font-size: clamp(8rem, 22vw, 23rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0;
-  pointer-events: none;
-}
-
-.showcase-home-shell .vl-footer__inner {
-  position: relative;
-}
-
-.showcase-home-shell .vl-footer__grid {
-  align-items: stretch;
-}
-
-.showcase-home-shell .vl-footer__brand,
-.showcase-home-shell .vl-footer__grid > .vl-footer__col:not(.vl-footer__brand) {
-  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 82%, transparent);
-  background:
-    linear-gradient(145deg, color-mix(in oklch, var(--vl-bg-surface) 78%, transparent), color-mix(in oklch, var(--vl-bg-inset) 86%, transparent)),
-    color-mix(in oklch, var(--vl-bg-surface) 42%, transparent);
-  box-shadow: var(--vl-shadow-sm);
-}
-
-.showcase-home-shell .vl-footer__brand {
-  min-block-size: 100%;
-  padding: clamp(1.1rem, 2vw, 1.6rem);
-  justify-content: space-between;
-}
-
-.showcase-home-shell .vl-footer__grid > .vl-footer__col:not(.vl-footer__brand) {
-  padding: clamp(1rem, 1.8vw, 1.35rem);
-}
-
-.showcase-home-shell .vl-footer__heading {
-  color: var(--vl-text-primary);
-}
-
-.showcase-home-shell .vl-footer__link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
-}
-
-.showcase-home-shell .vl-footer__link::before {
-  content: "";
-  inline-size: 0.35rem;
-  block-size: 0.35rem;
-  border-radius: 999px;
-  background: color-mix(in oklch, var(--vl-color-primary) 72%, var(--vl-text-primary));
-  opacity: 0;
-  transform: scale(0.4);
-  transition:
-    opacity var(--vl-transition-fast) var(--vl-ease-out-soft),
-    transform var(--vl-transition-fast) var(--vl-ease-out-soft);
-}
-
-.showcase-home-shell .vl-footer__link:hover::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.showcase-home-shell .vl-footer__bottom {
-  padding: clamp(1rem, 2vw, 1.35rem);
-  border: 1px solid color-mix(in oklch, var(--vl-border-subtle) 78%, transparent);
-  background: color-mix(in oklch, var(--vl-bg-surface) 72%, transparent);
 }
 
 .showcase-home .vl-section-header {
@@ -933,6 +780,11 @@ html[data-editorial-theme="meridian"] .showcase-home :is(.showcase-home-reel__vi
   font-size: clamp(var(--vl-font-size-sm), 1.2vw, var(--vl-font-size-lg));
   line-height: 1.7;
   color: var(--vl-text-secondary);
+}
+
+.showcase-home-hero .showcase-practical-hint {
+  margin-block-start: 1rem;
+  max-inline-size: 42rem;
 }
 
 .showcase-home-hero-actions {

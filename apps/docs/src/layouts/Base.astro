@@ -1,12 +1,14 @@
 ---
 import "@velora/css";
+import "../styles/docs-shell.css";
+import { SITE, showcaseUrl } from "../lib/site";
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Velora CSS — motion-native design system" } = Astro.props;
+const { title, description = "Velora CSS — declarative motion for modern HTML and CSS" } = Astro.props;
 const pathname = Astro.url.pathname;
 
 function isActive(href: string): boolean {
@@ -16,404 +18,121 @@ function isActive(href: string): boolean {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark" vl-page-transition>
+<html
+  lang="en"
+  data-editorial-theme="noir"
+  data-theme="dark"
+  data-theme-pack="velora-noir"
+  vl-page-transition="cinema"
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <title>{title} — Velora</title>
+    <title>{title} — Velora Docs</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline src="/js/docs-state.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      /* -----------------------------------------------------------------------
-         Docs layout
-         ----------------------------------------------------------------------- */
-      .docs-layout {
-        display: grid;
-        grid-template-columns: 15rem 1fr;
-        min-height: 100dvh;
-      }
-
-      /* -----------------------------------------------------------------------
-         Sidebar
-         ----------------------------------------------------------------------- */
-      .docs-sidebar {
-        position: sticky;
-        top: 0;
-        height: 100dvh;
-        overflow-y: auto;
-        padding: var(--vl-space-lg) var(--vl-space-md);
-        border-right: 1px solid var(--vl-border-subtle);
-        background: var(--vl-bg-inset);
-        display: flex;
-        flex-direction: column;
-        gap: var(--vl-space-md);
-      }
-
-      .docs-brand {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--vl-space-sm);
-        text-decoration: none;
-        padding: var(--vl-space-sm);
-        margin-bottom: var(--vl-space-sm);
-      }
-
-      .docs-brand__mark {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 6.5rem;
-        height: 1.6rem;
-        flex-shrink: 0;
-      }
-
-      .docs-brand__mark img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .docs-page-title {
-        margin-top: var(--vl-space-md);
-      }
-
-      .docs-page-lead {
-        font-size: var(--vl-font-size-lg);
-        color: var(--vl-text-muted);
-        margin-bottom: var(--vl-space-xl);
-      }
-
-      .docs-page-lead--compact {
-        font-size: var(--vl-font-size-md);
-      }
-
-      .docs-page-lead--narrow {
-        max-width: 44ch;
-      }
-
-      .docs-link-primary {
-        color: var(--vl-color-primary);
-      }
-
-      .docs-grid-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-        gap: var(--vl-space-md);
-        margin-top: var(--vl-space-lg);
-      }
-
-      .docs-grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--vl-space-md);
-      }
-
-      .docs-section-block {
-        margin-block: var(--vl-space-lg);
-      }
-
-      .docs-card-link {
-        text-decoration: none;
-        display: block;
-      }
-
-      .docs-badge-gap {
-        margin-bottom: var(--vl-space-sm);
-      }
-
-      .docs-swatch {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        border-radius: var(--vl-radius-sm);
-        vertical-align: middle;
-      }
-
-      .docs-swatch--stone { background: #c8c9b0; }
-      .docs-swatch--olive { background: #a9b08b; }
-      .docs-swatch--moss { background: #7f8668; }
-      .docs-swatch--deep { background: #5c604c; }
-
-      .docs-brand__name {
-        font-family: var(--vl-font-family-display);
-        font-size: var(--vl-font-size-md);
-        font-weight: var(--vl-font-weight-bold);
-        color: var(--vl-text-primary);
-        letter-spacing: var(--vl-tracking-tight);
-      }
-
-      .docs-nav-section {
-        font-size: var(--vl-font-size-xs);
-        font-weight: var(--vl-font-weight-semibold);
-        text-transform: uppercase;
-        letter-spacing: var(--vl-tracking-display);
-        color: var(--vl-text-muted);
-        padding-inline: var(--vl-space-sm);
-        margin-block: var(--vl-space-md) var(--vl-space-2xs);
-      }
-
-      .docs-nav-section:first-of-type {
-        margin-top: 0;
-      }
-
-      .docs-sidebar nav {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .docs-sidebar a {
-        display: block;
-        padding: var(--vl-space-xs) var(--vl-space-sm);
-        border-radius: var(--vl-radius-md);
-        color: var(--vl-text-muted);
-        text-decoration: none;
-        font-size: var(--vl-font-size-sm);
-        font-weight: var(--vl-font-weight-medium);
-        transition:
-          background var(--vl-transition-fast),
-          color var(--vl-transition-fast);
-      }
-
-      .docs-sidebar a:hover {
-        background: color-mix(in oklch, var(--vl-color-primary) 10%, transparent);
-        color: var(--vl-text-secondary);
-      }
-
-      .docs-sidebar a[aria-current="page"] {
-        background: color-mix(in oklch, var(--vl-color-primary) 14%, transparent);
-        color: var(--vl-color-primary);
-        font-weight: var(--vl-font-weight-semibold);
-      }
-
-      /* -----------------------------------------------------------------------
-         Main content
-         ----------------------------------------------------------------------- */
-      .docs-main {
-        --docs-content-max: 68ch;
-        padding: var(--vl-space-2xl) var(--vl-space-xl);
-        max-width: 54rem;
-        width: 100%;
-      }
-
-      .docs-main > :first-child {
-        margin-top: 0;
-      }
-
-      .docs-main > :where(p, ul, ol, blockquote) {
-        max-width: var(--docs-content-max);
-      }
-
-      /* -----------------------------------------------------------------------
-         Docs typography
-         ----------------------------------------------------------------------- */
-      .docs-main h1 {
-        font-family: var(--vl-font-family-display);
-        font-size: var(--vl-font-size-4xl);
-        font-weight: var(--vl-font-weight-bold);
-        letter-spacing: var(--vl-tracking-tight);
-        line-height: var(--vl-leading-tight);
-        color: var(--vl-text-primary);
-        margin-bottom: var(--vl-space-md);
-      }
-
-      .docs-main h2 {
-        font-family: var(--vl-font-family-display);
-        font-size: var(--vl-font-size-2xl);
-        font-weight: var(--vl-font-weight-semibold);
-        letter-spacing: var(--vl-tracking-tight);
-        color: var(--vl-text-primary);
-        margin-block: var(--vl-space-3xl) var(--vl-space-md);
-        padding: var(--vl-space-sm) var(--vl-space-md);
-        border: 1px solid var(--vl-border-subtle);
-        border-radius: var(--vl-radius-lg);
-        background: color-mix(in oklch, var(--vl-bg-surface) 84%, transparent);
-        scroll-margin-top: var(--vl-space-xl);
-      }
-
-      .docs-main h3 {
-        font-family: var(--vl-font-family-display);
-        font-size: var(--vl-font-size-lg);
-        font-weight: var(--vl-font-weight-semibold);
-        color: var(--vl-text-primary);
-        margin-block: var(--vl-space-lg) var(--vl-space-sm);
-        display: inline-flex;
-        align-items: center;
-        gap: var(--vl-space-2xs);
-      }
-
-      .docs-main h3::before {
-        content: "";
-        inline-size: 0.42rem;
-        block-size: 0.42rem;
-        border-radius: var(--vl-radius-full);
-        background: color-mix(in oklch, var(--vl-color-primary) 70%, white 12%);
-      }
-
-      .docs-main h4 {
-        font-size: var(--vl-font-size-sm);
-        font-weight: var(--vl-font-weight-semibold);
-        text-transform: uppercase;
-        letter-spacing: var(--vl-tracking-wide);
-        color: var(--vl-text-muted);
-        margin-block: var(--vl-space-md) var(--vl-space-xs);
-      }
-
-      .docs-main p {
-        color: var(--vl-text-secondary);
-        line-height: var(--vl-leading-relaxed);
-        margin-bottom: var(--vl-space-md);
-        text-wrap: pretty;
-      }
-
-      .docs-main a {
-        color: color-mix(in oklch, var(--vl-color-primary) 86%, white 8%);
-        text-underline-offset: 0.2em;
-        text-decoration-thickness: 1px;
-      }
-
-      .docs-main a:hover {
-        color: var(--vl-color-primary);
-      }
-
-      .docs-main ul,
-      .docs-main ol {
-        color: var(--vl-text-secondary);
-        line-height: var(--vl-leading-relaxed);
-        padding-left: var(--vl-space-lg);
-        margin-bottom: var(--vl-space-md);
-      }
-
-      .docs-main li {
-        margin-bottom: var(--vl-space-xs);
-      }
-
-      .docs-main code {
-        font-family: var(--vl-font-family-mono);
-        font-size: 0.85em;
-        background: color-mix(in oklch, var(--vl-color-primary) 12%, var(--vl-bg-surface));
-        color: var(--vl-color-primary);
-        padding: 0.1em 0.4em;
-        border-radius: var(--vl-radius-sm);
-        border: 1px solid color-mix(in oklch, var(--vl-color-primary) 20%, transparent);
-      }
-
-      .docs-main pre {
-        background: var(--vl-bg-inset);
-        border: 1px solid var(--vl-border-subtle);
-        border-radius: var(--vl-radius-lg);
-        padding: var(--vl-space-lg);
-        overflow-x: auto;
-        margin-block: var(--vl-space-lg);
-        box-shadow: 0 0 0 1px color-mix(in oklch, var(--vl-border-subtle) 32%, transparent) inset;
-      }
-
-      .docs-main pre code {
-        background: none;
-        color: var(--vl-text-secondary);
-        border: none;
-        padding: 0;
-        font-size: var(--vl-font-size-sm);
-        line-height: 1.8;
-      }
-
-      .docs-main table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-block: var(--vl-space-lg);
-        font-size: var(--vl-font-size-sm);
-        border: 1px solid var(--vl-border-subtle);
-        border-radius: var(--vl-radius-lg);
-        overflow: hidden;
-        background: color-mix(in oklch, var(--vl-bg-surface) 90%, transparent);
-      }
-
-      .docs-main th {
-        text-align: left;
-        padding: var(--vl-space-sm) var(--vl-space-md);
-        font-weight: var(--vl-font-weight-semibold);
-        font-size: var(--vl-font-size-xs);
-        text-transform: uppercase;
-        letter-spacing: var(--vl-tracking-wide);
-        color: var(--vl-text-muted);
-        background: var(--vl-bg-inset);
-        border-bottom: 1px solid var(--vl-border-subtle);
-      }
-
-      .docs-main td {
-        padding: var(--vl-space-sm) var(--vl-space-md);
-        border-bottom: 1px solid color-mix(in oklch, var(--vl-border-subtle) 50%, transparent);
-        color: var(--vl-text-secondary);
-        vertical-align: top;
-      }
-
-      .docs-main tbody tr:nth-child(even) {
-        background: color-mix(in oklch, var(--vl-bg-inset) 28%, transparent);
-      }
-
-      .docs-main :where(ul, ol) li::marker {
-        color: color-mix(in oklch, var(--vl-color-primary) 82%, white 8%);
-      }
-
-      .docs-main tr:last-child td {
-        border-bottom: none;
-      }
-
-      .docs-main blockquote {
-        border-left: 3px solid var(--vl-color-primary);
-        padding: var(--vl-space-md) var(--vl-space-lg);
-        background: color-mix(in oklch, var(--vl-color-primary) 6%, transparent);
-        border-radius: 0 var(--vl-radius-md) var(--vl-radius-md) 0;
-        color: var(--vl-text-secondary);
-        margin-block: var(--vl-space-lg);
-        font-style: italic;
-      }
-
-      .docs-main hr {
-        border: none;
-        border-top: 1px solid var(--vl-border-subtle);
-        margin-block: var(--vl-space-2xl);
-      }
-
-      /* -----------------------------------------------------------------------
-         Responsive
-         ----------------------------------------------------------------------- */
-      @media (max-width: 48rem) {
-        .docs-layout {
-          grid-template-columns: 1fr;
-        }
-
-        .docs-grid-3 {
-          grid-template-columns: 1fr;
-        }
-
-        .docs-sidebar {
-          position: static;
-          height: auto;
-          border-right: none;
-          border-bottom: 1px solid var(--vl-border-subtle);
-        }
-
-        .docs-main {
-          padding: var(--vl-space-lg) var(--vl-space-md);
-        }
-      }
-    </style>
   </head>
-  <body>
-    <div class="docs-layout">
-      <aside class="docs-sidebar">
-        <a href="/" class="docs-brand vl-vt-shared-brand">
-          <span class="docs-brand__mark">
-            <img src="/velora-logo.svg" alt="Velora" />
-          </span>
+  <body class="docs-page-shell">
+    <a class="vl-sr-only" href="#content">Skip to content</a>
+
+    <header class="vl-header vl-header--glass vl-vt-shared-nav" aria-label="Documentation header">
+      <div class="vl-header__inner">
+        <a class="vl-header__brand vl-vt-shared-brand" href="/" aria-label="Velora Docs home">
+          <img src="/velora-logo.svg" width="120" height="28" alt="Velora" />
         </a>
+
+        <nav class="vl-header__nav" aria-label="Quick links">
+          <a class="vl-nav__link" href="/" vl-hover="underline-expand">Docs</a>
+          <a class="vl-nav__link" href={`${SITE.showcase}/pages/core/skins.html`} vl-hover="underline-expand">Skins</a>
+          <a class="vl-nav__link" href={showcaseUrl("/pages/motion/api-motion-catalog.html")} vl-hover="underline-expand">Catalog</a>
+        </nav>
+
+        <div class="vl-header__actions">
+          <select class="ds-vt-select" title="Page transition" aria-label="Page transition">
+            <option value="cinema">Cinema</option>
+            <option value="wipe">Wipe</option>
+            <option value="glide">Glide</option>
+            <option value="iris">Iris</option>
+            <option value="snap">Snap</option>
+          </select>
+          <select class="ds-editorial-select" title="Editorial skin" aria-label="Editorial skin">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" type="button" data-ds-theme="auto" title="System theme" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" type="button" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn is-active" type="button" data-ds-theme="dark" title="Dark theme" aria-pressed="true">☾</button>
+          </div>
+          <a class="docs-header-link" href={SITE.showcase} target="_blank" rel="noopener noreferrer">Showcase</a>
+          <a
+            class="vl-header-icon-btn"
+            href={SITE.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Velora on GitHub"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+
+        <button
+          class="vl-header__menu-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="docs-mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="4" width="16" height="1.8" rx="0.9"></rect>
+            <rect x="1" y="8.1" width="16" height="1.8" rx="0.9"></rect>
+            <rect x="1" y="12.2" width="16" height="1.8" rx="0.9"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="vl-header__drawer" id="docs-mobile-nav" aria-hidden="true">
+        <nav class="vl-header__mobile-nav" aria-label="Mobile documentation navigation">
+          <a class="vl-header__mobile-link" href="/">Getting Started</a>
+          <a class="vl-header__mobile-link" href="/attributes/">Attributes</a>
+          <a class="vl-header__mobile-link" href="/effects/">Effects</a>
+          <a class="vl-header__mobile-link" href="/scenes/">Scenes</a>
+          <a class="vl-header__mobile-link" href="/compatibility/">Compatibility</a>
+        </nav>
+        <div class="vl-header__mobile-actions">
+          <select class="ds-editorial-select" title="Editorial skin" aria-label="Editorial skin">
+            <option value="noir">Noir</option>
+            <option value="earth">Earth tech</option>
+            <option value="aethel">Aethel</option>
+            <option value="meridian">Meridian</option>
+          </select>
+          <div class="ds-theme-toggle" role="group" aria-label="Color theme">
+            <button class="ds-theme-btn" type="button" data-ds-theme="auto" aria-pressed="false">◑</button>
+            <button class="ds-theme-btn" type="button" data-ds-theme="light" aria-pressed="false">☀</button>
+            <button class="ds-theme-btn is-active" type="button" data-ds-theme="dark" aria-pressed="true">☾</button>
+          </div>
+          <a class="docs-header-link" href={SITE.showcase} target="_blank" rel="noopener noreferrer">Showcase</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside class="docs-sidebar vl-card vl-card--glass" aria-label="Documentation sidebar">
         <nav aria-label="Documentation navigation">
           <p class="docs-nav-section">Core</p>
           <a href="/" aria-current={isActive("/") ? "page" : undefined}>Getting Started</a>
@@ -422,17 +141,26 @@ function isActive(href: string): boolean {
           <a href="/timelines/" aria-current={isActive("/timelines") ? "page" : undefined}>Timelines</a>
           <a href="/scenes/" aria-current={isActive("/scenes") ? "page" : undefined}>Scenes</a>
           <a href="/hosts/" aria-current={isActive("/hosts") ? "page" : undefined}>Hosts</a>
+          <a href="/compatibility/" aria-current={isActive("/compatibility") ? "page" : undefined}>Compatibility</a>
           <a href="/motion-conditions/" aria-current={isActive("/motion-conditions") ? "page" : undefined}>Conditional Motion</a>
           <a href="/transitions/" aria-current={isActive("/transitions") ? "page" : undefined}>Transitions</a>
           <a href="/tokens/" aria-current={isActive("/tokens") ? "page" : undefined}>Tokens</a>
+          <p class="docs-nav-section">Showcase</p>
+          <a href={showcaseUrl("/pages/motion/api-motion-catalog.html")} target="_blank" rel="noopener noreferrer">Motion catalog</a>
+          <a href={showcaseUrl("/pages/motion/playground.html")} target="_blank" rel="noopener noreferrer">Playground</a>
+          <a href={showcaseUrl("/pages/core/skins.html")} target="_blank" rel="noopener noreferrer">Skins reference</a>
           <p class="docs-nav-section">For Agents</p>
           <a href="/skills/" aria-current={isActive("/skills") ? "page" : undefined}>Skill Sets</a>
           <a href="/agents/" aria-current={isActive("/agents") ? "page" : undefined}>Agent Handbook</a>
         </nav>
       </aside>
-      <main class="docs-main">
+
+      <main id="content" class="docs-main">
         <slot />
       </main>
     </div>
+
+    <script is:inline src="/js/docs-ui.js"></script>
+    <script is:inline src="/js/docs-live.js"></script>
   </body>
 </html>

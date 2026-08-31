@@ -4,14 +4,16 @@
   "description": "Motion-native CSS framework for premium web interfaces",
   "private": true,
   "license": "ISC",
-  "homepage": "https://www.veloracss.io",
+  "homepage": "https://veloracss.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/velora-css/velora.git"
+    "url": "https://github.com/erikconnect/Velora.git"
   },
   "scripts": {
     "build": "turbo run build",
     "test": "pnpm --filter @velora/compiler test && pnpm --filter showcase test:library && pnpm --filter showcase audit:pages:strict && pnpm --filter showcase audit:coverage",
+    "test:e2e": "playwright test -c tests/e2e/playwright.config.mjs",
+    "test:all": "pnpm test && pnpm test:e2e",
     "dev": "turbo run dev --filter=showcase",
     "dev:docs": "turbo run dev --filter=docs",
     "dev:all": "turbo run dev",
@@ -22,13 +24,18 @@
     "check:motion:hard": "pnpm --filter @velora/compiler validate:hard",
     "check:motion:migration": "pnpm --filter @velora/compiler validate:migration",
     "generate:motion-css": "pnpm --filter @velora/compiler generate:css -- --root ../../apps/showcase/pages --css-out ../../apps/showcase/public/css/velora.generated.css",
+    "generate:catalog": "pnpm --filter @velora/catalog generate",
+    "pack:css": "pnpm --filter @velora/css pack",
+    "check:dist": "pnpm --filter @velora/css check:dist",
+    "check:catalog": "pnpm --filter @velora/catalog check",
     "migrate:motion": "pnpm --filter @velora/compiler migrate",
     "migrate:motion:dry": "pnpm --filter @velora/compiler migrate:dry",
     "sync:showcase-css": "pnpm --filter showcase sync:framework-css",
     "check:showcase-css": "pnpm --filter showcase check:framework-css-sync",
-    "verify:contract": "pnpm sync:showcase-css && pnpm check:showcase-css && pnpm --filter showcase report:vl-contract && pnpm --filter showcase verify:contract && pnpm check:motion"
+    "verify:contract": "pnpm sync:showcase-css && pnpm check:showcase-css && pnpm generate:catalog && pnpm check:catalog && pnpm --filter @velora/css build && pnpm check:dist && pnpm --filter showcase report:vl-contract && pnpm --filter showcase verify:contract && pnpm check:motion"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "turbo": "^2.10.11"
   },
   "pnpm": {

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm generate:catalog && pnpm sync:showcase-css && pnpm --filter showcase build",
+  "outputDirectory": "dist",
+  "framework": null
+}

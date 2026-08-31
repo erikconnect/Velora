@@ -6,6 +6,7 @@ import {
   extractInPageAnchors,
   extractVlAttributes,
 } from "../../../packages/compiler/src/extract.mjs";
+import { listTemplatePages } from "../config/template-registry.mjs";
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SCRIPT_DIR, "..");
@@ -49,6 +50,7 @@ const ALLOWED_VL_ATTRS = new Set([
   "vl-timeline",
   "vl-range",
   "vl-duration",
+  "vl-delay",
   "vl-speed",
   "vl-motion",
   "vl-direction",
@@ -63,6 +65,7 @@ const ALLOWED_VL_ATTRS = new Set([
   "vl-pin",
   "vl-scrub",
   "vl-once",
+  "vl-in-view",
   "vl-state",
   "vl-page-transition",
   "vl-vt-shared-nav",
@@ -81,7 +84,6 @@ const ALLOWED_VL_ATTRS = new Set([
 
 const DEPRECATED_VL_ATTRS = new Map([
   ["vl-type", "Use vl-timeline + channel attributes"],
-  ["vl-delay", "Use vl-stagger + vl-children"],
   ["vl-easing", "Use easing tokens/effect contracts"],
   ["vl-transition", "Use vl-page-transition + shared VT classes"],
 ]);
@@ -120,8 +122,37 @@ async function collectHtmlFiles() {
   return files;
 }
 
+function extractShellBlock(html, start, end) {
+  const from = html.indexOf(start);
+  const to = html.indexOf(end, from);
+  if (from < 0 || to < 0) return null;
+  return html.slice(from, to + end.length);
+}
+
 function formatList(values) {
   return values.length ? values.map((v) => `\`${v}\``).join(", ") : "none";
+}
+
+function findShellDrift(homeContent, pageContent) {
+  const issues = [];
+  const blocks = [
+    ["header", '<header class="vl-header', "</header>"],
+    ["footer", '<footer class="vl-footer', "</footer>"],
+  ];
+
+  for (const [label, start, end] of blocks) {
+    const homeBlock = extractShellBlock(homeContent, start, end);
+    const pageBlock = extractShellBlock(pageContent, start, end);
+    if (!homeBlock || !pageBlock) {
+      issues.push(`missing ${label} block`);
+      continue;
+    }
+    if (homeBlock !== pageBlock) {
+      issues.push(`${label} markup differs from index.html`);
+    }
+  }
+
+  return issues;
 }
 
 function lineNumberForIndex(content, index) {
@@ -202,6 +233,7 @@ async function writeReport(results, totals) {
   lines.push(`- Broken #anchors: **${totals.anchorCount}**`);
   lines.push(`- Home anchor motion violations: **${totals.homeAnchorMotionCount}**`);
   lines.push(`- Home scene frame motion violations: **${totals.homeSceneFrameMotionCount}**`);
+  lines.push(`- Shell drift (header/footer): **${totals.shellDriftCount}**`);
   lines.push("");
   lines.push("## Per-page status");
   lines.push("");
@@ -209,7 +241,7 @@ async function writeReport(results, totals) {
   for (const page of results) {
     const status =
       page.unknown.length || page.deprecated.length || page.brokenAnchors.length || page.homeAnchorMotion.length
-      || page.homeSceneFrameMotion.length
+      || page.homeSceneFrameMotion.length || page.shellDrift.length
         ? "FAIL"
         : "OK";
     lines.push(`### ${status} - \`${page.file}\``);
@@ -218,6 +250,7 @@ async function writeReport(results, totals) {
     lines.push(`- Broken #anchors: ${formatList(page.brokenAnchors.map((a) => `#${a}`))}`);
     lines.push(`- Home anchor motion: ${formatList(page.homeAnchorMotion.map((v) => `#${v.id} line ${v.line}: ${v.attrs.join(", ")}`))}`);
     lines.push(`- Home scene frame motion: ${formatList(page.homeSceneFrameMotion.map((v) => `${v.className} line ${v.line}: ${v.attrs.join(", ")}`))}`);
+    lines.push(`- Shell drift: ${formatList(page.shellDrift)}`);
     lines.push("");
   }
 
@@ -228,6 +261,8 @@ async function writeReport(results, totals) {
 async function main() {
   const shouldWriteReport = process.argv.includes("--write-report");
   const htmlFiles = await collectHtmlFiles();
+  const homeContent = await fs.readFile(INDEX_PATH, "utf8");
+  const registeredPages = new Set(listTemplatePages());
 
   const results = [];
   const totals = {
@@ -237,10 +272,12 @@ async function main() {
     anchorCount: 0,
     homeAnchorMotionCount: 0,
     homeSceneFrameMotionCount: 0,
+    shellDriftCount: 0,
   };
 
   for (const filePath of htmlFiles) {
     const content = await fs.readFile(filePath, "utf8");
+    const relFile = rel(filePath);
     const attrs = [...new Set(extractVlAttributes(content).map((attr) => attr.name))];
     const ids = new Set(extractIds(content));
     const anchors = extractInPageAnchors(content);
@@ -252,20 +289,26 @@ async function main() {
     const brokenAnchors = [...new Set(anchors.filter((a) => !ids.has(a)))];
     const homeAnchorMotion = path.resolve(filePath) === INDEX_PATH ? findHomeAnchorMotionAttrs(content) : [];
     const homeSceneFrameMotion = path.resolve(filePath) === INDEX_PATH ? findHomeSceneFrameMotionAttrs(content) : [];
+    const shellDrift =
+      registeredPages.has(relFile) && relFile !== "index.html"
+        ? findShellDrift(homeContent, content)
+        : [];
 
     totals.unknownCount += unknown.length;
     totals.deprecatedCount += deprecated.length;
     totals.anchorCount += brokenAnchors.length;
     totals.homeAnchorMotionCount += homeAnchorMotion.length;
     totals.homeSceneFrameMotionCount += homeSceneFrameMotion.length;
+    totals.shellDriftCount += shellDrift.length;
 
     results.push({
-      file: rel(filePath),
+      file: relFile,
       unknown,
       deprecated,
       brokenAnchors,
       homeAnchorMotion,
       homeSceneFrameMotion,
+      shellDrift,
     });
   }
 
@@ -279,9 +322,10 @@ async function main() {
     || totals.anchorCount
     || totals.homeAnchorMotionCount
     || totals.homeSceneFrameMotionCount
+    || totals.shellDriftCount
   ) {
     console.error(
-      `Contract check failed: unknown=${totals.unknownCount}, deprecated=${totals.deprecatedCount}, brokenAnchors=${totals.anchorCount}, homeAnchorMotion=${totals.homeAnchorMotionCount}, homeSceneFrameMotion=${totals.homeSceneFrameMotionCount}`,
+      `Contract check failed: unknown=${totals.unknownCount}, deprecated=${totals.deprecatedCount}, brokenAnchors=${totals.anchorCount}, homeAnchorMotion=${totals.homeAnchorMotionCount}, homeSceneFrameMotion=${totals.homeSceneFrameMotionCount}, shellDrift=${totals.shellDriftCount}`,
     );
     process.exitCode = 1;
     return;

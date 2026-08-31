@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
 ---
 
 <Base title="Design Tokens" description="Complete reference for all Velora CSS custom properties.">
@@ -12,6 +13,18 @@ import Base from "../layouts/Base.astro";
   </p>
 
   <h2>Color System</h2>
+
+  <DocsLive scroll="none" hint="Switch editorial skin in the header — tokens remap live.">
+    <div class="docs-live__row">
+      <span class="docs-live__demo-chip" style="background: var(--vl-color-primary); color: var(--vl-bg-main);">--vl-color-primary</span>
+      <span class="docs-live__demo-chip" style="background: var(--vl-bg-surface); border: 1px solid var(--vl-border-subtle);">--vl-bg-surface</span>
+      <span class="docs-live__demo-chip" style="color: var(--vl-text-muted);">--vl-text-muted</span>
+    </div>
+    <article class="vl-card" vl-hover="hover-lift" style="inline-size:100%;max-width:20rem;">
+      <h3 class="vl-card__title">Skin-driven</h3>
+      <p class="vl-card__body">Noir · Earth · Aethel · Meridian</p>
+    </article>
+  </DocsLive>
 
   <h3>Brand Palette</h3>
   <p>Velora's brand uses a natural, earthy palette built on hex values for precision:</p>
@@ -279,7 +292,7 @@ import Base from "../layouts/Base.astro";
   </table>
   <pre><code>&lt;!-- Override per element --&gt;
 &lt;div
-  vl-effect="fade-up"
+  vl-enter="fade-up"
   vl-timeline="view"
   style="--vl-motion-distance: 2rem; --vl-motion-duration: 600ms;"&gt;
   Custom depth and speed

@@ -8,6 +8,9 @@
  *       <h1 vl-enter="fade-up" vl-act="1">…</h1>
  *     </div>
  *   </section>
+ *
+ * Channels must be direct children of [vl-stage]. vl-range overrides
+ * act-derived animation-range only — the named --vl-scene clock stays.
  */
 @layer velora.motion {
     /* --- Track: named view timeline + optional pin height ----------------- */
@@ -18,7 +21,8 @@
         isolation: isolate;
         container-type: inline-size;
         container-name: vl-scene;
-        contain: layout style;
+        /* style-only: layout containment can break sticky [vl-stage] */
+        contain: style;
         view-timeline-name: --vl-scene;
         view-timeline-axis: block;
         timeline-scope: --vl-scene;
@@ -32,21 +36,28 @@
         --vl-clock: auto;
     }
 
-    /* Baseline pin height (boolean or missing typed attr) */
-    [vl-scene][vl-pin] {
+    /*
+     * Pin height only on view-clock tracks. On auto clock, vl-pin is a no-op
+     * (spec: pin/scrub ignored for time film).
+     */
+    [vl-scene][vl-timeline="view"][vl-pin] {
         --vl-pin-factor: 1;
         min-block-size: calc(var(--vl-pin-factor) * 100svh);
     }
 
-    [vl-scene][vl-pin="1"] { --vl-pin-factor: 1; }
-    [vl-scene][vl-pin="2"] { --vl-pin-factor: 2; }
-    [vl-scene][vl-pin="3"] { --vl-pin-factor: 3; }
-    [vl-scene][vl-pin="4"] { --vl-pin-factor: 4; }
-    [vl-scene][vl-pin="5"] { --vl-pin-factor: 5; }
-    [vl-scene][vl-pin="6"] { --vl-pin-factor: 6; }
+    [vl-scene][vl-timeline="view"][vl-pin="1"] { --vl-pin-factor: 1; }
+    [vl-scene][vl-timeline="view"][vl-pin="2"] { --vl-pin-factor: 2; }
+    [vl-scene][vl-timeline="view"][vl-pin="3"] { --vl-pin-factor: 3; }
+    [vl-scene][vl-timeline="view"][vl-pin="4"] { --vl-pin-factor: 4; }
+    [vl-scene][vl-timeline="view"][vl-pin="5"] { --vl-pin-factor: 5; }
+    [vl-scene][vl-timeline="view"][vl-pin="6"] { --vl-pin-factor: 6; }
+    [vl-scene][vl-timeline="view"][vl-pin="7"] { --vl-pin-factor: 7; }
+    [vl-scene][vl-timeline="view"][vl-pin="8"] { --vl-pin-factor: 8; }
+    [vl-scene][vl-timeline="view"][vl-pin="9"] { --vl-pin-factor: 9; }
+    [vl-scene][vl-timeline="view"][vl-pin="10"] { --vl-pin-factor: 10; }
 
     @supports (min-block-size: attr(vl-pin type(<number>))) {
-        [vl-scene][vl-pin] {
+        [vl-scene][vl-timeline="view"][vl-pin] {
             --vl-pin-factor: attr(vl-pin type(<number>), 1);
             min-block-size: calc(var(--vl-pin-factor) * 100svh);
         }
@@ -78,6 +89,10 @@
     [vl-stage] > *:nth-child(6) { --vl-act: 6; }
     [vl-stage] > *:nth-child(7) { --vl-act: 7; }
     [vl-stage] > *:nth-child(8) { --vl-act: 8; }
+    [vl-stage] > *:nth-child(9) { --vl-act: 9; }
+    [vl-stage] > *:nth-child(10) { --vl-act: 10; }
+    [vl-stage] > *:nth-child(11) { --vl-act: 11; }
+    [vl-stage] > *:nth-child(12) { --vl-act: 12; }
 
     [vl-stage] > *[vl-act="1"] { --vl-act: 1; }
     [vl-stage] > *[vl-act="2"] { --vl-act: 2; }
@@ -87,6 +102,10 @@
     [vl-stage] > *[vl-act="6"] { --vl-act: 6; }
     [vl-stage] > *[vl-act="7"] { --vl-act: 7; }
     [vl-stage] > *[vl-act="8"] { --vl-act: 8; }
+    [vl-stage] > *[vl-act="9"] { --vl-act: 9; }
+    [vl-stage] > *[vl-act="10"] { --vl-act: 10; }
+    [vl-stage] > *[vl-act="11"] { --vl-act: 11; }
+    [vl-stage] > *[vl-act="12"] { --vl-act: 12; }
 
     [vl-stage] > *[vl-span="1"] { --vl-span: 1; }
     [vl-stage] > *[vl-span="2"] { --vl-span: 2; }
@@ -109,41 +128,56 @@
         }
     }
 
-    /* View clock: bind stage children to the track timeline */
-    [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]):not([vl-range]) {
+    /*
+     * View clock: always bind to the named track timeline (including vl-range).
+     * Act-derived range applies only when vl-range is absent (escape hatch).
+     */
+    [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]) {
+        --vl-scroll-timeline: --vl-scene;
         animation-timeline: --vl-scene;
-        animation-range: var(--vl-act-start) var(--vl-act-end);
+        animation-duration: 1ms;
         animation-timing-function: linear;
         animation-fill-mode: both;
     }
 
-    /* Auto clock: act → delay */
+    [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]):not([vl-range]) {
+        animation-range: var(--vl-act-start) var(--vl-act-end);
+    }
+
+    /* Auto clock: act → delay (pin height / scrub are no-ops) */
     [vl-scene][vl-timeline="auto"] [vl-stage] > :is([vl-enter], [vl-effect], [vl-exit]),
     [vl-scene]:not([vl-timeline]) [vl-stage] > :is([vl-enter], [vl-effect], [vl-exit]) {
         animation-delay: calc((var(--vl-act) - 1) * var(--vl-beat));
     }
 
-    /* Scrub: force linear both on scene-driven children */
-    [vl-scene][vl-scrub] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]) {
+    /* Scrub: only meaningful on view-clock tracks */
+    [vl-scene][vl-timeline="view"][vl-scrub] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]) {
         animation-timing-function: linear;
         animation-fill-mode: both;
+        animation-duration: 1ms;
     }
 
-    /* Progressive enhancement: single-rule clock switch via if() */
+    /*
+     * Progressive enhancement: if() clock switch with the same specificity
+     * as the baseline view/auto selectors so the enhancement can win.
+     */
     @supports (width: if(style(--vl-probe: 1): 1px; else: 2px)) {
-        [vl-scene] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]):not([vl-range]) {
-            animation-timeline: if(
-                style(--vl-clock: view): --vl-scene;
-                else: auto
-            );
-            animation-range: if(
-                style(--vl-clock: view): var(--vl-act-start) var(--vl-act-end);
-                else: normal
-            );
-            animation-delay: if(
-                style(--vl-clock: auto): calc((var(--vl-act) - 1) * var(--vl-beat));
-                else: 0s
-            );
+        [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]) {
+            --vl-scroll-timeline: --vl-scene;
+            animation-timeline: --vl-scene;
+            animation-duration: 1ms;
+            animation-delay: 0s;
+        }
+
+        [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit]):not([vl-range]) {
+            animation-range: var(--vl-act-start) var(--vl-act-end);
+        }
+
+        [vl-scene][vl-timeline="auto"] [vl-stage] > :is([vl-enter], [vl-effect], [vl-exit]),
+        [vl-scene]:not([vl-timeline]) [vl-stage] > :is([vl-enter], [vl-effect], [vl-exit]) {
+            animation-timeline: auto;
+            animation-range: normal;
+            animation-delay: calc((var(--vl-act) - 1) * var(--vl-beat));
         }
     }
 

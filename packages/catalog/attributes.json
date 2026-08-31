@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-08-31T13:09:07.455Z",
+  "spec": "docs/spec/attribute-grammar.md",
+  "attributes": [
+    {
+      "name": "vl-enter",
+      "channel": "enter",
+      "status": "stable"
+    },
+    {
+      "name": "vl-exit",
+      "channel": "exit",
+      "status": "stable"
+    },
+    {
+      "name": "vl-scroll",
+      "channel": "scroll",
+      "status": "stable"
+    },
+    {
+      "name": "vl-hover",
+      "channel": "hover",
+      "status": "stable"
+    },
+    {
+      "name": "vl-loop",
+      "channel": "loop",
+      "status": "stable"
+    },
+    {
+      "name": "vl-loop-effect",
+      "channel": "loop",
+      "status": "stable"
+    },
+    {
+      "name": "vl-state",
+      "channel": "state",
+      "status": "stable"
+    },
+    {
+      "name": "vl-effect",
+      "channel": "effect",
+      "status": "stable"
+    },
+    {
+      "name": "vl-timeline",
+      "type": "control",
+      "status": "stable"
+    },
+    {
+      "name": "vl-scene",
+      "type": "scene",
+      "status": "stable"
+    },
+    {
+      "name": "vl-stage",
+      "type": "scene",
+      "status": "stable"
+    },
+    {
+      "name": "vl-act",
+      "type": "scene",
+      "status": "stable"
+    },
+    {
+      "name": "vl-span",
+      "type": "scene",
+      "status": "stable"
+    },
+    {
+      "name": "vl-pin",
+      "type": "scene",
+      "status": "stable"
+    },
+    {
+      "name": "vl-scrub",
+      "type": "scene",
+      "status": "stable"
+    },
+    {
+      "name": "vl-in-view",
+      "type": "gate",
+      "status": "stable"
+    },
+    {
+      "name": "vl-page-transition",
+      "channel": "pageTransition",
+      "status": "stable"
+    }
+  ]
+}

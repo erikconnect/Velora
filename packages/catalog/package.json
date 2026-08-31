@@ -1,0 +1,18 @@
+{
+  "name": "@velora/catalog",
+  "version": "0.1.0",
+  "description": "Canonical Velora motion preset registry — generated from CSS and grammar",
+  "license": "ISC",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "generate": "node scripts/generate-catalog.mjs",
+    "check": "node scripts/generate-catalog.mjs --check"
+  },
+  "exports": {
+    "./presets": "./presets.json",
+    "./attributes": "./attributes.json",
+    "./summary": "./catalog-summary.json",
+    "./compatibility-matrix": "./compatibility-matrix.json"
+  }
+}

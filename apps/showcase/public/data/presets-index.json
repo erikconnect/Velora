@@ -1,0 +1,943 @@
+{
+  "generatedAt": "2026-08-31T13:09:07.454Z",
+  "presets": [
+    {
+      "name": "3d-entry",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "aurora",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "aurora-drift",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "balanced",
+      "channel": "base",
+      "attribute": "vl-base",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "blur-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "blur-lift",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "blur-out",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "border-beam",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "border-trace",
+      "channel": "hover",
+      "attribute": "vl-hover",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "bounce",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "breathe",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "cinema",
+      "channel": "pageTransition",
+      "attribute": "vl-page-transition",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "cinema-zoom",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "cinematic-hero",
+      "channel": "scene",
+      "attribute": "vl-scene",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "cinematic-mask",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "circle-text-scroll",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "clip-drop",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "clip-rise",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "code-greeting-stack",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "counter-scroll",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "crossfade",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "cube-triad-stage",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "experimental",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "depth-drift",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "depth-enter",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "depth-push",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "dramatic",
+      "channel": "base",
+      "attribute": "vl-base",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "drift",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "duotone",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "editorial-cinema",
+      "channel": "scene",
+      "attribute": "vl-scene",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "enter-exit",
+      "channel": "state",
+      "attribute": "vl-state",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "expand",
+      "channel": "state",
+      "attribute": "vl-state",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "fade-down",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "fade-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "fade-out",
+      "channel": "exit",
+      "attribute": "vl-exit",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "fade-out-down",
+      "channel": "exit",
+      "attribute": "vl-exit",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "fade-out-up",
+      "channel": "exit",
+      "attribute": "vl-exit",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "fade-up",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "flip-in",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "float",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "flow-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "focus",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "glass-bento",
+      "channel": "scene",
+      "attribute": "vl-scene",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "glide",
+      "channel": "pageTransition",
+      "attribute": "vl-page-transition",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "glide-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "glitch-lite",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "glow-breathe",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "gradient-slide",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "gradient-sweep",
+      "channel": "hover",
+      "attribute": "vl-hover",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "gradient-text-color",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "halo-breathe",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hinge-down",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-card-fan",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-card-stack",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-cross-swap",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-depth-press",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-depth-stack",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-glow",
+      "channel": "hover",
+      "attribute": "vl-hover",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-lift",
+      "channel": "hover",
+      "attribute": "vl-hover",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-orb-grid",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-prism",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-shell-lift",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-spotlight",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "hover-tilt-3d",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "icon-shift",
+      "channel": "hover",
+      "attribute": "vl-hover",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "img-reveal",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "iris",
+      "channel": "pageTransition",
+      "attribute": "vl-page-transition",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "levitate-x",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "mask-sweep",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "media-zoom",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "mesh-pan",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "morph",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "orbit",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "orbit-spin",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "parallax",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "parallax-depth",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "pass-fade",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "pass-rise",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "path",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "pendulum",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "pop-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "press",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "product-reveal",
+      "channel": "scene",
+      "attribute": "vl-scene",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "pulse-ring",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "reveal",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "reveal-3d",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "reveal-cinematic",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "ripple",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "rise-3d",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "rock",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "rotate-scroll",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scale-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scanline",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scene-feature-flow",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scene-hero-reveal",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scene-layer-stack",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scene-story-pin",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scroll-horizontal",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scroll-marquee",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "scroll-scale",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "shimmer",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "shimmer-text",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "shrink-out",
+      "channel": "exit",
+      "attribute": "vl-exit",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "slide-left",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "slide-out-left",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "slide-out-right",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "slide-right",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "smooth",
+      "channel": "state",
+      "attribute": "vl-state",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "snap",
+      "channel": "pageTransition",
+      "attribute": "vl-page-transition",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "spin",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "spin-slow",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "spotlight",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "spring-3d",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "spring-up",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "sticky-story",
+      "channel": "scene",
+      "attribute": "vl-scene",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "subtle",
+      "channel": "base",
+      "attribute": "vl-base",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "sweep-border",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-highlight",
+      "channel": "scroll",
+      "attribute": "vl-scroll",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-line-reveal",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-reveal",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-reveal-down",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-reveal-up",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-ring-orbit",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "text-word-rise",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "tilt-in",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "top-layer",
+      "channel": "state",
+      "attribute": "vl-state",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "typewriter",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "typewriter-loop",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "typewriter-soft",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "underline-expand",
+      "channel": "hover",
+      "attribute": "vl-hover",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "unfold",
+      "channel": "enter",
+      "attribute": "vl-enter",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "wipe",
+      "channel": "pageTransition",
+      "attribute": "vl-page-transition",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "wipe-reveal",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "wobble",
+      "channel": "loop",
+      "attribute": "vl-loop-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    },
+    {
+      "name": "zoom-blur",
+      "channel": "effect",
+      "attribute": "vl-effect",
+      "status": "stable",
+      "reducedMotion": "static"
+    }
+  ]
+}

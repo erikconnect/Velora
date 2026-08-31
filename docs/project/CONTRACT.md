@@ -2,6 +2,8 @@
 
 This is the operational contract for Motion API, Design API, and showcase page structure.
 
+**Formal attribute spec:** [`docs/spec/attribute-grammar.md`](../spec/attribute-grammar.md)
+
 ## 1) Source Of Truth
 
 - **Framework contract (canonical):** `packages/css/src/**`
@@ -63,7 +65,7 @@ This is the operational contract for Motion API, Design API, and showcase page s
 
 - `vl-enter`: `reveal-cinematic`, `depth-enter`, `mask-sweep`
 - `vl-delay`: element-level entry/exit delay, e.g. `vl-delay="120ms"`; use `vl-stagger` for child collection choreography
-- `vl-in-view`: viewport gate for descendant motion; the wrapper detects entry and releases child animations while each child keeps its own preset and delay
+- `vl-in-view`: viewport gate for **temporal** descendant motion (`vl-enter` / `vl-exit` / `vl-loop` / `vl-hover` / `vl-state` / time-based `vl-effect`); leaving the gate clears and **replays** on re-entry (stagger/delay preserved); does **not** pause `vl-scroll`; do **not** nest inside `[vl-scene][vl-timeline="view"] [vl-stage]` (the scene clock replaces the gate)
 - `vl-scroll`: `reveal`, `media-zoom`, `crossfade`, `text-highlight`
 - `vl-scroll`: `path` (requires a tokenized `--vl-path`; scroll-linked `offset-distance`)
 - `vl-loop` / `vl-loop-effect`: `aurora-drift`
@@ -71,8 +73,8 @@ This is the operational contract for Motion API, Design API, and showcase page s
 - `vl-scene`: `cinematic-hero`, `sticky-story`, `glass-bento`, `product-reveal`, `editorial-cinema` (**Velora-look recipes** in `scene-recipes.css` / theme — not required for host-agnostic scenes)
 - `vl-motion`: `standard`, `subtle`, `cinematic`, `still`
 - `vl-state`: `smooth`, `enter-exit`, `expand`, `top-layer`
-- `vl-pin`: numeric viewport heights (`1`–`6`, or typed `attr` enhancement)
-- `vl-act` / `vl-span`: beat index and span on `[vl-stage]` children (scene engine)
+- `vl-pin`: on `[vl-scene][vl-timeline="view"]` — numeric track height (`1`–`6`, or typed `attr`); elsewhere — legacy sticky positioning. Pin height is a no-op on `vl-timeline="auto"`.
+- `vl-act` / `vl-span`: beat index and span on **direct** `[vl-stage]` children (scene engine)
 
 ### 2.3.1 Conditional Motion Engine — `vl-motion`
 
@@ -103,20 +105,23 @@ Progressive enhancement contract:
 
 Preferred model for **new** scenes: host-agnostic track / stage / acts (see `03c-scene-engine.css`).
 
-- **Scene clock:** `vl-scene` + `vl-timeline="view"|auto"` + optional `vl-pin` + `vl-scrub`
+- **Scene clock:** `vl-scene` + `vl-timeline="view"|auto"` + optional `vl-pin` + `vl-scrub` (pin/scrub apply on view-clock tracks only)
 - **Stage:** `vl-stage` (sticky child of the track)
-- **Acts:** `vl-act` + optional `vl-span` on stage children (same act = overlap; omit act → DOM order / `sibling-index()`)
-- **Channels:** `vl-enter`, `vl-scroll`, `vl-exit`, …
-- **Viewport gate:** `vl-in-view` wraps temporal channel motion when viewport entry is the trigger; use `vl-timeline="view"` directly only when the effect should scrub with viewport progress.
-- **Escape hatch:** `vl-range` overrides act-derived ranges
+- **Acts:** `vl-act` + optional `vl-span` on **direct** stage children (same act = overlap; omit act → DOM order / `sibling-index()`). Nested wrappers between stage and channels do not receive act/clock binding.
+- **Channels:** `vl-enter`, `vl-scroll`, `vl-exit`, … on those direct stage children
+- **Viewport gate:** `vl-in-view` wraps temporal channel motion when viewport entry is the trigger; use `vl-timeline="view"` (element) or a scene view-clock when the effect should scrub with progress. Do not nest `vl-in-view` inside a pin+scrub stage.
+- **Bussola + scene clock:** page `#id { view-timeline-name: --tl-N }` for compass must not erase the scene engine name. Pin+scrub tracks need `view-timeline-name: --vl-scene, --tl-N` (see Showcase Page Playbook).
+- **Stage sticky:** Showcase layout classes must not override `[vl-stage]` sticky with `position: relative` (unlayered CSS wins over `@layer velora.motion`).
+- **Escape hatch:** `vl-range` overrides act-derived **ranges** only — the named `--vl-scene` timeline stays bound on view-clock stage children
 - **Look:** host classes (Tailwind, etc.) or optional `@velora/css/theme` / named scene recipes
 
 Authoring rule for new demos/pages:
 
 1. Start with `vl-scene` + `vl-stage` (pin/scrub when scroll-story).
-2. Place channel attrs + `vl-act` on stage children.
+2. Place channel attrs + `vl-act` on **direct** stage children (host styles on the same nodes).
 3. Style with host UI — do not require `.vl-*` component classes for motion to work.
 4. Named `vl-scene="cinematic-hero"` etc. remain as **Velora skin recipes** (compat).
+5. Use `vl-in-view` for temporal reveals outside pin+scrub scenes; use scene acts for scrubbed choreography.
 
 ### 2.5 Baseline scene recipe (recommended)
 
@@ -248,6 +253,8 @@ Validation is mandatory in `verify:contract`:
 If a new motion attribute/value is introduced, update:
 
 1. `packages/css/src` implementation
-2. this file (`CONTRACT.md`)
-3. the relevant catalog section
-4. contract validator allowlist/deprecation map
+2. [`docs/spec/attribute-grammar.md`](../spec/attribute-grammar.md)
+3. this file (`CONTRACT.md`)
+4. the relevant catalog section
+5. contract validator allowlist/deprecation map
+6. run `pnpm generate:catalog`

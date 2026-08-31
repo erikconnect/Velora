@@ -5,13 +5,20 @@
      * Public API:
      *   vl-effect    Named motion preset (primitive, interaction, state, scene)
      *   vl-timeline  Progress model: view | scroll | auto | state | hover
-     *   vl-range     Animation range for scroll-driven motion
-        *   vl-duration  Direct duration override (e.g. "1200ms")
-        *   vl-delay     Entry/exit delay override (e.g. "120ms")
-     *   vl-pin       Boolean  sticky scene behavior
-     *   vl-scrub     Boolean  continuous scroll-linked motion
+     *                On [vl-scene]: clock mode for stage children (view | auto).
+     *                On other elements: binds that element's animation timeline.
+     *   vl-range     Escape hatch: overrides act-derived animation-range only
+     *                (named --vl-scene clock is kept inside a view-clock scene)
+     *   vl-duration  Direct duration override (e.g. "1200ms")
+     *   vl-delay     Entry/exit delay override (e.g. "120ms")
+     *   vl-pin       On [vl-scene][vl-timeline="view"]: track height (N × 100svh).
+     *                Elsewhere: sticky positioning (legacy element pin)
+     *   vl-scrub     Boolean  continuous scroll-linked motion (scene: view-clock only)
      *   vl-once      Boolean  one-shot reveal
-    *   vl-in-view   Viewport gate for descendant motion
+     *   vl-in-view   Viewport gate for temporal descendant motion (enter/exit/loop/…)
+     *                Do not nest inside [vl-scene][vl-timeline="view"] [vl-stage]
+     *   vl-stage     Sticky stage; channel attrs belong on direct children
+     *   vl-act/span  Beat index / span on stage children (scene engine)
      *   vl-children  Child choreography: stagger | cascade | sequence
      *   vl-stagger   Stagger interval override (e.g. "120ms")
      *   vl-depth     Parallax depth multiplier: 1 | 2 | 3 | 4
@@ -19,7 +26,7 @@
      *   vl-loop      Loop count: -1 (infinite), 0+ (iteration count)
      *   vl-loop-effect Loop keyframe preset (e.g. "float", "wobble", "spin")
      *   vl-direction Playback direction: normal | reverse | alternate | alternate-reverse
-     *   vl-scene     Scene container marker
+     *   vl-scene     Scene track (named --vl-scene clock + optional pin)
      *   vl-targets   Descendant selector hint (limited CSS-only support)
      *
      * CSS custom properties used by the attribute system:
@@ -1570,14 +1577,15 @@
 
     /* =========================================================================
        TIMELINE BINDINGS  [vl-timeline="<value>"]
+       Element-level only — [vl-scene] uses the named --vl-scene clock in 03c.
        ========================================================================= */
-    [vl-timeline="view"] {
+    [vl-timeline="view"]:not([vl-scene]) {
         animation-timeline: view();
         animation-range: entry 5% cover 42%;
         animation-timing-function: linear;
     }
 
-    [vl-timeline="view"][vl-effect="clip-rise"] {
+    [vl-timeline="view"]:not([vl-scene])[vl-effect="clip-rise"] {
         animation-name: vl-clip-rise;
         animation-duration: var(--vl-motion-duration, var(--vl-duration-slower));
         animation-fill-mode: both;
@@ -1585,7 +1593,7 @@
         animation-range: var(--vl-range, entry 5% cover 42%);
     }
 
-    [vl-timeline="view"][vl-effect="text-line-reveal"] {
+    [vl-timeline="view"]:not([vl-scene])[vl-effect="text-line-reveal"] {
         animation-name: vl-line-wipe;
         animation-duration: var(--vl-motion-duration, var(--vl-duration-slow));
         animation-fill-mode: both;
@@ -1648,13 +1656,14 @@
     /* =========================================================================
        BOOLEAN ATTRIBUTES
        ========================================================================= */
-    [vl-pin] {
+    /* Legacy element sticky — scene tracks use numeric pin height in 03c */
+    [vl-pin]:not([vl-scene]) {
         position: sticky;
         top: 0;
         z-index: var(--vl-z-sticky);
     }
 
-    [vl-scrub] {
+    [vl-scrub]:not([vl-scene]) {
         animation-fill-mode: both;
         animation-timing-function: linear;
     }
@@ -1664,15 +1673,16 @@
         animation-iteration-count: 1;
     }
 
-    [vl-once][vl-timeline="view"] {
+    [vl-once][vl-timeline="view"]:not([vl-scene]) {
         animation-range: entry 10% cover 36%;
     }
 
     /* =====================================================================
        IN-VIEW GATE  [vl-in-view]
-       The wrapper owns viewport detection; descendants own their presets.
-       This keeps view() as a trigger for temporal motion instead of making
-       every preset itself progress continuously with scroll.
+       Viewport presence triggers temporal descendant motion (enter/exit/loop/…).
+       Leaving the gate range clears descendant animations so re-entry replays
+       (stagger/delay included). Does not touch vl-scroll or scene view-clock
+       stage children. Without @container style(), children keep running.
        ===================================================================== */
     @property --vl-in-view-state {
         syntax: "<integer>";
@@ -1680,32 +1690,55 @@
         initial-value: 0;
     }
 
+    /* Discrete 0 outside the edges; 1 while the subject is in the gate window. */
     @keyframes vl-in-view-gate {
-        from { --vl-in-view-state: 0; }
-        to { --vl-in-view-state: 1; }
+        0% { --vl-in-view-state: 0; }
+        2% { --vl-in-view-state: 1; }
+        98% { --vl-in-view-state: 1; }
+        100% { --vl-in-view-state: 0; }
     }
 
-    [vl-in-view] {
-        container-type: style;
-        animation: vl-in-view-gate 1ms both;
-        animation-timeline: view(block);
-        animation-range: entry 0% cover 40%;
+    /*
+     * Style containers are required for the gate clock and @container style()
+     * descendant hold. Without support, vl-in-view is a no-op marker — children
+     * keep their own timelines (progressive enhancement).
+     */
+    @supports (container-type: style) {
+        [vl-in-view] {
+            container-type: style;
+            animation: vl-in-view-gate 1ms both;
+            animation-timeline: view(block);
+            animation-range: entry 0% exit 100%;
+        }
+
+        /*
+         * Out of gate: clear the running name (so re-entry restarts from frame 0,
+         * including stagger delays) and hold a hidden rest so content does not
+         * flash the finished state while off-screen. In-gate: no override.
+         */
+        @supports (animation-timeline: view()) {
+            @container style(--vl-in-view-state: 0) {
+                [vl-in-view] :is([vl-enter], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]),
+                [vl-in-view] [vl-effect]:not([vl-scroll]):not([vl-scrub]):not([vl-timeline="view"]):not([vl-timeline="scroll"]) {
+                    animation-name: none;
+                    opacity: 0;
+                }
+            }
+        }
     }
 
-    [vl-in-view] :is([vl-effect], [vl-enter], [vl-scroll], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state], [vl-exit]) {
-        animation-play-state: paused;
-    }
-
-    @container style(--vl-in-view-state: 1) {
-        [vl-in-view] :is([vl-effect], [vl-enter], [vl-scroll], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state], [vl-exit]) {
+    @supports (animation-timeline: view()) {
+        /* Scene view-clock replaces the gate — keep stage channels running */
+        [vl-scene][vl-timeline="view"] [vl-stage] > :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]),
+        [vl-scene][vl-timeline="view"] [vl-stage] :is([vl-enter], [vl-scroll], [vl-effect], [vl-exit], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state]) {
             animation-play-state: running;
         }
     }
 
     @media (prefers-reduced-motion: reduce) {
-        [vl-in-view] { animation: none; }
-        [vl-in-view] :is([vl-effect], [vl-enter], [vl-scroll], [vl-loop], [vl-loop-effect], [vl-hover], [vl-state], [vl-exit]) {
-            animation-play-state: running;
+        [vl-in-view] {
+            animation: none;
+            --vl-in-view-state: 1;
         }
     }
 
@@ -1713,7 +1746,7 @@
         animation-fill-mode: both;
     }
 
-    [vl-enter="focus"][vl-timeline="view"] {
+    [vl-enter="focus"][vl-timeline="view"]:not([vl-scene]) {
         animation-range: entry 12% cover 34%;
     }
 
@@ -1778,6 +1811,21 @@
     [vl-children="orchestrate"] > *:nth-child(6)  { animation-delay: calc(5  * var(--vl-stagger-step)); }
     [vl-children="orchestrate"] > *:nth-child(7)  { animation-delay: calc(6  * var(--vl-stagger-step)); }
     [vl-children="orchestrate"] > *:nth-child(8)  { animation-delay: calc(7  * var(--vl-stagger-step)); }
+
+    /* Progressive enhancement: unlimited sibling delays without expanding nth-child lists */
+    @supports (animation-delay: calc(sibling-index() * 1ms)) {
+        :is(
+            [vl-children="stagger"],
+            [vl-children="cascade"],
+            [vl-children="orchestrate"]
+        ) > * {
+            animation-delay: calc((sibling-index() - 1) * var(--vl-stagger-step));
+        }
+
+        [vl-children="sequence"] > * {
+            animation-delay: calc((sibling-index() - 1) * var(--vl-seq-duration, var(--vl-motion-duration, var(--vl-duration-slow))));
+        }
+    }
 
     [vl-stagger="60ms"]  { --vl-stagger-step: 60ms; }
     [vl-stagger="80ms"]  { --vl-stagger-step: 80ms; }
@@ -1864,13 +1912,9 @@
 
     /* =========================================================================
        SCENE SYSTEM  [vl-scene="<name>"]
+       Structural track + clock live in 02-layout / 03c-scene-engine.
+       Named look recipes live in scene-recipes.css (theme).
        ========================================================================= */
-    [vl-scene] {
-        position: relative;
-        container-type: inline-size;
-        container-name: vl-scene;
-        contain: layout style;
-    }
 
     [vl-effect="scene-hero-reveal"] {
         --vl-motion-duration: var(--vl-duration-slower);
@@ -2042,28 +2086,36 @@
 
         [vl-timeline="view"][vl-effect="fade-up"],
         [vl-timeline="view"][vl-effect="fade-in"],
-        [vl-timeline="view"][vl-effect="fade-down"] {
+        [vl-timeline="view"][vl-effect="fade-down"],
+        [vl-timeline="view"][vl-enter~="fade-up"],
+        [vl-timeline="view"][vl-enter~="fade-in"],
+        [vl-timeline="view"][vl-enter~="fade-down"] {
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
-        [vl-timeline="view"][vl-effect="reveal-3d"] {
+        [vl-timeline="view"][vl-effect="reveal-3d"],
+        [vl-timeline="view"][vl-enter~="reveal-3d"],
+        [vl-timeline="view"][vl-enter~="3d-entry"] {
             animation-name: vl-3d-entry;
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
-        [vl-timeline="view"][vl-effect="blur-in"] {
+        [vl-timeline="view"][vl-effect="blur-in"],
+        [vl-timeline="view"][vl-enter~="blur-in"] {
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-out-soft);
         }
 
-        [vl-timeline="view"][vl-effect="flow-in"] {
+        [vl-timeline="view"][vl-effect="flow-in"],
+        [vl-timeline="view"][vl-enter~="flow-in"] {
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
         }
 
-        [vl-timeline="view"][vl-effect="clip-rise"] {
+        [vl-timeline="view"][vl-effect="clip-rise"],
+        [vl-timeline="view"][vl-enter~="clip-rise"] {
             animation-name: vl-clip-rise;
             animation-duration: var(--vl-duration-slower);
             animation-timing-function: var(--vl-ease-cinematic);
@@ -2282,11 +2334,20 @@
        ACCESSIBILITY  reduced motion
        ========================================================================= */
     @media (prefers-reduced-motion: reduce) {
-        [vl-effect],
-        [vl-scene],
+        :is(
+            [vl-effect],
+            [vl-enter],
+            [vl-scroll],
+            [vl-exit],
+            [vl-loop],
+            [vl-loop-effect],
+            [vl-hover],
+            [vl-scene]
+        ),
         [vl-children="stagger"] > *,
         [vl-children="cascade"] > *,
-        [vl-children="sequence"] > * {
+        [vl-children="sequence"] > *,
+        [vl-children="orchestrate"] > * {
             animation: none !important;
             opacity: 1 !important;
             transform: none !important;

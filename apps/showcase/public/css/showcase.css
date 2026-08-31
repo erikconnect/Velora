@@ -4,6 +4,7 @@
  */
 
 @import "./library-ds-themes.css";
+@import "./showcase-shell.css";
 
 @media (prefers-reduced-motion: no-preference) {
     html {

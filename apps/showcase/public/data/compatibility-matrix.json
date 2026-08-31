@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2026-08-31T13:09:07.454Z",
+  "spec": "docs/spec/attribute-grammar.md",
+  "baseline": {
+    "chrome": "124+",
+    "safari": "18+",
+    "firefox": "128+",
+    "note": "Documented targets; verified by Playwright E2E (Chromium, Firefox, WebKit) in CI."
+  },
+  "levels": {
+    "stable": "Required behavior with fallback where noted",
+    "progressive": "Feature-detected enhancement",
+    "experimental": "Catalog/lab only"
+  },
+  "primitives": [
+    {
+      "name": "CSS Animations / Transitions",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "stable",
+      "fallback": "—"
+    },
+    {
+      "name": "@layer",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "stable",
+      "fallback": "—"
+    },
+    {
+      "name": "Scroll-driven animations",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "progressive",
+      "fallback": "Time-based animation; content visible"
+    },
+    {
+      "name": "view-timeline-name / timeline-scope",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "progressive",
+      "fallback": "Time-based scene clock"
+    },
+    {
+      "name": "@starting-style + allow-discrete",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "stable",
+      "fallback": "Instant state change"
+    },
+    {
+      "name": "position: sticky ([vl-stage])",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "stable",
+      "fallback": "Block flow"
+    },
+    {
+      "name": ":has()",
+      "status": "progressive",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "stable",
+      "fallback": ":hover / :focus-within"
+    },
+    {
+      "name": "sibling-index() / sibling-count()",
+      "status": "progressive",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "progressive",
+      "fallback": "nth-child lists (≤12 children)"
+    },
+    {
+      "name": "Typed attr()",
+      "status": "progressive",
+      "chrome": "progressive",
+      "safari": "progressive",
+      "firefox": "progressive",
+      "fallback": "Enum value fallbacks"
+    },
+    {
+      "name": "if()",
+      "status": "experimental",
+      "chrome": "experimental",
+      "safari": "experimental",
+      "firefox": "unsupported",
+      "fallback": "Baseline attribute selectors"
+    },
+    {
+      "name": "calc-size()",
+      "status": "progressive",
+      "chrome": "progressive",
+      "safari": "progressive",
+      "firefox": "unsupported",
+      "fallback": "Fixed size expand"
+    },
+    {
+      "name": "offset-path",
+      "status": "progressive",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "progressive",
+      "fallback": "Static layout"
+    },
+    {
+      "name": "::scroll-marker",
+      "status": "experimental",
+      "chrome": "experimental",
+      "safari": "unsupported",
+      "firefox": "unsupported",
+      "fallback": "None"
+    },
+    {
+      "name": "View Transitions API (MPA)",
+      "status": "stable",
+      "chrome": "stable",
+      "safari": "stable",
+      "firefox": "unsupported",
+      "fallback": "Instant navigation"
+    }
+  ],
+  "presetCount": 134
+}

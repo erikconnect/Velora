@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@velora/catalog": "workspace:*",
     "@velora/css": "workspace:*",
     "astro": "^7.2.6"
   },

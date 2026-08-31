@@ -1,5 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
+import DocsLive from "../components/DocsLive.astro";
+import { SITE } from "../lib/site";
 ---
 
 <Base
@@ -13,12 +15,12 @@ import Base from "../layouts/Base.astro";
     A single declarative attribute — <code>vl-motion</code> — selects a motion <em>mode</em> for an
     element and its subtree. It does not name a preset; instead it re-scales the shared engine tokens
     that every preset already reads, so one attribute adapts timing, travel, depth, blur and easing
-    across the whole subtree. Zero JavaScript.
+    across the whole subtree. Zero animation runtime JavaScript.
   </p>
 
   <h2>The Modes</h2>
   <p>
-    Add <code>vl-motion</code> to any element. Descendant <code>vl-effect</code> / <code>vl-enter</code>
+    Add <code>vl-motion</code> to any element. Descendant <code>vl-enter</code> / <code>vl-scroll</code>
     reveals inherit the mode automatically.
   </p>
   <table>
@@ -49,10 +51,24 @@ import Base from "../layouts/Base.astro";
     </tbody>
   </table>
 
+  <h2>Test here — compare modes</h2>
+  <DocsLive scroll="short" hint="Scroll each column into view." code={'<section vl-motion="cinematic|subtle">…</section>'}>
+    <div class="docs-live__row" style="align-items: stretch;">
+      <section vl-motion="cinematic" style="flex: 1; padding: 1rem;">
+        <p class="docs-live__demo-chip">cinematic</p>
+        <p class="docs-live__demo-title" vl-enter="fade-up" vl-timeline="view">Grand &amp; deep</p>
+      </section>
+      <section vl-motion="subtle" style="flex: 1; padding: 1rem;">
+        <p class="docs-live__demo-chip">subtle</p>
+        <p class="docs-live__demo-title" vl-enter="fade-up" vl-timeline="view">Quiet &amp; fast</p>
+      </section>
+    </div>
+  </DocsLive>
+
   <pre><code>&lt;!-- One attribute governs the whole subtree --&gt;
 &lt;section vl-motion="cinematic"&gt;
   &lt;h2 vl-enter="reveal-cinematic" vl-timeline="view"&gt;Grand &amp; deep&lt;/h2&gt;
-  &lt;p vl-effect="fade-up" vl-timeline="view"&gt;Slower, deeper, blurred entrance.&lt;/p&gt;
+  &lt;p vl-enter="fade-up" vl-timeline="view"&gt;Slower, deeper, blurred entrance.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;section vl-motion="subtle"&gt;...quieter, faster motion...&lt;/section&gt;
@@ -144,6 +160,6 @@ import Base from "../layouts/Base.astro";
     The <code>vl-motion</code> modes themselves work in all modern browsers. The <code>if()</code>-based
     refinement requires a browser with CSS <code>if()</code> support; everywhere else the baseline modes
     are used. See the live comparison on the
-    <a href="https://www.veloracss.io" class="docs-link-primary">Zero-JS Motion</a> showcase page.
+    <a href={SITE.showcase} class="docs-link-primary">Zero-JS Motion</a> showcase page.
   </p>
 </Base>

@@ -23,7 +23,7 @@
    <a class="vl-bussola__stop" href="#lifecycle"><span class="vl-bussola__label">Lifecycle</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#scroll"><span class="vl-bussola__label">Scroll</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
    <a class="vl-bussola__stop" href="#scene-engine"><span class="vl-bussola__label">Scenes</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
-   <a class="vl-bussola__stop" href="#support"><span class="vl-bussola__label">Support</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
+   <a class="vl-bussola__stop" href="#preset-registry"><span class="vl-bussola__label">Catalog</span><span class="vl-bussola__dot" aria-hidden="true"></span></a>
   </nav>
   <div class="vl-scroll-progress vl-scroll-progress--glow"></div>
 
@@ -76,7 +76,7 @@
             <button class="ds-theme-btn" data-ds-theme="light" title="Light theme" aria-pressed="false">☀</button>
             <button class="ds-theme-btn" data-ds-theme="dark" title="Dark theme" aria-pressed="false">☾</button>
           </div>
-          <a class="vl-header-icon-btn" href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
+          <a class="vl-header-icon-btn" href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora GitHub repository" title="Open Velora on GitHub">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
             </svg>
@@ -131,10 +131,11 @@
       <div class="api-hero-copy" vl-children="orchestrate" vl-stagger="180ms" vl-speed="cinema">
        <p class="api-hero-kicker"><span class="api-kicker-index">01</span><span>Public reference // decision first</span></p>
        <h1 class="api-hero-title">Choose the intent. <em vl-effect="shimmer-text">Compose the scene.</em></h1>
-       <p class="api-hero-lede">A concise guide to the stable Velora grammar. Start with what the interface must communicate, choose a channel, then add its timeline and fallback.</p>
+       <p class="api-hero-lede">134 presets, eight channels, one decision flow. Pick what the UI must communicate, scroll to live targets, copy the markup — then read the spec on docs.</p>
        <div class="api-hero-actions">
         <a class="vl-cta" href="#intent-map" vl-hover="icon-shift">Find a recipe <span aria-hidden="true">→</span></a>
-        <a class="vl-cta vl-cta--ghost" href="/pages/motion/motion-lab.html">Open Motion Lab</a>
+        <a class="vl-cta vl-cta--ghost" href="/pages/motion/playground.html">Open Playground</a>
+        <a class="vl-cta vl-cta--ghost" href="/pages/motion/motion-lab.html">Motion Lab</a>
        </div>
       </div>
       <div class="api-hero-stage" aria-label="Layered motion preview" vl-scroll="parallax" vl-range="scene-soft" vl-speed="cinema">
@@ -153,7 +154,7 @@
     </section>
 
     <section id="intent-map" class="api-group api-scope-core">
-     <div class="api-group-head"><p class="api-kicker">Start here</p><h2>What does the interface need to communicate?</h2><p>Six jobs cover the public motion grammar. Each route below points to one canonical family instead of a wall of presets.</p></div>
+     <div class="api-group-head"><p class="api-kicker">Start here</p><h2>What does the interface need to communicate?</h2><p class="showcase-practical-hint">Pick a job — each card links to a live section with copyable snippets.</p></div>
      <div class="api-intent-grid">
       <article class="api-card api-intent-card"><strong>Arrive or leave</strong><p>Introduce content, remove it or change visibility.</p><div class="api-intent-links"><a href="#lifecycle">Lifecycle</a></div><footer><span class="showcase-support-badge" data-level="stable">Stable</span><span>enter + exit</span></footer></article>
       <article class="api-card api-intent-card"><strong>Respond</strong><p>Make hover, focus, press and native state feel intentional.</p><div class="api-intent-links"><a href="#lifecycle">Interaction</a></div><footer><span class="showcase-support-badge" data-level="stable">Stable</span><span>hover + state</span></footer></article>
@@ -209,7 +210,7 @@
     </section>
 
     <section id="scene-engine" class="api-group api-scope-core">
-     <div class="api-group-head"><p class="api-kicker">Orchestration</p><h2>Track. Stage. Acts. One shared CSS clock.</h2><p>The canonical authoring model separates narrative time from visual styling, so the same HTML can live inside any host or Skin.</p></div>
+     <div class="api-group-head"><p class="api-kicker">Orchestration</p><h2>Track. Stage. Acts. One shared CSS clock.</h2><p class="showcase-practical-hint">↓ Scroll inside the live demo — the mini stage pins while acts advance.</p></div>
      <div class="api-grid">
       <article class="api-card api-card--lead"><strong>Baseline recipe</strong><pre class="api-code">&lt;section vl-scene vl-timeline="view" vl-pin="3" vl-scrub&gt;
   &lt;div vl-stage&gt;
@@ -227,21 +228,57 @@
     </section>
 
     <section id="transitions" class="api-group api-scope-core">
-     <div class="api-group-head"><p class="api-kicker">Navigation</p><h2>Page transitions belong to document movement.</h2><p>Choose the voice globally and keep links semantic. Element lifecycle stays on enter, exit and state channels.</p></div>
+     <div class="api-group-head"><p class="api-kicker">Navigation</p><h2>Page transitions belong to document movement.</h2><p>Choose the voice globally and keep links semantic. Hover, focus or click each card to preview the handoff — or use the header selector to navigate between pages.</p></div>
      <div class="api-grid">
       <article class="api-card api-card--lead"><strong>Shared elements</strong><pre class="api-code">&lt;html vl-page-transition="cinema"&gt;
   &lt;header class="vl-vt-shared-nav"&gt;...&lt;/header&gt;
   &lt;a class="vl-vt-shared-brand"&gt;...&lt;/a&gt;
 &lt;/html&gt;</pre></article>
-      <article class="api-card"><strong>cinema</strong><div class="api-target">Editorial depth and continuity.</div></article>
-      <article class="api-card"><strong>wipe</strong><div class="api-target">Directional document change.</div></article>
-      <article class="api-card"><strong>glide</strong><div class="api-target">Quiet spatial handoff.</div></article>
-      <article class="api-card"><strong>iris / snap</strong><div class="api-target">Expressive and immediate voices.</div></article>
+      <article class="api-card api-transition-card" data-api-transition="cinema" tabindex="0">
+       <strong>cinema</strong>
+       <div class="api-transition-stage" aria-hidden="true">
+        <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+        <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Cinema Reveal</span></div>
+       </div>
+       <p class="api-transition-hint">Editorial depth and continuity.</p>
+      </article>
+      <article class="api-card api-transition-card" data-api-transition="wipe" tabindex="0">
+       <strong>wipe</strong>
+       <div class="api-transition-stage" aria-hidden="true">
+        <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+        <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Wipe Reveal</span></div>
+       </div>
+       <p class="api-transition-hint">Directional document change.</p>
+      </article>
+      <article class="api-card api-transition-card" data-api-transition="glide" tabindex="0">
+       <strong>glide</strong>
+       <div class="api-transition-stage" aria-hidden="true">
+        <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+        <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Glide In</span></div>
+       </div>
+       <p class="api-transition-hint">Quiet spatial handoff.</p>
+      </article>
+      <article class="api-card api-transition-card" data-api-transition="iris" tabindex="0">
+       <strong>iris</strong>
+       <div class="api-transition-stage" aria-hidden="true">
+        <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+        <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Iris Open</span></div>
+       </div>
+       <p class="api-transition-hint">Radial expansion reveal.</p>
+      </article>
+      <article class="api-card api-transition-card" data-api-transition="snap" tabindex="0">
+       <strong>snap</strong>
+       <div class="api-transition-stage" aria-hidden="true">
+        <div class="api-transition-screen api-transition-screen--from"><span>Current page</span><span>Frame A</span></div>
+        <div class="api-transition-screen api-transition-screen--to" data-transition-next><span>Next page</span><span>Snap Switch</span></div>
+       </div>
+       <p class="api-transition-hint">Instant cut with micro accent.</p>
+      </article>
      </div>
     </section>
 
     <section id="support" class="api-group api-scope-core">
-     <div class="api-group-head"><p class="api-kicker">Support + parameters</p><h2>Modern CSS is progressive by contract.</h2><p>Experimental syntax never gates content, navigation or native state. Reduced motion always resolves to a readable composed state.</p></div>
+     <div class="api-group-head"><p class="api-kicker">Support + parameters</p><h2>Modern CSS is progressive by contract.</h2><p>Experimental syntax never gates content, navigation or native state. Reduced motion always resolves to a readable composed state. <a href="/pages/core/compatibility.html">Full compatibility matrix →</a></p></div>
      <div class="showcase-support-matrix">
       <div class="showcase-support-row"><span class="showcase-support-badge" data-level="stable">Stable</span><p><code>@starting-style</code>, discrete transitions, intrinsic-size interpolation, scroll-driven animation, dialog and popover state.</p></div>
       <div class="showcase-support-row"><span class="showcase-support-badge" data-level="progressive">Progressive</span><p><code>calc-size()</code>, anchor positioning, customizable select, scroll markers, <code>sibling-index()</code> and motion paths.</p></div>
@@ -253,6 +290,23 @@
       <article class="api-card"><strong>Range</strong><div class="api-chip-row"><span class="api-chip">entry-short</span><span class="api-chip">cover</span><span class="api-chip">scene-focus</span><span class="api-chip">full</span></div></article>
       <article class="api-card"><strong>Direction</strong><div class="api-chip-row"><span class="api-chip">normal</span><span class="api-chip">reverse</span><span class="api-chip">alternate</span></div></article>
       <article class="api-card api-card--lead"><strong>Need every variant?</strong><p>The Motion Lab preserves exhaustive preset proofs, aliases, experimental components and QA controls without making them part of the public learning path.</p><div class="api-intent-links"><a href="/pages/motion/motion-lab.html">Open Motion Lab</a><a href="/pages/scenes/scene-timeline.html">See complete scenes</a></div></article>
+     </div>
+    </section>
+
+    <section id="preset-registry" class="api-group api-scope-core">
+     <div class="api-group-head"><p class="api-kicker">Canonical registry</p><h2>Generated from <code>packages/catalog/</code></h2><p>Preset counts and metadata are derived from CSS + grammar — never hardcoded. Run <code>pnpm generate:catalog</code> after API changes.</p></div>
+     <div id="catalog-registry-stats" class="catalog-registry-stats" aria-live="polite"></div>
+     <div id="catalog-registry-channels" class="api-chip-row catalog-registry-channels"></div>
+     <label class="catalog-registry-filter-label" for="catalog-registry-filter">Filter presets</label>
+     <input id="catalog-registry-filter" class="catalog-registry-filter" type="search" placeholder="fade-up, scroll, vl-enter…" autocomplete="off" />
+     <p id="catalog-registry-count" class="api-note catalog-registry-count"></p>
+     <div class="catalog-registry-table-wrap">
+      <table id="catalog-registry-table" class="catalog-registry-table">
+       <thead>
+        <tr><th scope="col">Preset</th><th scope="col">Channel</th><th scope="col">Usage</th><th scope="col">Status</th><th scope="col">Reduced motion</th></tr>
+       </thead>
+       <tbody></tbody>
+      </table>
      </div>
     </section>
    </div>
@@ -282,7 +336,18 @@
                 </g>
               </svg>
             </a>
-            <p class="vl-footer__desc">Motion-native CSS framework. Browser-first. Zero JavaScript. 120fps.</p>
+            <p class="vl-footer__desc">Motion-native CSS. Browser-first. Zero animation runtime JavaScript.</p>
+          </div>
+                    <div class="vl-footer__col">
+            <h3 class="vl-footer__heading">Resources</h3>
+            <ul class="vl-footer__links">
+              <li><a class="vl-footer__link" href="/pages/core/compatibility.html">Compatibility</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/benchmarks.html">Benchmarks</a></li>
+              <li><a class="vl-footer__link" href="/pages/motion/playground.html">Playground</a></li>
+              <li><a class="vl-footer__link" href="/pages/core/hosts.html">Hosts</a></li>
+              <li><a class="vl-footer__link" href="https://docs.veloracss.io">Documentation</a></li>
+              <li><a class="vl-footer__link" href="https://github.com/erikconnect/Velora/tree/main/docs/spec">Spec (GitHub)</a></li>
+            </ul>
           </div>
                     <div class="vl-footer__col">
             <h3 class="vl-footer__heading">Showcase</h3>
@@ -297,9 +362,9 @@
           </div>
         </div>
         <div class="vl-footer__bottom">
-          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS framework &middot; Zero JavaScript</p>
+          <p class="vl-footer__copy">&copy; 2026 Velora &middot; Motion-native CSS &middot; Zero animation runtime JS</p>
           <div class="vl-footer__social" aria-label="Velora social links">
-            <a href="https://github.com/velora-css/velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
+            <a href="https://github.com/erikconnect/Velora" target="_blank" rel="noopener noreferrer" aria-label="Velora on GitHub">
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
                 <path fill="currentColor" d="M12 2C6.477 2 2 6.594 2 12.261c0 4.533 2.865 8.379 6.839 9.736.5.096.682-.222.682-.493 0-.243-.009-.889-.014-1.745-2.782.618-3.37-1.366-3.37-1.366-.455-1.183-1.11-1.498-1.11-1.498-.908-.636.069-.623.069-.623 1.004.072 1.532 1.055 1.532 1.055.892 1.567 2.341 1.114 2.91.852.091-.666.349-1.114.635-1.37-2.221-.258-4.555-1.138-4.555-5.065 0-1.119.389-2.034 1.027-2.751-.103-.26-.445-1.303.097-2.717 0 0 .838-.275 2.747 1.05A9.31 9.31 0 0 1 12 7.317c.85.004 1.706.118 2.505.347 1.908-1.325 2.744-1.05 2.744-1.05.544 1.414.202 2.457.1 2.717.64.717 1.025 1.632 1.025 2.751 0 3.936-2.338 4.804-4.566 5.058.359.317.678.943.678 1.9 0 1.372-.012 2.478-.012 2.815 0 .274.18.594.688.492C19.138 20.637 22 16.792 22 12.261 22 6.594 17.523 2 12 2Z"/>
               </svg>
@@ -320,5 +385,21 @@
     </footer>
 
   <script src="/js/showcase-ui.js"></script>
+  <script src="/js/showcase-catalog-registry.js"></script>
+  <script>
+   document.querySelectorAll(".api-transition-card").forEach((card) => {
+    let replayTimer;
+    const replay = () => {
+     card.classList.remove("is-playing");
+     void card.offsetWidth;
+     card.classList.add("is-playing");
+     window.clearTimeout(replayTimer);
+     replayTimer = window.setTimeout(() => card.classList.remove("is-playing"), 980);
+    };
+    card.addEventListener("mouseenter", replay);
+    card.addEventListener("focusin", replay);
+    card.addEventListener("click", replay);
+   });
+  </script>
  </body>
 </html>
