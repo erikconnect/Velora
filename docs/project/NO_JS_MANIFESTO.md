@@ -1,22 +1,60 @@
-# No JavaScript Manifesto
+# No JavaScript Motion Manifesto
 
-Velora ships zero JavaScript for motion. This is not a limitation. It is the entire point.
+Velora's canonical **motion engine ships without a JavaScript animation runtime**.
+
+That statement is intentionally narrower than "Velora never uses JavaScript." JavaScript remains essential for many application concerns. Velora's product position is that animation and presentation should not default to JavaScript when modern HTML, CSS, and browser-native APIs can already express the required behavior robustly.
 
 ## The argument
 
-For fifteen years, the web animation ecosystem operated on a shared assumption: CSS is too limited for real motion work, so JavaScript must orchestrate it. This assumption was correct in 2010. It was defensible in 2018. It is wrong in 2026.
+For many years, rich web motion depended on JavaScript because CSS lacked primitives for scroll-linked choreography, page continuity, intrinsic-size transitions, relational state, and sophisticated lifecycle animation.
 
-The browser specification committees did not stand still. Year by year, the CSS specification absorbed the capabilities that justified JavaScript animation libraries. Each new feature removed one more reason to run animation logic on the main thread.
+The web platform has changed substantially. Modern browsers now expose primitives that cover a large part of the motion work that used to require animation libraries.
 
-Velora is the acknowledgment that the reasons have run out.
+Velora turns those capabilities into a coherent declarative authoring contract.
 
-## The platform in 2026
+## The rule
 
-Every capability in Velora's motion system maps to a stable, shipping browser feature. No polyfills. No flags. No experimental APIs.
+Before adding JavaScript for motion, ask:
 
-### @view-transition
+1. Can semantic HTML model the state or interaction?
+2. Can CSS transitions or animations express the visual change?
+3. Can scroll/view timelines drive progression?
+4. Can View Transitions provide page or shared-element continuity?
+5. Can `:has()`, native top-layer elements, `@starting-style`, discrete transitions, `interpolate-size`, container queries, or typed attributes solve the problem?
+6. Can the experience degrade gracefully if the advanced primitive is unavailable?
 
-The View Transitions API provides page-level transitions for multi-page applications. A single CSS at-rule enables cross-document transitions with no JavaScript router:
+Only after those paths are exhausted should runtime JavaScript be considered.
+
+## What stays JavaScript-free in core
+
+The canonical Velora motion engine must not depend on:
+
+- GSAP;
+- Framer Motion;
+- Anime.js;
+- Locomotive Scroll;
+- ScrollMagic;
+- a custom `requestAnimationFrame` scheduler;
+- a runtime parser that interprets `vl-*` animation attributes in the browser;
+- client-side routing introduced only to obtain page transitions.
+
+The default motion path is:
+
+```text
+HTML intent
+  ↓
+Velora CSS contract
+  ↓
+Native browser motion primitives
+  ↓
+Browser style/layout/compositor pipeline
+```
+
+## Platform primitives Velora should exploit
+
+### View Transitions
+
+Cross-document and same-document View Transitions can provide page continuity and shared-element handoffs without requiring a JavaScript animation router for the transition itself.
 
 ```css
 @view-transition {
@@ -24,152 +62,93 @@ The View Transitions API provides page-level transitions for multi-page applicat
 }
 ```
 
-The browser captures a snapshot of the old page, renders the new page, and cross-fades between them using CSS-defined animations on `::view-transition-old(root)` and `::view-transition-new(root)` pseudo-elements.
+### Scroll-driven animations
 
-Velora ships six cinematic view transition presets (velora, wipe, glide, iris, cinema, snap) applied with a single HTML attribute:
-
-```html
-<html vl-page-transition="cinema">
-```
-
-Shared elements morph between pages using `view-transition-name` — headlines, navigation, media, cards — all with CSS-only keyframes.
-
-**What this replaced:** Client-side routers, page transition libraries, manual DOM snapshotting, JavaScript-orchestrated crossfades. All of it.
-
-### scroll-timeline and view-timeline
-
-CSS scroll-driven animations bind animation progress to scroll position. Two timeline types:
-
-- `animation-timeline: scroll()` — progress tracks the scroll position of a scroll container.
-- `animation-timeline: view()` — progress tracks the element's visibility within a scroll container.
-
-Combined with `animation-range`, developers can define exactly when an animation starts and ends relative to scroll position:
+`animation-timeline: view()` and `animation-timeline: scroll()` let the browser bind progress directly to visibility or scroll position.
 
 ```css
 [vl-scroll="parallax"] {
-  animation-name: vl-parallax-shift;
   animation-timeline: view(block);
-  animation-range: cover;
 }
 ```
 
-The browser resolves these on the compositor thread. No scroll event listeners. No `requestAnimationFrame` polling. No intersection observer callbacks. No JavaScript.
+### `@starting-style`
 
-**What this replaced:** ScrollMagic, GSAP ScrollTrigger, Locomotive Scroll, custom intersection observer setups, every `window.addEventListener('scroll', ...)` handler ever written for parallax effects.
+Useful for entry transitions where an element receives its first rendered style or moves from a discrete hidden state into visibility.
 
-### @starting-style
+### Intrinsic-size interpolation
 
-The `@starting-style` rule defines the initial state of elements before their first style computation. This enables CSS-only entry animations for dynamically inserted content — elements that appear via `display: none` to `display: block`, or content injected by the server.
+`interpolate-size` and related sizing capabilities reduce the need to measure content height in JavaScript for common expand/collapse motion.
 
-**What this replaced:** JavaScript libraries that detect when elements enter the DOM and apply animation classes.
+### Native top-layer and semantic elements
 
-### interpolate-size
+`dialog`, popovers, `details`/`summary`, form controls, links, and other native elements often provide state and accessibility semantics that custom JavaScript implementations otherwise have to recreate.
 
-The `interpolate-size` property enables smooth transitions to and from `auto` dimensions. Elements can animate from `height: 0` to `height: auto` without JavaScript measuring the target height.
+### `@layer`
 
-**What this replaced:** JavaScript height calculation hacks, `max-height` workarounds, ResizeObserver-based animation triggers.
+Velora's named cascade layers keep reset, tokens, layout, motion, components, transitions, utilities, and overrides deterministic.
 
-### CSS nesting
+### Container queries and relational selectors
 
-Native CSS nesting eliminates the need for preprocessors to scope animation rules within component contexts:
+Container queries and `:has()` allow a large class of responsive and interaction-aware behavior to remain declarative.
 
-```css
-[vl-scene="cinematic-hero"] {
-  display: grid;
-  min-height: 100svh;
+## Why this matters
 
-  & > * {
-    animation: vl-reveal-cinematic 800ms var(--vl-ease-cinematic) both;
-  }
+### Less browser runtime code
 
-  & > *:nth-child(2) {
-    animation-delay: 160ms;
-  }
-}
+Avoiding an animation runtime means there is no animation library to initialize, schedule, coordinate, or clean up on the main JavaScript thread.
+
+### Intent stays close to markup
+
+A developer can inspect:
+
+```html
+<article vl-enter="fade-up" vl-scroll="parallax" vl-hover="hover-lift">
 ```
 
-**What this replaced:** Sass/Less nesting, BEM naming conventions used solely for specificity management.
+and understand the motion contract without tracing event listeners or timeline construction code.
 
-### @layer
+### Better separation of concerns
 
-The `@layer` at-rule provides explicit cascade ordering. Velora uses eight named layers:
+Velora's target boundary is:
 
-```css
-@layer velora.reset, velora.tokens, velora.layout, velora.motion,
-       velora.components, velora.transitions, velora.utilities, velora.overrides;
-```
+- HTML: semantics and declared intent;
+- CSS/browser: presentation, layout, motion, transitions;
+- JavaScript: application logic and behavior that genuinely requires scripting.
 
-Layer order is deterministic. Token definitions never accidentally override motion rules. Component styles never break transition animations. No specificity wars. No `!important` escalation (except `prefers-reduced-motion`, where it is correct).
+This is a product boundary, not an ideological ban.
 
-**What this replaced:** BEM methodologies designed to manage specificity, CSS-in-JS scoping, `!important` overrides, specificity calculation tools.
+## Where JavaScript is valid
 
-### Container queries
+JavaScript is appropriate for:
 
-Container queries enable responsive behavior based on an element's own dimensions, not the viewport:
+- data fetching and mutation;
+- business logic;
+- complex application state;
+- integrations and APIs;
+- interaction coordination the platform cannot currently express robustly;
+- accessibility behaviors that genuinely require scripting;
+- build-time tools, validators, compilers, and development automation.
 
-```css
-@container (max-width: 44rem) {
-  [vl-scene="product-reveal"] {
-    grid-template-columns: 1fr;
-  }
-}
-```
+If Velora later ships optional runtime enhancement modules, they must be clearly separated from the canonical CSS motion engine and must justify why the browser-native path is insufficient.
 
-Velora scenes are container query contexts by default. They respond to their own width, making them truly portable across layouts.
+## Progressive enhancement
 
-**What this replaced:** Viewport-based breakpoint systems, ResizeObserver-based responsive components, JavaScript-calculated layout switching.
+Velora motion must never become a prerequisite for understanding or operating the interface.
 
-### :has()
+A page should still:
 
-The `:has()` relational selector enables parent selection based on child state — a capability previously impossible without JavaScript:
+- render meaningful content without advanced motion support;
+- navigate without View Transitions support;
+- respect `prefers-reduced-motion`;
+- preserve semantic interaction when visual enhancement is unavailable.
 
-```css
-[vl-scene][vl-scene-trigger="zone"]:has(> [vl-scene-trigger-zone]:hover)
-  :is([vl-scroll]) {
-    animation-play-state: running;
-}
-```
+## The product position
 
-Velora uses `:has()` for scene trigger zones — gating animation playback based on whether a specific child element is hovered or focused.
+Velora is not trying to prove that CSS can replace all JavaScript.
 
-**What this replaced:** JavaScript event delegation, parent state management, class toggling for UI state.
+It is proving something more practical:
 
-## The performance case
+> **A large amount of modern interface motion no longer needs a JavaScript animation runtime.**
 
-The argument for CSS-only motion is not philosophical. It is mechanical.
-
-### Zero bundle size
-
-Velora's motion system adds zero bytes to your JavaScript bundle. CSS is parsed by the browser's style engine, which is separate from the JavaScript engine. There is no initialization cost, no module evaluation, no tree-shaking to worry about.
-
-A typical JavaScript animation library adds 15-45KB (gzipped) to a bundle. That code must be downloaded, parsed, compiled, and executed before a single animation can play. With Velora, animation is ready the moment the stylesheet is parsed.
-
-### GPU-composited by default
-
-CSS animations on `transform` and `opacity` are compositor-eligible. The browser promotes these elements to their own compositing layer and animates them on the GPU. The main thread is never involved.
-
-Velora's keyframes are designed around compositor-friendly properties. Transforms use `translate3d()` and `scale()`. Opacity changes use `opacity`. Filter animations use `blur()` and `brightness()`. The browser's compositor handles all of it at hardware speed.
-
-### No main thread blocking
-
-JavaScript animation libraries run on the main thread. They compete with your application logic, your event handlers, your React renders, your data fetching. When the main thread is busy, JavaScript animations jank.
-
-CSS animations do not have this problem. They run on the compositor thread — a separate thread that handles visual compositing independent of JavaScript execution. A complex React re-render will not jank a Velora animation. A long-running fetch handler will not stutter a scroll-driven parallax effect.
-
-### No garbage collection pauses
-
-JavaScript animation libraries allocate and deallocate objects every frame — tween objects, easing calculations, callback closures. The garbage collector must periodically pause to clean up. These pauses cause micro-jank.
-
-CSS animations allocate nothing on the JavaScript heap. There are no objects to garbage collect. The animation state lives entirely within the browser's style engine.
-
-## The scope
-
-Velora's no-JavaScript constraint applies to the motion and presentation layer. It does not claim that JavaScript is unnecessary for web applications. Application logic, data fetching, state management, form validation, routing logic — these are JavaScript's domain.
-
-But animation is not. Not anymore.
-
-The browser already has the animation engine. It already has the scroll observer. It already has the transition orchestrator. It already has the compositor thread.
-
-Velora provides the grammar. The browser provides the runtime.
-
-The main thread is free.
+Use the browser for what the browser is already good at. Keep JavaScript available for the work that actually belongs to application code.
