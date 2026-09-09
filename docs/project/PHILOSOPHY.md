@@ -1,56 +1,64 @@
 # Philosophy
 
-Every decision in Velora traces back to a small set of principles. These are not aspirations — they are constraints. When a feature request, a new effect, or a structural change conflicts with these principles, the principles win.
+Every decision in Velora traces back to a small set of product principles. These are constraints, not slogans. When a feature request, experiment, or implementation conflicts with them, the principles win.
 
 ## Browser-first
 
-The browser is the runtime. Not a transpiler. Not a virtual DOM. Not a JavaScript animation scheduler polling `requestAnimationFrame`.
+The browser is the primary presentation runtime.
 
-Velora builds on what the browser already does natively: CSS animations, scroll timelines, view transitions, container queries, the cascade. If the browser provides a primitive, Velora uses it directly. If the browser does not provide a primitive, Velora does not polyfill it — it waits, or it finds a CSS-only path.
+Velora builds on what the platform already provides: semantic HTML, the cascade, CSS animations, scroll and view timelines, View Transitions, container queries, `:has()`, native top-layer elements, intrinsic-size interpolation, and progressive enhancement.
 
-This is not a philosophical preference. It is a performance decision. The browser's compositor thread handles CSS animations off the main thread. GPU-composited transforms and opacity changes run at the hardware level. No JavaScript scheduler can match this pipeline. None should try.
+If the browser already exposes the primitive, Velora should use it directly before adding a custom runtime abstraction.
 
-**In practice:** Velora has zero JavaScript files in its motion system. Scroll-driven animations use `animation-timeline: view()`. Page transitions use `@view-transition { navigation: auto; }`. Hover states use `:hover`. Focus states use `:focus-visible`. The browser is the engine. Velora is the grammar.
+**In practice:** scroll-linked motion uses CSS timelines, page continuity uses native View Transitions where available, state uses semantic HTML and CSS selectors, and motion remains inspectable in DevTools.
 
-## Declarative
+## Declarative before imperative
 
-HTML describes what should happen. CSS determines how it happens. The developer never writes imperative animation code.
+HTML should describe what should happen. CSS should determine how presentation happens.
 
 ```html
 <article vl-enter="fade-up" vl-scroll="parallax" vl-hover="hover-lift">
 ```
 
-This markup carries full motion intent: the element fades up on entry, shifts with parallax on scroll, and lifts on hover. The developer declared the behavior. The browser executes it. There is no `onScroll` handler. No intersection observer callback. No animation library initialization.
+This markup communicates intent without requiring the reader to reverse-engineer a callback, timeline object, or event handler.
 
-Declarative systems are easier to read, easier to maintain, and easier to reason about. They separate intent from implementation. They compose without side effects. They degrade gracefully — remove the CSS, and the HTML still works.
+Declarative systems are easier for developers to read, for designers to discuss, and for AI tooling to validate because intent is explicit.
 
-**In practice:** Every motion behavior in Velora is expressed through HTML attributes (`vl-enter`, `vl-scroll`, `vl-loop`, `vl-hover`, `vl-exit`, `vl-state`, `vl-scene`, `vl-timeline`) and CSS custom properties (`--vl-ease-cinematic`, `--vl-duration-slow`, `--vl-stagger-step`). No event listeners. No callbacks. No JavaScript glue.
+**In practice:** canonical motion behavior is expressed through `vl-*` attributes, CSS custom properties, and native CSS state.
 
-## Zero runtime
+## Minimum necessary JavaScript
 
-Velora adds zero bytes of JavaScript to your application's motion layer. This is not a soft goal — it is a hard constraint.
+Velora does not treat JavaScript as forbidden. It treats unnecessary presentation JavaScript as a design smell.
 
-Animation libraries carry weight: initialization code, event listeners, resize observers, scroll handlers, easing functions, timeline schedulers, cleanup logic. That weight lives on the main thread. It competes with your application logic, your data fetching, your rendering pipeline.
+The core question is:
 
-Velora moves all of this to the CSS engine. The browser's compositor handles timing. The GPU handles transforms. The cascade handles specificity. The cost of Velora's motion system to your JavaScript budget is zero.
+> Can HTML, CSS, and the browser already solve this robustly?
 
-**In practice:** `@velora/css` ships as CSS files. The entire motion grammar — keyframes, attribute selectors, timeline bindings, scene presets, view transitions — resolves at the CSS level. Your bundle analyzer will never show Velora in the JavaScript column.
+If yes, use the platform. If no, and the feature genuinely requires application logic, data, state coordination, or behavior beyond current browser primitives, JavaScript is appropriate.
+
+The canonical Velora motion engine does not depend on a JavaScript animation runtime.
+
+**In practice:** no GSAP, Framer Motion, Anime.js, Locomotive Scroll, or equivalent animation scheduler in core. Build-time tooling may use JavaScript. Application code may use JavaScript. Optional enhancements may use JavaScript when clearly justified.
 
 ## Progressive enhancement
 
-A Velora-powered page works without Velora. Content is accessible, readable, and functional without CSS motion. Velora enhances — it does not gate.
+A Velora-powered interface must preserve content and essential interaction even when advanced motion is unavailable.
 
-This principle has two dimensions:
+This includes:
 
-1. **Baseline functionality.** If a browser does not support scroll-driven animations, the content still renders. Velora includes `@supports` fallbacks that degrade scroll-linked motion to time-based animation. If a browser does not support view transitions, pages still navigate normally.
+1. **Baseline functionality.** Unsupported motion features must not make content inaccessible or navigation unusable.
+2. **Reduced motion.** `prefers-reduced-motion` is part of the contract, not an afterthought.
+3. **Native-first state.** Prefer semantic elements such as `details`, `dialog`, `popover`, links, and form controls when they already model the interaction.
 
-2. **Reduced motion.** Every animation in Velora respects `prefers-reduced-motion: reduce`. When a user has requested reduced motion, animations resolve instantly, opacity is set to 1, transforms are removed, and filters are cleared. This is not optional — it is built into every layer of the system.
-
-**In practice:** The motion layer (`03-motion.css`) includes a comprehensive `@media (prefers-reduced-motion: reduce)` block that disables all effects, all scene animations, all scroll-driven behaviors, and all view transitions. The transitions layer (`05-transitions.css`) reduces all view transition durations to 120ms with linear timing. The fallback block (`@supports not (animation-timeline: view())`) ensures scroll-driven effects degrade to time-based animation on browsers without full support.
+Motion enhances understanding and continuity. It must not gate access to the interface.
 
 ## Composition over configuration
 
-Velora's motion system is not configured — it is composed. Motion channels stack in a deterministic order: base, enter, scroll, loop, hover, state, exit. Each channel is independent. Each is optional. Combining them produces complex behavior from simple, composable parts.
+Velora's motion model is built from small, independent channels that compose predictably:
+
+```text
+base → enter → scroll → loop → hover → state → exit
+```
 
 ```html
 <section
@@ -61,16 +69,58 @@ Velora's motion system is not configured — it is composed. Motion channels sta
   vl-exit="fade-out">
 ```
 
-This is not a configuration object with 12 properties. It is five independent declarations that compose into a rich motion profile. Add one, remove one, change one — the others remain stable.
+Each declaration communicates one dimension of behavior. Add, remove, or change one without rewriting the entire choreography.
 
-This model scales. A team of ten developers can use the same attribute grammar without coordination beyond knowing the channel names. A designer can read the markup and understand the motion intent without opening a JavaScript file.
+This is preferable to a monolithic configuration object or a custom script that mixes trigger, timing, state, and visual effect in one place.
 
-**In practice:** The motion channel system uses CSS custom property scoping (`--vl-enter-name`, `--vl-scroll-name`, `--vl-loop-name`, etc.) to isolate each channel's animation properties. Channels do not interfere with each other. The cascade resolves them in layer order. Composition is structural, not accidental.
+## Motion is structural
+
+Motion is part of interface architecture, not decoration added after layout.
+
+It communicates:
+
+- hierarchy;
+- sequence;
+- causality;
+- continuity;
+- focus;
+- state change;
+- spatial relationships.
+
+Velora should therefore design scenes and transitions together with layout and content structure.
+
+## Human-readable and machine-readable
+
+Velora sits between design intent and browser execution.
+
+The same contract should be understandable by:
+
+- a designer describing the desired feeling and progression;
+- a developer implementing the scene;
+- an AI agent generating, reviewing, or validating markup;
+- tooling enforcing the contract.
+
+This does not mean making the API verbose. It means making semantics explicit, finite, and stable.
+
+## Production code remains understandable
+
+Velora must not hide essential behavior behind opaque abstractions.
+
+If tooling generates CSS, the generated output must have a traceable relationship to the markup. If a future authoring tool produces Velora code, that code must remain editable by a developer without the tool.
+
+A system that is easy to generate but impossible to maintain manually has failed the product promise.
 
 ## The sum
 
-These five principles — browser-first, declarative, zero runtime, progressive enhancement, composition over configuration — are not independent ideas. They reinforce each other.
+These principles reinforce one another:
 
-A browser-first approach leads naturally to declarative markup, because CSS is declarative. Zero runtime is achievable because the browser handles the animation pipeline. Progressive enhancement is straightforward because CSS degrades gracefully by design. Composition works because the cascade provides deterministic resolution.
+- browser-first encourages declarative authoring;
+- declarative authoring makes the contract easier to share between design, development, and AI;
+- minimum necessary JavaScript keeps presentation close to the platform;
+- progressive enhancement protects accessibility and compatibility;
+- composition keeps the API scalable;
+- understandable output keeps Velora suitable for real production work.
 
-Velora is what happens when you take the browser seriously as an animation engine and build a grammar around it instead of around JavaScript.
+Velora is not about proving CSS can do everything.
+
+Velora is about using HTML and CSS to their actual modern limits, then adding JavaScript only where it contributes real application capability.
